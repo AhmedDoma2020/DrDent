@@ -78,6 +78,9 @@ const Map<String, String> arAE = {
   "flat_and_flour_num": "رقم الشقه و الدور و الطابق",
   "sp_marker": "علامه مميزة",
   "insurance_companies": "شركات التأمين",
-
+  "delete_success": "تم الحذف بنجاح",
+  "empty_insurance_company_title": "ليس لديك شركات تأمين بعد من فضلك قم بإضافة شركات  التأمين المشترك فيها",
+"Service_cost:":"تكلفة الخدمة:",
+"duration_of_service:":"مدة الخدمة:",
 
 };

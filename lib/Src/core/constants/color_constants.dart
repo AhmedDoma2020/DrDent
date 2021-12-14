@@ -36,6 +36,7 @@ const Color kCMainGreen = Color(0xff27AE60);
 const Color kCMainRed = Color(0xffFF1717);
 const Color kCMainGrey = Color(0xff525C67);
 const Color kCBGTextFormFiled = Color(0xffF2F2F2);
+const Color kCOffWight = Color(0xffFAFAFA);
 
 
 const Color kCPriceBlack = Color(0xff1E1E1E);

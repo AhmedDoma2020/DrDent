@@ -4,12 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'Src/core/services/Lang/localization_services.dart';
-import 'Src/features/AuthFeature/ui/screens/start_now_screen.dart';
-import 'Src/features/AuthFeature/ui/screens/wating_screen.dart';
-import 'Src/features/DetectionLocationDetails/Ui/Screen/detection_location_details_screen.dart';
-import 'Src/features/InsuranceCompanies/Ui/Screen/insurance_companies_screen.dart';
-import 'Src/features/OnBoardingFeature/ui/views/on_boarding_screen.dart';
-import 'Src/features/SplachFeature/ui/splash_screen.dart';
+import 'Src/features/ProfileFeature/GlobalInfoemationFeature/InsuranceCompaniesFeature/Ui/Screen/insurance_companies_screen.dart';
+import 'Src/features/ProfileFeature/GlobalServicesFeature/MyServicesFeature/Ui/View/Screen/my_services_screen.dart';
 
 void main() {runApp(MyApp());}
 
@@ -28,7 +24,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home:InsuranceCompanies(),
+        home:MyServicesScreen(),
       ),
     );
   }
