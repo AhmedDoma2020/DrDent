@@ -8,8 +8,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class RowAvailableInsuranceForm extends StatefulWidget {
   final InsuranceModel insurance;
    // bool? isSelect;
-
-
   final  VoidCallback  onSelectTap;
   RowAvailableInsuranceForm({
     required this.insurance,

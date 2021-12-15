@@ -1,34 +1,31 @@
+import 'package:dr_dent/Src/bloc/model/assitant_model.dart';
 import 'package:dr_dent/Src/bloc/model/insurance_model.dart';
 import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/InsuranceCompaniesFeature/Bloc/Repo/set_insurance_repo.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/AssistantData/Bloc/Controller/fetch_my_assistant_controller.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/AssistantData/Bloc/Repo/set_assistant_data_repo.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyServicesFeature/Block/Repo/set_services_repo.dart';
 import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-class SetServicesController extends GetxController {
-
+class SetAssistantController extends GetxController {
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
-  TextEditingController? servicesTypeSelectedController= TextEditingController();
-  TextEditingController? servicesDurationController= TextEditingController();
-  TextEditingController? servicesCostController= TextEditingController();
-  int? _servicesId;
-  int? get servicesId => _servicesId;
-
-  set setServicesId(int value) {
-    _servicesId = value;
-  }
-
+  TextEditingController? nameController= TextEditingController();
+  TextEditingController? phoneController= TextEditingController();
   RequestStatus status = RequestStatus.initial;
-  final SetServicesRepository _setServicesRepository =
-  SetServicesRepository();
-  Future<void> setServices() async {
+final FetchMyAssistantController _fetchMyAssistantController = Get.put(FetchMyAssistantController());
+  final SetAssistantRepository _setAssistantRepository = SetAssistantRepository();
+  Future<void> setAssistant() async {
     if(globalKey.currentState!.validate()){
       globalKey.currentState!.save();
+      AssistantModel newAssistant =  AssistantModel(name:nameController!.text,phone:phoneController!.text,id: 0,);
+      _fetchMyAssistantController.addAssistantLocal(newAssistant);
+      update();
       Get.back();
       // setLoading();
-      // var response = await _setServicesRepository.setServices(servicePrice: servicesCostController!.text, serviceId: _servicesId!, serviceTime: servicesDurationController!.text);
+      // var response = await _setAssistantRepository.setAssistant(name: nameController!.text, phone: phoneController!.text);
       // Get.back();
       // if (response.statusCode == 200 && response.data["status"] == true) {
       //   print("request operation success");
@@ -48,16 +45,14 @@ class SetServicesController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    servicesTypeSelectedController = TextEditingController();
-    servicesDurationController = TextEditingController();
-    servicesCostController = TextEditingController();
+    nameController = TextEditingController();
+    phoneController = TextEditingController();
   }
   @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    servicesTypeSelectedController?.dispose();
-    servicesDurationController?.dispose();
-    servicesCostController?.dispose();
+    nameController?.dispose();
+    phoneController?.dispose();
   }
 }

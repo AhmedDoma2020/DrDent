@@ -10,6 +10,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import 'add_services_sheet.dart';
+
 class MyServicesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -25,12 +27,12 @@ class MyServicesScreen extends StatelessWidget {
             size: 24.w,
           ),
           onPressed: () {
-            Get.bottomSheet(AvailableInsuranceSheet());
+            Get.bottomSheet(AddServicesSheet(),isScrollControlled: true);
           },
           backgroundColor: kCMain,
         ),
         appBar: AppBars.appBarDefault(
-            title: "insurance_companies".tr,
+            title: "my_services".tr,
             onTap: () {
               Get.back();
             }),
@@ -38,20 +40,23 @@ class MyServicesScreen extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
             height: double.infinity,
             width: double.infinity,
+            color: Colors.white,
             child: GetBuilder<FetchMyServicesController>(
               builder: (_) => _.myServicesList.isEmpty
                   ? EmptyWidget(
-                      image: "assets/image/emptyInsuranceCompany.png",
+                      image: "assets/image/emptyServices.png",
                       onTapButton: () {},
                       availableButton: false,
-                      title: "empty_insurance_company_title".tr,
+                      title: "empty_services_title".tr,
                       imageH: 160,
                       imageW: 140,
                     )
                   : ListView.separated(
                       shrinkWrap: true,
                       itemBuilder: (context, index) => RowMyServiceForm(
-                        onDeleteTap: () {},
+                        onDeleteTap: () {
+                          _.deleteInsurances(servicesId: _.myServicesList[index].id, index: index);
+                        },
                         onEditTap: () {},
                         service: _.myServicesList[index],
                       ),
