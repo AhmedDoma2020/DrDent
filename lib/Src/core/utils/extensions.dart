@@ -13,3 +13,11 @@ extension ScreenSpaces on double {
     return SizedBox(height: this.h,);
   }
 }
+
+
+extension AssetUrl on String {
+  // ignore: non_constant_identifier_names
+  String asset() {
+    return 'assets/icons/${this}';
+  }
+}
