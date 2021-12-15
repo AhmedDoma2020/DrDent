@@ -32,9 +32,10 @@ const Color kCOil = Color(0xff525C67);
 
 const Color kCMainScaffoldGrey = Color(0xffF7F7F7);
 const Color kCMainBlack = Color(0xff05080D);
+const Color kCMainBlack2 = Color(0xff0C1321);
 const Color kCMainGreen = Color(0xff27AE60);
 const Color kCMainRed = Color(0xffFF1717);
-const Color kCMainGrey = Color(0xff525C67);
+const Color kCMainGrey = Color(0xff505E7D);
 const Color kCBGTextFormFiled = Color(0xffF2F2F2);
 const Color kCOffWight = Color(0xffFAFAFA);
 
