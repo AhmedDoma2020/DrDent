@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 import 'Src/core/services/Lang/localization_services.dart';
 import 'Src/features/ProfileFeature/GlobalInfoemationFeature/InsuranceCompaniesFeature/Ui/Screen/insurance_companies_screen.dart';
+import 'Src/features/ProfileFeature/GlobalServicesFeature/AssistantData/Ui/View/my_assistant_screen.dart';
 import 'Src/features/ProfileFeature/GlobalServicesFeature/MyServicesFeature/Ui/View/Screen/my_services_screen.dart';
 
 void main() {runApp(MyApp());}
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         home:WorkTimeScreen(),
+
       ),
     );
   }

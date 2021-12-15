@@ -1,23 +1,29 @@
 import 'package:dr_dent/Src/bloc/model/insurance_model.dart';
-import 'package:dr_dent/Src/bloc/model/service_resource.dart';
+import 'package:dr_dent/Src/bloc/model/service_model.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/InsuranceCompaniesFeature/Bloc/Repo/fetch_available_insurances_repo.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyServicesFeature/Block/Repo/fetch_available_services_repo.dart';
 import 'package:get/get.dart';
 
 class FetchAvailableServicesController extends GetxController {
-  List<ServiceModel> _ServicesList = [];
-  List<ServiceModel> get ServicesList => _ServicesList;
+  List<ServiceModel> _servicesList = [];
+  List<ServiceModel> get servicesList => _servicesList;
 
   // void changeSelectServices({ required int servicesIndex}){
   //   _ServicesList[servicesIndex].active = !_ServicesList[servicesIndex].active;
   //   update();
   // }
+  int _daySIndex = -1;
+  int get daySIndex => _daySIndex;
+  void changeSIndex(value) {
+    _daySIndex = value;
+    update();
+  }
+
   RequestStatus status = RequestStatus.initial;
-  final FetchAvailableServicesRepository _etchAvailableServicesRepository =
-      FetchAvailableServicesRepository();
+  final FetchAvailableServicesRepository _etchAvailableServicesRepository = FetchAvailableServicesRepository();
   Future<void> fetchAvailableServices() async {
-    _ServicesList = [...myServiceModelExample];
+    _servicesList = [...myServiceModelExample];
     update();
     // var response =
     //     await _etchAvailableServicesRepository.fetchAvailableServices();

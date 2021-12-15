@@ -3,21 +3,19 @@ import 'package:dio/dio.dart';
 import 'package:dr_dent/Src/core/constants/api_key.dart';
 import 'package:dr_dent/Src/core/services/network_services.dart';
 import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
-class SetServicesRepository with ApiKey{
+class SetAssistantRepository with ApiKey{
   final NetworkService _networkService = NetworkService();
-  Future<Response> setServices({required String servicePrice,required int serviceId,required String serviceTime,})async{
+  Future<Response> setAssistant({required String name,required String phone,})async{
     Response response;
-    print("servicePrice :> $servicePrice");
-    print("serviceId :> $serviceId");
-    print("serviceTime :> $serviceTime");
+    print("name :> $name");
+    print("phone :> $phone");
     try{
       response = await _networkService.post(
         url:uRLSetInsurance,
         auth: true,
         body: {
-          "service_id": serviceId,
-          "service_time": serviceTime,
-          "service_price": servicePrice,
+          "name": name,
+          "phone": phone,
         },
       );
     }on SocketException{
