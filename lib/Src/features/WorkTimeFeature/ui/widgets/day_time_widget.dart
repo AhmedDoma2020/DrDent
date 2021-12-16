@@ -1,9 +1,10 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
+import 'package:dr_dent/Src/features/WorkTimeFeature/ui/widgets/icon_day_time.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '/src/core/utils/extensions.dart';
-
+import 'package:get/get.dart';
 class DayTimeWidget extends StatelessWidget {
   const DayTimeWidget({Key? key}) : super(key: key);
 
@@ -36,89 +37,20 @@ class DayTimeWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Image.asset(
-                      'assets/icons/delete.png',
-                      color: kCMainGrey,
-                      height: 13.h,
-                    ),
-                    6.0.ESW(),
-                    Column(
-                      children: [
-                        CustomText(
-                          text: 'بداية الفترة',
-                          color: kCMainBlack2,
-                          fontSize: 12,
-                          fontW: FW.light,
-                        ),
-                        5.0.ESH(),
-                        CustomText(
-                          text: '12:00 AM',
-                          color: kCMainBlack2,
-                          fontSize: 12,
-                          fontW: FW.light,
-                        ),
-                      ],
-                    ),
-                  ],
+                IconDayTime(
+                  title: 'start_time'.tr,
+                  subTitle: '12:00 AM',
+                  icon: 'start.png',
                 ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Image.asset(
-                      'assets/icons/delete.png',
-                      color: kCMainGrey,
-                      height: 13.h,
-                    ),
-                    6.0.ESW(),
-                    Column(
-                      children: [
-                        CustomText(
-                          text: 'بداية الفترة',
-                          color: kCMainBlack2,
-                          fontSize: 12,
-                          fontW: FW.light,
-                        ),
-                        5.0.ESH(),
-                        CustomText(
-                          text: '12:00 AM',
-                          color: kCMainBlack2,
-                          fontSize: 12,
-                          fontW: FW.light,
-                        ),
-                      ],
-                    ),
-                  ],
+                IconDayTime(
+                  title: 'end_time'.tr,
+                  subTitle: '04:00 PM',
+                  icon: 'end.png',
                 ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Image.asset(
-                      'assets/icons/delete.png',
-                      color: kCMainGrey,
-                      height: 13.h,
-                    ),
-                    6.0.ESW(),
-                    Column(
-                      children: [
-                        CustomText(
-                          text: 'بداية الفترة',
-                          color: kCMainBlack2,
-                          fontSize: 12,
-                          fontW: FW.light,
-                        ),
-                        5.0.ESH(),
-                        CustomText(
-                          text: '12:00 AM',
-                          color: kCMainBlack2,
-                          fontSize: 12,
-                          fontW: FW.light,
-                        ),
-                      ],
-                    ),
-                  ],
+                IconDayTime(
+                  title: 'number_of_visits'.tr,
+                  subTitle: '4',
+                  icon: 'group.png',
                 ),
               ],
             ),

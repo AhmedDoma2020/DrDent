@@ -1,10 +1,13 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
+import 'package:dr_dent/Src/features/WorkTimeFeature/ui/widgets/sheet_add_day_details.dart';
+import 'package:dr_dent/Src/features/WorkTimeFeature/ui/widgets/sheet_select_hour.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'day_time_widget.dart';
 import '/src/core/utils/extensions.dart';
+import 'package:get/get.dart';
 
 class DayWidget extends StatelessWidget {
   final bool active;
@@ -45,7 +48,7 @@ class DayWidget extends StatelessWidget {
                  child: ListView.separated(
                    itemBuilder: (context, index) =>  DayTimeWidget(),
                    separatorBuilder: (context, index) => 16.0.ESH(),
-                   itemCount: 3,
+                   itemCount: 1,
                    physics: NeverScrollableScrollPhysics(),
                    shrinkWrap: true,
                  ),
@@ -57,7 +60,37 @@ class DayWidget extends StatelessWidget {
                  child: Row(
                    mainAxisAlignment: MainAxisAlignment.center,
                    children: [
-                     Text('sdhj'),
+                     GestureDetector(
+                       onTap: (){
+                         print("open sheet");
+                         Get.bottomSheet(
+                           // SheetAddDayDetails(),
+                             SheetSelectHour(),
+                           isScrollControlled: true
+                         );
+                       },
+                       child: Container(
+                         decoration: BoxDecoration(
+                           color: Colors.transparent,
+                           border: Border.all(color: kCMain,width: 1),
+                           borderRadius: BorderRadius.circular(5.r),
+                         ),
+                         child: Padding(
+                           padding:  EdgeInsets.symmetric(
+                             vertical: 9.h,
+                             horizontal: 21.w
+                           ),
+                           child: Center(
+                             child: CustomText(
+                               text: 'إضافة فترة',
+                               color: kCMain,
+                               fontW: FW.medium,
+                               fontSize: 12,
+                             ),
+                           ),
+                         ),
+                       ),
+                     ),
                    ],
                  ),
                ),

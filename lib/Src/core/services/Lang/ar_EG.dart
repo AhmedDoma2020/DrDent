@@ -97,6 +97,9 @@ const Map<String, String> arAE = {
   "assistant_data":"بيانات المساعد",
   "assistant_name":"اسم المساعد",
   "must_select_assistant_name":"يجب ادخال اسم المساعد",
-
-
+  "start_time":"بداية الفترة",
+  "end_time":"نهاية الفترة",
+  "number_of_visits":"عدد الحجوزات الطارئة",
+  "enter_work_time":"ضبط فترات العمل",
+  "start_duration":"بداية الفترة",
 };
