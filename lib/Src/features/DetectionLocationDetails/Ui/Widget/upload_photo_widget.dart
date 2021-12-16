@@ -11,7 +11,9 @@ import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:image_picker/image_picker.dart';
 
 class UploadPhoto extends StatefulWidget {
+  final String title;
   const UploadPhoto({
+this.title = "A_picture_of_the_clinic_or_center",
     Key? key,
   }) : super(key: key);
 
@@ -40,7 +42,7 @@ class _UploadPhotoState extends State<UploadPhoto> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CustomText(
-          text: "A_picture_of_the_clinic_or_center".tr,
+          text: widget.title.tr,
           fontSize: 14,
           fontW: FW.semibold,
         ),
