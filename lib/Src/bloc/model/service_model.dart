@@ -6,13 +6,11 @@ class ServiceModel {
     required this.time,
     required this.selected,
   });
-
   late final int id;
   late final String title;
   late final String price;
   late final String time;
   late  bool selected;
-
   ServiceModel.fromJson(Map<String, dynamic> json){
     id = json['id'];
     price = json['price'];
