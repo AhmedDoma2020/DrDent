@@ -122,5 +122,9 @@ const Map<String, String> arAE = {
   "booking_details":"تفاصيل الحجز",
   "error_booking_details": "يجب ادخال تفاصيل الحجز",
   "offer_photo": "صورة العرض",
+  "must_be_set_photo": "يجب اضافه صوره اولا",
+  "To_": "الي",
+  "Day_": "يوم",
+
 
 };

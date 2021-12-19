@@ -136,7 +136,7 @@ class DetectionLocationDetailsScreen extends StatelessWidget {
                       ),
                     ),
                     16.0.ESH(),
-                    const UploadPhoto(),
+                     UploadPhoto(),
                     32.0.ESH(),
                     ButtonDefault(
                       title: 'save_contain'.tr,
