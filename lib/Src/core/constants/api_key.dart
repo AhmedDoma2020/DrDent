@@ -23,6 +23,7 @@ mixin ApiKey{
    final String uRLDeleteServices = apiBaseUrl + "delete_insurance";
    final String uRLDeleteAssistant = apiBaseUrl + "delete_assitant";
    final String uRLSetInsurance = apiBaseUrl + "set_insurance";
+   final String uRLNewVisits = apiBaseUrl + "all_new_visits";
 
 
 }

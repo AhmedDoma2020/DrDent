@@ -7,7 +7,7 @@ class TitleRowViewAll extends StatelessWidget {
     Key? key,
     required this.titleSlider,
     required this.onTap,
-    required this.titleOnTap,
+     this.titleOnTap='عرض الكل',
   }) : super(key: key);
 
   final String titleSlider;
@@ -40,7 +40,7 @@ class TitleRowViewAll extends StatelessWidget {
                       fontW: FW.regular,
                       fontSize: 13,
                     ),
-                    Icon(Icons.arrow_forward_ios,color: Colors.deepOrange,size: 14.w,)
+                    // Icon(Icons.arrow_forward_ios,color: Colors.deepOrange,size: 14.w,)
                   ],
                 )),
           ),

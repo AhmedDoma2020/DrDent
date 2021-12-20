@@ -6,7 +6,58 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '/src/core/utils/extensions.dart';
 import 'package:get/get.dart';
-class SheetAddDayDetails extends StatelessWidget {
+
+
+class SheetAddDayDetails extends StatefulWidget {
+  final Function(String,String,String) onSave;
+
+
+  SheetAddDayDetails({required this.onSave});
+
+  @override
+  State<SheetAddDayDetails> createState() => _SheetAddDayDetailsState();
+}
+
+class _SheetAddDayDetailsState extends State<SheetAddDayDetails> {
+
+  TextEditingController? startDateController;
+  TextEditingController? endDateController;
+  TextEditingController? visitsCountController;
+
+
+  String? _selectedTime;
+  Future<void> _show({required BuildContext context,required Function(String?) onOk}) async {
+    final TimeOfDay? result = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.now(),
+    );
+    if(result!=null){
+      onOk('${result.hour}:${result.minute}');
+    }else{
+      onOk(null);
+    }
+  }
+
+
+  @override
+  void initState() {
+
+    super.initState();
+    startDateController = TextEditingController();
+    endDateController = TextEditingController();
+    visitsCountController = TextEditingController();
+  }
+
+
+  @override
+  void dispose() {
+    startDateController!.dispose();
+    endDateController!.dispose();
+    visitsCountController!.dispose();
+    super.dispose();
+
+  }
+
   @override
   Widget build(BuildContext context) {
     var node = FocusScope.of(context);
@@ -41,34 +92,58 @@ class SheetAddDayDetails extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SizedBox(
-                        width: 150.w,
-                        child: TextFieldDefault(
-                          hint: 'start_time'.tr,
-                          // controller: _.buildNumController,
-                          fieldType: FieldType.WithOutBorder,
-                          enableBorder: Colors.transparent,
-                          horizentalPadding: 0,
-                          prefixIconUrl: 'start',
-                          enable: false,
-                          onComplete: () {
-                            node.nextFocus();
-                          },
+                      GestureDetector(
+                        onTap: (){
+                          _show(context: context,onOk: (value){
+                            print(value);
+                            if(value!=null){
+                              setState(() {
+                                startDateController!.text = value;
+                              });
+                            }
+                          });
+                        },
+                        child: SizedBox(
+                          width: 150.w,
+                          child: TextFieldDefault(
+                            hint: 'start_time'.tr,
+                            controller: startDateController,
+                            fieldType: FieldType.WithOutBorder,
+                            enableBorder: Colors.transparent,
+                            horizentalPadding: 0,
+                            prefixIconUrl: 'start',
+                            enable: false,
+                            onComplete: () {
+                              node.nextFocus();
+                            },
+                          ),
                         ),
                       ),
-                      SizedBox(
-                        width: 150.w,
-                        child: TextFieldDefault(
-                          hint: 'end_time'.tr,
-                          // controller: _.buildNumController,
-                          enable: false,
-                          fieldType: FieldType.WithOutBorder,
-                          enableBorder: Colors.transparent,
-                          horizentalPadding: 0,
-                          prefixIconUrl: 'end',
-                          onComplete: () {
-                            node.nextFocus();
-                          },
+                      GestureDetector(
+                        onTap: (){
+                          _show(context: context,onOk: (value){
+                            print(value);
+                            if(value!=null){
+                              setState(() {
+                                endDateController!.text = value;
+                              });
+                            }
+                          });
+                        },
+                        child: SizedBox(
+                          width: 150.w,
+                          child: TextFieldDefault(
+                            hint: 'end_time'.tr,
+                            controller: endDateController,
+                            enable: false,
+                            fieldType: FieldType.WithOutBorder,
+                            enableBorder: Colors.transparent,
+                            horizentalPadding: 0,
+                            prefixIconUrl: 'end',
+                            onComplete: () {
+                              node.nextFocus();
+                            },
+                          ),
                         ),
                       ),
                     ],
@@ -76,7 +151,7 @@ class SheetAddDayDetails extends StatelessWidget {
                   23.0.ESH(),
                   TextFieldDefault(
                     hint: 'number_of_visits'.tr,
-                    // controller: _.buildNumController,
+                    controller: visitsCountController,
                     keyboardType: TextInputType.number,
                     fieldType: FieldType.WithOutBorder,
                     enableBorder: Colors.transparent,
@@ -91,6 +166,7 @@ class SheetAddDayDetails extends StatelessWidget {
                     title: 'save_'.tr,
                     onTap: () {
                       // _.submit();
+                      widget.onSave(startDateController!.text,endDateController!.text,visitsCountController!.text);
                     },
                   ),
                   22.0.ESH(),
