@@ -18,6 +18,7 @@ const double kNCardRadius = 10;
 
 const Color kCMain = Color(0xff1151D9);
 const Color kCSubMain = Color(0xffF67956);
+const Color kCMainOverlay = Color(0xffFEEFEA);
 const Color kCMainBackGrey = Color(0xffE7EBEE);
 const Color kCDisActive = Color(0xffFFE5DE);
 const Color kCMainDivider = Color(0xffF4F4F4);
