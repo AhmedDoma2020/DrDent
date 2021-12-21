@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 
 
 class GlobalServicesWidget extends StatelessWidget {
-  const GlobalServicesWidget({
-    Key? key,
-  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
