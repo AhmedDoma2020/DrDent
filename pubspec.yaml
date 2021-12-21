@@ -51,6 +51,8 @@ dependencies:
   google_api_availability:
   geocoding:
   flutter_spinkit:
+#  date_range_picker: ^1.0.5
+  syncfusion_flutter_datepicker: ^19.4.38
 
   #  firebase_auth: ^3.1.2
 #  firebase_core: ^1.7.0

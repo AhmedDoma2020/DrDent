@@ -24,6 +24,8 @@ const Color kCDisActive = Color(0xffFFE5DE);
 const Color kCMainDivider = Color(0xffF4F4F4);
 const Color kCGreyDark = Color(0xff454D57);
 const Color kCOil = Color(0xff525C67);
+const Color kCRateStareActive = Color(0xffF6A757);
+// const Color kCGreyBorder = Color(0xffC9C9C9);
 
 
 
