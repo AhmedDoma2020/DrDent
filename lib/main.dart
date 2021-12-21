@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'Src/core/services/Lang/localization_services.dart';
 import 'Src/features/ProfileFeature/GlobalServicesFeature/AddOfferFeature/Ui/View/my_offer_screen.dart';
+import 'Src/features/ProfileFeature/ProfileScreen/Ui/View/profile_screen.dart';
 
 void main() {runApp(MyApp());}
 
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home:MyOfferScreen(),
+        home:ProfileScreen(),
 
       ),
     );
