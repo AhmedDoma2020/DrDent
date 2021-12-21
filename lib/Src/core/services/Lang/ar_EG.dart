@@ -125,6 +125,10 @@ const Map<String, String> arAE = {
   "must_be_set_photo": "يجب اضافه صوره اولا",
   "To_": "الي",
   "Day_": "يوم",
-
-
+  "years_of_experience": "عدد سنوات الخبرة",
+  "rate_": "تقييم",
+  "patients_": "المرضي",
+  "my_general_data": "بياناتي العامة",
+  "my_certification": "شهاداتي",
+  "examination_and_clinic_data": "بيانات الكشف والعيادات",
 };
