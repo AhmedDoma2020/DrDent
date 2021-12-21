@@ -1,3 +1,4 @@
+import 'package:dr_dent/Src/bloc/model/day_time_model.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/features/WorkTimeFeature/ui/widgets/icon_day_time.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
@@ -6,7 +7,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '/src/core/utils/extensions.dart';
 import 'package:get/get.dart';
 class DayTimeWidget extends StatelessWidget {
-  const DayTimeWidget({Key? key}) : super(key: key);
+  final DayTimeModel dayTime;
+  const DayTimeWidget({Key? key, required this.dayTime}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,17 +41,17 @@ class DayTimeWidget extends StatelessWidget {
               children: [
                 IconDayTime(
                   title: 'start_time'.tr,
-                  subTitle: '12:00 AM',
+                  subTitle: dayTime.startTime,
                   icon: 'start.png',
                 ),
                 IconDayTime(
                   title: 'end_time'.tr,
-                  subTitle: '04:00 PM',
+                  subTitle: dayTime.endTime,
                   icon: 'end.png',
                 ),
                 IconDayTime(
                   title: 'number_of_visits'.tr,
-                  subTitle: '4',
+                  subTitle: dayTime.numberOfEmergencyVisits,
                   icon: 'group.png',
                 ),
               ],
