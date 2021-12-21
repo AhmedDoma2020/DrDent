@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         transitionDuration:const Duration(milliseconds: 200),
         translations: LocalizationServices(),
         locale: LocalizationServices().getCurrentLocale(),
-        title: 'Pickup',
+        title: 'DrDent',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
