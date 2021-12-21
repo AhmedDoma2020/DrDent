@@ -1,4 +1,5 @@
 
+import 'package:dr_dent/Src/features/VisitsFeature/ui/screens/visit_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home:MyVisitScreen(),
+        home:VisitScreen(),
       ),
     );
   }
