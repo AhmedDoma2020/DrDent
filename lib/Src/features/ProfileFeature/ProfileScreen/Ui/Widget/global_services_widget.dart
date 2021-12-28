@@ -1,12 +1,14 @@
 import 'package:dr_dent/Src/core/utils/extensions.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyAssistantDataFeature/Ui/View/my_assistant_screen.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyOfferFeature/Ui/View/my_offer_screen.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyServicesFeature/Ui/View/Screen/my_services_screen.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/Widget/profile_column_info_item.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 
 class GlobalServicesWidget extends StatelessWidget {
-  const GlobalServicesWidget({
-    Key? key,
-  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -22,19 +24,25 @@ class GlobalServicesWidget extends StatelessWidget {
           ProfileColumnInfoItem(
             icon: "assets/icons/my_services.png",
             title: "my_services",
-            onTap: () {},
+            onTap: () {
+              Get.to(()=>MyServicesScreen());
+            },
           ),
           16.0.ESH(),
           ProfileColumnInfoItem(
             icon: "assets/icons/assistant_data.png",
             title: "assistant_data",
-            onTap: () {},
+            onTap: () {
+              Get.to(()=>MyAssistantScreen());
+            },
           ),
           16.0.ESH(),
           ProfileColumnInfoItem(
             icon: "assets/icons/Offers_and_discounts.png",
             title: "Offers_and_discounts",
-            onTap: () {},
+            onTap: () {
+              Get.to(()=>MyOfferScreen());
+            },
           ),
         ],
       ),

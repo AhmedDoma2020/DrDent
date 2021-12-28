@@ -1,7 +1,7 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
-import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/AddOfferFeature/Bloc/Controller/fetch_my_offer_and_discount_controller.dart';
-import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/AddOfferFeature/Ui/Widget/my_offer_and_discount_row_form.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyOfferFeature/Bloc/Controller/fetch_my_offer_and_discount_controller.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyOfferFeature/Ui/Widget/my_offer_and_discount_row_form.dart';
 import 'package:dr_dent/Src/ui/widgets/EmptyWidget/empty_widget.dart';
 import 'package:dr_dent/Src/ui/widgets/appbars/app_bars.dart';
 import 'package:flutter/material.dart';

@@ -1,7 +1,7 @@
 import 'package:dr_dent/Src/bloc/model/offer_and_discount_model.dart';
 import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
-import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/AddOfferFeature/Bloc/Repo/set_offer_and_discount_repo.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyOfferFeature/Bloc/Repo/set_offer_and_discount_repo.dart';
 import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';

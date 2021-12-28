@@ -30,7 +30,7 @@ class ProfileRowInfoItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           IconForm(icon: icon,
-          backGroundColor: kCGreyBorder,
+          backGroundColor: kCGreySemiDark2,
           heightAndWidthContainer: 24,
           heightAndWidthIcon: 14,),
           10.0.ESW(),

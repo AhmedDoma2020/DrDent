@@ -1,7 +1,8 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
-import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/AddAssistantDataFeature/Bloc/Controller/fetch_my_assistant_controller.dart';
-import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/AddAssistantDataFeature/Ui/Widget/my_assistant_row_form.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyAssistantDataFeature/Bloc/Controller/fetch_my_assistant_controller.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyAssistantDataFeature/Ui/Widget/my_assistant_row_form.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyAssistantDataFeature/Bloc/Controller/fetch_my_assistant_controller.dart';
 import 'package:dr_dent/Src/ui/widgets/EmptyWidget/empty_widget.dart';
 import 'package:dr_dent/Src/ui/widgets/appbars/app_bars.dart';
 import 'package:flutter/material.dart';
