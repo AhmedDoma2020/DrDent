@@ -1,14 +1,8 @@
 import 'package:dr_dent/Src/bloc/model/assitant_model.dart';
-import 'package:dr_dent/Src/bloc/model/insurance_model.dart';
-import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
-import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/InsuranceCompaniesFeature/Bloc/Repo/set_insurance_repo.dart';
-import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/AddAssistantDataFeature/Bloc/Repo/set_assistant_data_repo.dart';
-import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyServicesFeature/Block/Repo/set_services_repo.dart';
-import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyAssistantDataFeature/Bloc/Repo/set_assistant_data_repo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-
 import 'fetch_my_assistant_controller.dart';
 
 class SetAssistantController extends GetxController {

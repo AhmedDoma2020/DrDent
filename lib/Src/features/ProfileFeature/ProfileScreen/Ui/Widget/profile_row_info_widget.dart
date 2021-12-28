@@ -11,9 +11,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class ProfileRowInfoAndRate extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
+    FetchProfileDoctorController _fetchProfileDoctorController  =Get.find();
     return GetBuilder<FetchProfileDoctorController>(
       builder: (_) => SizedBox(
         // color: Colors.red,

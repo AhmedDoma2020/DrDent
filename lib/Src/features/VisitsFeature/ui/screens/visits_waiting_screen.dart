@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 import '/src/core/utils/extensions.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 class VisitsWaitingScreen extends StatelessWidget {
-  const VisitsWaitingScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     Get.put(VisitsWaitingController());

@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import '/src/core/utils/extensions.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 class VisitsNewScreen extends StatelessWidget {
-  const VisitsNewScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     Get.put(VisitsNewController());

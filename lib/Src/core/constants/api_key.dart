@@ -1,9 +1,7 @@
 mixin ApiKey{
 
 
-   static const String apiBaseUrl='https://ingaz.crazyideaco.com/public/api/customer/';
-
-
+   static const String apiBaseUrl = 'https://ingaz.crazyideaco.com/public/api/customer/';
 
 
    final String uRLLogin = apiBaseUrl + "login";
@@ -11,11 +9,12 @@ mixin ApiKey{
    // String URLFetchMajorCategorySellers(int page)=>apiBaseUrl + "major_shops"+'?page=$page'; // soon
 
 
-
 // New ApiKey For Pickup
    final String uRLCity = apiBaseUrl + "city";
-   final String uRLFetchAvailableInsurances = apiBaseUrl + "fetch_available_insurances";
-   final String uRLFetchAvailableServices = apiBaseUrl + "fetch_available_insurances";
+   final String uRLFetchAvailableInsurances = apiBaseUrl +
+       "fetch_available_insurances";
+   final String uRLFetchAvailableServices = apiBaseUrl +
+       "fetch_available_insurances";
    final String uRLFetchMyInsurances = apiBaseUrl + "fetch_my_insurances";
    final String uRLFetchMyServices = apiBaseUrl + "fetch_my_insurances";
    final String uRLFetchMyAssistant = apiBaseUrl + "my_assitants";
@@ -28,4 +27,7 @@ mixin ApiKey{
    final String uRLNewVisits = apiBaseUrl + "all_new_visits";
    final String uRLSetOfferAndDiscount = apiBaseUrl + "add_offer";
    final String uRLFetchProfileDoctor = apiBaseUrl + "fetch_profile_doctor";
+   final String uRLFetchScientific = apiBaseUrl + "fetch_seintific_levels";
+   final String uRLFetchSpecialization = apiBaseUrl + "fetch_specialization";
+   final String uRLEnterAndEditMyPersonalData = apiBaseUrl + "edit_personal_info";
 }

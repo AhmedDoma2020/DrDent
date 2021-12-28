@@ -2,7 +2,7 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
-import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/AddOfferFeature/Bloc/Controller/set_offer_and_discount_controller.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyOfferFeature/Bloc/Controller/set_offer_and_discount_controller.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

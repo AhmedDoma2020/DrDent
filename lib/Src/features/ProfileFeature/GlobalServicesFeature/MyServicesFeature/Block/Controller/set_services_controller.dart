@@ -15,7 +15,6 @@ class SetServicesController extends GetxController {
   TextEditingController? servicesCostController= TextEditingController();
   int? _servicesId;
   int? get servicesId => _servicesId;
-
   set setServicesId(int value) {
     _servicesId = value;
   }

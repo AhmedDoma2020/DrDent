@@ -6,18 +6,15 @@ import 'package:get/get.dart';
 class FetchAvailableInsurancesController extends GetxController {
   List<InsuranceModel> _insuranceList = [];
   List<InsuranceModel> get insuranceList => _insuranceList;
-
   List<int> _insurancesIdList = [];
-
   List<int> get insurancesIdList => _insurancesIdList;
-
   void changeSelectInsurance({ required int insuranceIndex}){
     _insuranceList[insuranceIndex].active = !_insuranceList[insuranceIndex].active;
     update();
   }
+
   RequestStatus status = RequestStatus.initial;
-  final FetchAvailableInsurancesRepository _etchAvailableInsurancesRepository =
-      FetchAvailableInsurancesRepository();
+  final FetchAvailableInsurancesRepository _etchAvailableInsurancesRepository = FetchAvailableInsurancesRepository();
   Future<void> fetchAvailableInsurances() async {
     _insuranceList = [...insuranceListExamples];
     update();
