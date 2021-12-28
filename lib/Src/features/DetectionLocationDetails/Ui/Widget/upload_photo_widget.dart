@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'dart:convert';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
@@ -11,16 +11,18 @@ import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:image_picker/image_picker.dart';
 
 class UploadPhoto extends StatefulWidget {
+  final String title;
   const UploadPhoto({
+this.title = "A_picture_of_the_clinic_or_center",
     Key? key,
   }) : super(key: key);
 
   @override
   State<UploadPhoto> createState() => _UploadPhotoState();
 }
-
 class _UploadPhotoState extends State<UploadPhoto> {
   File? image;
+  String? img64;
 
   Future getImage() async {
     try {
@@ -28,6 +30,8 @@ class _UploadPhotoState extends State<UploadPhoto> {
       if (image == null) return;
       final imageTemporary = File(image.path);
       setState(() => this.image = imageTemporary);
+      final bytes = File(image.path).readAsBytesSync();
+      img64 = base64Encode(bytes);
     } on PlatformException catch (e) {
       print("field picked image $e");
     }
@@ -40,7 +44,7 @@ class _UploadPhotoState extends State<UploadPhoto> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CustomText(
-          text: "A_picture_of_the_clinic_or_center".tr,
+          text: widget.title.tr,
           fontSize: 14,
           fontW: FW.semibold,
         ),

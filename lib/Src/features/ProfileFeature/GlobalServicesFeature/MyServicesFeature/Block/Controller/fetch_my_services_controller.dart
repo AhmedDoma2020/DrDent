@@ -11,15 +11,16 @@ import 'package:get/get.dart';
 
 class FetchMyServicesController extends GetxController {
   List<ServiceModel> _myServicesList = [];
-
   List<ServiceModel> get myServicesList => _myServicesList;
 
-  RequestStatus status = RequestStatus.initial;
-  final FetchMyServicesRepository _fetchMyServicesRepository =
-      FetchMyServicesRepository();
-  final DeleteServicesRepository _deleteServicesRepository =
-      DeleteServicesRepository();
 
+  RequestStatus status = RequestStatus.initial;
+  void changeSelectServices({ required int servicesIndex}){
+    _myServicesList[servicesIndex].selected = !_myServicesList[servicesIndex].selected;
+    update();
+  }
+  final FetchMyServicesRepository _fetchMyServicesRepository = FetchMyServicesRepository();
+  final DeleteServicesRepository _deleteServicesRepository =   DeleteServicesRepository();
   Future<void> fetchMyServices() async {
     _myServicesList = [...myServiceModelExample];
     update();

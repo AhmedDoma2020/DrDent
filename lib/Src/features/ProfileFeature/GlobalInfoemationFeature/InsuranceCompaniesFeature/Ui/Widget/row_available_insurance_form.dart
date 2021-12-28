@@ -24,8 +24,8 @@ class _RowAvailableInsuranceFormState extends State<RowAvailableInsuranceForm> {
     return GestureDetector(
       onTap: widget.onSelectTap,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 4.w),
-        height: 32.h,
+        padding: EdgeInsets.symmetric(horizontal: 4.w,vertical: 12.h),
+        // height: 32.h,
         width: double.infinity,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

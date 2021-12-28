@@ -8,7 +8,7 @@ class AllProductsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBars.appBarDefault(title: 'كل المنتجات'),
-      body: ,
+      // body: ,
     );
   }
 }

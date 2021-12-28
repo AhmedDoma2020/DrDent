@@ -29,7 +29,7 @@ class CustomText extends StatelessWidget {
     this.overflow = false,
     // this.toUpperCase = true,
     this.underline = false,
-    this.fontW,
+    this.fontW = FW.regular,
     this.padding,
     this.lineThrough=false,
     this.maxLines

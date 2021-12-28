@@ -5,6 +5,11 @@ import 'package:dr_dent/Src/features/AuthFeature/ui/screens/account_type_screen.
 import 'package:flutter/cupertino.dart';
 
 import 'package:get/get.dart';
+import 'dart:io';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
+import 'package:image_picker/image_picker.dart';
 
 
 class DetectionLocationDetailsController extends GetxController{
@@ -46,5 +51,26 @@ class DetectionLocationDetailsController extends GetxController{
     nameController?.dispose();
     priceExaminationController?.dispose();
     super.dispose();
+  }
+
+
+  File? _image;
+  File? get image => _image;
+  set setImage(File value) {
+    _image = value;
+  }
+  set setNullImage(Null value) {
+    _image = value;
+  }
+  Future getImage() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (image == null) return;
+      final imageTemporary = File(image.path);
+      _image = imageTemporary;
+      update();
+    } on PlatformException catch (e) {
+      print("field picked image $e");
+    }
   }
 }
