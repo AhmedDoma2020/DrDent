@@ -24,6 +24,8 @@ const Color kCDisActive = Color(0xffFFE5DE);
 const Color kCMainDivider = Color(0xffF4F4F4);
 const Color kCGreyDark = Color(0xff454D57);
 const Color kCOil = Color(0xff525C67);
+const Color kCInActiveButtonColor =  Color(0xffEEF3FD);
+const Color kCInContainerBackGround =  Color(0xffFCFCFC);
 
 
 
@@ -37,6 +39,7 @@ const Color kCMainBlack2 = Color(0xff0C1321);
 const Color kCMainGreen = Color(0xff27AE60);
 const Color kCMainRed = Color(0xffFF1717);
 const Color kCMainGrey = Color(0xff505E7D);
+const Color kCLightGrey = Color(0xffE4E4E4);
 const Color kCBGTextFormFiled = Color(0xffF2F2F2);
 const Color kCOffWight = Color(0xffFAFAFA);
 

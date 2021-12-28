@@ -5,15 +5,16 @@ import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '/src/core/utils/extensions.dart';
-class ListJobOffers extends StatelessWidget {
-  const ListJobOffers({Key? key}) : super(key: key);
+class SliderJobOffers extends StatelessWidget {
+  const SliderJobOffers({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return  ListView.separated(
         itemBuilder: (context, index) => CardJobOffer(),
-        separatorBuilder: (context, index) => 16.0.ESH(),
+        separatorBuilder: (context, index) => 16.0.ESW(),
         itemCount: 30,
         shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
     );
   }
 }

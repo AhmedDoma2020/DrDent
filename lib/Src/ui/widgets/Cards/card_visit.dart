@@ -105,7 +105,7 @@ class CardVisit extends StatelessWidget {
                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                    children: [
                      ButtonDefault(title: 'تغيير الموعد',width: .4*width,height: 46,),
-                     ButtonDefault(title: 'الغاء',width: .4*width,height: 46,buttonColor: Color(0xffEEF3FD),titleColor: kCMain,),
+                     ButtonDefault(title: 'الغاء',width: .4*width,height: 46,buttonColor: kCInActiveButtonColor,titleColor: kCMain,),
                    ],
                  ),
                ],

@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'Src/core/services/Lang/localization_services.dart';
+import 'Src/features/JobFeature/ui/screens/job_screen.dart';
+import 'Src/features/JobFeature/ui/screens/jobs_screen.dart';
+import 'Src/features/StoreFeature/ui/screens/product_screen.dart';
+import 'Src/features/StoreFeature/ui/screens/stotre_screen.dart';
 import 'Src/features/VisitsFeature/ui/screens/my_visits_screen.dart';
 
 void main() {runApp(MyApp());}
@@ -23,7 +27,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home:VisitScreen(),
+        home:ProductScreen(),
       ),
     );
   }

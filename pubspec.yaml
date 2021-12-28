@@ -46,6 +46,7 @@ dependencies:
   photo_view: ^0.13.0
   table_calendar: 2.3.3
   flutter_datetime_picker: ^1.5.1
+  carousel_slider: ^4.0.0
   google_maps_flutter:
   geolocator:
   google_api_availability:
