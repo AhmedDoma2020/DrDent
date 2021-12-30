@@ -3,7 +3,6 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
-import 'package:dr_dent/Src/core/services/photo_view.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:dr_dent/Src/ui/widgets/appbars/app_bars.dart';
@@ -26,6 +25,7 @@ class _BusinessLicenseScreenState extends State<BusinessLicenseScreen> {
   String? img64;
   Uint8List? bytes2;
   String? photoView;
+
   Future getImage() async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -51,7 +51,7 @@ class _BusinessLicenseScreenState extends State<BusinessLicenseScreen> {
           height: double.infinity,
           width: double.infinity,
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24.w,vertical: 24.h),
+            padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -82,49 +82,54 @@ class _BusinessLicenseScreenState extends State<BusinessLicenseScreen> {
                       ),
                       child: image != null
                           ? Stack(
-                            children: [
-                              GestureDetector(
-                        onTap: (){
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //       builder: (context) =>
-                              //           PhotoViewWidget(
-                              //             imageProvider: AssetImage(),
-                              //           ),
-                              //     ));
-                        },
-                                child: Image.file(
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    // Navigator.push(
+                                    //     context,
+                                    //     MaterialPageRoute(
+                                    //       builder: (context) =>
+                                    //           PhotoViewWidget(
+                                    //             imageProvider: AssetImage(),
+                                    //           ),
+                                    //     ));
+                                  },
+                                  child: Image.file(
                                     image!,
                                     fit: BoxFit.cover,
                                     width: double.infinity,
                                     height: 188.h,
                                   ),
-                              ),
-                              Padding(
-                                padding:  EdgeInsets.only(top: 8.h,left: 8.w),
-                                child: Align(
-                                  alignment: Alignment.topLeft,
-                                  child: InkWell(
-                                    onTap: (){
-                                      setState(() {
-                                        image=null;
-                                      });
-                                    },
-                                    child: Container(
-                                      height:24.w,
-                                      width: 24.w,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(777.r),
-                                        color: Colors.grey.withOpacity(0.5),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(top: 8.h, left: 8.w),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          image = null;
+                                        });
+                                      },
+                                      child: Container(
+                                        height: 24.w,
+                                        width: 24.w,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(777.r),
+                                          color: Colors.grey.withOpacity(0.5),
+                                        ),
+                                        child: Icon(
+                                          Icons.clear,
+                                          color: Colors.white,
+                                          size: 16.w,
+                                        ),
                                       ),
-                                      child: Icon(Icons.clear,color: Colors.white,size:16.w,),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          )
+                              ],
+                            )
                           : Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -154,13 +159,14 @@ class _BusinessLicenseScreenState extends State<BusinessLicenseScreen> {
                     ),
                   ],
                 ),
-                image==null? 0.0.ESH():
-                ButtonDefault(
-                  title: 'save_contain'.tr,
-                  onTap: () {
-                    Get.to(()=>WattingScreen());
-                  },
-                ),
+                image == null
+                    ? 0.0.ESH()
+                    : ButtonDefault(
+                        title: 'save_contain'.tr,
+                        onTap: () {
+                          Get.to(() => WattingScreen());
+                        },
+                      ),
               ],
             ),
           ),

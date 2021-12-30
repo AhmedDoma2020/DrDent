@@ -11,20 +11,21 @@ import 'package:get/get.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:image_picker/image_picker.dart';
 
-class UploadPhotoOfWordLicenses extends StatefulWidget {
+class UploadPhotoContainer extends StatefulWidget {
+  final Function(String) onTap;
   final String title;
-  const UploadPhotoOfWordLicenses({
-    this.title = "photo_of_Work_licenses",
+  const UploadPhotoContainer({
+    required this.onTap ,
+    required this.title ,
     Key? key,
   }) : super(key: key);
 
   @override
-  State<UploadPhotoOfWordLicenses> createState() => _UploadPhotoOfWordLicensesState();
+  State<UploadPhotoContainer> createState() => _UploadPhotoContainerState();
 }
-class _UploadPhotoOfWordLicensesState extends State<UploadPhotoOfWordLicenses> {
+class _UploadPhotoContainerState extends State<UploadPhotoContainer> {
   File? image;
   String? img64;
-  EnterMyPersonalDataController _enterMyPersonalDataController = Get.put(EnterMyPersonalDataController());
   Future getImage() async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -33,7 +34,7 @@ class _UploadPhotoOfWordLicensesState extends State<UploadPhotoOfWordLicenses> {
       setState(() => this.image = imageTemporary);
       final bytes = File(image.path).readAsBytesSync();
       img64 = base64Encode(bytes);
-      _enterMyPersonalDataController.setImage = img64!;
+      widget.onTap(img64!);
     } on PlatformException catch (e) {
       print("field picked image $e");
     }
@@ -85,7 +86,7 @@ class _UploadPhotoOfWordLicensesState extends State<UploadPhotoOfWordLicenses> {
                         if (image != null) {
                           setState(() {
                             image = null;
-                            _enterMyPersonalDataController.setImage = "";
+                            widget.onTap("");
                           });
                         } else {
                           getImage();

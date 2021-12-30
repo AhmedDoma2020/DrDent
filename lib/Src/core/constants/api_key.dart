@@ -30,4 +30,7 @@ mixin ApiKey{
    final String uRLFetchScientific = apiBaseUrl + "fetch_seintific_levels";
    final String uRLFetchSpecialization = apiBaseUrl + "fetch_specialization";
    final String uRLEnterAndEditMyPersonalData = apiBaseUrl + "edit_personal_info";
+   final String uRLAddJopRequest = apiBaseUrl + "add_job_request";
+   final String uRLAddAJopOffer = apiBaseUrl + "add_job_offer";
+   final String uRLStates = apiBaseUrl + "states";
 }
