@@ -3,8 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'Src/core/services/Lang/localization_services.dart';
 
+import 'Src/features/DrawerFeature/View/Ui/contact_with_mail_screen.dart';
+import 'Src/features/JobFeature/ui/screens/add_a_job_offer_screen.dart';
 import 'Src/features/JobFeature/ui/screens/job_screen.dart';
 import 'Src/features/JobFeature/ui/screens/jobs_screen.dart';
+import 'Src/features/JobFeature/ui/screens/test.dart';
 import 'Src/features/StoreFeature/ui/screens/product_screen.dart';
 import 'Src/features/StoreFeature/ui/screens/stotre_screen.dart';
 import 'Src/features/VisitsFeature/ui/screens/my_visits_screen.dart';
@@ -31,7 +34,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home:ProductScreen(),
+        home:ContactWithMail(),
       ),
     );
   }
