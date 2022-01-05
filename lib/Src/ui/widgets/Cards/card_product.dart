@@ -9,6 +9,7 @@ import '/src/core/utils/extensions.dart';
 
 
 class CardProduct extends StatelessWidget {
+
   final double width;
   final double height;
   const CardProduct({Key? key,this.width=192.14,this.height=169}) : super(key: key);
@@ -43,7 +44,7 @@ class CardProduct extends StatelessWidget {
                 child: ImageNetwork(
                     url: 'https://images.pexels.com/photos/3293148/pexels-photo-3293148.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
                     width: width,
-                    height: height/1.7,
+                    height: height/1.5,
                 ),
               ),
             ),

@@ -18,13 +18,13 @@ List<HomeModel> homeModelExamples = [
     subtitle: 'هذا مثال يمكن ان يتم استبداله باي عنوان اخر ف اي لحظه ممكنه'
   ),
   HomeModel(
-      id: 2,
+      id: 3,
       icon: 'home1.png',
       title: 'تواصل إجتماعي',
       subtitle: 'هذا مثال يمكن ان يتم استبداله باي عنوان اخر ف اي لحظه ممكنه'
   ),
   HomeModel(
-      id: 3,
+      id: 4,
       icon: 'home1.png',
       title: 'منتجات طبية',
       subtitle: 'هذا مثال يمكن ان يتم استبداله باي عنوان اخر ف اي لحظه ممكنه'

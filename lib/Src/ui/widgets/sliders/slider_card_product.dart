@@ -18,7 +18,7 @@ class SliderCardProduct extends StatelessWidget {
         TitleRowViewAll(titleSlider:viewAllTitle, onTap: (){}),
         12.0.ESH(),
         SizedBox(
-          height: 169.h,
+          height: 180.h,
           child: ListView.separated(
               itemBuilder: (context, index) => Padding(
                 padding:  EdgeInsets.only(

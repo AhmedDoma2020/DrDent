@@ -12,27 +12,24 @@ class StoreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBars.appBarDefault(title: 'المتجر'),
-      body: ListView(
-        children: [
-          16.0.ESH(),
-          CarouselList(
-            resAddsList: [
-              AddModel(
+    return ListView(
+      children: [
+        16.0.ESH(),
+        CarouselList(
+          resAddsList: [
+            AddModel(
                 id: 1,
                 image: 'https://images.pexels.com/photos/3244513/pexels-photo-3244513.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
-              ),
-            ],
-          ),
-          32.0.ESH(),
-          SliderCardProduct(viewAllTitle: 'أحدث المنتجات',),
-          32.0.ESH(),
-          SliderCardCompany(viewAllTitle: 'الشركات الطبية',),
-          32.0.ESH(),
-          SliderCardProduct(viewAllTitle: 'كل المنتجات',),
-        ],
-      ),
+            ),
+          ],
+        ),
+        32.0.ESH(),
+        SliderCardProduct(viewAllTitle: 'أحدث المنتجات',),
+        32.0.ESH(),
+        SliderCardCompany(viewAllTitle: 'الشركات الطبية',),
+        32.0.ESH(),
+        SliderCardProduct(viewAllTitle: 'كل المنتجات',),
+      ],
     );
   }
 }
