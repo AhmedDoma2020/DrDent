@@ -11,7 +11,6 @@ import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
 class ContactWithMail extends StatelessWidget {
   const ContactWithMail({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     ContactWithUSController _ContactWithUSController = Get.put(ContactWithUSController());

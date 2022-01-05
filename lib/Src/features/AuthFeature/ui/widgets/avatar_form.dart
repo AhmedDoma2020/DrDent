@@ -1,26 +1,34 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-  import 'package:image_picker/image_picker.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AvatarForm extends StatefulWidget {
+  final Function(String) onTap;
+
+  AvatarForm({required this.onTap});
+
   @override
   State<AvatarForm> createState() => _AvatarFormState();
 }
 
 class _AvatarFormState extends State<AvatarForm> {
   File? image;
+  String? img64;
 
   Future getImage() async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.gallery);
       if (image == null) return;
       final imageTemporary = File(image.path);
-      setState(()=>this.image = imageTemporary
-      );
+      setState(() => this.image = imageTemporary);
+      final bytes = File(image.path).readAsBytesSync();
+      img64 = base64Encode(bytes);
+      widget.onTap(img64!);
     } on PlatformException catch (e) {
       print("field picked image $e");
     }
@@ -39,34 +47,34 @@ class _AvatarFormState extends State<AvatarForm> {
               child: SizedBox(
                 height: 80.w,
                 width: 80.w,
-                child:
-                    CircleAvatar(
-                        child: image != null
-                            ? Image.file(image!,fit: BoxFit.cover,
+                child: CircleAvatar(
+                  child: image != null
+                      ? Image.file(
+                          image!,
+                          fit: BoxFit.cover,
                           height: 80.w,
                           width: 80.w,
                         )
-                            : Image.asset(
-                                "assets/image/defoultAvatar.png",
-                                fit: BoxFit.cover,
-                              ),
-                      radius: 80.r,
-                    ),
-                    // Container(
-                    //   height: 80.w,
-                    //   width: 80.w,
-                    //   decoration: BoxDecoration(
-                    //     borderRadius: BorderRadius.circular(7777.r),
-                    //   ),
-                    //   child: image != null
-                    //       ? Image.file(image!,fit: BoxFit.cover,
-                    //   )
-                    //       : Image.asset(
-                    //           "assets/image/defoultAvatar.png",
-                    //           fit: BoxFit.cover,
-                    //         ),
-                    // ),
-
+                      : Image.asset(
+                          "assets/image/defoultAvatar.png",
+                          fit: BoxFit.cover,
+                        ),
+                  radius: 80.r,
+                ),
+                // Container(
+                //   height: 80.w,
+                //   width: 80.w,
+                //   decoration: BoxDecoration(
+                //     borderRadius: BorderRadius.circular(7777.r),
+                //   ),
+                //   child: image != null
+                //       ? Image.file(image!,fit: BoxFit.cover,
+                //   )
+                //       : Image.asset(
+                //           "assets/image/defoultAvatar.png",
+                //           fit: BoxFit.cover,
+                //         ),
+                // ),
               ),
             ),
             Padding(
@@ -75,7 +83,14 @@ class _AvatarFormState extends State<AvatarForm> {
                 alignment: Alignment.bottomLeft,
                 child: InkWell(
                   onTap: () {
-                    getImage();
+                    if (image != null) {
+                      setState(() {
+                        image = null;
+                        widget.onTap("");
+                      });
+                    } else {
+                      getImage();
+                    }
                   },
                   child: Container(
                     height: 16.w,
@@ -85,11 +100,9 @@ class _AvatarFormState extends State<AvatarForm> {
                       color: kCMain,
                     ),
                     child: Center(
-                        child: Icon(
-                          Icons.add,
-                          color: Colors.white,
-                          size: 8.w,
-                        )),
+                      child: Icon(image != null ? Icons.clear : Icons.add,
+                          color: Colors.white, size: 8.w),
+                    ),
                   ),
                 ),
               ),

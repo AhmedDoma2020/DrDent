@@ -2,7 +2,7 @@ import 'package:dr_dent/Src/bloc/model/service_model.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyServicesFeature/Block/Controller/fetch_available_services_controller.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyServicesFeature/Block/Controller/set_services_controller.dart';
-import 'package:dr_dent/Src/ui/widgets/Choses/ningle_chose_row_form.dart';
+import 'package:dr_dent/Src/ui/widgets/Choses/single_chose_row_form.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/row_top_bottom_sheet.dart';
 import 'package:flutter/material.dart';

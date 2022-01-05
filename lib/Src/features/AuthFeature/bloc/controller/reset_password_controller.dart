@@ -1,6 +1,8 @@
 
 
+import 'package:dr_dent/Src/features/AuthFeature/bloc/repository/reset_password_repo.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/screens/login_screen.dart';
+import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:get/get.dart';
@@ -11,37 +13,21 @@ class ResetPasswordController extends GetxController{
 
   TextEditingController? passwordController;
   TextEditingController? confirmPasswordController;
-
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
+  final ResetPasswordRepository _resetPasswordRepository = ResetPasswordRepository();
   void submit({required String phone}) async{
     if(globalKey.currentState!.validate()){
       globalKey.currentState!.save();
       // setLoadingDialog();
-      Get.offAll( ()=>LoginScreen());
-      print('my password is ${passwordController!.value.text}');
-      print('my confirm is ${confirmPasswordController!.value.text}');
-      // String phone = phoneController!.value.text;
-      // if(phoneController!.value.text.isNotEmpty){
-      //   if(phoneController!.value.text.startsWith('0')){
-      //     phone = phoneController!.value.text.replaceFirst('0','');
-      //   }
-      // }
+      var response = await _resetPasswordRepository.resetPassword(phone: phone, password: passwordController!.text);
 
-      // Get.dialog(
-      //     DialogPasswordSuccess(),
-      // );
-
+      if(response.statusCode == 200 && response.data["status"] == true) {
+        Get.offAll( ()=>LoginScreen());
+      }else{
+        customSnackBar(title: response.data['message']?? "",);
+      }
     }
   }
-
-  // void onForgetPassword(){
-  //   Get.to(()=>CheckPhoneScreen());
-  // }
-  //
-  // void moveToRegister(){
-  //   // Get.back();
-  //   Get.to(()=>RegisterScreen());
-  // }
 
   @override
   void onInit() {

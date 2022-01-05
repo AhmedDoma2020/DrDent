@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'add_job_request_bottun_sheet.dart';
-import 'enter_your_information_to_apply_button_sheet.dart';
+import 'enter_your_information_to_apply_job_button_sheet.dart';
 
 class TestScreen extends StatelessWidget {
   @override

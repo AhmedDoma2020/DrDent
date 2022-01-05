@@ -71,8 +71,7 @@ class specializationButtonSheet extends StatelessWidget {
                       ],
                     ),
                   ),
-                  GetBuilder<EnterMyPersonalDataController>(
-                    builder: (enterMyPersonalDataController) => ButtonDefault(
+                  ButtonDefault(
                       title: 'save_'.tr,
                       onTap: () {
                         for(var item in _.specializationList){
@@ -92,7 +91,6 @@ class specializationButtonSheet extends StatelessWidget {
                         }
                       },
                     ),
-                  ),
                 ],
               ),
             ),

@@ -1,29 +1,24 @@
 import 'package:dr_dent/Src/bloc/controller/featch_state_and_city_controller.dart';
+import 'package:dr_dent/Src/bloc/controller/fetch_university_controller.dart';
 import 'package:dr_dent/Src/bloc/model/state_and_city_model.dart';
+import 'package:dr_dent/Src/bloc/model/univeristy_model.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/DoctorsFeature/Bloc/Controller/featch_job_title_and_specialization_controller.dart';
 import 'package:dr_dent/Src/ui/widgets/Choses/single_chose_row_form.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/row_top_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 import '/src/core/utils/extensions.dart';
 
-class StateButtonSheet extends StatelessWidget {
-  final List<StateAndCityModel> stateList;
+class JobTitleAndSpecializationButtonSheet extends StatelessWidget {
   final Function(int,String) onTap;
-  final int stateIndex;
-
-  const StateButtonSheet({
+  const JobTitleAndSpecializationButtonSheet({
     Key? key,
     required this.onTap,
-    required this.stateList,
-    required this.stateIndex,
   }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    FetchStateAndCityController _fetchStateAndCityController = Get.put(FetchStateAndCityController());
     return Align(
       alignment: Alignment.bottomCenter,
       child: Material(
@@ -46,32 +41,31 @@ class StateButtonSheet extends StatelessWidget {
             children: [
               24.0.ESH(),
               RowTopBottomSheet(
-                title: "select_service".tr,
+                title: "jop_title_and_specialization".tr,
                 isClose: false,
               ),
               24.0.ESH(),
-              GetBuilder<FetchStateAndCityController>(
+              GetBuilder<FetchJobTitleAndSpecializationController>(
                 builder:(_) =>  SizedBox(
                   height: 400.h,
                   child: ListView.separated(
                     shrinkWrap: true,
                     itemBuilder: (context, index) => InkWell(
                       onTap: () {
-                        _.changeStateIndex(index);
-                        onTap(stateList[index].id, stateList[index].title);
-                        _.setStateIndexSelected = index;
+                        _.changeChoiceIndex(index);
+                        onTap(_.jobTitleAndSpecializationList[index].id, _.jobTitleAndSpecializationList[index].title);
                         Get.back();
                       },
                       child: SingleChoseRowForm(
-                        title: stateList[index].title,
-                        isSelected: stateIndex == index,
+                        title: _.jobTitleAndSpecializationList[index].title,
+                        isSelected: _.choiceSIndex == index,
                       ),
                     ),
                     separatorBuilder: (context, index) => Divider(
                       height: 2.h,
                       color: kCTFEnableBorder,
                     ),
-                    itemCount: stateList.length,
+                    itemCount: _.jobTitleAndSpecializationList.length,
                   ),
                 ),
               ),

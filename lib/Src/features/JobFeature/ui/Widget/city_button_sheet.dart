@@ -1,7 +1,7 @@
 import 'package:dr_dent/Src/bloc/controller/featch_state_and_city_controller.dart';
 import 'package:dr_dent/Src/bloc/model/state_and_city_model.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
-import 'package:dr_dent/Src/ui/widgets/Choses/ningle_chose_row_form.dart';
+import 'package:dr_dent/Src/ui/widgets/Choses/single_chose_row_form.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/row_top_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
