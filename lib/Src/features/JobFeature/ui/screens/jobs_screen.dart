@@ -18,9 +18,7 @@ class JobsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(JobsController());
-    return Scaffold(
-      appBar: AppBars.appBarDefault(title: 'الوظايف'),
-      body: GetBuilder<JobsController>(
+    return GetBuilder<JobsController>(
         builder: (_) {
           return Column(
             children: [
@@ -29,15 +27,14 @@ class JobsScreen extends StatelessWidget {
                 child: Center(child: TabsIos(titles: const ['طلبات توظيف','فرص العمل'], onTap: (value){_.tabIndex=value;},tabIndex: _.tabIndex,)),
               ),
               Expanded(
-                child: [
-                  const JobRequestScreen(),
-                  const JobOffersScreen(),
-              ][_.tabIndex]
+                  child: [
+                    const JobRequestScreen(),
+                    const JobOffersScreen(),
+                  ][_.tabIndex]
               ),
             ],
           );
         }
-      ),
     );
   }
 }
