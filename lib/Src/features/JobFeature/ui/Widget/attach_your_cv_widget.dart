@@ -127,7 +127,7 @@ class _AttachYourCVIWidgetState extends State<AttachYourCVIWidget> {
               ),
             ),
             8.0.ESH(),
-         CustomText(text: "ارفاق السيرة الذاتية",fontSize: 12,fontW: FW.light,),
+         CustomText(text: "attach_your_CV".tr,fontSize: 12,fontW: FW.light,),
         ],
       ),
           ),

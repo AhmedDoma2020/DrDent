@@ -24,7 +24,7 @@ class _RowGenderWidgetState extends State<RowGenderWidget> {
       child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CustomText(text: "type_",),
+            CustomText(text: "type_".tr,fontW: FW.semibold,),
             Row(
               children: [
                 Radio(

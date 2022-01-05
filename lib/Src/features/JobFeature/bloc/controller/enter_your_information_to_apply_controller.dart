@@ -7,7 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-class EnterYourInformationToApplyController extends GetxController {
+class EnterYourInformationToApplyJobController extends GetxController {
   GetStorage box = GetStorage();
   TextEditingController? nameController;
   TextEditingController? phoneController;
@@ -54,30 +54,39 @@ class EnterYourInformationToApplyController extends GetxController {
   void submit() async {
     if (globalKey.currentState!.validate()) {
       globalKey.currentState!.save();
+      if(_graduationCertificateImage !=""){
+        if(_cVImage!= ""){
+          customSnackBar(title: "Done",);
 // setLoadingDialog();
-      var response = await _enterYourInformationToApplyRepository.enterYourInformationToApply(
-        name: nameController!.text,
-        phone: phoneController!.text,
-        email: emailController!.text,
-        university: universityController!.text,
-        specializationId: _specializationIdSelected,
-        graduationYear: graduationYearController!.text,
-        universityDegree: universityDegreeController!.text,
-        gender: _gender,
-        graduationCertificateImage: _graduationCertificateImage,
-        cVImage: _cVImage,
-      );
-      if (response.statusCode == 200 && response.data["status"] == true) {
-        print("request operation success");
+//       var response = await _enterYourInformationToApplyRepository.enterYourInformationToApply(
+//         name: nameController!.text,
+//         phone: phoneController!.text,
+//         email: emailController!.text,
+//         university: universityController!.text,
+//         specializationId: _specializationIdSelected,
+//         graduationYear: graduationYearController!.text,
+//         universityDegree: universityDegreeController!.text,
+//         gender: _gender,
+//         graduationCertificateImage: _graduationCertificateImage,
+//         cVImage: _cVImage,
+//       );
 
-        print("convert operation success");
-        status = RequestStatus.done;
-        update();
-      } else {
-        status = RequestStatus.error;
-        update();
+          // if (response.statusCode == 200 && response.data["status"] == true) {
+          //   print("request operation success");
+          //
+          //   print("convert operation success");
+          //   status = RequestStatus.done;
+          //   update();
+          // } else {
+          //   status = RequestStatus.error;
+          //   update();
+          // }
+        }else{
+          customSnackBar(title: "must_attach_your_CV".tr,);
+        }
+      }else{
+        customSnackBar(title: "must_enter_graduation_certificate_image".tr,);
       }
-
     }
   }
 

@@ -13,6 +13,7 @@ class EmptyWidget extends StatelessWidget {
   final String titleButton;
   final VoidCallback onTapButton;
   final bool availableButton;
+  final int spaceBetweenTitleAndSubTitle;
 
   EmptyWidget(
       {Key? key,
@@ -22,6 +23,7 @@ class EmptyWidget extends StatelessWidget {
         this.title = "",
         this.subTitle = "",
         this.titleButton = "",
+        this.spaceBetweenTitleAndSubTitle = 16,
         required this.onTapButton ,
         this.availableButton=true,
       }) : super(key: key);
@@ -55,7 +57,7 @@ class EmptyWidget extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
-              SizedBox(height: 16.h),
+              SizedBox(height: spaceBetweenTitleAndSubTitle.h),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 24.w),
                 width: 343.w,

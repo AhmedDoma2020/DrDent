@@ -1,4 +1,8 @@
 import 'package:dr_dent/Src/bloc/controller/featch_state_and_city_controller.dart';
+import 'package:dr_dent/Src/bloc/controller/fetch_university_controller.dart';
+import 'package:dr_dent/Src/bloc/controller/university_degree_controller.dart';
+import 'package:dr_dent/Src/bloc/controller/year_of_graduation_controller.dart';
+import 'package:dr_dent/Src/bloc/model/univeristy_model.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/widgets/row_sex_type_widget.dart';
@@ -9,6 +13,7 @@ import 'package:dr_dent/Src/features/JobFeature/bloc/controller/enter_your_infor
 import 'package:dr_dent/Src/features/JobFeature/ui/Widget/attach_your_cv_widget.dart';
 import 'package:dr_dent/Src/features/JobFeature/ui/Widget/city_button_sheet.dart';
 import 'package:dr_dent/Src/features/JobFeature/ui/Widget/state_button_sheet.dart';
+import 'package:dr_dent/Src/features/JobFeature/ui/screens/university_button_sheet.dart';
 import 'package:dr_dent/Src/ui/widgets/TextFields/text_field_default.dart';
 import 'package:dr_dent/Src/ui/widgets/buttons/button_default.dart';
 import 'package:dr_dent/Src/ui/widgets/top_title_in_button_sheet.dart';
@@ -16,12 +21,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import 'university_degree_button_sheet.dart';
+import 'year_of_graduation_button_sheet.dart';
+
 class EnterYourInformationButtonSheet extends StatelessWidget {
-  final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
   String baseImage64="";
   @override
   Widget build(BuildContext context) {
-    Get.put(EnterYourInformationToApplyController());
+    Get.put(EnterYourInformationToApplyJobController());
+    Get.put(FetchUniversityController());
+    Get.put(FetchUniversityDegreeController());
+    Get.put(FetchYearsOfGraduationController());
+
     return Container(
       height: 700.h,
       width: double.infinity,
@@ -32,9 +43,9 @@ class EnterYourInformationButtonSheet extends StatelessWidget {
           topRight: Radius.circular(24.r),
         ),
       ),
-      child: GetBuilder<EnterYourInformationToApplyController>(
+      child: GetBuilder<EnterYourInformationToApplyJobController>(
         builder: (_) => Form(
-          key: _globalKey,
+          key: _.globalKey,
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,7 +73,7 @@ class EnterYourInformationButtonSheet extends StatelessWidget {
                         hint: 'enter_phone'.tr,
                         errorText: "error_phone_field".tr,
                         controller: _.phoneController,
-                        keyboardType: TextInputType.text,
+                        keyboardType: TextInputType.phone,
                         filledColor: kCBGTextFormFiled,
                         fieldType: FieldType.WithBorder,
                         disableBorder: Colors.transparent,
@@ -74,7 +85,7 @@ class EnterYourInformationButtonSheet extends StatelessWidget {
                         hint: 'Email_'.tr,
                         errorText: "error_email_field".tr,
                         controller: _.emailController,
-                        keyboardType: TextInputType.text,
+                        keyboardType: TextInputType.emailAddress,
                         filledColor: kCBGTextFormFiled,
                         fieldType: FieldType.WithBorder,
                         disableBorder: Colors.transparent,
@@ -89,46 +100,20 @@ class EnterYourInformationButtonSheet extends StatelessWidget {
                       ),
                       16.0.ESH(),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Get.bottomSheet(
+                              UniversitiesButtonSheet(
+                                onTap: (id,title){
+                                  _.universityController!.text =title;
+                                },
+                              ),
+                              isScrollControlled: true);
+                        },
                         child: TextFieldDefault(
-                          hint: 'Specialization_'.tr,
-                          errorText: "must_setSpecialization".tr,
+                          hint: 'enter_university'.tr,
+                          errorText: "error_enter_university_field".tr,
                           suffixIconData: Icons.keyboard_arrow_down_outlined,
-                          controller: _.specializationController,
-                          keyboardType: TextInputType.text,
-                          filledColor: kCBGTextFormFiled,
-                          fieldType: FieldType.WithBorder,
-                          enable: false,
-                          disableBorder: Colors.transparent,
-                          enableBorder: Colors.transparent,
-                          horizentalPadding: 16,
-                        ),
-                      ),
-                      16.0.ESH(),
-                      GestureDetector(
-                        onTap: () {},
-                        child: TextFieldDefault(
-                          hint: 'Specialization_'.tr,
-                          errorText: "must_setSpecialization".tr,
-                          suffixIconData: Icons.keyboard_arrow_down_outlined,
-                          controller: _.specializationController,
-                          keyboardType: TextInputType.text,
-                          filledColor: kCBGTextFormFiled,
-                          fieldType: FieldType.WithBorder,
-                          enable: false,
-                          disableBorder: Colors.transparent,
-                          enableBorder: Colors.transparent,
-                          horizentalPadding: 16,
-                        ),
-                      ),
-                      16.0.ESH(),
-                      GestureDetector(
-                        onTap: () {},
-                        child: TextFieldDefault(
-                          hint: 'Specialization_'.tr,
-                          errorText: "must_setSpecialization".tr,
-                          suffixIconData: Icons.keyboard_arrow_down_outlined,
-                          controller: _.specializationController,
+                          controller: _.universityController,
                           keyboardType: TextInputType.text,
                           filledColor: kCBGTextFormFiled,
                           fieldType: FieldType.WithBorder,
@@ -141,18 +126,68 @@ class EnterYourInformationButtonSheet extends StatelessWidget {
                       16.0.ESH(),
                       GestureDetector(
                         onTap: () {
-                          // Get.bottomSheet(
-                          //     specializationButtonSheet(
-                          //       onTapNotEmpty: (specializationIdList,specializationTitleList){
-                          //         _.setSpecializationIdSelected = specializationIdList;
-                          //         _.specializationController!.text=specializationTitleList;
-                          //       },
-                          //       onTapEmpty: (){
-                          //         _.specializationController!.clear();
-                          //         _.setSpecializationIdSelected=[];
-                          //       },
-                          //     ),
-                          //     isScrollControlled: true);
+                          Get.bottomSheet(
+                              YearOfGraduationButtonSheet(
+                                onTap: (title){
+                                  _.graduationYearController!.text =title;
+                                },
+                              ),
+                              isScrollControlled: true);
+                        },
+                        child: TextFieldDefault(
+                          hint: 'enter_year_of_graduation'.tr,
+                          errorText: "error_enter_year_of_graduation_field".tr,
+                          suffixIconData: Icons.keyboard_arrow_down_outlined,
+                          controller: _.graduationYearController,
+                          keyboardType: TextInputType.text,
+                          filledColor: kCBGTextFormFiled,
+                          fieldType: FieldType.WithBorder,
+                          enable: false,
+                          disableBorder: Colors.transparent,
+                          enableBorder: Colors.transparent,
+                          horizentalPadding: 16,
+                        ),
+                      ),
+                      16.0.ESH(),
+                      GestureDetector(
+                        onTap: () {
+                          Get.bottomSheet(
+                              UniversityDegreeButtonSheet(
+                                onTap: (id,title){
+                                  _.universityDegreeController!.text =title;
+                                },
+                              ),
+                              isScrollControlled: true);
+                        },
+                        child: TextFieldDefault(
+                          hint: 'enter_university_degree'.tr,
+                          errorText: "error_enter_university_degree_field".tr,
+                          suffixIconData: Icons.keyboard_arrow_down_outlined,
+                          controller: _.universityDegreeController,
+                          keyboardType: TextInputType.text,
+                          filledColor: kCBGTextFormFiled,
+                          fieldType: FieldType.WithBorder,
+                          enable: false,
+                          disableBorder: Colors.transparent,
+                          enableBorder: Colors.transparent,
+                          horizentalPadding: 16,
+                        ),
+                      ),
+                      16.0.ESH(),
+                      GestureDetector(
+                        onTap: () {
+                          Get.bottomSheet(
+                              specializationButtonSheet(
+                                onTapNotEmpty: (specializationIdList,specializationTitleList){
+                                  _.setSpecializationIdSelected = specializationIdList;
+                                  _.specializationController!.text=specializationTitleList;
+                                },
+                                onTapEmpty: (){
+                                  _.specializationController!.clear();
+                                  _.setSpecializationIdSelected=[];
+                                },
+                              ),
+                              isScrollControlled: true);
                         },
                         child: TextFieldDefault(
                           hint: 'Specialization_'.tr,
@@ -185,11 +220,7 @@ class EnterYourInformationButtonSheet extends StatelessWidget {
                       ButtonDefault(
                         title: 'save_'.tr,
                         onTap: () {
-                          print("baseImage64 $baseImage64");
-                          // if (_globalKey.currentState!.validate()) {
-                          //   _globalKey.currentState!.save();
-                          //   Get.back();
-                          // }
+                          _.submit();
                         },
                       ),
                       16.0.ESH(),

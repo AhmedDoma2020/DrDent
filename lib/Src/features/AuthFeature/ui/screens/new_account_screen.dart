@@ -36,7 +36,11 @@ class NewAccountScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           32.0.ESH(),
-                          AvatarForm(),
+                          AvatarForm(
+                            onTap: (img64){
+
+                            },
+                          ),
                           32.0.ESH(),
                           TextFieldDefault(
                             hint: 'full_name'.tr,
