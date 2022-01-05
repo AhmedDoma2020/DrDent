@@ -13,9 +13,14 @@ import 'package:get/get.dart';
 import '/src/core/utils/extensions.dart';
 
 class specializationButtonSheet extends StatelessWidget {
+  final  Function onTapNotEmpty;
+  final  Function onTapEmpty;
+  specializationButtonSheet({
+    required this.onTapNotEmpty,
+    required this.onTapEmpty,
+  });
   @override
   Widget build(BuildContext context) {
-    Get.put(FetchAvailableInsurancesController());
     FetchSpecializationController _fetchSpecializationController =Get.put(FetchSpecializationController());
     return Align(
       alignment: Alignment.bottomCenter,
@@ -44,29 +49,29 @@ class specializationButtonSheet extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        RowTopBottomSheet(title: "insurance_companies".tr),
+                        RowTopBottomSheet(title: "Specialization_".tr),
                         24.0.ESH(),
                         Container(
                           // height: 260.h,
                           constraints: BoxConstraints(maxHeight: 260.h),
                           child: ListView.separated(
                             shrinkWrap: true,
-                            itemBuilder: (context, index) => RowSpecializationForm(
+                            itemBuilder: (context, index) =>
+                                RowSpecializationForm(
                               specialization: _.specializationList[index],
                               // isSelect: _.insuranceList[index].active,
                               onSelectTap: (){
                                 _.changeSelectInsurance(insuranceIndex: index);
                               },
                             ),
-                            separatorBuilder: (context, index) =>24.0.ESH(),
+                            separatorBuilder: (context, index) => 24.0.ESH(),
                             itemCount: _.specializationList.length,
                           ),
                         ),
                       ],
                     ),
                   ),
-                  GetBuilder<EnterMyPersonalDataController>(
-                    builder: (enterMyPersonalDataController) => ButtonDefault(
+                  ButtonDefault(
                       title: 'save_'.tr,
                       onTap: () {
                         for(var item in _.specializationList){
@@ -78,17 +83,14 @@ class specializationButtonSheet extends StatelessWidget {
                         if(_.specializationIdList.isEmpty){
                           _.specializationIdList.clear();
                           _.specializationTitleList.clear();
-                          enterMyPersonalDataController.specializationController!.clear();
-                          enterMyPersonalDataController.setSpecializationIdSelected=[];
+                          onTapEmpty();
                           Get.back();
                         }else{
-                          enterMyPersonalDataController.setSpecializationIdSelected = _.specializationIdList;
-                          enterMyPersonalDataController.specializationController!.text=_.specializationTitleList.join(",");
+                          onTapNotEmpty( _.specializationIdList,_.specializationTitleList.join(",") );
                           Get.back();
                         }
                       },
                     ),
-                  ),
                 ],
               ),
             ),

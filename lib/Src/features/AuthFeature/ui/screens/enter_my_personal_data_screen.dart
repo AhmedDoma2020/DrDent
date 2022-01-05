@@ -5,7 +5,6 @@ import 'package:dr_dent/Src/features/AuthFeature/ui/widgets/degree_bottun_sheet.
 import 'package:dr_dent/Src/features/AuthFeature/ui/widgets/row_sex_type_widget.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/widgets/specialization_button_sheet.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/widgets/upload_photo_of_work_licenses.dart';
-import 'package:dr_dent/Src/features/DetectionLocationDetails/Ui/Widget/upload_photo_widget.dart';
 import 'package:dr_dent/Src/ui/widgets/TextFields/text_field_default.dart';
 import 'package:dr_dent/Src/ui/widgets/appbars/app_bars.dart';
 import 'package:dr_dent/Src/ui/widgets/buttons/button_default.dart';
@@ -21,7 +20,9 @@ class EnterMyPersonalDataScreen extends StatelessWidget {
     var node = FocusScope.of(context);
     return SafeArea(
         child: Scaffold(
-      appBar: AppBars.appBarSkipDefault(title: "personal_info".tr,),
+      appBar: AppBars.appBarSkipDefault(
+        title: "personal_info".tr,
+      ),
       body: GetBuilder<EnterMyPersonalDataController>(
         builder: (_) => Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.w),
@@ -45,11 +46,23 @@ class EnterMyPersonalDataScreen extends StatelessWidget {
                   },
                 ),
                 16.0.ESH(),
-                RowGenderWidget(),
+                RowGenderWidget(
+                  onTap: (gender){
+                    _.estGender = gender;
+                  },
+                ),
                 16.0.ESH(),
                 GestureDetector(
                   onTap: () {
-                    Get.bottomSheet(DegreeButtonSheet(),isScrollControlled: true);
+                    Get.bottomSheet(
+                        DegreeButtonSheet(
+                          onTap:  (scientificListTitle,scientificListId){
+                            _.degreeController!.text=scientificListTitle;
+                            _.setServicesId=scientificListId;
+                            Get.back();
+                          },
+                        ),
+                        isScrollControlled: true);
                   },
                   child: TextFieldDefault(
                     hint: 'Degree_'.tr,
@@ -71,7 +84,18 @@ class EnterMyPersonalDataScreen extends StatelessWidget {
                 16.0.ESH(),
                 GestureDetector(
                   onTap: () {
-                    Get.bottomSheet(specializationButtonSheet(),isScrollControlled: true);
+                    Get.bottomSheet(
+                        specializationButtonSheet(
+                          onTapNotEmpty: (specializationIdList,specializationTitleList){
+                        _.setSpecializationIdSelected = specializationIdList;
+                        _.specializationController!.text=specializationTitleList;
+                        },
+                          onTapEmpty: (){
+                            _.specializationController!.clear();
+                            _.setSpecializationIdSelected=[];
+                          },
+                        ),
+                        isScrollControlled: true);
                   },
                   child: TextFieldDefault(
                     hint: 'Specialization_'.tr,
@@ -91,7 +115,12 @@ class EnterMyPersonalDataScreen extends StatelessWidget {
                   ),
                 ),
                 16.0.ESH(),
-                UploadPhotoOfWordLicenses(),
+                UploadPhotoContainer(
+                  title: "photo_of_Work_licenses",
+                  onTap: (image64){
+                    _.setImage = image64;
+                  },
+                ),
                 16.0.ESH(),
                 TextFieldDefault(
                   hint: 'add_info'.tr,
@@ -114,7 +143,6 @@ class EnterMyPersonalDataScreen extends StatelessWidget {
                   },
                 ),
                 24.0.ESH(),
-
               ],
             ),
           ),
