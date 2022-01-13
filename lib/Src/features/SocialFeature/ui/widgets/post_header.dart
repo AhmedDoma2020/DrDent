@@ -1,3 +1,4 @@
+import 'package:dr_dent/Src/bloc/model/post_model.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/image_network.dart';
@@ -6,7 +7,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '/src/core/utils/extensions.dart';
 
 class PostHeader extends StatelessWidget {
-  const PostHeader({Key? key}) : super(key: key);
+  final PostModel post;
+  const PostHeader({Key? key,required this.post}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,7 @@ class PostHeader extends StatelessWidget {
               child: ImageNetwork(
                 width: 40.w,
                 height: 40.w,
-                url: 'https://images.pexels.com/photos/6149104/pexels-photo-6149104.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+                url:post.ownerImage
               ),
             ),
             16.0.ESW(),
@@ -36,14 +38,14 @@ class PostHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomText(
-                  text: 'رشا السيد ',
+                  text: post.ownerName,
                   color: kCMainBlack2,
                   fontSize: 16,
                   fontW: FW.bold,
                 ),
                 3.0.ESH(),
                 CustomText(
-                  text: 'مايو27, 2021 ',
+                  text: post.date,
                   color: kCMainBlack2,
                   fontSize: 12,
                   fontW: FW.light,

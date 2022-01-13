@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+import 'package:dr_dent/Src/features/WorkTimeFeature/ui/screens/work_time_screen.dart';
+=======
 import 'package:dr_dent/Src/features/SplachFeature/ui/splash_screen.dart';
+>>>>>>> 002056a04ef1d0877606732e1afc4e22bd7b6283
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -49,9 +53,13 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
+<<<<<<< HEAD
+        home:BaseScreen(),
+=======
 
         home:SplashScreen(),
 
+>>>>>>> 002056a04ef1d0877606732e1afc4e22bd7b6283
       ),
     );
   }

@@ -16,7 +16,7 @@ class LoginController extends GetxController{
  final LogInRepository _logInRepository =LogInRepository();
   void submit() async{
     if(globalKey.currentState!.validate()){
-      globalKey.currentState!.save();
+       globalKey.currentState!.save();
       // setLoadingDialog();
       var response = await _logInRepository.logIn(phone: phoneController!.text, password: passwordController!.text,);
      if(response.statusCode ==200 && response.data["status"] == true){

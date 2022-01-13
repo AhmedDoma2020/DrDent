@@ -8,7 +8,8 @@ import '/src/core/utils/extensions.dart';
 import 'package:get/get.dart';
 class DayTimeWidget extends StatelessWidget {
   final DayTimeModel dayTime;
-  const DayTimeWidget({Key? key, required this.dayTime}) : super(key: key);
+  final VoidCallback onDelete;
+  const DayTimeWidget({Key? key, required this.dayTime,required this.onDelete}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +27,27 @@ class DayTimeWidget extends StatelessWidget {
         child: Column(
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CustomText(
                   text: 'الفترة',
                   color: kCMainBlack2,
                   fontSize: 12,
                   fontW: FW.light,
+                ),
+                GestureDetector(
+                  onTap: onDelete,
+                  child: CircleAvatar(
+                    radius: 12.h,
+                    backgroundColor: kCMain.withOpacity(.2),
+                    child: Center(
+                      child: Image.asset(
+                        'assets/icons/delete.png',
+                        color: kCMain,
+                        height: 12.55.h,
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),

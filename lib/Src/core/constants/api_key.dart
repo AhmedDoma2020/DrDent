@@ -1,11 +1,21 @@
 mixin ApiKey{
 
 
-   static const String apiBaseUrl = 'https://ingaz.crazyideaco.com/public/api/customer/';
+   static const String apiBaseUrl = 'https://dr-dent.crazyideaco.com/api/';
 
 
    final String uRLLogin = apiBaseUrl + "login";
+<<<<<<< HEAD
+   final String uRLDoctorWorkDays = apiBaseUrl + "fetch_doctor_work_times";
+   final String uRLAddDayTime = apiBaseUrl + "add_work_space_time";
+   final String uRLDeleteDayTime = apiBaseUrl + "delete_work_space_time";
+   final String uRLEditDayTime = apiBaseUrl + "delete_work_space_time";
+   final String uRLFetchJobRequests = apiBaseUrl + "delete_work_space_time";
+   final String uRLFetchPosts = apiBaseUrl + "fetch_social";
+   final String uRLStore = apiBaseUrl + "fetch_social";
+=======
    final String uRLLoginWithEmail = apiBaseUrl + "login_with_gmail";
+>>>>>>> 002056a04ef1d0877606732e1afc4e22bd7b6283
 
    // String URLFetchMajorCategorySellers(int page)=>apiBaseUrl + "major_shops"+'?page=$page'; // soon
 
