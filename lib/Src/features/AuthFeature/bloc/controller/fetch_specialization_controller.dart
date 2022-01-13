@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 class FetchSpecializationController extends GetxController {
   List<SpecializationModel> _specializationList = [];
   List<SpecializationModel> get specializationList => _specializationList;
-
   List<int> _specializationIdList = [];
   List<int> get specializationIdList => _specializationIdList;
   List<String> _specializationTitleList = [];

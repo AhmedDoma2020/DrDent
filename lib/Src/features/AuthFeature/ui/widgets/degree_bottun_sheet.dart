@@ -11,8 +11,8 @@ import 'package:get/get.dart';
 import '/src/core/utils/extensions.dart';
 
 class DegreeButtonSheet extends StatelessWidget {
-  // final  VoidCallback onTap;
-  // DegreeButtonSheet({required this.onTap});
+  final  Function onTap;
+  DegreeButtonSheet({required this.onTap});
   @override
   Widget build(BuildContext context) {
     Get.put(FetchScientificController());
@@ -40,8 +40,7 @@ class DegreeButtonSheet extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SingleChildScrollView(
-                    child: GetBuilder<EnterMyPersonalDataController>(
-                      builder: (enterMyPersonalDataController) => Column(
+                    child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           RowTopBottomSheet(title: "Degree_".tr),
@@ -53,8 +52,7 @@ class DegreeButtonSheet extends StatelessWidget {
                               itemBuilder: (context, index) => InkWell(
                                 onTap: (){
                                   _.changeSIndex(index);
-                                  enterMyPersonalDataController.degreeController!.text=_.scientificList[index].title;
-                                  enterMyPersonalDataController.setServicesId=_.scientificList[index].id;
+                                  onTap(_.scientificList[index].title ,_.scientificList[index].id );
                                   Get.back();
                                 },
                                 child: RowDegreeForm(
@@ -68,7 +66,7 @@ class DegreeButtonSheet extends StatelessWidget {
                           ),
                         ],
                       ),
-                    ),
+
                   ),
                 ],
               ),

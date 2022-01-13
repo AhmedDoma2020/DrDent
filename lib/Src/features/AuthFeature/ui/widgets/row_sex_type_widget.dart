@@ -9,6 +9,8 @@ import 'package:get/get.dart';
 
 
 class RowGenderWidget extends StatefulWidget {
+  final Function(int) onTap;
+  RowGenderWidget({required this.onTap});
   @override
   State<RowGenderWidget> createState() => _RowGenderWidgetState();
 }
@@ -16,14 +18,13 @@ class _RowGenderWidgetState extends State<RowGenderWidget> {
   int userInPutType = 0;
   @override
   Widget build(BuildContext context) {
-    return           Container(
-      // color: Colors.blue,
+    return
+      Container(
       padding: EdgeInsets.symmetric(horizontal:40.w),
-      child: GetBuilder<EnterMyPersonalDataController>(
-        builder: (_) => Row(
+      child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CustomText(text: "type_",),
+            CustomText(text: "type_".tr,fontW: FW.semibold,),
             Row(
               children: [
                 Radio(
@@ -35,7 +36,8 @@ class _RowGenderWidgetState extends State<RowGenderWidget> {
                   onChanged: (dynamic value){
                     setState(() {
                       userInPutType = value;
-                      _.estGender = userInPutType;
+                      widget.onTap(value);
+                      // _.estGender = userInPutType;
                     });
                   },
                 ),
@@ -53,7 +55,8 @@ class _RowGenderWidgetState extends State<RowGenderWidget> {
                   onChanged: (dynamic value){
                     setState(() {
                       userInPutType = value;
-                      _.estGender = userInPutType;
+                      widget.onTap(value);
+                      // _.estGender = userInPutType;
                     });
                   },
                 ),
@@ -62,7 +65,6 @@ class _RowGenderWidgetState extends State<RowGenderWidget> {
             ),
           ],
         ),
-      ),
     );
   }
 }
