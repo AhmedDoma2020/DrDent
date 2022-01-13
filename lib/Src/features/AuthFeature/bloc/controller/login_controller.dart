@@ -13,9 +13,8 @@ class LoginController extends GetxController{
   TextEditingController? passwordController;
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
   void submit() async{
-
     if(globalKey.currentState!.validate()){
-      globalKey.currentState!.save();
+       globalKey.currentState!.save();
       // setLoadingDialog();
       print('my phone is ${phoneController!.value.text}');
       print('my phone is ${passwordController!.value.text}');

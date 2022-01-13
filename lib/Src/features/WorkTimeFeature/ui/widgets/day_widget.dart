@@ -17,8 +17,8 @@ class DayWidget extends StatelessWidget {
   final DayModel day;
   final VoidCallback onExpand;
   final Function(DayTimeModel) onEdit;         // time params
-  final Function(DayTimeModel) onDelete;       // time params
-  final Function(int) onAddTime;               // day id params
+  final Function(DayTimeModel) onAddTime;       // time params
+  final Function(int) onDelete;               // day id params
 
   const DayWidget({Key? key,
     this.active=true,
@@ -38,7 +38,7 @@ class DayWidget extends StatelessWidget {
         width: double.infinity,
         color: Colors.white,
         child: Padding(
-          padding:  EdgeInsets.symmetric(
+          padding: EdgeInsets.symmetric(
             vertical: 10.h,
             horizontal: 16.w,
           ),
@@ -64,7 +64,12 @@ class DayWidget extends StatelessWidget {
                        top:  16.0.h
                    ),
                    child: ListView.separated(
-                     itemBuilder: (context, index) =>  DayTimeWidget(dayTime: day.times![index],),
+                     itemBuilder: (context, index) =>  DayTimeWidget(
+                       dayTime: day.times![index],
+                       onDelete: (){
+                         onDelete(day.times![index].id);
+                       },
+                     ),
                      separatorBuilder: (context, index) => 16.0.ESH(),
                      itemCount: day.times!.length,
                      physics: NeverScrollableScrollPhysics(),
@@ -86,6 +91,13 @@ class DayWidget extends StatelessWidget {
                                print(start);
                                print(end);
                                print(visitsCount);
+                               DayTimeModel dayTimeModel = DayTimeModel(
+                                   id: 0,
+                                   startTime: start,
+                                   endTime: end,
+                                   numberOfEmergencyVisits: visitsCount,
+                               );
+                               onAddTime(dayTimeModel);
                              },),
                                // SheetSelectHour(),
                              isScrollControlled: true

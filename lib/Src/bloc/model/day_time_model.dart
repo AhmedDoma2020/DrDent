@@ -15,9 +15,9 @@ class DayTimeModel {
 
   DayTimeModel.fromJson(Map<String, dynamic> json){
     id = json['id']??0;
-    startTime = json['start']??' ';
-    endTime = json['end']??' ';
-    numberOfEmergencyVisits = json['emergency_bookings']??' ';
+    startTime = json['start_time']??' ';
+    endTime = json['end_time']??' ';
+    numberOfEmergencyVisits = json['emergency_bookings']!= null ?json['emergency_bookings'].toString() : '0';
   }
 
 }
