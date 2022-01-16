@@ -13,7 +13,7 @@ import 'package:get/get.dart';
 
 class JobClassificationButtonSheet extends StatelessWidget {
 final Function(int,int)  onTap;
-JobClassificationButtonSheet({required this.onTap});
+JobClassificationButtonSheet({Key? key, required this.onTap}) : super(key: key);
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {

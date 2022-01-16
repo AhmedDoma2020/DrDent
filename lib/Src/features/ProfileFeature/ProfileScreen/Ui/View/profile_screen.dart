@@ -26,14 +26,11 @@ class ProfileScreen extends StatelessWidget {
               profileInfoWidget(),
               ProfileRowInfoAndRate(),
               Padding(
-                padding:  EdgeInsets.symmetric(
-                    vertical: 16.h
-                ),
+                padding:  EdgeInsets.symmetric(vertical: 16.h),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     TabsIos(
-
                       onTap: (index) {
                         _.tabIndex = index;
                       },
@@ -50,7 +47,7 @@ class ProfileScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              Expanded(
+              SizedBox(
                 child: [
                   GlobalInformationDetailsWidget(),
                   GlobalServicesWidget(),

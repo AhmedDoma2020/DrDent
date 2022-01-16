@@ -1,6 +1,8 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
 import 'package:dr_dent/Src/features/AuthFeature/bloc/controller/enter_my_personal_data_controller.dart';
+import 'package:dr_dent/Src/features/AuthFeature/bloc/controller/fetch_scientific_controller.dart';
+import 'package:dr_dent/Src/features/AuthFeature/bloc/controller/fetch_specialization_controller.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/widgets/degree_bottun_sheet.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/widgets/row_sex_type_widget.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/widgets/specialization_button_sheet.dart';
@@ -16,12 +18,24 @@ import 'package:get/get_utils/src/extensions/internacionalization.dart';
 class EnterMyPersonalDataScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    print("build 1");
     Get.put(EnterMyPersonalDataController());
+    print("build 2");
+    Get.put(FetchSpecializationController());
+    print("build 3");
+    Get.put(FetchScientificController());
+    print("build end");
     var node = FocusScope.of(context);
     return SafeArea(
         child: Scaffold(
       appBar: AppBars.appBarSkipDefault(
         title: "personal_info".tr,
+          onTapBack: () {
+            Get.back();
+          },
+          onTapSkip: (){
+            // Get.to(()=>EnterMyPersonalDataScreen());
+          }
       ),
       body: GetBuilder<EnterMyPersonalDataController>(
         builder: (_) => Padding(
@@ -58,7 +72,8 @@ class EnterMyPersonalDataScreen extends StatelessWidget {
                         DegreeButtonSheet(
                           onTap:  (scientificListTitle,scientificListId){
                             _.degreeController!.text=scientificListTitle;
-                            _.setServicesId=scientificListId;
+                            print(scientificListId);
+                            _.setScientificId=scientificListId;
                             Get.back();
                           },
                         ),

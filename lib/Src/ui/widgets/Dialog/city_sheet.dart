@@ -1,5 +1,6 @@
 
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
+import '../../../features/ProfileFeature/GlobalServicesFeature/DetectionLocationDetails/Bloc/Controller/set_detection_location_details_controller.dart';
 import 'package:dr_dent/Src/features/LocationFeature/ui/bloc/Controller/set_location_sheet_controller.dart';
 import 'package:dr_dent/Src/features/LocationFeature/ui/bloc/Model/city_model.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
@@ -41,7 +42,7 @@ class CityButtonSheet extends StatelessWidget {
                 topRight: Radius.circular(19.r),
               ),
               color: Colors.white),
-          child: GetBuilder<FetchCityAndSetLocationSheetController>(
+          child: GetBuilder<DetectionLocationDetailsController>(
             builder: (_) => Column(
               children: [
                 24.0.ESH(),
@@ -55,7 +56,6 @@ class CityButtonSheet extends StatelessWidget {
                   itemBuilder: (context, index) => InkWell(
                       onTap: () {
                         print("xxxxxxxxxxxxxxxxxxxxxxx");
-                        _.setCitySelectedId = cityList[index].id;
                         _.cityController!.text = cityList[index].title;
                         Get.back();
                       },

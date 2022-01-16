@@ -1,5 +1,6 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/features/AuthFeature/bloc/controller/login_controller.dart';
+import 'package:dr_dent/Src/features/AuthFeature/bloc/controller/login_with_gmail_controller.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:dr_dent/Src/ui/widgets/TextFields/text_field_default.dart';
 import 'package:dr_dent/Src/ui/widgets/appbars/app_bars.dart';
@@ -17,6 +18,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     LoginController loginController = Get.put(LoginController());
+    LoginWithGoogleIdController _loginWithGoogleIdController = Get.put(LoginWithGoogleIdController());
     var node = FocusScope.of(context);
     return Scaffold(
       appBar: AppBars.appBarDefault(title: 'log_in'.tr),
@@ -130,7 +132,7 @@ class LoginScreen extends StatelessWidget {
                               ),
                               buttonColor: kCActiveButton.withOpacity(0.08),
                               onTap: () {
-                                _.submit();
+                                _loginWithGoogleIdController.signInWithGoogleMethod();
                               },
                             ),
                             23.0.ESH(),

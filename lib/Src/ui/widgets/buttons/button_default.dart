@@ -23,7 +23,7 @@ class ButtonDefault extends StatelessWidget {
   final double height;
   final double width;
   final double radius;
-  final double textSize;
+  final double titleSize;
   final double iconHeight;
   final Color? borderColor;
   final Color disActiveBorderColor;
@@ -31,7 +31,7 @@ class ButtonDefault extends StatelessWidget {
   final Widget? child;
   ButtonDefault({
     this.child,
-    this.borderColor,this.disActiveButtonColor=kCDisActiveButton,this.disActiveBorderColor=kCDisActiveButton,this.textSize=16,this.iconHeight=12,this.radius=kNRadius,this.title='', this.iconImage='', this.buttonColor=kCActiveButton, this.titleColor=kCButtonTitle,
+    this.borderColor,this.disActiveButtonColor=kCDisActiveButton,this.disActiveBorderColor=kCDisActiveButton,this.titleSize=16,this.iconHeight=12,this.radius=kNRadius,this.title='', this.iconImage='', this.buttonColor=kCActiveButton, this.titleColor=kCButtonTitle,
     this.iconColor=kCButtonTitle, this.onTap,this.height=68,this.width=343,this.active=true
   });
 
@@ -54,7 +54,7 @@ class ButtonDefault extends StatelessWidget {
         child: CustomText(
           text: title,
           color: titleColor,
-          fontSize: textSize,
+          fontSize: titleSize,
           fontW: FW.semibold,
         ),
       );
@@ -77,7 +77,7 @@ class ButtonDefault extends StatelessWidget {
             CustomText(
               text: title,
               color: titleColor,
-              fontSize: textSize,
+              fontSize: titleSize,
               fontW: FW.semibold,
             ),
             7.0.ESW(),
@@ -95,7 +95,7 @@ class ButtonDefault extends StatelessWidget {
         child: CustomText(
           text: title,
           color: titleColor,
-          fontSize: textSize,
+          fontSize: titleSize,
           fontW: FW.semibold,
         ),
       );

@@ -16,7 +16,6 @@ class ResetPasswordRepository with ApiKey {
     try {
       response = await _networkService.post(
           url: uRLResetPassword,
-          auth: true,
           body: {
             'phone':phone,
             'password':password,

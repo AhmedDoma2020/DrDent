@@ -1,10 +1,8 @@
-import 'package:dr_dent/Src/bloc/model/insurance_model.dart';
-import 'package:dr_dent/Src/bloc/model/specialization_model.dart';
+
 import 'package:dr_dent/Src/bloc/model/state_and_city_model.dart';
 import 'package:dr_dent/Src/bloc/repository/fetch_state_repo.dart';
+import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
-import 'package:dr_dent/Src/features/AuthFeature/bloc/repository/fetch_specialization_repo.dart';
-import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/InsuranceCompaniesFeature/Bloc/Repo/fetch_available_insurances_repo.dart';
 import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -42,7 +40,6 @@ class FetchStateAndCityController extends GetxController {
     _stateIdSelected = value;
   }
 
-
   int _cityIdSelected =-1;
   int get cityIdSelected => _cityIdSelected;
   set setCityIdSelected(int value) {
@@ -52,24 +49,20 @@ class FetchStateAndCityController extends GetxController {
   RequestStatus status = RequestStatus.initial;
   final FetchStateAndCityRepository _fetchStateRepository = FetchStateAndCityRepository();
   Future<void> fetchStateAndCity() async {
-
-    _stateAndCityList = [...stateAndCityListExample];
-    update();
-    // var response =
-    //     await _fetchStateRepository.fetchStateAndCity();
-    // if (response.statusCode == 200 && response.data["status"] == true) {
-    //   print("request operation success");
-    //   stateAndCityList.clear();
-    //   for (var item in response.data['waitingOrder']) {
-    //     stateAndCityList.add(StateAndCityModel.fromJson(item));
-    //   }
-    //   print("convert operation success");
-    //   status = RequestStatus.done;
-    //   update();
-    // } else {
-    //   status = RequestStatus.error;
-    //   update();
-    // }
+    var response = await _fetchStateRepository.fetchStateAndCity();
+    if (response.statusCode == 200 && response.data["status"] == true) {
+      print("request operation success");
+      _stateAndCityList.clear();
+      for (var item in response.data['data']) {
+        _stateAndCityList.add(StateAndCityModel.fromJson(item));
+      }
+      print("convert operation success");
+      status = RequestStatus.done;
+      update();
+    } else {
+      status = RequestStatus.error;
+      update();
+    }
   }
   @override
   void onInit() {

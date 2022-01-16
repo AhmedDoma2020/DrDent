@@ -8,11 +8,12 @@ import 'package:dr_dent/Src/ui/widgets/buttons/button_default.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'medical_company_type.dart';
 import 'new_account_screen.dart';
 
 class AccountTypeScreen extends StatelessWidget {
   String titleAccountType = '';
-
+  int? indexOfCardSelected;
   @override
   Widget build(BuildContext context) {
     AccountTypeController _accountTypeController =
@@ -41,51 +42,63 @@ class AccountTypeScreen extends StatelessWidget {
                   fontW: FW.semibold,
                   textAlign: TextAlign.start,
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 24.h),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      GridView.builder(
-                        shrinkWrap: true,
-                        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                          maxCrossAxisExtent: 150,
-                          childAspectRatio: 1.06,
-                          crossAxisSpacing: 16.w,
-                          mainAxisSpacing: 18.h,
-                          // mainAxisExtent: 103
-                        ),
-                        itemBuilder: (context, index) => InkWell(
-                          hoverColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () {
-                            _.selectIndex(index);
-                            titleAccountType = _.accountType[index].title;
-                          },
-                          child: CardOfAccountType(
-                            icon: _.isSelected == index
-                                ? _.accountType[index].activeIcon
-                                : _.accountType[index].disActiveIcon,
-                            title: _.accountType[index].title,
-                            isSelected: _.isSelected == index ? true : false,
+                Expanded(
+                  // color: Colors.red,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 24.h),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GridView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                            maxCrossAxisExtent: 150,
+                            childAspectRatio: 1.06,
+                            crossAxisSpacing: 16.w,
+                            mainAxisSpacing: 18.h,
+                            // mainAxisExtent: 103
                           ),
-                        ),
-                        itemCount: accountTypeList.length,
-                      ),
-                      140.0.ESH(),
-                      _.isSelected == -1
-                          ? 0.0.ESH()
-                          : ButtonDefault(
-                              title:
-                                  '${"continue_register_as".tr}$titleAccountType',
-                              onTap: () {
-                                print("<><><><><>");
-                                Get.to(()=>NewAccountScreen());
-                              },
+                          itemBuilder: (context, index) => InkWell(
+                            hoverColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () {
+                              indexOfCardSelected = index;
+                              if(_.accountType[index].id == 1){
+                                print("medical_company");
+                              }else{
+                                print("Not medical company");
+                              }
+                              _.selectCompanyIndex(index);
+                              titleAccountType = _.accountType[index].title;
+                            },
+                            child: CardOfAccountType(
+                              icon: _.isCompanySelected == index
+                                  ? _.accountType[index].activeIcon
+                                  : _.accountType[index].disActiveIcon,
+                              title: _.accountType[index].title,
+                              isSelected: _.isCompanySelected == index ? true : false,
                             ),
-                    ],
+                          ),
+                          itemCount: accountTypeList.length,
+                        ),
+                        20.0.ESH(),
+                        _.isCompanySelected == -1
+                            ? 0.0.ESH()
+                            : ButtonDefault(
+                                title: '${"continue_register_as".tr}$titleAccountType',
+                                onTap: () {
+                                  if(_.accountType[indexOfCardSelected!].id == 1){
+                                    Get.to(()=> MedicalCompanyTypeScreen());
+                                  }else{
+                                    Get.to(()=>NewAccountScreen(userTypeSelectedId: _.accountType[indexOfCardSelected!].id,),);
+                                  }
+                                },
+                              ),
+                      ],
+                    ),
                   ),
                 ),
               ],

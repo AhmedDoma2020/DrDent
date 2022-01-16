@@ -27,22 +27,22 @@ class FetchScientificController extends GetxController {
   final FetchScientificRepository _fetchScientificRepository =
   FetchScientificRepository();
   Future<void> fetchScientific() async {
-    _scientificList = [...scientificListExamples];
+    // _scientificList = [...scientificListExamples];
     update();
-    // var response = await _fetchScientificRepository.fetchScientific();
-    // if (response.statusCode == 200 && response.data["status"] == true) {
-    //   print("request operation success");
-    //   _scientificList.clear();
-    //   for (var item in response.data['waitingOrder']) {
-    //     _scientificList.add(ScientificModel.fromJson(item));
-    //   }
-    //   print("convert operation success");
-    //   status = RequestStatus.done;
-    //   update();
-    // } else {
-    //   status = RequestStatus.error;
-    //   update();
-    // }
+    var response = await _fetchScientificRepository.fetchScientific();
+    if (response.statusCode == 200 && response.data["status"] == true) {
+      print("request operation success");
+      _scientificList.clear();
+      for (var item in response.data['data']) {
+        _scientificList.add(ScientificModel.fromJson(item));
+      }
+      print("convert operation success");
+      status = RequestStatus.done;
+      update();
+    } else {
+      status = RequestStatus.error;
+      update();
+    }
   }
   @override
   void onInit() {

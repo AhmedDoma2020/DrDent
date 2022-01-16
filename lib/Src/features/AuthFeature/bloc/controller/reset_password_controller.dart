@@ -9,8 +9,6 @@ import 'package:get/get.dart';
 
 
 class ResetPasswordController extends GetxController{
-
-
   TextEditingController? passwordController;
   TextEditingController? confirmPasswordController;
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
@@ -22,6 +20,7 @@ class ResetPasswordController extends GetxController{
       var response = await _resetPasswordRepository.resetPassword(phone: phone, password: passwordController!.text);
 
       if(response.statusCode == 200 && response.data["status"] == true) {
+        customSnackBar(title: response.data['message']?? "",);
         Get.offAll( ()=>LoginScreen());
       }else{
         customSnackBar(title: response.data['message']?? "",);
