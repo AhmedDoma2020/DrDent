@@ -7,12 +7,11 @@ import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
 
 class EnterAndEditMyPersonalDataRepository with ApiKey {
   // GetStorage box = GetStorage();
-  NetworkService _networkService = NetworkService();
-
+  final NetworkService _networkService = NetworkService();
   Future<Response> enterAndEditMyPersonalData({
     required String name,
-    required int gender,
-    required String scientificLevel,
+    required String gender,
+    required int scientificLevel,
     required List<int> specializationId,
     required String moreInfo,
     required String image,
@@ -26,9 +25,9 @@ class EnterAndEditMyPersonalDataRepository with ApiKey {
             'name':name,
             'gender':gender,
             'seintific_level':scientificLevel,
-            'specialization_ids':specializationId,
-            'more_info':moreInfo,
-            'liscence_image':image,
+            'specializations':specializationId,
+            'about':moreInfo,
+            'work_lisence':image,
           }
       );
     } on SocketException {

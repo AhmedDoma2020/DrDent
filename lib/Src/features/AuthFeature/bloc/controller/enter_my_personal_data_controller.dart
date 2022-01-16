@@ -1,3 +1,4 @@
+import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/AuthFeature/bloc/repository/enter_and_edit_my_personal_data_repo.dart';
 import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
@@ -13,19 +14,12 @@ class EnterMyPersonalDataController extends GetxController {
   TextEditingController? addInfoController;
   List<int> _specializationIdSelected=[];
   List<int> get specializationIdSelected => _specializationIdSelected;
-
   set setSpecializationIdSelected(List<int> value) {
     _specializationIdSelected = value;
   }
-
-  int _gender = 0;
-  int get gender => _gender;
-
-  set estGender(int value) {
-    _gender = value;
-  }
-
-  set setSexType(int value) {
+  String _gender = "male";
+  String get gender => _gender;
+  set estGender(String value) {
     _gender = value;
   }
   String _image = "";
@@ -33,10 +27,10 @@ class EnterMyPersonalDataController extends GetxController {
   set setImage(String value) {
     _image = value;
   }
-  int? _servicesId;
-  int? get servicesId => _servicesId;
-  set setServicesId(int value) {
-    _servicesId = value;
+  int? _scientificId;
+  int? get scientificId => _scientificId;
+  set setScientificId(int value) {
+    _scientificId = value;
   }
   RequestStatus status = RequestStatus.initial;
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
@@ -45,31 +39,33 @@ class EnterMyPersonalDataController extends GetxController {
     if (globalKey.currentState!.validate()) {
       globalKey.currentState!.save();
       if(_image != ""){
-// setLoadingDialog();
+        setLoading();
         print(" nameController!.text ${ nameController!.text}");
         print(" _gender $_gender");
-        print(" degreeController!.text ${degreeController!.text}");
+        print(" degreeController!.text $scientificId");
         print(" _specializationIdSelected $_specializationIdSelected");
         print(" addInfoController!.text ${addInfoController!.text}");
         print(" image $image");
-        // var response = await  _enterAndEditMyPersonalDataRepository.enterAndEditMyPersonalData(
-        //   name: nameController!.text,
-        //   gender: _gender,
-        //   scientificLevel: degreeController!.text,
-        //  specializationId: _specializationIdSelected,
-        //   moreInfo: addInfoController!.text,
-        //   image: image,
-        // );
-        //  if (response.statusCode == 200 && response.data["status"] == true) {
-        //    print("request operation success");
-        //
-        //    print("convert operation success");
-        //    status = RequestStatus.done;
-        //    update();
-        //  } else {
-        //    status = RequestStatus.error;
-        //    update();
-        //  }
+        var response = await  _enterAndEditMyPersonalDataRepository.enterAndEditMyPersonalData(
+          name: nameController!.text,
+          gender: _gender,
+          scientificLevel: scientificId!,
+         specializationId: _specializationIdSelected,
+          moreInfo: addInfoController!.text,
+          image: image,
+        );
+        Get.back();
+         if (response.statusCode == 200 && response.data["status"] == true) {
+           print("request operation success");
+           customSnackBar(title: response.data["message"]);
+           print("convert operation success");
+           status = RequestStatus.done;
+           update();
+         } else {
+           status = RequestStatus.error;
+           customSnackBar(title: response.data["message"]);
+           update();
+         }
       }else{
         customSnackBar(title: "must_set_photo_of_Work_licenses".tr);
       }

@@ -1,4 +1,4 @@
-import 'package:dr_dent/Src/features/DetectionLocationDetails/Ui/Screen/detection_location_details_screen.dart';
+import '../../../ProfileFeature/GlobalServicesFeature/DetectionLocationDetails/View/Screens/set_detection_location_details_screen.dart';
 import 'package:dr_dent/Src/ui/widgets/EmptyWidget/empty_widget.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:dr_dent/Src/ui/widgets/appbars/app_bars.dart';
@@ -16,7 +16,7 @@ class StartNowScreen extends StatelessWidget {
           subTitle: "start_now_sub_title",
           titleButton: "start_now",
           onTapButton: () {
-            Get.to(()=>DetectionLocationDetailsScreen() );
+            Get.to(()=>SetDetectionLocationDetailsScreen() );
           },
         ),
       ),

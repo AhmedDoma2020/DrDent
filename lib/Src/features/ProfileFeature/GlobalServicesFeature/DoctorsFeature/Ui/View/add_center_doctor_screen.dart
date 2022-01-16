@@ -55,8 +55,8 @@ class AddCenterDoctorScreen extends StatelessWidget {
                       },
                     ),
                     16.0.ESH(),
-                    RowGenderWidget(onTap: (id){
-                      _.setGender = id;
+                    RowGenderWidget(onTap: (val){
+                      _.setGender = val;
                     },),
                     16.0.ESH(),
                     TextFieldDefault(

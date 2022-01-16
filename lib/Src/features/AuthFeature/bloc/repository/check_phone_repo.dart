@@ -15,7 +15,6 @@ class ChickPhoneRepository with ApiKey {
     try {
       response = await _networkService.post(
           url: uRLCheckPhone,
-          auth: true,
           body: {
             'phone':phone,
           }

@@ -14,7 +14,7 @@ class AddCenterDoctorRepository with ApiKey {
     required String name,
     required String phone,
     required String avatar,
-    required int gender,
+    required String gender,
     required String jobTitle,
     required int specializationId,
     required String notes,

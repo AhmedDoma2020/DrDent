@@ -9,13 +9,13 @@ import 'package:get/get.dart';
 
 
 class RowGenderWidget extends StatefulWidget {
-  final Function(int) onTap;
+  final Function(String) onTap;
   RowGenderWidget({required this.onTap});
   @override
   State<RowGenderWidget> createState() => _RowGenderWidgetState();
 }
 class _RowGenderWidgetState extends State<RowGenderWidget> {
-  int userInPutType = 0;
+  String userInPutType = "male";
   @override
   Widget build(BuildContext context) {
     return
@@ -32,9 +32,10 @@ class _RowGenderWidgetState extends State<RowGenderWidget> {
                   activeColor: kCMain,
                   hoverColor: kCMain,
                   groupValue: userInPutType,
-                  value: types[0].id,
+                  value: types[0].val,
                   onChanged: (dynamic value){
                     setState(() {
+                      print(value);
                       userInPutType = value;
                       widget.onTap(value);
                       // _.estGender = userInPutType;
@@ -51,9 +52,10 @@ class _RowGenderWidgetState extends State<RowGenderWidget> {
                   activeColor: kCMain,
                   hoverColor: kCMain,
                   groupValue: userInPutType,
-                  value: types[1].id,
+                  value: types[1].val,
                   onChanged: (dynamic value){
                     setState(() {
+                      print(value);
                       userInPutType = value;
                       widget.onTap(value);
                       // _.estGender = userInPutType;

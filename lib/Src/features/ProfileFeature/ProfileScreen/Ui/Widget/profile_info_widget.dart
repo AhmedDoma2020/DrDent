@@ -12,7 +12,7 @@ class profileInfoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     GetStorage box = GetStorage();
     return SizedBox(
-      height: 297.h,
+      height: 310.h,
       width: double.infinity,
       child: Stack(
         children: [
@@ -24,13 +24,12 @@ class profileInfoWidget extends StatelessWidget {
                 child: ImageNetwork(
                   height: 192.h,
                   width: double.infinity,
-                  url:
-                      "https://images.pexels.com/photos/10436443/pexels-photo-10436443.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+                  url: "https://images.pexels.com/photos/10436443/pexels-photo-10436443.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
                 ),
               ),
               SizedBox(
                 // color: Colors.greenAccent,
-                height: 105.h,
+                height: 115.h,
                 width: double.infinity,
                 child: Padding(
                   padding: EdgeInsets.only(right: 130.w),

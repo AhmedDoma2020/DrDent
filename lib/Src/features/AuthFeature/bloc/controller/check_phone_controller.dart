@@ -1,6 +1,8 @@
 
 
+import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/features/AuthFeature/bloc/repository/check_phone_repo.dart';
+import 'package:dr_dent/Src/features/AuthFeature/ui/screens/reset_password_screen.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/screens/verfication_screen.dart';
 import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,17 +19,12 @@ class CheckPhoneController extends GetxController{
   void submit() async{
     if(globalKey.currentState!.validate()){
       globalKey.currentState!.save();
-      // setLoadingDialog();
+      setLoading();
       var response =  await _chickPhoneRepository.chickPhone(phone: phoneController!.text);
+      Get.back();
       if(response.statusCode == 200 && response.data["status"] == true){
-        print('my phone is ${phoneController!.value.text}');
-        String phone = phoneController!.value.text;
-        if(phoneController!.value.text.isNotEmpty){
-          if(phoneController!.value.text.startsWith('0')){
-            phone = phoneController!.value.text.replaceFirst('0','');
-            Get.to(()=>VerificationScreen(phone: phone,));
-          }
-        }
+        Get.to(ResetPasswordScreen(phone:  phoneController!.text,));
+        customSnackBar(title: response.data['message']?? "",);
       }else{
         customSnackBar(title: response.data['message']?? "",);
       }

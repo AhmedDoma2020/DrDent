@@ -28,9 +28,9 @@ class EnterYourInformationToApplyJobController extends GetxController {
     _servicesId = value;
   }
 
-  int _gender =0;
-  int get gender => _gender;
-  set setGender(int value) {
+  String _gender ="";
+  String get gender => _gender;
+  set setGender(String value) {
     _gender = value;
   }
 
