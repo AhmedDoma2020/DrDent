@@ -1,3 +1,5 @@
+import 'package:dr_dent/Src/features/JobFeature/bloc/controller/job_offers_controller.dart';
+import 'package:dr_dent/Src/features/JobFeature/bloc/controller/job_request_controller.dart';
 import 'package:dr_dent/Src/features/JobFeature/bloc/controller/jobs_controller.dart';
 import 'package:dr_dent/Src/features/JobFeature/ui/screens/job_offers_screen.dart';
 import 'package:dr_dent/Src/ui/widgets/Cards/card_job_offer.dart';
@@ -18,6 +20,8 @@ class JobsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(JobsController());
+    Get.put(JobRequestController());
+    Get.put(JobOffersController());
     return GetBuilder<JobsController>(
         builder: (_) {
           return Column(

@@ -1,3 +1,4 @@
+import 'package:dr_dent/Src/bloc/model/post_model.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/features/SocialFeature/ui/widgets/post_header.dart';
 import 'package:dr_dent/Src/features/SocialFeature/ui/widgets/post_statics.dart';
@@ -8,7 +9,8 @@ import '/src/core/utils/extensions.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PostWidget extends StatelessWidget {
-  const PostWidget({Key? key}) : super(key: key);
+  final PostModel post;
+  const PostWidget({Key? key,required this.post}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,8 @@ class PostWidget extends StatelessWidget {
       color: Colors.white,
       child: Column(
         children: [
-          PostHeader(),
+          16.0.ESH(),
+          PostHeader(post: post,),
           Padding(
             padding:  EdgeInsets.only(
               top: 14.h
@@ -37,7 +40,7 @@ class PostWidget extends StatelessWidget {
                 horizontal: 24.w
               ),
               child: CustomText(
-                text: 'المؤتمر السنوي للشركات الطبية لعرض أسعار المنتجات ومتطلبات المجتمع الطبي',
+                text: post.content,
                 fontW: FW.light,
                 fontSize: 14,
                 color: kCMainBlack2,
@@ -55,11 +58,11 @@ class PostWidget extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                   const PostStatics(icon: 'like.png', count: '5'),
+                    PostStatics(icon: 'like.png', count: '${post.likesNumber!}'),
                    30.0.ESW(),
-                   const PostStatics(icon: 'comment.png', count: '56'),
+                    PostStatics(icon: 'comment.png', count: '${post.commentsNumber!}'),
                    30.0.ESW(),
-                   const PostStatics(icon: 'share.png', count: '30'),
+                    PostStatics(icon: 'share.png', count: '${post.shareNumber!}'),
                 ],
               ),
             ),

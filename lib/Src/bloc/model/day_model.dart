@@ -11,6 +11,7 @@ class DayModel{
   DayModel.fromJson(Map<String, dynamic> json){
     id = json['id'];
     title = json['title'];
+    setTimes(json);
     expanded = false;
   }
 

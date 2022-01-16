@@ -23,6 +23,7 @@ class BaseScreen extends StatelessWidget {
       builder: (_) =>  Scaffold(
         appBar: AppBars.appBarDefault(title: ''),
         body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
               child: [

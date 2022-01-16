@@ -1,4 +1,6 @@
+ 
 import 'package:dr_dent/Src/features/AuthFeature/ui/screens/login_screen.dart';
+import 'package:dr_dent/Src/features/WorkTimeFeature/ui/screens/work_time_screen.dart';
 import 'package:dr_dent/Src/features/SplachFeature/ui/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -54,7 +56,6 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         home:ProfileScreen(),
-
       ),
     );
   }

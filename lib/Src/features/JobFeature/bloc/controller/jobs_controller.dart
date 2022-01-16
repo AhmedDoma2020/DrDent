@@ -11,5 +11,4 @@ class JobsController extends GetxController{
     update();
   }
 
-
 }

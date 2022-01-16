@@ -22,6 +22,8 @@ class LoginController extends GetxController{
     if(globalKey.currentState!.validate()){
       globalKey.currentState!.save();
       setLoading();
+       globalKey.currentState!.save();
+      // setLoadingDialog();
       var response = await _logInRepository.logIn(phone: phoneController!.text, password: passwordController!.text,);
       Get.back();
      if(response.statusCode == 200 && response.data["status"] == true){
