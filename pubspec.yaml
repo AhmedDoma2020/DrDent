@@ -52,12 +52,15 @@ dependencies:
   google_api_availability:
   geocoding:
   flutter_spinkit:
-#  date_range_picker: ^1.0.5
+  google_sign_in:
+#  firebase_auth: ^3.3.5
+#  firebase_core: ^1.11.0
+#  firebase_messaging: ^11.2.5
+  date_range_picker: ^1.0.5
   syncfusion_flutter_datepicker: ^19.4.38
 
-  #  firebase_auth: ^3.1.2
-#  firebase_core: ^1.7.0
-#  firebase_messaging: ^10.0.8
+
+
   dio: ^4.0.0
   #  geolocator: ^7.7.0
   #  google_api_availability: ^3.0.1

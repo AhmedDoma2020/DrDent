@@ -54,6 +54,7 @@ const Map<String, String> enUS = {
   "start_now_sub_title":"ابدأ الآن بإضافة أماكن العمل الخاصة بك وإضافة مواعيد العمل المتاحة ",
   "skip_":"تخطي",
   "clinic_name":"اسم العيادة أو المركز",
+  "error_clinic_name_field":"يجب ادخال اسم العيادة أو المركز",
   "price_examination":"سعر الكشف",
   "anather_phone_number": "رقم هاتف آخر",
   "clinic_location": "موقع العيادة أو المركز",

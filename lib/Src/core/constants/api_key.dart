@@ -1,6 +1,14 @@
 mixin ApiKey{
 
 
+   static const String apiBaseUrl = 'http://dr-dent.crazyideaco.com/api/';
+
+
+   final String uRLLogin = apiBaseUrl + "login";
+   final String uRLRegister = apiBaseUrl + "register";
+   final String uRLLoginWithEmail = apiBaseUrl + "login_with_gmail";
+   final String uRLVerifyPhone = apiBaseUrl + "verify_phone";
+   final String uRLSetWorkLicense = apiBaseUrl + "set_work_lisence";
    static const String apiBaseUrl = 'https://dr-dent.crazyideaco.com/api/';
 
 
@@ -13,6 +21,7 @@ mixin ApiKey{
    final String uRLFetchPosts = apiBaseUrl + "fetch_social";
    final String uRLStore = apiBaseUrl + "fetch_social";
    final String uRLLoginWithEmail = apiBaseUrl + "login_with_gmail";
+
    final String uRLFetchStore = apiBaseUrl + "uRLFetchStore";
    final String uRLFetchPostComments = apiBaseUrl + "fetch_post_comments";
 
@@ -22,14 +31,15 @@ mixin ApiKey{
 
 // New ApiKey For Pickup
    final String uRLResetPassword = apiBaseUrl + "reset_password";
+   final String uRLSetCommercialRegistrationAndTaxCard = apiBaseUrl + "company_set_store_info";
+   final String uRLSetWorkSpace = apiBaseUrl + "set_work_space";
    final String uRLCheckPhone = apiBaseUrl + "check_phone";
    final String uRLCity = apiBaseUrl + "city";
-   final String uRLFetchAvailableInsurances = apiBaseUrl +
-       "fetch_available_insurances";
-   final String uRLFetchAvailableServices = apiBaseUrl +
-       "fetch_available_insurances";
+   final String uRLFetchAvailableInsurances = apiBaseUrl + "fetch_available_insurances";
+   final String uRLFetchAvailableServices = apiBaseUrl + "fetch_available_insurances";
    final String uRLFetchMyInsurances = apiBaseUrl + "fetch_my_insurances";
    final String uRLFetchMyServices = apiBaseUrl + "fetch_my_insurances";
+   final String uRLFetchMyWorkSpaces = apiBaseUrl + "my_work_spaces";
    final String uRLFetchMyAssistant = apiBaseUrl + "my_assitants";
    final String uRLFetchMyOfferAndDiscount = apiBaseUrl + "my_offer";
    final String uRLDeleteInsurance = apiBaseUrl + "delete_insurance";
@@ -41,7 +51,7 @@ mixin ApiKey{
    final String uRLSetOfferAndDiscount = apiBaseUrl + "add_offer";
    final String uRLFetchProfileDoctor = apiBaseUrl + "fetch_profile_doctor";
    final String uRLFetchScientific = apiBaseUrl + "fetch_seintific_levels";
-   final String uRLFetchSpecialization = apiBaseUrl + "fetch_specialization";
+   final String uRLFetchSpecialization = apiBaseUrl + "specializations";
    final String uRLEnterAndEditMyPersonalData = apiBaseUrl + "edit_personal_info";
    final String uRLAddJopRequest = apiBaseUrl + "add_job_request";
    final String uRLAddAJopOffer = apiBaseUrl + "add_job_offer";

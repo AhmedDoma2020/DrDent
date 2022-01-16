@@ -12,8 +12,6 @@ class LogInRepository with ApiKey {
   Future<Response> logIn({
     required String phone,
     required String password,
-     int? deviceId,
-     String? deviceType,
   }) async {
     Response response;
     try {
@@ -23,9 +21,9 @@ class LogInRepository with ApiKey {
           body: {
             'phone':phone,
             'password':password,
-            'device_token':"",
-            'device_id':deviceId,
-            'device_type':deviceType,
+            // 'device_token':"",
+            // 'device_id':deviceId,
+            // 'device_type':deviceType,
           }
       );
     } on SocketException {

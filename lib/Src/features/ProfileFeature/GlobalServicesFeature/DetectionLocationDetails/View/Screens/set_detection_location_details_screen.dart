@@ -1,7 +1,8 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
-import 'package:dr_dent/Src/features/DetectionLocationDetails/Block/Controller/detection_location_details_controller.dart';
-import 'package:dr_dent/Src/features/DetectionLocationDetails/Ui/Widget/upload_photo_widget.dart';
+import 'package:dr_dent/Src/features/AuthFeature/ui/screens/enter_my_personal_data_screen.dart';
+import 'package:dr_dent/Src/features/AuthFeature/ui/widgets/upload_photo_of_work_licenses.dart';
+import '../../Bloc/Controller/set_detection_location_details_controller.dart';
 import 'package:dr_dent/Src/features/LocationFeature/ui/screens/set_location_map_screen.dart';
 import 'package:dr_dent/Src/features/LocationFeature/ui/screens/set_location_sheet.dart';
 import 'package:dr_dent/Src/ui/widgets/TextFields/text_field_default.dart';
@@ -12,7 +13,28 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
-class DetectionLocationDetailsScreen extends StatelessWidget {
+class SetDetectionLocationDetailsScreen extends StatelessWidget {
+  final String? name;
+  final String? phone;
+  final String? phone2;
+  final String? price;
+  final String? address;
+  final double? lat;
+  final double? lon;
+  final int? stateId;
+  final int? cityId;
+  SetDetectionLocationDetailsScreen(
+      {this.name,
+      this.phone,
+      this.phone2,
+      this.price,
+      this.address,
+      this.lat,
+      this.lon,
+      this.stateId,
+      this.cityId,
+      });
+
   @override
   Widget build(BuildContext context) {
     DetectionLocationDetailsController _detectionLocationDetailsController =
@@ -21,11 +43,13 @@ class DetectionLocationDetailsScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBars.appBarSkipDefault(
-          title: "Detection_location_details".tr,
-          onTap: () {
-            Get.back();
-          },
-        ),
+            title: "Detection_location_details".tr,
+            onTapBack: () {
+              Get.back();
+            },
+            onTapSkip: () {
+              Get.to(() => EnterMyPersonalDataScreen());
+            }),
         body: GetBuilder<DetectionLocationDetailsController>(
           builder: (_) => Container(
             padding: EdgeInsets.symmetric(horizontal: 24.w),
@@ -40,9 +64,9 @@ class DetectionLocationDetailsScreen extends StatelessWidget {
                     32.0.ESH(),
                     TextFieldDefault(
                       hint: 'clinic_name'.tr,
-                      errorText: "error_phone_field".tr,
-                      controller: _.phone1Controller,
-                      keyboardType: TextInputType.phone,
+                      errorText: "error_clinic_name_field".tr,
+                      controller: _.nameController,
+                      keyboardType: TextInputType.name,
                       filledColor: kCBGTextFormFiled,
                       fieldType: FieldType.WithBorder,
                       enableBorder: Colors.transparent,
@@ -68,7 +92,7 @@ class DetectionLocationDetailsScreen extends StatelessWidget {
                     16.0.ESH(),
                     TextFieldDefault(
                       hint: 'anather_phone_number'.tr,
-                      controller: _.phone1Controller,
+                      controller: _.phone2Controller,
                       keyboardType: TextInputType.phone,
                       filledColor: kCBGTextFormFiled,
                       fieldType: FieldType.WithBorder,
@@ -81,8 +105,9 @@ class DetectionLocationDetailsScreen extends StatelessWidget {
                     16.0.ESH(),
                     TextFieldDefault(
                       hint: 'price_examination'.tr,
-                      controller: _.phone1Controller,
-                      keyboardType: TextInputType.phone,
+                      errorText: "error_price_examination_field".tr,
+                      controller: _.priceExaminationController,
+                      keyboardType: TextInputType.number,
                       filledColor: kCBGTextFormFiled,
                       fieldType: FieldType.WithBorder,
                       enableBorder: Colors.transparent,
@@ -94,15 +119,23 @@ class DetectionLocationDetailsScreen extends StatelessWidget {
                     16.0.ESH(),
                     InkWell(
                       onTap: () {
-                        Get.to(() => MapScreen(onSave: (lat, lon, address) {
-                              Get.bottomSheet(SetLocationButtonSheet());
-                            }));
+                        Get.to(
+                          () => MapScreen(
+                            onSave: (lat, lon, address) {
+                              Get.bottomSheet(SetLocationButtonSheet(
+                                lon: lon,
+                                address: address,
+                                lat: lat,
+                              ));
+                            },
+                          ),
+                        );
                       },
                       child: TextFieldDefault(
                         hint: 'clinic_location'.tr,
-                        errorText: "error_phone_field".tr,
-                        controller: _.phone1Controller,
-                        keyboardType: TextInputType.phone,
+                        errorText: "error_clinic_location_filed".tr,
+                        controller: _.addressController,
+                        keyboardType: TextInputType.text,
                         filledColor: kCBGTextFormFiled,
                         fieldType: FieldType.WithBorder,
                         enableBorder: Colors.transparent,
@@ -116,32 +149,17 @@ class DetectionLocationDetailsScreen extends StatelessWidget {
                       ),
                     ),
                     16.0.ESH(),
-                    InkWell(
-                      onTap: () {},
-                      child: TextFieldDefault(
-                        hint: 'jop_time'.tr,
-                        errorText: "error_phone_field".tr,
-                        controller: _.phone1Controller,
-                        keyboardType: TextInputType.phone,
-                        filledColor: kCBGTextFormFiled,
-                        enableBorder: Colors.transparent,
-                        fieldType: FieldType.WithBorder,
-                        disableBorder: Colors.transparent,
-                        prefixIconUrl: "TFClender",
-                        enable: false,
-                        horizentalPadding: 16,
-                        onComplete: () {
-                          node.nextFocus();
-                        },
-                      ),
+                    UploadPhotoContainer(
+                      onTap: (image) {
+                        _.setImg64= image;
+                      },
+                      title: "A_picture_of_the_clinic_or_center",
                     ),
-                    16.0.ESH(),
-                     UploadPhoto(),
                     32.0.ESH(),
                     ButtonDefault(
                       title: 'save_contain'.tr,
                       onTap: () {
-                        _.submit();
+                        _.submitEnd();
                       },
                     ),
                     32.0.ESH(),

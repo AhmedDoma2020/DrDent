@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "158893308015",
+    "project_id": "drdent-a670a",
+    "storage_bucket": "drdent-a670a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:158893308015:android:0b42aa41645cedc9a1759a",
+        "android_client_info": {
+          "package_name": "com.crazyidea.dr_dent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "158893308015-o7vch6o75jektlp7rmq9c06imqeefp7n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.crazyidea.dr_dent",
+            "certificate_hash": "36d3b9ad6c1b140b334211711598892ef19eace6"
+          }
+        },
+        {
+          "client_id": "158893308015-77mr5ke32s2505l3se5gans10nf0gtt1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5cjdUYDwPTRKWL0NsqDsMEatfMozG1Ow"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "158893308015-77mr5ke32s2505l3se5gans10nf0gtt1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

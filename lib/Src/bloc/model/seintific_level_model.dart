@@ -13,7 +13,7 @@ class ScientificModel {
   ScientificModel.fromJson(Map<String, dynamic> json){
     id = json['id'];
     title = json['title'];
-    selected = json['selected'];
+    selected = json['selected']??false;
   }
 }
 

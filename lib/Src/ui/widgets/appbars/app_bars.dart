@@ -36,8 +36,37 @@ class AppBars {
      bottom: tabBar,
    );
  }
+ //
+ // static AppBar appBarPost({ bool isBack=true, TabBar? tabBar,String title='',Widget secondIconImage=const SizedBox(width: 0,) , VoidCallback? onTap}){
+ //   return AppBar(
+ //     title: CustomText(
+ //       text: title,
+ //       fontW: FW.semibold,
+ //       fontSize: 16,
+ //       color: kCBlackTitle,
+ //     ),
+ //     backgroundColor: Colors.white,
+ //     centerTitle: true,
+ //     elevation: 0.0,
+ //     leading:isBack==false?0.0.ESH() :IconButton(
+ //       onPressed: onTap??(){
+ //        Get.back();
+ //       },
+ //       icon: Icon(
+ //         Icons.arrow_back,
+ //         color: kCMainBlack,
+ //         size: 24.h,
+ //       ),
+ //     ),
+ //     actions: [
+ //       secondIconImage
+ //
+ //     ],
+ //     bottom: tabBar,
+ //   );
+ // }
 
-static AppBar appBarSkipDefault({ bool isBack=true, TabBar? tabBar,String title='',Widget secondIconImage=const SizedBox(width: 0,) , VoidCallback? onTap}){
+static AppBar appBarSkipDefault({ bool isBack=true, TabBar? tabBar,String title='',Widget secondIconImage=const SizedBox(width: 0,) , VoidCallback? onTapBack, VoidCallback? onTapSkip}){
    return AppBar(
      title: CustomText(
        text: title,
@@ -49,7 +78,7 @@ static AppBar appBarSkipDefault({ bool isBack=true, TabBar? tabBar,String title=
      centerTitle: true,
      elevation: 0.0,
      leading:isBack==false?0.0.ESH() :IconButton(
-       onPressed: onTap??(){
+       onPressed: onTapBack??(){
         Get.back();
        },
        icon: Icon(
@@ -60,8 +89,7 @@ static AppBar appBarSkipDefault({ bool isBack=true, TabBar? tabBar,String title=
      ),
      actions: [
        IconButton(
-         onPressed:(){
-         },
+         onPressed:onTapSkip,
          icon: CustomText(
            text: "skip_".tr,
            fontW: FW.semibold,

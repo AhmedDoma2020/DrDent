@@ -1,24 +1,22 @@
-
-
 import 'dart:async';
-
-import 'package:dr_dent/Src/features/AuthFeature/ui/screens/reset_password_screen.dart';
+import 'package:dr_dent/Src/features/AuthFeature/bloc/controller/verify_phone_controller.dart';
 import 'package:flutter/cupertino.dart';
-
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 
 class VerficationController extends GetxController{
-  final String phone;
-   VerficationController({Key? key, required this.phone});
   TextEditingController? textEditingController;
   StreamController<ErrorAnimationType>? errorController;
+  VerifyPhoneController _verifyPhoneController = Get.put(VerifyPhoneController());
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
-  void submit() async{
+
+  void verify({VoidCallback? onSuccess,bool register = true}) async{
     if(globalKey.currentState!.validate()){
       globalKey.currentState!.save();
-      Get.to(()=> ResetPasswordScreen(phone: phone));
+      if(register){
+        _verifyPhoneController.setVerify();
+      }
     }
   }
 

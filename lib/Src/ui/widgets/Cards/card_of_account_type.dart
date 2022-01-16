@@ -33,8 +33,9 @@ class CardOfAccountType extends StatelessWidget {
       child: Center(
         child: SizedBox(
           width: 66.w,
-          height: 110.h,
+          // height: 110.h,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
                 width: 55.w,

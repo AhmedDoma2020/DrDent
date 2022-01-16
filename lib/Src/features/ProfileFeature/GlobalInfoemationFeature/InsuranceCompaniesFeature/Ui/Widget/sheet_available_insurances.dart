@@ -9,12 +9,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '/src/core/utils/extensions.dart';
 
-class AvailableInsuranceSheet extends StatefulWidget {
-  @override
-  State<AvailableInsuranceSheet> createState() =>
-      _AvailableInsuranceSheetState();
-}
-class _AvailableInsuranceSheetState extends State<AvailableInsuranceSheet> {
+class AvailableInsuranceSheet extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     Get.put(FetchAvailableInsurancesController());

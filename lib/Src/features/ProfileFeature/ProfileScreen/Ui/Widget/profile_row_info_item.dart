@@ -18,11 +18,12 @@ class ProfileRowInfoItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60.h,
+      height: 68.h,
       width: 98.w,
       padding: EdgeInsets.symmetric(
           horizontal: 14.w, vertical: 12.h),
       decoration: BoxDecoration(
+        // color: Colors.red,
         border: Border.all(color: kCGreyBorder, width: 1.w),
         borderRadius: BorderRadius.circular(10.r),
       ),

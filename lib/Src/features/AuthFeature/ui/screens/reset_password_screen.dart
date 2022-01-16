@@ -16,8 +16,7 @@ class ResetPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ResetPasswordController resetPasswordController =
-        Get.put(ResetPasswordController());
+    ResetPasswordController resetPasswordController = Get.put(ResetPasswordController());
     var node = FocusScope.of(context);
     return Scaffold(
       appBar: AppBars.appBarDefault(title: 'forget_password'.tr),
@@ -68,7 +67,6 @@ class ResetPasswordScreen extends StatelessWidget {
                       ButtonDefault(
                         title: 'save_'.tr,
                         onTap: () {
-                          print("<><><><><><><><><><>");
                           _.submit(phone: phone);
                         },
                       ),

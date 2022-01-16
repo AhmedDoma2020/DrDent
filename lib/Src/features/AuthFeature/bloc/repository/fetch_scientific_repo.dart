@@ -1,10 +1,8 @@
-
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dr_dent/Src/core/constants/api_key.dart';
 import 'package:dr_dent/Src/core/services/network_services.dart';
 import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
-
 
 class FetchScientificRepository with ApiKey{
   // GetStorage box = GetStorage();
