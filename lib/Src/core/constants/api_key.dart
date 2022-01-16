@@ -5,7 +5,6 @@ mixin ApiKey{
 
 
    final String uRLLogin = apiBaseUrl + "login";
-<<<<<<< HEAD
    final String uRLDoctorWorkDays = apiBaseUrl + "fetch_doctor_work_times";
    final String uRLAddDayTime = apiBaseUrl + "add_work_space_time";
    final String uRLDeleteDayTime = apiBaseUrl + "delete_work_space_time";
@@ -13,9 +12,10 @@ mixin ApiKey{
    final String uRLFetchJobRequests = apiBaseUrl + "delete_work_space_time";
    final String uRLFetchPosts = apiBaseUrl + "fetch_social";
    final String uRLStore = apiBaseUrl + "fetch_social";
-=======
    final String uRLLoginWithEmail = apiBaseUrl + "login_with_gmail";
->>>>>>> 002056a04ef1d0877606732e1afc4e22bd7b6283
+   final String uRLFetchStore = apiBaseUrl + "uRLFetchStore";
+   final String uRLFetchPostComments = apiBaseUrl + "fetch_post_comments";
+
 
    // String URLFetchMajorCategorySellers(int page)=>apiBaseUrl + "major_shops"+'?page=$page'; // soon
 

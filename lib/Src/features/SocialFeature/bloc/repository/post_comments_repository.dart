@@ -7,19 +7,22 @@ import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
 import 'package:get_storage/get_storage.dart';
 
 
-class JobRequestsRepository with ApiKey{
+class PostCommentsRepository with ApiKey{
   // GetStorage box = GetStorage();
-  NetworkService _networkService = NetworkService();
-  Future<Response> fetchJobRequests()async{
+  final NetworkService _networkService = NetworkService();
+  Future<Response> fetchPostComments({required int postId})async{
     Response? response;
     try{
-      response = await _networkService.get(
-          url:  'URLFetchProductLike',
-          auth: true
+      response = await _networkService.post(
+          url:  uRLFetchPostComments,
+          auth: true,
+        body: {
+            'post_id' : postId
+        }
       );
 
     }on SocketException{
-      throw SocketException('No Internet Connection');
+      throw const SocketException('No Internet Connection');
     }on Exception{
       throw UnKnownException('there is unKnown Exception');
     }catch (e){
