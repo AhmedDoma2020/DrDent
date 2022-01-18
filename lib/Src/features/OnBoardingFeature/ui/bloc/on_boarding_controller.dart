@@ -10,7 +10,6 @@ import 'package:get/get.dart';
 
 class OnBoardingController extends GetxController{
 
-
   List<OnBoardingItem> boards=[];
   PageController? pageController;
   int boardIndex=0;
@@ -29,7 +28,7 @@ class OnBoardingController extends GetxController{
 
   void onNext(){
     int jumpTo;
-    if(boardIndex<4){
+    if(boardIndex <boards.length-1){
       jumpTo = boardIndex + 1;
     }else{
       jumpTo=0;
@@ -57,7 +56,7 @@ class OnBoardingController extends GetxController{
   @override
   void onInit() {
     super.onInit();
-    pageController = PageController();
+    pageController = PageController(initialPage: 0);
     boards = boardData;
     boardIndex=0;
     update();

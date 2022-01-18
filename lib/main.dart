@@ -1,4 +1,3 @@
- 
 import 'package:dr_dent/Src/features/AuthFeature/ui/screens/login_screen.dart';
 import 'package:dr_dent/Src/features/WorkTimeFeature/ui/screens/work_time_screen.dart';
 import 'package:dr_dent/Src/features/SplachFeature/ui/splash_screen.dart';
@@ -36,8 +35,6 @@ import 'Src/features/AuthFeature/ui/screens/enter_my_personal_data_screen.dart';
 import 'Src/features/ProfileFeature/ProfileScreen/Ui/View/profile_screen.dart';
 import 'Src/ui/widgets/grids/grid_card_product.dart';
 
-
-
 void main() {runApp(MyApp());}
 
 class MyApp extends StatelessWidget {
@@ -55,7 +52,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home:ProfileScreen(),
+        home:SplashScreen(),
       ),
     );
   }

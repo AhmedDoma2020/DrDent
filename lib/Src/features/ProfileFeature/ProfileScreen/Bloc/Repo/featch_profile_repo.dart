@@ -10,7 +10,7 @@ class FetchProfileDoctorRepository with ApiKey{
     Response response;
     try{
       response = await _networkService.get(
-        url:uRLFetchProfileDoctor,
+        url:uRLFetchProfile,
         auth: true,
       );
     }on SocketException{

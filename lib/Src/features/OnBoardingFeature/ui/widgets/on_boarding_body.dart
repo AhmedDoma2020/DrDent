@@ -9,8 +9,6 @@ import '/src/core/utils/extensions.dart';
 
 class OnBoardingBody extends StatelessWidget {
   final OnBoardingItem? onBoardingItem;
-
-
   OnBoardingBody({this.onBoardingItem});
 
   @override
