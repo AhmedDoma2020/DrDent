@@ -39,7 +39,8 @@ status = RequestStatus.loading;
     Get.back();
     if (response.statusCode == 200 && response.data["status"] == true) {
       print("request operation success");
-      _myInsuranceList.removeAt(index);
+      // _myInsuranceList.removeAt(index);
+      fetchMyInsurances();
       customSnackBar(title: response.data["message"]??"Error");
       print("convert operation success");
       status = RequestStatus.done;

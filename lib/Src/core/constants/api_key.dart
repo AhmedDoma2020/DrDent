@@ -10,9 +10,6 @@ mixin ApiKey{
    final String uRLVerifyPhone = apiBaseUrl + "verify_phone";
    final String uRLSetWorkLicense = apiBaseUrl + "set_work_lisence";
 
-
-
-
    final String uRLDoctorWorkDays = apiBaseUrl + "fetch_doctor_work_times";
    final String uRLAddDayTime = apiBaseUrl + "add_work_space_time";
    final String uRLDeleteDayTime = apiBaseUrl + "delete_work_space_time";
@@ -24,12 +21,12 @@ mixin ApiKey{
    final String uRLFetchPostComments = apiBaseUrl + "fetch_post_comments";
    final String uRLFetchJobOffers = apiBaseUrl + "fetch_job_offers";
 
-
    // String URLFetchMajorCategorySellers(int page)=>apiBaseUrl + "major_shops"+'?page=$page'; // soon
 
 
 // New ApiKey For Pickup
    final String uRLResetPassword = apiBaseUrl + "reset_password";
+   final String uRLSetExperienceYears = apiBaseUrl + "set_experience_years";
    final String uRLSetCommercialRegistrationAndTaxCard = apiBaseUrl + "company_set_store_info";
    final String uRLSetWorkSpace = apiBaseUrl + "set_work_space";
    final String uRLCheckPhone = apiBaseUrl + "check_phone";
@@ -48,7 +45,7 @@ mixin ApiKey{
    final String uRLSetInsurance = apiBaseUrl + "set_insurance";
    final String uRLNewVisits = apiBaseUrl + "all_new_visits";
    final String uRLSetOfferAndDiscount = apiBaseUrl + "add_offer";
-   final String uRLFetchProfileDoctor = apiBaseUrl + "fetch_profile_doctor";
+   final String uRLFetchProfile = apiBaseUrl + "fetch_profile";
    final String uRLFetchScientific = apiBaseUrl + "fetch_seintific_levels";
    final String uRLFetchSpecialization = apiBaseUrl + "specializations";
    final String uRLEnterAndEditMyPersonalData = apiBaseUrl + "edit_personal_info";

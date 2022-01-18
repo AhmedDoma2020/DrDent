@@ -7,7 +7,8 @@ class ImageNetwork extends StatelessWidget {
   final String? url;
   final double? width, height;
   final String defaultAvatar;
-  const ImageNetwork({required this.url,required this.width ,required this.height ,this.defaultAvatar ="assets/image/defaultAvatar.png"});
+  final BoxFit boxFit;
+  const ImageNetwork({this.boxFit =BoxFit.cover  , required this.url,required this.width ,required this.height ,this.defaultAvatar ="assets/image/defaultAvatar.png"});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class ImageNetwork extends StatelessWidget {
       height: height!.h,
       width: width!.w,
       imageUrl: url??defaultAvatar,
-      fit: BoxFit.cover,
+      fit: boxFit,
       errorWidget: (context, url, error) =>
       const Icon(Icons.error, color: kCTFErrorText),
     );

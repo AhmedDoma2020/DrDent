@@ -146,6 +146,7 @@ const Map<String, String> arAE = {
   "three_is_no_specialty_yet": "لا يوجد تخصص بعد",
   "add_specialty": "أضف تخصصك",
   "Enter_years_of_experience": "أدخل سنة التخرج",
+  "graduation_year": "سنة التخرج",
   "Degree_": "الدرجة العلمية",
   "must_set_Degree": "يجب ارفاق الدرجة العلمية",
   "Specialization_": "التخصص",
@@ -235,6 +236,7 @@ const Map<String, String> arAE = {
   "error_tax_record_num_field": "رقم السجل الضريبي",
   "must_upload_file": "يجب ارفاق الملفات",
   "Empty_Detection_location_details": "! ليس لديك أماكن للكشف بعد قم بإضافة أماكن العمل الخاصة بك",
+  "must_select_year": "يجب اختيار السنه",
 
 
 };

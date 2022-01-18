@@ -1,11 +1,14 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
+import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
-import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Bloc/Controller/featch_doctor_profile_controller.dart';
+import 'package:dr_dent/Src/core/utils/request_status.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Bloc/Controller/featch_profile_controller.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Bloc/Controller/profile_tab_index_controller.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/Widget/global_information_details_widget.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/Widget/global_services_widget.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/Widget/profile_info_widget.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/Widget/profile_row_info_widget.dart';
+import 'package:dr_dent/Src/ui/widgets/Dialog/loading_dialog.dart';
 import 'package:dr_dent/Src/ui/widgets/tabs/tabs_ios.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,42 +23,45 @@ class ProfileScreen extends StatelessWidget {
     Get.put(FetchProfileDoctorController());
     return SafeArea(
       child: Scaffold(
-        body: GetBuilder<ProfileTapIndexController>(
-          builder: (_) => ListView(
-            children: [
-              profileInfoWidget(),
-              ProfileRowInfoAndRate(),
-              Padding(
-                padding:  EdgeInsets.symmetric(vertical: 16.h),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TabsIos(
-                      onTap: (index) {
-                        _.tabIndex = index;
-                      },
-                      titles: [
-                        'my_data'.tr,
-                        'my_services'.tr,
-                        'my_posts'.tr,
-                      ],
-                      tabIndex: _.tabIndex,
-                      activeCardColor: Colors.white,
-                      borderColor: Colors.transparent,
-                      backGroundColor: kCGreySemiDark,
-                    ),
-                  ],
+        body: GetBuilder<FetchProfileDoctorController>(
+          builder:(proController) => proController.status == RequestStatus.loading ? Center(child: Loader(),):
+              GetBuilder<ProfileTapIndexController>(
+            builder: (_) => ListView(
+              children: [
+                profileInfoWidget(),
+                ProfileRowInfoAndRate(),
+                Padding(
+                  padding:  EdgeInsets.symmetric(vertical: 16.h),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TabsIos(
+                        onTap: (index) {
+                          _.tabIndex = index;
+                        },
+                        titles: [
+                          'my_data'.tr,
+                          'my_services'.tr,
+                          'my_posts'.tr,
+                        ],
+                        tabIndex: _.tabIndex,
+                        activeCardColor: Colors.white,
+                        borderColor: Colors.transparent,
+                        backGroundColor: kCGreySemiDark,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              SizedBox(
-                child: [
-                  GlobalInformationDetailsWidget(),
-                  GlobalServicesWidget(),
-                  GlobalInformationDetailsWidget(),
-                ][_.tabIndex],
-              ),
-              24.0.ESH(),
-            ],
+                SizedBox(
+                  child: [
+                    GlobalInformationDetailsWidget(),
+                    GlobalServicesWidget(),
+                    GlobalInformationDetailsWidget(),
+                  ][_.tabIndex],
+                ),
+                24.0.ESH(),
+              ],
+            ),
           ),
         ),
       ),

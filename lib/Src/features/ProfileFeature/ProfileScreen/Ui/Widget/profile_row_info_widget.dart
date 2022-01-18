@@ -3,7 +3,7 @@
 
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
-import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Bloc/Controller/featch_doctor_profile_controller.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Bloc/Controller/featch_profile_controller.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/Widget/profile_row_info_item.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +15,7 @@ class ProfileRowInfoAndRate extends StatelessWidget {
   Widget build(BuildContext context) {
     FetchProfileDoctorController _fetchProfileDoctorController  =Get.find();
     return GetBuilder<FetchProfileDoctorController>(
-      builder: (_) => SizedBox(
+      builder:(_) => SizedBox(
         // color: Colors.red,
         height: 128.h,
         width: double.infinity,

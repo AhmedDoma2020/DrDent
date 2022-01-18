@@ -4,6 +4,7 @@ import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/features/AuthFeature/bloc/repository/login_repo.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/screens/forget_password_screen.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/screens/account_type_screen.dart';
+import 'package:dr_dent/Src/features/BaseFeature/ui/screens/base_screen.dart';
 import '../../../ProfileFeature/GlobalServicesFeature/DetectionLocationDetails/View/Screens/set_detection_location_details_screen.dart';
 import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
 import 'package:flutter/cupertino.dart';
@@ -41,8 +42,10 @@ class LoginController extends GetxController{
        box.write("phone_verified", response.data["data"]["phone_verified"]);
        box.write("image", response.data["data"]["image"]);
        box.write("api_token", response.data["data"]["api_token"]);
-       customSnackBar(title: "log in success".tr);
-       Get.to(()=>SetDetectionLocationDetailsScreen());
+       customSnackBar(title: response.data["message"]??"");
+
+       Get.offAll(()=>BaseScreen());
+       // Get.to(()=>SetDetectionLocationDetailsScreen());
      }else{
        customSnackBar(title: response.data["message"]??"");
      }
