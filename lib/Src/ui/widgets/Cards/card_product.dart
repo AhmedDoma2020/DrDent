@@ -1,3 +1,4 @@
+import 'package:dr_dent/Src/bloc/model/product.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/features/StoreFeature/ui/screens/product_screen.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
@@ -12,7 +13,8 @@ class CardProduct extends StatelessWidget {
 
   final double width;
   final double height;
-  const CardProduct({Key? key,this.width=192.14,this.height=169}) : super(key: key);
+  final Product product;
+  const CardProduct({Key? key,this.width=192.14,this.height=169,required this.product}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +44,7 @@ class CardProduct extends StatelessWidget {
 
                 ),
                 child: ImageNetwork(
-                    url: 'https://images.pexels.com/photos/3293148/pexels-photo-3293148.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+                    url: product.images!.isNotEmpty? product.images!.first:'',
                     width: width,
                     height: height/1.5,
                 ),
@@ -54,16 +56,13 @@ class CardProduct extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  Row(
-                    children: [
-                      CustomText(
-                        text: 'أدوات تنظيف الأسنان',
-                        fontSize: 14,
-                        overflow: true,
-                        fontW: FW.demi,
-                        color: kCMainBlack2,
-                      ),
-                    ],
+                  CustomText(
+                    text: product.title,
+                    fontSize: 14,
+                    overflow: true,
+                    fontW: FW.demi,
+                    color: kCMainBlack2,
+                    textAlign: TextAlign.start,
                   ),
                   3.0.ESH(),
                   Row(

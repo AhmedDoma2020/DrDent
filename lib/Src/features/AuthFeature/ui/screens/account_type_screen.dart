@@ -1,98 +1,118 @@
-import 'package:dr_dent/Src/bloc/controller/account_type_controller.dart';
-import 'package:dr_dent/Src/bloc/model/account_type_model.dart';
-import 'package:dr_dent/Src/core/utils/extensions.dart';
-import 'package:dr_dent/Src/ui/widgets/Cards/card_of_account_type.dart';
+import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
-import 'package:dr_dent/Src/ui/widgets/appbars/app_bars.dart';
-import 'package:dr_dent/Src/ui/widgets/buttons/button_default.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+
 import 'package:get/get.dart';
-import 'new_account_screen.dart';
+import '/src/core/utils/extensions.dart';
 
-class AccountTypeScreen extends StatelessWidget {
-  String titleAccountType = '';
-
-  @override
-  Widget build(BuildContext context) {
-    AccountTypeController _accountTypeController =
-        Get.put(AccountTypeController());
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBars.appBarDefault(
-          title: "account_type".tr,
-          onTap: () {
-            Get.back();
-          },
-        ),
-        body: Container(
-          padding: EdgeInsets.symmetric(horizontal: 24.w),
-          width: double.infinity,
-          child: GetBuilder<AccountTypeController>(
-            builder: (_) => Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                24.0.ESH(),
-                CustomText(
-                  text: "select_account_type".tr,
-                  fontSize: 18,
-                  fontW: FW.semibold,
-                  textAlign: TextAlign.start,
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 24.h),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      GridView.builder(
-                        shrinkWrap: true,
-                        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                          maxCrossAxisExtent: 150,
-                          childAspectRatio: 1.06,
-                          crossAxisSpacing: 16.w,
-                          mainAxisSpacing: 18.h,
-                          // mainAxisExtent: 103
-                        ),
-                        itemBuilder: (context, index) => InkWell(
-                          hoverColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () {
-                            _.selectIndex(index);
-                            titleAccountType = _.accountType[index].title;
-                          },
-                          child: CardOfAccountType(
-                            icon: _.isSelected == index
-                                ? _.accountType[index].activeIcon
-                                : _.accountType[index].disActiveIcon,
-                            title: _.accountType[index].title,
-                            isSelected: _.isSelected == index ? true : false,
-                          ),
-                        ),
-                        itemCount: accountTypeList.length,
-                      ),
-                      140.0.ESH(),
-                      _.isSelected == -1
-                          ? 0.0.ESH()
-                          : ButtonDefault(
-                              title:
-                                  '${"continue_register_as".tr}$titleAccountType',
-                              onTap: () {
-                                print("<><><><><>");
-                                Get.to(()=>NewAccountScreen());
-                              },
-                            ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
+class AppBars {
+  static AppBar appBarDefault({ bool isBack=true, TabBar? tabBar,String title='',Widget secondIconImage=const SizedBox(width: 0,) , VoidCallback? onTap}){
+    return AppBar(
+      title: CustomText(
+        text: title,
+        fontW: FW.semibold,
+        fontSize: 16,
+        color: kCBlackTitle,
+      ),
+      backgroundColor: Colors.white,
+      centerTitle: true,
+      elevation: 0.0,
+      leading:isBack==false?0.0.ESH() :IconButton(
+        onPressed: onTap??(){
+          Get.back();
+        },
+        icon: Icon(
+          Icons.arrow_back,
+          color: kCMainBlack,
+          size: 24.h,
         ),
       ),
+      actions: [
+        secondIconImage
+
+      ],
+      bottom: tabBar,
+    );
+  }
+  //
+  // static AppBar appBarPost({ bool isBack=true, TabBar? tabBar,String title='',Widget secondIconImage=const SizedBox(width: 0,) , VoidCallback? onTap}){
+  //   return AppBar(
+  //     title: CustomText(
+  //       text: title,
+  //       fontW: FW.semibold,
+  //       fontSize: 16,
+  //       color: kCBlackTitle,
+  //     ),
+  //     backgroundColor: Colors.white,
+  //     centerTitle: true,
+  //     elevation: 0.0,
+  //     leading:isBack==false?0.0.ESH() :IconButton(
+  //       onPressed: onTap??(){
+  //        Get.back();
+  //       },
+  //       icon: Icon(
+  //         Icons.arrow_back,
+  //         color: kCMainBlack,
+  //         size: 24.h,
+  //       ),
+  //     ),
+  //     actions: [
+  //       secondIconImage
+  //
+  //     ],
+  //     bottom: tabBar,
+  //   );
+  // }
+
+  static AppBar appBarSkipDefault({ bool isBack=true, TabBar? tabBar,String title='',Widget secondIconImage=const SizedBox(width: 0,) , VoidCallback? onTapBack, VoidCallback? onTapSkip}){
+    return AppBar(
+      title: CustomText(
+        text: title,
+        fontW: FW.semibold,
+        fontSize: 16,
+        color: kCBlackTitle,
+      ),
+      backgroundColor: Colors.white,
+      centerTitle: true,
+      elevation: 0.0,
+      leading:isBack==false?0.0.ESH() :IconButton(
+        onPressed: onTapBack??(){
+          Get.back();
+        },
+        icon: Icon(
+          Icons.arrow_back,
+          color: kCMainBlack,
+          size: 24.h,
+        ),
+      ),
+      actions: [
+        IconButton(
+          onPressed:onTapSkip,
+          icon: CustomText(
+            text: "skip_".tr,
+            fontW: FW.semibold,
+            fontSize: 12,
+          ),
+        )
+
+      ],
+      bottom: tabBar,
+    );
+  }
+
+
+
+  static AppBar appBarLogo({String logo='rect_logo.png'}){
+    return AppBar(
+      title: Image.asset(
+        'assets/icons/$logo',
+        height: 33.h,
+      ),
+      backgroundColor: Colors.white,
+      centerTitle: true,
+      elevation: 0.0,
     );
   }
 }

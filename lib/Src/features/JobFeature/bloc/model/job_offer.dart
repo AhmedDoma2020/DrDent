@@ -10,6 +10,8 @@ class JobOffer {
   String? ownerDescription;
   String? startPrice;
   String? endPrice;
+  String? description;
+  String? scientificLevel;
   List<String>? requirments;
   List<String>? specializations;
 
@@ -25,20 +27,24 @@ class JobOffer {
     this.specializations,
     this.endPrice,
     this.requirments,
-    this.startPrice
+    this.startPrice,
+    this.description,
+    this.scientificLevel,
 });
 
 
 
   JobOffer.fromJson(Map<String,dynamic> map){
     id = map['id']??0;
-    ownerName = map['owner_name']??' ';
+    ownerName = map['name']??' ';
     ownerImage = map['owner_image']??' ';
-    ownerPhone = map['owner_phone']??' ';
-    ownerAddress = map['owner_address']??' ';
-    startPrice= map['start_price']??'0';
-    endPrice = map['end_price']??'0';
-    requirments = map['requirments']!=null ? map['requirments'].cast<String>() : [];
+    ownerPhone = map['phone']??' ';
+    ownerAddress = map['address']??' ';
+    startPrice= map['start_salary']??'0';
+    endPrice = map['end_salary']??'0';
+    description = map['description']??'';
+    scientificLevel = map['scientificlevel']??'';
+    requirments = map['requirements']!=null ? map['requirements'].cast<String>() : [];
     specializations = map['specializations']!=null ? map['specializations'].cast<String>() : [];
   }
 }

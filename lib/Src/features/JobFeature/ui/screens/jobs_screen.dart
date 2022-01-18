@@ -20,8 +20,8 @@ class JobsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(JobsController());
-    Get.put(JobRequestController());
     Get.put(JobOffersController());
+    Get.put(JobRequestController());
     return GetBuilder<JobsController>(
         builder: (_) {
           return Column(

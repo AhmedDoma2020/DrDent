@@ -42,7 +42,7 @@ class StoreController extends GetxController{
           }
         }
         if(response.data['data']['recently_products']!=null){
-          for (var item in response.data['data']) {
+          for (var item in response.data['data']['recently_products']) {
             _recentlyProducts.add(Product.fromJson(item));
           }
         }

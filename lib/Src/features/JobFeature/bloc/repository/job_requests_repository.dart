@@ -13,8 +13,8 @@ class JobRequestsRepository with ApiKey{
   Future<Response> fetchJobRequests()async{
     Response? response;
     try{
-      response = await _networkService.get(
-          url:  'URLFetchProductLike',
+      response = await _networkService.post(
+          url:  uRLFetchJobRequests,
           auth: true
       );
 

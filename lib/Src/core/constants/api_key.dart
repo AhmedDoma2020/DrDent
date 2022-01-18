@@ -9,12 +9,13 @@ mixin ApiKey{
    final String uRLAddDayTime = apiBaseUrl + "add_work_space_time";
    final String uRLDeleteDayTime = apiBaseUrl + "delete_work_space_time";
    final String uRLEditDayTime = apiBaseUrl + "delete_work_space_time";
-   final String uRLFetchJobRequests = apiBaseUrl + "delete_work_space_time";
+   final String uRLFetchJobRequests = apiBaseUrl + "fetch_job_requests";
    final String uRLFetchPosts = apiBaseUrl + "fetch_social";
    final String uRLStore = apiBaseUrl + "fetch_social";
    final String uRLLoginWithEmail = apiBaseUrl + "login_with_gmail";
-   final String uRLFetchStore = apiBaseUrl + "uRLFetchStore";
+   final String uRLFetchStore = apiBaseUrl + "fetch_store";
    final String uRLFetchPostComments = apiBaseUrl + "fetch_post_comments";
+   final String uRLFetchJobOffers = apiBaseUrl + "fetch_job_offers";
 
 
    // String URLFetchMajorCategorySellers(int page)=>apiBaseUrl + "major_shops"+'?page=$page'; // soon

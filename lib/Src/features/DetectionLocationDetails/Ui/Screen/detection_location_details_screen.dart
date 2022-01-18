@@ -22,7 +22,7 @@ class DetectionLocationDetailsScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBars.appBarSkipDefault(
           title: "Detection_location_details".tr,
-          onTap: () {
+          onTapBack: () {
             Get.back();
           },
         ),

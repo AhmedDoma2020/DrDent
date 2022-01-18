@@ -1,7 +1,8 @@
 
 
 
-class JobRequest {
+class
+JobRequest {
   int? id;
   String? ownerName;
   String? ownerImage;
@@ -33,10 +34,10 @@ class JobRequest {
 
   JobRequest.fromJson(Map<String,dynamic> map){
     id = map['id']??0;
-    ownerName = map['owner_name']??' ';
+    ownerName = map['name']??' ';
     ownerImage = map['owner_image']??' ';
-    ownerPhone = map['owner_phone']??' ';
-    ownerAddress = map['owner_address']??' ';
+    ownerPhone = map['phone']??' ';
+    ownerAddress = map['address']??' ';
     specialization = map['specialization']??' ';
     cv = map['cv']??' ';
     gender = map['gender']??' ';

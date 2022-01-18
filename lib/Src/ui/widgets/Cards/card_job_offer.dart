@@ -1,4 +1,5 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
+import 'package:dr_dent/Src/features/JobFeature/bloc/model/job_offer.dart';
 import 'package:dr_dent/Src/features/JobFeature/ui/screens/job_screen.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,8 @@ import '/src/core/utils/extensions.dart';
 import 'card_tag.dart';
 
 class CardJobOffer extends StatelessWidget {
-  const CardJobOffer({Key? key}) : super(key: key);
+  final JobOffer offer;
+  const CardJobOffer({Key? key,required this.offer}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -47,28 +49,28 @@ class CardJobOffer extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomText(
-                          text: 'نبحث عن أخصائي أسنان وتركيبات ثابتة',
+                          text: offer.description,
                           color: kCMainBlack2,
                           fontSize: 14,
                           fontW: FW.medium,
                         ),
                         5.0.ESH(),
                         CustomText(
-                          text: 'مركز وايتي دينتال لتجميل الأسنان',
+                          text: offer.ownerName,
                           color: kCActiveDot,
                           fontSize: 10,
                           fontW: FW.light,
                         ),
                         5.0.ESH(),
                         CustomText(
-                          text: 'القسم تاني , شارع المطافي , برج الدالي , الدور 11',
+                          text: offer.ownerAddress,
                           color: kCMainGrey,
                           fontSize: 10,
                           fontW: FW.semicond,
                         ),
                         5.0.ESH(),
                         CustomText(
-                          text: '+00 0000 0000',
+                          text: offer.ownerPhone,
                           color: kCMainGrey,
                           fontSize: 10,
                           fontW: FW.semicond,
@@ -88,7 +90,7 @@ class CardJobOffer extends StatelessWidget {
                     title: 'دوام كامل',
                   ),
                   CustomText(
-                    text: 'من 6000 - 8000 جنيه',
+                    text: 'من ${offer.startPrice} - ${offer.endPrice} جنيه',
                     fontW: FW.demi,
                     fontSize: 14,
                     color: kCMainBlack2,

@@ -14,7 +14,9 @@ class NetworkService with ApiKey{
   // String getMyToken(){
   //   return box.read('token')??box.read('alternativeـapi_token')??' ';
   // }
-  String apiTokenStatic ='\$2y\$10\$6h.z4vTtNELt6YNbPU/PyOcf.lidMigfjiv4jNDyk70V0WypzaHFO';
+
+
+  final String apiTokenStatic ='\$2y\$10\$qqwNO3rJ2VJ5tD7yGKRX0e64RiA1bTJINMczIyZjAh8wvarlslO2.';
   Future<Response> get({@required String? url, Map<String , String>? headers,bool auth = false}) async {
     Response? response;
     String apiToken =box.read('apiToken')??"";
