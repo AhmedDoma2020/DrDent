@@ -21,6 +21,8 @@ mixin ApiKey{
    final String uRLFetchPostComments = apiBaseUrl + "fetch_post_comments";
    final String uRLFetchJobOffers = apiBaseUrl + "fetch_job_offers";
 
+
+
    // String URLFetchMajorCategorySellers(int page)=>apiBaseUrl + "major_shops"+'?page=$page'; // soon
 
 
