@@ -1,9 +1,10 @@
-import 'dart:io';
 import 'dart:convert';
+import 'dart:io';
+
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
-import 'package:dr_dent/Src/features/AuthFeature/bloc/controller/enter_my_personal_data_controller.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
+import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/image_network.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,20 +14,25 @@ import 'package:image_picker/image_picker.dart';
 
 class UploadPhotoContainer extends StatefulWidget {
   final Function(String) onTap;
+   String getImage;
   final String title;
-  const UploadPhotoContainer({
-    required this.onTap ,
-    required this.title ,
+
+   UploadPhotoContainer({
+    required this.onTap,
+    required this.title,
+    this.getImage = "",
     Key? key,
   }) : super(key: key);
 
   @override
   State<UploadPhotoContainer> createState() => _UploadPhotoContainerState();
 }
+
 class _UploadPhotoContainerState extends State<UploadPhotoContainer> {
   File? image;
   String? img64;
-  Future getImage() async {
+
+  Future setImage() async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.gallery);
       if (image == null) return;
@@ -39,6 +45,7 @@ class _UploadPhotoContainerState extends State<UploadPhotoContainer> {
       print("field picked image $e");
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -61,20 +68,28 @@ class _UploadPhotoContainerState extends State<UploadPhotoContainer> {
               children: [
                 Center(
                   child: SizedBox(
-                      height: image != null ? double.infinity : 24.w,
-                      width: image != null ? double.infinity : 24.w,
-                      child: image != null
-                          ? Image.file(
-                        image!,
-                        fit: BoxFit.cover,
-                        height: double.infinity,
-                        width: double.infinity,
-                      )
-                          : Image.asset(
-                        "assets/icons/addImage.png",
-                        height: 24.w,
-                        width: 24.w,
-                      )),
+                    height: image != null || widget.getImage != "" ? double.infinity : 24.w,
+                    width: image != null ||  widget.getImage != "" ? double.infinity : 24.w,
+                    child: widget.getImage == null || widget.getImage == ""
+                        ? image != null
+                            ? Image.file(
+                                image!,
+                                fit: BoxFit.cover,
+                                height: double.infinity,
+                                width: double.infinity,
+                              )
+                            : Image.asset(
+                                "assets/icons/addImage.png",
+                                height: 24.w,
+                                width: 24.w,
+                              )
+                        : ImageNetwork(
+                            url: widget.getImage,
+                            height: double.infinity,
+                            width: double.infinity,
+                      boxFit: BoxFit.fill,
+                          ),
+                  ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 8.h, left: 8.w),
@@ -82,20 +97,21 @@ class _UploadPhotoContainerState extends State<UploadPhotoContainer> {
                     alignment: Alignment.topLeft,
                     child: InkWell(
                       onTap: () {
-                        if (image != null) {
+                        if (image != null ||  widget.getImage != "") {
                           setState(() {
                             image = null;
                             img64 = null;
+                            widget.getImage = "";
                             widget.onTap("");
                           });
                         } else {
-                          getImage();
+                          setImage();
                         }
                       },
                       child: CircleAvatar(
                         radius: 18.r,
                         backgroundColor: kCMain,
-                        child: Icon(image != null ? Icons.clear : Icons.add,
+                        child: Icon(image != null ||  widget.getImage != "" ? Icons.clear : Icons.add,
                             color: Colors.white, size: 10.w),
                       ),
                     ),

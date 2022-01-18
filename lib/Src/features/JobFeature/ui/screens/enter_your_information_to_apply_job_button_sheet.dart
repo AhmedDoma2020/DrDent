@@ -32,7 +32,6 @@ class EnterYourInformationButtonSheet extends StatelessWidget {
     Get.put(FetchUniversityController());
     Get.put(FetchUniversityDegreeController());
     Get.put(FetchYearsOfGraduationController());
-
     return Container(
       height: 700.h,
       width: double.infinity,

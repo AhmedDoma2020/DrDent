@@ -16,16 +16,30 @@ import 'package:get/get.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
 class EnterMyPersonalDataScreen extends StatelessWidget {
+  final String name;
+  final int gender;
+  final String degree;
+  final String specialization;
+  final String note;
+  final String getPhotoOfWorkLicenses;
+  EnterMyPersonalDataScreen({
+    this.name='',
+    this.gender=0,
+    this.degree='',
+    this.specialization='',
+    this.note='',
+    this.getPhotoOfWorkLicenses='',
+  });
+
   @override
   Widget build(BuildContext context) {
-    print("build 1");
-    Get.put(EnterMyPersonalDataController());
-    print("build 2");
+    EnterMyPersonalDataController _enterMyPersonalDataController = Get.put(EnterMyPersonalDataController());
     Get.put(FetchSpecializationController());
-    print("build 3");
     Get.put(FetchScientificController());
-    print("build end");
     var node = FocusScope.of(context);
+    _enterMyPersonalDataController.nameController!.text = name;
+    _enterMyPersonalDataController.degreeController!.text = degree;
+    _enterMyPersonalDataController.specializationController!.text = specialization;
     return SafeArea(
         child: Scaffold(
       appBar: AppBars.appBarSkipDefault(
@@ -131,6 +145,7 @@ class EnterMyPersonalDataScreen extends StatelessWidget {
                 ),
                 16.0.ESH(),
                 UploadPhotoContainer(
+                  getImage: getPhotoOfWorkLicenses,
                   title: "photo_of_Work_licenses",
                   onTap: (image64){
                     _.setImage = image64;

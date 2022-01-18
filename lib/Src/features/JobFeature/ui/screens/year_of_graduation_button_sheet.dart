@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '/src/core/utils/extensions.dart';
-
 class YearOfGraduationButtonSheet extends StatelessWidget {
   final Function(String) onTap;
   const YearOfGraduationButtonSheet({
@@ -19,6 +18,7 @@ class YearOfGraduationButtonSheet extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    // Get.put(FetchYearsOfGraduationController());
     return Align(
       alignment: Alignment.bottomCenter,
       child: Material(
@@ -41,7 +41,7 @@ class YearOfGraduationButtonSheet extends StatelessWidget {
             children: [
               24.0.ESH(),
               RowTopBottomSheet(
-                title: "universities_".tr,
+                title: "graduation_year".tr,
                 isClose: false,
               ),
               24.0.ESH(),
