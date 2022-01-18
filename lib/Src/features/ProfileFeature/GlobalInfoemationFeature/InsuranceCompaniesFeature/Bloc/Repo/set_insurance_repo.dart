@@ -12,7 +12,7 @@ class SetInsurancesRepository with ApiKey{
         url:uRLSetInsurance,
         auth: true,
         body: {
-          "insurance_id": insuranceId,
+          "insurance_ids": insuranceId,
         },
       );
     }on SocketException{

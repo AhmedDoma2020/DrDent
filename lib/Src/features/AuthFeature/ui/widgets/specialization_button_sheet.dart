@@ -21,7 +21,6 @@ class specializationButtonSheet extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    FetchSpecializationController _fetchSpecializationController =Get.put(FetchSpecializationController());
     return Align(
       alignment: Alignment.bottomCenter,
       child: Material(
@@ -74,12 +73,6 @@ class specializationButtonSheet extends StatelessWidget {
                   ButtonDefault(
                       title: 'save_'.tr,
                       onTap: () {
-                        for(var item in _.specializationList){
-                          if(item.active){
-                            _.specializationIdList.add(item.id);
-                            _.specializationTitleList.add(item.title);
-                          }
-                        }
                         if(_.specializationIdList.isEmpty){
                           _.specializationIdList.clear();
                           _.specializationTitleList.clear();

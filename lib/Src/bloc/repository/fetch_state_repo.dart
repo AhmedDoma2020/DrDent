@@ -9,7 +9,7 @@ import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
 
 class FetchStateAndCityRepository with ApiKey{
   // GetStorage box = GetStorage();
-  NetworkService _networkService = NetworkService();
+  final NetworkService _networkService = NetworkService();
   Future<Response> fetchStateAndCity()async{
     Response response;
     try{

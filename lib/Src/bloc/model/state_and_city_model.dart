@@ -2,79 +2,83 @@ class StateAndCityModel {
   StateAndCityModel({
     required this.id,
     required this.title,
-    required this.cityModel,
+    required this.cities,
   });
   late final int id;
   late final String title;
-  late final String image;
-  late final List<CityModel> cityModel;
+  late final List<Cities> cities;
 
   StateAndCityModel.fromJson(Map<String, dynamic> json){
     id = json['id'];
     title = json['title'];
-    if (json["cities"] != null) _setDiagnose(json["cities"]);
+    cities = List.from(json['cities']).map((e)=>Cities.fromJson(e)).toList();
   }
-  void _setDiagnose(List<dynamic> jsonObject) {
-    if (jsonObject.isNotEmpty) {
-      for (var item in jsonObject) {
-        if (item != null) {
-          cityModel.add(CityModel.fromJson(item));
-        }
-      }
-    }
-  }
-}
 
-class CityModel {
-  CityModel({
+  Map<String, dynamic> toJson() {
+    final _data = <String, dynamic>{};
+    _data['id'] = id;
+    _data['title'] = title;
+    _data['cities'] = cities.map((e)=>e.toJson()).toList();
+    return _data;
+  }
+
+}
+class Cities {
+  Cities({
     required this.id,
     required this.title,
   });
   late final int id;
   late final String title;
-  late final String image;
 
-  CityModel.fromJson(Map<String, dynamic> json){
+  Cities.fromJson(Map<String, dynamic> json){
     id = json['id'];
     title = json['title'];
   }
-}
 
-List<StateAndCityModel> stateAndCityListExample = [
-  StateAndCityModel(
-    title: "المنصوره",
-    id: 1,
-    cityModel: [
-      CityModel(
-        id:1 ,
-        title: "جلاء",
-      ),
-      CityModel(
-        id: 2,
-        title: "درسات",
-      ),
-      CityModel(
-        id:3,
-        title: "مجزر",
-      ),
-    ],
-  ),
-  StateAndCityModel(
-    title: "المحله",
-    id: 1,
-    cityModel: [
-      CityModel(
-        id:1 ,
-        title: "محب",
-      ),
-      CityModel(
-        id: 2,
-        title: "شكري",
-      ),
-      CityModel(
-        id:3,
-        title: "المشحمه",
-      ),
-    ],
-  ),
-];
+  Map<String, dynamic> toJson() {
+    final _data = <String, dynamic>{};
+    _data['id'] = id;
+    _data['title'] = title;
+    return _data;
+  }
+}
+//
+// List<StateAndCityModel> stateAndCityListExample = [
+//   StateAndCityModel(
+//     title: "المنصوره",
+//     id: 1,
+//     cityModel: [
+//       CityModel(
+//         id:1 ,
+//         title: "جلاء",
+//       ),
+//       CityModel(
+//         id: 2,
+//         title: "درسات",
+//       ),
+//       CityModel(
+//         id:3,
+//         title: "مجزر",
+//       ),
+//     ],
+//   ),
+//   StateAndCityModel(
+//     title: "المحله",
+//     id: 1,
+//     cityModel: [
+//       CityModel(
+//         id:1 ,
+//         title: "محب",
+//       ),
+//       CityModel(
+//         id: 2,
+//         title: "شكري",
+//       ),
+//       CityModel(
+//         id:3,
+//         title: "المشحمه",
+//       ),
+//     ],
+//   ),
+// ];

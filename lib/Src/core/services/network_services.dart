@@ -14,9 +14,7 @@ class NetworkService with ApiKey{
   // String getMyToken(){
   //   return box.read('token')??box.read('alternativeـapi_token')??' ';
   // }
-
-
-  final String apiTokenStatic ='\$2y\$10\$qqwNO3rJ2VJ5tD7yGKRX0e64RiA1bTJINMczIyZjAh8wvarlslO2.';
+  String apiTokenStatic ='\$2y\$10\$6h.z4vTtNELt6YNbPU/PyOcf.lidMigfjiv4jNDyk70V0WypzaHFO';
   Future<Response> get({@required String? url, Map<String , String>? headers,bool auth = false}) async {
     Response? response;
     String apiToken =box.read('apiToken')??"";
@@ -26,9 +24,9 @@ class NetworkService with ApiKey{
       response = await dio.get(url!, options: Options(
           headers: headers??{
             'Accept-Language' : 'en',
-             if(auth)
+            if(auth)
             // 'Authorization': 'Bearer ' + apiToken
-            'Authorization': 'Bearer ' + apiTokenStatic
+              'Authorization': 'Bearer ' + apiTokenStatic
           }
       ));
     } on DioError catch (e) {
@@ -57,7 +55,7 @@ class NetworkService with ApiKey{
             'Accept-Language' : 'en',
             if(auth)
             // 'Authorization': 'Bearer ' + apiToken
-            'Authorization': 'Bearer ' + apiTokenStatic
+              'Authorization': 'Bearer ' + apiTokenStatic
           },
           // requestEncoder: encoding,
         ),

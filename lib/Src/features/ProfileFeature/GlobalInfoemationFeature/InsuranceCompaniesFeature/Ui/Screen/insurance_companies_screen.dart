@@ -1,9 +1,10 @@
-import 'package:dr_dent/Src/bloc/model/insurance_model.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
+import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/InsuranceCompaniesFeature/Bloc/Controller/fetch_my_insurances_controller.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/InsuranceCompaniesFeature/Ui/Widget/row_my_insurance_form.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/InsuranceCompaniesFeature/Ui/Widget/sheet_available_insurances.dart';
+import 'package:dr_dent/Src/ui/widgets/Dialog/loading_dialog.dart';
 import 'package:dr_dent/Src/ui/widgets/EmptyWidget/empty_widget.dart';
 import 'package:dr_dent/Src/ui/widgets/appbars/app_bars.dart';
 import 'package:flutter/material.dart';
@@ -23,8 +24,12 @@ class InsuranceCompaniesScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add,color: Colors.white,size: 24.w,),
-          onPressed: (){
+          child: Icon(
+            Icons.add,
+            color: Colors.white,
+            size: 24.w,
+          ),
+          onPressed: () {
             Get.bottomSheet(AvailableInsuranceSheet());
           },
           backgroundColor: kCMain,
@@ -39,28 +44,30 @@ class InsuranceCompaniesScreen extends StatelessWidget {
             height: double.infinity,
             width: double.infinity,
             child: GetBuilder<FetchMyInsurancesController>(
-              builder: (_) => insuranceListExamples.isEmpty
-                  ? EmptyWidget(
-                      image: "assets/image/emptyInsuranceCompany.png",
-                      onTapButton: () {},
-                      availableButton: false,
-                      title: "empty_insurance_company_title".tr,
-                      imageH: 160,
-                      imageW: 140,
-                    )
-                  : ListView.separated(
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) => RowMyInsuranceForm(
-                        insurance: insuranceListExamples[index],
-                        onDeleteTap: () {
-                          _.deleteInsurances(
-                              insuranceId: insuranceListExamples[index].id,
-                              index: index);
-                        },
-                      ),
-                      separatorBuilder: (context, index) => 16.0.ESH(),
-                      itemCount: insuranceListExamples.length,
-                    ),
+              builder: (_) => _.status == RequestStatus.loading
+                  ? Center(child: Loader())
+                  : _.myInsuranceList.isEmpty
+                      ? EmptyWidget(
+                          image: "assets/image/emptyInsuranceCompany.png",
+                          onTapButton: () {},
+                          availableButton: false,
+                          title: "empty_insurance_company_title".tr,
+                          imageH: 160,
+                          imageW: 140,
+                        )
+                      : ListView.separated(
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) => RowMyInsuranceForm(
+                            insurance: _.myInsuranceList[index],
+                            onDeleteTap: () {
+                              _.deleteInsurances(
+                                  insuranceId: _.myInsuranceList[index].id,
+                                  index: index);
+                            },
+                          ),
+                          separatorBuilder: (context, index) => 16.0.ESH(),
+                          itemCount: _.myInsuranceList.length,
+                        ),
             )),
       ),
     );

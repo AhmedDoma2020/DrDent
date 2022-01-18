@@ -61,11 +61,11 @@ class CityButtonSheet2 extends StatelessWidget {
                     itemBuilder: (context, index) => InkWell(
                       onTap: () {
                         _.changeCityIndex(index);
-                        onTap(stateList[setStateIndexSelected].cityModel[index].id,stateList[setStateIndexSelected].cityModel[index].title);
+                        onTap(stateList[setStateIndexSelected].cities[index].id,stateList[setStateIndexSelected].cities[index].title);
                         Get.back();
                       },
                       child: SingleChoseRowForm(
-                        title: stateList[setStateIndexSelected].cityModel[index].title,
+                        title: stateList[setStateIndexSelected].cities[index].title,
                         isSelected: cityIndex == index,
                       ),
                     ),
@@ -73,7 +73,7 @@ class CityButtonSheet2 extends StatelessWidget {
                       height: 2.h,
                       color: kCTFEnableBorder,
                     ),
-                    itemCount: stateList[setStateIndexSelected].cityModel.length,
+                    itemCount: stateList[setStateIndexSelected].cities.length,
                   ),
                 ),
               ),

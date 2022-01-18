@@ -106,7 +106,7 @@ class AppBars {
 
 
 
-  static AppBar appBarLogo({String logo='logo.png'}){
+  static AppBar appBarLogo({String logo='rect_logo.png'}){
     return AppBar(
       title: Image.asset(
         'assets/icons/$logo',

@@ -1,4 +1,5 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
+import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
 import 'package:dr_dent/Src/features/AuthFeature/bloc/controller/register_controller.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/widgets/avatar_form.dart';
@@ -10,8 +11,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class NewAccountScreen extends StatelessWidget {
+  final int userTypeSelectedId;
+
+  const NewAccountScreen({Key? key, required this.userTypeSelectedId})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    print("userTypeSelectedId $userTypeSelectedId");
     RegisterController _registerController = Get.put(RegisterController());
     var node = FocusScope.of(context);
     return SafeArea(
@@ -37,8 +44,8 @@ class NewAccountScreen extends StatelessWidget {
                         children: [
                           32.0.ESH(),
                           AvatarForm(
-                            onTap: (img64){
-
+                            onTap: (img64) {
+                              _.setImage = img64;
                             },
                           ),
                           32.0.ESH(),
@@ -68,6 +75,38 @@ class NewAccountScreen extends StatelessWidget {
                             },
                           ),
                           16.0.ESH(),
+                          userTypeSelectedId == 7 || userTypeSelectedId == 3
+                              ? 0.0.ESW()
+                              : Column(
+                                  children: [
+                                    TextFieldDefault(
+                                      hint: 'Responsible_name'.tr,
+                                      errorText: "error_responsible_name_field".tr,
+                                      controller: _.administratorsNameController,
+                                      keyboardType: TextInputType.name,
+                                      fieldType: FieldType.WithBorder,
+                                      prefixIconUrl: "TFName",
+                                      horizentalPadding: 16,
+                                      onComplete: () {
+                                        node.nextFocus();
+                                      },
+                                    ),
+                                    16.0.ESH(),
+                                    TextFieldDefault(
+                                      hint: 'Administrators_phone_number'.tr,
+                                      errorText: "error_Administrators_phone_number_field".tr,
+                                      controller: _.administratorsPhoneController,
+                                      keyboardType: TextInputType.phone,
+                                      fieldType: FieldType.WithBorder,
+                                      prefixIconUrl: "TFPhone",
+                                      horizentalPadding: 16,
+                                      onComplete: () {
+                                        node.nextFocus();
+                                      },
+                                    ),
+                                    16.0.ESH(),
+                                  ],
+                                ),
                           TextFieldDefault(
                             hint: 'Email_'.tr,
                             errorText: "error_email_field".tr,
@@ -91,6 +130,7 @@ class NewAccountScreen extends StatelessWidget {
                             prefixIconUrl: "TFPassword",
                             horizentalPadding: 16,
                             onComplete: () {
+                              _.setUserTypeId = userTypeSelectedId;
                               node.unfocus();
                               _.submit();
                             },
@@ -103,9 +143,19 @@ class NewAccountScreen extends StatelessWidget {
                                 textAlign: TextAlign.center,
                                 text: TextSpan(
                                   text: 'By_clicking_continue'.tr,
-                                  style: TextStyle(color: kCBlackTitle,fontSize: 14.w,fontWeight:FontWeight.normal,),
+                                  style: TextStyle(
+                                    color: kCBlackTitle,
+                                    fontSize: 14.w,
+                                    fontWeight: FontWeight.normal,
+                                  ),
                                   children: <TextSpan>[
-                                    TextSpan(text: 'Privacy_&_Usage_Policy'.tr, style:const TextStyle(fontWeight: FontWeight.bold,color: kCMain,fontSize: 14, )),
+                                    TextSpan(
+                                        text: 'Privacy_&_Usage_Policy'.tr,
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: kCMain,
+                                          fontSize: 14,
+                                        )),
                                   ],
                                 ),
                               ),
@@ -115,6 +165,7 @@ class NewAccountScreen extends StatelessWidget {
                           ButtonDefault(
                             title: 'contain_'.tr,
                             onTap: () {
+                              _.setUserTypeId = userTypeSelectedId;
                               _.submit();
                             },
                           ),

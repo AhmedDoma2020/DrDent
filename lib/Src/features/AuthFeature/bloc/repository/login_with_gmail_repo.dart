@@ -7,13 +7,12 @@ import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
 
 class LogInWithEmailRepository with ApiKey {
   // GetStorage box = GetStorage();
-  NetworkService _networkService = NetworkService();
+  final NetworkService _networkService = NetworkService();
 
   Future<Response> logInWithEmail({
-    required String gmail,
+    required String email,
     required String googleId,
-    int? deviceId,
-    String? deviceType,
+
   }) async {
     Response response;
     try {
@@ -21,11 +20,11 @@ class LogInWithEmailRepository with ApiKey {
           url: uRLLoginWithEmail,
           auth: true,
           body: {
-            'gmail':gmail,
+            'email':email,
             'google_id':googleId,
             'device_token': "",
-            'device_id':deviceId,
-            'device_type':deviceType,
+            'device_id':"",
+            'device_type':"",
           }
       );
     } on SocketException {

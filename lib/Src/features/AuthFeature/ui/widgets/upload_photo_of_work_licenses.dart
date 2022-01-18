@@ -39,7 +39,6 @@ class _UploadPhotoContainerState extends State<UploadPhotoContainer> {
       print("field picked image $e");
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -86,6 +85,7 @@ class _UploadPhotoContainerState extends State<UploadPhotoContainer> {
                         if (image != null) {
                           setState(() {
                             image = null;
+                            img64 = null;
                             widget.onTap("");
                           });
                         } else {

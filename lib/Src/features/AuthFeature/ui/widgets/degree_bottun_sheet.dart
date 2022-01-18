@@ -15,7 +15,6 @@ class DegreeButtonSheet extends StatelessWidget {
   DegreeButtonSheet({required this.onTap});
   @override
   Widget build(BuildContext context) {
-    Get.put(FetchScientificController());
     return Align(
       alignment: Alignment.bottomCenter,
       child: Material(
@@ -46,7 +45,7 @@ class DegreeButtonSheet extends StatelessWidget {
                           RowTopBottomSheet(title: "Degree_".tr),
                           24.0.ESH(),
                           Container(
-                            constraints: BoxConstraints(maxHeight: 340.h),
+                            constraints: BoxConstraints(maxHeight: 360.h),
                             child: ListView.separated(
                               shrinkWrap: true,
                               itemBuilder: (context, index) => InkWell(
@@ -57,7 +56,7 @@ class DegreeButtonSheet extends StatelessWidget {
                                 },
                                 child: RowDegreeForm(
                                   scientificModel: _.scientificList[index],
-                                  isSelected: _.scientificList[index].selected == true,
+                                  isSelected:_.scientificIndex==index,
                                 ),
                               ),
                               separatorBuilder: (context, index) =>0.0.ESH(),
