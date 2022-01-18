@@ -7,6 +7,7 @@ import 'package:dr_dent/Src/features/AuthFeature/ui/widgets/degree_bottun_sheet.
 import 'package:dr_dent/Src/features/AuthFeature/ui/widgets/row_sex_type_widget.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/widgets/specialization_button_sheet.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/widgets/upload_photo_of_work_licenses.dart';
+import 'package:dr_dent/Src/features/BaseFeature/ui/screens/base_screen.dart';
 import 'package:dr_dent/Src/ui/widgets/TextFields/text_field_default.dart';
 import 'package:dr_dent/Src/ui/widgets/appbars/app_bars.dart';
 import 'package:dr_dent/Src/ui/widgets/buttons/button_default.dart';
@@ -48,7 +49,7 @@ class EnterMyPersonalDataScreen extends StatelessWidget {
             Get.back();
           },
           onTapSkip: (){
-            // Get.to(()=>EnterMyPersonalDataScreen());
+            Get.offAll(()=>BaseScreen());
           }
       ),
       body: GetBuilder<EnterMyPersonalDataController>(

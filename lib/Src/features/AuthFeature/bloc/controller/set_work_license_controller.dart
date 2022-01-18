@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:dr_dent/Src/features/AuthFeature/ui/screens/start_now_screen.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/screens/wating_screen.dart';
 import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
 import 'package:flutter/services.dart';
@@ -22,7 +23,8 @@ class SetWorkLicenseController extends GetxController {
       Get.back();
       update();
       if (response.statusCode == 200 && response.data["status"] == true) {
-        Get.to(() => WattingScreen());
+        Get.to(() => StartNowScreen());
+        // Get.to(() => WattingScreen());
       } else {}
     } else {
       customSnackBar(title: "must_set_photo_of_Work_licenses".tr);

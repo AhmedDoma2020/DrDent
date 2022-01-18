@@ -1,6 +1,7 @@
 import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/AuthFeature/bloc/repository/enter_and_edit_my_personal_data_repo.dart';
+import 'package:dr_dent/Src/features/BaseFeature/ui/screens/base_screen.dart';
 import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -58,6 +59,7 @@ class EnterMyPersonalDataController extends GetxController {
          if (response.statusCode == 200 && response.data["status"] == true) {
            print("request operation success");
            customSnackBar(title: response.data["message"]);
+           Get.offAll(()=>BaseScreen());
            print("convert operation success");
            status = RequestStatus.done;
            update();

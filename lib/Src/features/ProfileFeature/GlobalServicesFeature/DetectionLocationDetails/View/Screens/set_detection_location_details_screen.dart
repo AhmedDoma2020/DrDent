@@ -45,8 +45,9 @@ class SetDetectionLocationDetailsScreen extends StatelessWidget {
         appBar: AppBars.appBarSkipDefault(
             title: "Detection_location_details".tr,
             onTapBack: () {
-              Get.back();
+              // Get.back();
             },
+            isBack: false,
             onTapSkip: () {
               Get.to(() => EnterMyPersonalDataScreen());
             }),
