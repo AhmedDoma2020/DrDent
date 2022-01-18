@@ -17,7 +17,7 @@ class AccountTypeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AccountTypeController _accountTypeController =
-        Get.put(AccountTypeController());
+    Get.put(AccountTypeController());
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -88,15 +88,15 @@ class AccountTypeScreen extends StatelessWidget {
                         _.isCompanySelected == -1
                             ? 0.0.ESH()
                             : ButtonDefault(
-                                title: '${"continue_register_as".tr}$titleAccountType',
-                                onTap: () {
-                                  if(_.accountType[indexOfCardSelected!].id == 1){
-                                    Get.to(()=> MedicalCompanyTypeScreen());
-                                  }else{
-                                    Get.to(()=>NewAccountScreen(userTypeSelectedId: _.accountType[indexOfCardSelected!].id,),);
-                                  }
-                                },
-                              ),
+                          title: '${"continue_register_as".tr}$titleAccountType',
+                          onTap: () {
+                            if(_.accountType[indexOfCardSelected!].id == 1){
+                              Get.to(()=> MedicalCompanyTypeScreen());
+                            }else{
+                              Get.to(()=>NewAccountScreen(userTypeSelectedId: _.accountType[indexOfCardSelected!].id,),);
+                            }
+                          },
+                        ),
                       ],
                     ),
                   ),

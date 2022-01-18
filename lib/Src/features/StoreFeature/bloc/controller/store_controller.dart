@@ -4,6 +4,7 @@ import 'package:dr_dent/Src/bloc/model/store.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/JobFeature/bloc/model/job_request.dart';
 import 'package:dr_dent/Src/features/JobFeature/bloc/repository/job_requests_repository.dart';
+import 'package:dr_dent/Src/features/StoreFeature/bloc/repository/store_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -23,11 +24,11 @@ class StoreController extends GetxController{
   List<Adds> get adds => _adds;
 
   // ========== START FETCH DATA  ====================
-  final JobRequestsRepository _jobRequestsRepository = JobRequestsRepository();
+  final StoreRepository _storeRepository = StoreRepository();
   Future<void> fetchStore()async{
     status = RequestStatus.loading;
     update();
-    var response = await _jobRequestsRepository.fetchJobRequests();
+    var response = await _storeRepository.fetchStore();
     if (response.statusCode == 200 && response.data["status"] == true) {
       debugPrint("request operation success");
       if(response.data['data']!=null){
@@ -41,7 +42,7 @@ class StoreController extends GetxController{
           }
         }
         if(response.data['data']['recently_products']!=null){
-          for (var item in response.data['data']) {
+          for (var item in response.data['data']['recently_products']) {
             _recentlyProducts.add(Product.fromJson(item));
           }
         }

@@ -8,7 +8,7 @@ class Store{
   String? lat;
   String? lon;
   String? history;
-  String? lisences;
+  List<String>? lisences;
 
 
   Store({this.id, this.name, this.image, this.phone, this.address, this.lat,
@@ -22,7 +22,7 @@ class Store{
     address = map['address']??' ';
     lat = map['lat']??' ';
     lon = map['lon']??' ';
-    history = map['history']??' ';
+    history = map['about']??' ';
     lisences = map['lisences']!=null ? map['lisences'].cast<String>() :[];
   }
 

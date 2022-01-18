@@ -24,24 +24,23 @@ class StoreScreen extends StatelessWidget {
         children: [
           16.0.ESH(),
           CarouselList(
-            resAddsList: [
-              AddModel(
-                  id: 1,
-                  image: 'https://images.pexels.com/photos/3244513/pexels-photo-3244513.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
-              ),
-            ],
+            resAddsList: _.adds
           ),
           32.0.ESH(),
           SliderCardProduct(
             viewAllTitle: 'أحدث المنتجات',
+            products: _.recentlyProducts,
           ),
           32.0.ESH(),
           SliderCardCompany(
             viewAllTitle: 'الشركات الطبية',
+            stores: _.stores,
+
           ),
           32.0.ESH(),
           SliderCardProduct(
             viewAllTitle: 'كل المنتجات',
+            products: _.products,
           ),
         ],
       ),

@@ -25,20 +25,20 @@ class SetDetectionLocationDetailsScreen extends StatelessWidget {
   final int? cityId;
   SetDetectionLocationDetailsScreen(
       {this.name,
-      this.phone,
-      this.phone2,
-      this.price,
-      this.address,
-      this.lat,
-      this.lon,
-      this.stateId,
-      this.cityId,
+        this.phone,
+        this.phone2,
+        this.price,
+        this.address,
+        this.lat,
+        this.lon,
+        this.stateId,
+        this.cityId,
       });
 
   @override
   Widget build(BuildContext context) {
     DetectionLocationDetailsController _detectionLocationDetailsController =
-        Get.put(DetectionLocationDetailsController());
+    Get.put(DetectionLocationDetailsController());
     var node = FocusScope.of(context);
     return SafeArea(
       child: Scaffold(
@@ -120,7 +120,7 @@ class SetDetectionLocationDetailsScreen extends StatelessWidget {
                     InkWell(
                       onTap: () {
                         Get.to(
-                          () => MapScreen(
+                              () => MapScreen(
                             onSave: (lat, lon, address) {
                               Get.bottomSheet(SetLocationButtonSheet(
                                 lon: lon,

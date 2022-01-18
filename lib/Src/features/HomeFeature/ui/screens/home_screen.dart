@@ -44,20 +44,18 @@ class HomeScreen extends StatelessWidget {
           ),
           child: EmptyVisitsSection(),
         ),
-        Expanded(
-          child: ListView.separated(
-            separatorBuilder: (context, index) => 16.0.ESH(),
-            itemBuilder: (context, index) => HomeItem(
-              homeModel: homeModelExamples[index],
-              onTap: (){
-                print(homeModelExamples[index].id);
-                baseController.tabIndex=homeModelExamples[index].id;
-              },
-            ),
-            itemCount  : homeModelExamples.length,
-            shrinkWrap : true,
-            physics: NeverScrollableScrollPhysics(),
+        ListView.separated(
+          separatorBuilder: (context, index) => 16.0.ESH(),
+          itemBuilder: (context, index) => HomeItem(
+            homeModel: homeModelExamples[index],
+            onTap: (){
+              print(homeModelExamples[index].id);
+              baseController.tabIndex=homeModelExamples[index].id;
+            },
           ),
+          itemCount  : homeModelExamples.length,
+          shrinkWrap : true,
+          physics: NeverScrollableScrollPhysics(),
         ),
       ],
     );

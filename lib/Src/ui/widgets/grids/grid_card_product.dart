@@ -1,3 +1,4 @@
+import 'package:dr_dent/Src/bloc/model/product.dart';
 import 'package:dr_dent/Src/ui/widgets/Cards/card_product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,7 +11,9 @@ class GridCardProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.builder(
       itemBuilder: (context, index) => LayoutBuilder(
-       builder: (context, constraints) =>CardProduct(width: constraints.maxWidth,height: constraints.maxHeight,),
+       builder: (context, constraints) =>CardProduct(width: constraints.maxWidth,height: constraints.maxHeight, product: Product(
+
+       ),),
       ),
       shrinkWrap: true,
       gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(

@@ -9,6 +9,9 @@ class JobRequestController extends GetxController{
   List<JobRequest> _jobRequests = [];
   List<JobRequest> get jobRequests => _jobRequests;
 
+  List<JobRequest> _myJobRequests = [];
+  List<JobRequest> get myJobRequests => _myJobRequests;
+
   // ========== START FETCH DATA  ====================
   final JobRequestsRepository _jobRequestsRepository = JobRequestsRepository();
   Future<void> fetchJobRequests()async{
@@ -17,10 +20,15 @@ class JobRequestController extends GetxController{
     var response = await _jobRequestsRepository.fetchJobRequests();
     if (response.statusCode == 200 && response.data["status"] == true) {
       debugPrint("request operation success");
+      _jobRequests.clear();
       if(response.data['data']!=null){
-        _jobRequests.clear();
         for (var item in response.data['data']) {
           _jobRequests.add(JobRequest.fromJson(item));
+        }
+      }
+      if(response.data['my_job_requests']!=null){
+        for (var item in response.data['my_job_requests']) {
+          _myJobRequests.add(JobRequest.fromJson(item));
         }
       }
       debugPrint("convert operation success");

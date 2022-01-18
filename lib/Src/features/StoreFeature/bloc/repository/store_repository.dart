@@ -7,14 +7,14 @@ import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
 import 'package:get_storage/get_storage.dart';
 
 
-class JobOffersRepository with ApiKey{
+class StoreRepository with ApiKey{
   // GetStorage box = GetStorage();
   final NetworkService _networkService = NetworkService();
-  Future<Response> fetchJobOffers()async{
+  Future<Response> fetchStore()async{
     Response? response;
     try{
-      response = await _networkService.post(
-          url:  uRLFetchJobOffers,
+      response = await _networkService.get(
+          url:  uRLFetchStore,
           auth: true
       );
 

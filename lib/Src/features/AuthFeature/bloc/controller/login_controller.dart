@@ -58,7 +58,7 @@ class LoginController extends GetxController{
 
   void moveToRegister(){
     // Get.back();
-    Get.to(()=>AccountTypeScreen());
+    // Get.to(()=>AccountTypeScreen());
   }
 
   @override

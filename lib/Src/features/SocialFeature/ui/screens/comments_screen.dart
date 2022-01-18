@@ -1,7 +1,10 @@
+import 'package:dr_dent/Src/core/utils/request_status.dart';
+import 'package:dr_dent/Src/features/SocialFeature/bloc/controller/post_comments_controller.dart';
 import 'package:dr_dent/Src/features/SocialFeature/ui/widgets/comment_widget.dart';
 import 'package:dr_dent/Src/ui/widgets/appbars/app_bars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import '/src/core/utils/extensions.dart';
 
 
@@ -10,18 +13,24 @@ class CommentsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(PostCommentsController(id: 1));
     return Scaffold(
       appBar: AppBars.appBarDefault(title: 'التعليقات'),
-      body: ListView.separated(
-          itemBuilder: (context, index) => Padding(
-            padding:  EdgeInsets.only(
-              top: index==0? 16.h : 0
+      body: GetBuilder<PostCommentsController>(
+        builder: (_) =>
+            _.status !=RequestStatus.done?
+                0.0.ESH():
+            ListView.separated(
+            itemBuilder: (context, index) => Padding(
+              padding:  EdgeInsets.only(
+                top: index==0? 16.h : 0
+              ),
+              child: CommentWidget(comment: _.comments[index],),
             ),
-            child: CommentWidget(),
-          ),
-          separatorBuilder: (context, index) => 16.0.ESH(),
-          itemCount: 30,
-          shrinkWrap: true,
+            separatorBuilder: (context, index) => 16.0.ESH(),
+            itemCount: _.comments.length,
+            shrinkWrap: true,
+        ),
       ),
     );
   }

@@ -1,6 +1,7 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dr_dent/Src/bloc/model/add_model.dart';
+import 'package:dr_dent/Src/bloc/model/adds.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,7 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 class CarouselList extends StatelessWidget {
-  List<AddModel> resAddsList;
+  List<Adds> resAddsList;
 
   CarouselList({required this.resAddsList});
 

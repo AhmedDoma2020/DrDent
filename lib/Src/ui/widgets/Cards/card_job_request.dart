@@ -1,4 +1,5 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
+import 'package:dr_dent/Src/features/JobFeature/bloc/model/job_request.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:dr_dent/Src/ui/widgets/buttons/button_default.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +9,8 @@ import 'card_tag.dart';
 
 class CardJobRequest extends StatelessWidget {
   final double width;
-
-  const CardJobRequest({Key? key,this.width=343}) : super(key: key);
+  final JobRequest request;
+  const CardJobRequest({Key? key,this.width=343,required this.request}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +45,7 @@ class CardJobRequest extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       CustomText(
-                        text: 'د/ رشا السيد محمد',
+                        text: request.ownerName,
                         color: kCMainBlack2,
                         fontSize: 14,
                         fontW: FW.demi,

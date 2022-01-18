@@ -21,7 +21,7 @@ class BaseScreen extends StatelessWidget {
     Get.put(BaseController());
     return GetBuilder<BaseController>(
       builder: (_) =>  Scaffold(
-        appBar: AppBars.appBarDefault(title: ''),
+        appBar: AppBars.appBarLogo(),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

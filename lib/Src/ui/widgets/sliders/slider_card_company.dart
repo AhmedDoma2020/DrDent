@@ -1,3 +1,4 @@
+import 'package:dr_dent/Src/bloc/model/store.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/ui/widgets/Cards/card_company.dart';
 import 'package:dr_dent/Src/ui/widgets/Cards/card_job_offer.dart';
@@ -11,7 +12,8 @@ import '/src/core/utils/extensions.dart';
 class SliderCardCompany extends StatelessWidget {
   final String viewAllTitle;
   final VoidCallback? onViewAllTap;
-  const SliderCardCompany({Key? key,this.onViewAllTap,this.viewAllTitle=''}) : super(key: key);
+  final List<Store> stores;
+  const SliderCardCompany({Key? key,required this.stores,this.onViewAllTap,this.viewAllTitle=''}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return  Column(
@@ -25,7 +27,7 @@ class SliderCardCompany extends StatelessWidget {
                 padding:  EdgeInsets.only(
                   right: index ==0 ? 16.0.w : 0,
                 ),
-                child: CardCompany(),
+                child: CardCompany(store: stores[index],),
               ),
               separatorBuilder: (context, index) => 16.0.ESW(),
               itemCount: 30,

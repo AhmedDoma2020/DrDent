@@ -1,3 +1,4 @@
+import 'package:dr_dent/Src/bloc/model/store.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/image_network.dart';
@@ -9,7 +10,8 @@ import '/src/core/utils/extensions.dart';
 class CardCompany extends StatelessWidget {
   final double width;
   final double height;
-  const CardCompany({Key? key,this.width=151.5,this.height=169}) : super(key: key);
+  final Store store;
+  const CardCompany({Key? key,required this.store,this.width=151.5,this.height=169}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,7 @@ class CardCompany extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8.r),
               ),
               child: ImageNetwork(
-                  url: 'https://images.pexels.com/photos/1438761/pexels-photo-1438761.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+                  url: store.image,
                   width: width,
                   height: height/2,
               ),
@@ -45,16 +47,13 @@ class CardCompany extends StatelessWidget {
             ),
             child: Column(
               children: [
-                Row(
-                  children: [
-                    CustomText(
-                      text: 'أدوات تنظيف الأسنان',
-                      fontSize: 14,
-                      overflow: true,
-                      fontW: FW.demi,
-                      color: kCMainBlack2,
-                    ),
-                  ],
+                CustomText(
+                  text: 'أدوات تنظيف الأسنان',
+                  fontSize: 14,
+                  overflow: true,
+                  fontW: FW.demi,
+                  color: kCMainBlack2,
+                  textAlign: TextAlign.start,
                 ),
                 3.0.ESH(),
                 Row(
@@ -75,7 +74,7 @@ class CardCompany extends StatelessWidget {
                 Row(
                   children: [
                     CustomText(
-                      text: 'الشركة الطبية العالمية',
+                      text: store.name,
                       fontSize: 9,
                       overflow: true,
                       fontW: FW.thin,

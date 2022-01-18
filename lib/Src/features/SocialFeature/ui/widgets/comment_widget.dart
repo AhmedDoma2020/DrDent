@@ -1,3 +1,4 @@
+import 'package:dr_dent/Src/bloc/model/comment_model.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/image_network.dart';
@@ -6,8 +7,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '/src/core/utils/extensions.dart';
 
 class CommentWidget extends StatelessWidget {
+  final CommentModel comment;
   final bool subComment;
-  const CommentWidget({Key? key,this.subComment=false}) : super(key: key);
+  const CommentWidget({Key? key,this.subComment=false,required this.comment}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -106,9 +108,9 @@ class CommentWidget extends StatelessWidget {
                       top: 10.0.h
                     ),
                     child: ListView.separated(
-                        itemBuilder: (context, index) => CommentWidget(subComment: true,),
+                        itemBuilder: (context, index) => CommentWidget(subComment: true,comment: comment.comments![index],),
                         separatorBuilder: (context, index) => 10.0.ESH(),
-                        itemCount: 2,
+                        itemCount: comment.comments!.length,
                         shrinkWrap: true,
                     ),
                   )

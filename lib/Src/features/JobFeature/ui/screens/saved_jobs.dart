@@ -10,6 +10,7 @@ class SavedJobs extends StatelessWidget {
     return Scaffold(
       appBar: AppBars.appBarDefault(title: 'قائمة المحفوظات'),
       body: ListJobOffers(
+        offers: [],
         physics: BouncingScrollPhysics(),
       ),
     );
