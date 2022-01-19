@@ -1,6 +1,7 @@
 import 'package:dr_dent/Src/bloc/model/add_model.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/StoreFeature/bloc/controller/store_controller.dart';
+import 'package:dr_dent/Src/ui/widgets/Dialog/loading_dialog.dart';
 import 'package:dr_dent/Src/ui/widgets/appbars/app_bars.dart';
 import 'package:dr_dent/Src/ui/widgets/sliders/slider_card_company.dart';
 import 'package:dr_dent/Src/ui/widgets/sliders/slider_card_product.dart';
@@ -19,7 +20,7 @@ class StoreScreen extends StatelessWidget {
     return GetBuilder<StoreController>(
       builder: (_) =>
           _.status != RequestStatus.done?
-          0.0.ESH():
+          Center(child: Loader(),):
           ListView(
         children: [
           16.0.ESH(),

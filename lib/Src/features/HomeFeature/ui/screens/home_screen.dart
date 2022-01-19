@@ -1,4 +1,5 @@
 import 'package:dr_dent/Src/features/BaseFeature/bloc/contoller/base_controller.dart';
+import 'package:dr_dent/Src/features/HomeFeature/bloc/controller/home_visits_controller.dart';
 import 'package:dr_dent/Src/features/HomeFeature/bloc/model/home_model.dart';
 import 'package:dr_dent/Src/features/HomeFeature/ui/widgets/empty_visits_section.dart';
 import 'package:dr_dent/Src/features/HomeFeature/ui/widgets/home_item.dart';
@@ -17,6 +18,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BaseController  baseController = Get.put(BaseController());
+    Get.put(HomeVisitsController());
     return ListView(
       children: [
         Padding(

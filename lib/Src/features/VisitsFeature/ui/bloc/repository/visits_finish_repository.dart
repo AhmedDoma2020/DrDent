@@ -14,7 +14,7 @@ class FetchFinishVisitsRepository with ApiKey{
     Response? response;
     try{
       response = await _networkService.get(
-          url:  uRLNewVisits,
+          url:  uRLFinishVisits,
           auth: true
       );
 

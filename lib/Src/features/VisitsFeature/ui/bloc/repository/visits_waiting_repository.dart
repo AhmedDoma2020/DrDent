@@ -14,7 +14,7 @@ class FetchWaitingVisitsRepository with ApiKey{
     Response? response;
     try{
       response = await _networkService.get(
-          url:  uRLNewVisits,
+          url:  uRLWaitingVisits,
           auth: true
       );
     }on SocketException{
