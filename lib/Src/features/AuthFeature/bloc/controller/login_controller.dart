@@ -1,11 +1,8 @@
-
-
 import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/features/AuthFeature/bloc/repository/login_repo.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/screens/forget_password_screen.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/screens/account_type_screen.dart';
 import 'package:dr_dent/Src/features/BaseFeature/ui/screens/base_screen.dart';
-import '../../../ProfileFeature/GlobalServicesFeature/DetectionLocationDetails/View/Screens/set_detection_location_details_screen.dart';
 import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -13,7 +10,6 @@ import 'package:get_storage/get_storage.dart';
 
 
 class LoginController extends GetxController{
-
   TextEditingController? phoneController;
   TextEditingController? passwordController;
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
@@ -58,7 +54,7 @@ class LoginController extends GetxController{
 
   void moveToRegister(){
     // Get.back();
-    // Get.to(()=>AccountTypeScreen());
+    Get.to(()=>AccountTypeScreen());
   }
 
   @override
@@ -75,4 +71,5 @@ class LoginController extends GetxController{
     passwordController?.dispose();
     super.dispose();
   }
+
 }

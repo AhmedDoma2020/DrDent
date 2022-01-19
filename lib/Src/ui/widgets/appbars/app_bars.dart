@@ -1,4 +1,5 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/View/profile_screen.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -96,7 +97,6 @@ class AppBars {
             fontSize: 12,
           ),
         )
-
       ],
       bottom: tabBar,
     );
@@ -106,11 +106,21 @@ class AppBars {
 
 
 
-  static AppBar appBarLogo({String logo='rect_logo.png'}){
+  static AppBar appBarLogo({String logo='logo.png'}){
     return AppBar(
       title: Image.asset(
         'assets/icons/$logo',
         height: 33.h,
+      ),
+      leading: IconButton(
+        onPressed:(){
+          Get.to(()=> ProfileScreen());
+        },
+        icon: Icon(
+          Icons.menu,
+          color: kCMainBlack,
+          size: 24.h,
+        ),
       ),
       backgroundColor: Colors.white,
       centerTitle: true,
