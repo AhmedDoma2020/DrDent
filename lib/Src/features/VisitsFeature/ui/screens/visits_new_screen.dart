@@ -1,6 +1,7 @@
 import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/VisitsFeature/ui/bloc/controller/visits_new_controller.dart';
 import 'package:dr_dent/Src/ui/widgets/Cards/card_visit.dart';
+import 'package:dr_dent/Src/ui/widgets/Dialog/loading_dialog.dart';
 import 'package:dr_dent/Src/ui/widgets/empty_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,7 +14,7 @@ class VisitsNewScreen extends StatelessWidget {
     return GetBuilder<VisitsNewController>(
       builder: (_)=>
           _.status != RequestStatus.done?
-          0.0.ESH():
+          Center(child: Loader(),):
           _.visits.isEmpty?
           EmptyIconWidget(title: '! ليس لديك حجوزات الآن',image: 'novisits.png',):
           ListView.separated(

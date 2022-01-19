@@ -16,12 +16,7 @@ class VisitsNewController extends GetxController{
     status = RequestStatus.loading;
     update();
 
-    //TODO comment three lines
-    visits = visitsExamples;
-    status = RequestStatus.done;
-    update();
     // TODO unComment this lines
-    /*
     var response = await _fetchNewVisitsRepository.fetchNewVisits();
     if (response.statusCode == 200 && response.data["status"] == true) {
       print("request operation success");
@@ -38,7 +33,7 @@ class VisitsNewController extends GetxController{
       status = RequestStatus.error;
       update();
     }
-    */
+
 
   }
 

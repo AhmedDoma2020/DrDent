@@ -66,7 +66,7 @@ class CardJobRequest extends StatelessWidget {
                       ),
                       5.0.ESH(),
                       CustomText(
-                        text: '+00 0000 0000',
+                        text: request.ownerPhone,
                         color: kCMainGrey,
                         fontSize: 10,
                         fontW: FW.semicond,

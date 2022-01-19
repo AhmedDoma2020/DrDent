@@ -1,4 +1,5 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
+import 'package:dr_dent/Src/features/JobFeature/bloc/model/job_offer.dart';
 import 'package:dr_dent/Src/ui/widgets/Cards/card_tag.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:dr_dent/Src/ui/widgets/appbars/app_bars.dart';
@@ -8,7 +9,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '/src/core/utils/extensions.dart';
 
 class JobScreen extends StatelessWidget {
-  const JobScreen({Key? key}) : super(key: key);
+  final JobOffer offer;
+  const JobScreen({Key? key,required this.offer}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,21 +40,21 @@ class JobScreen extends StatelessWidget {
                     ),
                     23.0.ESH(),
                     CustomText(
-                      text: 'مركز وايتي دينتال لتجميل الأسنان',
+                      text: offer.ownerName,
                       fontSize: 14,
                       color: kCMainBlack2,
                       fontW: FW.demi,
                     ),
                     9.0.ESH(),
                     CustomText(
-                      text: 'المنصورة , قسم تاني , شارع المطافي, برج الدالي , الدور 11',
+                      text: offer.ownerAddress,
                       fontSize: 11,
                       color: kCMainBlack2,
                       fontW: FW.semicond,
                     ),
                     7.0.ESH(),
                     CustomText(
-                      text: '+00 0000 0000',
+                      text: offer.ownerPhone,
                       fontSize: 11,
                       color: kCMainBlack2,
                       fontW: FW.semicond,
@@ -66,7 +68,7 @@ class JobScreen extends StatelessWidget {
                         ),
                         24.0.ESW(),
                         CustomText(
-                          text: 'من 6000 - 8000 جنيه',
+                          text: 'من ${offer.startPrice} - ${offer.endPrice} جنيه',
                           fontW: FW.demi,
                           fontSize: 14,
                           color: kCMainBlack2,
@@ -105,7 +107,7 @@ class JobScreen extends StatelessWidget {
                               top: 16.h
                           ),
                           child: CustomText(
-                            text: 'هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق. ذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه الخصوص، حيث يحتاج العميل فى كثير من الأحيان أن يطلع على صورة حقيقية لتصميم الموقع.',
+                            text: offer.description,
                             color: kCMainBlack2,
                             fontW: FW.semicond,
                             fontSize: 12,
@@ -132,7 +134,7 @@ class JobScreen extends StatelessWidget {
                         Row(
                           children: [
                             CustomText(
-                              text: 'وصف الوظيفة',
+                              text: 'متطلبات الوظيفة',
                               color: kCMainBlack2,
                               fontW: FW.demi,
                               fontSize: 14,
@@ -155,16 +157,18 @@ class JobScreen extends StatelessWidget {
                                     radius: 4.w,
                                   ),
                                   10.0.ESW(),
-                                  CustomText(
-                                    text: 'هذا النص هو مثال لنص يمكن أن يستبدل في نفس ',
-                                    color: kCMainBlack2,
-                                    fontW: FW.semicond,
-                                    fontSize: 12,
+                                  Expanded(
+                                    child: CustomText(
+                                      text: offer.requirments![index],
+                                      color: kCMainBlack2,
+                                      fontW: FW.semicond,
+                                      fontSize: 12,
+                                    ),
                                   ),
                                 ],
                               ),
                               separatorBuilder: (context, index) => 10.0.ESH(),
-                              itemCount: 100,
+                              itemCount: offer.requirments!.length,
                               physics: NeverScrollableScrollPhysics(),
                             )
                         ),
