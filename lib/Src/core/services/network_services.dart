@@ -5,16 +5,10 @@ import 'package:dr_dent/Src/core/constants/api_key.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get_storage/get_storage.dart';
 
-
-
 class NetworkService with ApiKey{
   Dio dio = Dio();
   GetStorage box = GetStorage();
-
-  // String getMyToken(){
-  //   return box.read('token')??box.read('alternativeـapi_token')??' ';
-  // }
-  String apiTokenStatic ='\$2y\$10\$6h.z4vTtNELt6YNbPU/PyOcf.lidMigfjiv4jNDyk70V0WypzaHFO';
+  String apiTokenStatic ='\$2y\$10\$MAVyBbLcXlsRZ6Geb7c.8e/O9yYVhT0QuT//oMASxJGRDobz6e9em';
   Future<Response> get({@required String? url, Map<String , String>? headers,bool auth = false}) async {
     Response? response;
     String apiToken =box.read('apiToken')??"";
