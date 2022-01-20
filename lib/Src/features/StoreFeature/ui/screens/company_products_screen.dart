@@ -9,7 +9,7 @@ class CompanyProductsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBars.appBarDefault(title: 'اسم الشركة'),
-      body: ListCardProductRect()
+      // body: ListCardProductRect()
     );
   }
 }

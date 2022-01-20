@@ -9,6 +9,8 @@ import 'package:dr_dent/Src/ui/widgets/sliders/slider_oofer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '/src/core/utils/extensions.dart';
+import 'all_products_screen.dart';
+import 'all_stores_screen.dart';
 
 
 class StoreScreen extends StatelessWidget {
@@ -36,12 +38,17 @@ class StoreScreen extends StatelessWidget {
           SliderCardCompany(
             viewAllTitle: 'الشركات الطبية',
             stores: _.stores,
-
+            onViewAllTap: (){
+              Get.to(()=>AllStoresScreen());
+            },
           ),
           32.0.ESH(),
           SliderCardProduct(
             viewAllTitle: 'كل المنتجات',
             products: _.products,
+            onViewAllTap: (){
+              Get.to(()=>AllProductsScreen());
+            },
           ),
         ],
       ),

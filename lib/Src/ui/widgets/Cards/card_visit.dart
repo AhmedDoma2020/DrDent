@@ -1,3 +1,4 @@
+import 'package:dr_dent/Src/bloc/model/visit.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:dr_dent/Src/ui/widgets/buttons/button_default.dart';
@@ -10,7 +11,8 @@ import 'card_tag.dart';
 
 class CardVisit extends StatelessWidget {
   final double width;
-  const CardVisit({Key? key,this.width=327}) : super(key: key);
+  final  Visit? visit;
+  const CardVisit({Key? key,this.width=327, this.visit}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

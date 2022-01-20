@@ -1,14 +1,15 @@
 import 'package:dr_dent/Src/bloc/model/product.dart';
+import 'package:dr_dent/Src/bloc/model/store.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/image_network.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '/src/core/utils/extensions.dart';
-class CardProductRect extends StatelessWidget {
-  final Product product;
+class CardStoreRect extends StatelessWidget {
+  final Store store;
 
-  const CardProductRect({Key? key,required this.product}) : super(key: key);
+  const CardStoreRect({Key? key,required this.store}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class CardProductRect extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8.r),
               ),
               child: ImageNetwork(
-                url: product.images!.isNotEmpty? product.images!.first:'',
+                url: store.image,
                 width: 100.w,
                 height: 80.h,
               ),
@@ -44,7 +45,7 @@ class CardProductRect extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomText(
-                    text: product.title,
+                    text: store.name,
                     fontSize: 16,
                     fontW: FW.demi,
                     color: kCMainBlack2,

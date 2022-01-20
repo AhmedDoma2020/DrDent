@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '/src/core/utils/extensions.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+
 class VisitsWaitingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

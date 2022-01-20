@@ -21,9 +21,11 @@ mixin ApiKey{
    final String uRLFetchPostComments = apiBaseUrl + "fetch_post_comments";
    final String uRLFetchJobOffers = apiBaseUrl + "fetch_job_offers";
    final String uRLFetchHomeVisits = apiBaseUrl + "home_visits";
-   final String uRLFinishVisits = apiBaseUrl + "fetch_waiting_visits";
+   final String uRLFinishVisits = apiBaseUrl + "fetch_finish_visits";
    final String uRLWaitingVisits = apiBaseUrl + "fetch_waiting_visits";
    final String uRLAllNewVisits = apiBaseUrl + "all_new_visits";
+   final String uRLAllFetchAllProducts = apiBaseUrl + "fetch_all_products";
+   final String uRLAllFetchAllStores = apiBaseUrl + "fetch_all_Stores";
 
 
 

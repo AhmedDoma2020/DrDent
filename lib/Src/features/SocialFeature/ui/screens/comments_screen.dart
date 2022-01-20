@@ -1,3 +1,4 @@
+import 'package:dr_dent/Src/bloc/model/post_model.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/SocialFeature/bloc/controller/post_comments_controller.dart';
 import 'package:dr_dent/Src/features/SocialFeature/ui/widgets/comment_widget.dart';
@@ -9,11 +10,12 @@ import '/src/core/utils/extensions.dart';
 
 
 class CommentsScreen extends StatelessWidget {
-  const CommentsScreen({Key? key}) : super(key: key);
+  final PostModel post;
+  const CommentsScreen({Key? key,required this.post}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Get.put(PostCommentsController(id: 1));
+    Get.put(PostCommentsController(id: post.id!));
     return Scaffold(
       appBar: AppBars.appBarDefault(title: 'التعليقات'),
       body: GetBuilder<PostCommentsController>(

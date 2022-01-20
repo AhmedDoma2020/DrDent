@@ -5,7 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '/src/core/utils/extensions.dart';
 
 class SearchRow extends StatelessWidget {
-  const SearchRow({Key? key}) : super(key: key);
+  final VoidCallback? onGridTap;
+  const SearchRow({Key? key,this.onGridTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -54,17 +55,20 @@ class SearchRow extends StatelessWidget {
             ),
           ),
         ),
-        Container(
-          width: 50.w,
-          height: 50.h,
-          decoration: BoxDecoration(
-              color: kCMain,
-              borderRadius: BorderRadius.circular(6.r)
-          ),
-          child: Center(
-            child: Image.asset(
-              'assets/icons/grid.png',
-              height: 25.h,
+        GestureDetector(
+          onTap: onGridTap ??(){},
+          child: Container(
+            width: 50.w,
+            height: 50.h,
+            decoration: BoxDecoration(
+                color: kCMain,
+                borderRadius: BorderRadius.circular(6.r)
+            ),
+            child: Center(
+              child: Image.asset(
+                'assets/icons/grid.png',
+                height: 25.h,
+              ),
             ),
           ),
         ),
