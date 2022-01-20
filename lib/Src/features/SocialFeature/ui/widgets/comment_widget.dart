@@ -29,7 +29,7 @@ class CommentWidget extends StatelessWidget {
               child: ImageNetwork(
                 width: 40.w,
                 height: 40.w,
-                url: 'https://images.pexels.com/photos/6149104/pexels-photo-6149104.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+                url: comment.userImage
               ),
             ),
             16.0.ESW(),
@@ -42,7 +42,7 @@ class CommentWidget extends StatelessWidget {
                   Row(
                     children: [
                       CustomText(
-                        text: 'رشا السيد',
+                        text: comment.userName,
                         fontW: FW.demi,
                         fontSize: 16,
                         color: kCMainBlack2,
@@ -51,7 +51,7 @@ class CommentWidget extends StatelessWidget {
                     ],
                   ),
                   CustomText(
-                    text: 'هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو ',
+                    text: comment.comment,
                     fontW: FW.semicond,
                     fontSize: 12,
                     color: kCMainBlack2,

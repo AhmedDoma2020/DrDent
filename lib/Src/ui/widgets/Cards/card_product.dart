@@ -20,7 +20,7 @@ class CardProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        Get.to(()=>ProductScreen());
+        Get.to(()=>ProductScreen(product: product,));
       },
       child: Container(
         height: height.h,

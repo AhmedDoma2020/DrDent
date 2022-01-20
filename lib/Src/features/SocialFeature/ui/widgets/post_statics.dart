@@ -13,22 +13,25 @@ class PostStatics extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Image.asset(
-          'assets/icons/${icon}',
-          color: kCMainGrey,
-          height: 20.h,
-        ),
-        7.0.ESW(),
-        CustomText(
-          text: count,
-          color: kCMainGrey,
-          fontSize: 14,
-          fontW: FW.medium,
-        ),
-      ],
+    return GestureDetector(
+      onTap: onTap??(){},
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Image.asset(
+            'assets/icons/${icon}',
+            color: kCMainGrey,
+            height: 20.h,
+          ),
+          7.0.ESW(),
+          CustomText(
+            text: count,
+            color: kCMainGrey,
+            fontSize: 14,
+            fontW: FW.medium,
+          ),
+        ],
+      ),
     );
   }
 }

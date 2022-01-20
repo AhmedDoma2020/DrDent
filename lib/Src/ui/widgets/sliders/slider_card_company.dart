@@ -13,12 +13,12 @@ class SliderCardCompany extends StatelessWidget {
   final String viewAllTitle;
   final VoidCallback? onViewAllTap;
   final List<Store> stores;
-  const SliderCardCompany({Key? key,required this.stores,this.onViewAllTap,this.viewAllTitle=''}) : super(key: key);
+  const  SliderCardCompany({Key? key,required this.stores,this.onViewAllTap,this.viewAllTitle=''}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return  Column(
       children: [
-        TitleRowViewAll(titleSlider:viewAllTitle, onTap: (){}),
+        TitleRowViewAll(titleSlider:viewAllTitle, onTap: onViewAllTap??(){}),
         12.0.ESH(),
         SizedBox(
           height: 169.h,
@@ -30,7 +30,7 @@ class SliderCardCompany extends StatelessWidget {
                 child: CardCompany(store: stores[index],),
               ),
               separatorBuilder: (context, index) => 16.0.ESW(),
-              itemCount: 30,
+              itemCount: stores.length,
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
           ),
