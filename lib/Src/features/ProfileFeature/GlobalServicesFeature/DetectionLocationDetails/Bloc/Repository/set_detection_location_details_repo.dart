@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:dr_dent/Src/core/constants/api_key.dart';
 import 'package:dr_dent/Src/core/services/network_services.dart';
 import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
+import 'package:flutter/cupertino.dart';
 
 class DetectionLocationDetailsRepository with ApiKey {
   // GetStorage box = GetStorage();
@@ -24,6 +25,7 @@ class DetectionLocationDetailsRepository with ApiKey {
     required String image,
   }) async {
     Response response;
+    debugPrint("address in repo is $address");
     try {
       response = await _networkService.post(
           url: uRLSetWorkSpace,

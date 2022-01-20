@@ -16,7 +16,7 @@ class MedicalCompanyTypeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AccountTypeController _accountTypeController = Get.put(AccountTypeController());
+     Get.put(AccountTypeController());
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -87,8 +87,7 @@ class MedicalCompanyTypeScreen extends StatelessWidget {
                                 onTap: () {
                                   Get.to(
                                     () => NewAccountScreen(
-                                      userTypeSelectedId:
-                                          _.accountType[indexOfCardSelected!].id,
+                                      userTypeSelectedId: _.accountType[indexOfCardSelected!].id,
                                     ),
                                   );
                                 },

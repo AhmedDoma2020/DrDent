@@ -47,7 +47,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                 ButtonDefault(
                   title: 'send_code'.tr,
                   onTap: (){
-                    print(">>>>>>>>>>>>");
+                    debugPrint(">>>>>>>>>>>>");
                     _.submit();
                   },
                 ),

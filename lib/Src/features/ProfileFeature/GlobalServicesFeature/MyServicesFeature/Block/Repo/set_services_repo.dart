@@ -3,21 +3,22 @@ import 'package:dio/dio.dart';
 import 'package:dr_dent/Src/core/constants/api_key.dart';
 import 'package:dr_dent/Src/core/services/network_services.dart';
 import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
+import 'package:flutter/cupertino.dart';
 class SetServicesRepository with ApiKey{
   final NetworkService _networkService = NetworkService();
   Future<Response> setServices({required String servicePrice,required int serviceId,required String serviceTime,})async{
     Response response;
-    print("servicePrice :> $servicePrice");
-    print("serviceId :> $serviceId");
-    print("serviceTime :> $serviceTime");
+    debugPrint("servicePrice :> $servicePrice");
+    debugPrint("serviceId :> $serviceId");
+    debugPrint("serviceTime :> $serviceTime");
     try{
       response = await _networkService.post(
-        url:uRLSetInsurance,
+        url:uRLSetService,
         auth: true,
         body: {
           "service_id": serviceId,
-          "service_time": serviceTime,
-          "service_price": servicePrice,
+          "waiting_time": serviceTime,
+          "price": servicePrice,
         },
       );
     }on SocketException{

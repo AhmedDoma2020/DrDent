@@ -6,9 +6,11 @@ import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/InsuranceCompaniesFeature/Bloc/Repo/delete_insurance_repo.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/InsuranceCompaniesFeature/Bloc/Repo/fetch_my_insurances_repo.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyAssistantDataFeature/Bloc/Repo/delete_assistant_repo.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyAssistantDataFeature/Bloc/Repo/fetch_my_assistant_repo.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyServicesFeature/Block/Repo/delete_services_repo.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyServicesFeature/Block/Repo/fetch_my_services_repo.dart';
 import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class FetchMyAssistantController extends GetxController {
@@ -19,24 +21,27 @@ class FetchMyAssistantController extends GetxController {
     myAssistantList.insert(0, newAssistant);
     update();
   }
-  final FetchMyServicesRepository _fetchMyServicesRepository = FetchMyServicesRepository();
+
+  final FetchMyAssistantRepository _fetchMyAssistantRepository = FetchMyAssistantRepository();
   Future<void> fetchMyAssistant() async {
-    _myAssistantList = [...myAssistantExample];
-    update();
-    // var response = await _fetchMyServicesRepository.fetchMyServices();
-    // if (response.statusCode == 200 && response.data["status"] == true) {
-    //   print("request operation success");
-    //   _myAssistantList.clear();
-    //   for (var item in response.data['waitingOrder']) {
-    //     _myAssistantList.add(AssistantModel.fromJson(item));
-    //   }
-    //   print("convert operation success");
-    //   status = RequestStatus.done;
-    //   update();
-    // } else {
-    //   status = RequestStatus.error;
-    //   update();
-    // }
+    // _myAssistantList = [...myAssistantExample];
+    // update();
+    status = RequestStatus.loading;
+    var response = await _fetchMyAssistantRepository.fetchMyAssistant();
+    status = RequestStatus.done;
+    if (response.statusCode == 200 && response.data["status"] == true) {
+      debugPrint("request operation success");
+      _myAssistantList.clear();
+      for (var item in response.data['data']) {
+        _myAssistantList.add(AssistantModel.fromJson(item));
+      }
+      debugPrint("convert operation success");
+      status = RequestStatus.done;
+      update();
+    } else {
+      status = RequestStatus.error;
+      update();
+    }
   }
 
 
@@ -49,9 +54,9 @@ class FetchMyAssistantController extends GetxController {
     // var response = await _deleteAssistantRepository.deleteAssistant(assistantId:  assistantId);
     // Get.back();
     // if (response.statusCode == 200 && response.data["status"] == true) {
-    //   print("request operation success");
+    //   debugPrint("request operation success");
     //   _myAssistantList.removeAt(index);
-    //   print("convert operation success");
+    //   debugPrint("convert operation success");
     //   status = RequestStatus.done;
     //   update();
     //   customSnackBar(title: "delete_success".tr);

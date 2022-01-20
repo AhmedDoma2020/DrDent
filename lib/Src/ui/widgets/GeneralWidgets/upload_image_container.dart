@@ -36,7 +36,7 @@ class _UploadImageContainerState extends State<UploadImageContainer> {
       widget.onImageSelected( base64Encode(bytes));
       // logImg64 = base64Encode(bytes);
     } on PlatformException catch (e) {
-      print("field picked image $e");
+      debugPrint("field picked image $e");
     }
   }
   @override

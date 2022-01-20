@@ -116,7 +116,7 @@ String baseImage64="";
                       ButtonDefault(
                         title: 'save_'.tr,
                         onTap: () {
-                          print("baseImage64 $baseImage64");
+                          debugPrint("baseImage64 $baseImage64");
                           // if (_globalKey.currentState!.validate()) {
                           //   _globalKey.currentState!.save();
                           //   Get.back();

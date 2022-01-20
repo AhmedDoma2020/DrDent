@@ -9,7 +9,7 @@ class FetchMyAssistantRepository with ApiKey{
   Future<Response> fetchMyAssistant()async{
     Response response;
     try{
-      response = await _networkService.get(
+      response = await _networkService.post(
         url:uRLFetchMyAssistant,
         auth: true,
       );

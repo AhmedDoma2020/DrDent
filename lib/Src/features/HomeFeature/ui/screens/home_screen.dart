@@ -49,7 +49,7 @@ class HomeScreen extends StatelessWidget {
           itemBuilder: (context, index) => HomeItem(
             homeModel: homeModelExamples[index],
             onTap: (){
-              print(homeModelExamples[index].id);
+              debugPrint("${homeModelExamples[index].id}");
               baseController.tabIndex=homeModelExamples[index].id;
             },
           ),

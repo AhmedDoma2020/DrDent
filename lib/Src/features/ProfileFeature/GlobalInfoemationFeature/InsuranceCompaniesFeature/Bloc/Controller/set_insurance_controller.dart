@@ -5,6 +5,7 @@ import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/Ins
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/InsuranceCompaniesFeature/Bloc/Repo/set_insurance_repo.dart';
 
 import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class SetInsurancesController extends GetxController {
@@ -13,16 +14,16 @@ class SetInsurancesController extends GetxController {
   SetInsurancesRepository();
   final FetchMyInsurancesController _fetchMyInsurancesController = Get.put(FetchMyInsurancesController());
   Future<void> setInsurances({required List<int> insuranceId }) async {
-    print("insuranceId $insuranceId");
+    debugPrint("insuranceId $insuranceId");
     setLoading();
     var response = await _setInsurancesRepository.setInsurances(insuranceId: insuranceId);
     Get.back();
     if (response.statusCode == 200 && response.data["status"] == true) {
-      print("request operation success");
+      debugPrint("request operation success");
       Get.back();
       customSnackBar(title: response.data["message"]??"Done");
       _fetchMyInsurancesController.fetchMyInsurances();
-      print("convert operation success");
+      debugPrint("convert operation success");
       status = RequestStatus.done;
       update();
     } else {

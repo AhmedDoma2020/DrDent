@@ -30,12 +30,12 @@ class WorkTimeController extends GetxController{
     update();
     var response = await _fetchDaysRepository.fetchDays();
     if (response.statusCode == 200 && response.data["status"] == true) {
-      print("request operation success");
+      debugPrint("request operation success");
       days.clear();
       for (var item in response.data['data']) {
         days.add(DayModel.fromJson(item));
       }
-      print("convert operation success");
+      debugPrint("convert operation success");
       status = RequestStatus.done;
       update();
     }else{
@@ -55,12 +55,12 @@ class WorkTimeController extends GetxController{
     );
     Get.back();
     if (response.statusCode == 200 && response.data["status"] == true) {
-      print("request operation success");
+      debugPrint("request operation success");
       int dayIndex = days.indexWhere((element) => element.id == dayId);
       if(response.data["data"]!=null){
         days[dayIndex].times!.add(DayTimeModel.fromJson(response.data["data"]));
       }
-      print("convert operation success");
+      debugPrint("convert operation success");
       update();
     }else{
     }
@@ -75,11 +75,11 @@ class WorkTimeController extends GetxController{
     );
     Get.back();
     if (response.statusCode == 200 && response.data["status"] == true) {
-      print("request operation success");
+      debugPrint("request operation success");
       int dayIndex = days.indexWhere((element) => element.id == dayId);
       int dayTimeIndex = days[dayIndex].times!.indexWhere((element) => element.id == dayTimeId);
       days[dayIndex].times!.removeAt(dayTimeIndex);
-      print("convert operation success");
+      debugPrint("convert operation success");
       update();
     }else{
     }

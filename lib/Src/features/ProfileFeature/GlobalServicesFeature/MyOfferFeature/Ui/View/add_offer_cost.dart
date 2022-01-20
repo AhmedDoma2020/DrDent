@@ -1,3 +1,4 @@
+import 'package:dr_dent/Src/bloc/model/available_service_model.dart';
 import 'package:dr_dent/Src/bloc/model/service_model.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyServicesFeature/Block/Controller/fetch_available_services_controller.dart';
@@ -49,12 +50,12 @@ class AssistantButtonSheet extends StatelessWidget {
                       builder:(setServiceType) =>  InkWell(
                         onTap: (){
                           _.changeSIndex(index);
-                          setServiceType.servicesTypeSelectedController!.text=_.servicesList[index].title.toString();
-                          setServiceType.setServicesId=_.servicesList[index].id;
+                          setServiceType.servicesTypeSelectedController!.text=_.availableServicesList[index].title.toString();
+                          setServiceType.setServicesId=_.availableServicesList[index].id;
                           Get.back();
                         },
                         child: ServicesRowForm(
-                          service: _.servicesList[index],
+                          availableService: _.availableServicesList[index],
                           isSelected: _.daySIndex == index,
                         ),
                       ),
@@ -63,7 +64,7 @@ class AssistantButtonSheet extends StatelessWidget {
                       height: 2.h,
                       color: kCTFEnableBorder,
                     ),
-                    itemCount: _.servicesList.length,
+                    itemCount: _.availableServicesList.length,
                   ),
                 ),
               ],
@@ -76,13 +77,13 @@ class AssistantButtonSheet extends StatelessWidget {
 }
 
 class ServicesRowForm extends StatelessWidget {
-  final ServiceModel service;
+  final AvailableServiceModel availableService;
   final bool isSelected;
 
   // final  VoidCallback  onSelectTap;
 
   const ServicesRowForm({
-    required this.service,
+    required this.availableService,
     required this.isSelected,
     // required this.onSelectTap,
     Key? key,
@@ -96,7 +97,7 @@ class ServicesRowForm extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           CustomText(
-            text: service.title,
+            text: availableService.title,
             fontW: FW.semibold,
             fontSize: 24.sp,
           ),

@@ -1,22 +1,19 @@
+
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dr_dent/Src/core/constants/api_key.dart';
 import 'package:dr_dent/Src/core/services/network_services.dart';
 import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
-import 'package:flutter/cupertino.dart';
-class SetAssistantRepository with ApiKey{
+class DeleteDetectionLocationDetailsRepository with ApiKey{
   final NetworkService _networkService = NetworkService();
-  Future<Response> setAssistant({required String name,required String phone,})async{
+  Future<Response> deleteMyDetectionLocationDetails({required int id})async{
     Response response;
-    debugPrint("name :> $name");
-    debugPrint("phone :> $phone");
     try{
       response = await _networkService.post(
-        url:uRLSetAssistant,
+        url:uRLDeleteMyWorkSpaces,
         auth: true,
         body: {
-          "name": name,
-          "phone": phone,
+          "day_time_id": id,
         },
       );
     }on SocketException{

@@ -5,10 +5,12 @@ import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/InsuranceCompaniesFeature/Bloc/Repo/delete_insurance_repo.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/InsuranceCompaniesFeature/Bloc/Repo/fetch_my_insurances_repo.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/DetectionLocationDetails/Bloc/Repository/delete_detection_location_details_repo.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/DetectionLocationDetails/Bloc/Repository/featch_detection_location_details_repo.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyServicesFeature/Block/Repo/delete_services_repo.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyServicesFeature/Block/Repo/fetch_my_services_repo.dart';
 import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class FetchDetectionLocationDetailsController extends GetxController {
@@ -20,47 +22,49 @@ class FetchDetectionLocationDetailsController extends GetxController {
   //   update();
   // }
   final FetchDetectionLocationDetailsRepository _fetchDetectionLocationDetailsRepository = FetchDetectionLocationDetailsRepository();
-  // final DeleteServicesRepository _deleteServicesRepository =   DeleteServicesRepository();
-  Future<void> fetchMyServices() async {
+  Future<void> fetchMyDetectionLocationDetails() async {
+    status = RequestStatus.loading;
     var response = await _fetchDetectionLocationDetailsRepository.fetchMyDetectionLocationDetails();
+    status = RequestStatus.done;
+    update();
     if (response.statusCode == 200 && response.data["status"] == true) {
-      print("request operation success");
+      debugPrint("request operation success");
       _myDetectionLocationDetails.clear();
       for (var item in response.data['data']) {
         _myDetectionLocationDetails.add(DetectionLocationDetailsModel.fromJson(item));
       }
-      print("convert operation success");
+      // customSnackBar(title: response.data["message"]??"Error");
+      debugPrint("convert operation success");
       status = RequestStatus.done;
       update();
     } else {
       status = RequestStatus.error;
+      customSnackBar(title: response.data["message"]??"Error");
       update();
     }
   }
-
-  Future<void> deleteInsurances({required int servicesId, required int index}) async {
-    // _myServicesList.removeAt(index);
-    // update();
-    // setLoading();
-    // var response = await _deleteServicesRepository.deleteServices(servicesId:  servicesId);
-    // Get.back();
-    // if (response.statusCode == 200 && response.data["status"] == true) {
-    //   print("request operation success");
-    // _myServicesList.removeAt(index);
-    //   print("convert operation success");
-    //   status = RequestStatus.done;
-    //   update();
-    //   customSnackBar(title: "delete_success".tr);
-    // } else {
-    //   status = RequestStatus.error;
-    //   customSnackBar(title: response.data["message"]??"Error");
-    //   update();
-    // }
+  final DeleteDetectionLocationDetailsRepository _deleteDetectionLocationDetailsRepository = DeleteDetectionLocationDetailsRepository();
+  Future<void> deleteMyDetectionLocationDetails({required int detectionId}) async {
+    setLoading();
+    var response = await _deleteDetectionLocationDetailsRepository.deleteMyDetectionLocationDetails(id: detectionId);
+    Get.back();
+    if (response.statusCode == 200 && response.data["status"] == true) {
+      debugPrint("request operation success");
+      fetchMyDetectionLocationDetails();
+      debugPrint("convert operation success");
+      status = RequestStatus.done;
+      customSnackBar(title: response.data["message"]??"Error");
+      update();
+    } else {
+      status = RequestStatus.error;
+      customSnackBar(title: response.data["message"]??"Error");
+      update();
+    }
   }
 
   @override
   void onInit() {
     super.onInit();
-    fetchMyServices();
+    fetchMyDetectionLocationDetails();
   }
 }

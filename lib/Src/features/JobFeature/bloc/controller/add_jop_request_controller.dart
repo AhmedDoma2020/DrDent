@@ -42,9 +42,9 @@ class AddJopRequestController extends GetxController {
        cV: _cVImage,
       );
       if (response.statusCode == 200 && response.data["status"] == true) {
-        print("request operation success");
+        debugPrint("request operation success");
 
-        print("convert operation success");
+        debugPrint("convert operation success");
         status = RequestStatus.done;
         update();
       } else {

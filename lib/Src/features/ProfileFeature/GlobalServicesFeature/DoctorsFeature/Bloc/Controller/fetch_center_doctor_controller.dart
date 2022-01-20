@@ -28,12 +28,12 @@ class FetchCenterDoctorController extends GetxController {
     update();
     // var response = await _fetchCenterDoctorRepository.fetchCenterDoctor();
     // if (response.statusCode == 200 && response.data["status"] == true) {
-    //   print("request operation success");
+    //   debugPrint("request operation success");
     //   _centerDoctorList.clear();
     //   for (var item in response.data['data']) {
     //     _centerDoctorList.add(CenterDoctorModel.fromJson(item));
     //   }
-    //   print("convert operation success");
+    //   debugPrint("convert operation success");
     //   status = RequestStatus.done;
     //   update();
     // } else {
@@ -51,12 +51,12 @@ class FetchCenterDoctorController extends GetxController {
     // var response = await _deleteCenterDoctorRepository.deleteCenterDoctor(doctorId:  doctorId);
     // Get.back();
     // if (response.statusCode == 200 && response.data["status"] == true) {
-    //   print("request operation success");
+    //   debugPrint("request operation success");
     //   _centerDoctorList.clear();
     //   for (var item in response.data['data']) {
     //     _centerDoctorList.add(CenterDoctorModel.fromJson(item));
     //   }
-    //   print("convert operation success");
+    //   debugPrint("convert operation success");
     //   status = RequestStatus.done;
     //   update();
     //   customSnackBar(title: "delete_success".tr);

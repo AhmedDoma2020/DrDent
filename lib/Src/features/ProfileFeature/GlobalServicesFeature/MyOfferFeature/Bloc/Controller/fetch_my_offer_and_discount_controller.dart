@@ -27,12 +27,12 @@ class FetchMyOfferAndDiscountController extends GetxController {
     update();
     // var response = await _fetchMyServicesRepository.fetchMyServices();
     // if (response.statusCode == 200 && response.data["status"] == true) {
-    //   print("request operation success");
+    //   debugPrint("request operation success");
     //   _myOfferAndDiscountList.clear();
     //   for (var item in response.data['waitingOrder']) {
     //     _myOfferAndDiscountList.add(OfferAndDiscountModel.fromJson(item));
     //   }
-    //   print("convert operation success");
+    //   debugPrint("convert operation success");
     //   status = RequestStatus.done;
     //   update();
     // } else {
@@ -50,9 +50,9 @@ class FetchMyOfferAndDiscountController extends GetxController {
     // var response = await _deleteOfferAndDiscountRepository.deleteOfferAndDiscount(offerAndDiscountId:  offerAndDiscountId);
     // Get.back();
     // if (response.statusCode == 200 && response.data["status"] == true) {
-    //   print("request operation success");
+    //   debugPrint("request operation success");
     //   _myOfferAndDiscountList.removeAt(index);
-    //   print("convert operation success");
+    //   debugPrint("convert operation success");
     //   status = RequestStatus.done;
     //   update();
     //   customSnackBar(title: "delete_success".tr);

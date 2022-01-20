@@ -102,8 +102,8 @@ class SetCommercialRegistrationAndTaxCardScreen extends StatelessWidget {
                         title: 'save_contain'.tr,
                         onTap: () {
                           // Get.to(() => WattingScreen());
-                          // print("_.logImg64 ${_.logImg64}");
-                          // print("_.taxImg64 ${_.taxImg64}");
+                          // debugPrint("_.logImg64 ${_.logImg64}");
+                          // debugPrint("_.taxImg64 ${_.taxImg64}");
                           _.submit();
                         },
                       ),

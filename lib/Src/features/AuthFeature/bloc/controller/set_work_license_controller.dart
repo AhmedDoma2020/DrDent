@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:dr_dent/Src/features/AuthFeature/ui/screens/start_now_screen.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/screens/wating_screen.dart';
 import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -15,7 +16,7 @@ class SetWorkLicenseController extends GetxController {
       SetWorkLicenseRepository();
 
   void submit() async {
-    // print("img64 $img64");
+    // debugPrint("img64 $img64");
     if (img64 != null) {
       setLoading();
       var response =
@@ -23,7 +24,7 @@ class SetWorkLicenseController extends GetxController {
       Get.back();
       update();
       if (response.statusCode == 200 && response.data["status"] == true) {
-        Get.to(() => StartNowScreen());
+        Get.offAll(() => StartNowScreen());
         // Get.to(() => WattingScreen());
       } else {}
     } else {
@@ -47,7 +48,7 @@ class SetWorkLicenseController extends GetxController {
       img64 = base64Encode(bytes);
       // bytes2 = const Base64Decoder().convert(img64!);
     } on PlatformException catch (e) {
-      print("field picked image $e");
+      debugPrint("field picked image $e");
     }
   }
 }

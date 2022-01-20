@@ -13,10 +13,14 @@ class ServiceModel {
   late  bool selected;
   ServiceModel.fromJson(Map<String, dynamic> json){
     id = json['id'];
-    price = json['price'];
-    title = json['title'];
-    time = json['time'];
-    selected = json['selected'];
+    if(json['price'] != null){
+      price = json['price'].toString();
+    }else{price = "";}
+    title = json['service_title']??"";
+    if(json['waiting_time'] != null){
+      time = json['waiting_time'].toString();
+    }else{time = "";}
+    // selected = json['selected'];
   }
 }
 

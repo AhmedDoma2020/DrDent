@@ -20,7 +20,7 @@ import '/src/core/constants/color_constants.dart';
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap??(){
-        print('hello this tap in button');
+        debugPrint('hello this tap in button');
       },
       child: Container(
         height: height.h,

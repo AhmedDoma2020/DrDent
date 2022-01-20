@@ -1,6 +1,6 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/InsuranceCompaniesFeature/Bloc/Controller/fetch_available_insurances_controller.dart';
-import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyAssistantDataFeature/Bloc/Controller/set_assistant_data_controller.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyAssistantDataFeature/Bloc/Controller/set_edit_assistant_data_controller.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyServicesFeature/Block/Controller/fetch_available_services_controller.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyServicesFeature/Block/Controller/set_services_controller.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyServicesFeature/Ui/View/Screen/services_type_sheet.dart';
@@ -14,10 +14,20 @@ import 'package:get/get.dart';
 import '/src/core/utils/extensions.dart';
 
 class AddAssistantSheet extends StatelessWidget {
+  final int id;
+  final String phone;
+  final String name;
+  final bool isEdit;
+
+  AddAssistantSheet({this.id =0 ,this.phone = '', this.name ='',this.isEdit=false});
+
   @override
   Widget build(BuildContext context) {
     Get.put(FetchAvailableInsurancesController());
-    SetAssistantController _setAssistantController = Get.put(SetAssistantController());
+    SetAssistantController _setAssistantController = Get.put(SetAssistantController(phone: phone,
+    name:name ,
+    ));
+
     var node = FocusScope.of(context);
     return Material(
       borderRadius: BorderRadius.only(
@@ -82,7 +92,15 @@ class AddAssistantSheet extends StatelessWidget {
                   ButtonDefault(
                     title: 'save_'.tr,
                     onTap: () {
-                      _.setAssistant();
+                      if(isEdit ==false ){
+                        _.setAssistant();
+                      }else{
+                        if(id != 0){
+                          _.editAssistant(assistantId: id);
+                        }else{
+                          debugPrint("Error In Assistant Id");
+                        }
+                      }
                     },
                   ),
                 ],
