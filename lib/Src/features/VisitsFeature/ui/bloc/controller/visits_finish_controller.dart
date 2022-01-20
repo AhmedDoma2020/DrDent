@@ -16,13 +16,7 @@ class VisitsFinishController extends GetxController{
   Future<void> fetchFinishVisits()async{
     status = RequestStatus.loading;
     update();
-
-    //TODO comment three lines
-    visits = visitsExamples;
-    status = RequestStatus.done;
-    update();
     // TODO unComment this lines
-    /*
     var response = await _fetchFinishVisitsRepository.fetchFinishVisits();
     if (response.statusCode == 200 && response.data["status"] == true) {
       debugPrint("request operation success");
@@ -39,7 +33,6 @@ class VisitsFinishController extends GetxController{
       status = RequestStatus.error;
       update();
     }
-    */
 
   }
 

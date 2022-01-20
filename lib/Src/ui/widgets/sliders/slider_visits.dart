@@ -1,7 +1,10 @@
+import 'package:dr_dent/Src/features/VisitsFeature/ui/screens/my_visits_screen.dart';
+import 'package:dr_dent/Src/features/VisitsFeature/ui/screens/visits_new_screen.dart';
 import 'package:dr_dent/Src/ui/widgets/Cards/card_visit.dart';
 import 'package:dr_dent/Src/ui/widgets/titles/title_row_view_all.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '/src/core/utils/extensions.dart';
 class SliderVisits extends StatelessWidget {
   const SliderVisits({Key? key}) : super(key: key);
@@ -10,7 +13,9 @@ class SliderVisits extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TitleRowViewAll(titleSlider: 'الحجوزات الجديدة', onTap: (){},),
+        TitleRowViewAll(titleSlider: 'الحجوزات الجديدة', onTap: (){
+          Get.to(()=>MyVisitScreen());
+        },),
         16.0.ESH(),
         SizedBox(
           height: 190.h,

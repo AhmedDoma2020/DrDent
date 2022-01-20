@@ -16,7 +16,7 @@ class CardJobOffer extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        Get.to(()=>JobScreen());
+        Get.to(()=>JobScreen(offer: offer,));
       },
       child: Container(
         width: 343.w,

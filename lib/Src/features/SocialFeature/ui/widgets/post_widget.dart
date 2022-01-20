@@ -1,10 +1,12 @@
 import 'package:dr_dent/Src/bloc/model/post_model.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
+import 'package:dr_dent/Src/features/SocialFeature/ui/screens/comments_screen.dart';
 import 'package:dr_dent/Src/features/SocialFeature/ui/widgets/post_header.dart';
 import 'package:dr_dent/Src/features/SocialFeature/ui/widgets/post_statics.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/image_network.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '/src/core/utils/extensions.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -60,7 +62,12 @@ class PostWidget extends StatelessWidget {
                 children: [
                     PostStatics(icon: 'like.png', count: '${post.likesNumber!}'),
                    30.0.ESW(),
-                    PostStatics(icon: 'comment.png', count: '${post.commentsNumber!}'),
+                    PostStatics(icon: 'comment.png',
+                        count: '${post.commentsNumber!}',
+                        onTap: (){
+                          Get.to(()=>CommentsScreen(post: post,));
+                        },
+                    ),
                    30.0.ESW(),
                     PostStatics(icon: 'share.png', count: '${post.shareNumber!}'),
                 ],

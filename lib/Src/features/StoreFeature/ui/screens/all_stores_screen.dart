@@ -1,12 +1,15 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/StoreFeature/bloc/controller/all_products_controller.dart';
+import 'package:dr_dent/Src/features/StoreFeature/bloc/controller/all_storea_controller.dart';
 import 'package:dr_dent/Src/features/StoreFeature/ui/widgets/search_row.dart';
 import 'package:dr_dent/Src/ui/widgets/Dialog/loading_dialog.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:dr_dent/Src/ui/widgets/appbars/app_bars.dart';
 import 'package:dr_dent/Src/ui/widgets/grids/grid_card_product.dart';
+import 'package:dr_dent/Src/ui/widgets/grids/grid_card_store.dart';
 import 'package:dr_dent/Src/ui/widgets/lists/list_card_product_rect.dart';
+import 'package:dr_dent/Src/ui/widgets/lists/list_card_store_rect.dart';
 import 'package:dr_dent/Src/ui/widgets/tabs/tabs_category.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,21 +17,21 @@ import 'package:get/get.dart';
 import '/src/core/utils/extensions.dart';
 
 
-class AllProductsScreen extends StatelessWidget {
-  const AllProductsScreen({Key? key}) : super(key: key);
+class AllStoresScreen extends StatelessWidget {
+  const AllStoresScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Get.put(AllProductsController());
+    Get.put(AllStoresController());
     return Scaffold(
-      appBar: AppBars.appBarDefault(title: 'كل المنتجات'),
+      appBar: AppBars.appBarDefault(title: 'كل الشركات'),
       body: Padding(
         padding:  EdgeInsets.only(
           right: 16.w,
           left: 16.w,
           top: 10.h
         ),
-        child:GetBuilder<AllProductsController>(
+        child:GetBuilder<AllStoresController>(
           builder: (_) =>  Column(
             children: [
               SearchRow(onGridTap: (){_.changeIsGrid();},),
@@ -40,8 +43,8 @@ class AllProductsScreen extends StatelessWidget {
               _.status != RequestStatus.done?
               Center(child: Loader(),):
               !_.isGrid?
-              ListCardProductRect(products: _.products,):
-              GridCardProduct(products: _.products,),
+              ListCardStoreRect(stores: _.stores,):
+              GridCardStore(stores: _.stores,),
               )
             ],
           ),

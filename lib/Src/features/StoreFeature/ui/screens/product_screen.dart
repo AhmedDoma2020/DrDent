@@ -1,3 +1,4 @@
+import 'package:dr_dent/Src/bloc/model/product.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/features/StoreFeature/ui/widgets/product_info_item.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
@@ -10,7 +11,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '/src/core/utils/extensions.dart';
 
 class ProductScreen extends StatelessWidget {
-  const ProductScreen({Key? key}) : super(key: key);
+  final Product product;
+  const ProductScreen({Key? key,required this.product}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class ProductScreen extends StatelessWidget {
                   )
                 ),
                 child: ImageNetwork(
-                  url: 'https://images.pexels.com/photos/139398/thermometer-headache-pain-pills-139398.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+                  url: product.images!.isNotEmpty? product.images!.first : '',
                   width: double.infinity,
                   height: 320.h,
                 ),
@@ -45,25 +47,20 @@ class ProductScreen extends StatelessWidget {
                     physics: BouncingScrollPhysics(),
                     children: [
                       CustomText(
-                        text: 'أدوات طبية',
+                        text: product.storeName,
                         color: kCMainGrey,
                         fontW: FW.thin,
                         fontSize: 14,
                       ),
                       4.0.ESH(),
-                      const ProductInfoItem(
-                        title: 'أدوات تنظيف الأسنان',
-                        subtitle: 'هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة ',
+                       ProductInfoItem(
+                        title: product.title!,
+                        subtitle: product.description!
                       ),
                       15.0.ESH(),
-                      const ProductInfoItem(
+                      ProductInfoItem(
                         title: 'تاريخ انتهاء الصلاحية',
-                        subtitle: '22/5/2025',
-                      ),
-                      15.0.ESH(),
-                      const ProductInfoItem(
-                        title: 'تاريخ انتهاء الصلاحية',
-                        subtitle: '22/5/2025',
+                        subtitle: product.expireDate!,
                       ),
                       100.0.ESH(),
                     ],

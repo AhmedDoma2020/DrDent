@@ -7,17 +7,16 @@ import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
 import 'package:get_storage/get_storage.dart';
 
 
-class FetchNewVisitsRepository with ApiKey{
+class AllProductsRepository with ApiKey{
   // GetStorage box = GetStorage();
   final NetworkService _networkService = NetworkService();
-  Future<Response> fetchNewVisits()async{
+  Future<Response> fetchAllProducts()async{
     Response? response;
     try{
       response = await _networkService.get(
-          url:  uRLAllNewVisits,
+          url:  uRLAllFetchAllProducts,
           auth: true
       );
-
     }on SocketException{
       throw const SocketException('No Internet Connection');
     }on Exception{

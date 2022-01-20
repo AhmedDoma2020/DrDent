@@ -1,6 +1,7 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/JobFeature/bloc/controller/job_request_controller.dart';
+import 'package:dr_dent/Src/ui/widgets/Dialog/loading_dialog.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:dr_dent/Src/ui/widgets/lists/list_job_requests.dart';
 import 'package:dr_dent/Src/ui/widgets/sliders/slider_job_requests.dart';
@@ -18,7 +19,7 @@ class JobRequestScreen extends StatelessWidget {
     return GetBuilder<JobRequestController>(
       builder: (_) =>
       _.status != RequestStatus.done?
-      0.0.ESH():
+      Center(child: Loader(),):
           ListView(
           children: [
             _.myJobRequests.isNotEmpty?

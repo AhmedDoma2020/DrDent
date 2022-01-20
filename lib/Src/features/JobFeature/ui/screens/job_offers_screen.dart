@@ -1,6 +1,8 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/JobFeature/bloc/controller/job_offers_controller.dart';
+import 'package:dr_dent/Src/features/JobFeature/bloc/model/job_offer.dart';
+import 'package:dr_dent/Src/ui/widgets/Dialog/loading_dialog.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:dr_dent/Src/ui/widgets/lists/list_job_offer.dart';
 import 'package:dr_dent/Src/ui/widgets/lists/list_job_requests.dart';
@@ -12,6 +14,7 @@ import '/src/core/utils/extensions.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class JobOffersScreen extends StatelessWidget {
+
   const JobOffersScreen({Key? key}) : super(key: key);
 
   @override
@@ -20,7 +23,7 @@ class JobOffersScreen extends StatelessWidget {
     return GetBuilder<JobOffersController>(
       builder: (_) =>
           _.status != RequestStatus.done?
-          0.0.ESH():
+          Center(child: Loader(),):
           ListView(
         children: [
           _.myJobOffers.isNotEmpty?

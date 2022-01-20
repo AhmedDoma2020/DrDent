@@ -7,14 +7,14 @@ import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
 import 'package:get_storage/get_storage.dart';
 
 
-class FetchNewVisitsRepository with ApiKey{
+class AllStoresRepository with ApiKey{
   // GetStorage box = GetStorage();
   final NetworkService _networkService = NetworkService();
-  Future<Response> fetchNewVisits()async{
+  Future<Response> fetchAllStores()async{
     Response? response;
     try{
       response = await _networkService.get(
-          url:  uRLAllNewVisits,
+          url:  uRLAllFetchAllStores,
           auth: true
       );
 
