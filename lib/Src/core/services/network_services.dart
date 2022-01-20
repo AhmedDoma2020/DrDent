@@ -11,7 +11,7 @@ class NetworkService with ApiKey{
   String apiTokenStatic ='\$2y\$10\$MAVyBbLcXlsRZ6Geb7c.8e/O9yYVhT0QuT//oMASxJGRDobz6e9em';
   Future<Response> get({@required String? url, Map<String , String>? headers,bool auth = false}) async {
     Response? response;
-    String apiToken =box.read('apiToken')??"";
+    String apiToken =box.read("api_token")??apiTokenStatic;
     log("log apiToken in netWork >>>>>>>>>:-> $apiToken");
     try {
       dio.options.baseUrl = ApiKey.apiBaseUrl;
@@ -20,7 +20,7 @@ class NetworkService with ApiKey{
             'Accept-Language' : 'en',
             if(auth)
             // 'Authorization': 'Bearer ' + apiToken
-              'Authorization': 'Bearer ' + apiTokenStatic
+              'Authorization': 'Bearer ' + apiToken
           }
       ));
     } on DioError catch (e) {
@@ -37,8 +37,8 @@ class NetworkService with ApiKey{
   Future<Response> post({@required String? url,
     Map<String , String>? headers, Map<String , dynamic>? body,bool auth = false}) async {
     Response? response;
-    String apiToken =box.read('apiToken')??"";
-    print("apiToken in netWork >>>>>>>>>:-> $apiToken");
+    String apiToken =box.read("api_token")??apiTokenStatic;
+    debugPrint("apiToken in netWork >>>>>>>>>:-> $apiToken");
     dio.options.baseUrl = ApiKey.apiBaseUrl;
     try {
       response = await dio.post(
@@ -49,7 +49,7 @@ class NetworkService with ApiKey{
             'Accept-Language' : 'en',
             if(auth)
             // 'Authorization': 'Bearer ' + apiToken
-              'Authorization': 'Bearer ' + apiTokenStatic
+              'Authorization': 'Bearer ' + apiToken
           },
           // requestEncoder: encoding,
         ),

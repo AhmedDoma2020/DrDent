@@ -42,7 +42,7 @@ class CityButtonSheet extends StatelessWidget {
                 topRight: Radius.circular(19.r),
               ),
               color: Colors.white),
-          child: GetBuilder<DetectionLocationDetailsController>(
+          child: GetBuilder<SetDetectionLocationDetailsController>(
             builder: (_) => Column(
               children: [
                 24.0.ESH(),
@@ -55,7 +55,7 @@ class CityButtonSheet extends StatelessWidget {
                   shrinkWrap: true,
                   itemBuilder: (context, index) => InkWell(
                       onTap: () {
-                        print("xxxxxxxxxxxxxxxxxxxxxxx");
+                        debugPrint("xxxxxxxxxxxxxxxxxxxxxxx");
                         _.cityController!.text = cityList[index].title;
                         Get.back();
                       },

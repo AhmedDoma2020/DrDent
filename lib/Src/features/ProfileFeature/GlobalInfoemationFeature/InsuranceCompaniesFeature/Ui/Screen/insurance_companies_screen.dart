@@ -15,12 +15,10 @@ import 'package:get/get.dart';
 class InsuranceCompaniesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    FetchMyInsurancesController _fetchMyInsurancesController =
-        Get.put(FetchMyInsurancesController());
+    FetchMyInsurancesController _fetchMyInsurancesController = Get.put(FetchMyInsurancesController());
     Future<void> onRefresh() async {
       await _fetchMyInsurancesController.fetchMyInsurances();
     }
-
     return SafeArea(
       child: Scaffold(
         floatingActionButton: FloatingActionButton(

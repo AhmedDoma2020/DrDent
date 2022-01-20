@@ -24,7 +24,7 @@ class DetectionLocationDetailsModel {
   late final int reservationType;
   late final String image;
   late final String city;
-  late final String address;
+  late final Address address;
   late final String bulidingNumber;
   late final String flatNumber;
 
@@ -38,8 +38,43 @@ class DetectionLocationDetailsModel {
     reservationType = json['reservation_type']??"";
     image = json['image']??"";
     city = json['city']??"";
+    address = Address.fromJson(json['address']);
+    bulidingNumber = json['buliding_number']??"";
+    flatNumber = json['flat_number']??"";
+  }
+}
+
+class Address {
+  Address({
+    required this.id,
+    required this.cityId,
+    required this.stateId,
+    required this.city,
+    required this.state,
+    required this.address,
+    required this.bulidingNumber,
+    required this.flatNumber,
+    required this.mark,
+  });
+  late final int id;
+  late final String cityId;
+  late final int stateId;
+  late final String city;
+  late final String state;
+  late final String address;
+  late final String bulidingNumber;
+  late final String flatNumber;
+  late final String mark;
+
+  Address.fromJson(Map<String, dynamic> json){
+    id = json['id']??"";
+    cityId = json['city_id']??"";
+    stateId = json['state_id']??"";
+    city = json['city']??"";
+    state = json['state']??"";
     address = json['address']??"";
     bulidingNumber = json['buliding_number']??"";
     flatNumber = json['flat_number']??"";
+    mark = json['mark']??"";
   }
 }

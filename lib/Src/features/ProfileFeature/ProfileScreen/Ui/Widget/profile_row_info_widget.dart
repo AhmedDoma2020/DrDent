@@ -13,8 +13,8 @@ import 'package:get/get.dart';
 class ProfileRowInfoAndRate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    FetchProfileDoctorController _fetchProfileDoctorController  =Get.find();
-    return GetBuilder<FetchProfileDoctorController>(
+    FetchProfileController _fetchProfileDoctorController  =Get.find();
+    return GetBuilder<FetchProfileController>(
       builder:(_) => SizedBox(
         // color: Colors.red,
         height: 128.h,

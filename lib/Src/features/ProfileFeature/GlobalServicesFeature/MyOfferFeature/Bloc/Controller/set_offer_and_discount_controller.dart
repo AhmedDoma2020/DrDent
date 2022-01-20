@@ -5,28 +5,34 @@ import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyOffe
 import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+
 import 'fetch_my_offer_and_discount_controller.dart';
 
 class SetOfferAndDiscountController extends GetxController {
   List<int> _servicesIdSelectedList = [];
+
   List<int> get servicesIdSelectedList => _servicesIdSelectedList;
   List<String> _servicesTitleSelectedList = [];
+
   List<String> get servicesTitleSelectedList => _servicesTitleSelectedList;
-  String _startOfferDuration ="";
+  String _startOfferDuration = "";
+
   set setStartOfferDuration(String value) {
     _startOfferDuration = value;
   }
   set setEndOfferDuration(String value) {
     _endOfferDuration = value;
   }
-  int _durationNum=0;
+  int _durationNum = 0;
   set setDurationNum(int value) {
     _durationNum = value;
   }
 
   int get durationNum => _durationNum;
-  String _endOfferDuration ="";
+  String _endOfferDuration = "";
+
   String get endOfferDuration => _endOfferDuration;
+
   String get startOfferDuration => _startOfferDuration;
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
   TextEditingController? nameController = TextEditingController();
@@ -38,14 +44,28 @@ class SetOfferAndDiscountController extends GetxController {
   TextEditingController? priceAfterDiscountController = TextEditingController();
   TextEditingController? offerDurationController = TextEditingController();
   RequestStatus status = RequestStatus.initial;
-  final FetchMyOfferAndDiscountController _fetchMyOfferAndDiscountController = Get.put(FetchMyOfferAndDiscountController());
-  final SetOfferAndDiscountRepository _setOfferAndDiscountRepository = SetOfferAndDiscountRepository();
+  final FetchMyOfferAndDiscountController _fetchMyOfferAndDiscountController =
+      Get.put(FetchMyOfferAndDiscountController());
+  final SetOfferAndDiscountRepository _setOfferAndDiscountRepository =
+      SetOfferAndDiscountRepository();
+
   Future<void> setOfferAndDiscount() async {
     if (globalKey.currentState!.validate()) {
       globalKey.currentState!.save();
-      if(imageController!.text.isEmpty){
-        customSnackBar(title:"must_be_set_photo".tr);
-      }else{
+      if (imageController!.text.isEmpty) {
+        customSnackBar(title: "must_be_set_photo".tr);
+      } else {
+        _setOfferAndDiscountRepository.setOfferAndDiscount(
+          title: nameController!.text,
+          startDate: _startOfferDuration,
+          endDate: _endOfferDuration,
+          price:priceController!.text,
+          priceAfterOffer: priceAfterDiscountController!.text,
+          offerInfo: offerInfoController!.text,
+          bookingInfo: bookingInfoController!.text,
+          image: imageController!.text,
+          serviceIds: _servicesIdSelectedList,
+        );
         OfferAndDiscountModel newOfferAndDiscount = OfferAndDiscountModel(
           offerStatus: 0,
           ownerName: "مركز وايتي كلينيك",
@@ -60,7 +80,8 @@ class SetOfferAndDiscountController extends GetxController {
           services: [],
           startDate: _startOfferDuration,
         );
-        _fetchMyOfferAndDiscountController.addOfferAndDiscountLocal(newOfferAndDiscount);
+        _fetchMyOfferAndDiscountController
+            .addOfferAndDiscountLocal(newOfferAndDiscount);
         update();
         // Get.back();
         // setLoading();
@@ -77,9 +98,9 @@ class SetOfferAndDiscountController extends GetxController {
         // );
         // Get.back();
         // if (response.statusCode == 200 && response.data["status"] == true) {
-        //   print("request operation success");
+        //   debugPrint("request operation success");
         //   customSnackBar(title: response.data["message"] ?? "Done");
-        //   print("convert operation success");
+        //   debugPrint("convert operation success");
         //   status = RequestStatus.done;
         //   update();
         //   customSnackBar(title: "delete_success".tr);
@@ -95,8 +116,8 @@ class SetOfferAndDiscountController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    _servicesIdSelectedList=[];
-    _servicesTitleSelectedList=[];
+    _servicesIdSelectedList = [];
+    _servicesTitleSelectedList = [];
     nameController = TextEditingController();
     servicesSelectedController = TextEditingController();
     priceController = TextEditingController();
@@ -120,6 +141,4 @@ class SetOfferAndDiscountController extends GetxController {
     priceAfterDiscountController?.dispose();
     offerDurationController?.dispose();
   }
-
-
 }

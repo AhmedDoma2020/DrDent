@@ -26,7 +26,7 @@ class MyOfferAndDiscountRow extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(8.r),
       child: Container(
-        height: 272.h,
+        height: 300.h,
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.r),
@@ -76,7 +76,7 @@ class MyOfferAndDiscountRow extends StatelessWidget {
             ),
             SizedBox(
               // color: Colors.yellow,
-              height: 131.h,
+              height: 158.h,
               child: Stack(
                 children: [
                   SizedBox(

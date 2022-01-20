@@ -5,6 +5,7 @@ import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/AuthFeature/bloc/repository/fetch_scientific_repo.dart';
 import 'package:dr_dent/Src/features/AuthFeature/bloc/repository/fetch_specialization_repo.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/InsuranceCompaniesFeature/Bloc/Repo/fetch_available_insurances_repo.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class FetchScientificController extends GetxController {
@@ -16,9 +17,9 @@ class FetchScientificController extends GetxController {
   int get scientificIndex => _scientificIndex;
   void changeSIndex(index ) {
     // int indexWhere = _scientificList.indexWhere((element) => id == element.id );
-    // print("index $index");
-    // print("id $id");
-    // print("indexWhere $indexWhere");
+    // debugPrint("index $index");
+    // debugPrint("id $id");
+    // debugPrint("indexWhere $indexWhere");
     _scientificIndex = index;
     // _scientificList[indexWhere].selected = true;
     update();
@@ -31,12 +32,12 @@ class FetchScientificController extends GetxController {
     update();
     var response = await _fetchScientificRepository.fetchScientific();
     if (response.statusCode == 200 && response.data["status"] == true) {
-      print("request operation success");
+      debugPrint("request operation success");
       _scientificList.clear();
       for (var item in response.data['data']) {
         _scientificList.add(ScientificModel.fromJson(item));
       }
-      print("convert operation success");
+      debugPrint("convert operation success");
       status = RequestStatus.done;
       update();
     } else {

@@ -198,11 +198,11 @@ class _MapScreenState extends State<MapScreen> {
                               active: targetPosition != null,
                               title: 'save_contain'.tr,
                               onTap: () {
-                                print('targetPosition!.latitude ${targetPosition!.latitude}');
-                                print('targetPosition!.longitude ${targetPosition!.longitude}');
-                                print('address! ${address!}');
+                                debugPrint('targetPosition!.latitude ${targetPosition!.latitude}');
+                                debugPrint('targetPosition!.longitude ${targetPosition!.longitude}');
+                                debugPrint('address! ${address!}');
                                 if (widget.onSave != null) {
-                                  print('this is my location');
+                                  debugPrint('this is my location');
                                   widget.onSave!(targetPosition!.latitude,
                                       targetPosition!.longitude, address!);
                                 }

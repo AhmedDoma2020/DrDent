@@ -67,7 +67,7 @@ class AppBars {
   //   );
   // }
 
-  static AppBar appBarSkipDefault({ bool isBack=true, TabBar? tabBar,String title='',Widget secondIconImage=const SizedBox(width: 0,) , VoidCallback? onTapBack, VoidCallback? onTapSkip}){
+  static AppBar appBarSkipDefault({ bool isBack=true, TabBar? tabBar,String title='',Widget secondIconImage=const SizedBox(width: 0,) , VoidCallback? onTapBack, VoidCallback? onTapSkip, bool isSkip = false}){
     return AppBar(
       title: CustomText(
         text: title,
@@ -89,6 +89,7 @@ class AppBars {
         ),
       ),
       actions: [
+        isSkip ==true?
         IconButton(
           onPressed:onTapSkip,
           icon: CustomText(
@@ -96,7 +97,7 @@ class AppBars {
             fontW: FW.semibold,
             fontSize: 12,
           ),
-        )
+        ):0.0.ESH()
       ],
       bottom: tabBar,
     );

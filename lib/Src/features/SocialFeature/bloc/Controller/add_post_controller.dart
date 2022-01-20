@@ -51,7 +51,7 @@ final AddPostRepository _addPostRepository =AddPostRepository();
         _shareItemsIdsSelected.clear();
         _shareWithButtonTitle = "";
       }
-      print("_shareItemsIdsSelected is ${_shareItemsIdsSelected.reactive}");
+      debugPrint("_shareItemsIdsSelected is ${_shareItemsIdsSelected.reactive}");
     } else {
       _shareItemsDoctorList[index].isSelected =
           !_shareItemsDoctorList[index].isSelected;
@@ -64,14 +64,14 @@ final AddPostRepository _addPostRepository =AddPostRepository();
       }
       if(_shareItemsIdsSelected.length == 1 ){
         int lastSingleId = int.parse(_shareItemsIdsSelected[0].reactive.toString());
-        print("single id is $lastSingleId");
+        debugPrint("single id is $lastSingleId");
         int lastSingleIndex = _shareItemsDoctorList.indexWhere((element) => element.id == lastSingleId);
-        print("single index is $lastSingleIndex");
+        debugPrint("single index is $lastSingleIndex");
         _shareWithButtonTitle= _shareItemsDoctorList[lastSingleIndex].title;
       }else{
         _shareWithButtonTitle="custom_".tr;
       }
-      print("_shareItemsIdsSelected is ${_shareItemsIdsSelected.reactive}");
+      debugPrint("_shareItemsIdsSelected is ${_shareItemsIdsSelected.reactive}");
     }
     update();
   }
@@ -90,20 +90,20 @@ final AddPostRepository _addPostRepository =AddPostRepository();
       img64 = base64Encode(bytes);
       // widget.onTap(img64!);
     } on PlatformException catch (e) {
-      print("field picked image $e");
+      debugPrint("field picked image $e");
     }
   }
 
   void submit() async {
-    print("img64 $img64");
-    print("contentController!.text ${contentController!.text}");
+    debugPrint("img64 $img64");
+    debugPrint("contentController!.text ${contentController!.text}");
     if(img64 != null || contentController!.text.isNotEmpty){
       // setLoadingDialog();
       var response = await  _addPostRepository.addPost(content: contentController!.text, images: img64!, tags: _shareItemsIdsSelected);
       if (response.statusCode == 200 && response.data["status"] == true) {
-        print("request operation success");
+        debugPrint("request operation success");
 
-        print("convert operation success");
+        debugPrint("convert operation success");
         status = RequestStatus.done;
         update();
       } else {

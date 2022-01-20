@@ -53,8 +53,8 @@ class RowJopRequirementForm extends StatelessWidget {
       }
       return color;
     }
-    print("numOfList $numOfList");
-    print("index $index");
+    debugPrint("numOfList $numOfList");
+    debugPrint("index $index");
     return Row(
       children: [
         Expanded(

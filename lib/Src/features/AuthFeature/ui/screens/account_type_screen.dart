@@ -67,9 +67,9 @@ class AccountTypeScreen extends StatelessWidget {
                             onTap: () {
                               indexOfCardSelected = index;
                               if(_.accountType[index].id == 1){
-                                print("medical_company");
+                                debugPrint("medical_company");
                               }else{
-                                print("Not medical company");
+                                debugPrint("Not medical company");
                               }
                               _.selectCompanyIndex(index);
                               titleAccountType = _.accountType[index].title;

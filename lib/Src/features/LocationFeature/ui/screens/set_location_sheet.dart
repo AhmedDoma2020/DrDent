@@ -49,7 +49,7 @@ class SetLocationButtonSheet extends StatelessWidget {
           child: SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: GetBuilder<DetectionLocationDetailsController>(
+              child: GetBuilder<SetDetectionLocationDetailsController>(
                 builder: (_) => Form(
                   key: _.globalKey2,
                   child: GetBuilder<FetchStateAndCityController>(
@@ -164,11 +164,11 @@ class SetLocationButtonSheet extends StatelessWidget {
                           onTap: () {
                             if (_.globalKey2.currentState!.validate()) {
                               _.globalKey2.currentState!.save();
-                              print("aaaaa+");
+                              debugPrint("aaaaa+");
                               _.setLat = lat;
                               _.setLon = lon;
                               _.addressController!.text = address;
-                              print("bbbbb+");
+                              debugPrint("bbbbb+");
                               Get.back();
                               Get.back();
                             }

@@ -18,8 +18,8 @@ class NewAccountScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("userTypeSelectedId $userTypeSelectedId");
-    RegisterController _registerController = Get.put(RegisterController());
+    debugPrint("userTypeSelectedId $userTypeSelectedId");
+     Get.put(RegisterController());
     var node = FocusScope.of(context);
     return SafeArea(
       child: Scaffold(

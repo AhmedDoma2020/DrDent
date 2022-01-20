@@ -30,7 +30,7 @@ class _AvatarFormState extends State<AvatarForm> {
       img64 = base64Encode(bytes);
       widget.onTap(img64!);
     } on PlatformException catch (e) {
-      print("field picked image $e");
+      debugPrint("field picked image $e");
     }
   }
 

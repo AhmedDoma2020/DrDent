@@ -33,7 +33,7 @@ class _UploadPhotoState extends State<UploadPhoto> {
       final bytes = File(image.path).readAsBytesSync();
       img64 = base64Encode(bytes);
     } on PlatformException catch (e) {
-      print("field picked image $e");
+      debugPrint("field picked image $e");
     }
   }
 

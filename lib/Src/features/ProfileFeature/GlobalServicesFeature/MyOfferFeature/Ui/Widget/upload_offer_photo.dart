@@ -28,7 +28,7 @@ class _UploadOfferPhotoState extends State<UploadOfferPhoto> {
       final bytes = File(image.path).readAsBytesSync();
       img64 = base64Encode(bytes);
     } on PlatformException catch (e) {
-      print("field picked image $e");
+      debugPrint("field picked image $e");
     }
   }
 
@@ -87,11 +87,11 @@ class _UploadOfferPhotoState extends State<UploadOfferPhoto> {
                               final imageTemporary = File(image.path);
                               setState(() => this.image = imageTemporary);
                               final bytes = File(image.path).readAsBytesSync();
-                              print("Arrive Hear");
+                              debugPrint("Arrive Hear");
                               img64 = base64Encode(bytes);
                               _.imageController!.text = img64!;
                             } on PlatformException catch (e) {
-                              print("field picked image $e");
+                              debugPrint("field picked image $e");
                             }
                           }
                         },

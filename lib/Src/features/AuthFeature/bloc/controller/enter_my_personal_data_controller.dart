@@ -5,9 +5,13 @@ import 'package:dr_dent/Src/features/BaseFeature/ui/screens/base_screen.dart';
 import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:get_storage/get_storage.dart';import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Bloc/Controller/featch_profile_controller.dart';
+
 
 class EnterMyPersonalDataController extends GetxController {
+  final bool isEdit;
+  EnterMyPersonalDataController({ this.isEdit =false});
+
   GetStorage box = GetStorage();
   TextEditingController? nameController;
   TextEditingController? degreeController;
@@ -33,6 +37,21 @@ class EnterMyPersonalDataController extends GetxController {
   set setScientificId(int value) {
     _scientificId = value;
   }
+
+  void setData(){
+    debugPrint("ddddddone 1");
+    final FetchProfileController _fetchProfileDoctorController = Get.put(FetchProfileController());
+    debugPrint("ddddddone 2");
+    if(isEdit ==true){
+      debugPrint("ddddddone 3");
+      nameController!.text= _fetchProfileDoctorController.name!;
+      degreeController!.text= _fetchProfileDoctorController.degree!;
+      debugPrint("nameController!.text ${nameController!.text}");
+      debugPrint("degreeController!.text ${degreeController!.text}");
+      update();
+    }
+  }
+
   RequestStatus status = RequestStatus.initial;
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
   final EnterAndEditMyPersonalDataRepository _enterAndEditMyPersonalDataRepository = EnterAndEditMyPersonalDataRepository();
@@ -41,12 +60,12 @@ class EnterMyPersonalDataController extends GetxController {
       globalKey.currentState!.save();
       if(_image != ""){
         setLoading();
-        print(" nameController!.text ${ nameController!.text}");
-        print(" _gender $_gender");
-        print(" degreeController!.text $scientificId");
-        print(" _specializationIdSelected $_specializationIdSelected");
-        print(" addInfoController!.text ${addInfoController!.text}");
-        print(" image $image");
+        debugPrint(" nameController!.text ${ nameController!.text}");
+        debugPrint(" _gender $_gender");
+        debugPrint(" degreeController!.text $scientificId");
+        debugPrint(" _specializationIdSelected $_specializationIdSelected");
+        debugPrint(" addInfoController!.text ${addInfoController!.text}");
+        debugPrint(" image $image");
         var response = await  _enterAndEditMyPersonalDataRepository.enterAndEditMyPersonalData(
           name: nameController!.text,
           gender: _gender,
@@ -57,10 +76,10 @@ class EnterMyPersonalDataController extends GetxController {
         );
         Get.back();
          if (response.statusCode == 200 && response.data["status"] == true) {
-           print("request operation success");
+           debugPrint("request operation success");
            customSnackBar(title: response.data["message"]);
            Get.offAll(()=>BaseScreen());
-           print("convert operation success");
+           debugPrint("convert operation success");
            status = RequestStatus.done;
            update();
          } else {
@@ -82,6 +101,7 @@ class EnterMyPersonalDataController extends GetxController {
     specializationController = TextEditingController();
     addInfoController = TextEditingController();
     _specializationIdSelected =[];
+    // setData();
   }
 
   @override

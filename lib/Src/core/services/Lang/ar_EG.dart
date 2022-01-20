@@ -237,6 +237,9 @@ const Map<String, String> arAE = {
   "must_upload_file": "يجب ارفاق الملفات",
   "Empty_Detection_location_details": "! ليس لديك أماكن للكشف بعد قم بإضافة أماكن العمل الخاصة بك",
   "must_select_year": "يجب اختيار السنه",
-
-
+  "graduation_certificate": "شهادة التخرج",
+  "upload_a_photo_of_your_graduation_certificate": "قم بتحميل صورة شهادة التخرج الخاصة بك",
+  "center_branches": "فروع المركز",
+  "my_products": "منتجاتي",
+  "company_products": "منتجات الشركة",
 };
