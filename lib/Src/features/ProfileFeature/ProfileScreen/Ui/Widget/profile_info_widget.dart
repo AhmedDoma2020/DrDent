@@ -14,7 +14,7 @@ class profileInfoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     GetStorage box = GetStorage();
-    return GetBuilder<FetchProfileDoctorController>(
+    return GetBuilder<FetchProfileController>(
       builder:(_) =>  SizedBox(
         height: 310.h,
         width: double.infinity,

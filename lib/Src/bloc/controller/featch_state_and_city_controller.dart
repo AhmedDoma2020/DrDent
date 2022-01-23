@@ -51,12 +51,12 @@ class FetchStateAndCityController extends GetxController {
   Future<void> fetchStateAndCity() async {
     var response = await _fetchStateRepository.fetchStateAndCity();
     if (response.statusCode == 200 && response.data["status"] == true) {
-      print("request operation success");
+      debugPrint("request operation success");
       _stateAndCityList.clear();
       for (var item in response.data['data']) {
         _stateAndCityList.add(StateAndCityModel.fromJson(item));
       }
-      print("convert operation success");
+      debugPrint("convert operation success");
       status = RequestStatus.done;
       update();
     } else {

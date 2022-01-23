@@ -5,6 +5,7 @@ import 'package:dr_dent/Src/bloc/repository/fetch_university_repo.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/InsuranceCompaniesFeature/Bloc/Repo/fetch_available_insurances_repo.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyServicesFeature/Block/Repo/fetch_available_services_repo.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class FetchUniversityController extends GetxController {
@@ -31,12 +32,12 @@ class FetchUniversityController extends GetxController {
     // var response =
     //     await _fetchUniversityRepository.fetchUniversity();
     // if (response.statusCode == 200 && response.data["status"] == true) {
-    //   print("request operation success");
+    //   debugPrint("request operation success");
     //   _universityList.clear();
     //   for (var item in response.data['data']) {
     //     _universityList.add(UniversityModel.fromJson(item));
     //   }
-    //   print("convert operation success");
+    //   debugPrint("convert operation success");
     //   status = RequestStatus.done;
     //   update();
     // } else {
@@ -49,6 +50,6 @@ class FetchUniversityController extends GetxController {
   void onInit() {
     super.onInit();
     fetchUniversity();
-    print("_universitySIndex $_universitySIndex");
+    debugPrint("_universitySIndex $_universitySIndex");
   }
 }

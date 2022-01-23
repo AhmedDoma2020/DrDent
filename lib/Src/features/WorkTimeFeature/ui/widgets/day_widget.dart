@@ -85,12 +85,12 @@ class DayWidget extends StatelessWidget {
                      children: [
                        GestureDetector(
                          onTap: (){
-                           print("open sheet");
+                           debugPrint("open sheet");
                            Get.bottomSheet(
                              SheetAddDayDetails(onSave: (start,end,visitsCount){
-                               print(start);
-                               print(end);
-                               print(visitsCount);
+                               debugPrint(start);
+                               debugPrint(end);
+                               debugPrint(visitsCount);
                                DayTimeModel dayTimeModel = DayTimeModel(
                                    id: 0,
                                    startTime: start,

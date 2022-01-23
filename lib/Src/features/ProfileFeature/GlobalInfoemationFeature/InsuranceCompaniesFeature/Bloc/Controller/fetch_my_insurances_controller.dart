@@ -4,6 +4,7 @@ import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/InsuranceCompaniesFeature/Bloc/Repo/delete_insurance_repo.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/InsuranceCompaniesFeature/Bloc/Repo/fetch_my_insurances_repo.dart';
 import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class FetchMyInsurancesController extends GetxController {
@@ -18,16 +19,19 @@ class FetchMyInsurancesController extends GetxController {
 status = RequestStatus.loading;
     var response = await _fetchMyInsurancesRepository.fetchMyInsurances();
     if (response.statusCode == 200 && response.data["status"] == true) {
-      print("request operation success");
+      debugPrint("request operation success");
       _myInsuranceList.clear();
       for (var item in response.data['data']) {
         _myInsuranceList.add(InsuranceModel.fromJson(item));
       }
-      print("convert operation success");
+      debugPrint("convert operation success");
+      debugPrint("response.data is ${response.data}");
+
       status = RequestStatus.done;
       update();
     } else {
       status = RequestStatus.error;
+      debugPrint("response.data is ${response.data}");
       update();
     }
   }
@@ -38,11 +42,11 @@ status = RequestStatus.loading;
     var response = await _deleteInsurancesRepository.deleteInsurances(insuranceId: insuranceId);
     Get.back();
     if (response.statusCode == 200 && response.data["status"] == true) {
-      print("request operation success");
+      debugPrint("request operation success");
       // _myInsuranceList.removeAt(index);
       fetchMyInsurances();
       customSnackBar(title: response.data["message"]??"Error");
-      print("convert operation success");
+      debugPrint("convert operation success");
       status = RequestStatus.done;
       update();
     } else {

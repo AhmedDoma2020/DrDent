@@ -95,7 +95,7 @@ class _SheetAddDayDetailsState extends State<SheetAddDayDetails> {
                       GestureDetector(
                         onTap: (){
                           _show(context: context,onOk: (value){
-                            print(value);
+                            debugPrint(value);
                             if(value!=null){
                               setState(() {
                                 startDateController!.text = value;
@@ -122,7 +122,7 @@ class _SheetAddDayDetailsState extends State<SheetAddDayDetails> {
                       GestureDetector(
                         onTap: (){
                           _show(context: context,onOk: (value){
-                            print(value);
+                            debugPrint(value);
                             if(value!=null){
                               setState(() {
                                 endDateController!.text = value;

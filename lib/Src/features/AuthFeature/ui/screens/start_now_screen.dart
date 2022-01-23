@@ -16,7 +16,7 @@ class StartNowScreen extends StatelessWidget {
           subTitle: "start_now_sub_title",
           titleButton: "start_now",
           onTapButton: () {
-            Get.to(()=>SetDetectionLocationDetailsScreen() );
+            Get.to(()=>SetDetectionLocationDetailsScreen(isAuth: true,));
           },
         ),
       ),

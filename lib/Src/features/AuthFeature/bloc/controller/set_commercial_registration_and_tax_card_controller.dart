@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:dr_dent/Src/features/AuthFeature/ui/screens/start_now_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/features/AuthFeature/bloc/repository/set_commercial_registration_and_tax_card_repo.dart';
@@ -50,8 +51,8 @@ class SetCommercialRegistrationAndTaxCardController extends GetxController {
         update();
         if (response.statusCode == 200 && response.data["status"] == true) {
           // Get.to(() => WattingScreen());
+          Get.offAll(()=> StartNowScreen());
           customSnackBar(title: response.data['message']??"");
-
         } else {
           customSnackBar(title: response.data['message']??"");
         }

@@ -2,6 +2,7 @@ import 'package:dr_dent/Src/bloc/model/specialization_model.dart';
 import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/AuthFeature/bloc/repository/fetch_specialization_repo.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class FetchSpecializationController extends GetxController {
@@ -36,12 +37,12 @@ class FetchSpecializationController extends GetxController {
     var response = await _fetchSpecializationRepository.fetchSpecialization();
     // Get.back();
     if (response.statusCode == 200 && response.data["status"] == true) {
-      print("request operation success");
+      debugPrint("request operation success");
       _specializationList.clear();
       for (var item in response.data['data']) {
         _specializationList.add(SpecializationModel.fromJson(item));
       }
-      print("convert operation success");
+      debugPrint("convert operation success");
       status = RequestStatus.done;
       update();
     } else {

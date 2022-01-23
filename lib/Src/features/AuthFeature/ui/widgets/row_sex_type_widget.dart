@@ -35,7 +35,7 @@ class _RowGenderWidgetState extends State<RowGenderWidget> {
                   value: types[0].val,
                   onChanged: (dynamic value){
                     setState(() {
-                      print(value);
+                      debugPrint(value);
                       userInPutType = value;
                       widget.onTap(value);
                       // _.estGender = userInPutType;
@@ -55,7 +55,7 @@ class _RowGenderWidgetState extends State<RowGenderWidget> {
                   value: types[1].val,
                   onChanged: (dynamic value){
                     setState(() {
-                      print(value);
+                      debugPrint(value);
                       userInPutType = value;
                       widget.onTap(value);
                       // _.estGender = userInPutType;

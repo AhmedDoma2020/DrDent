@@ -19,7 +19,7 @@
 //         },
 //         verificationFailed: (FirebaseAuthException e) {
 //           if (e.code == 'invalid-phone-number') {
-//             print('The provided phone number is not valid.');
+//             debugPrint('The provided phone number is not valid.');
 //           }
 //          // if(e != null){
 //          //   if(e.toString().contains("The SMS verification code used to create the phone auth credential is invalid")){
@@ -30,7 +30,7 @@
 //         },
 //         codeSent: (String verificationId, int? resendToken) {
 //           Get.back(); // to remove loading when code sent
-//           print("code sent");
+//           debugPrint("code sent");
 //           Get.offAll( VerificationScreen(
 //             phone: phone,
 //             validationCode: verificationId,
@@ -41,10 +41,10 @@
 //               var user = result.user;
 //               Get.back();
 //               if (user != null){
-//                 print("success verfication");
+//                 debugPrint("success verfication");
 //                 onSuccess!();
 //               } else {
-//                 print("an error occur");
+//                 debugPrint("an error occur");
 //               }
 //             },
 //           ));

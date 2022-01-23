@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:convert';
 import 'package:dr_dent/Src/core/services/dialogs.dart';
+import 'package:dr_dent/Src/features/AuthFeature/ui/screens/enter_my_personal_data_screen.dart';
 import '../Repository/set_detection_location_details_repo.dart';
 import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,13 +10,19 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-class DetectionLocationDetailsController extends GetxController {
+import 'featch_detection_location_details_controller.dart';
+
+class SetDetectionLocationDetailsController extends GetxController {
+  final bool isAuth;
+
+
+  SetDetectionLocationDetailsController({this.isAuth=false});
+
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
   TextEditingController? phone1Controller;
   TextEditingController? phone2Controller;
   TextEditingController? nameController;
   TextEditingController? priceExaminationController;
-
   final GlobalKey<FormState> globalKey2 = GlobalKey<FormState>();
   TextEditingController? addressController = TextEditingController();
   TextEditingController? cityController = TextEditingController();
@@ -60,8 +67,8 @@ class DetectionLocationDetailsController extends GetxController {
     _img64 = value;
   }
 
-  final DetectionLocationDetailsRepository _detectionLocationDetailsRepository =
-      DetectionLocationDetailsRepository();
+  final DetectionLocationDetailsRepository _detectionLocationDetailsRepository = DetectionLocationDetailsRepository();
+  final FetchDetectionLocationDetailsController _fetchDetectionLocationDetailsController = FetchDetectionLocationDetailsController();
 
   void submitEnd() async {
     if (globalKey.currentState!.validate()) {
@@ -84,7 +91,21 @@ class DetectionLocationDetailsController extends GetxController {
           image: _img64!,
         );
         Get.back();
-        customSnackBar(title: response.data["message"]);
+        if(response.statusCode == 200 && response.data["status"] == true){
+          if(isAuth == true){
+            Get.to(() => EnterMyPersonalDataScreen());
+          }else{
+            // Get.to(() => DetectionLocationDetailsScreen());
+            _fetchDetectionLocationDetailsController.fetchMyDetectionLocationDetails();
+            Get.back();
+            update();
+          }
+          customSnackBar(title: response.data["message"]);
+          update();
+        }else{
+          customSnackBar(title: response.data["message"]);
+          update();
+        }
       }else{
         customSnackBar(title: "must_set_photo_of_clinic_or_center".tr);
       }

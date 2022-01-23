@@ -15,11 +15,9 @@ import '/src/core/utils/extensions.dart';
 class AddServicesSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Get.put(FetchAvailableInsurancesController());
-    SetServicesController _setServicesController =
         Get.put(SetServicesController());
-    Get.put(FetchAvailableServicesController());
-    var node = FocusScope.of(context);
+        Get.put(FetchAvailableServicesController());
+        var node = FocusScope.of(context);
     return Material(
       borderRadius: BorderRadius.only(
         topLeft: Radius.circular(19.r),
@@ -52,9 +50,8 @@ class AddServicesSheet extends StatelessWidget {
                         16.0.ESH(),
                         InkWell(
                           onTap: () {
-                            print("ahooooooooooooo");
-                            Get.bottomSheet(ServicesButtonSheet(),
-                                isScrollControlled: true);
+                            debugPrint("ahooooooooooooo");
+                            Get.bottomSheet(AvailableServicesButtonSheet(), isScrollControlled: true);
                           },
                           child: TextFieldDefault(
                             hint: 'services_type'.tr,

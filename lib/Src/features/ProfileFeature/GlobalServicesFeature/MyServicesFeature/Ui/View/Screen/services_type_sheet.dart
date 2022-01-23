@@ -11,11 +11,9 @@ import 'package:get/get.dart';
 
 import '/src/core/utils/extensions.dart';
 
-class ServicesButtonSheet extends StatelessWidget {
+class AvailableServicesButtonSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    FetchAvailableServicesController _fetchAvailableServicesController =
-        Get.put(FetchAvailableServicesController());
     return Align(
       alignment: Alignment.bottomCenter,
       child: Material(
@@ -49,15 +47,15 @@ class ServicesButtonSheet extends StatelessWidget {
                     shrinkWrap: true,
                     itemBuilder: (context, index) => GetBuilder<SetServicesController>(
                       builder:(setServiceType) =>  InkWell(
-                        onTap: (){
+                        onTap:_.availableServicesList[index].selected == 1?(){}: (){
                           _.changeSIndex(index);
-                          setServiceType.servicesTypeSelectedController!.text=_.servicesList[index].title.toString();
-                          setServiceType.setServicesId=_.servicesList[index].id;
+                          setServiceType.servicesTypeSelectedController!.text=_.availableServicesList[index].title.toString();
+                          setServiceType.setServicesId=_.availableServicesList[index].id;
                           Get.back();
                         },
                         child: SingleChoseRowForm(
-                          title:_.servicesList[index].title,
-                          isSelected: _.daySIndex == index,
+                          title:_.availableServicesList[index].title,
+                          isSelected: _.availableServicesList[index].selected == 1 ,
                         ),
                       ),
                     ),
@@ -65,7 +63,7 @@ class ServicesButtonSheet extends StatelessWidget {
                       height: 2.h,
                       color: kCTFEnableBorder,
                     ),
-                    itemCount: _.servicesList.length,
+                    itemCount: _.availableServicesList.length,
                   ),
                 ),
               ],

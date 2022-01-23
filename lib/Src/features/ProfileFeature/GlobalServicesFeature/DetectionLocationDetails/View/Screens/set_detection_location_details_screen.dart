@@ -14,44 +14,44 @@ import 'package:get/get.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
 class SetDetectionLocationDetailsScreen extends StatelessWidget {
-  final String? name;
-  final String? phone;
-  final String? phone2;
-  final String? price;
-  final String? address;
-  final double? lat;
-  final double? lon;
-  final int? stateId;
-  final int? cityId;
+  // final String? name;
+  // final String? phone;
+  // final String? phone2;
+  // final String? price;
+  // final String? address;
+  // final double? lat;
+  // final double? lon;
+  // final int? stateId;
+  // final int? cityId;
+  final bool isAuth;
   SetDetectionLocationDetailsScreen(
-      {this.name,
-        this.phone,
-        this.phone2,
-        this.price,
-        this.address,
-        this.lat,
-        this.lon,
-        this.stateId,
-        this.cityId,
+      {
+        // this.name,
+        // this.phone,
+        // this.phone2,
+        // this.price,
+        // this.address,
+        // this.lat,
+        // this.lon,
+        // this.stateId,
+        // this.cityId,
+        this.isAuth = false ,
       });
 
   @override
   Widget build(BuildContext context) {
-    DetectionLocationDetailsController _detectionLocationDetailsController =
-    Get.put(DetectionLocationDetailsController());
+    SetDetectionLocationDetailsController _detectionLocationDetailsController =
+    Get.put(SetDetectionLocationDetailsController(isAuth: isAuth));
     var node = FocusScope.of(context);
     return SafeArea(
       child: Scaffold(
         appBar: AppBars.appBarSkipDefault(
             title: "Detection_location_details".tr,
-            onTapBack: () {
-              // Get.back();
-            },
-            isBack: false,
-            onTapSkip: () {
-              Get.to(() => EnterMyPersonalDataScreen());
-            }),
-        body: GetBuilder<DetectionLocationDetailsController>(
+            onTapBack: () {Get.back();},
+            isBack: isAuth ==true ? false:true,
+            isSkip: isAuth ==true ? true:false,
+            onTapSkip: () {Get.to(() => EnterMyPersonalDataScreen());}),
+        body: GetBuilder<SetDetectionLocationDetailsController>(
           builder: (_) => Container(
             padding: EdgeInsets.symmetric(horizontal: 24.w),
             height: double.infinity,

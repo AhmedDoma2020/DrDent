@@ -109,7 +109,7 @@ class DetectionLocationDetailsWidget extends StatelessWidget {
                         SizedBox(
                           width: 124.w,
                           child: CustomText(
-                            text: model.address,
+                            text: model.address.address,
                             fontW: FW.semicond,
                             overflow: true,
                             maxLines: 1,
@@ -124,7 +124,7 @@ class DetectionLocationDetailsWidget extends StatelessWidget {
           ),
           Row(
             children: [
-              EditWidget(onEditTap: onEditTap),
+              // EditWidget(onEditTap: onEditTap),
               DeleteWidget(onDeleteTap: onDeleteTap),
             ],
           ),

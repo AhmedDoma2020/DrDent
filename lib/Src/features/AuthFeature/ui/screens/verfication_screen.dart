@@ -120,7 +120,7 @@ class VerificationScreen extends StatelessWidget {
       try {
         await onSuccess!(validationCode,_verficationController.textEditingController!.text);
       } catch (e) {
-        // print(e);
+        // debugPrint(e);
         Get.back();
         Get.back();
         customSnackBar(title:  e.toString().contains("The SMS verification code used to create the phone auth credential is invalid")?
@@ -140,7 +140,7 @@ class VerificationScreen extends StatelessWidget {
         //       "حدث خطا ما",
         //       subtitle: "حاول مرة اخري",
         //     ));
-        print(e);
+        // debugPrint(e);
       }
     }
   }

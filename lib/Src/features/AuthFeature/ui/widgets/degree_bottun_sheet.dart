@@ -50,9 +50,11 @@ class DegreeButtonSheet extends StatelessWidget {
                               shrinkWrap: true,
                               itemBuilder: (context, index) => InkWell(
                                 onTap: (){
+                                  debugPrint("a1");
                                   _.changeSIndex(index);
+                                  debugPrint("a2");
                                   onTap(_.scientificList[index].title ,_.scientificList[index].id );
-                                  Get.back();
+                                  // Get.back();
                                 },
                                 child: RowDegreeForm(
                                   scientificModel: _.scientificList[index],

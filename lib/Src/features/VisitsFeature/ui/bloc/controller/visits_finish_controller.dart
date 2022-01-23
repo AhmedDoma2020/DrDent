@@ -19,14 +19,14 @@ class VisitsFinishController extends GetxController{
     // TODO unComment this lines
     var response = await _fetchFinishVisitsRepository.fetchFinishVisits();
     if (response.statusCode == 200 && response.data["status"] == true) {
-      print("request operation success");
+      debugPrint("request operation success");
       if(response.data['data']!=null){
         visits.clear();
         for (var item in response.data['data']) {
           visits.add(Visit.fromJson(item));
         }
       }
-      print("convert operation success");
+      debugPrint("convert operation success");
       status = RequestStatus.done;
       update();
     }else{

@@ -29,12 +29,12 @@ class FetchJobTitleAndSpecializationController extends GetxController {
     // var response =
     //     await _fetchJobTitleAndSpecializationRepository.fetchJobTitleAndSpecialization();
     // if (response.statusCode == 200 && response.data["status"] == true) {
-    //   print("request operation success");
+    //   debugPrint("request operation success");
     //   _jobTitleAndSpecializationList.clear();
     //   for (var item in response.data['data']) {
     //     _jobTitleAndSpecializationList.add(ChoiceModel.fromJson(item));
     //   }
-    //   print("convert operation success");
+    //   debugPrint("convert operation success");
     //   status = RequestStatus.done;
     //   update();
     // } else {

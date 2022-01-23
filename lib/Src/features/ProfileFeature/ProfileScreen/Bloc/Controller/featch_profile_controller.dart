@@ -10,9 +10,10 @@ import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyServ
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyServicesFeature/Block/Repo/fetch_my_services_repo.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Bloc/Repo/featch_profile_repo.dart';
 import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-class FetchProfileDoctorController extends GetxController {
+class FetchProfileController extends GetxController {
     String? _phone;
     String? _name;
     String? _avatar;
@@ -49,7 +50,7 @@ class FetchProfileDoctorController extends GetxController {
     status = RequestStatus.done;
     update();
     if (response.statusCode == 200 && response.data["status"] == true) {
-      print("request operation success");
+      debugPrint("request operation success");
       _phone = response.data['data']['phone']??"";
       _name = response.data['data']['name']??"";
       _avatar = response.data['data']['image']??"";
@@ -68,7 +69,7 @@ class FetchProfileDoctorController extends GetxController {
       _followersNum = response.data['data']['followers_number']??0;
       _followingNum = response.data['data']['followings_number']??0;
       _gender = response.data['data']['gender']??0;
-      print("convert operation success");
+      debugPrint("convert operation success");
       status = RequestStatus.done;
       update();
     } else {
