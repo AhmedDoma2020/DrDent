@@ -9,7 +9,8 @@ import '/src/core/utils/extensions.dart';
 class CommentWidget extends StatelessWidget {
   final CommentModel comment;
   final bool subComment;
-  const CommentWidget({Key? key,this.subComment=false,required this.comment}) : super(key: key);
+  final VoidCallback? onLike;
+  const CommentWidget({Key? key,this.subComment=false,required this.comment, this.onLike}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -77,9 +78,7 @@ class CommentWidget extends StatelessWidget {
                       ),
                       6.0.ESW(),
                       GestureDetector(
-                        onTap:(){
-
-                        },
+                        onTap:onLike??(){},
                         child: CustomText(
                           text: 'اعحبني',
                           color: kCMainBlack2,

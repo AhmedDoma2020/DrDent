@@ -10,6 +10,10 @@ class CommentModel{
   List<CommentModel>? comments;
 
 
+  int? likeNumbers;
+  int? like;
+
+
   CommentModel({this.id, this.userName, this.userImage, this.userId,
     this.likesCount, this.comment, this.comments});
 
@@ -20,6 +24,8 @@ class CommentModel{
     userName = map['user_name']??' ';
     userImage = map['user_image']??' ';
     comment = map['comment']??' ';
+    like = map['like']??0;
+    likeNumbers = map['like_numbers']??0;
     comments = [];
   }
 }

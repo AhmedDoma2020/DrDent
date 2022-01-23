@@ -38,10 +38,13 @@ class AllProductsScreen extends StatelessWidget {
                Expanded(
               child:
               _.status != RequestStatus.done?
-              Center(child: Loader(),):
-              !_.isGrid?
-              ListCardProductRect(products: _.products,):
-              GridCardProduct(products: _.products,),
+              Center(child: Loader(),):AnimatedContainer(
+                  duration: Duration(milliseconds: 500),
+                   curve: Curves.easeIn,
+                   child: !_.isGrid?
+                   ListCardProductRect(products: _.products,):
+                   GridCardProduct(products: _.products,),
+              )
               )
             ],
           ),

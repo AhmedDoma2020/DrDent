@@ -12,7 +12,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PostWidget extends StatelessWidget {
   final PostModel post;
-  const PostWidget({Key? key,required this.post}) : super(key: key);
+  final VoidCallback onLike;
+  const PostWidget({Key? key,required this.post,required this.onLike}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -60,9 +61,15 @@ class PostWidget extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                    PostStatics(icon: 'like.png', count: '${post.likesNumber!}'),
+                    PostStatics(
+                      icon: 'like.png',
+                      count: '${post.likesNumber!}',
+                      onTap: (){onLike();},
+                      iconColor: post.like==1?kCMain:kCMainGrey,
+                    ),
                    30.0.ESW(),
-                    PostStatics(icon: 'comment.png',
+                    PostStatics(
+                      icon: 'comment.png',
                         count: '${post.commentsNumber!}',
                         onTap: (){
                           Get.to(()=>CommentsScreen(post: post,));
