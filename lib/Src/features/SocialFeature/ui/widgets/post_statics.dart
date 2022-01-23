@@ -9,7 +9,8 @@ class PostStatics extends StatelessWidget {
   final String icon;
   final String count;
   final VoidCallback? onTap;
-  const PostStatics({Key? key,this.onTap,required this.icon , required this.count}) : super(key: key);
+  final Color iconColor;
+  const PostStatics({Key? key,this.onTap,required this.icon , required this.count,this.iconColor=kCMainGrey}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class PostStatics extends StatelessWidget {
         children: [
           Image.asset(
             'assets/icons/${icon}',
-            color: kCMainGrey,
+            color: iconColor,
             height: 20.h,
           ),
           7.0.ESW(),

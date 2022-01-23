@@ -42,7 +42,6 @@ class WorkTimeScreen extends StatelessWidget {
                           enable: false,
                           errorText: 'يجب اختيار نوع استقبال الحجوزات',
                           horizentalPadding: 0,
-
                           suffixIconData: Icons.keyboard_arrow_down_outlined,
                         ),
                         15.0.ESH(),
@@ -51,7 +50,6 @@ class WorkTimeScreen extends StatelessWidget {
                           errorText: 'يجب ادخال مدة الكشف',
                           horizentalPadding: 0,
                           controller: _.detectionTime,
-
                         ),
                         32.0.ESH(),
                         IconTitleRow(title: 'ساعات العمل',icon: 'hours.png',),

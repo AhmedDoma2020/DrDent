@@ -13,9 +13,10 @@ class PostModel{
   int? shareNumber;
   List<String>? images;
   List<ServiceModel>? services;
+  int? like;
 
   PostModel({this.id, this.ownerId, this.ownerName, this.ownerImage, this.content,
-    this.likesNumber,this.services, this.commentsNumber, this.shareNumber, this.images});
+    this.likesNumber,this.services, this.commentsNumber, this.shareNumber, this.images,this.like,this.date});
 
   PostModel.fromJson(Map<String,dynamic> map){
     id = map['id']??0;
@@ -27,6 +28,7 @@ class PostModel{
     likesNumber = map['likes_number']??0;
     commentsNumber = map['commentsNumber']??0;
     shareNumber = map['shareNumber']??0;
+    like = map['like']??0;
     images = map['images']!=null ? map['images'].cast<String>():[];
     services = [];
   }

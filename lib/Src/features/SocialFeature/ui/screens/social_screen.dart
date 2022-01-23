@@ -18,7 +18,12 @@ class SocialScreen extends StatelessWidget {
           _.status != RequestStatus.done?
               Center(child: Loader(),):
           ListView.separated(
-        itemBuilder: (context, index) => PostWidget(post: _.posts[index],),
+        itemBuilder: (context, index) => PostWidget(
+          post: _.posts[index],
+          onLike: (){
+            _.likePost(postId:_.posts[index].id!);
+          },
+        ),
         separatorBuilder: (context, index) => 16.0.ESH(),
         itemCount: _.posts.length,
         shrinkWrap: true,
