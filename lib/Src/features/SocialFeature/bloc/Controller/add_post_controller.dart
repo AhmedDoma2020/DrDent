@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dr_dent/Src/bloc/model/item_of_share_model.dart';
+import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/SocialFeature/bloc/Repository/add_post_repo.dart';
 import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
@@ -23,6 +24,25 @@ class AddPostController extends GetxController  {
   String get shareWithButtonTitle => _shareWithButtonTitle;
 
 final AddPostRepository _addPostRepository =AddPostRepository();
+
+
+ //  Future<void> addPost()async{
+ //    debugPrint('contentController in add post is ${ contentController!.text}');
+ //    debugPrint('img64 in add post is ${ img64!}');
+ //    debugPrint('shareItemsIdsSelected in add post is $_shareItemsIdsSelected');
+ //    setLoading();
+ //   var response = await _addPostRepository.addPost(content: contentController!.text, images: img64!, tags: _shareItemsIdsSelected);
+ //   Get.back();
+ //   if(response.statusCode == 200 && response.data['message'] == true){
+ //     debugPrint('response in add post is $response');
+ //     customSnackBar(title: response.data["message"] ?? "Error");
+ //     update();
+ //   }else{
+ //     debugPrint('response in add post is $response');
+ //     customSnackBar(title: response.data["message"] ?? "Error");
+ //     update();
+ //   }
+ // }
 
 
   File? image;
@@ -93,25 +113,33 @@ final AddPostRepository _addPostRepository =AddPostRepository();
       debugPrint("field picked image $e");
     }
   }
+  void setContentController(val){
+    contentController!.text=val;
+    update();
+  }
 
   void submit() async {
     debugPrint("img64 $img64");
-    debugPrint("contentController!.text ${contentController!.text}");
+    debugPrint("contentController ${contentController!.text}");
+    debugPrint("shareItemsIdsSelected $_shareItemsIdsSelected");
     if(img64 != null || contentController!.text.isNotEmpty){
-      // setLoadingDialog();
+      setLoading();
       var response = await  _addPostRepository.addPost(content: contentController!.text, images: img64!, tags: _shareItemsIdsSelected);
+      Get.back();
       if (response.statusCode == 200 && response.data["status"] == true) {
         debugPrint("request operation success");
-
+          debugPrint('response in add post is $response');
         debugPrint("convert operation success");
         status = RequestStatus.done;
         update();
       } else {
+        debugPrint('response in add post is $response');
         status = RequestStatus.error;
         update();
       }
     }else{
       customSnackBar(title: "must_attach_your_avatar".tr,);
+      update();
     }
   }
 

@@ -34,10 +34,11 @@ class AddPostScreen extends StatelessWidget {
                   height: 48,
                   radius: 6,
                   title: 'publishing_'.tr,
+                  buttonColor: _.img64 != null || _.contentController!.text.isNotEmpty ?kCActiveButton:kCActiveButton.withOpacity(0.3),
                   titleSize: 13,
-                  onTap: () {
+                  onTap: _.img64 != null || _.contentController!.text.isNotEmpty ? () {
                     _.submit();
-                  },
+                  }:(){},
                 ),
               ),
             ),
@@ -64,6 +65,10 @@ class AddPostScreen extends StatelessWidget {
                             enableBorder:  Colors.transparent,
                             maxLines: 3,
                             horizentalPadding: 16,
+                            onChanged: (val){
+                              // _.setContentController(val);
+                              _.setContentController(val);
+                            },
                             onComplete: () {
                               node.unfocus();
                             },

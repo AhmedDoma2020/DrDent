@@ -181,11 +181,12 @@ class MyOfferAndDiscountRow extends StatelessWidget {
                   ),
                   Padding(
                     padding:
-                        EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+                        EdgeInsets.symmetric(vertical: 10.h),
                     child: Align(
                       alignment: Alignment.topLeft,
                       child: SizedBox(
-                        width: 68.w,
+                        // color: Colors.yellow,
+                        width: 84.w,
                         child: Row(
                           children: [
                             EditWidget(onEditTap: onEditTap),

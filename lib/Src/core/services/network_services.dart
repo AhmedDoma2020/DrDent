@@ -9,7 +9,8 @@ class NetworkService with ApiKey{
   Dio dio = Dio();
   GetStorage box = GetStorage();
   String apiTokenStatic ='\$2y\$10\$MAVyBbLcXlsRZ6Geb7c.8e/O9yYVhT0QuT//oMASxJGRDobz6e9em';
-  Future<Response> get({@required String? url, Map<String , String>? headers,bool auth = false}) async {
+
+  Future<Response> get({@required String? url, Map<String , String>? headers, bool auth = false }) async {
     Response? response;
     String apiToken =box.read("api_token")??apiTokenStatic;
     log("log apiToken in netWork >>>>>>>>>:-> $apiToken");
@@ -34,6 +35,8 @@ class NetworkService with ApiKey{
     }
     return handleResponse(response!);
   }
+
+
   Future<Response> post({@required String? url,
     Map<String , String>? headers, Map<String , dynamic>? body,bool auth = false}) async {
     Response? response;
