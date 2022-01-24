@@ -24,13 +24,13 @@ class _SelectOfferDurationWidgetState extends State<SelectOfferDurationWidget> {
     String _selectedDate = '';
     String _dateCount = '';
     String _range =
-        "${DateFormat('dd/MM/yyyy').format(DateTime.now())} ${"To_".tr} ${DateFormat('dd/MM/yyyy').format(DateTime.now().add(const Duration(days: 7)))}";
+        "${DateFormat('yyyy-MM-dd').format(DateTime.now())} ${"To_".tr} ${DateFormat('yyyy-MM-dd').format(DateTime.now().add(const Duration(days: 7)))}";
     String _rangeCount = '';
     // DateRangePickerSelectionChangedArgs argsIns = DateRangePickerSelectionChangedArgs(DateTime.now());
-    String _startDate = DateFormat('yyyy/MM/dd').format(DateTime.now());
+    String _startDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
     DateTime _startDateTime = DateTime.now();
     // DateTime _startDateTime2 = DateTime.now();
-    String _endDate = DateFormat('yyyy/MM/dd').format(DateTime.now().add(const Duration(days: 7)));
+    String _endDate = DateFormat('yyyy-MM-dd').format(DateTime.now().add(const Duration(days: 7)));
     DateTime _endDateTime = DateTime.now().add(const Duration(days: 7));
     // DateTime _endDateTime2 = DateTime.now().add(const Duration(days: 7));
     // DateRangePickerController? dateRangePickerController  = DateRangePickerController();
@@ -50,13 +50,13 @@ class _SelectOfferDurationWidgetState extends State<SelectOfferDurationWidget> {
       setState(() {
         if (args.value is PickerDateRange) {
           _range =
-              '${DateFormat('dd/MM/yyyy').format(args.value.startDate)} ${"To_".tr} ${DateFormat('dd/MM/yyyy').format(args.value.endDate ?? args.value.startDate)}';
-          _startDate = DateFormat('yyyy/MM/dd').format(args.value.startDate);
+              '${DateFormat('yyyy-MM-dd').format(args.value.startDate)} ${"To_".tr} ${DateFormat('yyyy-MM-dd').format(args.value.endDate ?? args.value.startDate)}';
+          _startDate = DateFormat('yyyy-MM-dd').format(args.value.startDate);
           _startDateTime = args.value.startDate;
           // _startDateTime2 = _startDateTime;
           // dateRangePickerController.selectedRange!.startDate=args.value.startDate;
           // dateRangePickerController.selectedRange!.endDate=args.value.endDate;
-          _endDate = DateFormat('yyyy/MM/dd')
+          _endDate = DateFormat('yyyy-MM-dd')
               .format(args.value.endDate ?? args.value.startDate);
           _endDateTime = args.value.endDate ?? args.value.startDate;
           // _endDateTime2 = _endDateTime;

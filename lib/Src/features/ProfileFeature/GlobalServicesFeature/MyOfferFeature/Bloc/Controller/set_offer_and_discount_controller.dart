@@ -55,60 +55,63 @@ class SetOfferAndDiscountController extends GetxController {
       if (imageController!.text.isEmpty) {
         customSnackBar(title: "must_be_set_photo".tr);
       } else {
-        _setOfferAndDiscountRepository.setOfferAndDiscount(
-          title: nameController!.text,
-          startDate: _startOfferDuration,
-          endDate: _endOfferDuration,
-          price:priceController!.text,
+       // var response = await _setOfferAndDiscountRepository.setOfferAndDiscount(
+       //    title: nameController!.text,
+       //    startDate: _startOfferDuration,
+       //    endDate: _endOfferDuration,
+       //    price:priceController!.text,
+       //    priceAfterOffer: priceAfterDiscountController!.text,
+       //    offerInfo: offerInfoController!.text,
+       //    bookingInfo: bookingInfoController!.text,
+       //    image: imageController!.text,
+       //    serviceIds: _servicesIdSelectedList,
+       //  );
+        // OfferAndDiscountModel newOfferAndDiscount = OfferAndDiscountModel(
+        //   offerStatus: 0,
+        //   ownerName: "مركز وايتي كلينيك",
+        //   name: nameController!.text,
+        //   price: priceController!.text,
+        //   id: 0,
+        //   offerInfo: offerInfoController!.text,
+        //   endDate: _endOfferDuration,
+        //   bookingInfo: bookingInfoController!.text,
+        //   image: imageController!.text,
+        //   priceAfterDiscount: priceAfterDiscountController!.text,
+        //   services: [],
+        //   startDate: _startOfferDuration,
+        // );
+        // _fetchMyOfferAndDiscountController
+        //     .addOfferAndDiscountLocal(newOfferAndDiscount);
+        // update();
+        // Get.back();
+
+
+        setLoading();
+        var response = await _setOfferAndDiscountRepository.setOfferAndDiscount(
+          title:  nameController!.text,
+          startDate:  _startOfferDuration,
+          endDate:_endOfferDuration,
+          price:  priceController!.text,
           priceAfterOffer: priceAfterDiscountController!.text,
           offerInfo: offerInfoController!.text,
           bookingInfo: bookingInfoController!.text,
-          image: imageController!.text,
+          image:  imageController!.text,
           serviceIds: _servicesIdSelectedList,
         );
-        OfferAndDiscountModel newOfferAndDiscount = OfferAndDiscountModel(
-          offerStatus: 0,
-          ownerName: "مركز وايتي كلينيك",
-          name: nameController!.text,
-          price: priceController!.text,
-          id: 0,
-          offerInfo: offerInfoController!.text,
-          endDate: _endOfferDuration,
-          bookingInfo: bookingInfoController!.text,
-          image: imageController!.text,
-          priceAfterDiscount: priceAfterDiscountController!.text,
-          services: [],
-          startDate: _startOfferDuration,
-        );
-        _fetchMyOfferAndDiscountController
-            .addOfferAndDiscountLocal(newOfferAndDiscount);
-        update();
-        // Get.back();
-        // setLoading();
-        // var response = await _setOfferAndDiscountRepository.setOfferAndDiscount(
-        //   title:  nameController!.text,
-        //   startDate:  _startOfferDuration,
-        //   endDate:_endOfferDuration,
-        //   price:  priceController!.text,
-        //   priceAfterOffer: priceAfterDiscountController!.text,
-        //   offerInfo: offerInfoController!.text,
-        //   bookingInfo: bookingInfoController!.text,
-        //   image:  imageController!.text,
-        //   serviceIds: _servicesIdSelectedList,
-        // );
-        // Get.back();
-        // if (response.statusCode == 200 && response.data["status"] == true) {
-        //   debugPrint("request operation success");
-        //   customSnackBar(title: response.data["message"] ?? "Done");
-        //   debugPrint("convert operation success");
-        //   status = RequestStatus.done;
-        //   update();
-        //   customSnackBar(title: "delete_success".tr);
-        // } else {
-        //   status = RequestStatus.error;
-        //   customSnackBar(title: response.data["message"] ?? "Error");
-        //   update();
-        // }
+        Get.back();
+        if (response.statusCode == 200 && response.data["status"] == true) {
+          debugPrint("request operation success");
+          debugPrint("response in set offer is $response");
+          customSnackBar(title: response.data["message"] ?? "Done");
+          // _fetchMyOfferAndDiscountController.fetchOfferAndDiscount();
+          debugPrint("convert operation success");
+          status = RequestStatus.done;
+          update();
+        } else {
+          status = RequestStatus.error;
+          customSnackBar(title: response.data["message"] ?? "Error");
+          update();
+        }
       }
     }
   }

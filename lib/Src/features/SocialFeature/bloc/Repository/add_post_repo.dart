@@ -9,7 +9,7 @@ import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
 
 class AddPostRepository with ApiKey {
   // GetStorage box = GetStorage();
-  NetworkService _networkService = NetworkService();
+  final NetworkService _networkService = NetworkService();
   Future<Response> addPost({
     required String content,
     required String images,
@@ -18,12 +18,12 @@ class AddPostRepository with ApiKey {
     Response response;
     try {
       response = await _networkService.post(
-          url: uRLEnterAndEditMyPersonalData,
+          url: uRLAddPost,
           auth: true,
           body: {
             'content':content,
             'images':images,
-            'tags':tags,
+            'tag_ids':tags,
           }
       );
     } on SocketException {

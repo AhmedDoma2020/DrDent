@@ -60,13 +60,14 @@ class _CenterDoctorWidgetState extends State<CenterDoctorWidget> {
                       ),
                     ),
                   ),
+                  6.0.ESW(),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Container(
                           constraints:
-                              BoxConstraints(maxWidth: 160.w, minWidth: 120.w),
+                              BoxConstraints(maxWidth: 144.w, minWidth: 120.w),
                           // color: Colors.yellow,
                           child: CustomText(
                             text: widget.doctor.name,
@@ -77,7 +78,7 @@ class _CenterDoctorWidgetState extends State<CenterDoctorWidget> {
                       Container(
                           // width: 200.w,
                           constraints:
-                              BoxConstraints(maxWidth: 160.w, minWidth: 120.w),
+                              BoxConstraints(maxWidth: 144.w, minWidth: 120.w),
                           // color: Colors.yellow,
                           child: CustomText(
                             text: widget.doctor.specialization.join(","),
@@ -94,8 +95,8 @@ class _CenterDoctorWidgetState extends State<CenterDoctorWidget> {
                           ),
                           8.0.ESW(),
                           Container(
-                              width: 40.w,
-                              // constraints: BoxConstraints(maxWidth: 200.w, minWidth: 120.w),
+                              // width: 40.w,
+                              constraints: BoxConstraints(maxWidth: 60.w, minWidth: 50.w),
                               // color: Colors.yellow,
                               child: CustomText(
                                 text: "${"price_examination".tr}:",
