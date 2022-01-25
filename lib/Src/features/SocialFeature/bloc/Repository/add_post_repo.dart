@@ -12,8 +12,8 @@ class AddPostRepository with ApiKey {
   final NetworkService _networkService = NetworkService();
   Future<Response> addPost({
     required String content,
-    required String images,
-    required List<int> tags,
+    required List<String> images,
+    required List<int> userTypeIds,
   }) async {
     Response response;
     try {
@@ -23,11 +23,13 @@ class AddPostRepository with ApiKey {
           body: {
             'content':content,
             'images':images,
-            'tag_ids':tags,
+            'user_type_ids':userTypeIds,
+            'tag_ids':[],
+            'service_ids':[],
           }
       );
     } on SocketException {
-      throw SocketException('No Internet Connection');
+      throw const SocketException('No Internet Connection');
     } on Exception {
       throw UnKnownException('there is unKnown Exception');
     } catch (e) {

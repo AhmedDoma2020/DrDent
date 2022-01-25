@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:dr_dent/Src/core/constants/api_key.dart';
 import 'package:dr_dent/Src/core/services/network_services.dart';
 import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
+import 'package:flutter/cupertino.dart';
 
 class AddAJopOfferRepository with ApiKey {
   // GetStorage box = GetStorage();
@@ -13,7 +14,7 @@ class AddAJopOfferRepository with ApiKey {
     required String ownerName,
     required String phone,
     required String address,
-    required String scientificLevel,
+    required int scientificLevel,
     required List<int> specializationId,
     required double startSalary,
     required double endSalary,
@@ -22,19 +23,21 @@ class AddAJopOfferRepository with ApiKey {
     required List<String> requirements,
   }) async {
     Response response;
+    debugPrint("scientificLevel $scientificLevel");
     try {
       response = await _networkService.post(
-        url: uRLEnterAndEditMyPersonalData,
+        url: uRLAddJobOffer,
           auth: true,
           body: {
-            'owner_name':ownerName,
+            'name':ownerName,
             'phone':phone,
             'address':address,
-            'seintific_level':scientificLevel,
-            'specialization_ids':specializationId,
+            'scientific_level_id':scientificLevel,
+            'specializations':specializationId,
             'start_salary':startSalary,
             'end_salary':endSalary,
             'job_type':jobType,
+            'city_id':5,
             'description':description,
             'requirements':requirements,
           }
