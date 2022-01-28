@@ -33,8 +33,7 @@ class CustomDrawer extends StatelessWidget {
                 child: Column(
                   children: [
                     InkWell(
-                      borderRadius: BorderRadius.circular(4.r),
-
+                      borderRadius: BorderRadius.circular(4.
                       onTap: (){
                         print("abc");
                       },
