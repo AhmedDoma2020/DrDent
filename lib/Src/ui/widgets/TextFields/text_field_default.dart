@@ -113,7 +113,7 @@ class TextFieldDefault extends StatefulWidget {
         this.minimumCondition = 0,
         this.errorMinimumText,
         this.horizentalPadding=19.0,
-        this.verticalPadding=19.0,
+        this.verticalPadding=14.0,
         this.icon,
         this.onSuffixTap,
         this.prefixColor = kCTFPreFixIcon,

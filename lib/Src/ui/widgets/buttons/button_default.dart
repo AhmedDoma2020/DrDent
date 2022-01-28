@@ -32,7 +32,7 @@ class ButtonDefault extends StatelessWidget {
   ButtonDefault({
     this.child,
     this.borderColor,this.disActiveButtonColor=kCDisActiveButton,this.disActiveBorderColor=kCDisActiveButton,this.titleSize=16,this.iconHeight=12,this.radius=kNRadius,this.title='', this.iconImage='', this.buttonColor=kCActiveButton, this.titleColor=kCButtonTitle,
-    this.iconColor=kCButtonTitle, this.onTap,this.height=68,this.width=343,this.active=true
+    this.iconColor=kCButtonTitle, this.onTap,this.height=48,this.width=343,this.active=true
   });
 
   @override

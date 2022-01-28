@@ -25,6 +25,7 @@ const Color kCMainDivider = Color(0xffF4F4F4);
 const Color kCGreySemiDark = Color(0xFFEDEDED);
 const Color kCGreySemiDark2 = Color(0xFFC8C8C8);
 const Color kCOil = Color(0xff525C67);
+const Color kCIconBlueBlack = Color(0xff292954);
 
 const Color kCInActiveButtonColor =  Color(0xffEEF3FD);
 const Color kCInContainerBackGround =  Color(0xffFCFCFC);

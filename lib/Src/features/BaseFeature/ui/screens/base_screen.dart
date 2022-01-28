@@ -4,6 +4,7 @@ import 'package:dr_dent/Src/features/HomeFeature/ui/screens/home_screen.dart';
 import 'package:dr_dent/Src/features/JobFeature/ui/screens/jobs_screen.dart';
 import 'package:dr_dent/Src/features/SocialFeature/ui/screens/social_screen.dart';
 import 'package:dr_dent/Src/features/StoreFeature/ui/screens/stotre_screen.dart';
+import 'package:dr_dent/Src/ui/widgets/Drawer/custom_drawer.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:dr_dent/Src/ui/widgets/appbars/app_bars.dart';
 import 'package:flutter/material.dart';
@@ -21,8 +22,10 @@ class BaseScreen extends StatelessWidget {
     Get.put(BaseController());
     return GetBuilder<BaseController>(
       builder: (_) =>  Scaffold(
-        appBar: AppBars.appBarLogo(),
+        drawer: const CustomDrawer(),
+        appBar: AppBars.appBarLogo(context: context),
         body: Column(
+
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
@@ -53,7 +56,8 @@ class BaseScreen extends StatelessWidget {
                         Padding(
                           padding:  EdgeInsets.symmetric(horizontal: 10.w),
                           child: GestureDetector(
-                            onTap: (){},
+                            onTap: (){
+                            },
                             child: Container(
                               width: 40.w,
                               height: 40.w,
@@ -127,3 +131,4 @@ class BaseScreen extends StatelessWidget {
     );
   }
 }
+
