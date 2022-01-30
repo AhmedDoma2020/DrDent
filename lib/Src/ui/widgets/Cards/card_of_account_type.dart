@@ -20,7 +20,7 @@ class CardOfAccountType extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 140.h,
+      height: 150.h,
       width: 151.w,
       decoration: BoxDecoration(
         color: isSelected ? kCSubMain : Colors.white,
@@ -33,7 +33,7 @@ class CardOfAccountType extends StatelessWidget {
       child: Center(
         child: SizedBox(
           width: 66.w,
-          // height: 110.h,
+          height: 110.h,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -48,11 +48,18 @@ class CardOfAccountType extends StatelessWidget {
                 ),
               ),
               10.0.ESH(),
-              CustomText(
-                text: title.tr,
-                fontW: FW.semibold,
-                fontSize: 14,
-                color: isSelected ? Colors.white : kCBlackTitle,
+              SizedBox(
+                // color: Colors.amber,
+                width: 80.w,
+                height: 20.h,
+                child: FittedBox(
+                  child: CustomText(
+                    text: title.tr,
+                    fontW: FW.semibold,
+                    fontSize: 14,
+                    color: isSelected ? Colors.white : kCBlackTitle,
+                  ),
+                ),
               ),
             ],
           ),

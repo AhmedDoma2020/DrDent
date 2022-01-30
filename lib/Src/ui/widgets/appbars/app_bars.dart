@@ -107,7 +107,7 @@ class AppBars {
 
 
 
-  static AppBar appBarLogo({String logo='logo.png'}){
+  static AppBar appBarLogo({String logo='logo.png',required BuildContext context}){
     return AppBar(
       title: Image.asset(
         'assets/icons/$logo',
@@ -115,7 +115,9 @@ class AppBars {
       ),
       leading: IconButton(
         onPressed:(){
-          Get.to(()=> ProfileScreen());
+          print("abc");
+          Scaffold.of(context).openDrawer();
+          // Get.to(()=> ProfileScreen());
         },
         icon: Icon(
           Icons.menu,

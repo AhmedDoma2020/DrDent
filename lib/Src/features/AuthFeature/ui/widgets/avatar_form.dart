@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
+import 'package:dr_dent/src/core/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,8 +10,8 @@ import 'package:image_picker/image_picker.dart';
 
 class AvatarForm extends StatefulWidget {
   final Function(String) onTap;
-
-  AvatarForm({required this.onTap});
+  final bool isUploade;
+  AvatarForm({required this.onTap, this.isUploade = true});
 
   @override
   State<AvatarForm> createState() => _AvatarFormState();
@@ -77,6 +78,7 @@ class _AvatarFormState extends State<AvatarForm> {
                 // ),
               ),
             ),
+            widget.isUploade ?
             Padding(
               padding: EdgeInsets.only(bottom: 5.h, left: 5.w),
               child: Align(
@@ -106,7 +108,7 @@ class _AvatarFormState extends State<AvatarForm> {
                   ),
                 ),
               ),
-            ),
+            ):0.0.ESH(),
           ],
         ),
       ),

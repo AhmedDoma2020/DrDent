@@ -14,7 +14,7 @@ import '/src/core/utils/extensions.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const   HomeScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     BaseController  baseController = Get.put(BaseController());

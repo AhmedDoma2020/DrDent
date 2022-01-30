@@ -16,7 +16,7 @@ class profileInfoWidget extends StatelessWidget {
     GetStorage box = GetStorage();
     return GetBuilder<FetchProfileController>(
       builder:(_) =>  SizedBox(
-        height: 310.h,
+        // height: 310.h,
         width: double.infinity,
         child: Stack(
           children: [
@@ -33,7 +33,7 @@ class profileInfoWidget extends StatelessWidget {
                 ),
                 SizedBox(
                   // color: Colors.greenAccent,
-                  height: 115.h,
+                  // height: 115.h,
                   width: double.infinity,
                   child: Padding(
                     padding: EdgeInsets.only(right: 130.w),
@@ -85,7 +85,7 @@ class profileInfoWidget extends StatelessWidget {
                         SizedBox(
                             width: 200,
                             child: CustomText(
-                              text: _.specialization,
+                              text: "${"Specialization_".tr} ${_.specialization}",
                               fontW: FW.demi,
                               fontSize: 14,
                               overflow: true,
@@ -96,49 +96,51 @@ class profileInfoWidget extends StatelessWidget {
                         _.yearsOfExperience == null
                             ? SizedBox(
                                 width: 220.w,
-                                child: Row(
-                                  children: [
-                                    CustomText(
-                                      text: "No_years_of_experience_yet".tr,
-                                      fontW: FW.demi,
-                                      fontSize: 14,
-                                      overflow: true,
-                                      maxLines: 1,
-                                      color: kCGreyTitle,
-                                    ),
-                                    4.0.ESW(),
-                                    GestureDetector(
-                                      onTap: (){
-                                        Get.dialog(
-                                          DialogOfEnterYearsOfExperience(),
-                                        );
-                                        // Get.bottomSheet(
-                                        //     YearOfGraduationButtonSheet(
-                                        //       onTap: (title){
-                                        //
-                                        //       },
-                                        //     ),
-                                        //     isScrollControlled: true);
-                                      },
-                                      child: SizedBox(
-                                        child: CustomText(
-                                          text: "Enter_years_of_experience".tr,
-                                          fontW: FW.demi,
-                                          fontSize: 14,
-                                          overflow: true,
-                                          maxLines: 1,
-                                          color: kCMain,
+                                child: FittedBox(
+                                  child: Row(
+                                    children: [
+                                      CustomText(
+                                        text: "No_years_of_experience_yet".tr,
+                                        fontW: FW.demi,
+                                        fontSize: 14,
+                                        overflow: true,
+                                        maxLines: 1,
+                                        color: kCGreyTitle,
+                                      ),
+                                      4.0.ESW(),
+                                      GestureDetector(
+                                        onTap: (){
+                                          Get.dialog(
+                                            DialogOfEnterYearsOfExperience(),
+                                          );
+                                          // Get.bottomSheet(
+                                          //     YearOfGraduationButtonSheet(
+                                          //       onTap: (title){
+                                          //
+                                          //       },
+                                          //     ),
+                                          //     isScrollControlled: true);
+                                        },
+                                        child: SizedBox(
+                                          child: CustomText(
+                                            text: "Enter_years_of_experience".tr,
+                                            fontW: FW.demi,
+                                            fontSize: 14,
+                                            overflow: true,
+                                            maxLines: 1,
+                                            color: kCMain,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               )
                             : SizedBox(
                                 width: 200,
                                 child: CustomText(
                                   text:
-                                      "${_.yearsOfExperience} ${"years_of_experience".tr}",
+                                      "${"years_of_experience".tr} ${_.yearsOfExperience}",
                                   fontW: FW.demi,
                                   fontSize: 14,
                                   overflow: true,

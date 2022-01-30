@@ -51,13 +51,16 @@ class MedicalCompanyTypeScreen extends StatelessWidget {
                       children: [
                         GridView.builder(
                           shrinkWrap: true,
-                          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                            maxCrossAxisExtent: 150,
-                            childAspectRatio: 1.06,
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            // childAspectRatio: 1.06,
                             crossAxisSpacing: 16.w,
                             mainAxisSpacing: 18.h,
+                             // mainAxisExtent: 2
+
                             // mainAxisExtent: 103
                           ),
+
                           itemBuilder: (context, index) => InkWell(
                             hoverColor: Colors.transparent,
                             focusColor: Colors.transparent,
@@ -87,7 +90,7 @@ class MedicalCompanyTypeScreen extends StatelessWidget {
                                 onTap: () {
                                   Get.to(
                                     () => NewAccountScreen(
-                                      userTypeSelectedId: _.accountType[indexOfCardSelected!].id,
+                                      userTypeSelectedId: _.medicalCompanyType[indexOfCardSelected!].id,
                                     ),
                                   );
                                 },
