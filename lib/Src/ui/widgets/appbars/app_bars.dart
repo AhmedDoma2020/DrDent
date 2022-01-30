@@ -107,18 +107,14 @@ class AppBars {
 
 
 
-  static AppBar appBarLogo({String logo='logo.png',required BuildContext context}){
+  static AppBar appBarLogo({String logo='logo.png',required VoidCallback onDrawerTap}){
     return AppBar(
       title: Image.asset(
         'assets/icons/$logo',
         height: 33.h,
       ),
       leading: IconButton(
-        onPressed:(){
-          print("abc");
-          Scaffold.of(context).openDrawer();
-          // Get.to(()=> ProfileScreen());
-        },
+        onPressed: onDrawerTap,
         icon: Icon(
           Icons.menu,
           color: kCMainBlack,
