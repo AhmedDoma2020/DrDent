@@ -15,17 +15,19 @@ import '/src/core/utils/extensions.dart';
 
 
 class BaseScreen extends StatelessWidget {
-  const BaseScreen({Key? key}) : super(key: key);
-
+   BaseScreen({Key? key}) : super(key: key);
+   final GlobalKey<ScaffoldState> _key = GlobalKey(); // Create a key
   @override
   Widget build(BuildContext context) {
     Get.put(BaseController());
     return GetBuilder<BaseController>(
       builder: (_) =>  Scaffold(
-        drawer: const CustomDrawer(),
-        appBar: AppBars.appBarLogo(context: context),
+        key: _key,
+        drawer:  CustomDrawer(),
+        appBar: AppBars.appBarLogo(onDrawerTap: (){
+          _key.currentState!.openDrawer();
+        }),
         body: Column(
-
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(

@@ -11,9 +11,6 @@ import 'Widget/row_of_item_drawer.dart';
 import 'Widget/top_info_drawer.dart';
 
 class CustomDrawer extends StatelessWidget {
-  const CustomDrawer({
-    Key? key,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

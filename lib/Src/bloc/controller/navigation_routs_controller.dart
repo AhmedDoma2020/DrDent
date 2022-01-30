@@ -63,17 +63,17 @@ navigationAfterStartNowScreen({required int grade}) {
       break;
   // ToDo register as company
     case 5:
-      Get.offAll(() => const BaseScreen());
+      Get.offAll(() =>  BaseScreen());
       break;
 
   // ToDo register as lab
     case 6:
-      Get.offAll(() => const BaseScreen());
+      Get.offAll(() =>  BaseScreen());
       break;
 
   // ToDo register as graduation
     case 7:
-      Get.offAll(() => const BaseScreen());
+      Get.offAll(() =>  BaseScreen());
       break;
     default:
       customSnackBar(title: "Error of user type Id");
