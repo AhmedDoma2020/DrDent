@@ -1,3 +1,4 @@
+import 'package:dr_dent/Src/bloc/model/store.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/image_network.dart';
@@ -11,12 +12,14 @@ import 'company_products_screen.dart';
 
 
 class CompanyScreen extends StatelessWidget {
-  const CompanyScreen({Key? key}) : super(key: key);
+  final Store store;
+
+  const CompanyScreen({Key? key,required this.store}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBars.appBarDefault(title: 'اسم الشركة'),
+      appBar: AppBars.appBarDefault(title: store.name!),
       body: Stack(
         children: [
           SizedBox(
@@ -25,7 +28,7 @@ class CompanyScreen extends StatelessWidget {
             child: ImageNetwork(
               width: double.infinity,
               height: 300.h,
-              url: 'https://images.pexels.com/photos/139398/thermometer-headache-pain-pills-139398.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+              url: store.image
             ),
           ),
 
@@ -54,14 +57,14 @@ class CompanyScreen extends StatelessWidget {
                       children: [
                           16.0.ESH(),
                           CustomText(
-                            text: 'شركة هيلثي كو للمنتجات الطبية ',
+                            text: store.name,
                             color: kCMainBlack2,
                             fontW: FW.demi,
                             fontSize: 18,
                           ),
                           8.0.ESH(),
                           CustomText(
-                          text: '+00 0000 0000',
+                          text: store.phone,
                           color: kCMainBlack2,
                           fontW: FW.medium,
                           fontSize: 14,
@@ -73,14 +76,14 @@ class CompanyScreen extends StatelessWidget {
                                   Icon(Icons.star,color: i<5 ? kCMainRate:kCMainRate.withOpacity(.6),size: 12.h,),
                               2.6.ESW(),
                               CustomText(
-                                text: '(4.5)',
+                                text: store.rate.toString(),
                                 color: kCMainBlack2,
                                 fontSize: 9,
                                 fontW: FW.semicond,
                               ),
                               13.0.ESW(),
                               CustomText(
-                                text: '13 تقييم',
+                                text: '${store.reviewers} تقييم',
                                 color: kCActiveButton,
                                 fontSize: 10,
                                 fontW: FW.light,
@@ -111,7 +114,7 @@ class CompanyScreen extends StatelessWidget {
                             ),
                             10.0.ESW(),
                             CustomText(
-                              text: 'المنصورة , قسم تاني , شارع المطافي, برج الدالي , الدور 11',
+                              text: store.address,
                               fontW: FW.medium,
                               fontSize: 12,
                               color: kCMainBlack2,
@@ -127,7 +130,7 @@ class CompanyScreen extends StatelessWidget {
                         ),
                         9.0.ESH(),
                         CustomText(
-                          text: 'هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة ',
+                          text: store.history,
                           fontW: FW.medium,
                           fontSize: 12,
                           color: kCMainGrey,
@@ -153,7 +156,8 @@ class CompanyScreen extends StatelessWidget {
                                 child: ImageNetwork(
                                   height: 93.h,
                                   width: 14.w,
-                                  url: 'https://images.pexels.com/photos/139398/thermometer-headache-pain-pills-139398.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+                                  url:
+                                  'https://images.pexels.com/photos/139398/thermometer-headache-pain-pills-139398.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
                                 ),
                               ),
                               separatorBuilder: (context, index) => 16.0.ESW(),
@@ -179,7 +183,7 @@ class CompanyScreen extends StatelessWidget {
               child: ButtonDefault(
                 title: 'عرض منتجات الشركة',
                 onTap: (){
-                  Get.to(()=>CompanyProductsScreen());
+                  Get.to(()=>CompanyProductsScreen(store: store,));
                 },
               ),
             ),

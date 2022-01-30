@@ -7,11 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RowMyServicesForm extends StatefulWidget {
-  final ServiceModel services;
+  final ServiceModel insurance;
   // bool? isSelect;
   final  VoidCallback  onSelectTap;
   RowMyServicesForm({
-    required this.services,
+    required this.insurance,
     required this.onSelectTap,
     // required this.isSelect,
     Key? key,
@@ -36,7 +36,7 @@ class _RowMyServicesFormState extends State<RowMyServicesForm> {
               // color: Colors.greenAccent,
                 constraints: BoxConstraints(maxWidth: 280.w),
                 child: CustomText(
-                  text: widget.services.title,
+                  text: widget.insurance.title,
                   fontSize: 14.w,
                   fontW: FW.semibold,
                 )),
@@ -45,10 +45,10 @@ class _RowMyServicesFormState extends State<RowMyServicesForm> {
               width: 24.h,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(1.5),
-                border: Border.all(width: 2.w,color: widget.services.selected==false? kCMainGrey:kCSubMain,),
-                color: widget.services.selected==false? Colors.transparent : kCSubMain,
+                border: Border.all(width: 2.w,color: widget.insurance.selected==false? kCMainGrey:kCSubMain,),
+                color: widget.insurance.selected==false? Colors.transparent : kCSubMain,
               ),
-              child:widget.services.selected==false?0.0.ESH(): Icon(Icons.check,size: 14.w,color: Colors.white,),
+              child:widget.insurance.selected==false?0.0.ESH(): Icon(Icons.check,size: 14.w,color: Colors.white,),
             )
           ],
         ),

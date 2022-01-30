@@ -30,7 +30,6 @@ class FetchMyServicesController extends GetxController {
     var response = await _fetchMyServicesRepository.fetchMyServices();
     status = RequestStatus.done;
     if (response.statusCode == 200 && response.data["status"] == true) {
-      debugPrint("response in my services is $response");
       debugPrint("request operation success");
       _myServicesList.clear();
       for (var item in response.data['data']) {

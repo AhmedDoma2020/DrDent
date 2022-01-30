@@ -10,14 +10,15 @@ import 'package:get_storage/get_storage.dart';
 class FetchDaysRepository with ApiKey{
   // GetStorage box = GetStorage();
   final NetworkService _networkService = NetworkService();
-  Future<Response> fetchDays()async{
+  Future<Response> fetchDays({required int workspaceId,required int doctorId})async{
     Response? response;
     try{
       response = await _networkService.post(
           url:  uRLDoctorWorkDays,
           auth: true,
         body: {
-            'work_space_id':1
+            'work_space_id':workspaceId,
+            'doctor_id':doctorId
         }
       );
 

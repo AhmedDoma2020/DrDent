@@ -5,7 +5,6 @@ import 'package:dr_dent/Src/bloc/model/service_model.dart';
 import 'package:dr_dent/Src/core/constants/api_key.dart';
 import 'package:dr_dent/Src/core/services/network_services.dart';
 import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
-import 'package:flutter/cupertino.dart';
 
 class SetOfferAndDiscountRepository with ApiKey {
   final NetworkService _networkService = NetworkService();
@@ -22,9 +21,6 @@ class SetOfferAndDiscountRepository with ApiKey {
     required List<int> serviceIds,
   }) async {
     Response response;
-    debugPrint("startDate in repo $startDate");
-    debugPrint("endDate in repo $endDate");
-
     try {
       response = await _networkService.post(
         url: uRLSetOfferAndDiscount,

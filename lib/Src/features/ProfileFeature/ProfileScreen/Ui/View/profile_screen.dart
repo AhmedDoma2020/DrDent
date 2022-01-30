@@ -39,7 +39,7 @@ class ProfileScreen extends StatelessWidget {
                         onTap: (index) {
                           _.tabIndex = index;
                         },
-                        titles: 3 == 3||4 == 4?[
+                        titles: 0 == 3||0 == 4?[
                           'my_data'.tr,
                           'my_services'.tr,
                           'my_posts'.tr,
@@ -62,8 +62,8 @@ class ProfileScreen extends StatelessWidget {
                 SizedBox(
                   child: 3 == 3||4 == 4? [
                     GlobalInformationDetailsWidget(userTypeId: 3,),
-                    GlobalServicesWidget(userTypeId: 3,),
-                    GlobalInformationDetailsWidget(userTypeId: 3,),
+                    GlobalServicesWidget(userTypeId: 4,),
+                    GlobalInformationDetailsWidget(userTypeId: 4,),
                   ][_.tabIndex]:5 == 5 || 6 == 6?
                   [
                     GlobalInformationDetailsWidget(userTypeId: 5,),

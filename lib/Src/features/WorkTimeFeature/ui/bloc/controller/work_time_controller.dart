@@ -12,9 +12,29 @@ import 'package:get/get.dart';
 class WorkTimeController extends GetxController{
   RequestStatus status = RequestStatus.initial;
   late TextEditingController detectionTime;
-  late int dayBookingType;
+  late TextEditingController dayBookingController;
+  int? _dayBookingType;
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
 
+
+  final int workSpaceId;
+  final int doctorId;
+
+
+  WorkTimeController({required this.workSpaceId,required this.doctorId});
+
+  List<String> dayBookingTitles = [
+    'قبول الحجوزات في نفس اليوم',
+    'قبول الحجوزات قبلها بيوم'
+  ];
+
+
+  int get dayBookingType => _dayBookingType!;
+  set dayBookingType(int value) {
+    _dayBookingType = value;
+    dayBookingController.text = dayBookingTitles[value];
+    update();
+  }
 
   List<DayModel> days = [];
 
@@ -28,7 +48,7 @@ class WorkTimeController extends GetxController{
   Future<void> fetchDays()async{
     status = RequestStatus.loading;
     update();
-    var response = await _fetchDaysRepository.fetchDays();
+    var response = await _fetchDaysRepository.fetchDays(workspaceId: workSpaceId,doctorId: doctorId);
     if (response.statusCode == 200 && response.data["status"] == true) {
       debugPrint("request operation success");
       days.clear();
@@ -45,7 +65,7 @@ class WorkTimeController extends GetxController{
   }
 
   final AddDayTimeRepository _addDayTimeRepository = AddDayTimeRepository();
-  Future<void> addDayTime({required int dayId , required DayTimeModel dayTime,required int workSpaceId,required int doctorId})async{
+  Future<void> addDayTime({required int dayId , required DayTimeModel dayTime})async{
     setLoading();
     var response = await _addDayTimeRepository.addDayTime(
         dayId: dayId,
@@ -66,7 +86,6 @@ class WorkTimeController extends GetxController{
     }
   }
 
-
   final DeleteDayTimeRepository _deleteDayTimeRepository = DeleteDayTimeRepository();
   Future<void> deleteDayTime({required int dayTimeId , required int dayId})async{
     setLoading();
@@ -85,17 +104,19 @@ class WorkTimeController extends GetxController{
     }
   }
 
-
   final AddDayTimeDetailsRepository _addDayTimeDetailsRepository = AddDayTimeDetailsRepository();
-  Future<void> addDayTimeDetails()async{
+  Future<void> addDayTimeDetails({required VoidCallback onSuccess})async{
     if(globalKey.currentState!.validate()){
       globalKey.currentState!.save();
       setLoading();
-      var response = await _addDayTimeDetailsRepository.addDayTimeDetails(detectionTime: detectionTime.text , dayBookingType: 1);
+      var response = await _addDayTimeDetailsRepository.addDayTimeDetails(
+          detectionTime: detectionTime.text , dayBookingType: _dayBookingType??0,workspaceId: workSpaceId,
+          doctorId: doctorId
+      );
       Get.back();
       if (response.statusCode == 200 && response.data["status"] == true) {
         debugPrint("request operation success");
-
+        onSuccess();
         debugPrint("convert operation success");
         update();
       }else{
@@ -106,7 +127,16 @@ class WorkTimeController extends GetxController{
   @override
   void onInit() {
     detectionTime = TextEditingController();
+    dayBookingController = TextEditingController();
     fetchDays();
     super.onInit();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    detectionTime.dispose();
+    dayBookingController.dispose();
   }
 }

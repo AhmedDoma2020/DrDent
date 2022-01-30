@@ -37,7 +37,7 @@ class JobOffer {
   JobOffer.fromJson(Map<String,dynamic> map){
     id = map['id']??0;
     ownerName = map['name']??' ';
-    ownerImage = map['owner_image']??' ';
+    ownerImage = map['image']??' ';
     ownerPhone = map['phone']??' ';
     ownerAddress = map['address']??' ';
     startPrice= map['start_salary']??'0';

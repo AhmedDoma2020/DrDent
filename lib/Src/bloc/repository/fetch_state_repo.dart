@@ -15,7 +15,6 @@ class FetchStateAndCityRepository with ApiKey{
     try{
       response = await _networkService.get(
         url:uRLStates,
-
       );
     }on SocketException{
       throw SocketException('No Internet Connection');

@@ -52,14 +52,14 @@ class CardJobRequest extends StatelessWidget {
                       ),
                       5.0.ESH(),
                       CustomText(
-                        text: 'اخصائية أسنان الأطفال وتقويمات والتركيبات الأسنان',
+                        text: request.specializations!.join(' , '),
                         color: kCMainBlack2,
                         fontSize: 12,
                         fontW: FW.light,
                       ),
                       5.0.ESH(),
                       CustomText(
-                        text: 'القسم تاني , شارع المطافي , برج الدالي , الدور 11',
+                        text: request.ownerAddress,
                         color: kCMainGrey,
                         fontSize: 10,
                         fontW: FW.semicond,

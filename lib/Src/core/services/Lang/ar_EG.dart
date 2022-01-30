@@ -242,4 +242,12 @@ const Map<String, String> arAE = {
   "center_branches": "فروع المركز",
   "my_products": "منتجاتي",
   "company_products": "منتجات الشركة",
+
+  "next_visit": "الحجز التالي",
+  "new_visits": "الحجوزات الجديدة",
+  "no_visits_yet": "ليس لديك حجوزات بعد",
+  "jobs": "وظائف",
+  'social_media':'تواصل إجتماعي',
+  'medical_products':'منتجات طبية',
+
 };
