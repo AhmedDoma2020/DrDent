@@ -17,41 +17,28 @@ import 'package:get/get.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
 class EnterMyPersonalDataScreen extends StatelessWidget {
-  final String name;
-  final int gender;
-  final String degree;
-  final String specialization;
-  final String note;
-  final String getPhotoOfWorkLicenses;
-  EnterMyPersonalDataScreen({
-    this.name='',
-    this.gender=0,
-    this.degree='',
-    this.specialization='',
-    this.note='',
-    this.getPhotoOfWorkLicenses='',
-  });
-
+  final bool isEdit;
+  EnterMyPersonalDataScreen({ this.isEdit =false});
   @override
   Widget build(BuildContext context) {
-    EnterMyPersonalDataController _enterMyPersonalDataController = Get.put(EnterMyPersonalDataController());
+    EnterMyPersonalDataController _enterMyPersonalDataController =
+        Get.put(EnterMyPersonalDataController(isEdit: isEdit));
     Get.put(FetchSpecializationController());
     Get.put(FetchScientificController());
     var node = FocusScope.of(context);
-    _enterMyPersonalDataController.nameController!.text = name;
-    _enterMyPersonalDataController.degreeController!.text = degree;
-    _enterMyPersonalDataController.specializationController!.text = specialization;
+    // _enterMyPersonalDataController.nameController!.text = name;
+    // _enterMyPersonalDataController.degreeController!.text = "degree";
+    // _enterMyPersonalDataController.specializationController!.text = specialization;
     return SafeArea(
         child: Scaffold(
       appBar: AppBars.appBarSkipDefault(
-        title: "personal_info".tr,
+          title: "personal_info".tr,
           onTapBack: () {
             Get.back();
           },
-          onTapSkip: (){
-            Get.offAll(()=>BaseScreen());
-          }
-      ),
+          onTapSkip: () {
+            Get.offAll(() => BaseScreen());
+          }),
       body: GetBuilder<EnterMyPersonalDataController>(
         builder: (_) => Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.w),
@@ -76,23 +63,21 @@ class EnterMyPersonalDataScreen extends StatelessWidget {
                 ),
                 16.0.ESH(),
                 RowGenderWidget(
-                  onTap: (gender){
+                  onTap: (gender) {
                     _.estGender = gender;
                   },
                 ),
                 16.0.ESH(),
                 GestureDetector(
                   onTap: () {
-                    Get.bottomSheet(
-                        DegreeButtonSheet(
-                          onTap:  (scientificListTitle,scientificListId){
-                            _.degreeController!.text=scientificListTitle;
-                            print(scientificListId);
-                            _.setScientificId=scientificListId;
-                            Get.back();
-                          },
-                        ),
-                        isScrollControlled: true);
+                    Get.bottomSheet(DegreeButtonSheet(
+                      onTap: (scientificListTitle, scientificListId) {
+                        _.degreeController!.text = scientificListTitle;
+                        debugPrint("scientificListTitle $scientificListTitle");
+                        _.setScientificId = scientificListId;
+                        Get.back();
+                      },
+                    ), isScrollControlled: true);
                   },
                   child: TextFieldDefault(
                     hint: 'Degree_'.tr,
@@ -116,13 +101,16 @@ class EnterMyPersonalDataScreen extends StatelessWidget {
                   onTap: () {
                     Get.bottomSheet(
                         specializationButtonSheet(
-                          onTapNotEmpty: (specializationIdList,specializationTitleList){
-                        _.setSpecializationIdSelected = specializationIdList;
-                        _.specializationController!.text=specializationTitleList;
-                        },
-                          onTapEmpty: (){
+                          onTapNotEmpty:
+                              (specializationIdList, specializationTitleList) {
+                            _.setSpecializationIdSelected =
+                                specializationIdList;
+                            _.specializationController!.text =
+                                specializationTitleList;
+                          },
+                          onTapEmpty: () {
                             _.specializationController!.clear();
-                            _.setSpecializationIdSelected=[];
+                            _.setSpecializationIdSelected = [];
                           },
                         ),
                         isScrollControlled: true);
@@ -146,9 +134,9 @@ class EnterMyPersonalDataScreen extends StatelessWidget {
                 ),
                 16.0.ESH(),
                 UploadPhotoContainer(
-                  getImage: getPhotoOfWorkLicenses,
+                  // getImage: getPhotoOfWorkLicenses,
                   title: "photo_of_Work_licenses",
-                  onTap: (image64){
+                  onTap: (image64) {
                     _.setImage = image64;
                   },
                 ),

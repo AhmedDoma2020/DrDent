@@ -82,7 +82,7 @@ class RowMyServiceForm extends StatelessWidget {
           ),
           Row(
             children: [
-              EditWidget(onEditTap: onEditTap),
+              // EditWidget(onEditTap: onEditTap),
               DeleteWidget(onDeleteTap: onDeleteTap),
             ],
           ),

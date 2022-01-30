@@ -1,6 +1,7 @@
 import 'package:dr_dent/Src/bloc/model/insurance_model.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/InsuranceCompaniesFeature/Bloc/Repo/fetch_available_insurances_repo.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class FetchAvailableInsurancesController extends GetxController {
@@ -18,12 +19,12 @@ class FetchAvailableInsurancesController extends GetxController {
   Future<void> fetchAvailableInsurances() async {
     var response = await _etchAvailableInsurancesRepository.fetchAvailableInsurances();
     if (response.statusCode == 200 && response.data["status"] == true) {
-      print("request operation success");
+      debugPrint("request operation success");
       _insuranceList.clear();
       for (var item in response.data['data']) {
         _insuranceList.add(InsuranceModel.fromJson(item));
       }
-      print("convert operation success");
+      debugPrint("convert operation success");
       status = RequestStatus.done;
       update();
     } else {

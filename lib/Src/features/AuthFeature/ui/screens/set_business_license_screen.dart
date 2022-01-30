@@ -9,10 +9,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class SetBusinessLicenseScreen extends StatefulWidget {
+  final String title;
+  final String sibTitle;
+   SetBusinessLicenseScreen({Key? key, required this.title,required this.sibTitle}) : super(key: key);
+
   @override
   State<SetBusinessLicenseScreen> createState() => _SetBusinessLicenseScreenState();
 }
 class _SetBusinessLicenseScreenState extends State<SetBusinessLicenseScreen> {
+
   @override
   Widget build(BuildContext context) {
     SetWorkLicenseController _setWorkLicenseController = Get.put(SetWorkLicenseController());
@@ -33,13 +38,13 @@ class _SetBusinessLicenseScreenState extends State<SetBusinessLicenseScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       CustomText(
-                        text: "business_license".tr,
+                        text: widget.title.tr,
                         fontSize: 18,
                         fontW: FW.semibold,
                       ),
                       16.0.ESH(),
                       CustomText(
-                        text: "business_license_sup_title".tr,
+                        text: widget.sibTitle.tr,
                         fontSize: 16,
                         fontW: FW.semibold,
                         color: kCGreyTitle,

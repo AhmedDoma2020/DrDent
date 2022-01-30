@@ -1,8 +1,10 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
+import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyAssistantDataFeature/Bloc/Controller/fetch_my_assistant_controller.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyAssistantDataFeature/Ui/Widget/my_assistant_row_form.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyAssistantDataFeature/Bloc/Controller/fetch_my_assistant_controller.dart';
+import 'package:dr_dent/Src/ui/widgets/Dialog/loading_dialog.dart';
 import 'package:dr_dent/Src/ui/widgets/EmptyWidget/empty_widget.dart';
 import 'package:dr_dent/Src/ui/widgets/appbars/app_bars.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +16,6 @@ import 'add_assistant_sheet.dart';
 class MyAssistantScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    FetchMyAssistantController _fetchMyAssistantController =
         Get.put(FetchMyAssistantController());
     Future<void> onRefresh() async {}
     return SafeArea(
@@ -41,7 +42,7 @@ class MyAssistantScreen extends StatelessWidget {
           width: double.infinity,
           color: Colors.white,
           child: GetBuilder<FetchMyAssistantController>(
-            builder: (_) => _.myAssistantList.isEmpty
+            builder: (_) =>_.status== RequestStatus.loading? Center(child: Loader(),): _.myAssistantList.isEmpty
                 ? EmptyWidget(
                     image: "assets/image/emptyAssistant.png",
                     onTapButton: () {},
@@ -54,7 +55,14 @@ class MyAssistantScreen extends StatelessWidget {
                     shrinkWrap: true,
                     itemBuilder: (context, index) => MyAssistantRow(
                       assistant: _.myAssistantList[index],
-                      onEditTap: () {},
+                      onEditTap: () {
+                        Get.bottomSheet(AddAssistantSheet(
+                          isEdit: true,
+                          id:  _.myAssistantList[index].id,
+                          name:  _.myAssistantList[index].name,
+                          phone:  _.myAssistantList[index].phone,
+                        ),isScrollControlled: true);
+                      },
                       onDeleteTap: () {
                         _.deleteAssistant(
                             assistantId: _.myAssistantList[index].id,

@@ -26,8 +26,8 @@ class PostModel{
     content = map['content']??'';
     date = map['date']??'';
     likesNumber = map['likes_number']??0;
-    commentsNumber = map['commentsNumber']??0;
-    shareNumber = map['shareNumber']??0;
+    commentsNumber = map['comments_number']??0;
+    shareNumber = map['share_number']??0;
     like = map['like']??0;
     images = map['images']!=null ? map['images'].cast<String>():[];
     services = [];

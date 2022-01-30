@@ -33,7 +33,7 @@ class AddImagePostForm extends StatelessWidget {
             width: 24.w,
             child: GestureDetector(
               onTap: (){
-                print("close");
+                debugPrint("close");
                 _.changeImageVal(null);
               },
               child: Container(

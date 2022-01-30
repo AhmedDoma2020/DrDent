@@ -3,6 +3,7 @@ import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '/src/core/utils/extensions.dart';
+import 'package:get/get.dart';
 
 
 class EmptyVisitsSection extends StatelessWidget {
@@ -26,7 +27,7 @@ class EmptyVisitsSection extends StatelessWidget {
           ),
           10.0.ESH(),
           CustomText(
-            text: 'ليس لديك حجوزات بعد',
+            text: 'no_visits_yet'.tr,
             fontW: FW.demi,
             fontSize: 14,
             color: kCMainBlack2,

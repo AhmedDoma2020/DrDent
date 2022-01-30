@@ -1,4 +1,5 @@
 import 'package:dr_dent/Src/bloc/model/university_degree_model.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class FetchUniversityDegreeController extends GetxController {
@@ -21,6 +22,6 @@ class FetchUniversityDegreeController extends GetxController {
   void onInit() {
     super.onInit();
     fetchYearsOfGraduation();
-    print("_universityDegreeSIndex $_universityDegreeSIndex");
+    debugPrint("_universityDegreeSIndex $_universityDegreeSIndex");
   }
 }

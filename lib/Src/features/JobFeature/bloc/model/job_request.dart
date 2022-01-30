@@ -8,7 +8,7 @@ JobRequest {
   String? ownerImage;
   String? ownerPhone;
   String? ownerAddress;
-  String? specialization;
+  List<String>? specializations;
   String? cv;
   String? gender;
   String? graduatedYear;
@@ -22,7 +22,7 @@ JobRequest {
         this.ownerImage,
         this.ownerPhone,
         this.ownerAddress,
-        this.specialization,
+        this.specializations,
         this.cv,
         this.gender,
         this.graduatedYear,
@@ -35,10 +35,10 @@ JobRequest {
   JobRequest.fromJson(Map<String,dynamic> map){
     id = map['id']??0;
     ownerName = map['name']??' ';
-    ownerImage = map['owner_image']??' ';
+    ownerImage = map['image']??' ';
     ownerPhone = map['phone']??' ';
     ownerAddress = map['address']??' ';
-    specialization = map['specialization']??' ';
+    specializations = map['specializations']!=null ? map['specializations'].cast<String>():[];
     cv = map['cv']??' ';
     gender = map['gender']??' ';
     graduatedYear = map['graduated_year']??' ';

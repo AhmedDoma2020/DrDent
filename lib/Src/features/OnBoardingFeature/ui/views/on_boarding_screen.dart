@@ -13,7 +13,6 @@ class OnBoardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
         Get.put(OnBoardingController());
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: GetBuilder<OnBoardingController>(
@@ -52,7 +51,7 @@ class OnBoardingScreen extends StatelessWidget {
                     ButtonDefault(
                       title: 'next_'.tr,
                       onTap: () {
-                        print("next>>>>>>>>>");
+                        debugPrint("next>>>>>>>>>");
                         _.onNext();
                       },
                     ),

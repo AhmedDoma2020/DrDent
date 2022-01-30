@@ -37,44 +37,44 @@
 //       box.write("google_available",true);
 //     }
 //
-//     print("value : ${box.read("google_available")}");
+//     debugPrint("value : ${box.read("google_available")}");
 //
 //     // if(box.read("google_available")){
-//       print("step1");
+//       debugPrint("step1");
 //       serviceEnabled = await Geolocator.isLocationServiceEnabled();
 //       if (!serviceEnabled) {
-//         print("step2");
+//         debugPrint("step2");
 //         // _checkGps();
 //         // return LocationResponse(status: false,reason: LocationRefusedReason.locationOff);
 //         permission = await Geolocator.checkPermission();
 //       }
 //
 //       permission = await Geolocator.checkPermission();
-//       print("step3");
+//       debugPrint("step3");
 //       if (permission == LocationPermission.denied) {
-//         print("step4");
+//         debugPrint("step4");
 //         permission = await Geolocator.requestPermission();
 //         if (permission == LocationPermission.denied) {
-//           print("step5");
+//           debugPrint("step5");
 //           return LocationResponse(status: false,reason: LocationRefusedReason.permissionDenied);
 //           // permission = await Geolocator.checkPermission();
 //         }
 //       }
 //
 //       if (permission == LocationPermission.deniedForever) {
-//         print("step6");
+//         debugPrint("step6");
 //         // Permissions are denied forever, handle appropriately.
 //         return LocationResponse(status: false,reason: LocationRefusedReason.permissionDeniedForEver);
 //         // permission = await Geolocator.checkPermission();
 //       }
-//       print("step7");
+//       debugPrint("step7");
 //       // When we reach here, permissions are granted and we can
 //       // continue accessing the position of the device.
 //       try{
 //         var data = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
 //         return LocationResponse(status: true,position: data);
 //       }catch(e){
-//         print("an error occur in location $e");
+//         debugPrint("an error occur in location $e");
 //         return LocationResponse(status: false,reason: LocationRefusedReason.unKnown);
 //       }
 //     //

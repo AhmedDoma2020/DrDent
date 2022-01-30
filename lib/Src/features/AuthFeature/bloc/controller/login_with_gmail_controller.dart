@@ -23,13 +23,13 @@ class LoginWithGoogleIdController extends GetxController{
     if(user == null){
       customSnackBar(title: "Error in signInWithGoogleMethod");
     }else{
-      print("user.displayName  ${user.displayName}");
-      print("user.displayName.lest  ${user.displayName!.split(" ")}");
-      print("user.displayName.first  ${user.displayName!.split(" ")[0]}");
-      print("user.displayName.last  ${user.displayName!.split(" ")[1]}");
-      print("user.email  ${user.email}");
-      print("user.photoUrl  ${user.photoUrl}");
-      print("user.id  ${user.id}");
+      debugPrint("user.displayName  ${user.displayName}");
+      debugPrint("user.displayName.lest  ${user.displayName!.split(" ")}");
+      debugPrint("user.displayName.first  ${user.displayName!.split(" ")[0]}");
+      debugPrint("user.displayName.last  ${user.displayName!.split(" ")[1]}");
+      debugPrint("user.email  ${user.email}");
+      debugPrint("user.photoUrl  ${user.photoUrl}");
+      debugPrint("user.id  ${user.id}");
       signInWithGoogle(googleEmail:user.email ,googleId:user.id ,firstName:user.displayName!.split(" ")[0],lastName: user.displayName!.split(" ")[1]);
     }
   }

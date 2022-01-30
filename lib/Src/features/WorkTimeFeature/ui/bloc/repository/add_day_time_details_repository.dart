@@ -11,15 +11,22 @@ import 'package:get_storage/get_storage.dart';
 class AddDayTimeDetailsRepository with ApiKey{
   // GetStorage box = GetStorage();
   final NetworkService _networkService = NetworkService();
-  Future<Response> addDayTimeDetails({required String detectionTime, required int dayBookingType})async{
+  Future<Response> addDayTimeDetails({
+    required String detectionTime,
+    required int dayBookingType,
+    required int workspaceId,
+    required int doctorId,
+  })async{
     Response? response;
     try{
       response = await _networkService.post(
-          url:  uRLAddDayTime,
+          url:  uRLAddWorkSpaceDetails,
           auth: true,
         body: {
-            'work_space_id':detectionTime,
-            'start_time' : dayBookingType,
+            'work_space_id':workspaceId,
+            'doctor_id':doctorId,
+            'detection_time': detectionTime,
+            'reservation_type' : dayBookingType,
         }
       );
 

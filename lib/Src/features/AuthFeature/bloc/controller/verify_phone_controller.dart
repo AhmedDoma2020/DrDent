@@ -20,17 +20,17 @@ class VerifyPhoneController extends GetxController{
     var response = await _verifyPhoneRepository.verifyPhone();
     Get.back();
     if (response.statusCode == 200 && response.data["status"] == true) {
-      print("request operation success");
+      debugPrint("request operation success");
       if(response.data['data']!=null){
         box.write('api_token',response.data['data']['token']);
-        print("api_token in VerifyPhoneController1>:- ${response.data['data']['token']}");
-        print("api_token in VerifyPhoneController2>:- ${box.read('api_token')??' '}");
+        debugPrint("api_token in VerifyPhoneController1>:- ${response.data['data']['token']}");
+        debugPrint("api_token in VerifyPhoneController2>:- ${box.read('api_token')??' '}");
         box.write('name',response.data['data']['name']);
         box.write('phone',response.data['data']['phone']);
         box.write('login',true);
         // Get.offAll(()=>BaseScreens());
       }
-      print("convert operation success");
+      debugPrint("convert operation success");
       status = RequestStatus.done;
       update();
     }else{

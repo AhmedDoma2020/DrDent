@@ -39,7 +39,7 @@ class _AttachYourCVIWidgetState extends State<AttachYourCVIWidget> {
       bytes2 = const Base64Decoder().convert(img64!);
       widget.onTap(img64!);
     } on PlatformException catch (e) {
-      print("field picked image $e");
+      debugPrint("field picked image $e");
     }
   }
   @override
@@ -112,7 +112,7 @@ class _AttachYourCVIWidgetState extends State<AttachYourCVIWidget> {
           : GestureDetector(
         onTap: (){
           getImage();
-          print("aaaaaaaaaaaaaaaaaaaaaa");
+          debugPrint("aaaaaaaaaaaaaaaaaaaaaa");
         },
             child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

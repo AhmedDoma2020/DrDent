@@ -115,11 +115,11 @@ class _SelectOfferDurationWidgetState extends State<SelectOfferDurationWidget> {
                     _.setStartOfferDuration = _startDate;
                     _.setEndOfferDuration = _endDate;
                     _.setDurationNum = _endDateTime.difference(_startDateTime).inDays +1;
-                    print("_.setDurationNum ${_.durationNum}");
-                    print("_startDate $_startDate");
-                    print("_startDateTime $_startDateTime");
-                    print("_endDate $_endDate");
-                    print("_endDateTime $_endDateTime");
+                    debugPrint("_.setDurationNum ${_.durationNum}");
+                    debugPrint("_startDate $_startDate");
+                    debugPrint("_startDateTime $_startDateTime");
+                    debugPrint("_endDate $_endDate");
+                    debugPrint("_endDateTime $_endDateTime");
                     Get.back();
                   },
                   showActionButtons: true,

@@ -1,4 +1,6 @@
 import 'package:dr_dent/Src/features/HomeFeature/ui/widgets/home_item.dart';
+import 'package:get/get.dart';
+
 
 class HomeModel{
   late final String title;
@@ -14,19 +16,19 @@ List<HomeModel> homeModelExamples = [
   HomeModel(
     id: 1,
     icon: 'home1.png',
-    title: 'وظائف',
+    title: 'jobs'.tr,
     subtitle: 'هذا مثال يمكن ان يتم استبداله باي عنوان اخر ف اي لحظه ممكنه'
   ),
   HomeModel(
       id: 3,
       icon: 'home1.png',
-      title: 'تواصل إجتماعي',
+      title: 'social_media'.tr,
       subtitle: 'هذا مثال يمكن ان يتم استبداله باي عنوان اخر ف اي لحظه ممكنه'
   ),
   HomeModel(
       id: 4,
       icon: 'home1.png',
-      title: 'منتجات طبية',
+        title: 'medical_products'.tr,
       subtitle: 'هذا مثال يمكن ان يتم استبداله باي عنوان اخر ف اي لحظه ممكنه'
   ),
 ];

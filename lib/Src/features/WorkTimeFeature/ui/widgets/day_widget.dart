@@ -30,6 +30,7 @@ class DayWidget extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    var node = FocusScope.of(context);
     return GestureDetector(
       onTap: (){
         onExpand();
@@ -85,18 +86,19 @@ class DayWidget extends StatelessWidget {
                      children: [
                        GestureDetector(
                          onTap: (){
-                           print("open sheet");
+                           debugPrint("open sheet");
                            Get.bottomSheet(
                              SheetAddDayDetails(onSave: (start,end,visitsCount){
-                               print(start);
-                               print(end);
-                               print(visitsCount);
+                               debugPrint(start);
+                               debugPrint(end);
+                               debugPrint(visitsCount);
                                DayTimeModel dayTimeModel = DayTimeModel(
                                    id: 0,
                                    startTime: start,
                                    endTime: end,
                                    numberOfEmergencyVisits: visitsCount,
                                );
+                               node.unfocus();
                                onAddTime(dayTimeModel);
                              },),
                                // SheetSelectHour(),

@@ -12,8 +12,8 @@ class AssistantModel {
 
   AssistantModel.fromJson(Map<String, dynamic> json){
     id = json['id'];
-    phone = json['image'];
-    name = json['title'];
+    phone = json['phone']??"";
+    name = json['name']??"";
   }
 
 }

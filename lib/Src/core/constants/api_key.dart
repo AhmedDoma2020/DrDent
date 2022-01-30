@@ -12,6 +12,7 @@ mixin ApiKey{
 
    final String uRLDoctorWorkDays = apiBaseUrl + "fetch_doctor_work_times";
    final String uRLAddDayTime = apiBaseUrl + "add_work_space_time";
+   final String uRLAddWorkSpaceDetails = apiBaseUrl + "set_work_space_properaties";
    final String uRLDeleteDayTime = apiBaseUrl + "delete_work_space_time";
    final String uRLEditDayTime = apiBaseUrl + "delete_work_space_time";
    final String uRLFetchJobRequests = apiBaseUrl + "fetch_job_requests";
@@ -25,6 +26,7 @@ mixin ApiKey{
    final String uRLWaitingVisits = apiBaseUrl + "fetch_waiting_visits";
    final String uRLAllNewVisits = apiBaseUrl + "all_new_visits";
    final String uRLAllFetchAllProducts = apiBaseUrl + "fetch_all_products";
+   final String uRLCompanyFetchAllProducts = apiBaseUrl + "store_products";
    final String uRLAllFetchAllStores = apiBaseUrl + "fetch_all_Stores";
    final String uRLLikePost = apiBaseUrl + "like_post";
    final String uRLLikeComment = apiBaseUrl + "like_comment";
@@ -43,17 +45,21 @@ mixin ApiKey{
    final String uRLCheckPhone = apiBaseUrl + "check_phone";
    final String uRLCity = apiBaseUrl + "city";
    final String uRLFetchAvailableInsurances = apiBaseUrl + "fetch_available_insurances";
-   final String uRLFetchAvailableServices = apiBaseUrl + "fetch_available_insurances";
+   final String uRLFetchAvailableServices = apiBaseUrl + "fetch_available_services";
    final String uRLFetchMyInsurances = apiBaseUrl + "fetch_my_insurances";
-   final String uRLFetchMyServices = apiBaseUrl + "fetch_my_insurances";
+   final String uRLFetchMyServices = apiBaseUrl + "fetch_my_services";
    final String uRLFetchMyWorkSpaces = apiBaseUrl + "my_work_spaces";
+   final String uRLDeleteMyWorkSpaces = apiBaseUrl + "delete_work_space_time";
    final String uRLFetchMyAssistant = apiBaseUrl + "my_assitants";
    final String uRLFetchMyOfferAndDiscount = apiBaseUrl + "my_offer";
    final String uRLDeleteInsurance = apiBaseUrl + "delete_insurance";
-   final String uRLDeleteServices = apiBaseUrl + "delete_insurance";
+   final String uRLDeleteServices = apiBaseUrl + "delete_service";
    final String uRLDeleteAssistant = apiBaseUrl + "delete_assitant";
    final String uRLDeleteOfferAndDiscount = apiBaseUrl + "delete_offer";
    final String uRLSetInsurance = apiBaseUrl + "set_insurance";
+   final String uRLSetAssistant = apiBaseUrl + "set_assitant";
+   final String uRLEditAssistant = apiBaseUrl + "edit_assitant";
+   final String uRLSetService = apiBaseUrl + "set_service";
    final String uRLNewVisits = apiBaseUrl + "all_new_visits";
    final String uRLSetOfferAndDiscount = apiBaseUrl + "add_offer";
    final String uRLFetchProfile = apiBaseUrl + "fetch_profile";
