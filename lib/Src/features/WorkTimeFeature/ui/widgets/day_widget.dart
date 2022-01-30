@@ -30,6 +30,7 @@ class DayWidget extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    var node = FocusScope.of(context);
     return GestureDetector(
       onTap: (){
         onExpand();
@@ -97,6 +98,7 @@ class DayWidget extends StatelessWidget {
                                    endTime: end,
                                    numberOfEmergencyVisits: visitsCount,
                                );
+                               node.unfocus();
                                onAddTime(dayTimeModel);
                              },),
                                // SheetSelectHour(),

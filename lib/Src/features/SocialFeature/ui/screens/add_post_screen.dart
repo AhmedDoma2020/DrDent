@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/features/SocialFeature/bloc/Controller/add_post_controller.dart';
 import 'package:dr_dent/Src/features/SocialFeature/ui/widgets/add_image_post_widget.dart';
@@ -36,13 +34,9 @@ class AddPostScreen extends StatelessWidget {
                   height: 48,
                   radius: 6,
                   title: 'publishing_'.tr,
-                  buttonColor: _.img64 != null || _.isContentEmpty! ?kCActiveButton:kCActiveButton.withOpacity(0.3),
                   titleSize: 13,
-                  onTap: _.img64 != null || _.isContentEmpty! ? () {
-                    log("is not empty _.listOfImg64 ${_.listOfImg64}");
+                  onTap: () {
                     _.submit();
-                  }:(){
-                    // debugPrint("is empty _.listOfImg64 ${_.listOfImg64}");
                   },
                 ),
               ),
@@ -70,10 +64,6 @@ class AddPostScreen extends StatelessWidget {
                             enableBorder:  Colors.transparent,
                             maxLines: 3,
                             horizentalPadding: 16,
-                            onChanged: (val){
-                              // _.setContentController(val);
-                              // _.setContentController(val);
-                            },
                             onComplete: () {
                               node.unfocus();
                             },

@@ -33,7 +33,7 @@ class HomeScreen extends StatelessWidget {
                    ),
                    child: Column(
                      children: [
-                       TitleRowViewAll(titleSlider: 'الحجز التالي', onTap: (){},titleOnTap: '',),
+                       TitleRowViewAll(titleSlider: 'next_visit'.tr, onTap: (){},titleOnTap: '',),
                        16.0.ESH(),
                        CardVisit(width: 343,),
                      ],

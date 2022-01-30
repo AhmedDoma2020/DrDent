@@ -78,7 +78,8 @@ class AddOfferAndDiscountScreen extends StatelessWidget {
                                     }
                                     debugPrint(
                                         "servicesIdSelectedList ${_.servicesIdSelectedList}");
-                                    _.servicesSelectedController!.text = _.servicesTitleSelectedList.join(",");
+                                    _.servicesSelectedController!.text =
+                                        _.servicesTitleSelectedList.join(",");
                                     Get.back();
                                   },
                                 ), isScrollControlled: true);

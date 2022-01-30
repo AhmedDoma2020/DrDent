@@ -12,6 +12,7 @@ mixin ApiKey{
 
    final String uRLDoctorWorkDays = apiBaseUrl + "fetch_doctor_work_times";
    final String uRLAddDayTime = apiBaseUrl + "add_work_space_time";
+   final String uRLAddWorkSpaceDetails = apiBaseUrl + "set_work_space_properaties";
    final String uRLDeleteDayTime = apiBaseUrl + "delete_work_space_time";
    final String uRLEditDayTime = apiBaseUrl + "delete_work_space_time";
    final String uRLFetchJobRequests = apiBaseUrl + "fetch_job_requests";
@@ -25,6 +26,7 @@ mixin ApiKey{
    final String uRLWaitingVisits = apiBaseUrl + "fetch_waiting_visits";
    final String uRLAllNewVisits = apiBaseUrl + "all_new_visits";
    final String uRLAllFetchAllProducts = apiBaseUrl + "fetch_all_products";
+   final String uRLCompanyFetchAllProducts = apiBaseUrl + "store_products";
    final String uRLAllFetchAllStores = apiBaseUrl + "fetch_all_Stores";
    final String uRLLikePost = apiBaseUrl + "like_post";
    final String uRLLikeComment = apiBaseUrl + "like_comment";
@@ -64,8 +66,6 @@ mixin ApiKey{
    final String uRLFetchScientific = apiBaseUrl + "fetch_seintific_levels";
    final String uRLFetchSpecialization = apiBaseUrl + "specializations";
    final String uRLEnterAndEditMyPersonalData = apiBaseUrl + "edit_personal_info";
-   final String uRLAddJobOffer = apiBaseUrl + "add_job_offer";
-   final String uRLAddPost = apiBaseUrl + "add_post";
    final String uRLAddJopRequest = apiBaseUrl + "add_job_request";
    final String uRLAddAJopOffer = apiBaseUrl + "add_job_offer";
    final String uRLStates = apiBaseUrl + "states";

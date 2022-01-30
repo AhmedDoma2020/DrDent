@@ -13,7 +13,7 @@ class SliderVisits extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TitleRowViewAll(titleSlider: 'الحجوزات الجديدة', onTap: (){
+        TitleRowViewAll(titleSlider: 'new_visits'.tr, onTap: (){
           Get.to(()=>MyVisitScreen());
         },),
         16.0.ESH(),

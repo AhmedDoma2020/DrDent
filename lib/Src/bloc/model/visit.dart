@@ -15,7 +15,7 @@ class Visit{
   late String doctorAddress;
   late String doctorPhone;
   late int visitStatus;
-  late int visitType;
+  late String visitType;
 
   Visit(
   {
@@ -52,8 +52,8 @@ class Visit{
     doctorImage = map['doctor_image']??'';
     doctorPhone = map['doctor_phone']??'';
     doctorAddress = map['doctor_address']??'';
-    visitStatus = map['visit_status']??0;
-    visitType = map['visit_type']??0;
+    visitStatus = map['status']??0;
+    visitType = map['visit_type']??'doctor';
     setServicesTitles(map);
     setFiles(map);
   }
@@ -90,7 +90,7 @@ List<Visit> visitsExamples = [
     patientName: 'احمد دومة',
     patientPhone: '0121212121212',
     visitStatus: 1,
-    visitType: 1,
+    visitType: 'doctor',
     doctorImage: '',
     patientAddress: 'عنوان تاني',
     patientFiles:[],
@@ -109,7 +109,7 @@ List<Visit> visitsExamples = [
       patientName: 'احمد دومة',
       patientPhone: '0121212121212',
       visitStatus: 1,
-      visitType: 1,
+      visitType: 'doctor',
       doctorImage: '',
       patientAddress: 'عنوان تاني',
       patientFiles:[],
@@ -128,7 +128,7 @@ List<Visit> visitsExamples = [
       patientName: 'احمد دومة',
       patientPhone: '0121212121212',
       visitStatus: 1,
-      visitType: 1,
+      visitType: 'doctor',
       doctorImage: '',
       patientAddress: 'عنوان تاني',
       patientFiles:[],
@@ -147,7 +147,7 @@ List<Visit> visitsExamples = [
       patientName: 'احمد دومة',
       patientPhone: '0121212121212',
       visitStatus: 1,
-      visitType: 1,
+      visitType: 'doctor',
       doctorImage: '',
       patientAddress: 'عنوان تاني',
       patientFiles:[],
@@ -166,7 +166,7 @@ List<Visit> visitsExamples = [
       patientName: 'احمد دومة',
       patientPhone: '0121212121212',
       visitStatus: 1,
-      visitType: 1,
+      visitType: 'doctor',
       doctorImage: '',
       patientAddress: 'عنوان تاني',
       patientFiles:[],

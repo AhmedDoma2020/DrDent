@@ -50,7 +50,7 @@ class AddServicesButtonSheet extends StatelessWidget {
                           child: ListView.separated(
                             shrinkWrap: true,
                             itemBuilder: (context, index) => RowMyServicesForm(
-                              services: _.myServicesList[index],
+                              insurance: _.myServicesList[index],
                               // isSelect: _.insuranceList[index].active,
                               onSelectTap: (){_.changeSelectServices(servicesIndex: index);},
                             ),

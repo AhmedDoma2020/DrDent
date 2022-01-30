@@ -20,11 +20,7 @@ class ServiceModel {
     if(json['waiting_time'] != null){
       time = json['waiting_time'].toString();
     }else{time = "";}
-    if( json['selected']!=null){
-      selected = json['selected']??false;
-    }else{
-      selected =false;
-    }
+    // selected = json['selected'];
   }
 }
 

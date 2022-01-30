@@ -7,52 +7,49 @@ import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
 
 class RowJopRequirementForm extends StatelessWidget {
-  int id;
   final VoidCallback onTap;
-  final Function(String) onChangeTF;
   final String text;
-  int? index;
+  final int index;
   final int numOfList;
-  final TextEditingController controller;
-   RowJopRequirementForm({
+  const RowJopRequirementForm({
     required this.onTap,
-    required this.onChangeTF,
     required this.text,
     this.index=0,
     this.numOfList=1,
-    this.id=0,
-     required this.controller,
     Key? key,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     IconData setIcon(int index , int numOfList ){
       IconData? icon;
-      // if( numOfList == index + 1){
-      if( index==0){
+      if( index == 0){
         icon =Icons.add;
-      } else{
+      } else if((index +1) == numOfList){
         icon =Icons.clear;
+      }else{
+        icon =Icons.check;
       }
       return icon;
     }
-
     Color setBoxColor(int index , int numOfList ){
       Color? color;
-      if( index== 0){
+      if( index == 0){
         color =kCMain;
-      } else{
+      } else if((index +1) == numOfList){
         color =kCMainRed.withOpacity(0.10);
+      }else{
+        color =kCMain;
       }
       return color;
     }
-
     Color setIconColor(int index , int numOfList ){
       Color? color;
-      if(index == 0){
+      if( index == 0){
         color =Colors.white;
-      } else{
+      } else if((index +1) == numOfList){
         color =kCMainRed;
+      }else{
+        color =Colors.white;
       }
       return color;
     }
@@ -62,10 +59,8 @@ class RowJopRequirementForm extends StatelessWidget {
       children: [
         Expanded(
           child: TextFieldDefault(
-            // hint: 'add_other_requirements'.tr,
-            hint: text,
+            hint: 'add_other_requirements'.tr,
             // errorText: "error_set_offer_duration".tr,
-            controller: controller,
             disableBorder: Colors.transparent,
             keyboardType: TextInputType.text,
             filledColor: kCBGTextFormFiled,
@@ -73,7 +68,6 @@ class RowJopRequirementForm extends StatelessWidget {
             enableBorder: Colors.transparent,
             horizentalPadding: 16,
             onComplete: () {},
-            onChanged: onChangeTF,
           ),
         ),
         16.0.ESW(),
@@ -83,14 +77,14 @@ class RowJopRequirementForm extends StatelessWidget {
             height: 68.h,
             width: 68.h,
             decoration: BoxDecoration(
-              color: setBoxColor(index!,numOfList),
+              color: setBoxColor(index,numOfList),
               borderRadius: BorderRadius.circular(10.r),
             ),
             child: Center(
                 child: Icon(
-                  setIcon(index!,numOfList)
+                  setIcon(index,numOfList)
                   // index==0?Icons.add :Icons.clear
-                  ,color:setIconColor(index!,numOfList),)),
+                  ,color:setIconColor(index,numOfList),)),
           ),
         ),
       ],

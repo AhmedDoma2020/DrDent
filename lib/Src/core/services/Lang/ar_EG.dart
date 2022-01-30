@@ -251,4 +251,11 @@ const Map<String, String> arAE = {
   "terms_and_Conditions": "الشروط و الأحكام",
   "support_": "الدعم",
   "log_out": "تسجيل الخروج",
+  "next_visit": "الحجز التالي",
+  "new_visits": "الحجوزات الجديدة",
+  "no_visits_yet": "ليس لديك حجوزات بعد",
+  "jobs": "وظائف",
+  'social_media':'تواصل إجتماعي',
+  'medical_products':'منتجات طبية',
+
 };

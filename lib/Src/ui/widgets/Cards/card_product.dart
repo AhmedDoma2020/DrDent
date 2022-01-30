@@ -68,7 +68,7 @@ class CardProduct extends StatelessWidget {
                   Row(
                     children: [
                       CustomText(
-                        text: 'الشركة الطبية العالمية',
+                        text: product.storeName,
                         fontSize: 9,
                         overflow: true,
                         fontW: FW.thin,

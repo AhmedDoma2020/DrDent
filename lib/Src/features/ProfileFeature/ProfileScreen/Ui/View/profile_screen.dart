@@ -66,6 +66,7 @@ class ProfileScreen extends StatelessWidget {
                     GlobalServicesWidget(userTypeId: proController.userTypeId!,),
                     GlobalInformationDetailsWidget(userTypeId: proController.userTypeId!,),
                   ][_.tabIndex]:proController.userTypeId == 5 || proController.userTypeId == 6?
+
                   [
                     GlobalInformationDetailsWidget(userTypeId: proController.userTypeId!,),
                     GlobalMyProductWidget(),
