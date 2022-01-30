@@ -52,12 +52,11 @@ class AccountTypeScreen extends StatelessWidget {
                         GridView.builder(
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
-                          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                            maxCrossAxisExtent: 150,
-                            childAspectRatio: 1.06,
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            // childAspectRatio: 1.06,
                             crossAxisSpacing: 16.w,
                             mainAxisSpacing: 18.h,
-                            // mainAxisExtent: 103
                           ),
                           itemBuilder: (context, index) => InkWell(
                             hoverColor: Colors.transparent,

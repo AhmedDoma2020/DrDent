@@ -27,13 +27,16 @@ class FetchProfileController extends GetxController {
     int? _patientsNum;
     int? _followersNum;
     int? _followingNum;
-    int? _gender;
+    String? _gender;
+    int? _userTypeId;
+    List<String> _specializationList = [];
     String? get phone => _phone;
     String? get name => _name;
     String? get avatar => _avatar;
     String? get cover => _cover;
     String? get degree => _degree;
     String? get specialization => _specialization;
+    List<String> get specializationList => _specializationList;
     String? get yearsOfExperience => _yearsOfExperience;
     String? get photoOfWorkLicenses => _photoOfWorkLicenses;
     double? get rateAverage => _rateAverage;
@@ -41,7 +44,8 @@ class FetchProfileController extends GetxController {
     int? get patientsNum => _patientsNum;
     int? get followersNum => _followersNum;
     int? get followingNum => _followingNum;
-    int? get gender => _gender;
+    String? get gender => _gender;
+    int? get userTypeId => _userTypeId;
   RequestStatus status = RequestStatus.initial;
   final FetchProfileDoctorRepository _fetchProfileDoctorRepository = FetchProfileDoctorRepository();
   Future<void> fetchProfileDoctor() async {
@@ -58,17 +62,24 @@ class FetchProfileController extends GetxController {
       _degree = response.data['data']['degree']??"";
       _photoOfWorkLicenses = response.data['data']['PhotoOfWorkLicenses']??"";
       if(response.data['data']['specializations'] != null ){
-        _specialization = (response.data['data']['specializations']).join(",");
+        for(var item in response.data['data']['specializations']){
+          String itemTitle = item['title'];
+          _specializationList.add(itemTitle);
+        }
+        _specialization = _specializationList.join(",");
+        debugPrint("_specialization is $_specialization");
+
       }else{
         _specialization="";
       }
-      _yearsOfExperience = response.data['data']['years_of_experience']??"0";
+      _yearsOfExperience = response.data['data']['experience_years'].toString();
       _rateAverage = double.parse((response.data['data']['average_rate']??0.0).toString());
       _rateNum = double.parse((response.data['data']['rate_number']??0).toString());
       _patientsNum = response.data['data']['patients']??0;
       _followersNum = response.data['data']['followers_number']??0;
       _followingNum = response.data['data']['followings_number']??0;
-      _gender = response.data['data']['gender']??0;
+      _gender = response.data['data']['gender']??"UnKnow";
+      _userTypeId = response.data['data']['user_type_id']??0;
       debugPrint("convert operation success");
       status = RequestStatus.done;
       update();

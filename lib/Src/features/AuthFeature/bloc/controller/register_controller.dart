@@ -1,3 +1,4 @@
+import 'package:dr_dent/Src/bloc/controller/navigation_routs_controller.dart';
 import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/AuthFeature/bloc/controller/verify_phone_controller.dart';
@@ -40,48 +41,6 @@ class RegisterController extends GetxController {
   VerifyPhoneController verifyPhoneController =
       Get.put(VerifyPhoneController());
 
-  actionVisitStatus({required int grade}) {
-    switch (grade) {
-      // ToDo register as patient
-      case 2:
-        Get.offAll(() => StartNowScreen());
-        break;
-      // ToDo register as doctor
-      case 3:
-        Get.offAll(() => SetBusinessLicenseScreen(
-              title: "business_license",
-              sibTitle: "business_license_sup_title",
-            ));
-        break;
-      // ToDo register as center
-      case 4:
-        // Get.offAll(() => SetCommercialRegistrationAndTaxCardScreen());
-        Get.offAll(() => StartNowScreen());
-        break;
-      // ToDo register as company
-      case 5:
-        Get.offAll(() => SetCommercialRegistrationAndTaxCardScreen());
-        break;
-
-      // ToDo register as lab
-      case 6:
-        Get.offAll(() => SetCommercialRegistrationAndTaxCardScreen());
-        break;
-
-      // ToDo register as graduation
-      case 7:
-        Get.offAll(() => SetBusinessLicenseScreen(
-              title: "graduation_certificate",
-              sibTitle: "upload_a_photo_of_your_graduation_certificate",
-            ));
-        break;
-
-      default:
-        customSnackBar(title: "Error of user type Id");
-        break;
-    }
-  }
-
   void submit() async {
     if (globalKey.currentState!.validate()) {
       if (_image != "") {
@@ -102,12 +61,27 @@ class RegisterController extends GetxController {
           debugPrint("request operation success");
           if (response.data['data'] != null) {
             // Get.offAll(()=>VerficationScreen(phone: phoneController!.text,));
+            box.write('id', response.data['data']['id']);
+            box.write('name', response.data['data']['name']);
+            box.write('phone', response.data['data']['phone']);
+            box.write('email', response.data['data']['email']);
+            box.write('country_id', response.data['data']['country_id']);
+            box.write('city_id', response.data['data']['city_id']);
+            box.write('address', response.data['data']['address']);
+            box.write('lat', response.data['data']['lat']);
+            box.write('lon', response.data['data']['lon']);
+            box.write('user_type_id', response.data['data']['user_type_id']);
+            box.write('phone_verified', response.data['data']['phone_verified']);
+            box.write('image', response.data['data']['image']);
+            box.write('notify_status', response.data['data']['notify_status']);
             box.write('api_token', response.data['data']['api_token']);
+            box.write('rate_number', response.data['data']['rate_number']);
+            box.write('average_rate', response.data['data']['average_rate']);
             // PhoneVerifyController.verifyPhone(phone: phoneController!.text,onSuccess: ()async{
             //   await verifyPhoneController.setVerify();
             // });
           }
-          actionVisitStatus(grade: _userTypeId);
+          navigationAfterSelectAccountType(grade: _userTypeId);
           debugPrint("convert operation success");
           status = RequestStatus.done;
           update();
@@ -153,3 +127,5 @@ class RegisterController extends GetxController {
     super.dispose();
   }
 }
+
+

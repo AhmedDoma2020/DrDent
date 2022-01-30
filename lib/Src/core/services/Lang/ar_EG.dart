@@ -242,4 +242,13 @@ const Map<String, String> arAE = {
   "center_branches": "فروع المركز",
   "my_products": "منتجاتي",
   "company_products": "منتجات الشركة",
+  "Profile_": "حسابي",
+  "Notification_": "الإشعارات",
+  "fav_list": "قائمة مفضلاتي",
+  "saved_list": "قائمة المحفوظات",
+  "lan_": "اللغة",
+  "Privacy_policy": "سياسة الخصوصية",
+  "terms_and_Conditions": "الشروط و الأحكام",
+  "support_": "الدعم",
+  "log_out": "تسجيل الخروج",
 };

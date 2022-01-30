@@ -16,9 +16,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
-class EnterMyPersonalDataScreen extends StatelessWidget {
+class EnterDoctorPersonalDataScreen extends StatelessWidget {
   final bool isEdit;
-  EnterMyPersonalDataScreen({ this.isEdit =false});
+  EnterDoctorPersonalDataScreen({ this.isEdit =false});
   @override
   Widget build(BuildContext context) {
     EnterMyPersonalDataController _enterMyPersonalDataController =

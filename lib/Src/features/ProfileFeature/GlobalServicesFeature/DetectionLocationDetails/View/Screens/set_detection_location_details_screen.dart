@@ -50,7 +50,7 @@ class SetDetectionLocationDetailsScreen extends StatelessWidget {
             onTapBack: () {Get.back();},
             isBack: isAuth ==true ? false:true,
             isSkip: isAuth ==true ? true:false,
-            onTapSkip: () {Get.to(() => EnterMyPersonalDataScreen());}),
+            onTapSkip: () {Get.to(() => EnterDoctorPersonalDataScreen());}),
         body: GetBuilder<SetDetectionLocationDetailsController>(
           builder: (_) => Container(
             padding: EdgeInsets.symmetric(horizontal: 24.w),

@@ -23,7 +23,7 @@ class GlobalInformationDetailsWidget extends StatelessWidget {
               title: "my_general_data",
               onTap: () {
                 if (userTypeId == 3) {
-                  Get.to(() => EnterMyPersonalDataScreen(
+                  Get.to(() => EnterDoctorPersonalDataScreen(
                         isEdit: true,
                       ));
                 } else if (userTypeId == 4) {}

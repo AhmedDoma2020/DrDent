@@ -16,7 +16,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class ProfileScreen extends StatelessWidget {
-   ProfileScreen({Key? key}) : super(key: key);
+   const ProfileScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     Get.put(ProfileTapIndexController());
@@ -29,6 +29,7 @@ class ProfileScreen extends StatelessWidget {
             builder: (_) => ListView(
               children: [
                 profileInfoWidget(),
+                8.0.ESH(),
                 ProfileRowInfoAndRate(),
                 Padding(
                   padding:  EdgeInsets.symmetric(vertical: 16.h),
@@ -39,11 +40,11 @@ class ProfileScreen extends StatelessWidget {
                         onTap: (index) {
                           _.tabIndex = index;
                         },
-                        titles: 3 == 3||4 == 4?[
+                        titles: proController.userTypeId == 3||proController.userTypeId == 4?[
                           'my_data'.tr,
                           'my_services'.tr,
                           'my_posts'.tr,
-                        ] :5 == 5 || 6 == 6? [
+                        ] :proController.userTypeId == 5 || proController.userTypeId == 6? [
                           'my_data'.tr,
                           'my_products'.tr,
                           'my_posts'.tr,
@@ -60,19 +61,19 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  child: 3 == 3||4 == 4? [
-                    GlobalInformationDetailsWidget(userTypeId: 3,),
-                    GlobalServicesWidget(userTypeId: 3,),
-                    GlobalInformationDetailsWidget(userTypeId: 3,),
-                  ][_.tabIndex]:5 == 5 || 6 == 6?
+                  child: proController.userTypeId == 3||proController.userTypeId == 4? [
+                    GlobalInformationDetailsWidget(userTypeId: proController.userTypeId!,),
+                    GlobalServicesWidget(userTypeId: proController.userTypeId!,),
+                    GlobalInformationDetailsWidget(userTypeId: proController.userTypeId!,),
+                  ][_.tabIndex]:proController.userTypeId == 5 || proController.userTypeId == 6?
                   [
-                    GlobalInformationDetailsWidget(userTypeId: 5,),
+                    GlobalInformationDetailsWidget(userTypeId: proController.userTypeId!,),
                     GlobalMyProductWidget(),
-                    GlobalInformationDetailsWidget(userTypeId: 6,),
+                    GlobalInformationDetailsWidget(userTypeId: proController.userTypeId!,),
                   ][_.tabIndex]:
                   [
-                    GlobalInformationDetailsWidget(userTypeId: 7,),
-                    GlobalInformationDetailsWidget(userTypeId: 7,),
+                    GlobalInformationDetailsWidget(userTypeId: proController.userTypeId!,),
+                    GlobalInformationDetailsWidget(userTypeId: proController.userTypeId!,),
                   ][_.tabIndex],
                 ),
                 24.0.ESH(),

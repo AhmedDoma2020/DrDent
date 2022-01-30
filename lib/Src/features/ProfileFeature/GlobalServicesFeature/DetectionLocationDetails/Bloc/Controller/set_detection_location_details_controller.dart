@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/screens/enter_my_personal_data_screen.dart';
+import 'package:dr_dent/Src/features/WorkTimeFeature/ui/screens/work_time_screen.dart';
 import '../Repository/set_detection_location_details_repo.dart';
 import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
 import 'package:flutter/cupertino.dart';
@@ -93,7 +94,9 @@ class SetDetectionLocationDetailsController extends GetxController {
         Get.back();
         if(response.statusCode == 200 && response.data["status"] == true){
           if(isAuth == true){
-            Get.to(() => EnterMyPersonalDataScreen());
+
+            // Get.offAll(() => const WorkTimeScreen());
+            // Get.to(() => EnterDoctorPersonalDataScreen());
           }else{
             // Get.to(() => DetectionLocationDetailsScreen());
             _fetchDetectionLocationDetailsController.fetchMyDetectionLocationDetails();

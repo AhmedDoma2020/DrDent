@@ -12,7 +12,6 @@ import 'package:get/get.dart';
 
 class NewAccountScreen extends StatelessWidget {
   final int userTypeSelectedId;
-
   const NewAccountScreen({Key? key, required this.userTypeSelectedId})
       : super(key: key);
 
