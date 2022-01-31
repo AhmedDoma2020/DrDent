@@ -18,7 +18,7 @@ class WorkTimeScreen extends StatelessWidget {
   final int workspaceId;
   final int doctorId;
   final VoidCallback onSuccess;
-  const WorkTimeScreen({Key? key,required this.workspaceId, required this.doctorId,required this.onSuccess}) : super(key: key);
+  const WorkTimeScreen({Key? key,required this.workspaceId,  this.doctorId = 0,required this.onSuccess}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     Get.put(WorkTimeController(workSpaceId: workspaceId,doctorId: doctorId));

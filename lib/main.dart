@@ -1,5 +1,6 @@
 
 import 'package:dr_dent/Src/features/AuthFeature/ui/screens/login_screen.dart';
+import 'package:dr_dent/Src/features/AuthFeature/ui/screens/start_now_screen.dart';
 import 'package:dr_dent/Src/features/WorkTimeFeature/ui/screens/work_time_screen.dart';
 import 'package:dr_dent/Src/features/SplachFeature/ui/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ import 'Src/core/services/Lang/localization_services.dart';
 import 'Src/features/AuthFeature/ui/screens/account_type_screen.dart';
 import 'Src/features/AuthFeature/ui/screens/set_business_license_screen.dart';
 import 'Src/features/BaseFeature/ui/screens/base_screen.dart';
+import 'Src/features/ProfileFeature/GlobalInfoemationFeature/MyGeneralDataFeature/Ui/Screen/enter_personal_data_of_company_and_center.dart';
 import 'Src/features/ProfileFeature/GlobalServicesFeature/DetectionLocationDetails/View/Screens/set_detection_location_details_screen.dart';
 import 'Src/features/JobFeature/ui/screens/job_screen.dart';
 import 'Src/features/JobFeature/ui/screens/jobs_screen.dart';
@@ -33,7 +35,7 @@ import 'Src/features/StoreFeature/ui/screens/product_screen.dart';
 import 'Src/features/StoreFeature/ui/screens/saved_products.dart';
 import 'Src/features/StoreFeature/ui/screens/stotre_screen.dart';
 import 'Src/features/VisitsFeature/ui/screens/my_visits_screen.dart';
-import 'Src/features/AuthFeature/ui/screens/enter_my_personal_data_screen.dart';
+import 'Src/features/ProfileFeature/GlobalInfoemationFeature/MyGeneralDataFeature/Ui/Screen/enter_personal_data_of_doctor_screen.dart';
 import 'Src/features/ProfileFeature/ProfileScreen/Ui/View/profile_screen.dart';
 import 'Src/ui/widgets/grids/grid_card_product.dart';
 
@@ -55,7 +57,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home:SplashScreen(),
+        home:AccountTypeScreen(),
       ),
     );
   }

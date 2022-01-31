@@ -1,5 +1,3 @@
-
-
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -7,37 +5,35 @@ import 'package:dr_dent/Src/core/constants/api_key.dart';
 import 'package:dr_dent/Src/core/services/network_services.dart';
 import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
 
-class EnterYourInformationToApplyRepository with ApiKey {
+class EnterAndEditPersonalDataOfGraduatedRepository with ApiKey {
   // GetStorage box = GetStorage();
-  NetworkService _networkService = NetworkService();
-  Future<Response> enterYourInformationToApply({
+  final NetworkService _networkService = NetworkService();
+  Future<Response> enterAndEditPersonalDataOfGraduated({
+    required String avatar,
     required String name,
-    required String phone,
-    required String email,
-    required int gender,
-    required String university,
+    required String gender,
+    required int universityId,
     required String graduationYear,
-    required String universityDegree,
-    required String graduationCertificateImage,
-    required String cVImage,
+    required String graduationDegree,
     required List<int> specializationId,
+    required String graduationCertificate,
+    required String cv,
   }) async {
     Response response;
     try {
       response = await _networkService.post(
-          url: uRLEnterAndEditPersonalDataOfDoctor,
+          url: uRLEnterAndEditPersonalDataOfGraduated,
           auth: true,
           body: {
-            'owner_name':name,
-            'phone':phone,
-            'address':email,
-            'seintific_level':gender,
-            'specialization_ids':specializationId,
-            'university':university,
+            'image':avatar,
+            'name':name,
+            'gender':gender,
+            'university_id':universityId,
             'graduation_year':graduationYear,
-            'universityDegree':universityDegree,
-            'description':graduationCertificateImage,
-            'cVImage':cVImage,
+            'graduation_degree':graduationDegree,
+            'specializations':specializationId,
+            'work_lisence':graduationCertificate,
+            'cv':cv,
           }
       );
     } on SocketException {

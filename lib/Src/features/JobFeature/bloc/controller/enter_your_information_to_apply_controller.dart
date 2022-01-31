@@ -1,5 +1,5 @@
 import 'package:dr_dent/Src/core/utils/request_status.dart';
-import 'package:dr_dent/Src/features/AuthFeature/bloc/repository/enter_and_edit_my_personal_data_repo.dart';
+import '../../../ProfileFeature/GlobalInfoemationFeature/MyGeneralDataFeature/Bloc/Repo/enter_and_edit_personal_data_of_doctor_repo.dart';
 import 'package:dr_dent/Src/features/JobFeature/bloc/Repository/add_a_jop_offer_repo.dart';
 import 'package:dr_dent/Src/features/JobFeature/bloc/Repository/enter_your_information_to_apply_repo.dart';
 import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
