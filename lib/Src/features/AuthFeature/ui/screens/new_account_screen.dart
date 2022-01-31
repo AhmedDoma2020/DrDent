@@ -76,7 +76,8 @@ class NewAccountScreen extends StatelessWidget {
                           16.0.ESH(),
                           userTypeSelectedId == 7 || userTypeSelectedId == 3
                               ? 0.0.ESW()
-                              : Column(
+                              :
+                          Column(
                                   children: [
                                     TextFieldDefault(
                                       hint: 'Responsible_name'.tr,

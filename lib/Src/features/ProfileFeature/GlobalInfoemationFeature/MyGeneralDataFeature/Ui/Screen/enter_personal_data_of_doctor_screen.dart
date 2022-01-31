@@ -1,6 +1,6 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
-import 'package:dr_dent/Src/features/AuthFeature/bloc/controller/enter_my_personal_data_controller.dart';
+import '../../Bloc/Controller/enter_personal_data_of_doctor_controller.dart';
 import 'package:dr_dent/Src/features/AuthFeature/bloc/controller/fetch_scientific_controller.dart';
 import 'package:dr_dent/Src/features/AuthFeature/bloc/controller/fetch_specialization_controller.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/widgets/degree_bottun_sheet.dart';
@@ -16,13 +16,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
-class EnterDoctorPersonalDataScreen extends StatelessWidget {
+class EnterPersonalDataOfDoctorScreen extends StatelessWidget {
   final bool isEdit;
-  EnterDoctorPersonalDataScreen({ this.isEdit =false});
+  EnterPersonalDataOfDoctorScreen({ this.isEdit =false});
   @override
   Widget build(BuildContext context) {
-    EnterMyPersonalDataController _enterMyPersonalDataController =
-        Get.put(EnterMyPersonalDataController(isEdit: isEdit));
+    EnterPersonalDataOfDoctorController _enterMyPersonalDataController =
+        Get.put(EnterPersonalDataOfDoctorController(isEdit: isEdit));
     Get.put(FetchSpecializationController());
     Get.put(FetchScientificController());
     var node = FocusScope.of(context);
@@ -39,7 +39,7 @@ class EnterDoctorPersonalDataScreen extends StatelessWidget {
           onTapSkip: () {
             Get.offAll(() => BaseScreen());
           }),
-      body: GetBuilder<EnterMyPersonalDataController>(
+      body: GetBuilder<EnterPersonalDataOfDoctorController>(
         builder: (_) => Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.w),
           child: Form(

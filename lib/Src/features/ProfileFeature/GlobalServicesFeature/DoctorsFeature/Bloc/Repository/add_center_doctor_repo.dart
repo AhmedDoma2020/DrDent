@@ -22,7 +22,7 @@ class AddCenterDoctorRepository with ApiKey {
     Response response;
     try {
       response = await _networkService.post(
-          url: uRLEnterAndEditMyPersonalData,
+          url: uRLEnterAndEditPersonalDataOfDoctor,
           auth: true,
           body: {
             'name':name,

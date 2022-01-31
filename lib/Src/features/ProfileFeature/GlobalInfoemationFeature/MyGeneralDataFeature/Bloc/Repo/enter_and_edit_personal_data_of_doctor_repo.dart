@@ -5,10 +5,10 @@ import 'package:dr_dent/Src/core/constants/api_key.dart';
 import 'package:dr_dent/Src/core/services/network_services.dart';
 import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
 
-class EnterAndEditMyPersonalDataRepository with ApiKey {
+class EnterAndEditPersonalDataOfDoctorRepository with ApiKey {
   // GetStorage box = GetStorage();
   final NetworkService _networkService = NetworkService();
-  Future<Response> enterAndEditMyPersonalData({
+  Future<Response> enterAndEditPersonalDataOfDoctor({
     required String name,
     required String gender,
     required int scientificLevel,
@@ -19,7 +19,7 @@ class EnterAndEditMyPersonalDataRepository with ApiKey {
     Response response;
     try {
       response = await _networkService.post(
-        url: uRLEnterAndEditMyPersonalData,
+        url: uRLEnterAndEditPersonalDataOfDoctor,
           auth: true,
           body: {
             'name':name,

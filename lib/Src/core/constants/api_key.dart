@@ -65,7 +65,9 @@ mixin ApiKey{
    final String uRLFetchProfile = apiBaseUrl + "fetch_profile";
    final String uRLFetchScientific = apiBaseUrl + "fetch_seintific_levels";
    final String uRLFetchSpecialization = apiBaseUrl + "specializations";
-   final String uRLEnterAndEditMyPersonalData = apiBaseUrl + "edit_personal_info";
+   final String uRLEnterAndEditPersonalDataOfDoctor = apiBaseUrl + "edit_doctor_personal_info";
+   final String uRLEnterAndEditPersonalDataOfCompanyAndCenter = apiBaseUrl + "company_edit_general_info";
+   final String uRLEnterAndEditPersonalDataOfGraduated = apiBaseUrl + "edit_graduate_personal_info";
    final String uRLAddJopRequest = apiBaseUrl + "add_job_request";
    final String uRLAddAJopOffer = apiBaseUrl + "add_job_offer";
    final String uRLStates = apiBaseUrl + "states";

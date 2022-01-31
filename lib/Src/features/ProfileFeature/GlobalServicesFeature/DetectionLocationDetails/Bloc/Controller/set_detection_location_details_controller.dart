@@ -1,7 +1,8 @@
 import 'dart:io';
 import 'dart:convert';
 import 'package:dr_dent/Src/core/services/dialogs.dart';
-import 'package:dr_dent/Src/features/AuthFeature/ui/screens/enter_my_personal_data_screen.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/MyGeneralDataFeature/Ui/Screen/enter_personal_data_of_graduated.dart';
+import '../../../../GlobalInfoemationFeature/MyGeneralDataFeature/Ui/Screen/enter_personal_data_of_doctor_screen.dart';
 import 'package:dr_dent/Src/features/WorkTimeFeature/ui/screens/work_time_screen.dart';
 import 'package:get_storage/get_storage.dart';
 import '../Repository/set_detection_location_details_repo.dart';
@@ -33,33 +34,25 @@ class SetDetectionLocationDetailsController extends GetxController {
   TextEditingController? spMarkController = TextEditingController();
 
   double? _lat;
-
   double? get lat => _lat;
-
   set setLat(double value) {
     _lat = value;
   }
 
   double? _lon;
-
   double? get lon => _lon;
-
   set setLon(double value) {
     _lon = value;
   }
 
   int? _stateId;
-
   int? get stateId => _stateId;
-
   set setStateId(int value) {
     _stateId = value;
   }
 
   int? _cityId;
-
   int? get cityId => _cityId;
-
   set setCityId(int value) {
     _cityId = value;
   }
@@ -106,13 +99,25 @@ class SetDetectionLocationDetailsController extends GetxController {
           box.write('workspace_id', response.data['data']['id']??0);
           if (isAuth == true) {
             debugPrint("in uth");
-            Get.offAll(() => WorkTimeScreen(
-                  doctorId: box.read('id'),
-                  onSuccess: () {
-                    Get.to(() => EnterDoctorPersonalDataScreen());
-                  },
-                  workspaceId: box.read('workspace_id'),
-                ));
+            if(box.read('user_type_id') ==3 ){
+              Get.offAll(() => WorkTimeScreen(
+                doctorId: box.read('id'),
+                onSuccess: () {
+                    Get.to(() => EnterPersonalDataOfDoctorScreen());
+                },
+                workspaceId: box.read('workspace_id'),
+              ));
+            }else if(box.read('user_type_id') == 4){
+              Get.offAll(() => WorkTimeScreen(
+                onSuccess: () {
+                  Get.to(() => EnterPersonalDataOfGraduatedScreen());
+                },
+                workspaceId: box.read('workspace_id'),
+              ));
+            }
+
+
+
             // Get.to(() => EnterDoctorPersonalDataScreen());
           } else {
             debugPrint("not uth");

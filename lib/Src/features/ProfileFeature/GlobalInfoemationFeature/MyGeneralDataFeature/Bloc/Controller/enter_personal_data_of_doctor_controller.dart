@@ -1,6 +1,6 @@
 import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
-import 'package:dr_dent/Src/features/AuthFeature/bloc/repository/enter_and_edit_my_personal_data_repo.dart';
+import '../Repo/enter_and_edit_personal_data_of_doctor_repo.dart';
 import 'package:dr_dent/Src/features/BaseFeature/ui/screens/base_screen.dart';
 import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,9 +8,9 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Bloc/Controller/featch_profile_controller.dart';
 
 
-class EnterMyPersonalDataController extends GetxController {
+class EnterPersonalDataOfDoctorController extends GetxController {
   final bool isEdit;
-  EnterMyPersonalDataController({ this.isEdit =false});
+  EnterPersonalDataOfDoctorController({ this.isEdit =false});
 
   GetStorage box = GetStorage();
   TextEditingController? nameController;
@@ -54,7 +54,7 @@ class EnterMyPersonalDataController extends GetxController {
 
   RequestStatus status = RequestStatus.initial;
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
-  final EnterAndEditMyPersonalDataRepository _enterAndEditMyPersonalDataRepository = EnterAndEditMyPersonalDataRepository();
+  final EnterAndEditPersonalDataOfDoctorRepository _enterAndEditMyPersonalDataRepository = EnterAndEditPersonalDataOfDoctorRepository();
   void submit() async {
     if (globalKey.currentState!.validate()) {
       globalKey.currentState!.save();
@@ -66,7 +66,7 @@ class EnterMyPersonalDataController extends GetxController {
         debugPrint(" _specializationIdSelected $_specializationIdSelected");
         debugPrint(" addInfoController!.text ${addInfoController!.text}");
         debugPrint(" image $image");
-        var response = await  _enterAndEditMyPersonalDataRepository.enterAndEditMyPersonalData(
+        var response = await  _enterAndEditMyPersonalDataRepository.enterAndEditPersonalDataOfDoctor(
           name: nameController!.text,
           gender: _gender,
           scientificLevel: scientificId!,
