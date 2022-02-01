@@ -62,4 +62,10 @@ const Map<String, String> enUS = {
   "A_picture_of_the_clinic_or_center": "صورة العيادة أو المركز",
   "Detection_location_details": "تفاصيل أماكن الكشف",
 
+  "next_visit": "الحجز التالي",
+  "new_visits": "الحجوزات الجديدة",
+  "no_visits_yet": "ليس لديك حجوزات بعد",
+  "jobs": "وظائف",
+  'social_media':'تواصل إجتماعي',
+  'medical_products':'منتجات طبية',
 };

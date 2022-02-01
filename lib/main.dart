@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home:AccountTypeScreen(),
+        home : SplashScreen(),
       ),
     );
   }
