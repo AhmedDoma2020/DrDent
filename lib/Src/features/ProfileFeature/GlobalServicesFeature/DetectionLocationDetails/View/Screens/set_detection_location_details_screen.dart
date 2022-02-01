@@ -1,6 +1,6 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
-import 'package:dr_dent/Src/features/AuthFeature/ui/screens/enter_my_personal_data_screen.dart';
+import '../../../../GlobalInfoemationFeature/MyGeneralDataFeature/Ui/Screen/enter_personal_data_of_doctor_screen.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/widgets/upload_photo_of_work_licenses.dart';
 import '../../Bloc/Controller/set_detection_location_details_controller.dart';
 import 'package:dr_dent/Src/features/LocationFeature/ui/screens/set_location_map_screen.dart';
@@ -40,7 +40,6 @@ class SetDetectionLocationDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SetDetectionLocationDetailsController _detectionLocationDetailsController =
     Get.put(SetDetectionLocationDetailsController(isAuth: isAuth));
     var node = FocusScope.of(context);
     return SafeArea(
@@ -50,7 +49,7 @@ class SetDetectionLocationDetailsScreen extends StatelessWidget {
             onTapBack: () {Get.back();},
             isBack: isAuth ==true ? false:true,
             isSkip: isAuth ==true ? true:false,
-            onTapSkip: () {Get.to(() => EnterDoctorPersonalDataScreen());}),
+            onTapSkip: () {Get.to(() => EnterPersonalDataOfDoctorScreen());}),
         body: GetBuilder<SetDetectionLocationDetailsController>(
           builder: (_) => Container(
             padding: EdgeInsets.symmetric(horizontal: 24.w),
