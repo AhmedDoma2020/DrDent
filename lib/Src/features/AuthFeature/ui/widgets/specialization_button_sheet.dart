@@ -12,13 +12,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '/src/core/utils/extensions.dart';
 
-class specializationButtonSheet extends StatelessWidget {
+class SpecializationButtonSheet extends StatelessWidget {
   final  Function onTapNotEmpty;
   final  Function onTapEmpty;
-  specializationButtonSheet({
+  final List<int> specializationIdsSelected;
+   SpecializationButtonSheet({Key? key,
     required this.onTapNotEmpty,
     required this.onTapEmpty,
-  });
+    required this.specializationIdsSelected,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -58,9 +60,11 @@ class specializationButtonSheet extends StatelessWidget {
                             itemBuilder: (context, index) =>
                                 RowSpecializationForm(
                               specialization: _.specializationList[index],
-                              // isSelect: _.insuranceList[index].active,
+                              isSelect: specializationIdsSelected.contains(_.specializationList[index].id),
                               onSelectTap: (){
+
                                 _.changeSelectInsurance(insuranceIndex: index);
+
                               },
                             ),
                             separatorBuilder: (context, index) => 24.0.ESH(),

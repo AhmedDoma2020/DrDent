@@ -11,8 +11,9 @@ import 'package:get/get.dart';
 import '/src/core/utils/extensions.dart';
 
 class DegreeButtonSheet extends StatelessWidget {
+  final int idSelected;
   final  Function onTap;
-  DegreeButtonSheet({required this.onTap});
+  DegreeButtonSheet({required this.onTap, this.idSelected = -1});
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -58,7 +59,7 @@ class DegreeButtonSheet extends StatelessWidget {
                                 },
                                 child: RowDegreeForm(
                                   scientificModel: _.scientificList[index],
-                                  isSelected:_.scientificIndex==index,
+                                  isSelected: _.scientificIndex==index || _.scientificList[index].id == idSelected ,
                                 ),
                               ),
                               separatorBuilder: (context, index) =>0.0.ESH(),

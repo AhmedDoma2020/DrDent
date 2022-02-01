@@ -34,7 +34,7 @@ class EnterPersonalDataOfGraduatedScreen extends StatelessWidget {
     Get.put(FetchUniversityDegreeController());
     Get.put(FetchYearsOfGraduationController());
     Get.put(EnterPersonalDataOfGraduatedController(isEdit: isEdit));
-    // Get.put(FetchSpecializationController());
+    Get.put(FetchSpecializationController());
     // Get.put(FetchScientificController());
     var node = FocusScope.of(context);
     return SafeArea(
@@ -56,7 +56,9 @@ class EnterPersonalDataOfGraduatedScreen extends StatelessWidget {
                   // crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     24.0.ESH(),
-                    AvatarForm(onTap:(val){},isUploade: true,),
+                    AvatarForm(onTap:(val){
+                      _.setAvatar = val;
+                    },isUploade: true,),
                     24.0.ESH(),
                     TextFieldDefault(
                       hint: 'full_name'.tr,
@@ -158,7 +160,8 @@ class EnterPersonalDataOfGraduatedScreen extends StatelessWidget {
                     GestureDetector(
                       onTap: () {
                         Get.bottomSheet(
-                            specializationButtonSheet(
+                            SpecializationButtonSheet(specializationIdsSelected: [],
+
                               onTapNotEmpty: (specializationIdList,specializationTitleList){
                                 _.setSpecializationIdSelected = specializationIdList;
                                 _.specializationController!.text=specializationTitleList;
