@@ -18,7 +18,8 @@ class FetchProfileController extends GetxController {
     String? _name;
     String? _avatar;
     String? _cover;
-    String? _degree;
+    String? _degreeTitle;
+    int? _degreeId;
     String? _specialization;
     String? _yearsOfExperience;
     String? _photoOfWorkLicenses;
@@ -30,13 +31,16 @@ class FetchProfileController extends GetxController {
     String? _gender;
     int? _userTypeId;
     List<String> _specializationList = [];
+    List<int> _specializationIds = [];
     String? get phone => _phone;
     String? get name => _name;
     String? get avatar => _avatar;
     String? get cover => _cover;
-    String? get degree => _degree;
+    String? get degreeTitle => _degreeTitle;
+    int? get degreeId => _degreeId;
     String? get specialization => _specialization;
     List<String> get specializationList => _specializationList;
+    List<int> get specializationIds => _specializationIds;
     String? get yearsOfExperience => _yearsOfExperience;
     String? get photoOfWorkLicenses => _photoOfWorkLicenses;
     double? get rateAverage => _rateAverage;
@@ -59,15 +63,22 @@ class FetchProfileController extends GetxController {
       _name = response.data['data']['name']??"";
       _avatar = response.data['data']['image']??"";
       _cover = response.data['data']['cover']??"";
-      _degree = response.data['data']['degree']??"";
+      _degreeTitle = response.data['data']['scientificlevel']["title"]??"";
+      _degreeId = response.data['data']['scientificlevel']["id"]??0;
+
       _photoOfWorkLicenses = response.data['data']['PhotoOfWorkLicenses']??"";
+      debugPrint("response.data['data']['specializations'] ${response.data['data']['specializations']}");
       if(response.data['data']['specializations'] != null ){
+        _specializationList.clear();
+        _specializationIds.clear();
         for(var item in response.data['data']['specializations']){
           String itemTitle = item['title'];
+          int itemId = item['id'];
           _specializationList.add(itemTitle);
+          _specializationIds.add(itemId);
         }
         _specialization = _specializationList.join(",");
-        debugPrint("_specialization is $_specialization");
+        debugPrint("_specialization $_specialization");
 
       }else{
         _specialization="";

@@ -11,7 +11,6 @@ import 'package:get_storage/get_storage.dart';import 'package:dr_dent/Src/featur
 class EnterPersonalDataOfDoctorController extends GetxController {
   final bool isEdit;
   EnterPersonalDataOfDoctorController({ this.isEdit =false});
-
   GetStorage box = GetStorage();
   TextEditingController? nameController;
   TextEditingController? degreeController;
@@ -32,6 +31,7 @@ class EnterPersonalDataOfDoctorController extends GetxController {
   set setImage(String value) {
     _image = value;
   }
+
   int? _scientificId;
   int? get scientificId => _scientificId;
   set setScientificId(int value) {
@@ -44,8 +44,14 @@ class EnterPersonalDataOfDoctorController extends GetxController {
     debugPrint("ddddddone 2");
     if(isEdit ==true){
       debugPrint("ddddddone 3");
+      debugPrint("_fetchProfileDoctorController.degree! ${_fetchProfileDoctorController.degreeTitle!}");
+      debugPrint("_fetchProfileDoctorController.degree! ${_fetchProfileDoctorController.degreeTitle!}");
       nameController!.text= _fetchProfileDoctorController.name!;
-      degreeController!.text= _fetchProfileDoctorController.degree!;
+      degreeController!.text= _fetchProfileDoctorController.degreeTitle!;
+      specializationController!.text = _fetchProfileDoctorController.specialization!;
+      _scientificId = _fetchProfileDoctorController.degreeId!;
+      _specializationIdSelected = _fetchProfileDoctorController.specializationIds;
+      // _image = _fetchProfileDoctorController.
       debugPrint("nameController!.text ${nameController!.text}");
       debugPrint("degreeController!.text ${degreeController!.text}");
       update();
@@ -101,7 +107,7 @@ class EnterPersonalDataOfDoctorController extends GetxController {
     specializationController = TextEditingController();
     addInfoController = TextEditingController();
     _specializationIdSelected =[];
-    // setData();
+    setData();
   }
 
   @override

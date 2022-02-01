@@ -176,7 +176,8 @@ class EnterYourInformationButtonSheet extends StatelessWidget {
                       GestureDetector(
                         onTap: () {
                           Get.bottomSheet(
-                              specializationButtonSheet(
+                              SpecializationButtonSheet(specializationIdsSelected: [],
+
                                 onTapNotEmpty: (specializationIdList,specializationTitleList){
                                   _.setSpecializationIdSelected = specializationIdList;
                                   _.specializationController!.text=specializationTitleList;

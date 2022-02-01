@@ -23,17 +23,13 @@ class EnterPersonalDataOfCompanyAndCenterController extends GetxController {
   TextEditingController? aboutController;
 
   String _avatar = "";
-
   String get avatar => _avatar;
-
   set setAvatar(String value) {
     _avatar = value;
   }
 
   String _taxNumberImage = '';
-
   String get taxNumberImage => _taxNumberImage;
-
   set setTaxNumberImage(String value) {
     _taxNumberImage = value;
   }
@@ -94,7 +90,7 @@ class EnterPersonalDataOfCompanyAndCenterController extends GetxController {
     if (isEdit == true) {
       debugPrint("ddddddone 3");
       nameController!.text = _fetchProfileDoctorController.name!;
-      phoneController!.text = _fetchProfileDoctorController.degree!;
+      phoneController!.text = _fetchProfileDoctorController.degreeTitle!;
       debugPrint("nameController!.text ${nameController!.text}");
       debugPrint("degreeController!.text ${phoneController!.text}");
       update();
@@ -121,11 +117,11 @@ class EnterPersonalDataOfCompanyAndCenterController extends GetxController {
               name: nameController!.text,
               administratorPhone: administratorPhoneController!.text,
               administratorName: administratorNameController!.text,
-              stateId: stateId!,
-              cityId: cityId!,
-              lat: lat!,
-              lon: lon!,
-              address: addressController!.text,
+              // stateId: stateId!,
+              // cityId: cityId!,
+              // lat: lat!,
+              // lon: lon!,
+              // address: addressController!.text,
               taxNumber: taxNumberController!.text,
               logRecord: logRecordController!.text,
               taxNumberImage: taxNumberImage,
@@ -133,23 +129,22 @@ class EnterPersonalDataOfCompanyAndCenterController extends GetxController {
               moreInfo: aboutController!.text,
             );
             Get.back();
-            // if (response.statusCode == 200 && response.data["status"] == true) {
-            //   debugPrint("request operation success");
-            //   customSnackBar(title: response.data["message"]);
-            //   Get.offAll(() => BaseScreen());
-            //   debugPrint("convert operation success");
-            //   status = RequestStatus.done;
-            //   update();
-            // } else {
-            //   status = RequestStatus.error;
-            //   customSnackBar(title: response.data["message"]);
-            //   update();
-            // }
+            if (response.statusCode == 200 && response.data["status"] == true) {
+              debugPrint("request operation success");
+              customSnackBar(title: response.data["message"]);
+              debugPrint("convert operation success");
+              status = RequestStatus.done;
+              update();
+            } else {
+              status = RequestStatus.error;
+              customSnackBar(title: response.data["message"]);
+              update();
+            }
           } else {
-            customSnackBar(title: "must_set_photo_of_Work_licenses".tr);
+            customSnackBar(title: "must_set_commercial_registration_image".tr);
           }
         } else {
-          customSnackBar(title: "must_set_photo_of_Work_licenses".tr);
+          customSnackBar(title: "must_set_tax_record_image".tr);
         }
       } else {
         customSnackBar(title: "must_set_avatar".tr);

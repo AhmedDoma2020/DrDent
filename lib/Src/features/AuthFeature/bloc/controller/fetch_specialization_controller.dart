@@ -14,6 +14,23 @@ class FetchSpecializationController extends GetxController {
   List<int> get specializationIdList => _specializationIdList;
   List<String> _specializationTitleList = [];
   List<String> get specializationTitleList => _specializationTitleList;
+
+  void changeInsuranceSelected({required int insuranceIndex}) {
+    // _specializationList[insuranceIndex].active = !_specializationList[insuranceIndex].active;
+    if(_specializationList[insuranceIndex].active==true){
+      _specializationList[insuranceIndex].active=false;
+      _specializationIdList.remove(_specializationList[insuranceIndex].id);
+      _specializationTitleList.remove(_specializationList[insuranceIndex].title);
+    }else{
+      _specializationList[insuranceIndex].active=true;
+      _specializationIdList.add(_specializationList[insuranceIndex].id);
+      _specializationTitleList.add(_specializationList[insuranceIndex].title);
+    }
+
+    update();
+  }
+
+
   void changeSelectInsurance({required int insuranceIndex}) {
     // _specializationList[insuranceIndex].active = !_specializationList[insuranceIndex].active;
     if(_specializationList[insuranceIndex].active==true){

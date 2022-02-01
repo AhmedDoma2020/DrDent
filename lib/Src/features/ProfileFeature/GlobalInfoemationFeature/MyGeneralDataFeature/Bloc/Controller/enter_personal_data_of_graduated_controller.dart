@@ -24,25 +24,19 @@ class EnterPersonalDataOfGraduatedController extends GetxController {
   TextEditingController? graduationYearController;
   TextEditingController? universityDegreeController;
   List<int> _specializationIdSelected = [];
-
   List<int> get specializationIdSelected => _specializationIdSelected;
-
   set setSpecializationIdSelected(List<int> value) {
     _specializationIdSelected = value;
   }
 
   String _gender = "male";
-
   String get gender => _gender;
-
   set estGender(String value) {
     _gender = value;
   }
 
   String _avatar = "";
-
   String get avatar => _avatar;
-
   set setAvatar(String value) {
     _avatar = value;
   }
@@ -73,7 +67,7 @@ class EnterPersonalDataOfGraduatedController extends GetxController {
     if (isEdit == true) {
       debugPrint("ddddddone 3");
       nameController!.text = _fetchProfileDoctorController.name!;
-      degreeController!.text = _fetchProfileDoctorController.degree!;
+      degreeController!.text = _fetchProfileDoctorController.degreeTitle!;
       debugPrint("nameController!.text ${nameController!.text}");
       debugPrint("degreeController!.text ${degreeController!.text}");
       update();
@@ -119,10 +113,10 @@ class EnterPersonalDataOfGraduatedController extends GetxController {
               update();
             }
           }else{
-            customSnackBar(title: "must_set_photo_of_Work_licenses".tr);
+            customSnackBar(title: "must_attach_your_CV".tr);
           }
         }else{
-          customSnackBar(title: "must_set_photo_of_Work_licenses".tr);
+          customSnackBar(title: "must_set_graduation_certificate_image".tr);
         }
       } else {
         customSnackBar(title: "must_set_avatar".tr);

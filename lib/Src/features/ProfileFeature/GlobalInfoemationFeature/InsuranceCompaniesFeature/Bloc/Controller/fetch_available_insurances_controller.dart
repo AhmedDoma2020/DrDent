@@ -17,7 +17,9 @@ class FetchAvailableInsurancesController extends GetxController {
   RequestStatus status = RequestStatus.initial;
   final FetchAvailableInsurancesRepository _etchAvailableInsurancesRepository = FetchAvailableInsurancesRepository();
   Future<void> fetchAvailableInsurances() async {
+    status = RequestStatus.loading;
     var response = await _etchAvailableInsurancesRepository.fetchAvailableInsurances();
+    status = RequestStatus.done;
     if (response.statusCode == 200 && response.data["status"] == true) {
       debugPrint("request operation success");
       _insuranceList.clear();

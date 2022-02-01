@@ -1,11 +1,24 @@
-import 'package:dr_dent/Src/features/AuthFeature/ui/screens/set_business_license_screen.dart';
-import 'package:dr_dent/Src/features/AuthFeature/ui/screens/set_commercial_registration_and_tax_card_screen.dart';
-import 'package:dr_dent/Src/features/AuthFeature/ui/screens/start_now_screen.dart';
-import 'package:dr_dent/Src/features/BaseFeature/ui/screens/base_screen.dart';
-import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/MyGeneralDataFeature/Ui/Screen/enter_personal_data_of_graduated.dart';
-import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/DetectionLocationDetails/View/Screens/set_detection_location_details_screen.dart';
-import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
-import 'package:get/get.dart';
+  import 'package:dr_dent/Src/core/constants/color_constants.dart';
+  import 'package:dr_dent/Src/core/utils/extensions.dart';
+  import 'package:dr_dent/Src/features/AuthFeature/ui/screens/set_business_license_screen.dart';
+  import 'package:dr_dent/Src/features/AuthFeature/ui/screens/set_commercial_registration_and_tax_card_screen.dart';
+  import 'package:dr_dent/Src/features/AuthFeature/ui/screens/start_now_screen.dart';
+  import 'package:dr_dent/Src/features/BaseFeature/ui/screens/base_screen.dart';
+  import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/MyGeneralDataFeature/Ui/Screen/enter_personal_data_of_graduated.dart';
+  import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/DetectionLocationDetails/View/Screens/set_detection_location_details_screen.dart';
+  import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Bloc/Controller/profile_tab_index_controller.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/View/button_tap_bar_widget_of_center.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/View/button_tap_bar_widget_of_company.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/View/button_tap_bar_widget_of_doctor.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/View/button_tap_bar_widget_of_graduated.dart';
+  import '../../features/ProfileFeature/ProfileScreen/Ui/Widget/DoctorWidgets/global_information_details_widget_of_doctor.dart';
+  import '../../features/ProfileFeature/ProfileScreen/Ui/Widget/DoctorWidgets/global_services_widget_of_doctor.dart';
+  import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
+  import 'package:dr_dent/Src/ui/widgets/tabs/tabs_ios.dart';
+  import 'package:flutter/cupertino.dart';
+  import 'package:flutter/material.dart';
+  import 'package:flutter_screenutil/flutter_screenutil.dart';
+  import 'package:get/get.dart';
 
 navigationAfterSelectAccountType({required int grade}) {
   switch (grade) {
@@ -79,3 +92,40 @@ navigationAfterStartNowScreen({required int grade}) {
       break;
   }
 }
+
+Widget buttonTapBarType({required int userTypeId}) {
+  switch (userTypeId) {
+    case 3:
+      {
+        return const ButtonTapBarWidgetOfDoctor();
+      }
+      case 4:
+      {
+        return const ButtonTapBarWidgetOfCenter();
+      }
+      case 5:
+      {
+        return const ButtonTapBarWidgetOfCompany();
+      }
+      case 6:
+      {
+        return const ButtonTapBarWidgetOfCompany();
+      }
+      case 7:
+      {
+        return const ButtonTapBarWidgetOfGraduated();
+      }
+    default:
+      {
+        return Container();
+      }
+  }
+
+}
+
+
+
+
+
+
+

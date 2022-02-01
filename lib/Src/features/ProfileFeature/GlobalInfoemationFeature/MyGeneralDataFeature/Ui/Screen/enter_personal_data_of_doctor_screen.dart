@@ -1,6 +1,5 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
-import '../../Bloc/Controller/enter_personal_data_of_doctor_controller.dart';
 import 'package:dr_dent/Src/features/AuthFeature/bloc/controller/fetch_scientific_controller.dart';
 import 'package:dr_dent/Src/features/AuthFeature/bloc/controller/fetch_specialization_controller.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/widgets/degree_bottun_sheet.dart';
@@ -16,13 +15,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
+import '../../Bloc/Controller/enter_personal_data_of_doctor_controller.dart';
+
 class EnterPersonalDataOfDoctorScreen extends StatelessWidget {
   final bool isEdit;
-  EnterPersonalDataOfDoctorScreen({ this.isEdit =false});
+
+  EnterPersonalDataOfDoctorScreen({this.isEdit = false});
+
   @override
   Widget build(BuildContext context) {
-    EnterPersonalDataOfDoctorController _enterMyPersonalDataController =
-        Get.put(EnterPersonalDataOfDoctorController(isEdit: isEdit));
+    Get.put(EnterPersonalDataOfDoctorController(isEdit: isEdit));
     Get.put(FetchSpecializationController());
     Get.put(FetchScientificController());
     var node = FocusScope.of(context);
@@ -70,14 +72,19 @@ class EnterPersonalDataOfDoctorScreen extends StatelessWidget {
                 16.0.ESH(),
                 GestureDetector(
                   onTap: () {
-                    Get.bottomSheet(DegreeButtonSheet(
-                      onTap: (scientificListTitle, scientificListId) {
-                        _.degreeController!.text = scientificListTitle;
-                        debugPrint("scientificListTitle $scientificListTitle");
-                        _.setScientificId = scientificListId;
-                        Get.back();
-                      },
-                    ), isScrollControlled: true);
+                    Get.bottomSheet(
+                      DegreeButtonSheet(
+                        idSelected: _.scientificId!,
+                        onTap: (scientificListTitle, scientificListId) {
+                          _.degreeController!.text = scientificListTitle;
+                          debugPrint(
+                              "scientificListTitle $scientificListTitle");
+                          _.setScientificId = scientificListId;
+                          Get.back();
+                        },
+                      ),
+                      isScrollControlled: true,
+                    );
                   },
                   child: TextFieldDefault(
                     hint: 'Degree_'.tr,
@@ -100,7 +107,8 @@ class EnterPersonalDataOfDoctorScreen extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     Get.bottomSheet(
-                        specializationButtonSheet(
+                        SpecializationButtonSheet(
+                          specializationIdsSelected: _.specializationIdSelected,
                           onTapNotEmpty:
                               (specializationIdList, specializationTitleList) {
                             _.setSpecializationIdSelected =
