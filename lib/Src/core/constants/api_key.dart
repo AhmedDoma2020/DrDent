@@ -74,4 +74,7 @@ mixin ApiKey{
    final String uRLFetchUniversity = apiBaseUrl + "fetch_univeristy";
    final String uRLFetchCenterDoctor = apiBaseUrl + "center_doctors";
    final String uRLDeleteCenterDoctor = apiBaseUrl + "center_delete_doctor";
+   final String uRLAddDoctorCertification = apiBaseUrl + "add_doctor_certificates";
+   final String uRLDeleteDoctorCertification = apiBaseUrl + "delete_doctor_certificate";
+   final String uRLFetchDoctorCertification = apiBaseUrl + "fetch_doctor_certificate";
 }

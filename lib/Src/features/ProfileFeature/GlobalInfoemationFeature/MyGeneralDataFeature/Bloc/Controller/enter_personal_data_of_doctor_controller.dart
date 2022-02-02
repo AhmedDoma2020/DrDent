@@ -38,6 +38,9 @@ class EnterPersonalDataOfDoctorController extends GetxController {
     _scientificId = value;
   }
 
+  String? _imageFuture ;
+  String? get imageFuture => _imageFuture;
+
   void setData(){
     debugPrint("ddddddone 1");
     final FetchProfileController _fetchProfileDoctorController = Get.put(FetchProfileController());
@@ -51,6 +54,7 @@ class EnterPersonalDataOfDoctorController extends GetxController {
       specializationController!.text = _fetchProfileDoctorController.specialization!;
       _scientificId = _fetchProfileDoctorController.degreeId!;
       _specializationIdSelected = _fetchProfileDoctorController.specializationIds;
+      _imageFuture = _fetchProfileDoctorController.photoOfWorkLicenses;
       // _image = _fetchProfileDoctorController.
       debugPrint("nameController!.text ${nameController!.text}");
       debugPrint("degreeController!.text ${degreeController!.text}");

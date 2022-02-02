@@ -1,5 +1,4 @@
 import 'package:dr_dent/Src/bloc/model/specialization_model.dart';
-import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/AuthFeature/bloc/repository/fetch_specialization_repo.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,35 +12,17 @@ class FetchSpecializationController extends GetxController {
 
   List<int> get specializationIdList => _specializationIdList;
   List<String> _specializationTitleList = [];
+
   List<String> get specializationTitleList => _specializationTitleList;
 
-  void changeInsuranceSelected({required int insuranceIndex}) {
-    // _specializationList[insuranceIndex].active = !_specializationList[insuranceIndex].active;
-    if(_specializationList[insuranceIndex].active==true){
-      _specializationList[insuranceIndex].active=false;
-      _specializationIdList.remove(_specializationList[insuranceIndex].id);
-      _specializationTitleList.remove(_specializationList[insuranceIndex].title);
-    }else{
-      _specializationList[insuranceIndex].active=true;
-      _specializationIdList.add(_specializationList[insuranceIndex].id);
-      _specializationTitleList.add(_specializationList[insuranceIndex].title);
-    }
-
-    update();
-  }
 
 
-  void changeSelectInsurance({required int insuranceIndex}) {
-    // _specializationList[insuranceIndex].active = !_specializationList[insuranceIndex].active;
-    if(_specializationList[insuranceIndex].active==true){
-      _specializationList[insuranceIndex].active=false;
-      _specializationIdList.remove(_specializationList[insuranceIndex].id);
-      _specializationTitleList.remove(_specializationList[insuranceIndex].title);
-    }else{
-      _specializationList[insuranceIndex].active=true;
-      _specializationIdList.add(_specializationList[insuranceIndex].id);
-      _specializationTitleList.add(_specializationList[insuranceIndex].title);
-    }
+  void changeSelectInsuranceActive({required int id}) {
+    int insuranceIndex =
+        _specializationList.indexWhere((element) => element.id == id);
+    debugPrint("insuranceIndex is $insuranceIndex");
+    _specializationList[insuranceIndex].active =
+        !_specializationList[insuranceIndex].active;
     update();
   }
 

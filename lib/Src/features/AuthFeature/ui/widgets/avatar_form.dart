@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/src/core/utils/extensions.dart';
 import 'package:flutter/material.dart';

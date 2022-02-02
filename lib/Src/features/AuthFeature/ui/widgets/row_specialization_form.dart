@@ -8,42 +8,36 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RowSpecializationForm extends StatelessWidget {
   final SpecializationModel specialization;
-  bool? isSelect;
+  // bool? isSelect;
   final  VoidCallback  onSelectTap;
   RowSpecializationForm({
     required this.specialization,
     required this.onSelectTap,
-     this.isSelect =false,
+     // this.isSelect =false,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
 
-    Color borderColor( bool isSelected , bool isActive){
-      if(isSelected == true){
-        return kCSubMain;
-      }else if(isActive ==true){
+    Color borderColor( bool isActive){
+     if(isActive ==true){
         return kCSubMain;
       }else{
         return kCMainGrey;
       }
     }
 
-    Color containerColor( bool isSelected , bool isActive){
-      if(isSelected == true){
-        return kCSubMain;
-      }else if(isActive ==true){
+    Color containerColor(  bool isActive){
+     if(isActive ==true){
         return kCSubMain;
       }else{
         return Colors.transparent;
       }
     }
 
-    Widget containerChile( bool isSelected , bool isActive){
-      if(isSelected == true){
-        return Icon(Icons.check,size: 14.w,color: Colors.white,);
-      }else if(isActive ==true){
+    Widget containerChile(  bool isActive){
+      if(isActive ==true){
         return Icon(Icons.check,size: 14.w,color: Colors.white,);
       }else{
         return 0.0.ESH();
@@ -72,10 +66,10 @@ class RowSpecializationForm extends StatelessWidget {
               width: 24.h,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(1.5),
-                border: Border.all(width: 2.w,color: borderColor(isSelect!,specialization.active) ,),
-                color: containerColor(isSelect!,specialization.active) ,
+                border: Border.all(width: 2.w,color: borderColor(specialization.active) ,),
+                color: containerColor(specialization.active) ,
               ),
-              child: containerChile(isSelect!,specialization.active),
+              child: containerChile(specialization.active),
             )
           ],
         ),

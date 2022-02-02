@@ -142,7 +142,7 @@ class EnterPersonalDataOfDoctorScreen extends StatelessWidget {
                 ),
                 16.0.ESH(),
                 UploadPhotoContainer(
-                  // getImage: getPhotoOfWorkLicenses,
+                  futureImage: _.imageFuture!,
                   title: "photo_of_Work_licenses",
                   onTap: (image64) {
                     _.setImage = image64;

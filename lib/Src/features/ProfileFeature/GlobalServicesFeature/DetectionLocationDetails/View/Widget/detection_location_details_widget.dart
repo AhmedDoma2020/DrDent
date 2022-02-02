@@ -98,6 +98,7 @@ class DetectionLocationDetailsWidget extends StatelessWidget {
                     ),
                     8.0.ESH(),
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         ImageIcon(
                           const AssetImage("assets/icons/location.png"),
@@ -106,13 +107,13 @@ class DetectionLocationDetailsWidget extends StatelessWidget {
 
                         ),
                         8.0.ESW(),
-                        SizedBox(
+                        Container(
+                          // color: Colors.grey,
                           width: 124.w,
                           child: CustomText(
                             text: model.address.address,
                             fontW: FW.semicond,
-                            overflow: true,
-                            maxLines: 1,
+                            // overflow: true,
                           ),
                         ),
                       ],

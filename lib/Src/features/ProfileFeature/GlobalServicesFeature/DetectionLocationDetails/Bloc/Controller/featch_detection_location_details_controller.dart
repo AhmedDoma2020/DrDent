@@ -28,6 +28,7 @@ class FetchDetectionLocationDetailsController extends GetxController {
     status = RequestStatus.done;
     update();
     if (response.statusCode == 200 && response.data["status"] == true) {
+      debugPrint(" atfatshet");
       debugPrint("request operation success");
       _myDetectionLocationDetails.clear();
       for (var item in response.data['data']) {
@@ -43,6 +44,13 @@ class FetchDetectionLocationDetailsController extends GetxController {
       update();
     }
   }
+
+  void deleteMyDetectionLocationDetailsLocal({required int id}){
+    int index = _myDetectionLocationDetails.indexWhere((element) => element.id==id);
+    _myDetectionLocationDetails.removeAt(index);
+    update();
+  }
+
   final DeleteDetectionLocationDetailsRepository _deleteDetectionLocationDetailsRepository = DeleteDetectionLocationDetailsRepository();
   Future<void> deleteMyDetectionLocationDetails({required int detectionId}) async {
     setLoading();
@@ -50,7 +58,7 @@ class FetchDetectionLocationDetailsController extends GetxController {
     Get.back();
     if (response.statusCode == 200 && response.data["status"] == true) {
       debugPrint("request operation success");
-      fetchMyDetectionLocationDetails();
+      deleteMyDetectionLocationDetailsLocal(id: detectionId);
       debugPrint("convert operation success");
       status = RequestStatus.done;
       customSnackBar(title: response.data["message"]??"Error");

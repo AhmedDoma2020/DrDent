@@ -60,12 +60,11 @@ class SpecializationButtonSheet extends StatelessWidget {
                             itemBuilder: (context, index) =>
                                 RowSpecializationForm(
                               specialization: _.specializationList[index],
-                              isSelect: specializationIdsSelected.contains(_.specializationList[index].id),
                               onSelectTap: (){
-
-                                _.changeSelectInsurance(insuranceIndex: index);
-
-                              },
+                                debugPrint("_.specializationList[index].active Before ${_.specializationList[index].active}");
+                                _.changeSelectInsuranceActive(id: _.specializationList[index].id);
+                                debugPrint("_.specializationList[index].active After ${_.specializationList[index].active}");
+                                },
                             ),
                             separatorBuilder: (context, index) => 24.0.ESH(),
                             itemCount: _.specializationList.length,
@@ -77,15 +76,18 @@ class SpecializationButtonSheet extends StatelessWidget {
                   ButtonDefault(
                       title: 'save_'.tr,
                       onTap: () {
-                        if(_.specializationIdList.isEmpty){
                           _.specializationIdList.clear();
                           _.specializationTitleList.clear();
-                          onTapEmpty();
-                          Get.back();
-                        }else{
-                          onTapNotEmpty( _.specializationIdList,_.specializationTitleList.join(",") );
-                          Get.back();
+                        for(var item in _.specializationList){
+                          if (item.active){
+                            _.specializationIdList.add(item.id);
+                            _.specializationTitleList.add(item.title);
+                          }
                         }
+                            onTapNotEmpty( _.specializationIdList,_.specializationTitleList.join(",") );
+                          debugPrint("specializationTitleList is ${_.specializationTitleList}");
+                          debugPrint("specializationIdList is ${_.specializationIdList}");
+                          Get.back();
                       },
                     ),
                 ],

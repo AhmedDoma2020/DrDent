@@ -65,9 +65,8 @@ class FetchProfileController extends GetxController {
       _cover = response.data['data']['cover']??"";
       _degreeTitle = response.data['data']['scientificlevel']["title"]??"";
       _degreeId = response.data['data']['scientificlevel']["id"]??0;
-
-      _photoOfWorkLicenses = response.data['data']['PhotoOfWorkLicenses']??"";
-      debugPrint("response.data['data']['specializations'] ${response.data['data']['specializations']}");
+      // debugPrint("_photoOfWorkLicenses in controller is ${response.data['data']['work_lisence']}");
+      _photoOfWorkLicenses = response.data['data']['work_lisence']??"";
       if(response.data['data']['specializations'] != null ){
         _specializationList.clear();
         _specializationIds.clear();
@@ -79,7 +78,6 @@ class FetchProfileController extends GetxController {
         }
         _specialization = _specializationList.join(",");
         debugPrint("_specialization $_specialization");
-
       }else{
         _specialization="";
       }

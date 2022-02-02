@@ -1,6 +1,6 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
+import 'package:dr_dent/Src/core/services/photo_view.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
-import 'package:dr_dent/Src/features/JobFeature/ui/screens/year_of_graduation_button_sheet.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Bloc/Controller/featch_profile_controller.dart';
 import 'package:dr_dent/Src/ui/widgets/Dialog/dialog_of_enter_years_of_experience.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
@@ -15,20 +15,27 @@ class profileInfoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     GetStorage box = GetStorage();
     return GetBuilder<FetchProfileController>(
-      builder:(_) =>  SizedBox(
+      builder: (_) => SizedBox(
         // height: 310.h,
         width: double.infinity,
         child: Stack(
           children: [
             Column(
               children: [
-                SizedBox(
-                  height: 192.h,
-                  width: double.infinity,
-                  child: ImageNetwork(
+                GestureDetector(
+                  onTap: () {
+                    Get.to(() => PhotoViewWidget(
+                          imageProvider: NetworkImage(_.cover!),
+                        ));
+                  },
+                  child: SizedBox(
                     height: 192.h,
                     width: double.infinity,
-                    url: _.cover,
+                    child: ImageNetwork(
+                      height: 192.h,
+                      width: double.infinity,
+                      url: _.cover,
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -44,54 +51,55 @@ class profileInfoWidget extends StatelessWidget {
                         SizedBox(
                             width: 200,
                             child: CustomText(
-                              text: _.name ,
+                              text: _.name,
                               fontW: FW.demi,
                               fontSize: 14,
                               overflow: true,
                               maxLines: 1,
                             )),
                         7.0.ESH(),
-                        _.specialization==null? SizedBox(
-                          width: 220.w,
-                          child: Row(
-                            children: [
-                              CustomText(
-                                text: "three_is_no_specialty_yet".tr,
-                                fontW: FW.demi,
-                                fontSize: 14,
-                                overflow: true,
-                                maxLines: 1,
-                                color: kCGreyTitle,
-                              ),
-                              4.0.ESW(),
-                              GestureDetector(
-                                onTap: (){
-
-                                },
-                                child: SizedBox(
-                                  child: CustomText(
-                                    text: "add_specialty".tr,
-                                    fontW: FW.demi,
-                                    fontSize: 14,
-                                    overflow: true,
-                                    maxLines: 1,
-                                    color: kCMain,
-                                  ),
+                        _.specialization == null
+                            ? SizedBox(
+                                width: 220.w,
+                                child: Row(
+                                  children: [
+                                    CustomText(
+                                      text: "three_is_no_specialty_yet".tr,
+                                      fontW: FW.demi,
+                                      fontSize: 14,
+                                      overflow: true,
+                                      maxLines: 1,
+                                      color: kCGreyTitle,
+                                    ),
+                                    4.0.ESW(),
+                                    GestureDetector(
+                                      onTap: () {},
+                                      child: SizedBox(
+                                        child: CustomText(
+                                          text: "add_specialty".tr,
+                                          fontW: FW.demi,
+                                          fontSize: 14,
+                                          overflow: true,
+                                          maxLines: 1,
+                                          color: kCMain,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            : SizedBox(
+                                width: 200,
+                                child: CustomText(
+                                  text:
+                                      "${"Specialization_".tr} ${_.specialization}",
+                                  fontW: FW.demi,
+                                  fontSize: 14,
+                                  overflow: true,
+                                  maxLines: 1,
+                                  color: kCGreyTitle,
                                 ),
                               ),
-                            ],
-                          ),
-                        ):
-                        SizedBox(
-                            width: 200,
-                            child: CustomText(
-                              text: "${"Specialization_".tr} ${_.specialization}",
-                              fontW: FW.demi,
-                              fontSize: 14,
-                              overflow: true,
-                              maxLines: 1,
-                              color: kCGreyTitle,
-                            ),),
                         8.0.ESH(),
                         _.yearsOfExperience == null
                             ? SizedBox(
@@ -109,7 +117,7 @@ class profileInfoWidget extends StatelessWidget {
                                       ),
                                       4.0.ESW(),
                                       GestureDetector(
-                                        onTap: (){
+                                        onTap: () {
                                           Get.dialog(
                                             DialogOfEnterYearsOfExperience(),
                                           );
@@ -123,7 +131,8 @@ class profileInfoWidget extends StatelessWidget {
                                         },
                                         child: SizedBox(
                                           child: CustomText(
-                                            text: "Enter_years_of_experience".tr,
+                                            text:
+                                                "Enter_years_of_experience".tr,
                                             fontW: FW.demi,
                                             fontSize: 14,
                                             overflow: true,
@@ -146,7 +155,8 @@ class profileInfoWidget extends StatelessWidget {
                                   overflow: true,
                                   maxLines: 1,
                                   color: kCGreyTitle,
-                                )),
+                                ),
+                              ),
                       ],
                     ),
                   ),
@@ -166,13 +176,20 @@ class profileInfoWidget extends StatelessWidget {
                 child: Center(
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(777.r),
-                    child: SizedBox(
-                      height: 92.h,
-                      width: 92.h,
-                      child: ImageNetwork(
-                        width: 92.h,
+                    child: GestureDetector(
+                      onTap: () {
+                        Get.to(() => PhotoViewWidget(
+                              imageProvider: NetworkImage(_.avatar!),
+                            ));
+                      },
+                      child: SizedBox(
                         height: 92.h,
-                        url: _.avatar,
+                        width: 92.h,
+                        child: ImageNetwork(
+                          width: 92.h,
+                          height: 92.h,
+                          url: _.avatar,
+                        ),
                       ),
                     ),
                   ),

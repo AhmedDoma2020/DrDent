@@ -14,9 +14,7 @@ import 'package:get/get.dart';
 
 class DetectionLocationDetailsScreen extends StatelessWidget {
 final String appBarTitle;
-
 DetectionLocationDetailsScreen({ this.appBarTitle ="Detection_location_details"});
-
   @override
   Widget build(BuildContext context) {
     Get.put(FetchDetectionLocationDetailsController());

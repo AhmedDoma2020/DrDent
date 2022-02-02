@@ -1,28 +1,27 @@
 import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:dr_dent/Src/core/constants/api_key.dart';
 import 'package:dr_dent/Src/core/services/network_services.dart';
 import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
 
-class FetchSpecializationRepository with ApiKey{
+class FetchDoctorCertificationRepo with ApiKey {
   // GetStorage box = GetStorage();
-  NetworkService _networkService = NetworkService();
-  Future<Response> fetchSpecialization()async{
+  final NetworkService _networkService = NetworkService();
+  Future<Response> fetchDoctorCertification() async {
     Response response;
-    try{
+    try {
       response = await _networkService.get(
-        url:uRLFetchSpecialization,
-        auth: true,
+          url: uRLFetchDoctorCertification,
+          auth: true,
       );
-    }on SocketException{
+    } on SocketException {
       throw SocketException('No Internet Connection');
-    }on Exception{
+    } on Exception {
       throw UnKnownException('there is unKnown Exception');
-    }catch (e){
+    } catch (e) {
       throw UnKnownException(e.toString());
     }
     return response;
   }
 }
-
-

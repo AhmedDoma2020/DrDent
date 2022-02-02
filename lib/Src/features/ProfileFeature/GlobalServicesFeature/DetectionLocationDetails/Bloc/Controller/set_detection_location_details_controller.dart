@@ -70,7 +70,7 @@ class SetDetectionLocationDetailsController extends GetxController {
       DetectionLocationDetailsRepository();
   final FetchDetectionLocationDetailsController
       _fetchDetectionLocationDetailsController =
-      FetchDetectionLocationDetailsController();
+      Get.put(FetchDetectionLocationDetailsController());
 
   void submitEnd() async {
     if (globalKey.currentState!.validate()) {
@@ -95,7 +95,6 @@ class SetDetectionLocationDetailsController extends GetxController {
         );
         Get.back();
         if (response.statusCode == 200 && response.data["status"] == true) {
-
           box.write('workspace_id', response.data['data']['id']??0);
           if (isAuth == true) {
             debugPrint("in uth");
@@ -115,16 +114,12 @@ class SetDetectionLocationDetailsController extends GetxController {
                 workspaceId: box.read('workspace_id'),
               ));
             }
-
-
-
             // Get.to(() => EnterDoctorPersonalDataScreen());
           } else {
             debugPrint("not uth");
-            // Get.to(() => DetectionLocationDetailsScreen());
-            _fetchDetectionLocationDetailsController
-                .fetchMyDetectionLocationDetails();
             Get.back();
+            _fetchDetectionLocationDetailsController.fetchMyDetectionLocationDetails();
+            // Get.to(() => DetectionLocationDetailsScreen());
             update();
           }
           customSnackBar(title: response.data["message"]);
