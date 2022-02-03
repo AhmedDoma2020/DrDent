@@ -5,6 +5,7 @@ import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/MyC
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/MyCertificationFeature/Bloc/Controller/fetch_doctor_certification_controller.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/MyCertificationFeature/Ui/Widget/certification_image_form.dart';
 import 'package:dr_dent/Src/ui/widgets/Dialog/loading_dialog.dart';
+import 'package:dr_dent/Src/ui/widgets/EmptyWidget/empty_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -35,27 +36,36 @@ class CertificationOfDoctorScreen extends StatelessWidget {
               ? Center(
                   child: Loader(),
                 )
-              : Container(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 16.w, vertical: 24.h),
-                  child: GridView.builder(
-                    shrinkWrap: true,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      // childAspectRatio: 1.06,
-                      crossAxisSpacing: 16.w,
-                      mainAxisSpacing: 18.h,
+              : _.certificationList.isEmpty
+                  ? EmptyWidget(
+                      image: "assets/image/EmptyDetectionLocationDetails.png",
+                      title: "no_certification_yet_title".tr,
+                      subTitle: "no_certification_yet_sup_title".tr,
+                      onTapButton: () {},
+                      availableButton: false,
+                    )
+                  : Container(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 16.w, vertical: 24.h),
+                      child: GridView.builder(
+                        shrinkWrap: true,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          // childAspectRatio: 1.06,
+                          crossAxisSpacing: 16.w,
+                          mainAxisSpacing: 18.h,
+                        ),
+                        itemBuilder: (context, index) => CertificationImageForm(
+                          onDelete: () {
+                            _.deleteCertification(
+                                certificationId:
+                                    _.certificationList[index].id!);
+                          },
+                          image: _.certificationList[index].image!,
+                        ),
+                        itemCount: _.certificationList.length,
+                      ),
                     ),
-                    itemBuilder: (context, index) => CertificationImageForm(
-                      onDelete: () {
-                        _.deleteCertification(
-                            certificationId: _.certificationList[index].id!);
-                      },
-                      image: _.certificationList[index].image!,
-                    ),
-                    itemCount: _.certificationList.length,
-                  ),
-                ),
         ),
       ),
     );

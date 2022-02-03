@@ -30,7 +30,7 @@ class FetchMyServicesController extends GetxController {
     var response = await _fetchMyServicesRepository.fetchMyServices();
     status = RequestStatus.done;
     if (response.statusCode == 200 && response.data["status"] == true) {
-      debugPrint("request operation success");
+      debugPrint("request operation success in my services");
       _myServicesList.clear();
       for (var item in response.data['data']) {
         _myServicesList.add(ServiceModel.fromJson(item));

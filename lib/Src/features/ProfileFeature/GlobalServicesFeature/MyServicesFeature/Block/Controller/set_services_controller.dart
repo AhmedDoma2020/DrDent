@@ -8,21 +8,22 @@ import 'package:get/get.dart';
 
 class SetServicesController extends GetxController {
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
-  TextEditingController? servicesTypeSelectedController =
-      TextEditingController();
+  TextEditingController? servicesTypeSelectedController = TextEditingController();
+  TextEditingController? workSpaceSelectedController = TextEditingController();
   TextEditingController? servicesDurationController = TextEditingController();
   TextEditingController? servicesCostController = TextEditingController();
   int? _servicesId;
-
   int? get servicesId => _servicesId;
-
   set setServicesId(int value) {
     _servicesId = value;
   }
+  int? _workSpaceId;
+  int? get workSpaceId => _workSpaceId;
+  set setWorkSpaceId(int value) {
+    _workSpaceId = value;
+  }
   RequestStatus status = RequestStatus.initial;
-
   final FetchMyServicesController _fetchMyServicesController =Get.put(FetchMyServicesController());
-
   final SetServicesRepository _setServicesRepository = SetServicesRepository();
   Future<void> setServices() async {
     if (globalKey.currentState!.validate()) {

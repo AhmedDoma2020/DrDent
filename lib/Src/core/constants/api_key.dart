@@ -48,6 +48,7 @@ mixin ApiKey{
    final String uRLFetchAvailableServices = apiBaseUrl + "fetch_available_services";
    final String uRLFetchMyInsurances = apiBaseUrl + "fetch_my_insurances";
    final String uRLFetchMyServices = apiBaseUrl + "fetch_my_services";
+   final String uRLFetchMyOffer = apiBaseUrl + "my_offers";
    final String uRLFetchMyWorkSpaces = apiBaseUrl + "my_work_spaces";
    final String uRLDeleteMyWorkSpaces = apiBaseUrl + "delete_work_space_time";
    final String uRLFetchMyAssistant = apiBaseUrl + "my_assitants";

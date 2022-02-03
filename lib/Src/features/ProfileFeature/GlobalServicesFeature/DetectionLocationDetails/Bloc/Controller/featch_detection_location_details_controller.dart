@@ -17,10 +17,15 @@ class FetchDetectionLocationDetailsController extends GetxController {
   List<DetectionLocationDetailsModel> _myDetectionLocationDetails = [];
   List<DetectionLocationDetailsModel> get myDetectionLocationDetails => _myDetectionLocationDetails;
   RequestStatus status = RequestStatus.initial;
-  // void changeSelectServices({ required int servicesIndex}){
-  //   _myServicesList[servicesIndex].selected = !_myServicesList[servicesIndex].selected;
-  //   update();
-  // }
+
+
+  int _indexSelected = -1;
+  int get indexSelected => _indexSelected;
+  void changeSIndex(value) {
+    _indexSelected = value;
+    update();
+  }
+
   final FetchDetectionLocationDetailsRepository _fetchDetectionLocationDetailsRepository = FetchDetectionLocationDetailsRepository();
   Future<void> fetchMyDetectionLocationDetails() async {
     status = RequestStatus.loading;

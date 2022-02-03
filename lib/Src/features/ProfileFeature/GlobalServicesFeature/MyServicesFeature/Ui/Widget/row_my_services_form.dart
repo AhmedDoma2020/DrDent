@@ -62,7 +62,7 @@ class RowMyServiceForm extends StatelessWidget {
                       width: 14.h,),
                   ),
                   8.0.ESW(),
-                  CustomText(text: "${"Service_cost:".tr} ${service.price}",fontSize: 11,fontW: FW.regular,color: kCGreyTitle,),
+                  CustomText(text: "${"Service_cost:".tr} ${service.price} ${"E_G_".tr}",fontSize: 11,fontW: FW.regular,color: kCGreyTitle,),
                 ],
               ),
               8.0.ESH(),

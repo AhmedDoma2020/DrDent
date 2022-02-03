@@ -40,6 +40,7 @@ class NetworkService with ApiKey{
     Response? response;
     String apiToken =box.read("api_token")??apiTokenStatic;
     debugPrint("apiToken in netWork >>>>>>>>>:-> $apiToken");
+    // $2y$10$cBT81g43OKZs5eJdgwK2zOz94VORyGUfyw3ET8SYE2zfEveyDX9CC
     String staticApiToken ="\$2y\$10\$cBT81g43OKZs5eJdgwK2zOz94VORyGUfyw3ET8SYE2zfEveyDX9CC";
     dio.options.baseUrl = ApiKey.apiBaseUrl;
     try {

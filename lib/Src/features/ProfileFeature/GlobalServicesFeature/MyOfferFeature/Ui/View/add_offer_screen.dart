@@ -19,8 +19,7 @@ class AddOfferAndDiscountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(FetchAvailableInsurancesController());
-    SetOfferAndDiscountController _setOfferAndDiscountController =
-        Get.put(SetOfferAndDiscountController());
+    Get.put(SetOfferAndDiscountController());
     Get.put(FetchMyServicesController());
     var node = FocusScope.of(context);
     return SafeArea(
@@ -46,7 +45,7 @@ class AddOfferAndDiscountScreen extends StatelessWidget {
                       hint: 'offer_name'.tr,
                       errorText: "error_offer_name".tr,
                       controller: _.nameController,
-                      keyboardType: TextInputType.phone,
+                      keyboardType: TextInputType.text,
                       filledColor: kCBGTextFormFiled,
                       fieldType: FieldType.WithBorder,
                       enableBorder: Colors.transparent,
@@ -160,7 +159,7 @@ class AddOfferAndDiscountScreen extends StatelessWidget {
                       hint: 'offer_details'.tr,
                       errorText: "error_offer_details".tr,
                       controller: _.offerInfoController,
-                      keyboardType: TextInputType.phone,
+                      keyboardType: TextInputType.text,
                       filledColor: kCBGTextFormFiled,
                       fieldType: FieldType.WithBorder,
                       enableBorder: Colors.transparent,
@@ -175,7 +174,7 @@ class AddOfferAndDiscountScreen extends StatelessWidget {
                       hint: 'booking_details'.tr,
                       errorText: "error_booking_details".tr,
                       controller: _.bookingInfoController,
-                      keyboardType: TextInputType.phone,
+                      keyboardType: TextInputType.text,
                       filledColor: kCBGTextFormFiled,
                       fieldType: FieldType.WithBorder,
                       enableBorder: Colors.transparent,

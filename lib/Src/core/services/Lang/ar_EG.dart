@@ -94,6 +94,7 @@ const Map<String, String> arAE = {
   "Service_cost:":"تكلفة الخدمة:",
   "duration_of_service:":"مدة الخدمة:",
   "my_services":"خدماتي",
+  "services_details":"تفاصيل الخدمه",
   "select_clinic":"أختر العيادة",
   "must_select_clint":"من فضلك أختر العيادة",
   "services_type":"نوع الخدمة",
@@ -262,5 +263,9 @@ const Map<String, String> arAE = {
   "jobs": "وظائف",
   'social_media':'تواصل إجتماعي',
   'medical_products':'منتجات طبية',
+  'no_certification_yet_title':'لم تقم برفع أي شهادات بعد !',
+  'no_certification_yet_sup_title':'لم تقم برفع أي شهادات بعد  ,ابدأ الآن بإضافة صور شهاداتك حتا يتمكن الجميع من رؤيتها',
+  'E_G_':'جنيه',
+  'duration_offer':'العرض ساري حتي ',
 
 };

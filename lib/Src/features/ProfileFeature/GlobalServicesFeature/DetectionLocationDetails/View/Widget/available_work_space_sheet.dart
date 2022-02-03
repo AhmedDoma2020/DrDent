@@ -1,21 +1,18 @@
 import 'package:dr_dent/Src/bloc/model/service_model.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
-import 'package:dr_dent/Src/core/utils/request_status.dart';
-import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyServicesFeature/Block/Controller/fetch_available_services_controller.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/DetectionLocationDetails/Bloc/Controller/featch_detection_location_details_controller.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyServicesFeature/Block/Controller/set_services_controller.dart';
 import 'package:dr_dent/Src/ui/widgets/Choses/single_chose_row_form.dart';
-import 'package:dr_dent/Src/ui/widgets/Dialog/loading_dialog.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/row_top_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 import '/src/core/utils/extensions.dart';
 
-class AvailableServicesButtonSheet extends StatelessWidget {
-  final Function( int,String ) onSelected;
-  AvailableServicesButtonSheet({required this.onSelected,Key? key}) : super(key: key);
+class AvailableWorkSpaceSheet extends StatelessWidget {
+   final Function( int,String ) onSelected;
+   AvailableWorkSpaceSheet({required this.onSelected,Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -36,8 +33,8 @@ class AvailableServicesButtonSheet extends StatelessWidget {
                 topRight: Radius.circular(19.r),
               ),
               color: Colors.white),
-          child: GetBuilder<FetchAvailableServicesController>(
-            builder: (_) => _.status == RequestStatus.loading ? Center(child: Loader(),) :Column(
+          child: GetBuilder<FetchDetectionLocationDetailsController>(
+            builder: (_) => Column(
               children: [
                 24.0.ESH(),
                 RowTopBottomSheet(
@@ -49,24 +46,26 @@ class AvailableServicesButtonSheet extends StatelessWidget {
                   // height: 400.h,
                   child: ListView.separated(
                     shrinkWrap: true,
-                    itemBuilder: (context, index) =>  InkWell(
-                        onTap:_.availableServicesList[index].selected == 1?(){}: (){
+                    itemBuilder: (context, index) => GetBuilder<SetServicesController>(
+                      builder:(setServiceType) =>  InkWell(
+                        onTap:_.myDetectionLocationDetails[index].isSelected?(){}: (){
                           _.changeSIndex(index);
-                          onSelected(_.availableServicesList[index].id,_.availableServicesList[index].title.toString());
-
+                          onSelected( _.myDetectionLocationDetails[index].id, _.myDetectionLocationDetails[index].name,);
+                          // setServiceType.servicesTypeSelectedController!.text = _.availableServicesList[index].title.toString();
+                          // setServiceType.setServicesId = _.availableServicesList[index].id;
                           Get.back();
                         },
                         child: SingleChoseRowForm(
-                          title:_.availableServicesList[index].title,
-                          isSelected: _.availableServicesList[index].selected == 1 ,
+                          title:_.myDetectionLocationDetails[index].name,
+                          isSelected: _.indexSelected == index,
                         ),
                       ),
-
+                    ),
                     separatorBuilder: (context, index) => Divider(
                       height: 2.h,
                       color: kCTFEnableBorder,
                     ),
-                    itemCount: _.availableServicesList.length,
+                    itemCount: _.myDetectionLocationDetails.length,
                   ),
                 ),
               ],
@@ -118,10 +117,10 @@ class ServicesRowForm extends StatelessWidget {
             child: isSelected == false
                 ? 0.0.ESH()
                 : Icon(
-                    Icons.check,
-                    size: 14.w,
-                    color: Colors.white,
-                  ),
+              Icons.check,
+              size: 14.w,
+              color: Colors.white,
+            ),
           )
         ],
       ),

@@ -10,7 +10,7 @@ class FetchMyServicesRepository with ApiKey{
     Response response;
     try{
       response = await _networkService.get(
-        url:uRLFetchMyServices,
+        url:uRLFetchMyOffer,
         auth: true,
       );
     }on SocketException{

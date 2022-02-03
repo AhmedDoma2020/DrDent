@@ -11,6 +11,7 @@ import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyOffe
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyServicesFeature/Block/Repo/delete_services_repo.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyServicesFeature/Block/Repo/fetch_my_services_repo.dart';
 import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class FetchMyOfferAndDiscountController extends GetxController {
@@ -23,22 +24,22 @@ class FetchMyOfferAndDiscountController extends GetxController {
   }
   final FetchMyServicesRepository _fetchMyServicesRepository = FetchMyServicesRepository();
   Future<void> fetchOfferAndDiscount() async {
-    _myOfferAndDiscountList = [...offerAndDiscountListExamples];
-    update();
-    // var response = await _fetchMyServicesRepository.fetchMyServices();
-    // if (response.statusCode == 200 && response.data["status"] == true) {
-    //   debugPrint("request operation success");
-    //   _myOfferAndDiscountList.clear();
-    //   for (var item in response.data['waitingOrder']) {
-    //     _myOfferAndDiscountList.add(OfferAndDiscountModel.fromJson(item));
-    //   }
-    //   debugPrint("convert operation success");
-    //   status = RequestStatus.done;
-    //   update();
-    // } else {
-    //   status = RequestStatus.error;
-    //   update();
-    // }
+    status = RequestStatus.loading;
+    var response = await _fetchMyServicesRepository.fetchMyServices();
+    status = RequestStatus.done;
+    if (response.statusCode == 200 && response.data["status"] == true) {
+      debugPrint("request operation success");
+      _myOfferAndDiscountList.clear();
+      for (var item in response.data['data']) {
+        _myOfferAndDiscountList.add(OfferAndDiscountModel.fromJson(item));
+      }
+      debugPrint("convert operation success");
+      status = RequestStatus.done;
+      update();
+    } else {
+      status = RequestStatus.error;
+      update();
+    }
   }
 
 
