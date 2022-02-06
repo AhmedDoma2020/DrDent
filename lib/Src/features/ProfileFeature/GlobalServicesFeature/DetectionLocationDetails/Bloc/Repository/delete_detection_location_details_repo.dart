@@ -4,16 +4,18 @@ import 'package:dio/dio.dart';
 import 'package:dr_dent/Src/core/constants/api_key.dart';
 import 'package:dr_dent/Src/core/services/network_services.dart';
 import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
+import 'package:flutter/cupertino.dart';
 class DeleteDetectionLocationDetailsRepository with ApiKey{
   final NetworkService _networkService = NetworkService();
   Future<Response> deleteMyDetectionLocationDetails({required int id})async{
+    debugPrint("deleteMyDetectionLocationDetails id is  $id");
     Response response;
     try{
       response = await _networkService.post(
         url:uRLDeleteMyWorkSpaces,
         auth: true,
         body: {
-          "day_time_id": id,
+          "work_space_id": id,
         },
       );
     }on SocketException{

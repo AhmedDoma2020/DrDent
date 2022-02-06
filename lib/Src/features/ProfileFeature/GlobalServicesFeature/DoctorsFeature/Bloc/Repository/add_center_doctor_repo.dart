@@ -6,6 +6,7 @@ import 'package:dio/dio.dart';
 import 'package:dr_dent/Src/core/constants/api_key.dart';
 import 'package:dr_dent/Src/core/services/network_services.dart';
 import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
+import 'package:flutter/cupertino.dart';
 
 class AddCenterDoctorRepository with ApiKey {
   // GetStorage box = GetStorage();
@@ -21,16 +22,18 @@ class AddCenterDoctorRepository with ApiKey {
   }) async {
     Response response;
     try {
+      debugPrint("a7amd");
+      debugPrint("gender $gender");
       response = await _networkService.post(
-          url: uRLEnterAndEditPersonalDataOfDoctor,
+          url: uRLCenterAddDoctor,
           auth: true,
           body: {
             'name':name,
             'phone':phone,
-            'avatar':avatar,
+            'image':avatar,
             'gender':gender,
-            'specialization_id':specializationId,
-            'job_title':jobTitle,
+            'specializations':specializationId,
+            'job_title_id':jobTitle,
             'notes':notes,
           }
       );

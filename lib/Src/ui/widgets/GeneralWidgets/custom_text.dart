@@ -51,7 +51,7 @@ class CustomText extends StatelessWidget {
           letterSpacing: letterSpacing,
           shadows: textShadow?
           [
-            Shadow(
+            const Shadow(
               blurRadius: 0.8,
               color: Colors.black,
               offset: Offset(1, 1),

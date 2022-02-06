@@ -146,6 +146,7 @@ class EnterPersonalDataOfDoctorScreen extends StatelessWidget {
                   title: "photo_of_Work_licenses",
                   onTap: (image64) {
                     _.setImage = image64;
+                    debugPrint(" image64 $image64");
                   },
                 ),
                 16.0.ESH(),

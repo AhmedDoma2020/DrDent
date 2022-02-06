@@ -18,6 +18,7 @@ class MyServicesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // FetchMyServicesController _FetchMyServicesController =
+    Get.put(FetchMyServicesController());
     Get.put(FetchAvailableInsurancesController());
     // Future<void> onRefresh() async {
     //   await _FetchMyServicesController.fetchMyServices();

@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:dr_dent/Src/core/constants/api_key.dart';
 import 'package:dr_dent/Src/core/services/network_services.dart';
 import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
+import 'package:flutter/cupertino.dart';
 
 class EnterAndEditPersonalDataOfCompanyAndCenterRepository with ApiKey {
   // GetStorage box = GetStorage();
@@ -24,6 +25,7 @@ class EnterAndEditPersonalDataOfCompanyAndCenterRepository with ApiKey {
     required String logRecordImage,
     required String moreInfo,
   }) async {
+    debugPrint("logRecord in repo $logRecord");
     Response response;
     try {
       response = await _networkService.post(
@@ -32,8 +34,8 @@ class EnterAndEditPersonalDataOfCompanyAndCenterRepository with ApiKey {
           body: {
             'image':avatar,
             'name':name,
-            'administrator_name':administratorPhone,
-            'administrator_phone':administratorPhone,
+            'adminstrator_name':administratorName,
+            'adminstrator_phone':administratorPhone,
             // 'state_id':stateId,
             // 'city_id':cityId,
             // 'lat':lat,

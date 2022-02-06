@@ -1,16 +1,26 @@
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
+import 'package:dr_dent/Src/core/services/photo_view.dart';
+import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/image_network.dart';
 import 'package:dr_dent/src/core/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AvatarForm extends StatefulWidget {
   final Function(String) onTap;
-  final bool isUploade;
-  AvatarForm({required this.onTap, this.isUploade = true});
+  String futureImage;
+  final bool isUpload;
+
+  AvatarForm({
+    required this.onTap,
+    this.futureImage = "",
+    this.isUpload = true,
+  });
 
   @override
   State<AvatarForm> createState() => _AvatarFormState();
@@ -36,6 +46,7 @@ class _AvatarFormState extends State<AvatarForm> {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint("futureAvatar is ${widget.futureImage}");
     return Center(
       child: SizedBox(
         height: 80.w,
@@ -48,16 +59,31 @@ class _AvatarFormState extends State<AvatarForm> {
                 height: 80.w,
                 width: 80.w,
                 child: CircleAvatar(
-                  child: image != null
-                      ? Image.file(
-                          image!,
-                          fit: BoxFit.cover,
-                          height: 80.w,
-                          width: 80.w,
-                        )
-                      : Image.asset(
-                          "assets/image/defoultAvatar.png",
-                          fit: BoxFit.cover,
+                  child: widget.futureImage == null || widget.futureImage == ""
+                      ? image != null
+                          ? Image.file(
+                              image!,
+                              fit: BoxFit.cover,
+                              height: 80.w,
+                              width: 80.w,
+                            )
+                          : Image.asset(
+                              "assets/image/defoultAvatar.png",
+                              fit: BoxFit.cover,
+                            )
+                      : GestureDetector(
+                          onTap: () {
+                            Get.to(() => PhotoViewWidget(
+                                  imageProvider:
+                                      NetworkImage(widget.futureImage),
+                                ));
+                          },
+                          child: ImageNetwork(
+                            url: widget.futureImage,
+                            height: double.infinity,
+                            width: double.infinity,
+                            boxFit: BoxFit.fill,
+                          ),
                         ),
                   radius: 80.r,
                 ),
@@ -77,37 +103,44 @@ class _AvatarFormState extends State<AvatarForm> {
                 // ),
               ),
             ),
-            widget.isUploade ?
-            Padding(
-              padding: EdgeInsets.only(bottom: 5.h, left: 5.w),
-              child: Align(
-                alignment: Alignment.bottomLeft,
-                child: InkWell(
-                  onTap: () {
-                    if (image != null) {
-                      setState(() {
-                        image = null;
-                        widget.onTap("");
-                      });
-                    } else {
-                      getImage();
-                    }
-                  },
-                  child: Container(
-                    height: 16.w,
-                    width: 16.w,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(7777.r),
-                      color: kCMain,
+            widget.isUpload
+                ? Padding(
+                    padding: EdgeInsets.only(bottom: 5.h, left: 5.w),
+                    child: Align(
+                      alignment: Alignment.bottomLeft,
+                      child: InkWell(
+                        onTap: () {
+                          if (image != null || widget.futureImage != "") {
+                            setState(() {
+                              image = null;
+                              img64 = null;
+                              widget.futureImage = "";
+                              widget.onTap("");
+                            });
+                          } else {
+                            getImage();
+                          }
+                        },
+                        child: Container(
+                          height: 16.w,
+                          width: 16.w,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7777.r),
+                            color: kCMain,
+                          ),
+                          child: Center(
+                            child: Icon(
+                                image != null || widget.futureImage != ""
+                                    ? Icons.clear
+                                    : Icons.add,
+                                color: Colors.white,
+                                size: 8.w),
+                          ),
+                        ),
+                      ),
                     ),
-                    child: Center(
-                      child: Icon(image != null ? Icons.clear : Icons.add,
-                          color: Colors.white, size: 8.w),
-                    ),
-                  ),
-                ),
-              ),
-            ):0.0.ESH(),
+                  )
+                : 0.0.ESH(),
           ],
         ),
       ),

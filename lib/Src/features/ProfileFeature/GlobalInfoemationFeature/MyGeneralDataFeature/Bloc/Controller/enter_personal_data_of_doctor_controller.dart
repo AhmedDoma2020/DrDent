@@ -47,12 +47,13 @@ class EnterPersonalDataOfDoctorController extends GetxController {
     debugPrint("ddddddone 2");
     if(isEdit ==true){
       debugPrint("ddddddone 3");
-      debugPrint("_fetchProfileDoctorController.degree! ${_fetchProfileDoctorController.degreeTitle!}");
-      debugPrint("_fetchProfileDoctorController.degree! ${_fetchProfileDoctorController.degreeTitle!}");
+      // debugPrint("_fetchProfileDoctorController.degree! ${_fetchProfileDoctorController.degreeTitle!}");
+      // debugPrint("_fetchProfileDoctorController.degree! ${_fetchProfileDoctorController.degreeTitle!}");
       nameController!.text= _fetchProfileDoctorController.name!;
-      degreeController!.text= _fetchProfileDoctorController.degreeTitle!;
+      if(_fetchProfileDoctorController.userTypeId == 3){}
+      degreeController!.text= _fetchProfileDoctorController.degreeTitle;
       specializationController!.text = _fetchProfileDoctorController.specialization!;
-      _scientificId = _fetchProfileDoctorController.degreeId!;
+      _scientificId = _fetchProfileDoctorController.degreeId;
       _specializationIdSelected = _fetchProfileDoctorController.specializationIds;
       _imageFuture = _fetchProfileDoctorController.photoOfWorkLicenses;
       // _image = _fetchProfileDoctorController.
@@ -68,7 +69,7 @@ class EnterPersonalDataOfDoctorController extends GetxController {
   void submit() async {
     if (globalKey.currentState!.validate()) {
       globalKey.currentState!.save();
-      if(_image != ""){
+      if(image != ""){
         setLoading();
         debugPrint(" nameController!.text ${ nameController!.text}");
         debugPrint(" _gender $_gender");

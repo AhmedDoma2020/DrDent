@@ -29,8 +29,10 @@ class FetchScientificController extends GetxController {
   FetchScientificRepository();
   Future<void> fetchScientific() async {
     // _scientificList = [...scientificListExamples];
-    update();
+    status = RequestStatus.loading;
     var response = await _fetchScientificRepository.fetchScientific();
+    status = RequestStatus.done;
+    update();
     if (response.statusCode == 200 && response.data["status"] == true) {
       debugPrint("request operation success");
       _scientificList.clear();

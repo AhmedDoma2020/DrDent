@@ -41,6 +41,7 @@ class _UploadPhotoContainerState extends State<UploadPhotoContainer> {
       setState(() => this.image = imageTemporary);
       final bytes = File(image.path).readAsBytesSync();
       img64 = base64Encode(bytes);
+      debugPrint("image selected successfulye");
       widget.onTap(img64!);
     } on PlatformException catch (e) {
       debugPrint("field picked image $e");
@@ -117,6 +118,7 @@ class _UploadPhotoContainerState extends State<UploadPhotoContainer> {
                             widget.onTap("");
                           });
                         } else {
+                          debugPrint("on tap setImage fun");
                           setImage();
                         }
                       },

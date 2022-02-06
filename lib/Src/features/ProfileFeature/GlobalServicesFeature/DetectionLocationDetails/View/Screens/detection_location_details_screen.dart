@@ -63,6 +63,8 @@ DetectionLocationDetailsScreen({ this.appBarTitle ="Detection_location_details"}
                         // Get.to(() => SetDetectionLocationDetailsScreen());
                       },
                       onDeleteTap: () {
+                        debugPrint("on tap delete ${_.myDetectionLocationDetails[index].id}");
+
                         _.deleteMyDetectionLocationDetails(detectionId: _.myDetectionLocationDetails[index].id);
                       },
                     ),

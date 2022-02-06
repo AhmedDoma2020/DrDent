@@ -12,7 +12,8 @@ class NetworkService with ApiKey{
   Future<Response> get({@required String? url, Map<String , String>? headers,bool auth = false}) async {
     Response? response;
     String apiToken =box.read("api_token")??apiTokenStatic;
-    String staticApiToken ="\$2y\$10\$cBT81g43OKZs5eJdgwK2zOz94VORyGUfyw3ET8SYE2zfEveyDX9CC";
+    // $2y$10$IpiCoyvRmB/.luM7hiWeRO1.EVZjYtPL2/ij4mk64vDMzbNNpd7.a
+    String staticApiToken ="\$2y\$10\$IpiCoyvRmB/.luM7hiWeRO1.EVZjYtPL2/ij4mk64vDMzbNNpd7.a";
     log("log apiToken in netWork >>>>>>>>>:-> $apiToken");
     try {
       dio.options.baseUrl = ApiKey.apiBaseUrl;
@@ -40,8 +41,8 @@ class NetworkService with ApiKey{
     Response? response;
     String apiToken =box.read("api_token")??apiTokenStatic;
     debugPrint("apiToken in netWork >>>>>>>>>:-> $apiToken");
-    // $2y$10$cBT81g43OKZs5eJdgwK2zOz94VORyGUfyw3ET8SYE2zfEveyDX9CC
-    String staticApiToken ="\$2y\$10\$cBT81g43OKZs5eJdgwK2zOz94VORyGUfyw3ET8SYE2zfEveyDX9CC";
+    // $2y$10$IpiCoyvRmB/.luM7hiWeRO1.EVZjYtPL2/ij4mk64vDMzbNNpd7.a
+    String staticApiToken ="\$2y\$10\$IpiCoyvRmB/.luM7hiWeRO1.EVZjYtPL2/ij4mk64vDMzbNNpd7.a";
     dio.options.baseUrl = ApiKey.apiBaseUrl;
     try {
       response = await dio.post(

@@ -200,9 +200,10 @@ class _MapScreenState extends State<MapScreen> {
                               onTap: () {
                                 debugPrint('targetPosition!.latitude ${targetPosition!.latitude}');
                                 debugPrint('targetPosition!.longitude ${targetPosition!.longitude}');
-                                debugPrint('address! ${address!}');
+                                debugPrint('address on map is ${address!}');
                                 if (widget.onSave != null) {
                                   debugPrint('this is my location');
+                                  debugPrint('address on map is ${address!}');
                                   widget.onSave!(targetPosition!.latitude,
                                       targetPosition!.longitude, address!);
                                 }

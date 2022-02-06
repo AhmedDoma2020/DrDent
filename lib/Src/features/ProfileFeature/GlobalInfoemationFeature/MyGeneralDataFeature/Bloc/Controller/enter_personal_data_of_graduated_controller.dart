@@ -67,7 +67,7 @@ class EnterPersonalDataOfGraduatedController extends GetxController {
     if (isEdit == true) {
       debugPrint("ddddddone 3");
       nameController!.text = _fetchProfileDoctorController.name!;
-      degreeController!.text = _fetchProfileDoctorController.degreeTitle!;
+      degreeController!.text = _fetchProfileDoctorController.degreeTitle;
       debugPrint("nameController!.text ${nameController!.text}");
       debugPrint("degreeController!.text ${degreeController!.text}");
       update();

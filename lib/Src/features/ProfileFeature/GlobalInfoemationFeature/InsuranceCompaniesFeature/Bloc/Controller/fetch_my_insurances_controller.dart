@@ -16,7 +16,8 @@ class FetchMyInsurancesController extends GetxController {
   final DeleteInsurancesRepository _deleteInsurancesRepository = DeleteInsurancesRepository();
 
   Future<void> fetchMyInsurances() async {
-status = RequestStatus.loading;
+    debugPrint("fetchMyInsurances 123");
+    status = RequestStatus.loading;
     var response = await _fetchMyInsurancesRepository.fetchMyInsurances();
     if (response.statusCode == 200 && response.data["status"] == true) {
       debugPrint("request operation success");

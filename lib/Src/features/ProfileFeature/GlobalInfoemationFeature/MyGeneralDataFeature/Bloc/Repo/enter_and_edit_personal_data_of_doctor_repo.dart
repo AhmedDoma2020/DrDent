@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:dr_dent/Src/core/constants/api_key.dart';
 import 'package:dr_dent/Src/core/services/network_services.dart';
 import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
+import 'package:flutter/cupertino.dart';
 
 class EnterAndEditPersonalDataOfDoctorRepository with ApiKey {
   // GetStorage box = GetStorage();
@@ -16,6 +17,12 @@ class EnterAndEditPersonalDataOfDoctorRepository with ApiKey {
     required String moreInfo,
     required String image,
   }) async {
+    debugPrint("name in EnterAndEditPersonalData is $name");
+    debugPrint("gender in EnterAndEditPersonalData is $gender");
+    debugPrint("scientificLevel in EnterAndEditPersonalData is $scientificLevel");
+    debugPrint("specializationId in EnterAndEditPersonalData is $specializationId");
+    debugPrint("moreInfo in EnterAndEditPersonalData is $moreInfo");
+    debugPrint("image in EnterAndEditPersonalData is $image");
     Response response;
     try {
       response = await _networkService.post(

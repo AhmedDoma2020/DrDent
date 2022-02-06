@@ -58,6 +58,7 @@ class FetchDetectionLocationDetailsController extends GetxController {
 
   final DeleteDetectionLocationDetailsRepository _deleteDetectionLocationDetailsRepository = DeleteDetectionLocationDetailsRepository();
   Future<void> deleteMyDetectionLocationDetails({required int detectionId}) async {
+    debugPrint("deleteMyDetectionLocationDetails");
     setLoading();
     var response = await _deleteDetectionLocationDetailsRepository.deleteMyDetectionLocationDetails(id: detectionId);
     Get.back();

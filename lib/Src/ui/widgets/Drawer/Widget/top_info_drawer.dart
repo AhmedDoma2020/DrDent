@@ -21,7 +21,7 @@ class TopInfoDrawer extends StatelessWidget {
         24.0.ESH(),
         AvatarForm(
           onTap: (val) {},
-          isUploade: false,
+          isUpload: false,
         ),
         18.0.ESH(),
         Container(

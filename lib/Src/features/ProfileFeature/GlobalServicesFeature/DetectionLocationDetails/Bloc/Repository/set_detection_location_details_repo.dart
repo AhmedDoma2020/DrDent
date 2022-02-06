@@ -25,7 +25,7 @@ class DetectionLocationDetailsRepository with ApiKey {
     required String image,
   }) async {
     Response response;
-    debugPrint("address in repo is $address");
+    // debugPrint("address in repo is $address");
     try {
       response = await _networkService.post(
           url: uRLSetWorkSpace,
