@@ -52,7 +52,7 @@ class ShareWithButtonSheet extends StatelessWidget {
           GetBuilder<AddPostController>(
             builder:(_) =>  SizedBox(
               // color: Colors.tealAccent,
-              height: 100.h,
+              height: 110.h,
               child: ListView.builder(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,

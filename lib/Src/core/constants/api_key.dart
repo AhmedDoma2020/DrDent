@@ -52,7 +52,7 @@ mixin ApiKey{
    final String uRLFetchMyWorkSpaces = apiBaseUrl + "my_work_spaces";
    final String uRLDeleteMyWorkSpaces = apiBaseUrl + "delete_work_space";
    final String uRLFetchMyAssistant = apiBaseUrl + "my_assitants";
-   final String uRLFetchMyOfferAndDiscount = apiBaseUrl + "my_offer";
+   final String uRLFetchMyOfferAndDiscount = apiBaseUrl + "my_offers";
    final String uRLDeleteInsurance = apiBaseUrl + "delete_insurance";
    final String uRLDeleteServices = apiBaseUrl + "delete_service";
    final String uRLDeleteAssistant = apiBaseUrl + "delete_assitant";
@@ -79,4 +79,7 @@ mixin ApiKey{
    final String uRLDeleteDoctorCertification = apiBaseUrl + "delete_doctor_certificate";
    final String uRLFetchDoctorCertification = apiBaseUrl + "fetch_doctor_certificate";
    final String uRLCenterAddDoctor = apiBaseUrl + "center_add_doctor";
+   final String uRLSetAvatar = apiBaseUrl + "set_user_image";
+   final String uRLSetCover = apiBaseUrl + "set_cover_image";
+   final String uRLAddPost = apiBaseUrl + "add_post";
 }

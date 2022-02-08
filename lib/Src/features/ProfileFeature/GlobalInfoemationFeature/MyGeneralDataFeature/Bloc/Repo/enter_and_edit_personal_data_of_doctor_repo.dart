@@ -16,6 +16,7 @@ class EnterAndEditPersonalDataOfDoctorRepository with ApiKey {
     required List<int> specializationId,
     required String moreInfo,
     required String image,
+    required String yearOfExperience,
   }) async {
     debugPrint("name in EnterAndEditPersonalData is $name");
     debugPrint("gender in EnterAndEditPersonalData is $gender");
@@ -35,6 +36,7 @@ class EnterAndEditPersonalDataOfDoctorRepository with ApiKey {
             'specializations':specializationId,
             'about':moreInfo,
             'work_lisence':image,
+            'work_year':yearOfExperience,
           }
       );
     } on SocketException {

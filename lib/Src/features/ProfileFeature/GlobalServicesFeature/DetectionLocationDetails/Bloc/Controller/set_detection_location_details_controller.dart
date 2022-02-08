@@ -15,10 +15,10 @@ import 'package:image_picker/image_picker.dart';
 
 import 'featch_detection_location_details_controller.dart';
 
-class SetDetectionLocationDetailsController extends GetxController {
+class SetWorkSpaceDetailsDetailsController extends GetxController {
   final bool isAuth;
 
-  SetDetectionLocationDetailsController({this.isAuth = false});
+  SetWorkSpaceDetailsDetailsController({this.isAuth = false});
 
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
   TextEditingController? phone1Controller;
@@ -66,19 +66,19 @@ class SetDetectionLocationDetailsController extends GetxController {
   }
   GetStorage box = GetStorage();
 
-  final DetectionLocationDetailsRepository _detectionLocationDetailsRepository =
-      DetectionLocationDetailsRepository();
-  final FetchDetectionLocationDetailsController
-      _fetchDetectionLocationDetailsController =
-      Get.put(FetchDetectionLocationDetailsController());
+  final SetWorkSpaceDetailsRepository _setWorkSpaceDetailsRepository =
+      SetWorkSpaceDetailsRepository();
+  final FetchWorkSpaceDetailsController
+      _fetchWorkSpaceDetailsController =
+      Get.put(FetchWorkSpaceDetailsController());
 
-  void submitEnd() async {
+  void setWorkSpace() async {
     if (globalKey.currentState!.validate()) {
       if (_img64 != null && _img64 != '') {
         globalKey.currentState!.save();
         setLoading();
         var response =
-            await _detectionLocationDetailsRepository.detectionLocationDetails(
+            await _setWorkSpaceDetailsRepository.setWorkSpaceDetails(
           name: nameController!.text,
           phone1: phone1Controller!.text,
           phone2: phone2Controller!.text,
@@ -95,31 +95,38 @@ class SetDetectionLocationDetailsController extends GetxController {
         );
         Get.back();
         if (response.statusCode == 200 && response.data["status"] == true) {
-          box.write('workspace_id', response.data['data']['id']??0);
+          int _workspaceId = response.data['data']['id']??0;
+          debugPrint("_workspaceId $_workspaceId");
+          debugPrint("doctor id is ${box.read('id')}");
           if (isAuth == true) {
             debugPrint("in uth");
-            if(box.read('user_type_id') ==3 ){
+            if(box.read('user_type_id') == 3 ){
               Get.offAll(() => WorkTimeScreen(
                 doctorId: box.read('id'),
                 onSuccess: () {
-                    Get.to(() => EnterPersonalDataOfDoctorScreen());
+                    Get.to(() => EnterPersonalDataOfDoctorScreen(isEdit: false,));
                 },
-                workspaceId: box.read('workspace_id'),
+                workspaceId: _workspaceId,
               ));
             }else if(box.read('user_type_id') == 4){
               Get.offAll(() => WorkTimeScreen(
                 onSuccess: () {
                   Get.to(() => EnterPersonalDataOfGraduatedScreen());
                 },
-                workspaceId: box.read('workspace_id'),
+                workspaceId: _workspaceId,
               ));
             }
-            // Get.to(() => EnterDoctorPersonalDataScreen());
           } else {
             debugPrint("not uth");
-            Get.back();
-            _fetchDetectionLocationDetailsController.fetchMyDetectionLocationDetails();
-            // Get.to(() => DetectionLocationDetailsScreen());
+            Get.to(() => WorkTimeScreen(
+              doctorId: box.read('id'),
+              onSuccess: () {
+                Get.back();
+                Get.back();
+              },
+              workspaceId: _workspaceId,
+            ));
+            _fetchWorkSpaceDetailsController.fetchMyWorkSpaceDetails();
             update();
           }
           customSnackBar(title: response.data["message"]);
@@ -144,7 +151,6 @@ class SetDetectionLocationDetailsController extends GetxController {
     nameController = TextEditingController();
     priceExaminationController = TextEditingController();
     addressController = TextEditingController();
-
     cityController = TextEditingController();
     buildNumController = TextEditingController();
     flatNumController = TextEditingController();

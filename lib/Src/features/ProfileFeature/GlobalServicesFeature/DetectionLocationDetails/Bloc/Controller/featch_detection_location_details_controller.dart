@@ -13,9 +13,9 @@ import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-class FetchDetectionLocationDetailsController extends GetxController {
-  List<DetectionLocationDetailsModel> _myDetectionLocationDetails = [];
-  List<DetectionLocationDetailsModel> get myDetectionLocationDetails => _myDetectionLocationDetails;
+class FetchWorkSpaceDetailsController extends GetxController {
+  List<WorkSpaceDetailsModel> _myWorkSpaceDetails = [];
+  List<WorkSpaceDetailsModel> get myWorkSpaceDetails => _myWorkSpaceDetails;
   RequestStatus status = RequestStatus.initial;
 
 
@@ -25,19 +25,21 @@ class FetchDetectionLocationDetailsController extends GetxController {
     _indexSelected = value;
     update();
   }
+  SnackbarStatus? _snackBarStatus = SnackbarStatus.CLOSED;
+  SnackbarStatus? get snackBarStatus => _snackBarStatus;
 
-  final FetchDetectionLocationDetailsRepository _fetchDetectionLocationDetailsRepository = FetchDetectionLocationDetailsRepository();
-  Future<void> fetchMyDetectionLocationDetails() async {
+  final FetchWorkSpaceDetailsRepository _fetchWorkSpaceDetailsRepository = FetchWorkSpaceDetailsRepository();
+  Future<void> fetchMyWorkSpaceDetails() async {
     status = RequestStatus.loading;
-    var response = await _fetchDetectionLocationDetailsRepository.fetchMyDetectionLocationDetails();
+    var response = await _fetchWorkSpaceDetailsRepository.fetchMyFetchWorkSpaceDetails();
     status = RequestStatus.done;
     update();
     if (response.statusCode == 200 && response.data["status"] == true) {
       debugPrint(" atfatshet");
       debugPrint("request operation success");
-      _myDetectionLocationDetails.clear();
+      _myWorkSpaceDetails.clear();
       for (var item in response.data['data']) {
-        _myDetectionLocationDetails.add(DetectionLocationDetailsModel.fromJson(item));
+        _myWorkSpaceDetails.add(WorkSpaceDetailsModel.fromJson(item));
       }
       // customSnackBar(title: response.data["message"]??"Error");
       debugPrint("convert operation success");
@@ -50,9 +52,9 @@ class FetchDetectionLocationDetailsController extends GetxController {
     }
   }
 
-  void deleteMyDetectionLocationDetailsLocal({required int id}){
-    int index = _myDetectionLocationDetails.indexWhere((element) => element.id==id);
-    _myDetectionLocationDetails.removeAt(index);
+  void deleteMyWorkSpaceDetailsLocal({required int id}){
+    int index = _myWorkSpaceDetails.indexWhere((element) => element.id==id);
+    _myWorkSpaceDetails.removeAt(index);
     update();
   }
 
@@ -64,14 +66,24 @@ class FetchDetectionLocationDetailsController extends GetxController {
     Get.back();
     if (response.statusCode == 200 && response.data["status"] == true) {
       debugPrint("request operation success");
-      deleteMyDetectionLocationDetailsLocal(id: detectionId);
+      deleteMyWorkSpaceDetailsLocal(id: detectionId);
       debugPrint("convert operation success");
       status = RequestStatus.done;
-      customSnackBar(title: response.data["message"]??"Error");
+      customSnackBar(title: response.data["message"]??"Error",
+        snackBarStatus: (SnackbarStatus? status) {
+          _snackBarStatus = status;
+          update();
+          debugPrint("SnackbarStatus is $status");
+        },);
       update();
     } else {
       status = RequestStatus.error;
-      customSnackBar(title: response.data["message"]??"Error");
+      customSnackBar(title: response.data["message"]??"Error",
+        snackBarStatus: (SnackbarStatus? status) {
+          _snackBarStatus = status;
+          update();
+          debugPrint("SnackbarStatus is $status");
+        },);
       update();
     }
   }
@@ -79,6 +91,6 @@ class FetchDetectionLocationDetailsController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    fetchMyDetectionLocationDetails();
+    fetchMyWorkSpaceDetails();
   }
 }

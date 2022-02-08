@@ -139,7 +139,7 @@ class _CenterDoctorWidgetState extends State<CenterDoctorWidget> {
                   ),
                   Row(
                     children: [
-                      EditWidget(onEditTap: widget.onEditTap),
+                      IconWidget(onEditTap: widget.onEditTap),
                       DeleteWidget(onDeleteTap: widget.onDeleteTap),
                     ],
                   ),

@@ -148,6 +148,7 @@ const Map<String, String> arAE = {
   "add_specialty": "أضف تخصصك",
   "Enter_years_of_experience": "أدخل سنة التخرج",
   "graduation_year": "سنة التخرج",
+  "error_graduation_year_field": "يجب إضافة سنة التخرج",
   "Degree_": "الدرجة العلمية",
   "must_set_Degree": "يجب ارفاق الدرجة العلمية",
   "Specialization_": "التخصص",
@@ -267,5 +268,8 @@ const Map<String, String> arAE = {
   'no_certification_yet_sup_title':'لم تقم برفع أي شهادات بعد  ,ابدأ الآن بإضافة صور شهاداتك حتا يتمكن الجميع من رؤيتها',
   'E_G_':'جنيه',
   'duration_offer':'العرض ساري حتي ',
+  'no_service_selected_title':'لا يوجد خدمات بعد',
+  'no_service_selected_sup_title':'برجاء اضافه خدمات لك اولا',
+  'loading_Data':'جاري تحميل البيانات...',
 
 };

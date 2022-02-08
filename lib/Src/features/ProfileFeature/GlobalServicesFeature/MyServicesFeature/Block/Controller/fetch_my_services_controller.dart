@@ -44,7 +44,10 @@ class FetchMyServicesController extends GetxController {
     }
   }
 
-  Future<void> deleteInsurances({required int servicesId, required int index}) async {
+  SnackbarStatus? _snackBarStatus = SnackbarStatus.CLOSED;
+  SnackbarStatus? get snackBarStatus => _snackBarStatus;
+
+  Future<void> deleteServices({required int servicesId, required int index}) async {
     setLoading();
     var response = await _deleteServicesRepository.deleteServices(servicesId:  servicesId);
     Get.back();
@@ -53,11 +56,21 @@ class FetchMyServicesController extends GetxController {
       fetchMyServices();
       debugPrint("convert operation success");
       status = RequestStatus.done;
-      customSnackBar(title: response.data["message"]??"Error");
+      customSnackBar(title: response.data["message"]??"Error",
+      snackBarStatus: (SnackbarStatus? status) {
+          _snackBarStatus = status;
+          update();
+          debugPrint("SnackbarStatus is $status");
+        },);
       update();
     } else {
       status = RequestStatus.error;
-      customSnackBar(title: response.data["message"]??"Error");
+      customSnackBar(title: response.data["message"]??"Error",
+      snackBarStatus: (SnackbarStatus? status) {
+          _snackBarStatus = status;
+          update();
+          debugPrint("SnackbarStatus is $status");
+        },);
       update();
     }
   }

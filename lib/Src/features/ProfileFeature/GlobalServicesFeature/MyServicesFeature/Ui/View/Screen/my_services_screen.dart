@@ -61,11 +61,11 @@ class MyServicesScreen extends StatelessWidget {
                     : ListView.separated(
                         shrinkWrap: true,
                         itemBuilder: (context, index) => RowMyServiceForm(
-                          onDeleteTap: () {
-                            _.deleteInsurances(
+                          onDeleteTap:  _.snackBarStatus == SnackbarStatus.CLOSED? () {
+                            _.deleteServices(
                                 servicesId: _.myServicesList[index].id,
                                 index: index);
-                          },
+                          }:(){},
                           onEditTap: () {},
                           service: _.myServicesList[index],
                         ),

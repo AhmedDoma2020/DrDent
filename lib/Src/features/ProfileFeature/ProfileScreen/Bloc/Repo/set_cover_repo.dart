@@ -4,14 +4,17 @@ import 'package:dio/dio.dart';
 import 'package:dr_dent/Src/core/constants/api_key.dart';
 import 'package:dr_dent/Src/core/services/network_services.dart';
 import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
-class FetchWorkSpaceDetailsRepository with ApiKey{
+class SetCoverRepository with ApiKey{
   final NetworkService _networkService = NetworkService();
-  Future<Response> fetchMyFetchWorkSpaceDetails()async{
+  Future<Response> setCover({required String image})async{
     Response response;
     try{
-      response = await _networkService.get(
-        url:uRLFetchMyWorkSpaces,
+      response = await _networkService.post(
+        url:uRLSetCover,
         auth: true,
+        body: {
+          "cover":image,
+        },
       );
     }on SocketException{
       throw const SocketException('No Internet Connection');

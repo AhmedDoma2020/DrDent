@@ -1,6 +1,6 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
-import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/InsuranceCompaniesFeature/Bloc/Controller/fetch_available_insurances_controller.dart';
+import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyOfferFeature/Bloc/Controller/set_offer_and_discount_controller.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyOfferFeature/Ui/Widget/select_offer_duration.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyOfferFeature/Ui/Widget/upload_offer_photo.dart';
@@ -18,7 +18,7 @@ import 'add_services_sheet_in_add_offer_screen.dart';
 class AddOfferAndDiscountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Get.put(FetchAvailableInsurancesController());
+    // Get.put(FetchAvailableInsurancesController());
     Get.put(SetOfferAndDiscountController());
     Get.put(FetchMyServicesController());
     var node = FocusScope.of(context);
@@ -57,10 +57,15 @@ class AddOfferAndDiscountScreen extends StatelessWidget {
                     16.0.ESH(),
                     GetBuilder<FetchMyServicesController>(
                       builder: (myServicesController) => InkWell(
-                        onTap: myServicesController.myServicesList.isEmpty
+                        onTap: myServicesController.status == RequestStatus.loading ?  () {
+                          customSnackBar(
+                              title: "loading_Data".tr,);
+                        }:myServicesController.myServicesList.isEmpty
                             ? () {
                                 customSnackBar(
-                                    title: "لا يوجد لديك شركات تامين");
+                                    title: "no_service_selected_title".tr,
+                                    subtitle:
+                                        "no_service_selected_sup_title".tr);
                               }
                             : () {
                                 Get.bottomSheet(AddServicesButtonSheet(
@@ -102,29 +107,9 @@ class AddOfferAndDiscountScreen extends StatelessWidget {
                       ),
                     ),
                     16.0.ESH(),
-                    Row(
-                      children: [
-                        Expanded(
-                          // width: 20.w,
-                          child: TextFieldDefault(
-                            hint: 'set_offer_duration'.tr,
-                            errorText: "error_set_offer_duration".tr,
-                            controller: _.offerDurationController,
-                            enable: false,
-                            disableBorder: Colors.transparent,
-                            keyboardType: TextInputType.phone,
-                            filledColor: kCBGTextFormFiled,
-                            fieldType: FieldType.WithBorder,
-                            enableBorder: Colors.transparent,
-                            horizentalPadding: 16,
-                            onComplete: () {
-                              node.nextFocus();
-                            },
-                          ),
-                        ),
-                        16.0.ESW(),
-                        SelectOfferDurationWidget(),
-                      ],
+                    SelectOfferDurationRow(
+                      node: node,
+                      offerDurationController: _.offerDurationController!,
                     ),
                     16.0.ESH(),
                     TextFieldDefault(

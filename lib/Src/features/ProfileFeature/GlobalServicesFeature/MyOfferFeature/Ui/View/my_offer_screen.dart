@@ -56,12 +56,12 @@ class MyOfferScreen extends StatelessWidget {
                     shrinkWrap: true,
                     itemBuilder: (context, index) => MyOfferAndDiscountRow(
                       offerAndDiscount: _.myOfferAndDiscountList[index],
-                      onDeleteTap: () {
-                        _.deleteAssistant(
+                      onDeleteTap:_.snackBarStatus == SnackbarStatus.CLOSED? () {
+                        _.deleteOfferAndDiscount(
                             offerAndDiscountId:
                                 _.myOfferAndDiscountList[index].id,
-                            index: index);
-                      },
+                            );
+                      }:(){},
                       onEditTap: () {},
                     ),
                     separatorBuilder: (context, index) => 16.0.ESH(),

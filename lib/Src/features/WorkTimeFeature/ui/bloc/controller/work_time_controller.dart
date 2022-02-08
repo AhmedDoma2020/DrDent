@@ -6,6 +6,7 @@ import 'package:dr_dent/Src/features/WorkTimeFeature/ui/bloc/repository/add_day_
 import 'package:dr_dent/Src/features/WorkTimeFeature/ui/bloc/repository/add_day_time_repository.dart';
 import 'package:dr_dent/Src/features/WorkTimeFeature/ui/bloc/repository/delete_day_time_repository.dart';
 import 'package:dr_dent/Src/features/WorkTimeFeature/ui/bloc/repository/fetch_days_repository.dart';
+import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -55,6 +56,7 @@ class WorkTimeController extends GetxController{
       for (var item in response.data['data']) {
         days.add(DayModel.fromJson(item));
       }
+
       debugPrint("convert operation success");
       status = RequestStatus.done;
       update();
@@ -75,6 +77,7 @@ class WorkTimeController extends GetxController{
     );
     Get.back();
     if (response.statusCode == 200 && response.data["status"] == true) {
+      customSnackBar(title: response.data["message"] ?? "Error");
       debugPrint("request operation success");
       int dayIndex = days.indexWhere((element) => element.id == dayId);
       if(response.data["data"]!=null){
@@ -83,6 +86,7 @@ class WorkTimeController extends GetxController{
       debugPrint("convert operation success");
       update();
     }else{
+      customSnackBar(title: response.data["message"] ?? "Error");
     }
   }
 
@@ -98,9 +102,11 @@ class WorkTimeController extends GetxController{
       int dayIndex = days.indexWhere((element) => element.id == dayId);
       int dayTimeIndex = days[dayIndex].times!.indexWhere((element) => element.id == dayTimeId);
       days[dayIndex].times!.removeAt(dayTimeIndex);
+      customSnackBar(title: response.data["message"] ?? "Error");
       debugPrint("convert operation success");
       update();
     }else{
+      customSnackBar(title: response.data["message"] ?? "Error");
     }
   }
 
@@ -117,9 +123,12 @@ class WorkTimeController extends GetxController{
       if (response.statusCode == 200 && response.data["status"] == true) {
         debugPrint("request operation success");
         onSuccess();
+        customSnackBar(title: response.data["message"]??"");
         debugPrint("convert operation success");
         update();
       }else{
+        customSnackBar(title: response.data["message"]??"");
+        update();
       }
     }
   }

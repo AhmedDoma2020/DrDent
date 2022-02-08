@@ -33,7 +33,7 @@ class AvailableWorkSpaceSheet extends StatelessWidget {
                 topRight: Radius.circular(19.r),
               ),
               color: Colors.white),
-          child: GetBuilder<FetchDetectionLocationDetailsController>(
+          child: GetBuilder<FetchWorkSpaceDetailsController>(
             builder: (_) => Column(
               children: [
                 24.0.ESH(),
@@ -48,15 +48,15 @@ class AvailableWorkSpaceSheet extends StatelessWidget {
                     shrinkWrap: true,
                     itemBuilder: (context, index) => GetBuilder<SetServicesController>(
                       builder:(setServiceType) =>  InkWell(
-                        onTap:_.myDetectionLocationDetails[index].isSelected?(){}: (){
+                        onTap:_.myWorkSpaceDetails[index].isSelected?(){}: (){
                           _.changeSIndex(index);
-                          onSelected( _.myDetectionLocationDetails[index].id, _.myDetectionLocationDetails[index].name,);
+                          onSelected( _.myWorkSpaceDetails[index].id, _.myWorkSpaceDetails[index].name,);
                           // setServiceType.servicesTypeSelectedController!.text = _.availableServicesList[index].title.toString();
                           // setServiceType.setServicesId = _.availableServicesList[index].id;
                           Get.back();
                         },
                         child: SingleChoseRowForm(
-                          title:_.myDetectionLocationDetails[index].name,
+                          title:_.myWorkSpaceDetails[index].name,
                           isSelected: _.indexSelected == index,
                         ),
                       ),
@@ -65,7 +65,7 @@ class AvailableWorkSpaceSheet extends StatelessWidget {
                       height: 2.h,
                       color: kCTFEnableBorder,
                     ),
-                    itemCount: _.myDetectionLocationDetails.length,
+                    itemCount: _.myWorkSpaceDetails.length,
                   ),
                 ),
               ],

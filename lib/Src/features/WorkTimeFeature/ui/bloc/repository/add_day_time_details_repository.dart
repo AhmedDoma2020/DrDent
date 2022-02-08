@@ -5,6 +5,7 @@ import 'package:dr_dent/Src/bloc/model/day_time_model.dart';
 import 'package:dr_dent/Src/core/constants/api_key.dart';
 import 'package:dr_dent/Src/core/services/network_services.dart';
 import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get_storage/get_storage.dart';
 
 
@@ -17,6 +18,7 @@ class AddDayTimeDetailsRepository with ApiKey{
     required int workspaceId,
     required int doctorId,
   })async{
+    debugPrint("workspaceId in repo $workspaceId");
     Response? response;
     try{
       response = await _networkService.post(

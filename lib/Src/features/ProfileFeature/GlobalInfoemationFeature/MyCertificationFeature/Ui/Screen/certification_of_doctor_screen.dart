@@ -6,6 +6,7 @@ import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/MyC
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/MyCertificationFeature/Ui/Widget/certification_image_form.dart';
 import 'package:dr_dent/Src/ui/widgets/Dialog/loading_dialog.dart';
 import 'package:dr_dent/Src/ui/widgets/EmptyWidget/empty_widget.dart';
+import 'package:dr_dent/Src/ui/widgets/appbars/app_bars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -21,6 +22,12 @@ class CertificationOfDoctorScreen extends StatelessWidget {
     return SafeArea(
       child: GetBuilder<FetchDoctorCertificationController>(
         builder: (_) => Scaffold(
+          appBar: AppBars.appBarDefault(
+            title: "my_certification".tr,
+            onTap: () {
+              Get.back();
+            },
+          ),
           floatingActionButton: FloatingActionButton(
             child: Icon(
               Icons.add,
@@ -56,11 +63,11 @@ class CertificationOfDoctorScreen extends StatelessWidget {
                           mainAxisSpacing: 18.h,
                         ),
                         itemBuilder: (context, index) => CertificationImageForm(
-                          onDelete: () {
+                          onDelete:  _.snackBarStatus == SnackbarStatus.CLOSED? () {
                             _.deleteCertification(
                                 certificationId:
                                     _.certificationList[index].id!);
-                          },
+                          }:(){},
                           image: _.certificationList[index].image!,
                         ),
                         itemCount: _.certificationList.length,

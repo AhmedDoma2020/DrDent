@@ -11,10 +11,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '/src/core/utils/extensions.dart';
 class YearOfGraduationButtonSheet extends StatelessWidget {
+  final String yearSelected;
   final Function(String) onTap;
   const YearOfGraduationButtonSheet({
     Key? key,
     required this.onTap,
+     this.yearSelected ='',
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -58,7 +60,7 @@ class YearOfGraduationButtonSheet extends StatelessWidget {
                       },
                       child: SingleChoseRowForm(
                         title: _.yearsOfGraduation[index].reactive.toString(),
-                        isSelected: _.yearOfGraduationSIndex == index,
+                        isSelected: _.yearOfGraduationSIndex == index || _.yearsOfGraduation[index].reactive.toString() == yearSelected,
                       ),
                     ),
                     separatorBuilder: (context, index) => Divider(

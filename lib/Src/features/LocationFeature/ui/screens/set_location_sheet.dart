@@ -49,7 +49,7 @@ class SetLocationButtonSheet extends StatelessWidget {
           child: SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: GetBuilder<SetDetectionLocationDetailsController>(
+              child: GetBuilder<SetWorkSpaceDetailsDetailsController>(
                 builder: (_) => Form(
                   key: _.globalKey2,
                   child: GetBuilder<FetchStateAndCityController>(

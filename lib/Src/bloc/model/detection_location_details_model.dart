@@ -1,7 +1,7 @@
 
 
-class DetectionLocationDetailsModel {
-  DetectionLocationDetailsModel({
+class WorkSpaceDetailsModel {
+  WorkSpaceDetailsModel({
     required this.id,
     required this.name,
     required this.phone,
@@ -30,7 +30,7 @@ class DetectionLocationDetailsModel {
   late final String flatNumber;
   late  bool isSelected;
 
-  DetectionLocationDetailsModel.fromJson(Map<String, dynamic> json){
+  WorkSpaceDetailsModel.fromJson(Map<String, dynamic> json){
     id = json['id']??"";
     name = json['name']??"";
     phone = json['phone']??"";

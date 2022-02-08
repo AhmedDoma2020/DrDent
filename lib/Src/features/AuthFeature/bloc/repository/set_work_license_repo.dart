@@ -1,9 +1,11 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:dr_dent/Src/core/constants/api_key.dart';
 import 'package:dr_dent/Src/core/services/network_services.dart';
 import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
+import 'package:flutter/cupertino.dart';
 
 class SetWorkLicenseRepository with ApiKey {
   // GetStorage box = GetStorage();
@@ -11,6 +13,7 @@ class SetWorkLicenseRepository with ApiKey {
   Future<Response> setWorkLicense({
     required String workLicense,
   }) async {
+    log('work_lisence in repo is $workLicense');
     Response response;
     try {
       response = await _networkService.post(

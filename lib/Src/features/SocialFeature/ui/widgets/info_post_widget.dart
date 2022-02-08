@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
+import 'package:get_storage/get_storage.dart';
 
 
 
@@ -20,6 +21,7 @@ class InfoPostWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GetStorage box = GetStorage();
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 24.w),
       child: Row(
@@ -30,8 +32,7 @@ class InfoPostWidget extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(777.r),
               child: ImageNetwork(
-                url:
-                "https://images.pexels.com/photos/3881247/pexels-photo-3881247.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                url:box.read('image')??"",
                 height: 48.w,
                 width: 48.w,
               ),
@@ -42,7 +43,7 @@ class InfoPostWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
                CustomText(
-                  text: "text",
+                  text: box.read('name')??"",
                   fontW: FW.bold,
                 ),
               2.0.ESH(),

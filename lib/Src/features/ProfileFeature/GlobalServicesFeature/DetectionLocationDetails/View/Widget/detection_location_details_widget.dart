@@ -10,13 +10,13 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DetectionLocationDetailsWidget extends StatelessWidget {
-  final DetectionLocationDetailsModel model;
+  final WorkSpaceDetailsModel model;
   final VoidCallback onDeleteTap;
-  final VoidCallback onEditTap;
+  final VoidCallback onTimeTap;
   const DetectionLocationDetailsWidget({
     required this.model,
     required this.onDeleteTap,
-    required this.onEditTap,
+    required this.onTimeTap,
     Key? key,
   }) : super(key: key);
 
@@ -151,7 +151,7 @@ class DetectionLocationDetailsWidget extends StatelessWidget {
             left: 0.w,
             child: Row(
               children: [
-                // EditWidget(onEditTap: onEditTap),
+                IconWidget(onEditTap: onTimeTap,icon: "assets/icons/timeIcon.png",),
                 DeleteWidget(onDeleteTap: onDeleteTap),
               ],
             ),

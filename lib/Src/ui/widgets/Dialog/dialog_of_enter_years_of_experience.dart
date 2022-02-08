@@ -22,7 +22,6 @@ class DialogOfEnterYearsOfExperience extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(FetchYearsOfGraduationController());
     Get.put(SetExperienceYearsController());
-
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 24.w),
       child: Center(

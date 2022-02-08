@@ -8,13 +8,13 @@ import 'package:get_storage/get_storage.dart';
 class NetworkService with ApiKey{
   Dio dio = Dio();
   GetStorage box = GetStorage();
-  String apiTokenStatic ='\$2y\$10\$MAVyBbLcXlsRZ6Geb7c.8e/O9yYVhT0QuT//oMASxJGRDobz6e9em';
   Future<Response> get({@required String? url, Map<String , String>? headers,bool auth = false}) async {
     Response? response;
-    String apiToken =box.read("api_token")??apiTokenStatic;
-    // $2y$10$IpiCoyvRmB/.luM7hiWeRO1.EVZjYtPL2/ij4mk64vDMzbNNpd7.a
-    String staticApiToken ="\$2y\$10\$IpiCoyvRmB/.luM7hiWeRO1.EVZjYtPL2/ij4mk64vDMzbNNpd7.a";
-    log("log apiToken in netWork >>>>>>>>>:-> $apiToken");
+    String apiToken =box.read("api_token")??"Not Found Token";
+    // $2y$10$81Q8gWuYAcU0PCcO0QJAeu8Bug4OJrEosZIl9s82UktqN3sySEQ7O
+    String staticApiToken ="\$2y\$10\$6eW2LBCbHXIM0NPu3O6J.OXSsgcM92Hb5OMu7fTffAUBBzzMXefda";
+    log("apiToken storage in netWork >>>>>>>>>:-> $apiToken");
+    log("apiToken static in netWork >>>>>>>>>:-> $staticApiToken");
     try {
       dio.options.baseUrl = ApiKey.apiBaseUrl;
       response = await dio.get(url!, options: Options(
@@ -39,10 +39,11 @@ class NetworkService with ApiKey{
   Future<Response> post({@required String? url,
     Map<String , String>? headers, Map<String , dynamic>? body,bool auth = false}) async {
     Response? response;
-    String apiToken =box.read("api_token")??apiTokenStatic;
-    debugPrint("apiToken in netWork >>>>>>>>>:-> $apiToken");
-    // $2y$10$IpiCoyvRmB/.luM7hiWeRO1.EVZjYtPL2/ij4mk64vDMzbNNpd7.a
-    String staticApiToken ="\$2y\$10\$IpiCoyvRmB/.luM7hiWeRO1.EVZjYtPL2/ij4mk64vDMzbNNpd7.a";
+    String apiToken =box.read("api_token")??"Not Found Token";
+    // $2y$10$81Q8gWuYAcU0PCcO0QJAeu8Bug4OJrEosZIl9s82UktqN3sySEQ7O
+    String staticApiToken ="\$2y\$10\$6eW2LBCbHXIM0NPu3O6J.OXSsgcM92Hb5OMu7fTffAUBBzzMXefda";
+    log("apiToken storage in netWork >>>>>>>>>:-> $apiToken");
+    log("apiToken static in netWork >>>>>>>>>:-> $staticApiToken");
     dio.options.baseUrl = ApiKey.apiBaseUrl;
     try {
       response = await dio.post(

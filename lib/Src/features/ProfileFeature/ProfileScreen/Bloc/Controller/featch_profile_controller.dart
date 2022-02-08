@@ -2,6 +2,7 @@ import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Bloc/Repo/featch_profile_repo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class FetchProfileController extends GetxController {
   String? _phone;
@@ -12,7 +13,7 @@ class FetchProfileController extends GetxController {
   int _degreeId =0;
   String? _specialization;
   String? _yearsOfExperience;
-  String? _photoOfWorkLicenses;
+  String _photoOfWorkLicenses='';
   double? _rateAverage;
   double? _rateNum;
   int? _patientsNum;
@@ -31,6 +32,10 @@ class FetchProfileController extends GetxController {
   String _address = '';
   String _administratorName ='';
   String _administratorPhone = '';
+  String _about = '';
+  String _yearOfGraduation = '';
+  String get about => _about;
+  String get yearOfGraduation => _yearOfGraduation;
   List<String> _specializationList = [];
   List<int> _specializationIds = [];
   String? get phone => _phone;
@@ -43,7 +48,7 @@ class FetchProfileController extends GetxController {
   List<String> get specializationList => _specializationList;
   List<int> get specializationIds => _specializationIds;
   String? get yearsOfExperience => _yearsOfExperience;
-  String? get photoOfWorkLicenses => _photoOfWorkLicenses;
+  String get photoOfWorkLicenses => _photoOfWorkLicenses;
   double? get rateAverage => _rateAverage;
   double? get rateNum => _rateNum;
   int? get patientsNum => _patientsNum;
@@ -60,7 +65,7 @@ class FetchProfileController extends GetxController {
   String get address => _address;
   String get administratorPhone => _administratorPhone;
   String get administratorName => _administratorName;
-
+  GetStorage  box = GetStorage();
   RequestStatus status = RequestStatus.initial;
   final FetchProfileDoctorRepository _fetchProfileDoctorRepository =
       FetchProfileDoctorRepository();
@@ -72,6 +77,7 @@ class FetchProfileController extends GetxController {
     update();
     if (response.statusCode == 200 && response.data["status"] == true) {
       debugPrint("request operation success");
+      box.write('id', response.data['data']['id']);
       _phone = response.data['data']['phone'] ?? "";
       _name = response.data['data']['name'] ?? "";
       _avatar = response.data['data']['image'] ?? "";
@@ -118,6 +124,8 @@ class FetchProfileController extends GetxController {
       _address = response.data['data']['address'] ?? '';
       _administratorName = response.data['data']['adminstrator_name'] ?? '';
       _administratorPhone = response.data['data']['adminstrator_phone'] ?? '';
+      _about = response.data['data']['about'] ?? '';
+      _yearOfGraduation = response.data['data']['work_year'] ?? '';
       debugPrint("convert operation success");
       status = RequestStatus.done;
       update();

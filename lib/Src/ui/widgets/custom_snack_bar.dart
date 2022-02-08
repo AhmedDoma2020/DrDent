@@ -4,9 +4,10 @@ import 'package:get/get.dart';
 
 import 'GeneralWidgets/custom_text.dart';
 
-void customSnackBar({String title='', String subtitle = ''}){
+void customSnackBar({String title = '', String subtitle = '',void Function(SnackbarStatus?)? snackBarStatus}) {
   Get.snackbar(
-    '','',
+    '',
+    '',
     backgroundColor: kCMainBlack,
     snackPosition: SnackPosition.TOP,
     titleText: CustomText(
@@ -21,5 +22,6 @@ void customSnackBar({String title='', String subtitle = ''}){
       fontW: FW.medium,
       fontSize: 12,
     ),
+    snackbarStatus: snackBarStatus,
   );
 }

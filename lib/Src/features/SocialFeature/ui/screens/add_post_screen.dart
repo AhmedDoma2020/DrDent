@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
+import 'package:get_storage/get_storage.dart';
 
 class AddPostScreen extends StatelessWidget {
   const AddPostScreen({Key? key}) : super(key: key);
@@ -34,53 +35,58 @@ class AddPostScreen extends StatelessWidget {
                   height: 48,
                   radius: 6,
                   title: 'publishing_'.tr,
+                  buttonColor: _.img64 != null || !_.isContentCEmpty ?kCActiveButton:kCActiveButton.withOpacity(0.3),
                   titleSize: 13,
-                  onTap: () {
+                  onTap: _.img64 != null ||  !_.isContentCEmpty ? () {
                     _.submit();
-                  },
+                  }:(){},
                 ),
               ),
             ),
           ),
           body: SizedBox(
-              height: double.infinity,
-              child: Stack(
-                children: [
-                  SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        24.0.ESH(),
-                        InfoPostWidget(),
-                        4.0.ESH(),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 24.w),
-                          child: TextFieldDefault(
-                            hint: 'Write_your_description_here'.tr,
-                            controller: _.contentController,
-                            fieldType: FieldType.WithOutBorder,
-                            disableBorder: Colors.transparent,
-                            focusBorder: Colors.transparent,
-                            keyboardType: TextInputType.multiline,
-                            enableBorder:  Colors.transparent,
-                            maxLines: 3,
-                            horizentalPadding: 16,
-                            onComplete: () {
-                              node.unfocus();
-                            },
-                          ),
+            height: double.infinity,
+            child: Stack(
+              children: [
+                SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      24.0.ESH(),
+                      InfoPostWidget(),
+                      4.0.ESH(),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 24.w),
+                        child: TextFieldDefault(
+                          hint: 'Write_your_description_here'.tr,
+                          controller: _.contentController,
+                          fieldType: FieldType.WithOutBorder,
+                          disableBorder: Colors.transparent,
+                          focusBorder: Colors.transparent,
+                          keyboardType: TextInputType.multiline,
+                          enableBorder:  Colors.transparent,
+                          maxLines: 3,
+                          horizentalPadding: 16,
+                          // onChanged: (val){
+                          //   // _.setContentController(val);
+                          //   _.setContentController(val);
+                          // },
+                          onComplete: () {
+                            node.unfocus();
+                          },
                         ),
-                        16.0.ESH(),
-                        _.image != null
-                            ?
-                        AddImagePostForm():0.0.ESW(),
-                        60.0.ESH(),
-                      ],
-                    ),
+                      ),
+                      16.0.ESH(),
+                      _.image != null
+                          ?
+                      AddImagePostForm():0.0.ESW(),
+                      60.0.ESH(),
+                    ],
                   ),
-                  AddMediaButtonBarForm(),
-                ],
-              ),
+                ),
+                AddMediaButtonBarForm(),
+              ],
             ),
+          ),
 
         ),
       ),

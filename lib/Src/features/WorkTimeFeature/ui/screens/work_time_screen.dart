@@ -8,131 +8,143 @@ import 'package:dr_dent/Src/ui/widgets/TextFields/text_field_default.dart';
 import 'package:dr_dent/Src/ui/widgets/appbars/app_bars.dart';
 import 'package:dr_dent/Src/ui/widgets/buttons/button_default.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import '/src/core/utils/extensions.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
+import '/src/core/utils/extensions.dart';
 
 class WorkTimeScreen extends StatelessWidget {
-
   final int workspaceId;
   final int doctorId;
   final VoidCallback onSuccess;
-  const WorkTimeScreen({Key? key,required this.workspaceId,  this.doctorId = 0,required this.onSuccess}) : super(key: key);
+  final bool isBack;
+
+   WorkTimeScreen({
+    Key? key,
+    required this.workspaceId,
+    this.doctorId = 0,
+    required this.onSuccess,
+     this.isBack =false,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    Get.put(WorkTimeController(workSpaceId: workspaceId,doctorId: doctorId));
+    Get.put(WorkTimeController(workSpaceId: workspaceId, doctorId: doctorId));
     return Scaffold(
-      appBar: AppBars.appBarDefault(title: 'مواعيد العمل'),
+      appBar: AppBars.appBarDefault(title: 'مواعيد العمل',isBack: isBack),
       body: GetBuilder<WorkTimeController>(
-        builder: (_) =>  Stack(
+        builder: (_) => Stack(
           children: [
             ListView(
               children: [
                 Padding(
-                  padding:  EdgeInsets.symmetric(
-                    horizontal: 16.w,
-                    vertical: 32.0.h
-                  ),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 16.w, vertical: 32.0.h),
                   child: Form(
                     key: _.globalKey,
                     child: Column(
                       children: [
-                        IconTitleRow(title: 'ضبط اعدادات العمل',icon: 'work_time.png',),
+                        IconTitleRow(
+                          title: 'ضبط اعدادات العمل',
+                          icon: 'work_time.png',
+                        ),
                         15.0.ESH(),
                         GestureDetector(
-                          onTap: (){
+                          onTap: () {
                             Get.dialog(
                               Center(
                                 child: Container(
                                   width: 343.w,
                                   height: 200.h,
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15.r),
-                                    color: Colors.white
-                                  ),
+                                      borderRadius: BorderRadius.circular(15.r),
+                                      color: Colors.white),
                                   child: Material(
-                                    color: Colors.transparent,
-                                    child: Padding(
-                                      padding:  EdgeInsets.symmetric(
-                                        vertical: 16.0.h
-                                      ),
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              CustomText(
-                                                text: 'اختر نوع استقبال الحجوزات',
-                                                color: kCMainBlack2,
-                                                fontSize: 13,
-                                                fontW: FW.semibold,
-                                              ),
-                                            ],
-                                          ),
-                                          Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              GestureDetector(
-                                                onTap:(){
-                                                 _.dayBookingType=0;
-                                                 Get.back();
-                                                },
-                                                child: Container(
-                                                  width: double.infinity,
-                                                  color: Colors.transparent,
-                                                  child: Padding(
-                                                    padding:  EdgeInsets.symmetric(
-                                                        vertical: 10.h,
-                                                        horizontal: 16.w
-                                                    ),
-                                                    child: Row(
-                                                      children: [
-                                                        CustomText(
-                                                          text: 'قبول الحجوزات ف نفس اليوم',
-                                                          color: kCMainBlack2,
-                                                          fontSize: 13,
-                                                          fontW: FW.semibold,
-                                                        ),
-                                                      ],
+                                      color: Colors.transparent,
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 16.0.h),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                CustomText(
+                                                  text:
+                                                      'اختر نوع استقبال الحجوزات',
+                                                  color: kCMainBlack2,
+                                                  fontSize: 13,
+                                                  fontW: FW.semibold,
+                                                ),
+                                              ],
+                                            ),
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                GestureDetector(
+                                                  onTap: () {
+                                                    _.dayBookingType = 0;
+                                                    Get.back();
+                                                  },
+                                                  child: Container(
+                                                    width: double.infinity,
+                                                    color: Colors.transparent,
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              vertical: 10.h,
+                                                              horizontal: 16.w),
+                                                      child: Row(
+                                                        children: [
+                                                          CustomText(
+                                                            text:
+                                                                'قبول الحجوزات ف نفس اليوم',
+                                                            color: kCMainBlack2,
+                                                            fontSize: 13,
+                                                            fontW: FW.semibold,
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
-                                              ),
-                                              GestureDetector(
-                                                onTap:(){
-                                                  _.dayBookingType=1;
-                                                  Get.back();
-                                                },
-                                                child: Container(
-                                                  width: double.infinity,
-                                                  color: Colors.transparent,
-                                                  child: Padding(
-                                                    padding:  EdgeInsets.symmetric(
-                                                        vertical: 10.h,
-                                                        horizontal: 16.w
-                                                    ),
-                                                    child: Row(
-                                                      children: [
-                                                        CustomText(
-                                                          text: 'قبول الحجوزات قبلها بيوم',
-                                                          color: kCMainBlack2,
-                                                          fontSize: 13,
-                                                          fontW: FW.semibold,
-                                                        ),
-                                                      ],
+                                                GestureDetector(
+                                                  onTap: () {
+                                                    _.dayBookingType = 1;
+                                                    Get.back();
+                                                  },
+                                                  child: Container(
+                                                    width: double.infinity,
+                                                    color: Colors.transparent,
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              vertical: 10.h,
+                                                              horizontal: 16.w),
+                                                      child: Row(
+                                                        children: [
+                                                          CustomText(
+                                                            text:
+                                                                'قبول الحجوزات قبلها بيوم',
+                                                            color: kCMainBlack2,
+                                                            fontSize: 13,
+                                                            fontW: FW.semibold,
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
-                                              ),
-                                            ],
-                                          ),
-                                          10.0.ESH(),
-                                        ],
-                                      ),
-                                    )
-                                  ),
+                                              ],
+                                            ),
+                                            10.0.ESH(),
+                                          ],
+                                        ),
+                                      )),
                                 ),
                               ),
                             );
@@ -154,38 +166,44 @@ class WorkTimeScreen extends StatelessWidget {
                           controller: _.detectionTime,
                         ),
                         32.0.ESH(),
-                        IconTitleRow(title: 'ساعات العمل',icon: 'hours.png',),
+                        IconTitleRow(
+                          title: 'ساعات العمل',
+                          icon: 'hours.png',
+                        ),
                       ],
                     ),
                   ),
                 ),
-                _.status != RequestStatus.done?
-                0.0.ESH():
-                ListView.separated(
-                    itemBuilder: (context, index) => Padding(
-                      padding:  EdgeInsets.only(
-                        bottom: index == _.days.length-1 ? 16.h : 0
+                _.status != RequestStatus.done
+                    ? 0.0.ESH()
+                    : ListView.separated(
+                        itemBuilder: (context, index) => Padding(
+                          padding: EdgeInsets.only(
+                              bottom: index == _.days.length - 1 ? 16.h : 0),
+                          child: DayWidget(
+                            day: _.days[index],
+                            onExpand: () {
+                              _.expandDay(dayIndex: index);
+                            },
+                            onAddTime: (dayTime) {
+                              Get.back();
+                              _.addDayTime(
+                                  dayId: _.days[index].id, dayTime: dayTime);
+                            },
+                            onDelete: (id) {
+                              _.deleteDayTime(
+                                  dayTimeId: id, dayId: _.days[index].id);
+                            },
+                            onEdit: (dayTime) {
+                              // _.addDayTime(dayId: _.days[index].id,dayTime: dayTime);
+                            },
+                          ),
+                        ),
+                        separatorBuilder: (context, index) => 24.0.ESH(),
+                        itemCount: _.days.length,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
                       ),
-                      child: DayWidget(
-                        day: _.days[index],
-                        onExpand: (){_.expandDay(dayIndex: index);},
-                        onAddTime: (dayTime) {
-                          Get.back();
-                          _.addDayTime(dayId: _.days[index].id,dayTime: dayTime);
-                        },
-                        onDelete:  (id) {
-                            _.deleteDayTime(dayTimeId: id,dayId: _.days[index].id);
-                        },
-                        onEdit: (dayTime) {
-                          // _.addDayTime(dayId: _.days[index].id,dayTime: dayTime);
-                        },
-                      ),
-                    ),
-                    separatorBuilder: (context, index) => 24.0.ESH(),
-                    itemCount: _.days.length,
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                ),
                 100.0.ESH()
               ],
             ),
@@ -198,7 +216,7 @@ class WorkTimeScreen extends StatelessWidget {
                 child: Center(
                   child: ButtonDefault(
                     title: 'حفظ',
-                    onTap: (){
+                    onTap: () {
                       _.addDayTimeDetails(onSuccess: onSuccess);
                     },
                   ),
