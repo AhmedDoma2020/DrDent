@@ -5,11 +5,11 @@ import 'package:photo_view/photo_view.dart';
 
 
 class PhotoViewWidget extends StatelessWidget {
-  const PhotoViewWidget({
+   const PhotoViewWidget({Key? key,
    required this.imageProvider,
     this.minScale,
     this.maxScale,
-  });
+  }) : super(key: key);
 
   final ImageProvider imageProvider;
   final dynamic minScale;
@@ -21,7 +21,7 @@ class PhotoViewWidget extends StatelessWidget {
       constraints: BoxConstraints.expand(
         height: MediaQuery.of(context).size.height,
       ),
-      child: PhotoViewWidget(
+      child: PhotoView(
         imageProvider: imageProvider,
         minScale: minScale,
         maxScale: maxScale,

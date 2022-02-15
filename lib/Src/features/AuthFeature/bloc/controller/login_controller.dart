@@ -38,6 +38,9 @@ class LoginController extends GetxController{
        box.write("phone_verified", response.data["data"]["phone_verified"]);
        box.write("image", response.data["data"]["image"]);
        box.write("api_token", response.data["data"]["api_token"]);
+       debugPrint("api_token in register is ${box.read('api_token')}");
+       debugPrint("user_type_id in register is ${box.read('user_type_id')}");
+       box.write('log_in',1);
        customSnackBar(title: response.data["message"]??"");
        Get.offAll(()=>BaseScreen());
        // Get.to(()=>SetDetectionLocationDetailsScreen());

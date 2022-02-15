@@ -1,7 +1,9 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
+import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyOfferFeature/Bloc/Controller/fetch_my_offer_and_discount_controller.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyOfferFeature/Ui/Widget/my_offer_and_discount_row_form.dart';
+import 'package:dr_dent/Src/ui/widgets/Dialog/loading_dialog.dart';
 import 'package:dr_dent/Src/ui/widgets/EmptyWidget/empty_widget.dart';
 import 'package:dr_dent/Src/ui/widgets/appbars/app_bars.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +16,7 @@ import 'add_offer_screen.dart';
 class MyOfferScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    FetchMyOfferAndDiscountController _fetchMyOfferAndDiscountController =
+    // FetchMyOfferAndDiscountController _fetchMyOfferAndDiscountController =
         Get.put(FetchMyOfferAndDiscountController());
     Future<void> onRefresh() async {}
     return SafeArea(
@@ -41,7 +43,7 @@ class MyOfferScreen extends StatelessWidget {
           width: double.infinity,
           color: Colors.white,
           child: GetBuilder<FetchMyOfferAndDiscountController>(
-            builder: (_) => _.myOfferAndDiscountList.isEmpty
+            builder: (_) => _.status == RequestStatus.loading? Center(child: Loader(),) : _.myOfferAndDiscountList.isEmpty
                 ? EmptyWidget(
                     image: "assets/image/emptyOfferAndDiscount.png",
                     onTapButton: () {},
@@ -54,12 +56,12 @@ class MyOfferScreen extends StatelessWidget {
                     shrinkWrap: true,
                     itemBuilder: (context, index) => MyOfferAndDiscountRow(
                       offerAndDiscount: _.myOfferAndDiscountList[index],
-                      onDeleteTap: () {
-                        _.deleteAssistant(
+                      onDeleteTap:_.snackBarStatus == SnackbarStatus.CLOSED? () {
+                        _.deleteOfferAndDiscount(
                             offerAndDiscountId:
                                 _.myOfferAndDiscountList[index].id,
-                            index: index);
-                      },
+                            );
+                      }:(){},
                       onEditTap: () {},
                     ),
                     separatorBuilder: (context, index) => 16.0.ESH(),

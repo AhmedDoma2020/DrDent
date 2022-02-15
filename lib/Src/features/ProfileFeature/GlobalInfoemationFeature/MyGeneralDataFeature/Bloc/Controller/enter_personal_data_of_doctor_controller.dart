@@ -16,6 +16,7 @@ class EnterPersonalDataOfDoctorController extends GetxController {
   TextEditingController? degreeController;
   TextEditingController? specializationController;
   TextEditingController? addInfoController;
+  TextEditingController? yearOfExperienceController;
   List<int> _specializationIdSelected=[];
   List<int> get specializationIdSelected => _specializationIdSelected;
   set setSpecializationIdSelected(List<int> value) {
@@ -32,11 +33,14 @@ class EnterPersonalDataOfDoctorController extends GetxController {
     _image = value;
   }
 
-  int? _scientificId;
-  int? get scientificId => _scientificId;
+  int _scientificId = 0;
+  int get scientificId => _scientificId;
   set setScientificId(int value) {
     _scientificId = value;
   }
+
+  String _imageFuture   ='';
+  String get imageFuture => _imageFuture;
 
   void setData(){
     debugPrint("ddddddone 1");
@@ -44,13 +48,17 @@ class EnterPersonalDataOfDoctorController extends GetxController {
     debugPrint("ddddddone 2");
     if(isEdit ==true){
       debugPrint("ddddddone 3");
-      debugPrint("_fetchProfileDoctorController.degree! ${_fetchProfileDoctorController.degreeTitle!}");
-      debugPrint("_fetchProfileDoctorController.degree! ${_fetchProfileDoctorController.degreeTitle!}");
+      // debugPrint("_fetchProfileDoctorController.degree! ${_fetchProfileDoctorController.degreeTitle!}");
+      // debugPrint("_fetchProfileDoctorController.degree! ${_fetchProfileDoctorController.degreeTitle!}");
       nameController!.text= _fetchProfileDoctorController.name!;
-      degreeController!.text= _fetchProfileDoctorController.degreeTitle!;
+      if(_fetchProfileDoctorController.userTypeId == 3){}
+      degreeController!.text= _fetchProfileDoctorController.degreeTitle;
       specializationController!.text = _fetchProfileDoctorController.specialization!;
-      _scientificId = _fetchProfileDoctorController.degreeId!;
+      _scientificId = _fetchProfileDoctorController.degreeId;
       _specializationIdSelected = _fetchProfileDoctorController.specializationIds;
+      _imageFuture = _fetchProfileDoctorController.photoOfWorkLicenses;
+      addInfoController!.text = _fetchProfileDoctorController.about;
+      yearOfExperienceController!.text = _fetchProfileDoctorController.yearOfGraduation;
       // _image = _fetchProfileDoctorController.
       debugPrint("nameController!.text ${nameController!.text}");
       debugPrint("degreeController!.text ${degreeController!.text}");
@@ -64,7 +72,7 @@ class EnterPersonalDataOfDoctorController extends GetxController {
   void submit() async {
     if (globalKey.currentState!.validate()) {
       globalKey.currentState!.save();
-      if(_image != ""){
+      if(image != "" || _imageFuture != ''){
         setLoading();
         debugPrint(" nameController!.text ${ nameController!.text}");
         debugPrint(" _gender $_gender");
@@ -75,16 +83,23 @@ class EnterPersonalDataOfDoctorController extends GetxController {
         var response = await  _enterAndEditMyPersonalDataRepository.enterAndEditPersonalDataOfDoctor(
           name: nameController!.text,
           gender: _gender,
-          scientificLevel: scientificId!,
+          scientificLevel: scientificId,
          specializationId: _specializationIdSelected,
           moreInfo: addInfoController!.text,
           image: image,
+          yearOfExperience: yearOfExperienceController!.text,
         );
         Get.back();
          if (response.statusCode == 200 && response.data["status"] == true) {
            debugPrint("request operation success");
+           if(isEdit){
+             Get.back();
+           }else{
+             Get.offAll(()=>BaseScreen());
+           }
            customSnackBar(title: response.data["message"]);
-           Get.offAll(()=>BaseScreen());
+
+           // Get.offAll(()=>BaseScreen());
            debugPrint("convert operation success");
            status = RequestStatus.done;
            update();
@@ -98,16 +113,24 @@ class EnterPersonalDataOfDoctorController extends GetxController {
       }
     }
   }
-
   @override
   void onInit() {
     super.onInit();
     nameController = TextEditingController();
+    nameController!.text = box.read('name');
     degreeController = TextEditingController();
     specializationController = TextEditingController();
     addInfoController = TextEditingController();
+    yearOfExperienceController = TextEditingController();
     _specializationIdSelected =[];
-    setData();
+    debugPrint("isEdit in onInit is$isEdit");
+    debugPrint("work_lisence in onInit is ${box.read('work_lisence')}");
+    if (isEdit){
+      setData();
+    }else{
+      debugPrint("hmada");
+      _imageFuture = box.read('work_lisence');
+    }
   }
 
   @override
@@ -116,6 +139,7 @@ class EnterPersonalDataOfDoctorController extends GetxController {
     degreeController?.dispose();
     specializationController?.dispose();
     addInfoController?.dispose();
+    yearOfExperienceController?.dispose();
     super.dispose();
   }
 }

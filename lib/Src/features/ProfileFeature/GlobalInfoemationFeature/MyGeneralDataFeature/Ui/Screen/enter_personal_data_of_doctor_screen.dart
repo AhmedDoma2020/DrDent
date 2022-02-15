@@ -1,3 +1,4 @@
+import 'package:dr_dent/Src/bloc/controller/year_of_graduation_controller.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
 import 'package:dr_dent/Src/features/AuthFeature/bloc/controller/fetch_scientific_controller.dart';
@@ -7,6 +8,8 @@ import 'package:dr_dent/Src/features/AuthFeature/ui/widgets/row_sex_type_widget.
 import 'package:dr_dent/Src/features/AuthFeature/ui/widgets/specialization_button_sheet.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/widgets/upload_photo_of_work_licenses.dart';
 import 'package:dr_dent/Src/features/BaseFeature/ui/screens/base_screen.dart';
+import 'package:dr_dent/Src/features/JobFeature/ui/screens/year_of_graduation_button_sheet.dart';
+import 'package:dr_dent/Src/ui/widgets/Dialog/dialog_of_enter_years_of_experience.dart';
 import 'package:dr_dent/Src/ui/widgets/TextFields/text_field_default.dart';
 import 'package:dr_dent/Src/ui/widgets/appbars/app_bars.dart';
 import 'package:dr_dent/Src/ui/widgets/buttons/button_default.dart';
@@ -24,9 +27,11 @@ class EnterPersonalDataOfDoctorScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint("isEdit in build is$isEdit");
     Get.put(EnterPersonalDataOfDoctorController(isEdit: isEdit));
     Get.put(FetchSpecializationController());
     Get.put(FetchScientificController());
+    Get.put(FetchYearsOfGraduationController());
     var node = FocusScope.of(context);
     // _enterMyPersonalDataController.nameController!.text = name;
     // _enterMyPersonalDataController.degreeController!.text = "degree";
@@ -74,7 +79,7 @@ class EnterPersonalDataOfDoctorScreen extends StatelessWidget {
                   onTap: () {
                     Get.bottomSheet(
                       DegreeButtonSheet(
-                        idSelected: _.scientificId!,
+                        idSelected: _.scientificId,
                         onTap: (scientificListTitle, scientificListId) {
                           _.degreeController!.text = scientificListTitle;
                           debugPrint(
@@ -141,11 +146,44 @@ class EnterPersonalDataOfDoctorScreen extends StatelessWidget {
                   ),
                 ),
                 16.0.ESH(),
+                GestureDetector(
+                  onTap: () {
+                    // Get.dialog(
+                    //   DialogOfEnterYearsOfExperience(),
+                    // );
+                    Get.bottomSheet(
+                        YearOfGraduationButtonSheet(
+                          yearSelected: _.yearOfExperienceController!.text,
+                          onTap: (title){
+                            _.yearOfExperienceController!.text =title;
+                          },
+                        ),
+                        isScrollControlled: true);
+                  },
+                  child: TextFieldDefault(
+                    hint: 'graduation_year'.tr,
+                    errorText: "error_graduation_year_field".tr,
+                    suffixIconData: Icons.keyboard_arrow_down_outlined,
+                    controller: _.yearOfExperienceController,
+                    keyboardType: TextInputType.text,
+                    filledColor: kCBGTextFormFiled,
+                    fieldType: FieldType.WithBorder,
+                    enable: false,
+                    disableBorder: Colors.transparent,
+                    enableBorder: Colors.transparent,
+                    horizentalPadding: 16,
+                    onComplete: () {
+                      node.nextFocus();
+                    },
+                  ),
+                ),
+                16.0.ESH(),
                 UploadPhotoContainer(
-                  // getImage: getPhotoOfWorkLicenses,
+                  futureImage: _.imageFuture,
                   title: "photo_of_Work_licenses",
                   onTap: (image64) {
                     _.setImage = image64;
+                    debugPrint(" image64 $image64");
                   },
                 ),
                 16.0.ESH(),

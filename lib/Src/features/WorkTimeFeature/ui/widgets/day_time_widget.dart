@@ -1,5 +1,6 @@
 import 'package:dr_dent/Src/bloc/model/day_time_model.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
+import 'package:dr_dent/Src/features/WorkTimeFeature/ui/bloc/controller/work_time_controller.dart';
 import 'package:dr_dent/Src/features/WorkTimeFeature/ui/widgets/icon_day_time.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,8 @@ import 'package:get/get.dart';
 class DayTimeWidget extends StatelessWidget {
   final DayTimeModel dayTime;
   final VoidCallback onDelete;
-  const DayTimeWidget({Key? key, required this.dayTime,required this.onDelete}) : super(key: key);
+  final UserTypeEnum userType;
+  const DayTimeWidget({Key? key, required this.dayTime,required this.onDelete, required this.userType}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -65,6 +67,7 @@ class DayTimeWidget extends StatelessWidget {
                   subTitle: dayTime.endTime,
                   icon: 'end.png',
                 ),
+                userType != UserTypeEnum.doctor?0.0.ESW():
                 IconDayTime(
                   title: 'number_of_visits'.tr,
                   subTitle: dayTime.numberOfEmergencyVisits,

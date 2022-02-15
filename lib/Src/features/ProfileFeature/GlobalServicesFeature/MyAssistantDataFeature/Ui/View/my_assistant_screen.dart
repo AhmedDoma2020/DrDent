@@ -63,11 +63,9 @@ class MyAssistantScreen extends StatelessWidget {
                           phone:  _.myAssistantList[index].phone,
                         ),isScrollControlled: true);
                       },
-                      onDeleteTap: () {
-                        _.deleteAssistant(
-                            assistantId: _.myAssistantList[index].id,
-                            index: index);
-                      },
+                      onDeleteTap: _.snackBarStatus == SnackbarStatus.CLOSED? () {
+                        _.deleteAssistant(assistantId: _.myAssistantList[index].id,);
+                      }:(){},
                     ),
                     separatorBuilder: (context, index) => 16.0.ESH(),
                     itemCount: _.myAssistantList.length,

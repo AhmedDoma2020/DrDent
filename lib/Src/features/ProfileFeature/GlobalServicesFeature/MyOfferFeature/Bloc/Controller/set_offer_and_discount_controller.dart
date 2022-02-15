@@ -30,9 +30,7 @@ class SetOfferAndDiscountController extends GetxController {
 
   int get durationNum => _durationNum;
   String _endOfferDuration = "";
-
   String get endOfferDuration => _endOfferDuration;
-
   String get startOfferDuration => _startOfferDuration;
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
   TextEditingController? nameController = TextEditingController();
@@ -44,10 +42,11 @@ class SetOfferAndDiscountController extends GetxController {
   TextEditingController? priceAfterDiscountController = TextEditingController();
   TextEditingController? offerDurationController = TextEditingController();
   RequestStatus status = RequestStatus.initial;
-  final FetchMyOfferAndDiscountController _fetchMyOfferAndDiscountController =
-      Get.put(FetchMyOfferAndDiscountController());
-  final SetOfferAndDiscountRepository _setOfferAndDiscountRepository =
-      SetOfferAndDiscountRepository();
+
+   final FetchMyOfferAndDiscountController _fetchMyOfferAndDiscountController =
+  Get.put(FetchMyOfferAndDiscountController());
+
+  final SetOfferAndDiscountRepository _setOfferAndDiscountRepository = SetOfferAndDiscountRepository();
 
   Future<void> setOfferAndDiscount() async {
     if (globalKey.currentState!.validate()) {
@@ -55,7 +54,8 @@ class SetOfferAndDiscountController extends GetxController {
       if (imageController!.text.isEmpty) {
         customSnackBar(title: "must_be_set_photo".tr);
       } else {
-        _setOfferAndDiscountRepository.setOfferAndDiscount(
+        setLoading();
+        var response = await _setOfferAndDiscountRepository.setOfferAndDiscount(
           title: nameController!.text,
           startDate: _startOfferDuration,
           endDate: _endOfferDuration,
@@ -66,49 +66,20 @@ class SetOfferAndDiscountController extends GetxController {
           image: imageController!.text,
           serviceIds: _servicesIdSelectedList,
         );
-        OfferAndDiscountModel newOfferAndDiscount = OfferAndDiscountModel(
-          offerStatus: 0,
-          ownerName: "مركز وايتي كلينيك",
-          name: nameController!.text,
-          price: priceController!.text,
-          id: 0,
-          offerInfo: offerInfoController!.text,
-          endDate: _endOfferDuration,
-          bookingInfo: bookingInfoController!.text,
-          image: imageController!.text,
-          priceAfterDiscount: priceAfterDiscountController!.text,
-          services: [],
-          startDate: _startOfferDuration,
-        );
-        _fetchMyOfferAndDiscountController
-            .addOfferAndDiscountLocal(newOfferAndDiscount);
-        update();
-        // Get.back();
-        // setLoading();
-        // var response = await _setOfferAndDiscountRepository.setOfferAndDiscount(
-        //   title:  nameController!.text,
-        //   startDate:  _startOfferDuration,
-        //   endDate:_endOfferDuration,
-        //   price:  priceController!.text,
-        //   priceAfterOffer: priceAfterDiscountController!.text,
-        //   offerInfo: offerInfoController!.text,
-        //   bookingInfo: bookingInfoController!.text,
-        //   image:  imageController!.text,
-        //   serviceIds: _servicesIdSelectedList,
-        // );
-        // Get.back();
-        // if (response.statusCode == 200 && response.data["status"] == true) {
-        //   debugPrint("request operation success");
-        //   customSnackBar(title: response.data["message"] ?? "Done");
-        //   debugPrint("convert operation success");
-        //   status = RequestStatus.done;
-        //   update();
-        //   customSnackBar(title: "delete_success".tr);
-        // } else {
-        //   status = RequestStatus.error;
-        //   customSnackBar(title: response.data["message"] ?? "Error");
-        //   update();
-        // }
+        Get.back();
+        if (response.statusCode == 200 && response.data["status"] == true) {
+          debugPrint("request operation success");
+          _fetchMyOfferAndDiscountController.fetchOfferAndDiscount();
+          Get.back();
+          customSnackBar(title: response.data["message"] ?? "Done");
+          debugPrint("convert operation success");
+          status = RequestStatus.done;
+          update();
+        } else {
+          status = RequestStatus.error;
+          customSnackBar(title: response.data["message"] ?? "Error");
+          update();
+        }
       }
     }
   }

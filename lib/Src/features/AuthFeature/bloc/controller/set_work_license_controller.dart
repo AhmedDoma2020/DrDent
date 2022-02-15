@@ -7,6 +7,7 @@ import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/features/AuthFeature/bloc/repository/set_work_license_repo.dart';
@@ -14,19 +15,26 @@ import 'package:dr_dent/Src/features/AuthFeature/bloc/repository/set_work_licens
 class SetWorkLicenseController extends GetxController {
   final SetWorkLicenseRepository _setWorkLicenseRepository =
       SetWorkLicenseRepository();
+  GetStorage box = GetStorage();
 
   void submit() async {
     // debugPrint("img64 $img64");
     if (img64 != null) {
+      box.remove('work_lisence');
       setLoading();
-      var response =
-          await _setWorkLicenseRepository.setWorkLicense(workLicense: img64!);
+      var response = await _setWorkLicenseRepository.setWorkLicense(workLicense: img64!);
       Get.back();
       update();
       if (response.statusCode == 200 && response.data["status"] == true) {
+        box.write('work_lisence', response.data['work_lisence']);
+        debugPrint('work_lisence in controller is ${box.read('work_lisence')}');
         Get.offAll(() => StartNowScreen());
+        customSnackBar(title: response.data
+        ['message']??"");
         // Get.to(() => WattingScreen());
-      } else {}
+      } else {
+        customSnackBar(title: response.data['message']??"");
+      }
     } else {
       customSnackBar(title: "must_set_photo_of_Work_licenses".tr);
     }

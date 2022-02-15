@@ -1,14 +1,24 @@
 import 'package:dr_dent/Src/bloc/model/center_doctor_model.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/DetectionLocationDetails/Bloc/Controller/featch_detection_location_details_controller.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/DetectionLocationDetails/View/Widget/available_work_space_sheet.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/DoctorsFeature/Bloc/Controller/featch_job_title_controller.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/DoctorsFeature/Bloc/Controller/fetch_center_doctor_controller.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/DoctorsFeature/Ui/Widget/row_times_of_center_doctor_form.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/DoctorsFeature/Ui/Widget/work_spaces_of_center_doctor_form.dart';
+import 'package:dr_dent/Src/features/WorkTimeFeature/ui/bloc/controller/work_time_controller.dart';
+import 'package:dr_dent/Src/features/WorkTimeFeature/ui/screens/work_time_screen.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/delete_widget.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/edit_widget.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/image_network.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
+
+import 'job_title_button_sheet.dart';
 
 class CenterDoctorWidget extends StatefulWidget {
   final CenterDoctorModel doctor;
@@ -25,10 +35,15 @@ class CenterDoctorWidget extends StatefulWidget {
   @override
   State<CenterDoctorWidget> createState() => _CenterDoctorWidgetState();
 }
+
 class _CenterDoctorWidgetState extends State<CenterDoctorWidget> {
   bool isOpen = false;
+int workSpaceIdSelected = 0;
   @override
   Widget build(BuildContext context) {
+    FetchCenterDoctorController _fetchCenterDoctorController =  Get.find();
+
+    Get.put(FetchJobTitleController());
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
       // height: 134.h,
@@ -80,7 +95,9 @@ class _CenterDoctorWidgetState extends State<CenterDoctorWidget> {
                               BoxConstraints(maxWidth: 160.w, minWidth: 120.w),
                           // color: Colors.yellow,
                           child: CustomText(
-                            text: widget.doctor.specialization.join(","),
+                            text: widget.doctor.specialization.isEmpty
+                                ? "no_Specialization".tr
+                                : widget.doctor.specialization.join(","),
                             fontSize: 14,
                             fontW: FW.semibold,
                           )),
@@ -108,7 +125,7 @@ class _CenterDoctorWidgetState extends State<CenterDoctorWidget> {
                                   maxWidth: 60.w, minWidth: 40.w),
                               // color: Colors.yellow,
                               child: CustomText(
-                                text: widget.doctor.price,
+                                text: widget.doctor.id.toString(),
                                 fontSize: 12,
                                 fontW: FW.semibold,
                               )),
@@ -139,7 +156,7 @@ class _CenterDoctorWidgetState extends State<CenterDoctorWidget> {
                   ),
                   Row(
                     children: [
-                      EditWidget(onEditTap: widget.onEditTap),
+                      IconWidget(onEditTap: widget.onEditTap),
                       DeleteWidget(onDeleteTap: widget.onDeleteTap),
                     ],
                   ),
@@ -168,54 +185,111 @@ class _CenterDoctorWidgetState extends State<CenterDoctorWidget> {
               ),
             ],
           ),
-          isOpen ?
-          Container(
-            // height: 300,
-            // color: Colors.tealAccent,
-            width: double.infinity,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                16.0.ESH(),
-                const Divider(
-                  height: 1.5,
-                  color: kCMainGrey,
-                ),
-                14.0.ESH(),
-                CustomText(
-                  text: "info_about_doctor".tr,
-                  fontW: FW.demi,
-                ),
-                8.0.ESH(),
-                CustomText(
-                  text:widget.doctor.doctorInfo,
-                  fontSize: 12,
-                ),
-                24.0.ESH(),
-                CustomText(
-                  text: "jop_time".tr,
-                  fontW: FW.demi,
-                ),
-                14.0.ESH(),
-                ListView.separated(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) => TimesOfCenterDoctorForm(
-                    day: widget.doctor.dates[index].dayTitle,
-                    times: widget.doctor.dates[index].times,
+          isOpen
+              ? Container(
+                  // height: 300,
+                  // color: Colors.tealAccent,
+                  width: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      16.0.ESH(),
+                      const Divider(
+                        height: 1.5,
+                        color: kCMainGrey,
+                      ),
+                      14.0.ESH(),
+                      CustomText(
+                        text: "info_about_doctor".tr,
+                        fontW: FW.demi,
+                      ),
+                      8.0.ESH(),
+                      CustomText(
+                        text: widget.doctor.doctorInfo,
+                        fontSize: 12,
+                      ),
+                      24.0.ESH(),
+                      CustomText(
+                        text: "jop_time".tr,
+                        fontW: FW.demi,
+                      ),
+                      14.0.ESH(),
+                      widget.doctor.workspaces.isEmpty
+                          ? 0.0.ESH()
+                          : ListView.separated(
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) =>
+                                  WorkSpacesOfCenterDoctorForm(
+                                workSpaceName:
+                                    widget.doctor.workspaces[index].name,
+                                days: widget.doctor.workspaces[index].days,
+                                    workSpaceId: widget.doctor.workspaces[index].id,
+                                    doctorId: widget.doctor.id,
+                              ),
+                              separatorBuilder: (context, index) => Padding(
+                                padding: EdgeInsets.symmetric(vertical: 15.h),
+                                child: Divider(
+                                  height: 1.5.h,
+                                  color: kCMainGrey,
+                                ),
+                              ),
+                              itemCount: widget.doctor.workspaces.length,
+                            ),
+                      14.0.ESH(),
+                      GestureDetector(
+                        onTap: () {
+                          debugPrint("open sheet");
+                          Get.bottomSheet(
+                              AvailableWorkSpaceSheet(
+                                onSelected: (id,title){
+                                  setState(() {
+                                    debugPrint("workspaceId in onSelected fun is $id");
+                                    workSpaceIdSelected = id;
+                                  });
+                                },
+                                onContainTap: (){
+                                  Get.back();
+                                  Get.to(WorkTimeScreen(
+                                    userType: UserTypeEnum.doctor,
+                                    onSuccess:(){
+                                      Get.back();
+                                      _fetchCenterDoctorController.fetchCenterDoctor();
+                                    },
+                                    workspaceId: workSpaceIdSelected,
+                                    doctorId: widget.doctor.id,
+                                    isBack: true,
+                                  ),);
+                                },
+                              ),
+                              isScrollControlled: true);
+
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.transparent,
+                            border: Border.all(color: kCMain, width: 1),
+                            borderRadius: BorderRadius.circular(5.r),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 9.h, horizontal: 21.w),
+                            child: Center(
+                              child: CustomText(
+                                text: 'إضافة  فترة',
+                                color: kCMain,
+                                fontW: FW.medium,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+
+                    ],
                   ),
-                  separatorBuilder: (context, index) =>  Padding(
-                    padding:  EdgeInsets.symmetric(vertical: 15.h),
-                    child:  Divider(
-                      height: 1.5.h,
-                      color: kCMainGrey,
-                    ),
-                  ),
-                  itemCount: widget.doctor.dates.length,
                 )
-              ],
-            ),
-          ): 0.0.ESH(),
+              : 0.0.ESH(),
         ],
       ),
     );

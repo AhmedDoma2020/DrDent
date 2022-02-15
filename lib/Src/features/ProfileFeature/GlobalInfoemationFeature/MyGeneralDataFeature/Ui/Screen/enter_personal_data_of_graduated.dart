@@ -58,7 +58,7 @@ class EnterPersonalDataOfGraduatedScreen extends StatelessWidget {
                     24.0.ESH(),
                     AvatarForm(onTap:(val){
                       _.setAvatar = val;
-                    },isUploade: true,),
+                    },isUpload: true,),
                     24.0.ESH(),
                     TextFieldDefault(
                       hint: 'full_name'.tr,

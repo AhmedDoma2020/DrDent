@@ -37,10 +37,12 @@ class EnterPersonalDataOfCompanyAndCenterScreen extends StatelessWidget {
                 child: ListView(
                   // crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    24.0.ESH(),
-                    AvatarForm(onTap:(val){
-                      _.setAvatar = val;
-                    },isUploade: true,),
+                    // 24.0.ESH(),
+                    // AvatarForm(
+                    //   futureImage: _.avatar,
+                    //   onTap:(val){
+                    //   _.setAvatar = val;
+                    // },isUpload: true,),
                     24.0.ESH(),
                     TextFieldDefault(
                       hint: 'full_name'.tr,
@@ -113,6 +115,7 @@ class EnterPersonalDataOfCompanyAndCenterScreen extends StatelessWidget {
                     ),
                     16.0.ESH(),
                     UploadImageContainer(
+                      futureImage: _.futureTaxImage,
                       onImageSelected: (image64){
                         _.setTaxNumberImage = image64;
                       },
@@ -134,6 +137,7 @@ class EnterPersonalDataOfCompanyAndCenterScreen extends StatelessWidget {
                     ),
                     16.0.ESH(),
                     UploadImageContainer(
+                      futureImage: _.futureLogImage,
                       onImageSelected: (image64) {
                         _.setLogRecordImage = image64;
                       },

@@ -1,32 +1,23 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:dr_dent/Src/bloc/model/day_time_model.dart';
 import 'package:dr_dent/Src/core/constants/api_key.dart';
 import 'package:dr_dent/Src/core/services/network_services.dart';
 import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
 import 'package:get_storage/get_storage.dart';
 
 
-class AddDayTimeDetailsRepository with ApiKey{
+class DeleteDayTimeForCompanyRepository with ApiKey{
   // GetStorage box = GetStorage();
   final NetworkService _networkService = NetworkService();
-  Future<Response> addDayTimeDetails({
-    required String detectionTime,
-    required int dayBookingType,
-    required int workspaceId,
-    required int doctorId,
-  })async{
+  Future<Response> deleteDayTimeForCompany({required int dayTimeId})async{
     Response? response;
     try{
       response = await _networkService.post(
-          url:  uRLAddWorkSpaceDetails,
+          url:  uRLDeleteDayTimeForCompany,
           auth: true,
         body: {
-            'work_space_id':workspaceId,
-            'doctor_id':doctorId,
-            'detection_time': detectionTime,
-            'reservation_type' : dayBookingType,
+            'user_day_id':dayTimeId,
         }
       );
 

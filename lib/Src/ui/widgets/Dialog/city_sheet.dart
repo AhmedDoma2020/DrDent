@@ -42,7 +42,7 @@ class CityButtonSheet extends StatelessWidget {
                 topRight: Radius.circular(19.r),
               ),
               color: Colors.white),
-          child: GetBuilder<SetDetectionLocationDetailsController>(
+          child: GetBuilder<SetWorkSpaceDetailsDetailsController>(
             builder: (_) => Column(
               children: [
                 24.0.ESH(),

@@ -58,11 +58,11 @@ class InsuranceCompaniesScreen extends StatelessWidget {
                           shrinkWrap: true,
                           itemBuilder: (context, index) => RowMyInsuranceForm(
                             insurance: _.myInsuranceList[index],
-                            onDeleteTap: () {
+                            onDeleteTap:  _.snackBarStatus == SnackbarStatus.CLOSED?() {
                               _.deleteInsurances(
                                   insuranceId: _.myInsuranceList[index].id,
                                   index: index);
-                            },
+                            }:(){},
                           ),
                           separatorBuilder: (context, index) => 16.0.ESH(),
                           itemCount: _.myInsuranceList.length,

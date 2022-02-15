@@ -38,9 +38,7 @@ class RegisterController extends GetxController {
   GetStorage box = GetStorage();
   final RegisterRepository _registerRepository = RegisterRepository();
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
-  VerifyPhoneController verifyPhoneController =
-      Get.put(VerifyPhoneController());
-
+  VerifyPhoneController verifyPhoneController = Get.put(VerifyPhoneController());
   void submit() async {
     if (globalKey.currentState!.validate()) {
       if (_image != "") {
@@ -81,8 +79,11 @@ class RegisterController extends GetxController {
             //   await verifyPhoneController.setVerify();
             // });
           }
-          navigationAfterSelectAccountType(grade: _userTypeId);
+          debugPrint("api_token in register is ${box.read('api_token')}");
+          debugPrint("user_type_id in register is ${box.read('user_type_id')}");
+          navigationAfterSelectAccountType(grade: response.data['data']['user_type_id']);
           debugPrint("convert operation success");
+          box.write('log_in',1);
           status = RequestStatus.done;
           update();
         } else {

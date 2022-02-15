@@ -1,3 +1,6 @@
+import 'package:dr_dent/Src/core/utils/request_status.dart';
+import 'package:dr_dent/Src/ui/widgets/Dialog/loading_dialog.dart';
+
 import '../../../ProfileFeature/GlobalInfoemationFeature/MyGeneralDataFeature/Bloc/Controller/enter_personal_data_of_doctor_controller.dart';
 import 'package:dr_dent/Src/features/AuthFeature/bloc/controller/fetch_scientific_controller.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/widgets/row_degree_form.dart';
@@ -36,7 +39,7 @@ class DegreeButtonSheet extends StatelessWidget {
           child:  Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 24.h),
             child: GetBuilder<FetchScientificController>(
-              builder: (_) => Column(
+              builder: (_) => _.status == RequestStatus.loading ? Center(child: Loader(),): Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SingleChildScrollView(
@@ -68,7 +71,6 @@ class DegreeButtonSheet extends StatelessWidget {
                           ),
                         ],
                       ),
-
                   ),
                 ],
               ),

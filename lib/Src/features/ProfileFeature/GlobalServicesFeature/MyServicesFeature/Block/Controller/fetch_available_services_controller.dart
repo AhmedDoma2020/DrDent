@@ -15,6 +15,7 @@ class FetchAvailableServicesController extends GetxController {
   //   _ServicesList[servicesIndex].active = !_ServicesList[servicesIndex].active;
   //   update();
   // }
+
   int _daySIndex = -1;
   int get daySIndex => _daySIndex;
   void changeSIndex(value) {
@@ -25,7 +26,9 @@ class FetchAvailableServicesController extends GetxController {
   RequestStatus status = RequestStatus.initial;
   final FetchAvailableServicesRepository _etchAvailableServicesRepository = FetchAvailableServicesRepository();
   Future<void> fetchAvailableServices() async {
+    status = RequestStatus.loading;
     var response = await _etchAvailableServicesRepository.fetchAvailableServices();
+    status = RequestStatus.done;
     if (response.statusCode == 200 && response.data["status"] == true) {
       debugPrint("request operation success");
       _availableServicesList.clear();

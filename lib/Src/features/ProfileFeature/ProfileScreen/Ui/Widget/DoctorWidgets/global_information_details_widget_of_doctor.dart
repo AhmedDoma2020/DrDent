@@ -1,4 +1,5 @@
 import 'package:dr_dent/Src/core/utils/extensions.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/MyCertificationFeature/Ui/Screen/certification_of_doctor_screen.dart';
 import '../../../../GlobalInfoemationFeature/MyGeneralDataFeature/Ui/Screen/enter_personal_data_of_doctor_screen.dart';
 import 'package:dr_dent/Src/features/JobFeature/ui/screens/enter_your_information_to_apply_job_button_sheet.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/InsuranceCompaniesFeature/Ui/Screen/insurance_companies_screen.dart';
@@ -31,6 +32,7 @@ class GlobalInformationDetailsWidgetOfDoctor extends StatelessWidget {
                 icon: "assets/icons/certificationIcon.png",
                 title:  "my_certification",
                 onTap: () {
+                  Get.to(() => CertificationOfDoctorScreen());
                     // Get.bottomSheet(
                     //   EnterYourInformationButtonSheet(
                     //     // onTap: (stateId, cityId) {

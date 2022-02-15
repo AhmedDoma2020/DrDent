@@ -8,20 +8,21 @@ import 'package:get_storage/get_storage.dart';
 class NetworkService with ApiKey{
   Dio dio = Dio();
   GetStorage box = GetStorage();
-  String apiTokenStatic ='\$2y\$10\$MAVyBbLcXlsRZ6Geb7c.8e/O9yYVhT0QuT//oMASxJGRDobz6e9em';
   Future<Response> get({@required String? url, Map<String , String>? headers,bool auth = false}) async {
     Response? response;
-    String apiToken =box.read("api_token")??apiTokenStatic;
-    String staticApiToken ="\$2y\$10\$cBT81g43OKZs5eJdgwK2zOz94VORyGUfyw3ET8SYE2zfEveyDX9CC";
-    log("log apiToken in netWork >>>>>>>>>:-> $apiToken");
+    String apiToken =box.read("api_token")??"Not Found Token";
+    // $2y$10$IpiCoyvRmB/.luM7hiWeRO1.EVZjYtPL2/ij4mk64vDMzbNNpd7.a
+    String staticApiToken ="\$2y\$10\$IpiCoyvRmB/.luM7hiWeRO1.EVZjYtPL2/ij4mk64vDMzbNNpd7.a";
+    log("apiToken storage in netWork >>>>>>>>>:-> $apiToken");
+    log("apiToken static in netWork >>>>>>>>>:-> $staticApiToken");
     try {
       dio.options.baseUrl = ApiKey.apiBaseUrl;
       response = await dio.get(url!, options: Options(
           headers: headers??{
             'Accept-Language' : 'en',
             if(auth)
-            // 'Authorization': 'Bearer ' + apiToken
-              'Authorization': 'Bearer ' + staticApiToken
+            'Authorization': 'Bearer ' + apiToken
+              // 'Authorization': 'Bearer ' + staticApiToken
           }
       ));
     } on DioError catch (e) {
@@ -38,9 +39,11 @@ class NetworkService with ApiKey{
   Future<Response> post({@required String? url,
     Map<String , String>? headers, Map<String , dynamic>? body,bool auth = false}) async {
     Response? response;
-    String apiToken =box.read("api_token")??apiTokenStatic;
-    debugPrint("apiToken in netWork >>>>>>>>>:-> $apiToken");
-    String staticApiToken ="\$2y\$10\$cBT81g43OKZs5eJdgwK2zOz94VORyGUfyw3ET8SYE2zfEveyDX9CC";
+    String apiToken =box.read("api_token")??"Not Found Token";
+    // $2y$10$IpiCoyvRmB/.luM7hiWeRO1.EVZjYtPL2/ij4mk64vDMzbNNpd7.a
+    String staticApiToken ="\$2y\$10\$IpiCoyvRmB/.luM7hiWeRO1.EVZjYtPL2/ij4mk64vDMzbNNpd7.a";
+    log("apiToken storage in netWork >>>>>>>>>:-> $apiToken");
+    log("apiToken static in netWork >>>>>>>>>:-> $staticApiToken");
     dio.options.baseUrl = ApiKey.apiBaseUrl;
     try {
       response = await dio.post(
@@ -50,8 +53,8 @@ class NetworkService with ApiKey{
           headers: headers??{
             'Accept-Language' : 'en',
             if(auth)
-            // 'Authorization': 'Bearer ' + apiToken
-              'Authorization': 'Bearer ' + staticApiToken
+            'Authorization': 'Bearer ' + apiToken
+              // 'Authorization': 'Bearer ' + staticApiToken
           },
           // requestEncoder: encoding,
         ),

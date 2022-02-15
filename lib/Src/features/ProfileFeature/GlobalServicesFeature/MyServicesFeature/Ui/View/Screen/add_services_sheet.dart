@@ -1,5 +1,6 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
-import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/InsuranceCompaniesFeature/Bloc/Controller/fetch_available_insurances_controller.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/DetectionLocationDetails/Bloc/Controller/featch_detection_location_details_controller.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/DetectionLocationDetails/View/Widget/available_work_space_sheet.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyServicesFeature/Block/Controller/fetch_available_services_controller.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyServicesFeature/Block/Controller/set_services_controller.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyServicesFeature/Ui/View/Screen/services_type_sheet.dart';
@@ -9,15 +10,15 @@ import 'package:dr_dent/Src/ui/widgets/buttons/button_default.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 import '/src/core/utils/extensions.dart';
 
 class AddServicesSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-        Get.put(SetServicesController());
-        Get.put(FetchAvailableServicesController());
-        var node = FocusScope.of(context);
+    Get.put(SetServicesController());
+    Get.put(FetchAvailableServicesController());
+    // Get.put(FetchDetectionLocationDetailsController());
+    var node = FocusScope.of(context);
     return Material(
       borderRadius: BorderRadius.only(
         topLeft: Radius.circular(19.r),
@@ -25,6 +26,7 @@ class AddServicesSheet extends StatelessWidget {
       ),
       child: Container(
         width: double.infinity,
+        // height: 500.h,
         height: 420.h,
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
@@ -45,13 +47,46 @@ class AddServicesSheet extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        RowTopBottomSheet(title: "insurance_companies".tr),
+                        RowTopBottomSheet(title: "services_details".tr),
                         24.0.ESH(),
                         16.0.ESH(),
+                        // InkWell(
+                        //   onTap: () {
+                        //     Get.bottomSheet(
+                        //         AvailableWorkSpaceSheet(
+                        //           onSelected: (idSelected,titleSelected) {
+                        //             _.workSpaceSelectedController!.text = titleSelected;
+                        //             _.setWorkSpaceId = idSelected;
+                        //           },
+                        //         ),
+                        //         isScrollControlled: true);
+                        //   },
+                        //   child: TextFieldDefault(
+                        //     hint: 'select_clinic'.tr,
+                        //     errorText: "must_select_clint".tr,
+                        //     controller: _.workSpaceSelectedController,
+                        //     suffixIconData: Icons.keyboard_arrow_down_outlined,
+                        //     keyboardType: TextInputType.phone,
+                        //     filledColor: kCBGTextFormFiled,
+                        //     fieldType: FieldType.WithBorder,
+                        //     enable: false,
+                        //     disableBorder: Colors.transparent,
+                        //     enableBorder: Colors.transparent,
+                        //     horizentalPadding: 16,
+                        //     onComplete: () {
+                        //       node.nextFocus();
+                        //     },
+                        //   ),
+                        // ),
+                        // 16.0.ESH(),
                         InkWell(
                           onTap: () {
-                            debugPrint("ahooooooooooooo");
-                            Get.bottomSheet(AvailableServicesButtonSheet(), isScrollControlled: true);
+                            Get.bottomSheet(AvailableServicesButtonSheet(
+                              onSelected: (idSelected,titleSelected) {
+                                _.servicesTypeSelectedController!.text=titleSelected;
+                                _.setServicesId=idSelected;
+                                },
+                            ), isScrollControlled: true);
                           },
                           child: TextFieldDefault(
                             hint: 'services_type'.tr,

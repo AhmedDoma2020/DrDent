@@ -1,7 +1,10 @@
+import 'package:dr_dent/Src/bloc/model/specialization_model.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
+import 'package:dr_dent/Src/features/AuthFeature/bloc/controller/fetch_specialization_controller.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/widgets/avatar_form.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/widgets/row_sex_type_widget.dart';
+import 'package:dr_dent/Src/features/AuthFeature/ui/widgets/specialization_button_sheet.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/DoctorsFeature/Bloc/Controller/add_center_doctor_controller.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/DoctorsFeature/Bloc/Controller/featch_job_title_and_specialization_controller.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/DoctorsFeature/Bloc/Controller/featch_job_title_controller.dart';
@@ -16,11 +19,16 @@ import 'package:get/get.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
 class AddCenterDoctorScreen extends StatelessWidget {
+  final bool isAuth;
+
+  AddCenterDoctorScreen({this.isAuth = false});
+
   @override
   Widget build(BuildContext context) {
-    Get.put(AddCenterDoctorController());
-    Get.put(FetchJobTitleAndSpecializationController());
+    Get.put(AddCenterDoctorController(isAuth: isAuth));
+    // Get.put(FetchJobTitleAndSpecializationController());
     Get.put(FetchJobTitleController());
+    Get.put(FetchSpecializationController());
     var node = FocusScope.of(context);
     return SafeArea(
       child: Scaffold(
@@ -80,6 +88,7 @@ class AddCenterDoctorScreen extends StatelessWidget {
                             JobTitleButtonSheet(
                               onTap: (id,title){
                                 _.jobTitleController!.text=title;
+                                _.setJopTitleId = id;
                                 // _.universityController!.text =title;
                               },
                             ),
@@ -106,12 +115,26 @@ class AddCenterDoctorScreen extends StatelessWidget {
                     GestureDetector(
                       onTap: () {
                         Get.bottomSheet(
-                            JobTitleAndSpecializationButtonSheet(
-                              onTap: (id,title){
-                                _.jobTitleAndSpecializationController!.text=title;
+                            SpecializationButtonSheet(
+                              specializationIdsSelected: _.specializationIdSelected,
+                              onTapNotEmpty:
+                                  (specializationIdList, specializationTitleList) {
+                                _.setSpecializationIdSelected = specializationIdList;
+                                _.jobTitleAndSpecializationController!.text = specializationTitleList;
+                              },
+                              onTapEmpty: () {
+                                _.jobTitleAndSpecializationController!.clear();
+                                _.setSpecializationIdSelected = [];
                               },
                             ),
                             isScrollControlled: true);
+                        // Get.bottomSheet(
+                        //     JobTitleAndSpecializationButtonSheet(
+                        //       onTap: (id,title){
+                        //         _.jobTitleAndSpecializationController!.text=title;
+                        //       },
+                        //     ),
+                        //     isScrollControlled: true);
                       },
                       child: TextFieldDefault(
                         hint: 'jop_title_and_specialization'.tr,

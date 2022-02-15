@@ -36,15 +36,25 @@ class MyAssistantRow extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                  // width: 200.w,
-          constraints: BoxConstraints(maxWidth: 200.w,minWidth: 120.w),
-                  // color: Colors.yellow,
-                  child: CustomText(
-                    text: assistant.name,
-                    fontSize: 14,
-                    fontW: FW.semibold,
-                  )),
+              Row(
+                children: [
+                  ImageIcon(
+                    const AssetImage("assets/icons/personalInfoIcon.png"),
+                    color: kCSubMain,
+                    size: 14.w,
+                  ),
+                  8.0.ESW(),
+                  Container(
+                    // width: 200.w,
+                      constraints: BoxConstraints(maxWidth: 200.w,minWidth: 120.w),
+                      // color: Colors.yellow,
+                      child: CustomText(
+                        text: assistant.name,
+                        fontSize: 12,
+                        fontW: FW.semibold,
+                      )),
+                ],
+              ),
               8.0.ESH(),
               Row(
                 children: [
@@ -70,7 +80,7 @@ class MyAssistantRow extends StatelessWidget {
 
           Row(
             children: [
-              EditWidget(onEditTap: onEditTap),
+              IconWidget(onEditTap: onEditTap),
               DeleteWidget(onDeleteTap: onDeleteTap),
             ],
           ),

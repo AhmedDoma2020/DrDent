@@ -2,6 +2,8 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/MyGeneralDataFeature/Ui/Screen/enter_personal_data_of_graduated.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/DoctorsFeature/Ui/View/add_center_doctor_screen.dart';
+import 'package:dr_dent/Src/features/WorkTimeFeature/ui/bloc/controller/work_time_controller.dart';
 import '../../../../GlobalInfoemationFeature/MyGeneralDataFeature/Ui/Screen/enter_personal_data_of_doctor_screen.dart';
 import 'package:dr_dent/Src/features/WorkTimeFeature/ui/screens/work_time_screen.dart';
 import 'package:get_storage/get_storage.dart';
@@ -15,10 +17,10 @@ import 'package:image_picker/image_picker.dart';
 
 import 'featch_detection_location_details_controller.dart';
 
-class SetDetectionLocationDetailsController extends GetxController {
+class SetWorkSpaceDetailsDetailsController extends GetxController {
   final bool isAuth;
 
-  SetDetectionLocationDetailsController({this.isAuth = false});
+  SetWorkSpaceDetailsDetailsController({this.isAuth = false});
 
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
   TextEditingController? phone1Controller;
@@ -66,19 +68,19 @@ class SetDetectionLocationDetailsController extends GetxController {
   }
   GetStorage box = GetStorage();
 
-  final DetectionLocationDetailsRepository _detectionLocationDetailsRepository =
-      DetectionLocationDetailsRepository();
-  final FetchDetectionLocationDetailsController
-      _fetchDetectionLocationDetailsController =
-      FetchDetectionLocationDetailsController();
+  final SetWorkSpaceDetailsRepository _setWorkSpaceDetailsRepository =
+      SetWorkSpaceDetailsRepository();
+  final FetchWorkSpaceDetailsController
+      _fetchWorkSpaceDetailsController =
+      Get.put(FetchWorkSpaceDetailsController());
 
-  void submitEnd() async {
+  void setWorkSpace() async {
     if (globalKey.currentState!.validate()) {
       if (_img64 != null && _img64 != '') {
         globalKey.currentState!.save();
         setLoading();
         var response =
-            await _detectionLocationDetailsRepository.detectionLocationDetails(
+            await _setWorkSpaceDetailsRepository.setWorkSpaceDetails(
           name: nameController!.text,
           phone1: phone1Controller!.text,
           phone2: phone2Controller!.text,
@@ -95,36 +97,56 @@ class SetDetectionLocationDetailsController extends GetxController {
         );
         Get.back();
         if (response.statusCode == 200 && response.data["status"] == true) {
-
-          box.write('workspace_id', response.data['data']['id']??0);
+          int _workspaceId = response.data['data']['id']??0;
+          debugPrint("_workspaceId $_workspaceId");
+          debugPrint("doctor id is ${box.read('id')}");
           if (isAuth == true) {
             debugPrint("in uth");
-            if(box.read('user_type_id') ==3 ){
+            if(box.read('user_type_id') == 3 ){
               Get.offAll(() => WorkTimeScreen(
+                userType: UserTypeEnum.doctor,
                 doctorId: box.read('id'),
                 onSuccess: () {
-                    Get.to(() => EnterPersonalDataOfDoctorScreen());
+                    Get.to(() => EnterPersonalDataOfDoctorScreen(isEdit: false,));
                 },
-                workspaceId: box.read('workspace_id'),
+                workspaceId: _workspaceId,
               ));
             }else if(box.read('user_type_id') == 4){
               Get.offAll(() => WorkTimeScreen(
+                userType: UserTypeEnum.center,
                 onSuccess: () {
-                  Get.to(() => EnterPersonalDataOfGraduatedScreen());
+                  Get.offAll(() => AddCenterDoctorScreen(isAuth: true,));
                 },
-                workspaceId: box.read('workspace_id'),
+                workspaceId: _workspaceId,
+              ));
+            }
+          } else {
+            debugPrint("not uth");
+            if(box.read('user_type_id') == 3 ){
+              Get.back();
+              Get.to(() => WorkTimeScreen(
+                userType: UserTypeEnum.doctor,
+                doctorId: box.read('id'),
+                onSuccess: () {
+                  Get.back();
+                },
+                workspaceId: _workspaceId,
+              ));
+            }
+            else if(box.read('user_type_id') == 4){
+              debugPrint("aaaaaaaaaa1");
+              Get.back();
+              Get.to(() => WorkTimeScreen(
+                userType: UserTypeEnum.center,
+                onSuccess: () {
+                  debugPrint("aaaaaaaaaa");
+                  Get.back();
+                },
+                workspaceId: _workspaceId,
               ));
             }
 
-
-
-            // Get.to(() => EnterDoctorPersonalDataScreen());
-          } else {
-            debugPrint("not uth");
-            // Get.to(() => DetectionLocationDetailsScreen());
-            _fetchDetectionLocationDetailsController
-                .fetchMyDetectionLocationDetails();
-            Get.back();
+            _fetchWorkSpaceDetailsController.fetchMyWorkSpaceDetails();
             update();
           }
           customSnackBar(title: response.data["message"]);
@@ -149,7 +171,6 @@ class SetDetectionLocationDetailsController extends GetxController {
     nameController = TextEditingController();
     priceExaminationController = TextEditingController();
     addressController = TextEditingController();
-
     cityController = TextEditingController();
     buildNumController = TextEditingController();
     flatNumController = TextEditingController();

@@ -1,5 +1,8 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/MyGeneralDataFeature/Ui/Screen/enter_personal_data_of_company_and_center.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/DoctorsFeature/Ui/View/add_center_doctor_screen.dart';
+import 'package:get_storage/get_storage.dart';
 import '../../../../GlobalInfoemationFeature/MyGeneralDataFeature/Ui/Screen/enter_personal_data_of_doctor_screen.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/widgets/upload_photo_of_work_licenses.dart';
 import '../../Bloc/Controller/set_detection_location_details_controller.dart';
@@ -14,33 +17,16 @@ import 'package:get/get.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
 class SetDetectionLocationDetailsScreen extends StatelessWidget {
-  // final String? name;
-  // final String? phone;
-  // final String? phone2;
-  // final String? price;
-  // final String? address;
-  // final double? lat;
-  // final double? lon;
-  // final int? stateId;
-  // final int? cityId;
   final bool isAuth;
   SetDetectionLocationDetailsScreen(
       {
-        // this.name,
-        // this.phone,
-        // this.phone2,
-        // this.price,
-        // this.address,
-        // this.lat,
-        // this.lon,
-        // this.stateId,
-        // this.cityId,
         this.isAuth = false ,
       });
-
+GetStorage box = GetStorage();
   @override
   Widget build(BuildContext context) {
-    Get.put(SetDetectionLocationDetailsController(isAuth: isAuth));
+    debugPrint("box.read('user_type_id') ${box.read('user_type_id')}");
+    Get.put(SetWorkSpaceDetailsDetailsController(isAuth: isAuth));
     var node = FocusScope.of(context);
     return SafeArea(
       child: Scaffold(
@@ -49,8 +35,14 @@ class SetDetectionLocationDetailsScreen extends StatelessWidget {
             onTapBack: () {Get.back();},
             isBack: isAuth ==true ? false:true,
             isSkip: isAuth ==true ? true:false,
-            onTapSkip: () {Get.to(() => EnterPersonalDataOfDoctorScreen());}),
-        body: GetBuilder<SetDetectionLocationDetailsController>(
+            onTapSkip: () {
+              if(box.read('user_type_id') == 3 ){
+                Get.to(() => EnterPersonalDataOfDoctorScreen(isEdit: false,));
+              }else if(box.read('user_type_id') == 4){
+                Get.to(() => AddCenterDoctorScreen(isAuth: true,));
+              }
+            }),
+        body: GetBuilder<SetWorkSpaceDetailsDetailsController>(
           builder: (_) => Container(
             padding: EdgeInsets.symmetric(horizontal: 24.w),
             height: double.infinity,
@@ -159,7 +151,7 @@ class SetDetectionLocationDetailsScreen extends StatelessWidget {
                     ButtonDefault(
                       title: 'save_contain'.tr,
                       onTap: () {
-                        _.submitEnd();
+                        _.setWorkSpace();
                       },
                     ),
                     32.0.ESH(),

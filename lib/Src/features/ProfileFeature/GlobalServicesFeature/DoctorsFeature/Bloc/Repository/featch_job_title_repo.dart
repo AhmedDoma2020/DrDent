@@ -14,7 +14,7 @@ class FetchJobTitleRepository with ApiKey{
     Response response;
     try{
       response = await _networkService.get(
-        url:uRLFetchUniversity,
+        url:uRLJobTitles,
       );
     }on SocketException{
       throw SocketException('No Internet Connection');

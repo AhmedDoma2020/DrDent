@@ -9,7 +9,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SocialScreen extends StatelessWidget {
   const SocialScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     Get.put(SocialController());

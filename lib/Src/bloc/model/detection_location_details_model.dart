@@ -1,7 +1,7 @@
 
 
-class DetectionLocationDetailsModel {
-  DetectionLocationDetailsModel({
+class WorkSpaceDetailsModel {
+  WorkSpaceDetailsModel({
     required this.id,
     required this.name,
     required this.phone,
@@ -14,6 +14,7 @@ class DetectionLocationDetailsModel {
     required this.address,
     required this.bulidingNumber,
     required this.flatNumber,
+    required this.isSelected,
   });
   late final int id;
   late final String name;
@@ -27,8 +28,9 @@ class DetectionLocationDetailsModel {
   late final Address address;
   late final String bulidingNumber;
   late final String flatNumber;
+  late  bool isSelected;
 
-  DetectionLocationDetailsModel.fromJson(Map<String, dynamic> json){
+  WorkSpaceDetailsModel.fromJson(Map<String, dynamic> json){
     id = json['id']??"";
     name = json['name']??"";
     phone = json['phone']??"";
@@ -41,6 +43,7 @@ class DetectionLocationDetailsModel {
     address = Address.fromJson(json['address']);
     bulidingNumber = json['buliding_number']??"";
     flatNumber = json['flat_number']??"";
+    isSelected = false ;
   }
 }
 

@@ -28,10 +28,10 @@ class EnterPersonalDataOfCompanyAndCenterController extends GetxController {
     _avatar = value;
   }
 
-  String _taxNumberImage = '';
-  String get taxNumberImage => _taxNumberImage;
+  String _taxImage = '';
+  String get taxImage => _taxImage;
   set setTaxNumberImage(String value) {
-    _taxNumberImage = value;
+    _taxImage = value;
   }
 
   String _logRecordImage = '';
@@ -75,22 +75,42 @@ class EnterPersonalDataOfCompanyAndCenterController extends GetxController {
   }
 
   int? _cityId;
-
   int? get cityId => _cityId;
-
   set setCityId(int value) {
     _cityId = value;
   }
 
+  String _futureTaxImage ='';
+  String _futureLogImage ='';
+
+  String get futureLogImage => _futureLogImage;
+  String get futureTaxImage => _futureTaxImage;
+
+  set setFutureTaxImage(String value) {
+    _futureTaxImage = value;
+  }
+  set setFutureLogImage(String value) {
+    _futureLogImage = value;
+  }
+  final FetchProfileController _fetchProfileDoctorController =
+  Get.put(FetchProfileController());
   void setData() {
     debugPrint("ddddddone 1");
-    final FetchProfileController _fetchProfileDoctorController =
-        Get.put(FetchProfileController());
     debugPrint("ddddddone 2");
     if (isEdit == true) {
       debugPrint("ddddddone 3");
       nameController!.text = _fetchProfileDoctorController.name!;
-      phoneController!.text = _fetchProfileDoctorController.degreeTitle!;
+      phoneController!.text = _fetchProfileDoctorController.phone!;
+      setAvatar = _fetchProfileDoctorController.avatar!;
+      administratorNameController!.text =_fetchProfileDoctorController.administratorName;
+      administratorPhoneController!.text =_fetchProfileDoctorController.administratorPhone;
+      setFutureTaxImage = _fetchProfileDoctorController.taxImage;
+      setFutureLogImage = _fetchProfileDoctorController.logRecordImage;
+      taxNumberController!.text = _fetchProfileDoctorController.taxNum;
+      logRecordController!.text = _fetchProfileDoctorController.logRecordNum;
+
+      // administratorPhoneController!.text = _fetchProfileDoctorController.!;
+
       debugPrint("nameController!.text ${nameController!.text}");
       debugPrint("degreeController!.text ${phoneController!.text}");
       update();
@@ -107,8 +127,8 @@ class EnterPersonalDataOfCompanyAndCenterController extends GetxController {
     if (globalKey.currentState!.validate()) {
       globalKey.currentState!.save();
       if (_avatar != "") {
-        if (_taxNumberImage != "") {
-          if (_logRecordImage != "") {
+        if (_taxImage != ""|| _futureTaxImage != '') {
+          if (_logRecordImage != "" || _futureLogImage != '') {
             setLoading();
             var response =
                 await _enterAndEditPersonalDataOfCompanyAndCenterRepository
@@ -124,13 +144,18 @@ class EnterPersonalDataOfCompanyAndCenterController extends GetxController {
               // address: addressController!.text,
               taxNumber: taxNumberController!.text,
               logRecord: logRecordController!.text,
-              taxNumberImage: taxNumberImage,
+              taxNumberImage: taxImage,
               logRecordImage: logRecordImage,
               moreInfo: aboutController!.text,
             );
             Get.back();
             if (response.statusCode == 200 && response.data["status"] == true) {
               debugPrint("request operation success");
+              if (isEdit) {
+                _fetchProfileDoctorController.fetchProfileDoctor();
+                Get.back();
+              }
+
               customSnackBar(title: response.data["message"]);
               debugPrint("convert operation success");
               status = RequestStatus.done;
@@ -163,7 +188,7 @@ class EnterPersonalDataOfCompanyAndCenterController extends GetxController {
     logRecordController = TextEditingController();
     addressController = TextEditingController();
     aboutController = TextEditingController();
-    // setData();
+    setData();
   }
 
   @override
@@ -178,4 +203,7 @@ class EnterPersonalDataOfCompanyAndCenterController extends GetxController {
     aboutController?.dispose();
     super.dispose();
   }
+
+
+
 }

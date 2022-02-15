@@ -6,6 +6,7 @@ import 'package:dio/dio.dart';
 import 'package:dr_dent/Src/core/constants/api_key.dart';
 import 'package:dr_dent/Src/core/services/network_services.dart';
 import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
+import 'package:flutter/cupertino.dart';
 
 class AddCenterDoctorRepository with ApiKey {
   // GetStorage box = GetStorage();
@@ -15,22 +16,29 @@ class AddCenterDoctorRepository with ApiKey {
     required String phone,
     required String avatar,
     required String gender,
-    required String jobTitle,
-    required int specializationId,
+    required int jobTitleId,
+    required List<int> specializationIds,
     required String notes,
   }) async {
     Response response;
     try {
+      debugPrint("AddCenterDoctor name in repo$name");
+      debugPrint("AddCenterDoctor phone in repo$phone");
+      debugPrint("AddCenterDoctor avatar in repo$avatar");
+      debugPrint("AddCenterDoctor gender in repo$gender");
+      debugPrint("AddCenterDoctor jobTitle in repo$jobTitleId");
+      debugPrint("AddCenterDoctor specializationIds in repo$specializationIds");
+      debugPrint("AddCenterDoctor notes in repo$notes");
       response = await _networkService.post(
-          url: uRLEnterAndEditPersonalDataOfDoctor,
+          url: uRLCenterAddDoctor,
           auth: true,
           body: {
             'name':name,
             'phone':phone,
-            'avatar':avatar,
+            'image':avatar,
             'gender':gender,
-            'specialization_id':specializationId,
-            'job_title':jobTitle,
+            'specializations':specializationIds,
+            'job_title_id':jobTitleId,
             'notes':notes,
           }
       );

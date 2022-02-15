@@ -10,13 +10,13 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DetectionLocationDetailsWidget extends StatelessWidget {
-  final DetectionLocationDetailsModel model;
+  final WorkSpaceDetailsModel model;
   final VoidCallback onDeleteTap;
-  final VoidCallback onEditTap;
+  final VoidCallback onTimeTap;
   const DetectionLocationDetailsWidget({
     required this.model,
     required this.onDeleteTap,
-    required this.onEditTap,
+    required this.onTimeTap,
     Key? key,
   }) : super(key: key);
 
@@ -30,103 +30,131 @@ class DetectionLocationDetailsWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(10.r),
         color: kCOffWight,
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Stack(
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(4.r
-                ),
-                child: SizedBox(
-                  // color: kCMainGrey,
-                  height: 56.h,
-                  width: 64.w,
-                  child: ImageNetwork(
-                    url: model.image,
-                    height: 56.h,
-                    width: 64.w,
-                  ),
-                ),
-              ),
-              16.0.ESW(),
-              SizedBox(
-                width: 148.w,
-                // height: 20.h,
-                // color: Colors.white,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CustomText(
-                      text: model.name,
-                      fontW: FW.semicond,
-                      overflow: true,
-                      maxLines: 1,
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(4.r
                     ),
-                    8.0.ESH(),
-                    SizedBox(
-                      width: 124.w,
-                      child: CustomText(
-                        text: model.phone,
-                        fontW: FW.semicond,
-                        color: kCSubMain,
-                        overflow: true,
-                        maxLines: 1,
+                    child: Container(
+                      color: kCMainGrey.withOpacity(0.2),
+                      height: 56.h,
+                      width: 64.w,
+                      child: ImageNetwork(
+                        url: model.image,
+                        height: 56.h,
+                        width: 64.w,
                       ),
                     ),
-                    8.0.ESH(),
-                    Row(
+                  ),
+                  16.0.ESW(),
+                  SizedBox(
+                    width: 210.w,
+                    // height: 20.h,
+                    // color: Colors.amber,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        ImageIcon(
-                          const AssetImage("assets/icons/moneys.png"),
-                          size: 16.sp,
-                          color: kCSubMain,
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ImageIcon(
+                              const AssetImage("assets/icons/personalInfoIcon.png"),
+                              size: 16.sp,
+                              color: kCSubMain,
+                            ),
+                            8.0.ESW(),
+                            SizedBox(
+                              width: 124.w,
+                              child:CustomText(
+                                text: model.name,
+                                fontW: FW.semicond,
+                                overflow: true,
+                                maxLines: 1,
+                              ),
+                            ),
+                          ],
                         ),
-                        8.0.ESW(),
-                        SizedBox(
-                          width: 124.w,
-                          child: CustomText(
-                            text: "سعر الكشف: ${model.price}",
-                            fontW: FW.semicond,
-                            overflow: true,
-                            maxLines: 1,
-                          ),
+                        8.0.ESH(),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ImageIcon(
+                              const AssetImage("assets/icons/phone_icon.png"),
+                              size: 16.sp,
+                              color: kCSubMain,
+                            ),
+                            8.0.ESW(),
+                            SizedBox(
+                              width: 124.w,
+                              child: CustomText(
+                                text: model.phone,
+                                fontW: FW.semicond,
+                                color: kCSubMain,
+                                overflow: true,
+                                maxLines: 1,
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                    8.0.ESH(),
-                    Row(
-                      children: [
-                        ImageIcon(
-                          const AssetImage("assets/icons/location.png"),
-                          size: 16.sp,
-                          color: kCSubMain,
+                        8.0.ESH(),
+                        Row(
+                          children: [
+                            ImageIcon(
+                              const AssetImage("assets/icons/moneys.png"),
+                              size: 16.sp,
+                              color: kCSubMain,
+                            ),
+                            8.0.ESW(),
+                            SizedBox(
+                              width: 124.w,
+                              child: CustomText(
+                                text: "سعر الكشف: ${model.price}",
+                                fontW: FW.semicond,
+                                overflow: true,
+                                maxLines: 1,
+                              ),
+                            ),
+                          ],
+                        ),
+                        8.0.ESH(),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ImageIcon(
+                              const AssetImage("assets/icons/location.png"),
+                              size: 16.sp,
+                              color: kCSubMain,
 
-                        ),
-                        8.0.ESW(),
-                        SizedBox(
-                          width: 124.w,
-                          child: CustomText(
-                            text: model.address.address,
-                            fontW: FW.semicond,
-                            overflow: true,
-                            maxLines: 1,
-                          ),
+                            ),
+                            8.0.ESW(),
+                            SizedBox(
+                              // color: Colors.grey,
+                              width: 180.w,
+                              child: CustomText(
+                                text: model.address.address,
+                                fontW: FW.semicond,
+                                // overflow: true,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
-          Row(
-            children: [
-              // EditWidget(onEditTap: onEditTap),
-              DeleteWidget(onDeleteTap: onDeleteTap),
-            ],
+          Positioned(
+            top: 8.h,
+            left: 0.w,
+            child: Row(
+              children: [
+                IconWidget(onEditTap: onTimeTap,icon: "assets/icons/timeIcon.png",),
+                DeleteWidget(onDeleteTap: onDeleteTap),
+              ],
+            ),
           ),
         ],
       ),

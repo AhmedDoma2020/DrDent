@@ -13,25 +13,32 @@ import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-class FetchDetectionLocationDetailsController extends GetxController {
-  List<DetectionLocationDetailsModel> _myDetectionLocationDetails = [];
-  List<DetectionLocationDetailsModel> get myDetectionLocationDetails => _myDetectionLocationDetails;
+class FetchWorkSpaceDetailsController extends GetxController {
+  List<WorkSpaceDetailsModel> _myWorkSpaceDetails = [];
+  List<WorkSpaceDetailsModel> get myWorkSpaceDetails => _myWorkSpaceDetails;
   RequestStatus status = RequestStatus.initial;
-  // void changeSelectServices({ required int servicesIndex}){
-  //   _myServicesList[servicesIndex].selected = !_myServicesList[servicesIndex].selected;
-  //   update();
-  // }
-  final FetchDetectionLocationDetailsRepository _fetchDetectionLocationDetailsRepository = FetchDetectionLocationDetailsRepository();
-  Future<void> fetchMyDetectionLocationDetails() async {
+
+  int _indexSelected = -1;
+  int get indexSelected => _indexSelected;
+  void changeSIndex(value) {
+    _indexSelected = value;
+    update();
+  }
+  SnackbarStatus? _snackBarStatus = SnackbarStatus.CLOSED;
+  SnackbarStatus? get snackBarStatus => _snackBarStatus;
+
+  final FetchWorkSpaceDetailsRepository _fetchWorkSpaceDetailsRepository = FetchWorkSpaceDetailsRepository();
+  Future<void> fetchMyWorkSpaceDetails() async {
     status = RequestStatus.loading;
-    var response = await _fetchDetectionLocationDetailsRepository.fetchMyDetectionLocationDetails();
+    var response = await _fetchWorkSpaceDetailsRepository.fetchMyFetchWorkSpaceDetails();
     status = RequestStatus.done;
     update();
     if (response.statusCode == 200 && response.data["status"] == true) {
+      debugPrint(" atfatshet");
       debugPrint("request operation success");
-      _myDetectionLocationDetails.clear();
+      _myWorkSpaceDetails.clear();
       for (var item in response.data['data']) {
-        _myDetectionLocationDetails.add(DetectionLocationDetailsModel.fromJson(item));
+        _myWorkSpaceDetails.add(WorkSpaceDetailsModel.fromJson(item));
       }
       // customSnackBar(title: response.data["message"]??"Error");
       debugPrint("convert operation success");
@@ -43,21 +50,39 @@ class FetchDetectionLocationDetailsController extends GetxController {
       update();
     }
   }
+
+  void deleteMyWorkSpaceDetailsLocal({required int id}){
+    int index = _myWorkSpaceDetails.indexWhere((element) => element.id==id);
+    _myWorkSpaceDetails.removeAt(index);
+    update();
+  }
+
   final DeleteDetectionLocationDetailsRepository _deleteDetectionLocationDetailsRepository = DeleteDetectionLocationDetailsRepository();
   Future<void> deleteMyDetectionLocationDetails({required int detectionId}) async {
+    debugPrint("deleteMyDetectionLocationDetails");
     setLoading();
     var response = await _deleteDetectionLocationDetailsRepository.deleteMyDetectionLocationDetails(id: detectionId);
     Get.back();
     if (response.statusCode == 200 && response.data["status"] == true) {
       debugPrint("request operation success");
-      fetchMyDetectionLocationDetails();
+      deleteMyWorkSpaceDetailsLocal(id: detectionId);
       debugPrint("convert operation success");
       status = RequestStatus.done;
-      customSnackBar(title: response.data["message"]??"Error");
+      customSnackBar(title: response.data["message"]??"Error",
+        snackBarStatus: (SnackbarStatus? status) {
+          _snackBarStatus = status;
+          update();
+          debugPrint("SnackbarStatus is $status");
+        },);
       update();
     } else {
       status = RequestStatus.error;
-      customSnackBar(title: response.data["message"]??"Error");
+      customSnackBar(title: response.data["message"]??"Error",
+        snackBarStatus: (SnackbarStatus? status) {
+          _snackBarStatus = status;
+          update();
+          debugPrint("SnackbarStatus is $status");
+        },);
       update();
     }
   }
@@ -65,6 +90,6 @@ class FetchDetectionLocationDetailsController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    fetchMyDetectionLocationDetails();
+    fetchMyWorkSpaceDetails();
   }
 }

@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
-class EditWidget extends StatelessWidget {
-  const EditWidget({
+class IconWidget extends StatelessWidget {
+  final VoidCallback onEditTap;
+  final String icon;
+  const IconWidget({
     Key? key,
     required this.onEditTap,
+     this.icon = "assets/icons/edit.png",
   }) : super(key: key);
-
-  final VoidCallback onEditTap;
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -27,9 +27,9 @@ class EditWidget extends StatelessWidget {
           ),
           child: Center(
             child: ImageIcon(
-              const AssetImage("assets/icons/edit.png"),
+               AssetImage(icon),
               color: kCMain,
-              size: 24.h,
+              size: 22.h,
             ),
           ),
         ),

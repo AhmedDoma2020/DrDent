@@ -16,7 +16,6 @@ class FetchYearsOfGraduationController extends GetxController {
   Future<void> fetchYearsOfGraduation() async {
     for( int i = 0 ; i <= 60; i++ ) {
       _yearsOfGraduationList.add(dateTime.year - i);
-      debugPrint("i $i");
     }
     // _yearsOfGraduationList = [...yearsOfGraduationList2];
     update();

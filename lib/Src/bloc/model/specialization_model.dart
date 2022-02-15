@@ -13,7 +13,7 @@ class SpecializationModel {
   SpecializationModel.fromJson(Map<String, dynamic> json){
     id = json['id'];
     title = json['title'];
-    active = false;
+    active = json['selected'] == 1 ? true : false;
   }
 }
 

@@ -21,9 +21,11 @@ class AppBars {
       centerTitle: true,
       elevation: 0.0,
       leading:isBack==false?0.0.ESH() :IconButton(
-        onPressed: onTap??(){
+        onPressed: onTap
+            ??(){
           Get.back();
-        },
+        }
+        ,
         icon: Icon(
           Icons.arrow_back,
           color: kCMainBlack,

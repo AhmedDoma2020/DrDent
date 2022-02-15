@@ -1,4 +1,5 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
+import 'package:dr_dent/Src/core/services/photo_view.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
 import 'package:dr_dent/Src/ui/widgets/buttons/button_default.dart';
 import 'package:flutter/material.dart';
@@ -10,11 +11,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 
+import 'image_network.dart';
+
 
 class UploadImageContainer extends StatefulWidget {
   final Function(String) onImageSelected;
-  const UploadImageContainer({
+  String futureImage;
+
+   UploadImageContainer({
     required this.onImageSelected ,
+    this.futureImage = "",
     Key? key,
   }) : super(key: key);
 
@@ -23,6 +29,7 @@ class UploadImageContainer extends StatefulWidget {
 }
 class _UploadImageContainerState extends State<UploadImageContainer> {
   File? image;
+  String? logImg64;
 
   Future getImage() async {
     try {
@@ -33,14 +40,15 @@ class _UploadImageContainerState extends State<UploadImageContainer> {
         this.image = imageTemporary;
       });
       final bytes = File(image.path).readAsBytesSync();
-      widget.onImageSelected( base64Encode(bytes));
-      // logImg64 = base64Encode(bytes);
+      logImg64 = base64Encode(bytes);
+      widget.onImageSelected( logImg64!);
     } on PlatformException catch (e) {
       debugPrint("field picked image $e");
     }
   }
   @override
   Widget build(BuildContext context) {
+    debugPrint("futureLogAndTaxImage is ${widget.futureImage}");
     return Container(
       width: double.infinity,
       height: 188.h,
@@ -50,7 +58,8 @@ class _UploadImageContainerState extends State<UploadImageContainer> {
           width: 1.w,
         ),
       ),
-      child: image != null
+      child:
+      image != null || widget.futureImage != ""
           ? Stack(
         children: [
           GestureDetector(
@@ -64,7 +73,23 @@ class _UploadImageContainerState extends State<UploadImageContainer> {
               //           ),
               //     ));
             },
-            child: Image.file(
+            child:
+             widget.futureImage != ""?
+            GestureDetector(
+              onTap: () {
+                Get.to(() => PhotoViewWidget(
+                  imageProvider:
+                  NetworkImage(widget.futureImage),
+                ));
+              },
+              child: ImageNetwork(
+                url: widget.futureImage,
+                height: double.infinity,
+                width: double.infinity,
+                boxFit: BoxFit.fill,
+              ),
+            ):
+            Image.file(
               image!,
               fit: BoxFit.cover,
               width: double.infinity,
@@ -79,7 +104,11 @@ class _UploadImageContainerState extends State<UploadImageContainer> {
                 onTap: () {
                   setState(() {
                     image = null;
+                    logImg64 = null;
+                    widget.futureImage = "";
                     widget.onImageSelected('');
+                    debugPrint("image after deleted is $image");
+                    debugPrint("futureImage after deleted is ${widget.futureImage}");
                   });
                 },
                 child: Container(
@@ -101,7 +130,8 @@ class _UploadImageContainerState extends State<UploadImageContainer> {
           ),
         ],
       )
-          : Column(
+          :
+      Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(

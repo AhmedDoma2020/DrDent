@@ -2,6 +2,8 @@ import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/features/BaseFeature/bloc/contoller/base_controller.dart';
 import 'package:dr_dent/Src/features/HomeFeature/ui/screens/home_screen.dart';
 import 'package:dr_dent/Src/features/JobFeature/ui/screens/jobs_screen.dart';
+import 'package:dr_dent/Src/features/SocialFeature/bloc/Controller/socail_controller.dart';
+import 'package:dr_dent/Src/features/SocialFeature/ui/screens/add_post_screen.dart';
 import 'package:dr_dent/Src/features/SocialFeature/ui/screens/social_screen.dart';
 import 'package:dr_dent/Src/features/StoreFeature/ui/screens/stotre_screen.dart';
 import 'package:dr_dent/Src/ui/widgets/Drawer/custom_drawer.dart';
@@ -19,12 +21,14 @@ class BaseScreen extends StatelessWidget {
    final GlobalKey<ScaffoldState> _key = GlobalKey(); // Create a key
   @override
   Widget build(BuildContext context) {
-    Get.put(BaseController());
+    Get.put(SocialController());
+  Get.put(BaseController());
     return GetBuilder<BaseController>(
       builder: (_) =>  Scaffold(
         key: _key,
         drawer:  CustomDrawer(),
-        appBar: AppBars.appBarLogo(onDrawerTap: (){
+        appBar: AppBars.appBarLogo(
+            onDrawerTap: (){
           _key.currentState!.openDrawer();
         }),
         body: Column(
@@ -59,6 +63,8 @@ class BaseScreen extends StatelessWidget {
                           padding:  EdgeInsets.symmetric(horizontal: 10.w),
                           child: GestureDetector(
                             onTap: (){
+                              debugPrint("ahoooooo");
+                              Get.to(()=>AddPostScreen());
                             },
                             child: Container(
                               width: 40.w,
