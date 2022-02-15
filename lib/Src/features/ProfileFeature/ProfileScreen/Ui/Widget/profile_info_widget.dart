@@ -83,105 +83,110 @@ class profileInfoWidget extends StatelessWidget {
                               maxLines: 1,
                             )),
                         7.0.ESH(),
-                        _.specialization == null
-                            ? SizedBox(
-                                width: 220.w,
-                                child: Row(
-                                  children: [
-                                    CustomText(
-                                      text: "three_is_no_specialty_yet".tr,
+                        box.read('user_type_id') == 4 ?16.0.ESH():
+                      Column(
+                        children: [
+                          _.specialization == null
+                              ? SizedBox(
+                            width: 220.w,
+                            child: Row(
+                              children: [
+                                CustomText(
+                                  text: "three_is_no_specialty_yet".tr,
+                                  fontW: FW.demi,
+                                  fontSize: 14,
+                                  overflow: true,
+                                  maxLines: 1,
+                                  color: kCGreyTitle,
+                                ),
+                                4.0.ESW(),
+                                GestureDetector(
+                                  onTap: () {},
+                                  child: SizedBox(
+                                    child: CustomText(
+                                      text: "add_specialty".tr,
                                       fontW: FW.demi,
                                       fontSize: 14,
                                       overflow: true,
                                       maxLines: 1,
-                                      color: kCGreyTitle,
+                                      color: kCMain,
                                     ),
-                                    4.0.ESW(),
-                                    GestureDetector(
-                                      onTap: () {},
-                                      child: SizedBox(
-                                        child: CustomText(
-                                          text: "add_specialty".tr,
-                                          fontW: FW.demi,
-                                          fontSize: 14,
-                                          overflow: true,
-                                          maxLines: 1,
-                                          color: kCMain,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                                  ),
                                 ),
-                              )
-                            : SizedBox(
-                                width: 200,
-                                child: CustomText(
-                                  text:
-                                      "${"Specialization_".tr} ${_.specialization}",
-                                  fontW: FW.demi,
-                                  fontSize: 14,
-                                  overflow: true,
-                                  maxLines: 1,
-                                  color: kCGreyTitle,
-                                ),
-                              ),
-                        8.0.ESH(),
-                        _.yearsOfExperience == null
-                            ? SizedBox(
-                                width: 220.w,
-                                child: FittedBox(
-                                  child: Row(
-                                    children: [
-                                      CustomText(
-                                        text: "No_years_of_experience_yet".tr,
+                              ],
+                            ),
+                          )
+                              : SizedBox(
+                            width: 200,
+                            child: CustomText(
+                              text:
+                              "${"Specialization_".tr} ${_.specialization}",
+                              fontW: FW.demi,
+                              fontSize: 14,
+                              overflow: true,
+                              maxLines: 1,
+                              color: kCGreyTitle,
+                            ),
+                          ),
+                          8.0.ESH(),
+                          _.yearsOfExperience == null
+                              ? SizedBox(
+                            width: 220.w,
+                            child: FittedBox(
+                              child: Row(
+                                children: [
+                                  CustomText(
+                                    text: "No_years_of_experience_yet".tr,
+                                    fontW: FW.demi,
+                                    fontSize: 14,
+                                    overflow: true,
+                                    maxLines: 1,
+                                    color: kCGreyTitle,
+                                  ),
+                                  4.0.ESW(),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Get.dialog(
+                                        DialogOfEnterYearsOfExperience(),
+                                      );
+                                      // Get.bottomSheet(
+                                      //     YearOfGraduationButtonSheet(
+                                      //       onTap: (title){
+                                      //
+                                      //       },
+                                      //     ),
+                                      //     isScrollControlled: true);
+                                    },
+                                    child: SizedBox(
+                                      child: CustomText(
+                                        text:
+                                        "Enter_years_of_experience".tr,
                                         fontW: FW.demi,
                                         fontSize: 14,
                                         overflow: true,
                                         maxLines: 1,
-                                        color: kCGreyTitle,
+                                        color: kCMain,
                                       ),
-                                      4.0.ESW(),
-                                      GestureDetector(
-                                        onTap: () {
-                                          Get.dialog(
-                                            DialogOfEnterYearsOfExperience(),
-                                          );
-                                          // Get.bottomSheet(
-                                          //     YearOfGraduationButtonSheet(
-                                          //       onTap: (title){
-                                          //
-                                          //       },
-                                          //     ),
-                                          //     isScrollControlled: true);
-                                        },
-                                        child: SizedBox(
-                                          child: CustomText(
-                                            text:
-                                                "Enter_years_of_experience".tr,
-                                            fontW: FW.demi,
-                                            fontSize: 14,
-                                            overflow: true,
-                                            maxLines: 1,
-                                            color: kCMain,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+                                    ),
                                   ),
-                                ),
-                              )
-                            : SizedBox(
-                                width: 200,
-                                child: CustomText(
-                                  text:
-                                      "${"years_of_experience".tr} ${_.yearsOfExperience}",
-                                  fontW: FW.demi,
-                                  fontSize: 14,
-                                  overflow: true,
-                                  maxLines: 1,
-                                  color: kCGreyTitle,
-                                ),
+                                ],
                               ),
+                            ),
+                          )
+                              : SizedBox(
+                            width: 200,
+                            child: CustomText(
+                              text:
+                              "${"years_of_experience".tr} ${_.yearsOfExperience}",
+                              fontW: FW.demi,
+                              fontSize: 14,
+                              overflow: true,
+                              maxLines: 1,
+                              color: kCGreyTitle,
+                            ),
+                          ),
+                        ],
+                      )
                       ],
                     ),
                   ),

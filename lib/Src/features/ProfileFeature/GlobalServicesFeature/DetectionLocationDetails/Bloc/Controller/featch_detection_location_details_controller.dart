@@ -18,7 +18,6 @@ class FetchWorkSpaceDetailsController extends GetxController {
   List<WorkSpaceDetailsModel> get myWorkSpaceDetails => _myWorkSpaceDetails;
   RequestStatus status = RequestStatus.initial;
 
-
   int _indexSelected = -1;
   int get indexSelected => _indexSelected;
   void changeSIndex(value) {

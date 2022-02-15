@@ -19,6 +19,8 @@ class JobTitleButtonSheet extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    Get.put(FetchJobTitleController());
+
     return Align(
       alignment: Alignment.bottomCenter,
       child: Material(

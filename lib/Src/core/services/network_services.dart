@@ -11,8 +11,8 @@ class NetworkService with ApiKey{
   Future<Response> get({@required String? url, Map<String , String>? headers,bool auth = false}) async {
     Response? response;
     String apiToken =box.read("api_token")??"Not Found Token";
-    // $2y$10$81Q8gWuYAcU0PCcO0QJAeu8Bug4OJrEosZIl9s82UktqN3sySEQ7O
-    String staticApiToken ="\$2y\$10\$6eW2LBCbHXIM0NPu3O6J.OXSsgcM92Hb5OMu7fTffAUBBzzMXefda";
+    // $2y$10$IpiCoyvRmB/.luM7hiWeRO1.EVZjYtPL2/ij4mk64vDMzbNNpd7.a
+    String staticApiToken ="\$2y\$10\$IpiCoyvRmB/.luM7hiWeRO1.EVZjYtPL2/ij4mk64vDMzbNNpd7.a";
     log("apiToken storage in netWork >>>>>>>>>:-> $apiToken");
     log("apiToken static in netWork >>>>>>>>>:-> $staticApiToken");
     try {
@@ -21,8 +21,8 @@ class NetworkService with ApiKey{
           headers: headers??{
             'Accept-Language' : 'en',
             if(auth)
-            // 'Authorization': 'Bearer ' + apiToken
-              'Authorization': 'Bearer ' + staticApiToken
+            'Authorization': 'Bearer ' + apiToken
+              // 'Authorization': 'Bearer ' + staticApiToken
           }
       ));
     } on DioError catch (e) {
@@ -40,8 +40,8 @@ class NetworkService with ApiKey{
     Map<String , String>? headers, Map<String , dynamic>? body,bool auth = false}) async {
     Response? response;
     String apiToken =box.read("api_token")??"Not Found Token";
-    // $2y$10$81Q8gWuYAcU0PCcO0QJAeu8Bug4OJrEosZIl9s82UktqN3sySEQ7O
-    String staticApiToken ="\$2y\$10\$6eW2LBCbHXIM0NPu3O6J.OXSsgcM92Hb5OMu7fTffAUBBzzMXefda";
+    // $2y$10$IpiCoyvRmB/.luM7hiWeRO1.EVZjYtPL2/ij4mk64vDMzbNNpd7.a
+    String staticApiToken ="\$2y\$10\$IpiCoyvRmB/.luM7hiWeRO1.EVZjYtPL2/ij4mk64vDMzbNNpd7.a";
     log("apiToken storage in netWork >>>>>>>>>:-> $apiToken");
     log("apiToken static in netWork >>>>>>>>>:-> $staticApiToken");
     dio.options.baseUrl = ApiKey.apiBaseUrl;
@@ -53,8 +53,8 @@ class NetworkService with ApiKey{
           headers: headers??{
             'Accept-Language' : 'en',
             if(auth)
-            // 'Authorization': 'Bearer ' + apiToken
-              'Authorization': 'Bearer ' + staticApiToken
+            'Authorization': 'Bearer ' + apiToken
+              // 'Authorization': 'Bearer ' + staticApiToken
           },
           // requestEncoder: encoding,
         ),

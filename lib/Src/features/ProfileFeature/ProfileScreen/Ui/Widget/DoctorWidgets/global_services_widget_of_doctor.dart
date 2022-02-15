@@ -5,6 +5,7 @@ import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyAssi
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyOfferFeature/Ui/View/my_offer_screen.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyServicesFeature/Ui/View/Screen/my_services_screen.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/Widget/profile_column_info_item.dart';
+import 'package:dr_dent/Src/features/WorkTimeFeature/ui/bloc/controller/work_time_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,7 +21,7 @@ class GlobalServicesWidgetOfDoctor extends StatelessWidget {
             icon:  "assets/icons/examination_and_clinic_data.png",
             title:"examination_and_clinic_data" ,
             onTap: () {
-                Get.to(()=>DetectionLocationDetailsScreen());
+                Get.to(()=>DetectionLocationDetailsScreen(userType: UserTypeEnum.doctor,));
             },
           ),
           16.0.ESH(),

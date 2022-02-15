@@ -271,5 +271,10 @@ const Map<String, String> arAE = {
   'no_service_selected_title':'لا يوجد خدمات بعد',
   'no_service_selected_sup_title':'برجاء اضافه خدمات لك اولا',
   'loading_Data':'جاري تحميل البيانات...',
+  'no_Specialization':'لا يوجد تخصص',
+  'no_job_time_yet':'لا يوجد موعيد عمل بعد',
+  'select_branch':'اختر الفرع',
+  'You_have_not_shared_any_posts_yet':'لم تقم بمشاركة أي منشور بعد',
+  'must_select_state_first':'لابد من اختيار المحافظه اولا',
 
 };

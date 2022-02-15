@@ -8,11 +8,14 @@ import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/Widget/prof
 import 'package:dr_dent/Src/ui/widgets/Dialog/loading_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class ProfileScreen extends StatelessWidget {
    const ProfileScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    GetStorage box = GetStorage();
+
     Get.put(FetchProfileController());
     return SafeArea(
       child: Scaffold(
@@ -23,7 +26,7 @@ class ProfileScreen extends StatelessWidget {
                 profileInfoWidget(),
                 8.0.ESH(),
                 ProfileRowInfoAndRate(),
-                buttonTapBarType(userTypeId: 3),
+                buttonTapBarType(userTypeId: box.read("user_type_id")??3),
               ],
             ),
         ),

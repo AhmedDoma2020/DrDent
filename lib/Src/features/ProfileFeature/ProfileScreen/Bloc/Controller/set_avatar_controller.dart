@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Bloc/Controller/featch_profile_controller.dart';
@@ -17,7 +19,8 @@ class SetAvatarController extends GetxController {
 
   final  SetAvatarRepository _setAvatarRepository =SetAvatarRepository();
   Future<void> setAvatar({required String image}) async {
-      setLoading();
+    log("avatar $image");
+    setLoading();
       var response = await _setAvatarRepository.setAvatar(image: image);
       Get.back();
       if (response.statusCode == 200 && response.data["status"] == true) {

@@ -1,5 +1,6 @@
 import 'package:dr_dent/Src/bloc/controller/featch_state_and_city_controller.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
+import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
 import '../../../ProfileFeature/GlobalServicesFeature/DetectionLocationDetails/Bloc/Controller/set_detection_location_details_controller.dart';
 import 'package:dr_dent/Src/features/JobFeature/ui/Widget/city_button_sheet.dart';
 import 'package:dr_dent/Src/features/JobFeature/ui/Widget/state_button_sheet.dart';
@@ -88,12 +89,13 @@ class SetLocationButtonSheet extends StatelessWidget {
                         ),
                         16.0.ESH(),
                         GestureDetector(
-                          onTap: () {
+                          onTap:stateAndCity.stateIndexSelected == -1? (){
+                            customSnackBar(title: "must_select_state_first".tr);
+                          }: () {
                             Get.bottomSheet(
                                 CityButtonSheet2(
                                   stateList: stateAndCity.stateAndCityList,
-                                  setStateIndexSelected:
-                                      stateAndCity.stateIndexSelected,
+                                  setStateIndexSelected: stateAndCity.stateIndexSelected,
                                   cityIndex: stateAndCity.cityIndex,
                                   onTap: (id, title) {
                                     _.setCityId = id;

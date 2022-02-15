@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:dr_dent/Src/bloc/model/item_of_share_model.dart';
 import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
+import 'package:dr_dent/Src/features/SocialFeature/bloc/Controller/socail_controller.dart';
 import 'package:dr_dent/Src/features/SocialFeature/bloc/Repository/add_post_repo.dart';
 import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
 import 'package:flutter/services.dart';
@@ -22,6 +23,7 @@ class AddPostController extends GetxController  {
 
   String _shareWithButtonTitle ="";
   String get shareWithButtonTitle => _shareWithButtonTitle;
+  final SocialController _socialController = Get.find();
 
   final AddPostRepository _addPostRepository =AddPostRepository();
 
@@ -114,14 +116,15 @@ class AddPostController extends GetxController  {
     }
   }
 
-
   void submit() async {
     debugPrint("img64 $img64");
     debugPrint("contentController ${contentController!.text}");
     debugPrint("shareItemsIdsSelected $_shareItemsIdsSelected");
     if(img64 != null || contentController!.text.isNotEmpty){
       List<String> imageList = [];
-      imageList.add(img64!);
+      if(img64!= null){
+        imageList.add(img64!);
+      }
       setLoading();
       var response = await  _addPostRepository.addPost(content: contentController!.text, images: imageList, tags: _shareItemsIdsSelected);
       Get.back();
@@ -130,6 +133,7 @@ class AddPostController extends GetxController  {
         debugPrint('response in add post is $response');
         Get.back();
         customSnackBar(title: response.data["message"]??"");
+        _socialController.fetchSocial();
         debugPrint("convert operation success");
         status = RequestStatus.done;
         update();

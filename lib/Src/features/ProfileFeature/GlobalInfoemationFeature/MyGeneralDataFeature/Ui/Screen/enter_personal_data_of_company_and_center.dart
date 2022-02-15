@@ -37,12 +37,12 @@ class EnterPersonalDataOfCompanyAndCenterScreen extends StatelessWidget {
                 child: ListView(
                   // crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    24.0.ESH(),
-                    AvatarForm(
-                      futureImage: _.avatar,
-                      onTap:(val){
-                      _.setAvatar = val;
-                    },isUpload: true,),
+                    // 24.0.ESH(),
+                    // AvatarForm(
+                    //   futureImage: _.avatar,
+                    //   onTap:(val){
+                    //   _.setAvatar = val;
+                    // },isUpload: true,),
                     24.0.ESH(),
                     TextFieldDefault(
                       hint: 'full_name'.tr,

@@ -10,6 +10,7 @@ import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/Ins
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/DoctorsFeature/Bloc/Repository/featch_job_title_and_specialization_repo.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/DoctorsFeature/Bloc/Repository/featch_job_title_repo.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyServicesFeature/Block/Repo/fetch_available_services_repo.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class FetchJobTitleController extends GetxController {
@@ -23,24 +24,25 @@ class FetchJobTitleController extends GetxController {
     update();
   }
   RequestStatus status = RequestStatus.initial;
+
   final FetchJobTitleRepository _fetchJobTitleRepository = FetchJobTitleRepository();
   Future<void> fetchJobTitle() async {
-    _jobTitleList = [...choiceModelExamples];
-    update();
-    // var response = await _fetchJobTitleRepository.fetchJobTitle();
-    // if (response.statusCode == 200 && response.data["status"] == true) {
-    //   debugPrint("request operation success");
-    //   _jobTitleList.clear();
-    //   for (var item in response.data['data']) {
-    //     _jobTitleList.add(ChoiceModel.fromJson(item));
-    //   }
-    //   debugPrint("convert operation success");
-    //   status = RequestStatus.done;
-    //   update();
-    // } else {
-    //   status = RequestStatus.error;
-    //   update();
-    // }
+    status = RequestStatus.loading;
+    var response = await _fetchJobTitleRepository.fetchJobTitle();
+    status = RequestStatus.done;
+    if (response.statusCode == 200 && response.data["status"] == true) {
+      debugPrint("request operation success");
+      _jobTitleList.clear();
+      for (var item in response.data['data']) {
+        _jobTitleList.add(ChoiceModel.fromJson(item));
+      }
+      debugPrint("convert operation success");
+      status = RequestStatus.done;
+      update();
+    } else {
+      status = RequestStatus.error;
+      update();
+    }
   }
 
   @override

@@ -71,6 +71,7 @@ JobClassificationButtonSheet({Key? key, required this.onTap}) : super(key: key);
                 16.0.ESH(),
                 GestureDetector(
                   onTap: () {
+debugPrint("_.stateAndCityList is ${_.stateAndCityList}");
                     Get.bottomSheet(
                         CityButtonSheet2(
                       stateList: _.stateAndCityList,

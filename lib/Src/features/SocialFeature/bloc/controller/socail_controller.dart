@@ -9,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class SocialController extends GetxController{
+  //
   RequestStatus status = RequestStatus.initial;
   List<PostModel> _posts = [];
   List<PostModel> get posts => _posts;
@@ -76,5 +77,4 @@ class SocialController extends GetxController{
     super.onInit();
     fetchSocial();
   }
-
 }

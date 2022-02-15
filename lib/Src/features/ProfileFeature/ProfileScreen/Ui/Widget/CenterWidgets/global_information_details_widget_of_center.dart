@@ -4,6 +4,7 @@ import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/MyG
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/DetectionLocationDetails/View/Screens/detection_location_details_screen.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Bloc/Controller/featch_profile_controller.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/Widget/profile_column_info_item.dart';
+import 'package:dr_dent/Src/features/WorkTimeFeature/ui/bloc/controller/work_time_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -33,6 +34,7 @@ class GlobalInformationDetailsWidgetOfCenter extends StatelessWidget {
                 title: "center_branches",
                 onTap: () {
                   Get.to(() => DetectionLocationDetailsScreen(
+                    userType: UserTypeEnum.doctor,
                         appBarTitle: "center_branches",
                       ));
                 },

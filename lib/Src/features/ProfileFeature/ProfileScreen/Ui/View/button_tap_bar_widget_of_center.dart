@@ -1,5 +1,6 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalPublicationsFeature/ui/screens/my_posts.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Bloc/Controller/profile_tab_index_controller.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/Widget/CenterWidgets/global_information_details_widget_of_center.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/Widget/CenterWidgets/global_services_widget_of_center.dart';
@@ -47,7 +48,7 @@ class ButtonTapBarWidgetOfCenter extends StatelessWidget {
             child: [
               GlobalInformationDetailsWidgetOfCenter(),
               GlobalServicesWidgetOfCenter(),
-              GlobalInformationDetailsWidgetOfCenter(),
+              MySocialScreen(),
             ][_.tabIndex],
           ),
           24.0.ESH(),

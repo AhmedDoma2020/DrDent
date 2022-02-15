@@ -16,14 +16,19 @@ class AddCenterDoctorRepository with ApiKey {
     required String phone,
     required String avatar,
     required String gender,
-    required String jobTitle,
-    required int specializationId,
+    required int jobTitleId,
+    required List<int> specializationIds,
     required String notes,
   }) async {
     Response response;
     try {
-      debugPrint("a7amd");
-      debugPrint("gender $gender");
+      debugPrint("AddCenterDoctor name in repo$name");
+      debugPrint("AddCenterDoctor phone in repo$phone");
+      debugPrint("AddCenterDoctor avatar in repo$avatar");
+      debugPrint("AddCenterDoctor gender in repo$gender");
+      debugPrint("AddCenterDoctor jobTitle in repo$jobTitleId");
+      debugPrint("AddCenterDoctor specializationIds in repo$specializationIds");
+      debugPrint("AddCenterDoctor notes in repo$notes");
       response = await _networkService.post(
           url: uRLCenterAddDoctor,
           auth: true,
@@ -32,8 +37,8 @@ class AddCenterDoctorRepository with ApiKey {
             'phone':phone,
             'image':avatar,
             'gender':gender,
-            'specializations':specializationId,
-            'job_title_id':jobTitle,
+            'specializations':specializationIds,
+            'job_title_id':jobTitleId,
             'notes':notes,
           }
       );

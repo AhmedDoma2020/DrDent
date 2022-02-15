@@ -18,7 +18,7 @@ class TimesOfCenterDoctorForm extends StatelessWidget {
      required this.day,
     Key? key,
   }) : super(key: key);
-  final List<TimeModel> times;
+  final List<Times> times;
   final String day;
   @override
   Widget build(BuildContext context) {
@@ -46,17 +46,17 @@ class TimesOfCenterDoctorForm extends StatelessWidget {
                     ItemInRowTimesOfCenterDoctorForm(
                       icon: "assets/icons/beginningOfThePeriod.png",
                       title: "beginning_of_the_period",
-                      subTitle: times[index].start,
+                      subTitle: times[index].startTime,
                     )
                     ,ItemInRowTimesOfCenterDoctorForm(
                       icon: "assets/icons/endingOfThePeriod.png",
                       title: "ending_of_the_period",
-                      subTitle: times[index].end,
+                      subTitle: times[index].endTime,
                     )
                     ,ItemInRowTimesOfCenterDoctorForm(
                       icon: "assets/icons/group.png",
                       title: "number_of_emergency_bookings",
-                      subTitle: times[index].emergencyBookings,
+                      subTitle: times[index].emergencyBookings.toString(),
                     ),
                   ],
                 ),

@@ -1,20 +1,27 @@
-import 'package:dr_dent/Src/bloc/model/service_model.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/DetectionLocationDetails/Bloc/Controller/featch_detection_location_details_controller.dart';
-import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyServicesFeature/Block/Controller/set_services_controller.dart';
 import 'package:dr_dent/Src/ui/widgets/Choses/single_chose_row_form.dart';
-import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/row_top_bottom_sheet.dart';
+import 'package:dr_dent/Src/ui/widgets/buttons/button_default.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+
 import '/src/core/utils/extensions.dart';
 
 class AvailableWorkSpaceSheet extends StatelessWidget {
-   final Function( int,String ) onSelected;
-   AvailableWorkSpaceSheet({required this.onSelected,Key? key}) : super(key: key);
+  final Function(int, String) onSelected;
+  final VoidCallback onContainTap;
+
+  AvailableWorkSpaceSheet({
+    required this.onSelected,
+    required this.onContainTap,
+    Key? key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    Get.put(FetchWorkSpaceDetailsController());
     return Align(
       alignment: Alignment.bottomCenter,
       child: Material(
@@ -38,27 +45,32 @@ class AvailableWorkSpaceSheet extends StatelessWidget {
               children: [
                 24.0.ESH(),
                 RowTopBottomSheet(
-                  title: "select_service".tr,
+                  title: "select_branch".tr,
                   isClose: false,
                 ),
                 24.0.ESH(),
-                Expanded(
-                  // height: 400.h,
+                SizedBox(
+                  height: 360.h,
                   child: ListView.separated(
                     shrinkWrap: true,
-                    itemBuilder: (context, index) => GetBuilder<SetServicesController>(
-                      builder:(setServiceType) =>  InkWell(
-                        onTap:_.myWorkSpaceDetails[index].isSelected?(){}: (){
-                          _.changeSIndex(index);
-                          onSelected( _.myWorkSpaceDetails[index].id, _.myWorkSpaceDetails[index].name,);
-                          // setServiceType.servicesTypeSelectedController!.text = _.availableServicesList[index].title.toString();
-                          // setServiceType.setServicesId = _.availableServicesList[index].id;
-                          Get.back();
-                        },
-                        child: SingleChoseRowForm(
-                          title:_.myWorkSpaceDetails[index].name,
-                          isSelected: _.indexSelected == index,
-                        ),
+                    itemBuilder: (context, index) => InkWell(
+                      onTap: _.myWorkSpaceDetails[index].isSelected
+                          ? () {}
+                          : () {
+                              _.changeSIndex(index);
+                              onSelected(
+                                _.myWorkSpaceDetails[index].id,
+                                _.myWorkSpaceDetails[index].name,
+                              );
+                              debugPrint("workspaceId in sheet is ${_.myWorkSpaceDetails[index].id}");
+
+                        // setServiceType.servicesTypeSelectedController!.text = _.availableServicesList[index].title.toString();
+                              // setServiceType.setServicesId = _.availableServicesList[index].id;
+                              // Get.back();
+                            },
+                      child: SingleChoseRowForm(
+                        title: _.myWorkSpaceDetails[index].name,
+                        isSelected: _.indexSelected == index,
                       ),
                     ),
                     separatorBuilder: (context, index) => Divider(
@@ -68,61 +80,15 @@ class AvailableWorkSpaceSheet extends StatelessWidget {
                     itemCount: _.myWorkSpaceDetails.length,
                   ),
                 ),
+                _.indexSelected == -1?0.0.ESH():
+                ButtonDefault(
+                  title: "contain_".tr,
+                  onTap: onContainTap,
+                )
               ],
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class ServicesRowForm extends StatelessWidget {
-  final ServiceModel service;
-  final bool isSelected;
-
-  // final  VoidCallback  onSelectTap;
-
-  const ServicesRowForm({
-    required this.service,
-    required this.isSelected,
-    // required this.onSelectTap,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 16.w),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          CustomText(
-            text: service.title,
-            fontW: FW.semibold,
-            fontSize: 24.sp,
-          ),
-          Container(
-            height: 24.h,
-            width: 24.h,
-            decoration: BoxDecoration(
-              color: isSelected == false ? Colors.transparent : kCSubMain,
-              borderRadius: BorderRadius.circular(777.r),
-              border: Border.all(
-                  width: 2.w,
-                  color: isSelected != false
-                      ? Colors.transparent
-                      : kCMainGrey),
-            ),
-            child: isSelected == false
-                ? 0.0.ESH()
-                : Icon(
-              Icons.check,
-              size: 14.w,
-              color: Colors.white,
-            ),
-          )
-        ],
       ),
     );
   }

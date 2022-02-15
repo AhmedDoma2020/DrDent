@@ -2,6 +2,8 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/MyGeneralDataFeature/Ui/Screen/enter_personal_data_of_graduated.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/DoctorsFeature/Ui/View/add_center_doctor_screen.dart';
+import 'package:dr_dent/Src/features/WorkTimeFeature/ui/bloc/controller/work_time_controller.dart';
 import '../../../../GlobalInfoemationFeature/MyGeneralDataFeature/Ui/Screen/enter_personal_data_of_doctor_screen.dart';
 import 'package:dr_dent/Src/features/WorkTimeFeature/ui/screens/work_time_screen.dart';
 import 'package:get_storage/get_storage.dart';
@@ -102,6 +104,7 @@ class SetWorkSpaceDetailsDetailsController extends GetxController {
             debugPrint("in uth");
             if(box.read('user_type_id') == 3 ){
               Get.offAll(() => WorkTimeScreen(
+                userType: UserTypeEnum.doctor,
                 doctorId: box.read('id'),
                 onSuccess: () {
                     Get.to(() => EnterPersonalDataOfDoctorScreen(isEdit: false,));
@@ -110,22 +113,39 @@ class SetWorkSpaceDetailsDetailsController extends GetxController {
               ));
             }else if(box.read('user_type_id') == 4){
               Get.offAll(() => WorkTimeScreen(
+                userType: UserTypeEnum.center,
                 onSuccess: () {
-                  Get.to(() => EnterPersonalDataOfGraduatedScreen());
+                  Get.offAll(() => AddCenterDoctorScreen(isAuth: true,));
                 },
                 workspaceId: _workspaceId,
               ));
             }
           } else {
             debugPrint("not uth");
-            Get.to(() => WorkTimeScreen(
-              doctorId: box.read('id'),
-              onSuccess: () {
-                Get.back();
-                Get.back();
-              },
-              workspaceId: _workspaceId,
-            ));
+            if(box.read('user_type_id') == 3 ){
+              Get.back();
+              Get.to(() => WorkTimeScreen(
+                userType: UserTypeEnum.doctor,
+                doctorId: box.read('id'),
+                onSuccess: () {
+                  Get.back();
+                },
+                workspaceId: _workspaceId,
+              ));
+            }
+            else if(box.read('user_type_id') == 4){
+              debugPrint("aaaaaaaaaa1");
+              Get.back();
+              Get.to(() => WorkTimeScreen(
+                userType: UserTypeEnum.center,
+                onSuccess: () {
+                  debugPrint("aaaaaaaaaa");
+                  Get.back();
+                },
+                workspaceId: _workspaceId,
+              ));
+            }
+
             _fetchWorkSpaceDetailsController.fetchMyWorkSpaceDetails();
             update();
           }

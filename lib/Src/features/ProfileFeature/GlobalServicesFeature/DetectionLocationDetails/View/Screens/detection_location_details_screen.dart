@@ -4,6 +4,7 @@ import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/DetectionLocationDetails/Bloc/Controller/featch_detection_location_details_controller.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/DetectionLocationDetails/View/Screens/set_detection_location_details_screen.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/DetectionLocationDetails/View/Widget/detection_location_details_widget.dart';
+import 'package:dr_dent/Src/features/WorkTimeFeature/ui/bloc/controller/work_time_controller.dart';
 import 'package:dr_dent/Src/features/WorkTimeFeature/ui/screens/work_time_screen.dart';
 import 'package:dr_dent/Src/ui/widgets/Dialog/loading_dialog.dart';
 import 'package:dr_dent/Src/ui/widgets/EmptyWidget/empty_widget.dart';
@@ -16,7 +17,8 @@ import 'package:get_storage/get_storage.dart';
 
 class DetectionLocationDetailsScreen extends StatelessWidget {
 final String appBarTitle;
-DetectionLocationDetailsScreen({ this.appBarTitle ="Detection_location_details"});
+final UserTypeEnum userType;
+DetectionLocationDetailsScreen({ this.appBarTitle ="Detection_location_details",required this.userType});
 GetStorage box = GetStorage();
   @override
   Widget build(BuildContext context) {
@@ -64,6 +66,7 @@ GetStorage box = GetStorage();
                       model: _.myWorkSpaceDetails[index],
                       onTimeTap: () {
                         Get.to(() => WorkTimeScreen(
+                          userType: UserTypeEnum.doctor,
                           isBack: true,
                           doctorId: box.read('id'),
                           onSuccess: () {

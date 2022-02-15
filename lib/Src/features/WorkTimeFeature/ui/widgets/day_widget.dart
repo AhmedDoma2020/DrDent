@@ -1,6 +1,7 @@
 import 'package:dr_dent/Src/bloc/model/day_model.dart';
 import 'package:dr_dent/Src/bloc/model/day_time_model.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
+import 'package:dr_dent/Src/features/WorkTimeFeature/ui/bloc/controller/work_time_controller.dart';
 import 'package:dr_dent/Src/features/WorkTimeFeature/ui/widgets/sheet_add_day_details.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,10 @@ class DayWidget extends StatelessWidget {
   final VoidCallback onExpand;
   final Function(DayTimeModel) onEdit; // time params
   final Function(DayTimeModel) onAddTime; // time params
-  final Function(int) onDelete; // day id params
+  final Function(int) onDelete; //
+  final UserTypeEnum userType;
+
+  // ay id params
 
   const DayWidget(
       {Key? key,
@@ -25,7 +29,8 @@ class DayWidget extends StatelessWidget {
       required this.onExpand,
       required this.onEdit,
       required this.onDelete,
-      required this.onAddTime})
+        required this.userType,
+        required this.onAddTime})
       : super(key: key);
 
   @override
@@ -70,6 +75,7 @@ class DayWidget extends StatelessWidget {
                           padding: EdgeInsets.only(top: 16.0.h),
                           child: ListView.separated(
                             itemBuilder: (context, index) => DayTimeWidget(
+                              userType: userType,
                               dayTime: day.times![index],
                               onDelete: () {
                                 onDelete(day.times![index].id);
@@ -90,6 +96,7 @@ class DayWidget extends StatelessWidget {
                                 onTap: () {
                                   debugPrint("open sheet");
                                   Get.bottomSheet(SheetAddDayDetails(
+                                    userType: userType,
                                     onSave: (start, end, visitsCount) {
                                       debugPrint(start);
                                       debugPrint(end);
@@ -118,7 +125,7 @@ class DayWidget extends StatelessWidget {
                                         vertical: 9.h, horizontal: 21.w),
                                     child: Center(
                                       child: CustomText(
-                                        text: 'إضافة فترة',
+                                        text: 'إضافة  فترة',
                                         color: kCMain,
                                         fontW: FW.medium,
                                         fontSize: 12,

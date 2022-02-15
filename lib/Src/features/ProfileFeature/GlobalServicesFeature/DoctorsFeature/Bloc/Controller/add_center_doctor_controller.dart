@@ -1,5 +1,6 @@
 import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
+import 'package:dr_dent/Src/features/BaseFeature/ui/screens/base_screen.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/DoctorsFeature/Bloc/Repository/add_center_doctor_repo.dart';
 import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,11 +18,9 @@ class AddCenterDoctorController extends GetxController {
   TextEditingController? jobTitleController;
   TextEditingController? jobTitleAndSpecializationController;
   TextEditingController? noteController;
-  int _specializationIdSelected = 0;
-
-  int get specializationIdSelected => _specializationIdSelected;
-
-  set setSpecializationIdSelected(int value) {
+  List<int> _specializationIdSelected=[];
+  List<int> get specializationIdSelected => _specializationIdSelected;
+  set setSpecializationIdSelected(List<int> value) {
     _specializationIdSelected = value;
   }
 
@@ -41,6 +40,13 @@ class AddCenterDoctorController extends GetxController {
     _avatar = value;
   }
 
+  int _jopTitleId = 0;
+  int get jopTitleId => _jopTitleId;
+
+  set setJopTitleId(int value) {
+    _jopTitleId = value;
+  }
+
   RequestStatus status = RequestStatus.initial;
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
   final AddCenterDoctorRepository _addCenterDoctorRepository =
@@ -55,16 +61,20 @@ class AddCenterDoctorController extends GetxController {
         var response = await _addCenterDoctorRepository.addCenterDoctor(
           name: nameController!.text,
           phone: phoneController!.text,
-          specializationId: _specializationIdSelected,
+          specializationIds: _specializationIdSelected,
           gender: _gender,
           notes: noteController!.text,
           avatar: _avatar,
-          jobTitle: jobTitleController!.text,
+          jobTitleId: _jopTitleId,
         );
         Get.back();
         if (response.statusCode == 200 && response.data["status"] == true) {
           debugPrint("request operation success");
-          if(!isAuth) Get.back();
+          if(isAuth){
+            Get.offAll(()=>BaseScreen());
+          }else{
+            Get.back();
+          }
           customSnackBar(
             title: response.data['message'] ?? "",
           );

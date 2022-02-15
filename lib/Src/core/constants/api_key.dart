@@ -9,14 +9,25 @@ mixin ApiKey{
    final String uRLLoginWithEmail = apiBaseUrl + "login_with_gmail";
    final String uRLVerifyPhone = apiBaseUrl + "verify_phone";
    final String uRLSetWorkLicense = apiBaseUrl + "set_work_lisence";
-
-   final String uRLDoctorWorkDays = apiBaseUrl + "fetch_doctor_work_times";
-   final String uRLAddDayTime = apiBaseUrl + "add_work_space_time";
+// for doctor
    final String uRLAddWorkSpaceDetails = apiBaseUrl + "set_work_space_properaties";
+   final String uRLAddDayTime = apiBaseUrl + "add_work_space_time";
    final String uRLDeleteDayTime = apiBaseUrl + "delete_work_space_time";
+   final String uRLDoctorWorkDays = apiBaseUrl + "fetch_doctor_work_times";
+// for center
+   final String uRLAddDayTimeForCenter = apiBaseUrl + "add_work_center_day";
+   final String uRLDeleteDayTimeForCenter = apiBaseUrl + "delete_work_center_days";
+   final String uRLDoctorWorkDaysForCenter = apiBaseUrl + "fetch_my_center_days";
+// for Company
+   final String uRLAddDayTimeForCompany = apiBaseUrl + "add_work_user_day";
+   final String uRLDeleteDayTimeForCompany = apiBaseUrl + "delete_work_user_day";
+   final String uRLDoctorWorkDaysForCompany = apiBaseUrl + "fetch_my_user_days";
+
+
    final String uRLEditDayTime = apiBaseUrl + "delete_work_space_time";
    final String uRLFetchJobRequests = apiBaseUrl + "fetch_job_requests";
    final String uRLFetchPosts = apiBaseUrl + "fetch_social";
+   final String uRLFetchMyPosts = apiBaseUrl + "my_posts";
    final String uRLStore = apiBaseUrl + "fetch_social";
    final String uRLFetchStore = apiBaseUrl + "fetch_store";
    final String uRLFetchPostComments = apiBaseUrl + "fetch_post_comments";
@@ -82,4 +93,5 @@ mixin ApiKey{
    final String uRLSetAvatar = apiBaseUrl + "set_user_image";
    final String uRLSetCover = apiBaseUrl + "set_cover_image";
    final String uRLAddPost = apiBaseUrl + "add_post";
+   final String uRLJobTitles = apiBaseUrl + "job_titles";
 }
