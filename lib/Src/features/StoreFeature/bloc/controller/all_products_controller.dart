@@ -23,11 +23,6 @@ class AllProductsController extends GetxController{
     update();
   }
 
-
-
-
-
-
   // ========== START FETCH DATA  ====================
   final AllProductsRepository _productsRepository = AllProductsRepository();
   Future<void> fetchAllProducts()async{

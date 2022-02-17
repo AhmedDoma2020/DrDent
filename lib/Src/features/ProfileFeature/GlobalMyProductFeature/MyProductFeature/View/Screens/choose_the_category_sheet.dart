@@ -1,6 +1,8 @@
 import 'package:dr_dent/Src/bloc/controller/featch_state_and_city_controller.dart';
 import 'package:dr_dent/Src/bloc/model/state_and_city_model.dart';
+import 'package:dr_dent/Src/bloc/model/univeristy_model.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalMyProductFeature/MyProductFeature/Bloc/Controller/fetch_categories_controller.dart';
 import 'package:dr_dent/Src/ui/widgets/Choses/single_chose_row_form.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/row_top_bottom_sheet.dart';
 import 'package:flutter/material.dart';
@@ -9,24 +11,16 @@ import 'package:get/get.dart';
 
 import '/src/core/utils/extensions.dart';
 
-class CityButtonSheet2 extends StatelessWidget {
-  final List<StateAndCityModel> stateList;
+class CategoryButtonSheet extends StatelessWidget {
   final Function(int, String) onTap;
-  final int cityIndex;
-  final int setStateIndexSelected;
 
-  const CityButtonSheet2({
+  const CategoryButtonSheet({
     Key? key,
     required this.onTap,
-    required this.stateList,
-    required this.cityIndex,
-    required this.setStateIndexSelected,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    FetchStateAndCityController _fetchStateAndCityController =
-        Get.put(FetchStateAndCityController());
     return Align(
       alignment: Alignment.bottomCenter,
       child: Material(
@@ -53,33 +47,30 @@ class CityButtonSheet2 extends StatelessWidget {
                 isClose: false,
               ),
               24.0.ESH(),
-              GetBuilder<FetchStateAndCityController>(
+              GetBuilder<FetchCategoriesController>(
                 builder: (_) => SizedBox(
                   height: 400.h,
                   child: ListView.separated(
                     shrinkWrap: true,
                     itemBuilder: (context, index) => InkWell(
                       onTap: () {
-                        _.changeCityIndex(index);
+                        _.changeChoiceIndex(index);
                         onTap(
-                            stateList[setStateIndexSelected].cities[index].id,
-                            stateList[setStateIndexSelected]
-                                .cities[index]
-                                .title);
+                          _.categories[index].id,
+                          _.categories[index].title,
+                        );
                         Get.back();
                       },
                       child: SingleChoseRowForm(
-                        title: stateList[setStateIndexSelected]
-                            .cities[index]
-                            .title,
-                        isSelected: cityIndex == index,
+                        title: _.categories[index].title,
+                        isSelected: _.choiceSIndex == index,
                       ),
                     ),
                     separatorBuilder: (context, index) => Divider(
                       height: 2.h,
                       color: kCTFEnableBorder,
                     ),
-                    itemCount: stateList[setStateIndexSelected].cities.length,
+                    itemCount: _.categories.length,
                   ),
                 ),
               ),

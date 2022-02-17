@@ -33,8 +33,10 @@ class AddDoctorCertificationController extends GetxController {
     setCertification();
   }
 
-  final AddDoctorCertificationRepo _addDoctorCertificationRepo =
-      AddDoctorCertificationRepo();
+
+  final AddDoctorCertificationRepo _addDoctorCertificationRepo = AddDoctorCertificationRepo();
+
+
   Future<void> setCertification() async {
     if(_certificationList.isNotEmpty){
       setLoading();
@@ -50,4 +52,5 @@ class AddDoctorCertificationController extends GetxController {
       update();
     }
   }
+
 }

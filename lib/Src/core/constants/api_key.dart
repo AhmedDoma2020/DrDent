@@ -38,6 +38,8 @@ mixin ApiKey{
    final String uRLAllNewVisits = apiBaseUrl + "all_new_visits";
    final String uRLAllFetchAllProducts = apiBaseUrl + "fetch_all_products";
    final String uRLCompanyFetchAllProducts = apiBaseUrl + "store_products";
+   final String uRLCompanyAddProduct = apiBaseUrl + "company_add_product";
+   final String uRLFetchCategories = apiBaseUrl + "fetch_categories";
    final String uRLAllFetchAllStores = apiBaseUrl + "fetch_all_Stores";
    final String uRLLikePost = apiBaseUrl + "like_post";
    final String uRLLikeComment = apiBaseUrl + "like_comment";

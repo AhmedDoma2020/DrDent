@@ -56,6 +56,7 @@ class CertificationOfDoctorScreen extends StatelessWidget {
                           horizontal: 16.w, vertical: 24.h),
                       child: GridView.builder(
                         shrinkWrap: true,
+
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 3,
                           // childAspectRatio: 1.06,

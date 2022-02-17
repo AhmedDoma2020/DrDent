@@ -11,6 +11,9 @@ import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/View/button
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/View/button_tap_bar_widget_of_company.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/View/button_tap_bar_widget_of_doctor.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/View/button_tap_bar_widget_of_graduated.dart';
+import 'package:dr_dent/Src/features/WorkTimeFeature/ui/bloc/controller/work_time_controller.dart';
+import 'package:dr_dent/Src/features/WorkTimeFeature/ui/screens/work_time_screen.dart';
+import 'package:get_storage/get_storage.dart';
   import '../../features/ProfileFeature/ProfileScreen/Ui/Widget/DoctorWidgets/global_information_details_widget_of_doctor.dart';
   import '../../features/ProfileFeature/ProfileScreen/Ui/Widget/DoctorWidgets/global_services_widget_of_doctor.dart';
   import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
@@ -62,6 +65,7 @@ navigationAfterSelectAccountType({required int grade}) {
 }
 
 navigationAfterStartNowScreen({required int grade}) {
+  GetStorage box = GetStorage();
   switch (grade) {
   // // ToDo register as patient
   //   case 2:
@@ -77,11 +81,23 @@ navigationAfterStartNowScreen({required int grade}) {
       break;
   // ToDo register as company
     case 5:
-      Get.offAll(() =>  BaseScreen());
+      Get.offAll(() => WorkTimeScreen(
+        userType: UserTypeEnum.company,
+        onSuccess: () {
+          Get.offAll(() =>  BaseScreen());
+        },
+        workspaceId: box.read('id')?? 0,
+      ));
       break;
   // ToDo register as lab
     case 6:
-      Get.offAll(() =>  BaseScreen());
+      Get.offAll(() => WorkTimeScreen(
+        userType: UserTypeEnum.company,
+        onSuccess: () {
+          Get.offAll(() =>  BaseScreen());
+        },
+        workspaceId: box.read('id')?? 0,
+      ));
       break;
   // ToDo register as graduation
     case 7:

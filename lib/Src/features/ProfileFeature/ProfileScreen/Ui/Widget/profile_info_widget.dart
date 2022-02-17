@@ -83,7 +83,7 @@ class profileInfoWidget extends StatelessWidget {
                               maxLines: 1,
                             )),
                         7.0.ESH(),
-                        box.read('user_type_id') == 4 ?16.0.ESH():
+                        box.read('user_type_id') == 4 ?22.0.ESH():
                       Column(
                         children: [
                           _.specialization == null
