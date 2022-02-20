@@ -13,10 +13,8 @@ import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/features/AuthFeature/bloc/repository/set_work_license_repo.dart';
 
 class SetWorkLicenseController extends GetxController {
-  final SetWorkLicenseRepository _setWorkLicenseRepository =
-      SetWorkLicenseRepository();
+  final SetWorkLicenseRepository _setWorkLicenseRepository = SetWorkLicenseRepository();
   GetStorage box = GetStorage();
-
   void submit() async {
     // debugPrint("img64 $img64");
     if (img64 != null) {

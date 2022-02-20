@@ -8,6 +8,7 @@ import 'package:dr_dent/Src/ui/widgets/buttons/button_default.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import '/src/core/utils/extensions.dart';
 
 class ProductScreen extends StatelessWidget {
@@ -59,10 +60,10 @@ class ProductScreen extends StatelessWidget {
                       ),
                       15.0.ESH(),
                       ProductInfoItem(
-                        title: 'تاريخ انتهاء الصلاحية',
-                        subtitle: product.expireDate!,
+                        title: 'How_to_use'.tr,
+                        subtitle: product.usability!,
                       ),
-                      100.0.ESH(),
+                      // 100.0.ESH(),
                     ],
                   ),
                 ),

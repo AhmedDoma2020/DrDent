@@ -14,6 +14,7 @@ class SplashController extends GetxController{
   void onInit() {
     super.onInit();
     Timer(const Duration(seconds: 3), () {
+
       if(box.read("log_in") == 1){
         Get.offAll(()=> BaseScreen());
       }else{

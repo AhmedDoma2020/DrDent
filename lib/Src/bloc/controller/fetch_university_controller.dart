@@ -27,23 +27,22 @@ class FetchUniversityController extends GetxController {
   RequestStatus status = RequestStatus.initial;
   final FetchUniversityRepository _fetchUniversityRepository = FetchUniversityRepository();
   Future<void> fetchUniversity() async {
-    _universityList = [...choiceModelExamples];
-    update();
-    // var response =
-    //     await _fetchUniversityRepository.fetchUniversity();
-    // if (response.statusCode == 200 && response.data["status"] == true) {
-    //   debugPrint("request operation success");
-    //   _universityList.clear();
-    //   for (var item in response.data['data']) {
-    //     _universityList.add(UniversityModel.fromJson(item));
-    //   }
-    //   debugPrint("convert operation success");
-    //   status = RequestStatus.done;
-    //   update();
-    // } else {
-    //   status = RequestStatus.error;
-    //   update();
-    // }
+    status = RequestStatus.loading;
+    var response = await _fetchUniversityRepository.fetchUniversity();
+    status = RequestStatus.done;
+    if (response.statusCode == 200 && response.data["status"] == true) {
+      debugPrint("request operation success");
+      _universityList.clear();
+      for (var item in response.data['data']) {
+        _universityList.add(ChoiceModel.fromJson(item));
+      }
+      debugPrint("convert operation success");
+      status = RequestStatus.done;
+      update();
+    } else {
+      status = RequestStatus.error;
+      update();
+    }
   }
 
   @override

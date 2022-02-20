@@ -11,13 +11,16 @@ import 'package:get/get.dart';
 import '/src/core/utils/extensions.dart';
 
 class UniversitiesButtonSheet extends StatelessWidget {
+  final int idSelected;
   final Function(int,String) onTap;
   const UniversitiesButtonSheet({
+    required this.idSelected,
     Key? key,
     required this.onTap,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    debugPrint("idSelected in sheet id $idSelected");
     return Align(
       alignment: Alignment.bottomCenter,
       child: Material(
@@ -57,7 +60,7 @@ class UniversitiesButtonSheet extends StatelessWidget {
                       },
                       child: SingleChoseRowForm(
                         title: _.universityList[index].title,
-                        isSelected: _.universitySIndex == index,
+                        isSelected: _.universitySIndex == index || idSelected == _.universityList[index].id,
                       ),
                     ),
                     separatorBuilder: (context, index) => Divider(

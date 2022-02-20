@@ -26,7 +26,7 @@ class ProfileScreen extends StatelessWidget {
                 profileInfoWidget(),
                 8.0.ESH(),
                 ProfileRowInfoAndRate(),
-                buttonTapBarType(userTypeId: box.read("user_type_id")??3),
+                buttonTapBarType(userTypeId:3),
               ],
             ),
         ),

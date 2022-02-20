@@ -102,8 +102,10 @@ class EnterYourInformationButtonSheet extends StatelessWidget {
                         onTap: () {
                           Get.bottomSheet(
                               UniversitiesButtonSheet(
+                                idSelected: _.universityId!,
                                 onTap: (id,title){
                                   _.universityController!.text =title;
+                                  _.setUniversityId = id;
                                 },
                               ),
                               isScrollControlled: true);

@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:dr_dent/Src/core/constants/api_key.dart';
 import 'package:dr_dent/Src/core/services/network_services.dart';
 import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
+import 'package:flutter/cupertino.dart';
 
 class EnterAndEditPersonalDataOfGraduatedRepository with ApiKey {
   // GetStorage box = GetStorage();
@@ -19,6 +20,15 @@ class EnterAndEditPersonalDataOfGraduatedRepository with ApiKey {
     required String graduationCertificate,
     required String cv,
   }) async {
+    debugPrint("avatar in repo is $avatar");
+    debugPrint("name in repo is $name");
+    debugPrint("gender in repo is $gender");
+    debugPrint("universityId in repo is $universityId");
+    debugPrint("graduationYear in repo is $graduationYear");
+    debugPrint("graduationDegree in repo is $graduationDegree");
+    debugPrint("specializationId in repo is $specializationId");
+    debugPrint("graduationCertificate in repo is $graduationCertificate");
+    debugPrint("cv in repo is $cv");
     Response response;
     try {
       response = await _networkService.post(
@@ -32,7 +42,7 @@ class EnterAndEditPersonalDataOfGraduatedRepository with ApiKey {
             'graduation_year':graduationYear,
             'graduation_degree':graduationDegree,
             'specializations':specializationId,
-            'work_lisence':graduationCertificate,
+            'work_licenses':graduationCertificate,
             'cv':cv,
           }
       );

@@ -95,7 +95,6 @@ void deleteImage(int index){
          Get.put(CompanyProductsController(storeId: box.read('id')));
          Get.back();
          customSnackBar(title: response.data['message']??"");
-
          debugPrint("convert operation success");
          status = RequestStatus.done;
          update();

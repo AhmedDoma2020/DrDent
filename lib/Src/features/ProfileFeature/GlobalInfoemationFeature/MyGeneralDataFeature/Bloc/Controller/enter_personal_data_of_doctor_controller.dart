@@ -44,21 +44,19 @@ class EnterPersonalDataOfDoctorController extends GetxController {
 
   void setData(){
     debugPrint("ddddddone 1");
-    final FetchProfileController _fetchProfileDoctorController = Get.put(FetchProfileController());
     debugPrint("ddddddone 2");
     if(isEdit ==true){
       debugPrint("ddddddone 3");
-      // debugPrint("_fetchProfileDoctorController.degree! ${_fetchProfileDoctorController.degreeTitle!}");
-      // debugPrint("_fetchProfileDoctorController.degree! ${_fetchProfileDoctorController.degreeTitle!}");
+      final FetchProfileController _fetchProfileDoctorController = Get.put(FetchProfileController());
       nameController!.text= _fetchProfileDoctorController.name!;
-      if(_fetchProfileDoctorController.userTypeId == 3){}
       degreeController!.text= _fetchProfileDoctorController.degreeTitle;
-      specializationController!.text = _fetchProfileDoctorController.specialization!;
+      specializationController!.text = _fetchProfileDoctorController.specialization;
       _scientificId = _fetchProfileDoctorController.degreeId;
       _specializationIdSelected = _fetchProfileDoctorController.specializationIds;
       _imageFuture = _fetchProfileDoctorController.photoOfWorkLicenses;
       addInfoController!.text = _fetchProfileDoctorController.about;
       yearOfExperienceController!.text = _fetchProfileDoctorController.yearOfGraduation;
+      _gender = _fetchProfileDoctorController.gender!;
       // _image = _fetchProfileDoctorController.
       debugPrint("nameController!.text ${nameController!.text}");
       debugPrint("degreeController!.text ${degreeController!.text}");
@@ -91,8 +89,10 @@ class EnterPersonalDataOfDoctorController extends GetxController {
         );
         Get.back();
          if (response.statusCode == 200 && response.data["status"] == true) {
+           final FetchProfileController _fetchProfileDoctorController = Get.put(FetchProfileController());
            debugPrint("request operation success");
            if(isEdit){
+             _fetchProfileDoctorController.fetchProfileDoctor();
              Get.back();
            }else{
              Get.offAll(()=>BaseScreen());

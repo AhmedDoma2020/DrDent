@@ -11,7 +11,7 @@ class FetchProfileController extends GetxController {
   String? _cover;
   String _degreeTitle='';
   int _degreeId =0;
-  String? _specialization;
+  String _specialization='';
   String? _yearsOfExperience;
   String _photoOfWorkLicenses='';
   double? _rateAverage;
@@ -34,6 +34,15 @@ class FetchProfileController extends GetxController {
   String _administratorPhone = '';
   String _about = '';
   String _yearOfGraduation = '';
+  String _graduationYear = '';
+  String _universityTitle = '';
+  String _graduationDegree = '';
+  int _universityId = 0;
+
+  String get universityTitle => _universityTitle;
+  String get graduationDegree => _graduationDegree;
+  int get universityId => _universityId;
+  String get graduationYear => _graduationYear;
   String get about => _about;
   String get yearOfGraduation => _yearOfGraduation;
   List<String> _specializationList = [];
@@ -44,7 +53,7 @@ class FetchProfileController extends GetxController {
   String? get cover => _cover;
   String get degreeTitle => _degreeTitle;
   int get degreeId => _degreeId;
-  String? get specialization => _specialization;
+  String get specialization => _specialization;
   List<String> get specializationList => _specializationList;
   List<int> get specializationIds => _specializationIds;
   String? get yearsOfExperience => _yearsOfExperience;
@@ -65,10 +74,10 @@ class FetchProfileController extends GetxController {
   String get address => _address;
   String get administratorPhone => _administratorPhone;
   String get administratorName => _administratorName;
+
   GetStorage  box = GetStorage();
   RequestStatus status = RequestStatus.initial;
-  final FetchProfileDoctorRepository _fetchProfileDoctorRepository =
-      FetchProfileDoctorRepository();
+  final FetchProfileDoctorRepository _fetchProfileDoctorRepository = FetchProfileDoctorRepository();
 
   Future<void> fetchProfileDoctor() async {
     status = RequestStatus.loading;
@@ -100,10 +109,11 @@ class FetchProfileController extends GetxController {
           _specializationIds.add(itemId);
         }
         _specialization = _specializationList.join(",");
-        debugPrint("_specialization $_specialization");
+        debugPrint("_specialization in FPC1 is $_specialization");
       } else {
         _specialization = "";
       }
+      debugPrint("_specialization in FPC2 is $_specialization");
       _yearsOfExperience = response.data['data']['experience_years'].toString();
       _rateAverage = double.parse(
           (response.data['data']['average_rate'] ?? 0.0).toString());
@@ -126,6 +136,10 @@ class FetchProfileController extends GetxController {
       _administratorPhone = response.data['data']['adminstrator_phone'] ?? '';
       _about = response.data['data']['about'] ?? '';
       _yearOfGraduation = response.data['data']['work_year'] ?? '';
+      _graduationYear = response.data['data']['graduation_year'] ?? '';
+      _universityTitle = response.data['data']['university_title'] ?? '';
+      _universityId = response.data['data']['university_id'] ?? 0;
+      _graduationDegree = response.data['data']['graduation_degree'] ?? 0;
       debugPrint("convert operation success");
       status = RequestStatus.done;
       update();

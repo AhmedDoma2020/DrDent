@@ -85,7 +85,7 @@ mixin ApiKey{
    final String uRLAddJopRequest = apiBaseUrl + "add_job_request";
    final String uRLAddAJopOffer = apiBaseUrl + "add_job_offer";
    final String uRLStates = apiBaseUrl + "states";
-   final String uRLFetchUniversity = apiBaseUrl + "fetch_univeristy";
+   final String uRLFetchUniversity = apiBaseUrl + "universities";
    final String uRLFetchCenterDoctor = apiBaseUrl + "center_doctors";
    final String uRLDeleteCenterDoctor = apiBaseUrl + "center_delete_doctor";
    final String uRLAddDoctorCertification = apiBaseUrl + "add_doctor_certificates";

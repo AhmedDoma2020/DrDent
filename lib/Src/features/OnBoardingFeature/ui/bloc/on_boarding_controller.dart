@@ -23,19 +23,21 @@ class OnBoardingController extends GetxController{
       isFinal = false;
     }
     update();
+    debugPrint("boardIndex in changeBoardIndex is $boardIndex");
   }
 
 
   void onNext(){
     int jumpTo;
-    if(boardIndex <boards.length-1){
+    if(boardIndex < boards.length-1){
       jumpTo = boardIndex + 1;
     }else{
       jumpTo=0;
     }
     pageController!.nextPage(duration: Duration(seconds: 1),curve: Curves.elasticInOut);
-    update();
     boardIndex = jumpTo;
+    debugPrint("boardIndex in onNext is $boardIndex");
+    update();
     if(boardIndex == boards.length-1) {
       isFinal = true;
     } else {
@@ -43,7 +45,6 @@ class OnBoardingController extends GetxController{
     }
     update();
   }
-
 
   void onSkip(){
     // Get.offAll(()=>WelcomeScreen());

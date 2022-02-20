@@ -33,8 +33,10 @@ const Map<String, String> arAE = {
   "send_code": "إرسال الكود",
   "pin_code": "رمز التاكيد",
   "confirm_pin_code": "تأكيد رمز الاسترجاع",
-  "confirm_pin_code_sub_title":
-      "لقد قمنا بإرسال رمز التأكيد مكن من 6 أرقام على رقم الهاتف الخاص بك",
+  "confirm_pin_code_sub_title": "لقد قمنا بإرسال رمز التأكيد مكن من 6 أرقام على رقم الهاتف الخاص بك",
+  "The_secret_code_must_not_be_less_than_6_characters": "يجب الا يقل كلمه المرور عن 6 رموز",
+  "Please_Enter_Right_Email":"برجاء ادخال بريد الإلكترونى صحيح",
+
   "account_type": "نوع الحساب",
   "select_account_type": "من فضلك أختر نوع الحساب",
   "doctor_": "طبيب",
@@ -165,6 +167,7 @@ const Map<String, String> arAE = {
   "must_set_avatar": "يجب ارفاق الصورة",
   "must_set_photo_of_clinic_or_center": "يجب ارفاق صورة العيادة أو المركز",
   "personal_info": "بياناتي الشخصية",
+  "personal_page": "الملف الشخصي",
   "add_jop_offer": "إضافة فرصة عمل",
   "enter_address": "ادخل العنوان",
   "must_enter_address": "يجب ادخال العنوان",
@@ -293,5 +296,7 @@ const Map<String, String> arAE = {
   'You_can_add_up_to_4_photos':'يمكنك اضافة حتي 4 صور',
   'error_You_can_add_up_to_4_photos':'يمكنك اضافة حتي 4 صور فقط',
   'must_set_product_images':'يجب ارفاق صور المنتج',
-
+  'add_product':'اضافه منتج',
+  'following_':'أتابع',
+  'followers_':'المتابعَين',
 };

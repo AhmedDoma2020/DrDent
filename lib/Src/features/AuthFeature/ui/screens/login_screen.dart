@@ -21,7 +21,7 @@ class LoginScreen extends StatelessWidget {
     LoginWithGoogleIdController _loginWithGoogleIdController = Get.put(LoginWithGoogleIdController());
     var node = FocusScope.of(context);
     return Scaffold(
-      appBar: AppBars.appBarDefault(title: 'log_in'.tr),
+      appBar: AppBars.appBarDefault(title: 'log_in'.tr,isBack: false),
       backgroundColor: Colors.white,
       body: GetBuilder<LoginController>(
         builder: (_) => KeyboardVisibilityBuilder(
@@ -77,6 +77,14 @@ class LoginScreen extends StatelessWidget {
                               fieldType: FieldType.WithBorder,
                               prefixIconUrl: "TFPassword",
                               horizentalPadding: 16,
+                              validation: (String? vale){
+                                if(vale!.isEmpty){
+                                  return "error_password_field".tr;
+                                }
+                                else if (vale.length < 6) {
+                                  return "The_secret_code_must_not_be_less_than_6_characters".tr;
+                                }
+                              },
                               onComplete: () {
                                 node.unfocus();
                                 _.submit();

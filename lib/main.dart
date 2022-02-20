@@ -1,6 +1,7 @@
 
 import 'package:dr_dent/Src/features/AuthFeature/ui/screens/login_screen.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/screens/start_now_screen.dart';
+import 'package:dr_dent/Src/features/OnBoardingFeature/ui/views/on_boarding_screen.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/InsuranceCompaniesFeature/Ui/Screen/insurance_companies_screen.dart';
 import 'package:dr_dent/Src/features/WorkTimeFeature/ui/screens/work_time_screen.dart';
 import 'package:dr_dent/Src/features/SplachFeature/ui/splash_screen.dart';
@@ -59,7 +60,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home:AccountTypeScreen(),
+        home:ProfileScreen(),
       ),
     );
   }

@@ -21,8 +21,10 @@ class BaseScreen extends StatelessWidget {
    final GlobalKey<ScaffoldState> _key = GlobalKey(); // Create a key
   @override
   Widget build(BuildContext context) {
-    Get.put(SocialController());
-  Get.put(BaseController());
+    debugPrint("BaseScreen1");
+    // Get.put(SocialController());
+    debugPrint("BaseScreen2");
+    Get.put(BaseController());
     return GetBuilder<BaseController>(
       builder: (_) =>  Scaffold(
         key: _key,

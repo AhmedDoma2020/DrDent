@@ -9,7 +9,7 @@ import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
 
 class FetchUniversityRepository with ApiKey{
   // GetStorage box = GetStorage();
-  NetworkService _networkService = NetworkService();
+  final NetworkService _networkService = NetworkService();
   Future<Response> fetchUniversity()async{
     Response response;
     try{

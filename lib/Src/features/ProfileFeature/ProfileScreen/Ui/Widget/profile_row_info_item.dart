@@ -10,9 +10,11 @@ import 'package:get/get.dart';
 class ProfileRowInfoItem extends StatelessWidget {
   final String num;
   final String icon;
+  final String title;
   const ProfileRowInfoItem({
     required this.icon,
     required this.num,
+    required this.title,
     Key? key,
   }) : super(key: key);
   @override
@@ -37,7 +39,7 @@ class ProfileRowInfoItem extends StatelessWidget {
           10.0.ESW(),
           Column(
             children: [
-              CustomText(text: "patients_".tr,fontSize: 10,fontW: FW.regular,),
+              CustomText(text: title.tr,fontSize: 10,fontW: FW.regular,),
               4.0.ESH(),
               CustomText(text: num,fontSize: 10,fontW: FW.regular,),
             ],

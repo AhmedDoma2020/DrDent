@@ -22,6 +22,12 @@ class EnterYourInformationToApplyJobController extends GetxController {
     _specializationIdSelected = value;
   }
 
+  int? _universityId;
+  int? get universityId => _universityId;
+  set setUniversityId(int value) {
+    _universityId = value;
+  }
+
   int? _servicesId;
   int? get servicesId => _servicesId;
   set setServicesId(int value) {

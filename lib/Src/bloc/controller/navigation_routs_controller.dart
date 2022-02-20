@@ -101,7 +101,7 @@ navigationAfterStartNowScreen({required int grade}) {
       break;
   // ToDo register as graduation
     case 7:
-      Get.offAll(() =>  EnterPersonalDataOfGraduatedScreen());
+      Get.offAll(() =>EnterPersonalDataOfGraduatedScreen());
       break;
     default:
       customSnackBar(title: "Error of user type Id");

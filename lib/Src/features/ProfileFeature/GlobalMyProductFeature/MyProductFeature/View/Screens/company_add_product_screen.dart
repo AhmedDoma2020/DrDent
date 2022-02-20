@@ -26,7 +26,7 @@ class CompanyAddProduct extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
           appBar: AppBars.appBarSkipDefault(
-              title: "personal_info".tr,
+              title: "add_product".tr,
               onTapBack: () {
                 Get.back();
               },
@@ -93,20 +93,20 @@ class CompanyAddProduct extends StatelessWidget {
                         node.nextFocus();
                       },
                     ),
-                    16.0.ESH(),
-                    TextFieldDefault(
-                      hint: 'Expiration_date'.tr,
-                      errorText: "error_expiration_date_field".tr,
-                      controller: _.expiredDateController,
-                      keyboardType: TextInputType.name,
-                      filledColor: kCBGTextFormFiled,
-                      fieldType: FieldType.WithBorder,
-                      enableBorder: Colors.transparent,
-                      horizentalPadding: 16,
-                      onComplete: () {
-                        node.nextFocus();
-                      },
-                    ),
+                    // 16.0.ESH(),
+                    // TextFieldDefault(
+                    //   hint: 'Expiration_date'.tr,
+                    //   errorText: "error_expiration_date_field".tr,
+                    //   controller: _.expiredDateController,
+                    //   keyboardType: TextInputType.name,
+                    //   filledColor: kCBGTextFormFiled,
+                    //   fieldType: FieldType.WithBorder,
+                    //   enableBorder: Colors.transparent,
+                    //   horizentalPadding: 16,
+                    //   onComplete: () {
+                    //     node.nextFocus();
+                    //   },
+                    // ),
                     16.0.ESH(),
                     GestureDetector(
                       onTap: (){
