@@ -10,7 +10,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
 import '/src/core/utils/extensions.dart';
 
 class MapScreen extends StatefulWidget {
@@ -37,16 +36,12 @@ class _MapScreenState extends State<MapScreen> {
     setState(() {
       isLoading = true;
     });
-    await placemarkFromCoordinates(
-            targetPosition!.latitude, targetPosition!.longitude,
-            localeIdentifier: "ar")
-        .then((value) {
+    await placemarkFromCoordinates(targetPosition!.latitude, targetPosition!.longitude, localeIdentifier: "ar").then((value) {
       setState(() {
         var data = value.first;
         //  address = data.administrativeArea + data.locality + data.street;
         //  address = "${data.administrativeArea} - ${data.locality} - ${data.street} - ${data.name}";
-        address =
-            "${data.administrativeArea} - ${data.locality} - ${data.street}";
+        address = "${data.administrativeArea} - ${data.locality} - ${data.street}";
       });
       isLoading = false;
     });
@@ -64,6 +59,7 @@ class _MapScreenState extends State<MapScreen> {
   // )]);
 
   void _onMapCreated(GoogleMapController controller) {
+    getLocation();
     if (targetPosition != null) {
       controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
         target: targetPosition!,
@@ -72,7 +68,6 @@ class _MapScreenState extends State<MapScreen> {
         zoom: 14.4746,
       )));
     }
-
     setState(() {
       _markers.add(Marker(
         markerId: const MarkerId("my location"),
@@ -82,28 +77,91 @@ class _MapScreenState extends State<MapScreen> {
     });
   }
 
-  static final CameraPosition _kGooglePlex =
-      CameraPosition(target: targetPosition!, zoom: 14.4746, bearing: 2.0);
+  static final CameraPosition _kGooglePlex = CameraPosition(target: targetPosition!, zoom: 14.4746, bearing: 2.0);
 
-  void getMyLocation() async {
-    await Geolocator.getCurrentPosition().then((value) {
+  // void getMyLocation() async {
+  //   debugPrint("enter in getMyLocation");
+  //   await Geolocator.getCurrentPosition().then((value)async {
+  //     debugPrint("enter in getMyLocation 1");
+  //     setState(() {
+  //       debugPrint("targetPosition = null then enter getMyLocation $targetPosition");
+  //       targetPosition = LatLng(value.latitude, value.longitude);
+  //       debugPrint("targetPosition = null then get getMyLocation $targetPosition");
+  //     });
+  //     debugPrint("enter in getMyLocation 2");
+  //   }).then((value) => setAddress());
+  //
+  // }
+
+  void getLocation() async {
+    debugPrint("enter in getMyLocation");
+    bool serviceEnabled;
+    LocationPermission permission;
+    // Test if location services are enabled.
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      // Location services are not enabled don't continue
+      // accessing the position and request users of the
+      // App to enable the location services.
+      debugPrint("enter in getMyLocation 1");
+      return Future.error('Location services are disabled.');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      debugPrint("enter in getMyLocation 2");
+
+      permission = await Geolocator.requestPermission();
+      debugPrint("enter in getMyLocation 3");
+      if (permission == LocationPermission.denied) {
+        // Permissions are denied, next time you could try
+        // requesting permissions again (this is also where
+        // Android's shouldShowRequestPermissionRationale
+        // returned true. According to Android guidelines
+        // your App should show an explanatory UI now.
+        debugPrint("enter in getMyLocation 4");
+        return Future.error('Location permissions are denied');
+      }
+      debugPrint("enter in getMyLocation 5");
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      // Permissions are denied forever, handle appropriately.
+      debugPrint("enter in getMyLocation 6");
+
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+   await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high).then((value)async {
+     debugPrint("enter in getMyLocation 7");
+     print("position is 1 $value");
       setState(() {
+        debugPrint("enter in getMyLocation 8");
+        debugPrint("targetPosition = null then enter getMyLocation $targetPosition");
         targetPosition = LatLng(value.latitude, value.longitude);
+        debugPrint("targetPosition = null then get getMyLocation $targetPosition");
+        debugPrint("enter in getMyLocation 9");
       });
+     debugPrint("enter in getMyLocation 10");
+     print("position is 2 $value");
     }).then((value) => setAddress());
+    debugPrint("enter in getMyLocation 11");
+
   }
 
   GetStorage box = GetStorage();
 
   @override
-  void initState() {
+  void initState()  {
     super.initState();
-    if (widget.targetPosition != null) {
-      targetPosition = widget.targetPosition;
-    } else {
-      getMyLocation();
-    }
-    setAddress();
+    // if (widget.targetPosition != null) {
+    //   debugPrint("targetPosition != null $targetPosition");
+    //   targetPosition = widget.targetPosition;
+    // } else {
+    //   debugPrint("targetPosition = null $targetPosition");
+    //   getLocation();
+    // }
+    // setAddress();
     // setState(() {
     //   if(widget.targetPosition==null){
     //     getMyLocation();
@@ -204,8 +262,7 @@ class _MapScreenState extends State<MapScreen> {
                                 if (widget.onSave != null) {
                                   debugPrint('this is my location');
                                   debugPrint('address on map is ${address!}');
-                                  widget.onSave!(targetPosition!.latitude,
-                                      targetPosition!.longitude, address!);
+                                  widget.onSave!(targetPosition!.latitude, targetPosition!.longitude, address!);
                                 }
                               },
                             ),

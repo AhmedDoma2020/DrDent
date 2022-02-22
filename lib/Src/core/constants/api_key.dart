@@ -44,6 +44,8 @@ mixin ApiKey{
    final String uRLLikePost = apiBaseUrl + "like_post";
    final String uRLLikeComment = apiBaseUrl + "like_comment";
    final String uRLAddComment = apiBaseUrl + "add_comment";
+   final String uRLAddJobOffer = apiBaseUrl + "add_job_offer";
+
 
 
 

@@ -136,7 +136,6 @@ Widget buttonTapBarType({required int userTypeId}) {
         return Container();
       }
   }
-
 }
 
 

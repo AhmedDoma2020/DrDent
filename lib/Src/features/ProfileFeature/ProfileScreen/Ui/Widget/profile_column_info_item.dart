@@ -50,7 +50,7 @@ class ProfileColumnInfoItem extends StatelessWidget {
                     heightAndWidthIcon: 20,
                   ),
                   16.0.ESW(),
-                  CustomText(text: title.tr,fontW: FW.medium,fontSize: 14,),
+                  CustomText(text: title.tr,fontW: FW.regular,fontSize: 14,),
                 ],
               ),
               const IconForm(icon: "assets/icons/arrowForwerd.png",

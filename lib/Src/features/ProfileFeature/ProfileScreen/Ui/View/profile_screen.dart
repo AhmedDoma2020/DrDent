@@ -15,7 +15,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     GetStorage box = GetStorage();
-
+    debugPrint("box.read('user_type_id') in profile is ${box.read('user_type_id')}");
     Get.put(FetchProfileController());
     return SafeArea(
       child: Scaffold(
@@ -26,7 +26,7 @@ class ProfileScreen extends StatelessWidget {
                 profileInfoWidget(),
                 8.0.ESH(),
                 ProfileRowInfoAndRate(),
-                buttonTapBarType(userTypeId:3),
+                buttonTapBarType(userTypeId:box.read('user_type_id')??3),
               ],
             ),
         ),

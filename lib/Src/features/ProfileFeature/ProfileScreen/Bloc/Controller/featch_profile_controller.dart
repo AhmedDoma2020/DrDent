@@ -124,6 +124,7 @@ class FetchProfileController extends GetxController {
       _followingNum = response.data['data']['followings_number'] ?? 0;
       _gender = response.data['data']['gender'] ?? "UnKnow";
       _userTypeId = response.data['data']['user_type_id'] ?? 0;
+      box.write('user_type_id', response.data['data']['user_type_id']);
       _taxNum = response.data['data']['tax_number'] ?? '';
       _taxImage = response.data['data']['tax_number_image'] ?? '';
       _logRecordNum = response.data['data']['log_record'] ?? '';

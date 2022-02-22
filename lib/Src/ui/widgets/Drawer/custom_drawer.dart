@@ -1,6 +1,7 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/screens/login_screen.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/View/profile_screen.dart';
+import 'package:dr_dent/Src/features/VisitsFeature/ui/screens/my_visits_screen.dart';
 import 'package:dr_dent/src/core/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -40,6 +41,12 @@ class CustomDrawer extends StatelessWidget {
                           Get.to(() => ProfileScreen());
                         },
                         title: "Profile_",
+                        icon: "assets/icons/personalInfoIcon.png"),
+                    RowOfItemDrawer(
+                        onTap: () {
+                          Get.to(() => MyVisitScreen());
+                        },
+                        title: "Reservations_",
                         icon: "assets/icons/personalInfoIcon.png"),
                     RowOfItemDrawer(
                         onTap: () {

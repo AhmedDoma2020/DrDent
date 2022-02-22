@@ -12,7 +12,6 @@ class LogInWithEmailRepository with ApiKey {
   Future<Response> logInWithEmail({
     required String email,
     required String googleId,
-
   }) async {
     Response response;
     try {

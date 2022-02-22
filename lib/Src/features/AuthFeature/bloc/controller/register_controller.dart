@@ -19,18 +19,15 @@ class RegisterController extends GetxController {
   TextEditingController? administratorsPhoneController;
   TextEditingController? passwordController;
   TextEditingController? emailController;
+
   int _userTypeId = -1;
-
   int get userTypeId => _userTypeId;
-
   set setUserTypeId(int value) {
     _userTypeId = value;
   }
 
   String _image = '';
-
   String get image => _image;
-
   set setImage(String value) {
     _image = value;
   }
@@ -81,7 +78,7 @@ class RegisterController extends GetxController {
           }
           debugPrint("api_token in register is ${box.read('api_token')}");
           debugPrint("user_type_id in register is ${box.read('user_type_id')}");
-          navigationAfterSelectAccountType(grade: response.data['data']['user_type_id']);
+          navigationAfterSelectAccountType(grade: response.data['data']['user_type_id']??3);
           debugPrint("convert operation success");
           box.write('log_in',1);
           status = RequestStatus.done;

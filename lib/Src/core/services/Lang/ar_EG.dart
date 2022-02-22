@@ -169,6 +169,7 @@ const Map<String, String> arAE = {
   "personal_info": "بياناتي الشخصية",
   "personal_page": "الملف الشخصي",
   "add_jop_offer": "إضافة فرصة عمل",
+  "Job_requirements": "متطلبات الوظيفة",
   "enter_address": "ادخل العنوان",
   "must_enter_address": "يجب ادخال العنوان",
   "enter_jop": "ادخل الدوام",
@@ -299,4 +300,6 @@ const Map<String, String> arAE = {
   'add_product':'اضافه منتج',
   'following_':'أتابع',
   'followers_':'المتابعَين',
+  'Reservations_':'الحجوزات',
+  'state_is_empty':'لا يوجد محافظات',
 };

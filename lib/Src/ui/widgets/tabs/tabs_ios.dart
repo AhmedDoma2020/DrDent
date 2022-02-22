@@ -54,7 +54,7 @@ class TabsIos extends StatelessWidget {
                       child: CustomText(
                         text: titles[i],
                         color: tabIndex == i ? activeTitleColor : disActiveTitleColor,
-                        fontW: FW.medium,
+                        fontW: FW.semicond,
                         fontSize: 14,
                       ),
                     ),

@@ -2,11 +2,14 @@ import 'package:dr_dent/Src/bloc/controller/featch_state_and_city_controller.dar
 import 'package:dr_dent/Src/bloc/model/state_and_city_model.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/ui/widgets/Choses/single_chose_row_form.dart';
+import 'package:dr_dent/Src/ui/widgets/Dialog/loading_dialog.dart';
+import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/row_top_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../../core/utils/request_status.dart';
 import '/src/core/utils/extensions.dart';
 
 class StateButtonSheet extends StatelessWidget {
@@ -46,14 +49,14 @@ class StateButtonSheet extends StatelessWidget {
             children: [
               24.0.ESH(),
               RowTopBottomSheet(
-                title: "select_service".tr,
+                title: "select_state".tr,
                 isClose: false,
               ),
               24.0.ESH(),
               GetBuilder<FetchStateAndCityController>(
                 builder:(_) =>  SizedBox(
                   height: 400.h,
-                  child: ListView.separated(
+                  child: _.status ==RequestStatus.loading ?Center(child: Loader(),)  : _.stateAndCityList.isEmpty?CustomText(text: "state_is_empty".tr,fontW: FW.semicond,) : ListView.separated(
                     shrinkWrap: true,
                     itemBuilder: (context, index) => InkWell(
                       onTap: () {

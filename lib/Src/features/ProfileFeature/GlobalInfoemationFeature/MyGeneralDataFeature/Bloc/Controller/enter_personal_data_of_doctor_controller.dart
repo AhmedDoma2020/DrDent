@@ -117,7 +117,7 @@ class EnterPersonalDataOfDoctorController extends GetxController {
   void onInit() {
     super.onInit();
     nameController = TextEditingController();
-    nameController!.text = box.read('name');
+    nameController!.text = box.read('name')??"";
     degreeController = TextEditingController();
     specializationController = TextEditingController();
     addInfoController = TextEditingController();

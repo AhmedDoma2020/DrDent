@@ -113,8 +113,10 @@ GetStorage box = GetStorage();
                       onTap: () {
                         Get.to(
                               () => MapScreen(
+
                             onSave: (lat, lon, address) {
-                              Get.bottomSheet(SetLocationButtonSheet(
+                              Get.bottomSheet(
+                                  SetLocationButtonSheet(
                                 lon: lon,
                                 address: address,
                                 lat: lat,

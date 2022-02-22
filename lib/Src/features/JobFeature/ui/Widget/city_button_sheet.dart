@@ -49,7 +49,7 @@ class CityButtonSheet2 extends StatelessWidget {
             children: [
               24.0.ESH(),
               RowTopBottomSheet(
-                title: "select_service".tr,
+                title: "select_city".tr,
                 isClose: false,
               ),
               24.0.ESH(),

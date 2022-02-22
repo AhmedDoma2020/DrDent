@@ -19,7 +19,7 @@ class NetworkService with ApiKey{
       dio.options.baseUrl = ApiKey.apiBaseUrl;
       response = await dio.get(url!, options: Options(
           headers: headers??{
-            'Accept-Language' : 'en',
+            'Accept-Language' : 'ar',
             if(auth)
             // 'Authorization': 'Bearer ' + apiToken
               'Authorization': 'Bearer ' + staticApiToken
@@ -51,7 +51,7 @@ class NetworkService with ApiKey{
         data: body,
         options: Options(
           headers: headers??{
-            'Accept-Language' : 'en',
+            'Accept-Language' : 'ar',
             if(auth)
             // 'Authorization': 'Bearer ' + apiToken
               'Authorization': 'Bearer ' + staticApiToken

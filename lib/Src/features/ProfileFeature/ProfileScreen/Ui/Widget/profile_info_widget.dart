@@ -113,13 +113,13 @@ class profileInfoWidget extends StatelessWidget {
                             width: 200,
                             child: CustomText(
                               text: _.name,
-                              fontW: FW.demi,
+                              fontW: FW.bold,
                               fontSize: 14,
                               overflow: true,
                               maxLines: 1,
                             )),
                         7.0.ESH(),
-                        box.read('user_type_id') != 3
+                        (box.read('user_type_id')??3) != 3
                             ? 22.0.ESH()
                             : Column(
                                 children: [
@@ -132,7 +132,7 @@ class profileInfoWidget extends StatelessWidget {
                                                 text:
                                                     "three_is_no_specialty_yet"
                                                         .tr,
-                                                fontW: FW.demi,
+                                                fontW: FW.semicond,
                                                 fontSize: 14,
                                                 overflow: true,
                                                 maxLines: 1,
@@ -144,7 +144,7 @@ class profileInfoWidget extends StatelessWidget {
                                                 child: SizedBox(
                                                   child: CustomText(
                                                     text: "add_specialty".tr,
-                                                    fontW: FW.demi,
+                                                    fontW: FW.semicond,
                                                     fontSize: 14,
                                                     overflow: true,
                                                     maxLines: 1,
@@ -160,7 +160,7 @@ class profileInfoWidget extends StatelessWidget {
                                           child: CustomText(
                                             text:
                                                 "${"Specialization_".tr} ${_.specialization}",
-                                            fontW: FW.demi,
+                                            fontW: FW.semicond,
                                             fontSize: 14,
                                             overflow: true,
                                             maxLines: 1,
@@ -178,7 +178,7 @@ class profileInfoWidget extends StatelessWidget {
                                                   text:
                                                       "No_years_of_experience_yet"
                                                           .tr,
-                                                  fontW: FW.demi,
+                                                  fontW: FW.semicond,
                                                   fontSize: 14,
                                                   overflow: true,
                                                   maxLines: 1,
@@ -203,7 +203,7 @@ class profileInfoWidget extends StatelessWidget {
                                                       text:
                                                           "Enter_years_of_experience"
                                                               .tr,
-                                                      fontW: FW.demi,
+                                                      fontW: FW.semicond,
                                                       fontSize: 14,
                                                       overflow: true,
                                                       maxLines: 1,
@@ -220,7 +220,7 @@ class profileInfoWidget extends StatelessWidget {
                                           child: CustomText(
                                             text:
                                                 "${"years_of_experience".tr} ${_.yearsOfExperience}",
-                                            fontW: FW.demi,
+                                            fontW: FW.semicond,
                                             fontSize: 14,
                                             overflow: true,
                                             maxLines: 1,

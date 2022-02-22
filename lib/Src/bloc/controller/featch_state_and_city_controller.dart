@@ -49,7 +49,10 @@ class FetchStateAndCityController extends GetxController {
   RequestStatus status = RequestStatus.initial;
   final FetchStateAndCityRepository _fetchStateRepository = FetchStateAndCityRepository();
   Future<void> fetchStateAndCity() async {
+    status = RequestStatus.loading;
     var response = await _fetchStateRepository.fetchStateAndCity();
+    status = RequestStatus.done;
+    update();
     if (response.statusCode == 200 && response.data["status"] == true) {
       debugPrint("request operation success");
       _stateAndCityList.clear();

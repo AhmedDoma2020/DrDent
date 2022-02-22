@@ -74,7 +74,7 @@ enum FW {
   medium,
   demi,
   semicond,
-  thin
+  thin,
 }
 
 String getFontFamily(FW fw) {
@@ -84,25 +84,22 @@ String getFontFamily(FW fw) {
       return "bold";
       break;
     case FW.regular:
-      return 'semibold';
+      return 'regular';
       break;
     case FW.light:
       return 'light';
       break;
     case FW.semibold:
-      return 'semibold';
+      return 'simebold';
       break;
     case FW.demi:
-      return 'semibold';
+      return 'bold';
       break;
     case FW.semicond:
-      return 'semicond';
-      break;
-    case FW.semicond:
-      return 'thin';
+      return 'simebold';
       break;
     default:
-      return 'semibold';
+      return 'regular';
   }
 }
 
