@@ -11,6 +11,7 @@ import 'package:dr_dent/Src/ui/widgets/buttons/button_default.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '/src/core/utils/extensions.dart';
 
@@ -32,6 +33,8 @@ class WorkTimeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GetStorage box = GetStorage();
+    debugPrint(" box.read('id') in WorkTimeScreen is ${ box.read('id')}");
     debugPrint("workspaceId in WorkTimeScreen is $workspaceId");
     debugPrint("doctorId in WorkTimeScreen is $doctorId");
     Get.put(WorkTimeController(

@@ -1,6 +1,8 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalPublicationsFeature/ui/screens/my_posts.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Bloc/Controller/profile_tab_index_controller.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/Widget/GraduatedWidgets/global_information_details_widget_of_graduated.dart';
 import 'package:dr_dent/Src/ui/widgets/tabs/tabs_ios.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -40,8 +42,8 @@ class ButtonTapBarWidgetOfGraduated extends StatelessWidget {
           SizedBox(
             child:
             [
-              // GlobalInformationDetailsOfDoctorWidget(),
-              // GlobalInformationDetailsOfDoctorWidget(),
+              GlobalInformationDetailsWidgetOfGraduated(),
+              MySocialScreen(),
             ][_.tabIndex],
           ),
           24.0.ESH(),

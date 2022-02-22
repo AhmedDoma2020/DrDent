@@ -57,14 +57,17 @@ class ProfileRowInfoAndRate extends StatelessWidget {
                   ProfileRowInfoItem(
                     icon: "assets/icons/pationtNimIcon.png",
                     num: "${_.patientsNum ?? 0}",
+                    title: "patients_",
                   ),
                   ProfileRowInfoItem(
                     icon: "assets/icons/followingNumIcon.png",
                     num: "${_.followersNum ?? 0}",
+                    title: "following_",
                   ),
                   ProfileRowInfoItem(
                     icon: "assets/icons/followersNumIcon.png",
                     num: "${_.followingNum ?? 0}",
+                    title: "followers_",
                   ),
                 ],
               ),

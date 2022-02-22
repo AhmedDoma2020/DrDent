@@ -34,7 +34,7 @@ class GlobalInformationDetailsWidgetOfCenter extends StatelessWidget {
                 title: "center_branches",
                 onTap: () {
                   Get.to(() => DetectionLocationDetailsScreen(
-                    userType: UserTypeEnum.doctor,
+                    userType: UserTypeEnum.center,
                         appBarTitle: "center_branches",
                       ));
                 },

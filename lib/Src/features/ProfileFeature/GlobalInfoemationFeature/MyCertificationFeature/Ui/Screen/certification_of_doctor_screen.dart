@@ -3,13 +3,14 @@ import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/MyCertificationFeature/Bloc/Controller/add_doctor_certification_controller.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/MyCertificationFeature/Bloc/Controller/delete_doctor_certification_controller.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/MyCertificationFeature/Bloc/Controller/fetch_doctor_certification_controller.dart';
-import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/MyCertificationFeature/Ui/Widget/certification_image_form.dart';
 import 'package:dr_dent/Src/ui/widgets/Dialog/loading_dialog.dart';
 import 'package:dr_dent/Src/ui/widgets/EmptyWidget/empty_widget.dart';
 import 'package:dr_dent/Src/ui/widgets/appbars/app_bars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
+import '../Widget/certification_image_form.dart';
 
 class CertificationOfDoctorScreen extends StatelessWidget {
   @override
@@ -52,9 +53,28 @@ class CertificationOfDoctorScreen extends StatelessWidget {
                       availableButton: false,
                     )
                   : Container(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 16.w, vertical: 24.h),
-                      child: GridView.builder(
+                      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 24.h),
+                      height: 400.h,
+                      child:
+                      // MasonryGridView.count(
+                      //   crossAxisCount: 2,
+                      //   mainAxisSpacing: 4,
+                      //   crossAxisSpacing: 1,
+                      //
+                      //   itemBuilder: (context, index) => CertificationImageForm(
+                      //     onDelete: _.snackBarStatus == SnackbarStatus.CLOSED
+                      //         ? () {
+                      //             _.deleteCertification(
+                      //                 certificationId:
+                      //                     _.certificationList[index].id!);
+                      //           }
+                      //         : () {},
+                      //     image: _.certificationList[index].image!,
+                      //   ),
+                      //   itemCount: _.certificationList.length,
+                      // ),
+
+                      GridView.builder(
                         shrinkWrap: true,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 3,

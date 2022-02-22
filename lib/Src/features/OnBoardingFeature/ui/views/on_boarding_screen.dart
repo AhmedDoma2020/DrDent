@@ -22,8 +22,7 @@ class OnBoardingScreen extends StatelessWidget {
               height: 600.h,
               child: PageView(
                 controller: _.pageController,
-                children: _.boards.map((
-                    e) {
+                children: _.boards.map((e) {
                   return OnBoardingBody(onBoardingItem: e);
                 }).toList(),
                 onPageChanged: (int index) {

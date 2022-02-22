@@ -1,5 +1,7 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
+import 'package:dr_dent/Src/features/AuthFeature/bloc/controller/fetch_scientific_controller.dart';
+import 'package:dr_dent/Src/features/AuthFeature/bloc/controller/fetch_specialization_controller.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/widgets/degree_bottun_sheet.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/widgets/specialization_button_sheet.dart';
 import 'package:dr_dent/Src/features/JobFeature/bloc/controller/add_a_jop_controller.dart';
@@ -15,7 +17,9 @@ class AddAJopOfferScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context){
-  AddAJopOfferController _addAJopOfferController =Get.put(AddAJopOfferController());
+    Get.put(AddAJopOfferController());
+    Get.put(FetchScientificController());
+    Get.put(FetchSpecializationController());
     var node = FocusScope.of(context);
     return SafeArea(
       child: Scaffold(
@@ -46,8 +50,8 @@ class AddAJopOfferScreen extends StatelessWidget {
                   TextFieldDefault(
                     hint: 'enter_phone'.tr,
                     errorText: "error_phone_field".tr,
-                    controller: _.nameController,
-                    keyboardType: TextInputType.name,
+                    controller: _.phoneController,
+                    keyboardType: TextInputType.phone,
                     filledColor: kCBGTextFormFiled,
                     fieldType: FieldType.WithBorder,
                     enableBorder: Colors.transparent,
@@ -60,7 +64,7 @@ class AddAJopOfferScreen extends StatelessWidget {
                   TextFieldDefault(
                     hint: 'enter_address'.tr,
                     errorText: "must_enter_address".tr,
-                    controller: _.nameController,
+                    controller: _.addressController,
                     keyboardType: TextInputType.name,
                     filledColor: kCBGTextFormFiled,
                     fieldType: FieldType.WithBorder,
@@ -76,8 +80,8 @@ class AddAJopOfferScreen extends StatelessWidget {
                       Get.bottomSheet(
                           DegreeButtonSheet(
                             onTap:  (scientificListTitle,scientificListId){
-                              _.degreeController!.text=scientificListTitle;
-                              _.setServicesId=scientificListId;
+                              _.scientificLevelIdController!.text=scientificListTitle;
+                              _.setScientificLevelId=scientificListId;
                               Get.back();
                             },
                           ),
@@ -87,7 +91,7 @@ class AddAJopOfferScreen extends StatelessWidget {
                       hint: 'Degree_'.tr,
                       errorText: "must_set_Degree".tr,
                       suffixIconData: Icons.keyboard_arrow_down_outlined,
-                      controller: _.degreeController,
+                      controller: _.scientificLevelIdController,
                       keyboardType: TextInputType.text,
                       filledColor: kCBGTextFormFiled,
                       fieldType: FieldType.WithBorder,
@@ -105,8 +109,7 @@ class AddAJopOfferScreen extends StatelessWidget {
                     onTap: () {
                       Get.bottomSheet(
                           SpecializationButtonSheet(
-                            specializationIdsSelected: [],
-
+                            specializationIdsSelected: _.specializationIdSelected,
                             onTapNotEmpty: (specializationIdList,specializationTitleList){
                               _.setSpecializationIdSelected = specializationIdList;
                               _.specializationController!.text=specializationTitleList;
@@ -146,7 +149,7 @@ class AddAJopOfferScreen extends StatelessWidget {
                   TextFieldDefault(
                     hint: 'enter_jop'.tr,
                     errorText: "must_enter_jop_".tr,
-                    controller: _.nameController,
+                    controller: _.jobTypeController,
                     keyboardType: TextInputType.name,
                     filledColor: kCBGTextFormFiled,
                     fieldType: FieldType.WithBorder,
@@ -176,7 +179,12 @@ class AddAJopOfferScreen extends StatelessWidget {
                   ButtonDefault(
                     title: 'save_'.tr,
                     onTap: () {
+                      // debugPrint("startSalary ${_.startSalary!.toInt()}");
+                      // debugPrint("endSalary ${_.endSalary!.toInt()}");
+                      // debugPrint("SpecializationIdSelected ${_.specializationIdSelected}");
+                      // debugPrint("ServicesId ${_.servicesId}");
                       _.submit();
+
                     },
                   ),
                   24.0.ESH(),

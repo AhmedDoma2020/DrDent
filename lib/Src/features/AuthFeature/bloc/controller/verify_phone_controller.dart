@@ -39,6 +39,4 @@ class VerifyPhoneController extends GetxController{
       customSnackBar(title:response.data['message']??'حدث خطآ ما');
     }
   }
-
-
 }

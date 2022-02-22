@@ -46,7 +46,7 @@ class JobOffersScreen extends StatelessWidget {
               ),
               16.0.ESH(),
               SizedBox(
-                  height: 200.h,
+                  height: 220.h,
                   child: SliderJobOffers(offers: _.myJobOffers,)
               ),
               16.0.ESH(),

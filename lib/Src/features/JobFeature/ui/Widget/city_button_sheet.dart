@@ -11,7 +11,7 @@ import '/src/core/utils/extensions.dart';
 
 class CityButtonSheet2 extends StatelessWidget {
   final List<StateAndCityModel> stateList;
-  final Function(int,String) onTap;
+  final Function(int, String) onTap;
   final int cityIndex;
   final int setStateIndexSelected;
 
@@ -26,7 +26,7 @@ class CityButtonSheet2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     FetchStateAndCityController _fetchStateAndCityController =
-    Get.put(FetchStateAndCityController());
+        Get.put(FetchStateAndCityController());
     return Align(
       alignment: Alignment.bottomCenter,
       child: Material(
@@ -49,23 +49,29 @@ class CityButtonSheet2 extends StatelessWidget {
             children: [
               24.0.ESH(),
               RowTopBottomSheet(
-                title: "select_service".tr,
+                title: "select_city".tr,
                 isClose: false,
               ),
               24.0.ESH(),
               GetBuilder<FetchStateAndCityController>(
-                builder:(_) =>  SizedBox(
+                builder: (_) => SizedBox(
                   height: 400.h,
                   child: ListView.separated(
                     shrinkWrap: true,
                     itemBuilder: (context, index) => InkWell(
                       onTap: () {
                         _.changeCityIndex(index);
-                        onTap(stateList[setStateIndexSelected].cities[index].id,stateList[setStateIndexSelected].cities[index].title);
+                        onTap(
+                            stateList[setStateIndexSelected].cities[index].id,
+                            stateList[setStateIndexSelected]
+                                .cities[index]
+                                .title);
                         Get.back();
                       },
                       child: SingleChoseRowForm(
-                        title: stateList[setStateIndexSelected].cities[index].title,
+                        title: stateList[setStateIndexSelected]
+                            .cities[index]
+                            .title,
                         isSelected: cityIndex == index,
                       ),
                     ),

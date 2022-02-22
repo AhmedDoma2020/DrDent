@@ -38,10 +38,14 @@ mixin ApiKey{
    final String uRLAllNewVisits = apiBaseUrl + "all_new_visits";
    final String uRLAllFetchAllProducts = apiBaseUrl + "fetch_all_products";
    final String uRLCompanyFetchAllProducts = apiBaseUrl + "store_products";
+   final String uRLCompanyAddProduct = apiBaseUrl + "company_add_product";
+   final String uRLFetchCategories = apiBaseUrl + "fetch_categories";
    final String uRLAllFetchAllStores = apiBaseUrl + "fetch_all_Stores";
    final String uRLLikePost = apiBaseUrl + "like_post";
    final String uRLLikeComment = apiBaseUrl + "like_comment";
    final String uRLAddComment = apiBaseUrl + "add_comment";
+   final String uRLAddJobOffer = apiBaseUrl + "add_job_offer";
+
 
 
 
@@ -83,7 +87,7 @@ mixin ApiKey{
    final String uRLAddJopRequest = apiBaseUrl + "add_job_request";
    final String uRLAddAJopOffer = apiBaseUrl + "add_job_offer";
    final String uRLStates = apiBaseUrl + "states";
-   final String uRLFetchUniversity = apiBaseUrl + "fetch_univeristy";
+   final String uRLFetchUniversity = apiBaseUrl + "universities";
    final String uRLFetchCenterDoctor = apiBaseUrl + "center_doctors";
    final String uRLDeleteCenterDoctor = apiBaseUrl + "center_delete_doctor";
    final String uRLAddDoctorCertification = apiBaseUrl + "add_doctor_certificates";

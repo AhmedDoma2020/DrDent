@@ -102,8 +102,10 @@ class EnterYourInformationButtonSheet extends StatelessWidget {
                         onTap: () {
                           Get.bottomSheet(
                               UniversitiesButtonSheet(
+                                idSelected: _.universityId!,
                                 onTap: (id,title){
                                   _.universityController!.text =title;
+                                  _.setUniversityId = id;
                                 },
                               ),
                               isScrollControlled: true);
@@ -137,13 +139,14 @@ class EnterYourInformationButtonSheet extends StatelessWidget {
                           hint: 'enter_year_of_graduation'.tr,
                           errorText: "error_enter_year_of_graduation_field".tr,
                           suffixIconData: Icons.keyboard_arrow_down_outlined,
-                          controller: _.graduationYearController,
-                          keyboardType: TextInputType.text,
                           filledColor: kCBGTextFormFiled,
                           fieldType: FieldType.WithBorder,
-                          enable: false,
                           disableBorder: Colors.transparent,
                           enableBorder: Colors.transparent,
+                          controller: _.graduationYearController,
+                          keyboardType: TextInputType.text,
+                          enable: false,
+
                           horizentalPadding: 16,
                         ),
                       ),

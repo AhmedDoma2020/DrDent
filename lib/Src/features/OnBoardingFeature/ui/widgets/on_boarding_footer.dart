@@ -7,10 +7,7 @@ import 'on_boarding_dot.dart';
 
 class OnBoardingFooter extends StatelessWidget {
   final int index;
-
-
   OnBoardingFooter({this.index=0});
-
   @override
   Widget build(BuildContext context) {
     return Padding(

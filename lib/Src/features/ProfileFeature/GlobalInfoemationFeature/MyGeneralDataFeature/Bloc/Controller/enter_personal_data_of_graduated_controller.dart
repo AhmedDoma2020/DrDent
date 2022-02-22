@@ -41,8 +41,8 @@ class EnterPersonalDataOfGraduatedController extends GetxController {
     _avatar = value;
   }
 
-  int? _universityId;
-  int? get universityId => _universityId;
+  int _universityId =0;
+  int get universityId => _universityId;
   set setUniversityId(int value) {
     _universityId = value;
   }
@@ -58,52 +58,68 @@ class EnterPersonalDataOfGraduatedController extends GetxController {
   set setCVImage(String value) {
     _cVImage = value;
   }
+  String _futureAvatar   ='';
+  String get futureAvatar => _futureAvatar;
+  String _futureCertification   ='';
+  String get futureCertification => _futureCertification;
+
 
   void setData() {
-    debugPrint("ddddddone 1");
-    final FetchProfileController _fetchProfileDoctorController =
-        Get.put(FetchProfileController());
-    debugPrint("ddddddone 2");
     if (isEdit == true) {
       debugPrint("ddddddone 3");
-      nameController!.text = _fetchProfileDoctorController.name!;
+      final FetchProfileController _fetchProfileDoctorController = Get.find();
+      // nameController!.text = _fetchProfileDoctorController.name!;
+      universityController!.text = _fetchProfileDoctorController.universityTitle;
+      _universityId = _fetchProfileDoctorController.universityId;
+      graduationYearController!.text = _fetchProfileDoctorController.graduationYear;
+      universityDegreeController!.text =_fetchProfileDoctorController.graduationDegree;
+      debugPrint("_fetchProfileDoctorController.specialization1");
+      debugPrint("_fetchProfileDoctorController.specialization2 ${_fetchProfileDoctorController.specialization}");
+      specializationController!.text = _fetchProfileDoctorController.specialization;
+      _specializationIdSelected = _fetchProfileDoctorController.specializationIds;
+      _futureAvatar = _fetchProfileDoctorController.avatar!;
       degreeController!.text = _fetchProfileDoctorController.degreeTitle;
-      debugPrint("nameController!.text ${nameController!.text}");
-      debugPrint("degreeController!.text ${degreeController!.text}");
+      _universityId = _fetchProfileDoctorController.universityId;
+      _futureCertification = _fetchProfileDoctorController.photoOfWorkLicenses;
       update();
     }
   }
 
   RequestStatus status = RequestStatus.initial;
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
-  final EnterAndEditPersonalDataOfGraduatedRepository
-      _enterAndEditPersonalDataOfGraduatedRepository =
-      EnterAndEditPersonalDataOfGraduatedRepository();
+
+  final EnterAndEditPersonalDataOfGraduatedRepository _enterAndEditPersonalDataOfGraduatedRepository = EnterAndEditPersonalDataOfGraduatedRepository();
 
   void submit() async {
     if (globalKey.currentState!.validate()) {
       globalKey.currentState!.save();
-      if (_avatar != "") {
-        if(_graduationCertificateImage != ""){
+      if (_avatar != "" || _futureAvatar != '') {
+        if(_graduationCertificateImage != "" || _futureCertification != ""){
           if(_cVImage != ""){
             setLoading();
             var response = await _enterAndEditPersonalDataOfGraduatedRepository
                 .enterAndEditPersonalDataOfGraduated(
-              avatar: avatar,
+              avatar: _avatar,
               name: nameController!.text,
-              gender: gender,
-              universityId: universityId!,
+              gender: _gender,
+              universityId: _universityId,
               graduationYear: graduationYearController!.text,
-              graduationDegree: degreeController!.text,
-              specializationId: specializationIdSelected,
-              graduationCertificate: graduationCertificateImage,
+              graduationDegree: universityDegreeController!.text,
+              specializationId: _specializationIdSelected,
+              graduationCertificate: _graduationCertificateImage,
               cv: cVImage,
             );
             Get.back();
             if (response.statusCode == 200 && response.data["status"] == true) {
               debugPrint("request operation success");
-              customSnackBar(title: response.data["message"]);
-              Get.offAll(() => BaseScreen());
+              if(isEdit){
+                final FetchProfileController _fetchProfileDoctorController = Get.find();
+                _fetchProfileDoctorController.fetchProfileDoctor();
+                Get.back();
+              }else{
+                Get.offAll(() => BaseScreen());
+              }
+              customSnackBar(title: response.data["message"]??"");
               debugPrint("convert operation success");
               status = RequestStatus.done;
               update();
@@ -128,6 +144,7 @@ class EnterPersonalDataOfGraduatedController extends GetxController {
   void onInit() {
     super.onInit();
     nameController = TextEditingController();
+    nameController!.text = box.read('name');
     degreeController = TextEditingController();
     specializationController = TextEditingController();
     addInfoController = TextEditingController();
@@ -135,7 +152,11 @@ class EnterPersonalDataOfGraduatedController extends GetxController {
     graduationYearController = TextEditingController();
     universityDegreeController = TextEditingController();
     _specializationIdSelected = [];
-    // setData();
+    if(isEdit){
+      setData();
+    }else{
+      _futureCertification = box.read('work_lisence');
+    }
   }
 
   @override

@@ -56,7 +56,9 @@ class EnterPersonalDataOfGraduatedScreen extends StatelessWidget {
                   // crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     24.0.ESH(),
-                    AvatarForm(onTap:(val){
+                    AvatarForm(
+                      futureImage: _.futureAvatar,
+                      onTap:(val){
                       _.setAvatar = val;
                     },isUpload: true,),
                     24.0.ESH(),
@@ -79,12 +81,12 @@ class EnterPersonalDataOfGraduatedScreen extends StatelessWidget {
                         _.estGender = gender;
                       },
                     ),
-
                     16.0.ESH(),
                     GestureDetector(
                       onTap: () {
                         Get.bottomSheet(
                             UniversitiesButtonSheet(
+                              idSelected: _.universityId,
                               onTap: (id,title){
                                 _.universityController!.text =title;
                                 _.setUniversityId = id;
@@ -160,8 +162,8 @@ class EnterPersonalDataOfGraduatedScreen extends StatelessWidget {
                     GestureDetector(
                       onTap: () {
                         Get.bottomSheet(
-                            SpecializationButtonSheet(specializationIdsSelected: [],
-
+                            SpecializationButtonSheet(
+                              specializationIdsSelected: _.specializationIdSelected,
                               onTapNotEmpty: (specializationIdList,specializationTitleList){
                                 _.setSpecializationIdSelected = specializationIdList;
                                 _.specializationController!.text=specializationTitleList;
@@ -189,6 +191,7 @@ class EnterPersonalDataOfGraduatedScreen extends StatelessWidget {
                     ),
                     16.0.ESH(),
                     UploadPhotoContainer(
+                      futureImage: _.futureCertification,
                       title: "graduation_certificate_image",
                       onTap: (image64){
                         _.setGraduationCertificateImage = image64;

@@ -6,6 +6,7 @@ import 'package:dr_dent/Src/features/AuthFeature/bloc/repository/login_repo.dart
 import 'package:dr_dent/Src/features/AuthFeature/bloc/repository/login_with_gmail_repo.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/screens/forget_password_screen.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/screens/account_type_screen.dart';
+import 'package:dr_dent/Src/features/BaseFeature/ui/screens/base_screen.dart';
 import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -30,13 +31,13 @@ class LoginWithGoogleIdController extends GetxController{
       debugPrint("user.email  ${user.email}");
       debugPrint("user.photoUrl  ${user.photoUrl}");
       debugPrint("user.id  ${user.id}");
-      signInWithGoogle(googleEmail:user.email ,googleId:user.id ,firstName:user.displayName!.split(" ")[0],lastName: user.displayName!.split(" ")[1]);
+      // signInWithGoogle(googleEmail:user.email ,googleId:user.id ,firstName:user.displayName!.split(" ")[0],lastName: user.displayName!.split(" ")[1]);
     }
   }
 
 
 
-  void signInWithGoogle({required String googleEmail,required String googleId,required String firstName,required String lastName}) async{
+  Future<void> signInWithGoogle({required String googleEmail,required String googleId,required String firstName,required String lastName}) async{
       setLoading();
       var response = await _logInWithEmailRepository.logInWithEmail(email:googleEmail ,googleId: googleId,);
       Get.back();
@@ -55,6 +56,7 @@ class LoginWithGoogleIdController extends GetxController{
         box.write("phone_verified", response.data["data"]["phone_verified"]);
         box.write("image", response.data["data"]["image"]);
         box.write("api_token", response.data["data"]["api_token"]);
+        Get.offAll(()=>BaseScreen());
         customSnackBar(title: "log in success".tr);
       }else{
         customSnackBar(title: response.data["message"]??"");

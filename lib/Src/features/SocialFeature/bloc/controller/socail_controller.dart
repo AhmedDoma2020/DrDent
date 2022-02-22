@@ -49,7 +49,6 @@ class SocialController extends GetxController{
           if(_posts[postIndex].like==1){
             _posts[postIndex].like = 0 ;
             _posts[postIndex].likesNumber = _posts[postIndex].likesNumber !- 1;
-
           }else{
             _posts[postIndex].like = 1 ;
             _posts[postIndex].likesNumber = _posts[postIndex].likesNumber !+ 1 ;

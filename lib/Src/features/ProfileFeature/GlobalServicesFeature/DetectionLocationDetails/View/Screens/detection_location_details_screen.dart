@@ -66,7 +66,7 @@ GetStorage box = GetStorage();
                       model: _.myWorkSpaceDetails[index],
                       onTimeTap: () {
                         Get.to(() => WorkTimeScreen(
-                          userType: UserTypeEnum.doctor,
+                          userType:userType,
                           isBack: true,
                           doctorId: box.read('id'),
                           onSuccess: () {

@@ -16,6 +16,7 @@ class CheckPhoneController extends GetxController{
   bool phoneNotEmpty =  false;
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
   final ChickPhoneRepository _chickPhoneRepository = ChickPhoneRepository();
+
   void submit() async{
     if(globalKey.currentState!.validate()){
       globalKey.currentState!.save();
@@ -23,6 +24,8 @@ class CheckPhoneController extends GetxController{
       var response =  await _chickPhoneRepository.chickPhone(phone: phoneController!.text);
       Get.back();
       if(response.statusCode == 200 && response.data["status"] == true){
+
+
         Get.to(ResetPasswordScreen(phone:  phoneController!.text,));
         customSnackBar(title: response.data['message']?? "",);
       }else{

@@ -23,7 +23,7 @@ class AddPostController extends GetxController  {
 
   String _shareWithButtonTitle ="";
   String get shareWithButtonTitle => _shareWithButtonTitle;
-  final SocialController _socialController = Get.find();
+  final SocialController _socialController = Get.put(SocialController());
 
   final AddPostRepository _addPostRepository =AddPostRepository();
 
@@ -148,6 +148,8 @@ class AddPostController extends GetxController  {
       update();
     }
   }
+
+
 bool isContentCEmpty= true;
   @override
   void onInit() {
@@ -173,7 +175,6 @@ bool isContentCEmpty= true;
   void dispose() {
     // TODO: implement dispose
     contentController?.dispose();
-
     super.dispose();
   }
 }

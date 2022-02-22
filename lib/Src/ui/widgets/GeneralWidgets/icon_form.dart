@@ -31,7 +31,8 @@ class IconForm extends StatelessWidget {
         child: SizedBox(
             height:heightAndWidthIcon.h,
             width:heightAndWidthIcon.h,
-            child: Image.asset(icon)),
+            child: Image.asset(icon),
+        ),
       ),
     );
   }

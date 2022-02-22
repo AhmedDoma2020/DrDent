@@ -16,7 +16,6 @@ import '/src/core/utils/extensions.dart';
 
 class AllProductsScreen extends StatelessWidget {
   const AllProductsScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     Get.put(AllProductsController());
@@ -39,7 +38,7 @@ class AllProductsScreen extends StatelessWidget {
               child:
               _.status != RequestStatus.done?
               Center(child: Loader(),):AnimatedContainer(
-                  duration: Duration(milliseconds: 500),
+                  duration: const Duration(milliseconds: 500),
                    curve: Curves.easeIn,
                    child: !_.isGrid?
                    ListCardProductRect(products: _.products,):

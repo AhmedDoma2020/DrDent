@@ -1,3 +1,4 @@
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/MyGeneralDataFeature/Ui/Screen/enter_personal_data_of_graduated.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Bloc/Controller/featch_profile_controller.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/Widget/profile_column_info_item.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,9 @@ class GlobalInformationDetailsWidgetOfGraduated extends StatelessWidget {
             builder: (_) => ProfileColumnInfoItem(
               icon: "assets/icons/personalInfoIcon.png",
               title: "my_general_data",
-              onTap: () {},
+              onTap: () {
+                Get.to(()=>EnterPersonalDataOfGraduatedScreen(isEdit: true,));
+              },
             ),
           ),
         ],

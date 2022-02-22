@@ -118,6 +118,14 @@ class NewAccountScreen extends StatelessWidget {
                             onComplete: () {
                               node.nextFocus();
                             },
+                            validation: (String? vale){
+                              if(vale!.isEmpty){
+                                return "error_password_field".tr;
+                              }
+                              else if (!vale.contains("@")) {
+                                return "Please_Enter_Right_Email".tr;
+                              }
+                            },
                           ),
                           16.0.ESH(),
                           TextFieldDefault(
@@ -133,6 +141,14 @@ class NewAccountScreen extends StatelessWidget {
                               _.setUserTypeId = userTypeSelectedId;
                               node.unfocus();
                               _.submit();
+                            },
+                            validation: (String? vale){
+                              if(vale!.isEmpty){
+                                return "error_password_field".tr;
+                              }
+                              else if (vale.length < 6) {
+                                return "The_secret_code_must_not_be_less_than_6_characters".tr;
+                              }
                             },
                           ),
                           32.0.ESH(),

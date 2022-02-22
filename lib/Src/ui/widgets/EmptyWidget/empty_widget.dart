@@ -31,7 +31,7 @@ class EmptyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-
+          color: Colors.white,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -54,7 +54,7 @@ class EmptyWidget extends StatelessWidget {
                 child: CustomText(
                   text: title.tr,
                   fontSize: 20,
-                  fontW: FW.bold,
+                  fontW: FW.semicond,
                   textAlign: TextAlign.center,
                 ),
               ),
