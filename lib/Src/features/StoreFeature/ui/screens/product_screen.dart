@@ -70,17 +70,17 @@ class ProductScreen extends StatelessWidget {
               ),
             ],
           ),
-          Padding(
-            padding:  EdgeInsets.only(
-              bottom: 16.h
-            ),
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: ButtonDefault(
-                title: 'الإستعلام عن سعر المنتج',
-              ),
-            ),
-          ),
+          // Padding(
+          //   padding:  EdgeInsets.only(
+          //     bottom: 16.h
+          //   ),
+          //   child: Align(
+          //     alignment: Alignment.bottomCenter,
+          //     child: ButtonDefault(
+          //       title: 'الإستعلام عن سعر المنتج',
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );

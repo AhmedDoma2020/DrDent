@@ -12,14 +12,15 @@ class SliderCardProduct extends StatelessWidget {
   final String viewAllTitle;
   final VoidCallback? onViewAllTap;
   final List<Product> products;
-  const SliderCardProduct({Key? key,this.onViewAllTap,this.viewAllTitle='',required this.products}) : super(key: key);
+  final String titleOnTap;
+  const SliderCardProduct({Key? key,this.onViewAllTap,this.viewAllTitle='',required this.products,this.titleOnTap='عرض الكل'}) : super(key: key);
 
 
   @override
   Widget build(BuildContext context) {
     return  Column(
       children: [
-        TitleRowViewAll(titleSlider:viewAllTitle, onTap: onViewAllTap??(){}),
+        TitleRowViewAll(titleSlider:viewAllTitle, onTap: onViewAllTap??(){},titleOnTap: titleOnTap,),
         12.0.ESH(),
         SizedBox(
           height: 180.h,

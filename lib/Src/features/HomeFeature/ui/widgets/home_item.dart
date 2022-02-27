@@ -41,11 +41,12 @@ class HomeItem extends StatelessWidget {
                          fontSize: 14,
                          fontW: FW.demi,
                        ),
+                      5.0.ESH(),
                       CustomText(
                         text: homeModel.subtitle,
                         color: kCMainBlack2,
                         fontSize: 12,
-                        fontW: FW.demi,
+                        fontW: FW.medium,
                       ),
                     ],
                   ),

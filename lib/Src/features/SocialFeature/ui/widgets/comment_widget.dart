@@ -60,23 +60,23 @@ class CommentWidget extends StatelessWidget {
                   8.0.ESH(),
                   Row(
                     children: [
-                      GestureDetector(
-                        onTap:(){
-
-                        },
-                        child: CustomText(
-                          text: 'تعليق',
-                          color: kCMainBlack2,
-                          fontSize: 12,
-                          fontW: FW.demi,
-                        ),
-                      ),
-                      6.0.ESW(),
-                      CircleAvatar(
-                        radius: 2.w,
-                        backgroundColor: kCMainGrey,
-                      ),
-                      6.0.ESW(),
+                      // GestureDetector(
+                      //   onTap:(){
+                      //
+                      //   },
+                      //   child: CustomText(
+                      //     text: 'تعليق',
+                      //     color: kCMainBlack2,
+                      //     fontSize: 12,
+                      //     fontW: FW.demi,
+                      //   ),
+                      // ),
+                      // 6.0.ESW(),
+                      // CircleAvatar(
+                      //   radius: 2.w,
+                      //   backgroundColor: kCMainGrey,
+                      // ),
+                      // 6.0.ESW(),
                       GestureDetector(
                         onTap:onLike??(){},
                         child: CustomText(

@@ -87,6 +87,7 @@ class DayWidget extends StatelessWidget {
                             shrinkWrap: true,
                           ),
                         ),
+                        userType == UserTypeEnum.doctor?
                         Padding(
                           padding: EdgeInsets.only(top: 16.0.h),
                           child: Row(
@@ -136,7 +137,59 @@ class DayWidget extends StatelessWidget {
                               ),
                             ],
                           ),
-                        ),
+                        ):
+                        day.times!.isNotEmpty?
+                            0.0.ESH():
+                             Padding(
+                          padding: EdgeInsets.only(top: 16.0.h),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  debugPrint("open sheet");
+                                  Get.bottomSheet(SheetAddDayDetails(
+                                    userType: userType,
+                                    onSave: (start, end, visitsCount) {
+                                      debugPrint(start);
+                                      debugPrint(end);
+                                      debugPrint(visitsCount);
+                                      DayTimeModel dayTimeModel = DayTimeModel(
+                                        id: 0,
+                                        startTime: start,
+                                        endTime: end,
+                                        numberOfEmergencyVisits: visitsCount,
+                                      );
+                                      node.unfocus();
+                                      onAddTime(dayTimeModel);
+                                    },
+                                  ),
+                                      // SheetSelectHour(),
+                                      isScrollControlled: true);
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.transparent,
+                                    border: Border.all(color: kCMain, width: 1),
+                                    borderRadius: BorderRadius.circular(5.r),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 9.h, horizontal: 21.w),
+                                    child: Center(
+                                      child: CustomText(
+                                        text: 'إضافة  فترة',
+                                        color: kCMain,
+                                        fontW: FW.medium,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
                       ],
                     )
                   : 0.0.ESH()
