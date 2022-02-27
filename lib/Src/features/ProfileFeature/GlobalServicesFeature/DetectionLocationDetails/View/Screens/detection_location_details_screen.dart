@@ -16,14 +16,23 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class DetectionLocationDetailsScreen extends StatelessWidget {
-final String appBarTitle;
-final UserTypeEnum userType;
-DetectionLocationDetailsScreen({ this.appBarTitle ="Detection_location_details",required this.userType});
-GetStorage box = GetStorage();
+  final String appBarTitle;
+  final UserTypeEnum userType;
+
+  DetectionLocationDetailsScreen(
+      {this.appBarTitle = "Detection_location_details",
+      required this.userType});
+
+  GetStorage box = GetStorage();
+
   @override
   Widget build(BuildContext context) {
-    Get.put(FetchWorkSpaceDetailsController());
-    Future<void> onRefresh() async {}
+    FetchWorkSpaceDetailsController _fetchWorkSpaceDetailsController =
+        Get.put(FetchWorkSpaceDetailsController());
+    Future<void> onRefresh() async {
+      await _fetchWorkSpaceDetailsController.fetchMyWorkSpaceDetails();
+    }
+
     return SafeArea(
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
@@ -33,7 +42,9 @@ GetStorage box = GetStorage();
             size: 24.w,
           ),
           onPressed: () {
-            Get.to(() => SetDetectionLocationDetailsScreen(isAuth: false,));
+            Get.to(() => SetDetectionLocationDetailsScreen(
+                  isAuth: false,
+                ));
           },
           backgroundColor: kCMain,
         ),
@@ -47,42 +58,68 @@ GetStorage box = GetStorage();
           height: double.infinity,
           width: double.infinity,
           color: Colors.white,
-          child: GetBuilder<FetchWorkSpaceDetailsController>(
-            builder: (_) => _.status ==RequestStatus.loading? Center(
-              child: Loader(),
-            ): _.myWorkSpaceDetails.isEmpty
-                ? EmptyWidget(
-                    image: "assets/image/EmptyDetectionLocationDetails.png",
-                    onTapButton: () {},
-                    availableButton: false,
-                    title: "Empty_Detection_location_details".tr,
-                    imageH: 160,
-                    imageW: 140,
-                  )
-                : ListView.separated(
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) =>
-                        DetectionLocationDetailsWidget(
-                      model: _.myWorkSpaceDetails[index],
-                      onTimeTap: () {
-                        Get.to(() => WorkTimeScreen(
-                          userType:userType,
-                          isBack: true,
-                          doctorId: box.read('id'),
-                          onSuccess: () {
-                            Get.back();
-                          },
-                          workspaceId: _.myWorkSpaceDetails[index].id,
-                        ));
-                      },
-                      onDeleteTap:  _.snackBarStatus == SnackbarStatus.CLOSED? () {
-                        debugPrint("on tap delete ${_.myWorkSpaceDetails[index].id}");
-                        _.deleteMyDetectionLocationDetails(detectionId: _.myWorkSpaceDetails[index].id);
-                      }:(){},
-                    ),
-                    separatorBuilder: (context, index) => 16.0.ESH(),
-                    itemCount: _.myWorkSpaceDetails.length,
-                  ),
+          child: RefreshIndicator(
+            onRefresh: onRefresh,
+            child: GetBuilder<FetchWorkSpaceDetailsController>(
+              builder: (_) => _.status == RequestStatus.loading
+                  ? Center(
+                      child: Loader(),
+                    )
+                  : _.myWorkSpaceDetails.isEmpty
+                      ? EmptyWidget(
+                          image:
+                              "assets/image/EmptyDetectionLocationDetails.png",
+                          onTapButton: () {},
+                          availableButton: false,
+                          title: "Empty_Detection_location_details".tr,
+                          imageH: 160,
+                          imageW: 140,
+                        )
+                      : ListView.separated(
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) =>
+                              DetectionLocationDetailsWidget(
+                            model: _.myWorkSpaceDetails[index],
+                            onEditTap: () {
+                              Get.to(
+                                () => SetDetectionLocationDetailsScreen(
+                                  isEdit: true,
+                                  isAuth: false,
+                                  workSpace: _.myWorkSpaceDetails[index],
+                                ),
+                              );
+                            },
+                            onTimeTap: () {
+                              Get.to(
+                                () => WorkTimeScreen(
+                                  isEdit:true,
+                                  userType: userType,
+                                  isBack: true,
+                                  doctorId: box.read('id'),
+                                  onSuccess: () {
+                                    Get.back();
+                                  },
+                                  workspaceId: _.myWorkSpaceDetails[index].id,
+                                  fetchDayBooking: _.myWorkSpaceDetails[index].dayBooking,
+                                  fetchDetectionTime: _.myWorkSpaceDetails[index].detectionTime,
+                                ),
+                              );
+                            },
+                            onDeleteTap:
+                                _.snackBarStatus == SnackbarStatus.CLOSED
+                                    ? () {
+                                        debugPrint(
+                                            "on tap delete ${_.myWorkSpaceDetails[index].id}");
+                                        _.deleteMyDetectionLocationDetails(
+                                            detectionId:
+                                                _.myWorkSpaceDetails[index].id);
+                                      }
+                                    : () {},
+                          ),
+                          separatorBuilder: (context, index) => 16.0.ESH(),
+                          itemCount: _.myWorkSpaceDetails.length,
+                        ),
+            ),
           ),
         ),
       ),

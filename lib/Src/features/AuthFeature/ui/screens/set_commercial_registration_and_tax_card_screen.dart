@@ -51,7 +51,7 @@ class SetCommercialRegistrationAndTaxCardScreen extends StatelessWidget {
                           CustomText(text: "commercial_registration_data".tr,fontW: FW.medium,),
                           24.0.ESH(),
                           TextFieldDefault(
-                            hint: 'tax_record_data'.tr,
+                            hint: 'commercial_registration_num'.tr,
                             errorText: "error_commercial_registration_num_field".tr,
                             controller: _.numOfCommercialRegistrationController,
                             keyboardType: TextInputType.phone,
@@ -70,7 +70,7 @@ class SetCommercialRegistrationAndTaxCardScreen extends StatelessWidget {
                           ),
                           24.0.ESH(),
                           CustomText(
-                            text: "commercial_registration_data".tr,
+                            text: "tax_record_data".tr,
                             fontW: FW.medium,
                           ),
                           24.0.ESH(),

@@ -69,6 +69,9 @@ class SetLocationButtonSheet extends StatelessWidget {
                                   onTap: (id, title) {
                                     _.setStateId = id;
                                     _.stateController!.text = title;
+                                    _.setCityId = 0;
+                                    _.cityController!.clear();
+                                    stateAndCity.changeCityIndex(-1);
                                   },
                                 ),
                                 isScrollControlled: true);

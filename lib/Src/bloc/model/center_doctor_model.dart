@@ -11,6 +11,8 @@ class CenterDoctorModel {
     required this.phone,
     required this.doctorInfo,
     required this.image,
+    required this.gender,
+    required this.jobTitle,
     required this.specialization,
     required this.workspaces,
   });
@@ -19,6 +21,8 @@ class CenterDoctorModel {
   late final String phone;
   late final String doctorInfo;
   late final String image;
+  late final String gender;
+  late final String jobTitle;
   late final List<Specialization> specialization;
   late final List<Workspaces> workspaces;
 
@@ -34,6 +38,17 @@ class CenterDoctorModel {
       specialization = List.from(json['specialization']).map((e)=>Specialization.fromJson(e)).toList();
     }
     workspaces = List.from(json['workspaces']).map((e)=>Workspaces.fromJson(e)).toList();
+    if(json['gender'] != null ){
+      gender =  json['gender']??"Male";
+    }else{
+      gender =  "Male";
+    }
+    if(json['job_title']!=null){
+      jobTitle =  json['job_title']??"";
+
+    }else{
+      jobTitle ="";
+    }
   }
 }
 

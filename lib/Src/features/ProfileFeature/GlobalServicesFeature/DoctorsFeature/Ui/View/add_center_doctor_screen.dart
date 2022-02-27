@@ -18,14 +18,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
+import '../../../../../../bloc/model/center_doctor_model.dart';
+
 class AddCenterDoctorScreen extends StatelessWidget {
   final bool isAuth;
+  final bool isEdit;
+  final CenterDoctorModel? centerDoctorModel;
 
-  AddCenterDoctorScreen({this.isAuth = false});
+
+  AddCenterDoctorScreen({this.centerDoctorModel, this.isAuth = false,this.isEdit = false});
 
   @override
   Widget build(BuildContext context) {
-    Get.put(AddCenterDoctorController(isAuth: isAuth));
+    Get.put(AddCenterDoctorController(isAuth: isAuth,isEdit:isEdit,centerDoctorModel:centerDoctorModel ));
     // Get.put(FetchJobTitleAndSpecializationController());
     Get.put(FetchJobTitleController());
     Get.put(FetchSpecializationController());

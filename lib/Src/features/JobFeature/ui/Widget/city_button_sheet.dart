@@ -63,9 +63,7 @@ class CityButtonSheet2 extends StatelessWidget {
                         _.changeCityIndex(index);
                         onTap(
                             stateList[setStateIndexSelected].cities[index].id,
-                            stateList[setStateIndexSelected]
-                                .cities[index]
-                                .title);
+                            stateList[setStateIndexSelected].cities[index].title);
                         Get.back();
                       },
                       child: SingleChoseRowForm(

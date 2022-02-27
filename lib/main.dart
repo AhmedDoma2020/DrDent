@@ -1,4 +1,5 @@
 
+import 'package:dr_dent/Src/features/AuthFeature/bloc/controller/set_work_license_controller.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/screens/login_screen.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/screens/start_now_screen.dart';
 import 'package:dr_dent/Src/features/OnBoardingFeature/ui/views/on_boarding_screen.dart';
@@ -11,6 +12,7 @@ import 'package:get/get.dart';
 import 'Src/core/services/Lang/localization_services.dart';
 import 'Src/features/AuthFeature/ui/screens/account_type_screen.dart';
 import 'Src/features/AuthFeature/ui/screens/set_business_license_screen.dart';
+import 'Src/features/AuthFeature/ui/screens/set_commercial_registration_and_tax_card_screen.dart';
 import 'Src/features/AuthFeature/ui/screens/verfication_screen.dart';
 import 'Src/features/BaseFeature/ui/screens/base_screen.dart';
 import 'Src/features/ProfileFeature/GlobalInfoemationFeature/MyGeneralDataFeature/Ui/Screen/enter_personal_data_of_company_and_center.dart';
