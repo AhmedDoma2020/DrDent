@@ -34,7 +34,8 @@ class CommentsScreen extends StatelessWidget {
                    padding:  EdgeInsets.only(
                        top: index==0? 16.h : 0
                    ),
-                   child: CommentWidget(comment: _.comments[index],onLike: (){_.likeComment(commentId:_.comments[index].id!);},),
+                   child: CommentWidget(comment: _.comments[index],
+                     onLike: (){_.likeComment(commentId:_.comments[index].id!);},),
                  ),
                  separatorBuilder: (context, index) => 16.0.ESH(),
                  itemCount: _.comments.length,

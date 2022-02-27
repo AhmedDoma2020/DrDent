@@ -81,9 +81,8 @@ class PostCommentsController extends GetxController{
     _likeCommentController.likeComment(
         onSuccess: (){
           if(comments[postIndex].like==1){
-            comments[postIndex].like = 0 ;
+            comments[postIndex].like = 0;
             comments[postIndex].likeNumbers = comments[postIndex].likeNumbers !- 1;
-
           }else{
             comments[postIndex].like = 1 ;
             comments[postIndex].likeNumbers = comments[postIndex].likeNumbers !+ 1 ;

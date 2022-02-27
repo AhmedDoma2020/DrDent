@@ -32,6 +32,7 @@ class StoreScreen extends StatelessWidget {
           32.0.ESH(),
           SliderCardProduct(
             viewAllTitle: 'أحدث المنتجات',
+             titleOnTap: '',
             products: _.recentlyProducts,
           ),
           32.0.ESH(),

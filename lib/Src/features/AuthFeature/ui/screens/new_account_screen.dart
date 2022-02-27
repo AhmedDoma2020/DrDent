@@ -109,7 +109,6 @@ class NewAccountScreen extends StatelessWidget {
                                 ),
                           TextFieldDefault(
                             hint: 'Email_'.tr,
-                            errorText: "error_email_field".tr,
                             controller: _.emailController,
                             keyboardType: TextInputType.emailAddress,
                             fieldType: FieldType.WithBorder,
@@ -120,7 +119,7 @@ class NewAccountScreen extends StatelessWidget {
                             },
                             validation: (String? vale){
                               if(vale!.isEmpty){
-                                return "error_password_field".tr;
+                                return "error_email_field".tr;
                               }
                               else if (!vale.contains("@")) {
                                 return "Please_Enter_Right_Email".tr;
