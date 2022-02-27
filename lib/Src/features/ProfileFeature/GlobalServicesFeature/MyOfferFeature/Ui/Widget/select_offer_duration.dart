@@ -104,6 +104,8 @@ class _SelectOfferDurationRowState extends State<SelectOfferDurationRow> {
                           _startDateTime,
                           _endDateTime,
                         ),
+                        // initialDisplayDate: DateTime.now(),
+
                       ),
                     ),
                   ),

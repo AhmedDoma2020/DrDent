@@ -48,6 +48,7 @@ class AddCenterDoctorScreen extends StatelessWidget {
                   children: [
                     32.0.ESH(),
                     AvatarForm(
+                      futureImage: _.futureAvatar,
                       onTap: (img64) {
                         _.setAvatar =img64;
                       },

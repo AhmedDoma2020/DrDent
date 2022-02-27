@@ -29,6 +29,12 @@ class AddCenterDoctorController extends GetxController {
     _specializationIdSelected = value;
   }
 
+  List<String> _specializationTitleSelected=[];
+  List<String> get specializationTitleSelected => _specializationTitleSelected;
+  set setSpecializationTitleSelected(List<String> value) {
+    _specializationTitleSelected = value;
+  }
+
   String _gender = "male";
 
   String get gender => _gender;
@@ -54,22 +60,25 @@ class AddCenterDoctorController extends GetxController {
   }
 
   void setData(){
-    debugPrint("centerDoctorModel!.image in setData is ${centerDoctorModel!.image}");
     setFutureAvatar = centerDoctorModel!.image;
     nameController!.text= centerDoctorModel!.name;
     setGender = centerDoctorModel!.gender;
     phoneController!.text =centerDoctorModel!.phone;
     jobTitleController!.text = centerDoctorModel!.jobTitle;
-    jobTitleAndSpecializationController!.text = centerDoctorModel!.specialization.join(",");
+    if(centerDoctorModel!.specialization.isNotEmpty){
+      for(var item in centerDoctorModel!.specialization){
+        _specializationTitleSelected.add(item.title);
+        _specializationIdSelected.add(item.id);
+      }
+      jobTitleAndSpecializationController!.text = _specializationTitleSelected.join(",");
+      setSpecializationIdSelected = _specializationIdSelected;
+    }
     noteController!.text = centerDoctorModel!.doctorInfo;
     update();
   }
   RequestStatus status = RequestStatus.initial;
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
-
-  final AddCenterDoctorRepository _addCenterDoctorRepository =
-      AddCenterDoctorRepository();
-
+  final AddCenterDoctorRepository _addCenterDoctorRepository = AddCenterDoctorRepository();
   void submit() async {
     if (globalKey.currentState!.validate()) {
       globalKey.currentState!.save();

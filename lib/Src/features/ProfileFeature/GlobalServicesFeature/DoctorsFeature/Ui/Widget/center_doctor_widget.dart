@@ -97,7 +97,7 @@ int workSpaceIdSelected = 0;
                           child: CustomText(
                             text: widget.doctor.specialization.isEmpty
                                 ? "no_Specialization".tr
-                                : widget.doctor.specialization.join(","),
+                                : widget.doctor.specializationTitle,
                             fontSize: 14,
                             fontW: FW.semibold,
                           )),

@@ -47,55 +47,48 @@ class MyDoctorScreen extends StatelessWidget {
           height: double.infinity,
           width: double.infinity,
           color: Colors.white,
-          child: RefreshIndicator(
-            onRefresh: onRefresh,
-            child: ListView(
-              children: [
-                GetBuilder<FetchCenterDoctorController>(
-                  builder: (_) => _.status == RequestStatus.loading
-                      ? Center(
-                          child: Loader(),
-                        )
-                      : _.centerDoctorList.isEmpty
-                          ? EmptyWidget(
-                              image: "assets/image/emptyDoctor.png",
-                              onTapButton: () {},
-                              availableButton: false,
-                              title: "empty_doctor_title".tr,
-                              spaceBetweenTitleAndSubTitle: 4,
-                              subTitle: "empty_doctor_title_subtitle".tr,
-                              imageH: 124,
-                              imageW: 200,
-                            )
-                          : ListView.builder(
-                              shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
-                              itemBuilder: (context, index) => Column(
-                                children: [
-                                  16.0.ESH(),
-                                  CenterDoctorWidget(
-                                    // indexOfCenterOfDoctor: index ,
-                                    doctor: _.centerDoctorList[index],
-                                    onEditTap: () {
-                                      Get.to(() => AddCenterDoctorScreen(
-                                        isEdit:true,
-                                        centerDoctorModel: _.centerDoctorList[index],
-                                      ));
-                                    },
-                                    onDeleteTap: () {
-                                      _.deleteCenterDoctor(
-                                          doctorId:
-                                              _.centerDoctorList[index].id);
-                                    },
-                                  ),
-                                  16.0.ESH(),
-                                ],
-                              ),
-                              itemCount: _.centerDoctorList.length,
+          child: GetBuilder<FetchCenterDoctorController>(
+            builder: (_) => _.status == RequestStatus.loading
+                ? Center(
+                    child: Loader(),
+                  )
+                : _.centerDoctorList.isEmpty
+                    ? EmptyWidget(
+                        image: "assets/image/emptyDoctor.png",
+                        onTapButton: () {},
+                        availableButton: false,
+                        title: "empty_doctor_title".tr,
+                        spaceBetweenTitleAndSubTitle: 4,
+                        subTitle: "empty_doctor_title_subtitle".tr,
+                        imageH: 124,
+                        imageW: 200,
+                      )
+                    : ListView.builder(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) => Column(
+                          children: [
+                            16.0.ESH(),
+                            CenterDoctorWidget(
+                              // indexOfCenterOfDoctor: index ,
+                              doctor: _.centerDoctorList[index],
+                              onEditTap: () {
+                                Get.to(() => AddCenterDoctorScreen(
+                                  isEdit:true,
+                                  centerDoctorModel: _.centerDoctorList[index],
+                                ));
+                              },
+                              onDeleteTap: _.snackBarStatus == SnackbarStatus.CLOSED? () {
+                                _.deleteCenterDoctor(
+                                    doctorId:
+                                        _.centerDoctorList[index].id);
+                              }:(){},
                             ),
-                ),
-              ],
-            ),
+                            16.0.ESH(),
+                          ],
+                        ),
+                        itemCount: _.centerDoctorList.length,
+                      ),
           ),
         ),
       ),
