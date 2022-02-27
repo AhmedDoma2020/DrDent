@@ -42,31 +42,34 @@ class InsuranceCompaniesScreen extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
             height: double.infinity,
             width: double.infinity,
-            child: GetBuilder<FetchMyInsurancesController>(
-              builder: (_) => _.status == RequestStatus.loading
-                  ? Center(child: Loader())
-                  : _.myInsuranceList.isEmpty
-                      ? EmptyWidget(
-                          image: "assets/image/emptyInsuranceCompany.png",
-                          onTapButton: () {},
-                          availableButton: false,
-                          title: "empty_insurance_company_title".tr,
-                          imageH: 160,
-                          imageW: 140,
-                        )
-                      : ListView.separated(
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) => RowMyInsuranceForm(
-                            insurance: _.myInsuranceList[index],
-                            onDeleteTap:  _.snackBarStatus == SnackbarStatus.CLOSED?() {
-                              _.deleteInsurances(
-                                  insuranceId: _.myInsuranceList[index].id,
-                                  index: index);
-                            }:(){},
+            child: RefreshIndicator(
+              onRefresh: onRefresh,
+              child: GetBuilder<FetchMyInsurancesController>(
+                builder: (_) => _.status == RequestStatus.loading
+                    ? Center(child: Loader())
+                    : _.myInsuranceList.isEmpty
+                        ? EmptyWidget(
+                            image: "assets/image/emptyInsuranceCompany.png",
+                            onTapButton: () {},
+                            availableButton: false,
+                            title: "empty_insurance_company_title".tr,
+                            imageH: 160,
+                            imageW: 140,
+                          )
+                        : ListView.separated(
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) => RowMyInsuranceForm(
+                              insurance: _.myInsuranceList[index],
+                              onDeleteTap:  _.snackBarStatus == SnackbarStatus.CLOSED?() {
+                                _.deleteInsurances(
+                                    insuranceId: _.myInsuranceList[index].id,
+                                    index: index);
+                              }:(){},
+                            ),
+                            separatorBuilder: (context, index) => 16.0.ESH(),
+                            itemCount: _.myInsuranceList.length,
                           ),
-                          separatorBuilder: (context, index) => 16.0.ESH(),
-                          itemCount: _.myInsuranceList.length,
-                        ),
+              ),
             )),
       ),
     );

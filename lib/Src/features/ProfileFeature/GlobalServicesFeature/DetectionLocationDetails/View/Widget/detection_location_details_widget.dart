@@ -13,10 +13,12 @@ class DetectionLocationDetailsWidget extends StatelessWidget {
   final WorkSpaceDetailsModel model;
   final VoidCallback onDeleteTap;
   final VoidCallback onTimeTap;
+  final VoidCallback onEditTap;
   const DetectionLocationDetailsWidget({
     required this.model,
     required this.onDeleteTap,
     required this.onTimeTap,
+    required this.onEditTap,
     Key? key,
   }) : super(key: key);
 
@@ -152,6 +154,7 @@ class DetectionLocationDetailsWidget extends StatelessWidget {
             child: Row(
               children: [
                 IconWidget(onEditTap: onTimeTap,icon: "assets/icons/timeIcon.png",),
+                IconWidget(onEditTap: onEditTap,icon: "assets/icons/edit.png",),
                 DeleteWidget(onDeleteTap: onDeleteTap),
               ],
             ),

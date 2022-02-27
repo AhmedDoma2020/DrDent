@@ -18,11 +18,11 @@ class MyServicesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // FetchMyServicesController _FetchMyServicesController =
-    Get.put(FetchMyServicesController());
+    FetchMyServicesController _fetchMyServicesController =  Get.put(FetchMyServicesController());
     Get.put(FetchAvailableInsurancesController());
-    // Future<void> onRefresh() async {
-    //   await _FetchMyServicesController.fetchMyServices();
-    // }
+    Future<void> onRefresh() async {
+      await _fetchMyServicesController.fetchMyServices();
+    }
     return SafeArea(
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
@@ -46,32 +46,35 @@ class MyServicesScreen extends StatelessWidget {
           height: double.infinity,
           width: double.infinity,
           color: Colors.white,
-          child: GetBuilder<FetchMyServicesController>(
-            builder: (_) => _.status == RequestStatus.loading
-                ? Center(child: Loader())
-                : _.myServicesList.isEmpty
-                    ? EmptyWidget(
-                        image: "assets/image/emptyServices.png",
-                        onTapButton: () {},
-                        availableButton: false,
-                        title: "empty_services_title".tr,
-                        imageH: 160,
-                        imageW: 140,
-                      )
-                    : ListView.separated(
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) => RowMyServiceForm(
-                          onDeleteTap:  _.snackBarStatus == SnackbarStatus.CLOSED? () {
-                            _.deleteServices(
-                                servicesId: _.myServicesList[index].id,
-                                index: index);
-                          }:(){},
-                          onEditTap: () {},
-                          service: _.myServicesList[index],
+          child: RefreshIndicator(
+            onRefresh: onRefresh,
+            child: GetBuilder<FetchMyServicesController>(
+              builder: (_) => _.status == RequestStatus.loading
+                  ? Center(child: Loader())
+                  : _.myServicesList.isEmpty
+                      ? EmptyWidget(
+                          image: "assets/image/emptyServices.png",
+                          onTapButton: () {},
+                          availableButton: false,
+                          title: "empty_services_title".tr,
+                          imageH: 160,
+                          imageW: 140,
+                        )
+                      : ListView.separated(
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) => RowMyServiceForm(
+                            onDeleteTap:  _.snackBarStatus == SnackbarStatus.CLOSED? () {
+                              _.deleteServices(
+                                  servicesId: _.myServicesList[index].id,
+                                  index: index);
+                            }:(){},
+                            onEditTap: () {},
+                            service: _.myServicesList[index],
+                          ),
+                          separatorBuilder: (context, index) => 16.0.ESH(),
+                          itemCount: _.myServicesList.length,
                         ),
-                        separatorBuilder: (context, index) => 16.0.ESH(),
-                        itemCount: _.myServicesList.length,
-                      ),
+            ),
           ),
         ),
       ),

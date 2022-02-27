@@ -1,11 +1,13 @@
 
 
+import 'package:flutter/cupertino.dart';
+
 class WorkSpaceDetailsModel {
   WorkSpaceDetailsModel({
     required this.id,
     required this.name,
     required this.phone,
-    required this.mobile,
+    required this.phone2,
     required this.price,
     required this.detectionTime,
     required this.reservationType,
@@ -19,9 +21,10 @@ class WorkSpaceDetailsModel {
   late final int id;
   late final String name;
   late final String phone;
-  late final String mobile;
+  late final String phone2;
   late final String price;
   late final String detectionTime;
+  late final String dayBooking;
   late final int reservationType;
   late final String image;
   late final String city;
@@ -34,9 +37,15 @@ class WorkSpaceDetailsModel {
     id = json['id']??"";
     name = json['name']??"";
     phone = json['phone']??"";
-    mobile = json['mobile']??"";
+    phone2 = json['mobile']??"";
     price = json['price']??"";
     detectionTime = json['detection_time']??"";
+    if(json['day_booking']!=null){
+      dayBooking = json['day_booking']??"";
+
+    }else{
+      dayBooking = "";
+    }
     reservationType = json['reservation_type']??"";
     image = json['image']??"";
     city = json['city']??"";
@@ -46,6 +55,7 @@ class WorkSpaceDetailsModel {
     isSelected = false ;
   }
 }
+
 
 class Address {
   Address({
@@ -58,9 +68,12 @@ class Address {
     required this.bulidingNumber,
     required this.flatNumber,
     required this.mark,
+    required this.lat,
+    required this.lon,
+
   });
   late final int id;
-  late final String cityId;
+  late final int cityId;
   late final int stateId;
   late final String city;
   late final String state;
@@ -68,6 +81,8 @@ class Address {
   late final String bulidingNumber;
   late final String flatNumber;
   late final String mark;
+  late final double lat;
+  late final double lon;
 
   Address.fromJson(Map<String, dynamic> json){
     id = json['id']??"";
@@ -79,5 +94,7 @@ class Address {
     bulidingNumber = json['buliding_number']??"";
     flatNumber = json['flat_number']??"";
     mark = json['mark']??"";
+    lat = json['lat']??0.0;
+    lon = json['lon']??0.0;
   }
 }

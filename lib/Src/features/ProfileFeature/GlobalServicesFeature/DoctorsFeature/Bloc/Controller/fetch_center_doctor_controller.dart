@@ -19,9 +19,7 @@ import 'package:get/get.dart';
 
 class FetchCenterDoctorController extends GetxController {
   int centerId;
-
   FetchCenterDoctorController({required this.centerId});
-
   List<CenterDoctorModel> _centerDoctorList = [];
   List<CenterDoctorModel> get centerDoctorList => _centerDoctorList;
   RequestStatus status = RequestStatus.initial;
@@ -49,29 +47,27 @@ class FetchCenterDoctorController extends GetxController {
     }
   }
 
-
+void deleteCenterDoctorLocal(int index){
+  _centerDoctorList.removeAt(index);
+}
   final DeleteCenterDoctorRepository _deleteCenterDoctorRepository = DeleteCenterDoctorRepository();
-  Future<void> deleteCenterDoctor({required int doctorId, required int index}) async {
-    _centerDoctorList.removeAt(index);
-    update();
-    // setLoading();
-    // var response = await _deleteCenterDoctorRepository.deleteCenterDoctor(doctorId:  doctorId);
-    // Get.back();
-    // if (response.statusCode == 200 && response.data["status"] == true) {
-    //   debugPrint("request operation success");
-    //   _centerDoctorList.clear();
-    //   for (var item in response.data['data']) {
-    //     _centerDoctorList.add(CenterDoctorModel.fromJson(item));
-    //   }
-    //   debugPrint("convert operation success");
-    //   status = RequestStatus.done;
-    //   update();
-    //   customSnackBar(title: "delete_success".tr);
-    // } else {
-    //   status = RequestStatus.error;
-    //   customSnackBar(title: response.data["message"]??"Error");
-    //   update();
-    // }
+  Future<void> deleteCenterDoctor({required int doctorId}) async {
+    int indexOfCenterDoctor = _centerDoctorList.indexWhere((element) => element.id==doctorId);
+    setLoading();
+    var response = await _deleteCenterDoctorRepository.deleteCenterDoctor(doctorId:  doctorId);
+    Get.back();
+    if (response.statusCode == 200 && response.data["status"] == true) {
+      debugPrint("request operation success");
+      deleteCenterDoctorLocal(indexOfCenterDoctor);
+      debugPrint("convert operation success");
+      status = RequestStatus.done;
+      update();
+      customSnackBar(title: "delete_success".tr);
+    } else {
+      status = RequestStatus.error;
+      customSnackBar(title: response.data["message"]??"Error");
+      update();
+    }
   }
 
   @override

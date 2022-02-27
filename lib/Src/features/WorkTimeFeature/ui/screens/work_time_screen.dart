@@ -12,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-
 import '/src/core/utils/extensions.dart';
 
 class WorkTimeScreen extends StatelessWidget {
@@ -20,7 +19,10 @@ class WorkTimeScreen extends StatelessWidget {
   final int doctorId;
   final VoidCallback onSuccess;
   final bool isBack;
+  final bool isEdit;
   final UserTypeEnum userType;
+  final String fetchDetectionTime;
+  final String fetchDayBooking;
 
   WorkTimeScreen({
     Key? key,
@@ -29,6 +31,9 @@ class WorkTimeScreen extends StatelessWidget {
     required this.onSuccess,
     required this.userType,
     this.isBack = false,
+    this.isEdit = false,
+    this.fetchDayBooking = '',
+    this.fetchDetectionTime = '',
   }) : super(key: key);
 
   @override
@@ -37,8 +42,7 @@ class WorkTimeScreen extends StatelessWidget {
     debugPrint(" box.read('id') in WorkTimeScreen is ${ box.read('id')}");
     debugPrint("workspaceId in WorkTimeScreen is $workspaceId");
     debugPrint("doctorId in WorkTimeScreen is $doctorId");
-    Get.put(WorkTimeController(
-        workSpaceId: workspaceId, doctorId: doctorId, userType: userType));
+    Get.put(WorkTimeController(workSpaceId: workspaceId, doctorId: doctorId, userType: userType,isEdit: isEdit,fetchDayBooking: fetchDayBooking,fetchDetectionTime:fetchDetectionTime ,));
     return Scaffold(
       appBar: AppBars.appBarDefault(title: 'مواعيد العمل', isBack: isBack),
       body: GetBuilder<WorkTimeController>(
@@ -85,8 +89,7 @@ class WorkTimeScreen extends StatelessWidget {
                                                   MainAxisAlignment.center,
                                                   children: [
                                                     CustomText(
-                                                      text:
-                                                      'اختر نوع استقبال الحجوزات',
+                                                      text: 'اختر نوع استقبال الحجوزات',
                                                       color: kCMainBlack2,
                                                       fontSize: 13,
                                                       fontW: FW.semibold,
@@ -174,6 +177,7 @@ class WorkTimeScreen extends StatelessWidget {
                             TextFieldDefault(
                               hint: 'مدة الكشف',
                               errorText: 'يجب ادخال مدة الكشف',
+                              keyboardType: TextInputType.datetime,
                               horizentalPadding: 0,
                               controller: _.detectionTime,
                             ),

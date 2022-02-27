@@ -16,7 +16,7 @@ mixin ApiKey{
    final String uRLDoctorWorkDays = apiBaseUrl + "fetch_doctor_work_times";
 // for center
    final String uRLAddDayTimeForCenter = apiBaseUrl + "add_work_center_day";
-   final String uRLDeleteDayTimeForCenter = apiBaseUrl + "delete_work_center_days";
+   final String uRLDeleteDayTimeForCenter = apiBaseUrl + "delete_work_center_day";
    final String uRLDoctorWorkDaysForCenter = apiBaseUrl + "fetch_my_center_days";
 // for Company
    final String uRLAddDayTimeForCompany = apiBaseUrl + "add_work_user_day";
@@ -57,6 +57,7 @@ mixin ApiKey{
    final String uRLSetExperienceYears = apiBaseUrl + "set_experience_years";
    final String uRLSetCommercialRegistrationAndTaxCard = apiBaseUrl + "company_set_store_info";
    final String uRLSetWorkSpace = apiBaseUrl + "set_work_space";
+   final String uRLEditWorkSpace = apiBaseUrl + "edit_work_space";
    final String uRLCheckPhone = apiBaseUrl + "check_phone";
    final String uRLCity = apiBaseUrl + "city";
    final String uRLFetchAvailableInsurances = apiBaseUrl + "fetch_available_insurances";

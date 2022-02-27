@@ -19,6 +19,7 @@ class FetchDoctorCertificationController extends GetxController {
     var response = await _fetchDoctorCertificationRepo.fetchDoctorCertification();
   status = RequestStatus.done;
     if (response.statusCode == 200 && response.data["status"] == true) {
+      _certificationList.clear();
       for(var item in response.data['data']){
         _certificationList.add(CertificationModel.fromJson(item));
       }
