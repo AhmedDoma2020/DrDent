@@ -6,10 +6,15 @@ import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+import '../../../../../../bloc/model/service_model.dart';
+
 class SetServicesController extends GetxController {
+  final ServiceModel? serviceModel;
+  final bool isEdit;
+  SetServicesController({this.serviceModel, this.isEdit=false});
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
   TextEditingController? servicesTypeSelectedController = TextEditingController();
-  TextEditingController? workSpaceSelectedController = TextEditingController();
+  // TextEditingController? workSpaceSelectedController = TextEditingController();
   TextEditingController? servicesDurationController = TextEditingController();
   TextEditingController? servicesCostController = TextEditingController();
   int? _servicesId;
@@ -22,6 +27,14 @@ class SetServicesController extends GetxController {
   set setWorkSpaceId(int value) {
     _workSpaceId = value;
   }
+  void setData(){
+    servicesTypeSelectedController!.text=serviceModel!.title;
+    servicesCostController!.text=serviceModel!.price;
+    servicesDurationController!.text=serviceModel!.time;
+    setServicesId = serviceModel!.id;
+    update();
+  }
+
   RequestStatus status = RequestStatus.initial;
   final FetchMyServicesController _fetchMyServicesController =Get.put(FetchMyServicesController());
   final SetServicesRepository _setServicesRepository = SetServicesRepository();
@@ -57,6 +70,7 @@ class SetServicesController extends GetxController {
     servicesTypeSelectedController = TextEditingController();
     servicesDurationController = TextEditingController();
     servicesCostController = TextEditingController();
+    if(isEdit)setData();
   }
 
   @override

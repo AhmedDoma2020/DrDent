@@ -57,37 +57,43 @@ class AddOfferAndDiscountScreen extends StatelessWidget {
                     16.0.ESH(),
                     GetBuilder<FetchMyServicesController>(
                       builder: (myServicesController) => InkWell(
-                        onTap: myServicesController.status == RequestStatus.loading ?  () {
-                          customSnackBar(
-                              title: "loading_Data".tr,);
-                        }:myServicesController.myServicesList.isEmpty
+                        onTap: myServicesController.status ==
+                                RequestStatus.loading
                             ? () {
                                 customSnackBar(
-                                    title: "no_service_selected_title".tr,
-                                    subtitle:
-                                        "no_service_selected_sup_title".tr);
+                                  title: "loading_Data".tr,
+                                );
                               }
-                            : () {
-                                Get.bottomSheet(AddServicesButtonSheet(
-                                  onTap: () {
-                                    _.servicesIdSelectedList.clear();
-                                    _.servicesTitleSelectedList.clear();
-                                    for (var item in myServicesController
-                                        .myServicesList) {
-                                      if (item.selected) {
-                                        _.servicesIdSelectedList.add(item.id);
-                                        _.servicesTitleSelectedList
-                                            .add(item.title);
-                                      }
-                                    }
-                                    debugPrint(
-                                        "servicesIdSelectedList ${_.servicesIdSelectedList}");
-                                    _.servicesSelectedController!.text =
-                                        _.servicesTitleSelectedList.join(",");
-                                    Get.back();
+                            : myServicesController.myServicesList.isEmpty
+                                ? () {
+                                    customSnackBar(
+                                        title: "no_service_selected_title".tr,
+                                        subtitle:
+                                            "no_service_selected_sup_title".tr);
+                                  }
+                                : () {
+                                    Get.bottomSheet(AddServicesButtonSheet(
+                                      onTap: () {
+                                        _.servicesIdSelectedList.clear();
+                                        _.servicesTitleSelectedList.clear();
+                                        for (var item in myServicesController
+                                            .myServicesList) {
+                                          if (item.selected) {
+                                            _.servicesIdSelectedList
+                                                .add(item.id);
+                                            _.servicesTitleSelectedList
+                                                .add(item.title);
+                                          }
+                                        }
+                                        debugPrint(
+                                            "servicesIdSelectedList ${_.servicesIdSelectedList}");
+                                        _.servicesSelectedController!.text = _
+                                            .servicesTitleSelectedList
+                                            .join(",");
+                                        Get.back();
+                                      },
+                                    ), isScrollControlled: true);
                                   },
-                                ), isScrollControlled: true);
-                              },
                         child: TextFieldDefault(
                           hint: 'select_services'.tr,
                           errorText: "error_select_services".tr,

@@ -41,7 +41,7 @@ class AddServicesButtonSheet extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        RowTopBottomSheet(title: "insurance_companies".tr),
+                        RowTopBottomSheet(title: "my_services".tr),
                         24.0.ESH(),
                         Container(
                           // height: 260.h,

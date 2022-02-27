@@ -10,12 +10,17 @@ import 'package:dr_dent/Src/ui/widgets/buttons/button_default.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import '../../../../../../../bloc/model/service_model.dart';
 import '/src/core/utils/extensions.dart';
 
 class AddServicesSheet extends StatelessWidget {
+  final ServiceModel? serviceModel;
+  final bool isEdit;
+  AddServicesSheet({this.serviceModel, this.isEdit=false});
+
   @override
   Widget build(BuildContext context) {
-    Get.put(SetServicesController());
+    Get.put(SetServicesController(isEdit:isEdit ,serviceModel:serviceModel,));
     Get.put(FetchAvailableServicesController());
     // Get.put(FetchDetectionLocationDetailsController());
     var node = FocusScope.of(context);
@@ -80,7 +85,7 @@ class AddServicesSheet extends StatelessWidget {
                         // ),
                         // 16.0.ESH(),
                         InkWell(
-                          onTap: () {
+                          onTap: isEdit ?(){}:() {
                             Get.bottomSheet(AvailableServicesButtonSheet(
                               onSelected: (idSelected,titleSelected) {
                                 _.servicesTypeSelectedController!.text=titleSelected;
@@ -151,4 +156,5 @@ class AddServicesSheet extends StatelessWidget {
       ),
     );
   }
+
 }

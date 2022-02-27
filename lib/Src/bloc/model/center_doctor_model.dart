@@ -24,6 +24,7 @@ class CenterDoctorModel {
   late final String gender;
   late final String jobTitle;
   late final List<Specialization> specialization;
+  late final String specializationTitle;
   late final List<Workspaces> workspaces;
 
   CenterDoctorModel.fromJson(Map<String, dynamic> json){
@@ -36,6 +37,11 @@ class CenterDoctorModel {
       specialization = [Specialization(id: 0,title: "no_Specialization".tr,selected: false,)];
     }else{
       specialization = List.from(json['specialization']).map((e)=>Specialization.fromJson(e)).toList();
+      List<String> specializationList=[];
+      for(var item in specialization){
+        specializationList.add(item.title);
+      }
+      specializationTitle = specializationList.join(",");
     }
     workspaces = List.from(json['workspaces']).map((e)=>Workspaces.fromJson(e)).toList();
     if(json['gender'] != null ){

@@ -68,7 +68,9 @@ class MyServicesScreen extends StatelessWidget {
                                   servicesId: _.myServicesList[index].id,
                                   index: index);
                             }:(){},
-                            onEditTap: () {},
+                            onEditTap: () {
+                              Get.bottomSheet(AddServicesSheet(isEdit:true,serviceModel: _.myServicesList[index],), isScrollControlled: true);
+                            },
                             service: _.myServicesList[index],
                           ),
                           separatorBuilder: (context, index) => 16.0.ESH(),
