@@ -57,7 +57,7 @@ class CardProductRect extends StatelessWidget {
                     ),
                     7.0.ESH(),
                     CustomText(
-                      text: 'health co',
+                      text: product.companyName,
                       fontSize: 12,
                       fontW: FW.light,
                       color: kCMainGrey,

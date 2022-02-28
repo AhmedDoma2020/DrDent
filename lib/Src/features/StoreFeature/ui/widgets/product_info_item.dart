@@ -17,7 +17,7 @@ class ProductInfoItem extends StatelessWidget {
         CustomText(
           text: title,
           color: kCMainBlack2,
-          fontW: FW.demi,
+          fontW: FW.semicond,
           fontSize: 18,
         ),
         5.0.ESH(),

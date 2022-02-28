@@ -67,6 +67,8 @@ class EnterPersonalDataOfCompanyAndCenterScreen extends StatelessWidget {
                       fieldType: FieldType.WithBorder,
                       enableBorder: Colors.transparent,
                       horizentalPadding: 16,
+                      enable: isEdit?false:true,
+                      disableBorder: Colors.transparent,
                       onComplete: () {
                         node.nextFocus();
                       },
@@ -119,6 +121,9 @@ class EnterPersonalDataOfCompanyAndCenterScreen extends StatelessWidget {
                       onImageSelected: (image64){
                         _.setTaxNumberImage = image64;
                       },
+                      onImageCleared: (){
+                        _.setFutureTaxImage='';
+                      },
                     ),
                     16.0.ESH(),
                     TextFieldDefault(
@@ -140,6 +145,9 @@ class EnterPersonalDataOfCompanyAndCenterScreen extends StatelessWidget {
                       futureImage: _.futureLogImage,
                       onImageSelected: (image64) {
                         _.setLogRecordImage = image64;
+                      },
+                      onImageCleared: (){
+                        _.setFutureLogImage='';
                       },
                     ),
                     16.0.ESH(),

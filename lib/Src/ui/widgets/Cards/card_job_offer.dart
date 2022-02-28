@@ -6,6 +6,7 @@ import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/edit_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import '../GeneralWidgets/image_network.dart';
 import '/src/core/utils/extensions.dart';
 import 'card_tag.dart';
 
@@ -43,7 +44,12 @@ class CardJobOffer extends StatelessWidget {
                     clipBehavior: Clip.hardEdge,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.r),
-                      color: Colors.red
+                      color: kCLightGrey.withOpacity(0.5)
+                    ),
+                    child: ImageNetwork(
+                      url: offer.ownerImage,
+                      width: 61.w,
+                      height: 61.w,
                     ),
                   ),
                   16.0.ESW(),

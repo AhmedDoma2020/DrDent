@@ -8,8 +8,11 @@ import 'package:dr_dent/Src/ui/widgets/buttons/button_default.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
+import 'package:get_storage/get_storage.dart';
 import '/src/core/utils/extensions.dart';
+import 'inquiry_of_product.dart';
 
 class ProductScreen extends StatelessWidget {
   final Product product;
@@ -17,29 +20,33 @@ class ProductScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GetStorage box = GetStorage();
     return Scaffold(
-      body: Stack(
-        children: [
-          Column(
-            children: [
-              Container(
-                width: double.infinity,
-                height: 300.h,
-                clipBehavior: Clip.hardEdge,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    bottomLeft:  Radius.circular(30.r),
-                    bottomRight: Radius.circular(30.r),
-                  )
-                ),
-                child: ImageNetwork(
-                  url: product.images!.isNotEmpty? product.images!.first : '',
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              children: [
+                Container(
                   width: double.infinity,
-                  height: 320.h,
+                  height: 300.h,
+                  clipBehavior: Clip.hardEdge,
+                  decoration: BoxDecoration(
+                    color: Colors.yellow,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft:  Radius.circular(30.r),
+                      bottomRight: Radius.circular(30.r),
+                    )
+                  ),
+                  child: ImageNetwork(
+                    url: product.images!.isNotEmpty? product.images!.first : '',
+                    width: double.infinity,
+                    height: 300.h,
+                  ),
                 ),
-              ),
-              Expanded(
-                child: Padding(
+                16.0.ESH(),
+                Padding(
                   padding:  EdgeInsets.symmetric(
                       horizontal: 16.w
                   ),
@@ -48,7 +55,7 @@ class ProductScreen extends StatelessWidget {
                     physics: BouncingScrollPhysics(),
                     children: [
                       CustomText(
-                        text: product.storeName,
+                        text: product.categoryTitle,
                         color: kCMainGrey,
                         fontW: FW.thin,
                         fontSize: 14,
@@ -67,21 +74,24 @@ class ProductScreen extends StatelessWidget {
                     ],
                   ),
                 ),
+              ],
+            ),
+            product.companyId == box.read('id')?0.0.ESW():
+            Padding(
+              padding:  EdgeInsets.only(bottom: 24.h,right: 16.w,left: 16.w),
+              child: ButtonDefault(
+                title: 'inquire_about_product_price',
+                onTap: () {
+                  Get.bottomSheet(
+                      InquiryOfProductButtonSheet(
+
+                      ),
+                  );
+                }
               ),
-            ],
-          ),
-          // Padding(
-          //   padding:  EdgeInsets.only(
-          //     bottom: 16.h
-          //   ),
-          //   child: Align(
-          //     alignment: Alignment.bottomCenter,
-          //     child: ButtonDefault(
-          //       title: 'الإستعلام عن سعر المنتج',
-          //     ),
-          //   ),
-          // ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }

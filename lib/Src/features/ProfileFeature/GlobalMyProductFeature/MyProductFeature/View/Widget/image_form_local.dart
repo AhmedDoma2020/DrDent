@@ -1,11 +1,8 @@
-
-
 import 'dart:io';
 
-import 'package:dr_dent/Src/core/services/photo_view.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImageFormForm extends StatelessWidget {
@@ -30,11 +27,12 @@ class ImageFormForm extends StatelessWidget {
           children: [
             Center(
               child: GestureDetector(
-                  onTap: (){
-                    // Get.to(() => PhotoViewWidget(imageProvider: NetworkImage(image),));
-                  },
-                  child: Image.file(File(image.path)
-                  )),
+                onTap: () {
+                  // Get.to(() => PhotoViewWidget(imageProvider: NetworkImage(image),));
+                },
+                child: Image.file(File(image.path),fit: BoxFit.cover,height: 124.h,
+                    width: 124.w),
+              ),
             ),
             Positioned(
               top: 8.h,
