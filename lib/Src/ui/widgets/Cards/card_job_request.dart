@@ -5,13 +5,16 @@ import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/image_network.dart';
 import 'package:dr_dent/Src/ui/widgets/buttons/button_default.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../GeneralWidgets/edit_widget.dart';
 import '/src/core/utils/extensions.dart';
 import 'card_tag.dart';
 
 class CardJobRequest extends StatelessWidget {
   final double width;
   final JobRequest request;
-  const CardJobRequest({Key? key,this.width=343,required this.request}) : super(key: key);
+  final bool isMine;
+  final VoidCallback? onDelete;
+  const CardJobRequest({Key? key,this.width=343,required this.request,this.isMine=false,this.onDelete}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -80,6 +83,17 @@ class CardJobRequest extends StatelessWidget {
                     ],
                   ),
                 ),
+                isMine?
+                16.0.ESW():0.0.ESH(),
+                isMine?
+                IconWidget(
+                  icon: 'assets/icons/delete.png',
+                  onEditTap: (){
+                    if(onDelete!=null){
+                      onDelete!();
+                    }
+                  },
+                ):0.0.ESH(),
               ],
             ),
             16.0.ESH(),

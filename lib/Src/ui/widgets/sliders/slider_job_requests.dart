@@ -7,13 +7,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '/src/core/utils/extensions.dart';
 class SliderJobRequests extends StatelessWidget {
   final List<JobRequest> requests;
-  const SliderJobRequests({Key? key,required this.requests}) : super(key: key);
+  final Function(int) onDelete;
+  const SliderJobRequests({Key? key,required this.requests,required this.onDelete}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return  ListView.separated(
         itemBuilder: (context, index) => CardJobRequest(
           width: 330,
+          isMine: true,
           request: requests[index],
+          onDelete: (){
+            onDelete(requests[index].id!);
+          },
         ),
         separatorBuilder: (context, index) => 16.0.ESW(),
         itemCount: requests.length,
