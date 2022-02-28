@@ -1,8 +1,13 @@
+import 'dart:ffi';
+
 import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/JobFeature/bloc/model/job_request.dart';
 import 'package:dr_dent/Src/features/JobFeature/bloc/repository/job_requests_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+
+import '../../../../core/services/dialogs.dart';
+import '../Repository/delete_jop_request_repo.dart';
 
 class JobRequestController extends GetxController{
   RequestStatus status = RequestStatus.initial;
@@ -14,9 +19,11 @@ class JobRequestController extends GetxController{
 
   // ========== START FETCH DATA  ====================
   final JobRequestsRepository _jobRequestsRepository = JobRequestsRepository();
-  Future<void> fetchJobRequests()async{
-    status = RequestStatus.loading;
-    update();
+  Future<void> fetchJobRequests({VoidCallback? onSuccess , bool forceLoading=true})async{
+    if(forceLoading){
+      status = RequestStatus.loading;
+      update();
+    }
     var response = await _jobRequestsRepository.fetchJobRequests();
     if (response.statusCode == 200 && response.data["status"] == true) {
       debugPrint("request operation success");
@@ -32,14 +39,34 @@ class JobRequestController extends GetxController{
         }
       }
       debugPrint("convert operation success");
+      if(onSuccess!=null){
+        onSuccess();
+      }
       status = RequestStatus.done;
       update();
     }else{
-      status = RequestStatus.error;
+      status = RequestStatus.done;
       update();
     }
   }
   // ================  END FETCH DATA  ====================
+
+
+
+  // ========== START DELETE DATA  ====================
+  final DeleteJopRequestRepository _deleteJopRequestRepository = DeleteJopRequestRepository();
+  Future<void> deleteRequest({required int id})async{
+    setLoading();
+    var response = await _deleteJopRequestRepository.deleteJopRequest(id: id);
+    if (response.statusCode == 200 && response.data["status"] == true) {
+      fetchJobRequests(onSuccess: (){Get.back();},forceLoading: false);
+    }else{
+      Get.back();
+    }
+  }
+  // ================  END DELETE DATA  ====================
+
+
 
   @override
   void onInit() {

@@ -46,6 +46,7 @@ mixin ApiKey{
    final String uRLAddComment = apiBaseUrl + "add_comment";
    final String uRLAddJobOffer = apiBaseUrl + "add_job_offer";
    final String uRLDeleteJobOffer = apiBaseUrl + "delete_job_offer";
+   final String uRLDeleteJobRequest = apiBaseUrl + "delete_job_request";
 
 
 
