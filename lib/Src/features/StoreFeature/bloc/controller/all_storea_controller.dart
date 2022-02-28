@@ -16,8 +16,11 @@ class AllStoresController extends GetxController{
   List<Store> _stores = [];
   List<Store> get stores => _stores;
 
+  List<Store> _searchStores = [];
+  List<Store> get searchStores => _searchStores;
 
 
+  bool isSearch = false;
 
   bool _isGrid = false;
   bool get isGrid => _isGrid;
@@ -50,6 +53,24 @@ class AllStoresController extends GetxController{
     }
   }
   // ================  END FETCH DATA  ====================
+
+
+
+  void searchWord({String word=''}){
+    if(word.isNotEmpty){
+      isSearch = true;
+    }else{
+      isSearch = false;
+    }
+    _searchStores.clear();
+    _stores.forEach((element) {
+      if(element.name!.contains(word)){
+        _searchStores.add(element);
+      }
+    });
+    update();
+  }
+
   @override
   void onInit() {
     super.onInit();

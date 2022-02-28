@@ -23,36 +23,41 @@ class StoreScreen extends StatelessWidget {
       builder: (_) =>
           _.status != RequestStatus.done?
           Center(child: Loader(),):
-          ListView(
+          RefreshIndicator(
+            onRefresh: ()async{
+              _.fetchStore();
+            },
+            child: ListView(
         children: [
-          16.0.ESH(),
-          CarouselList(
-            resAddsList: _.adds
-          ),
-          32.0.ESH(),
-          SliderCardProduct(
-            viewAllTitle: 'أحدث المنتجات',
-             titleOnTap: '',
-            products: _.recentlyProducts,
-          ),
-          32.0.ESH(),
-          SliderCardCompany(
-            viewAllTitle: 'الشركات الطبية',
-            stores: _.stores,
-            onViewAllTap: (){
-              Get.to(()=>AllStoresScreen());
-            },
-          ),
-          32.0.ESH(),
-          SliderCardProduct(
-            viewAllTitle: 'كل المنتجات',
-            products: _.products,
-            onViewAllTap: (){
-              Get.to(()=>AllProductsScreen());
-            },
-          ),
+            16.0.ESH(),
+            CarouselList(
+              resAddsList: _.adds
+            ),
+            32.0.ESH(),
+            SliderCardProduct(
+              viewAllTitle: 'أحدث المنتجات',
+               titleOnTap: '',
+              products: _.recentlyProducts,
+            ),
+            32.0.ESH(),
+            SliderCardCompany(
+              viewAllTitle: 'الشركات الطبية',
+              stores: _.stores,
+              onViewAllTap: (){
+                Get.to(()=>AllStoresScreen());
+              },
+            ),
+            32.0.ESH(),
+            SliderCardProduct(
+              viewAllTitle: 'كل المنتجات',
+              products: _.products,
+              onViewAllTap: (){
+                Get.to(()=>AllProductsScreen());
+              },
+            ),
         ],
       ),
+          ),
     );
   }
 }

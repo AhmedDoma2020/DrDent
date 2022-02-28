@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dr_dent/Src/bloc/model/add_model.dart';
 import 'package:dr_dent/Src/bloc/model/adds.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
+import 'package:dr_dent/Src/core/services/launcher_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -33,17 +34,18 @@ class CarouselList extends StatelessWidget {
               padding: EdgeInsets.symmetric(
                   horizontal:0.w),
               child: GestureDetector(
-                // onTap: () {
-                //   Navigator.push(
-                //       context,
-                //       MaterialPageRoute(
-                //         builder: (context) =>
-                //             HeroPhotoViewRouteWrapperClientHome(
-                //               imageProvider:
-                //               NetworkImage(resAddsList[index].image!),
-                //             ),
-                //       ));
-                // },
+                onTap: () {
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //       builder: (context) =>
+                  //           HeroPhotoViewRouteWrapperClientHome(
+                  //             imageProvider:
+                  //             NetworkImage(resAddsList[index].image!),
+                  //           ),
+                  //     ));
+                  launchURL(resAddsList[index].link!);
+                },
                 child: AspectRatio(
                   aspectRatio: 2,
                   child: Card(

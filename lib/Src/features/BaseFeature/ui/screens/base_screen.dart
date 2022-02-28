@@ -25,6 +25,7 @@ class BaseScreen extends StatelessWidget {
     // Get.put(SocialController());
     debugPrint("BaseScreen2");
     Get.put(BaseController());
+    Get.put(SocialController());
     return GetBuilder<BaseController>(
       builder: (_) =>  Scaffold(
         key: _key,

@@ -23,7 +23,8 @@ class AddPostController extends GetxController  {
 
   String _shareWithButtonTitle ="";
   String get shareWithButtonTitle => _shareWithButtonTitle;
-  final SocialController _socialController = Get.put(SocialController());
+  // final SocialController _socialController = Get.put(SocialController());
+  final SocialController _socialController = Get.find();
 
   final AddPostRepository _addPostRepository =AddPostRepository();
 

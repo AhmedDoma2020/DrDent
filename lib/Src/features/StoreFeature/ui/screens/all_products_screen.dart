@@ -30,7 +30,10 @@ class AllProductsScreen extends StatelessWidget {
         child:GetBuilder<AllProductsController>(
           builder: (_) =>  Column(
             children: [
-              SearchRow(onGridTap: (){_.changeIsGrid();},),
+              SearchRow(
+                onGridTap: (){_.changeIsGrid();},
+                onWordChange: (value){_.searchWord(word: value);},
+              ),
               16.0.ESH(),
               // const TabsCategory(),
               // 16.0.ESH(),
@@ -41,8 +44,8 @@ class AllProductsScreen extends StatelessWidget {
                   duration: const Duration(milliseconds: 500),
                    curve: Curves.easeIn,
                    child: !_.isGrid?
-                   ListCardProductRect(products: _.products,):
-                   GridCardProduct(products: _.products,),
+                   ListCardProductRect(products: _.isSearch?_.searchProducts:_.products,):
+                   GridCardProduct(products: _.isSearch?_.searchProducts:_.products,),
               )
               )
             ],

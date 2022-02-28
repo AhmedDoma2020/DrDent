@@ -24,59 +24,64 @@ class JobOffersScreen extends StatelessWidget {
       builder: (_) =>
           _.status != RequestStatus.done?
           Center(child: Loader(),):
-          ListView(
+          RefreshIndicator(
+            onRefresh: ()async{
+              _.fetchJobOffers();
+            },
+            child: ListView(
         children: [
-          _.myJobOffers.isNotEmpty?
-          Column(
-            children: [
-              Padding(
-                padding:  EdgeInsets.symmetric(
-                    horizontal: 16.0.w
+            _.myJobOffers.isNotEmpty?
+            Column(
+              children: [
+                Padding(
+                  padding:  EdgeInsets.symmetric(
+                      horizontal: 16.0.w
+                  ),
+                  child: Row(
+                    children: [
+                      CustomText(
+                        text: 'طلباتي',
+                        fontW: FW.demi,
+                        fontSize: 14,
+                        color: kCMainBlack2,
+                      ),
+                    ],
+                  ),
                 ),
-                child: Row(
-                  children: [
-                    CustomText(
-                      text: 'طلباتي',
-                      fontW: FW.demi,
-                      fontSize: 14,
-                      color: kCMainBlack2,
-                    ),
-                  ],
+                16.0.ESH(),
+                SizedBox(
+                    height: 220.h,
+                    child: SliderJobOffers(offers: _.myJobOffers,onDelete: (id){_.deleteJobOffers(id: id);},)
                 ),
-              ),
-              16.0.ESH(),
-              SizedBox(
-                  height: 220.h,
-                  child: SliderJobOffers(offers: _.myJobOffers,)
-              ),
-              16.0.ESH(),
-            ],
-          )
-              :
-          0.0.ESH(),
+                16.0.ESH(),
+              ],
+            )
+                :
+            0.0.ESH(),
          Column(
-           children: [
-             Padding(
-               padding:  EdgeInsets.symmetric(
-                   horizontal: 16.0.w
+             children: [
+               Padding(
+                 padding:  EdgeInsets.symmetric(
+                     horizontal: 16.0.w
+                 ),
+                 child: Row(
+                   children: [
+                     CustomText(
+                       text: 'كل الطلبات',
+                       fontW: FW.demi,
+                       fontSize: 14,
+                       color: kCMainBlack2,
+                     ),
+                   ],
+                 ),
                ),
-               child: Row(
-                 children: [
-                   CustomText(
-                     text: 'كل الطلبات',
-                     fontW: FW.demi,
-                     fontSize: 14,
-                     color: kCMainBlack2,
-                   ),
-                 ],
-               ),
-             ),
-             0.0.ESH(),
-             ListJobOffers(offers: _.jobOffers,),
-           ],
+               0.0.ESH(),
+               ListJobOffers(offers: _.jobOffers,),
+             ],
          ),
         ],
-      )
+      ),
+          )
     );
   }
 }

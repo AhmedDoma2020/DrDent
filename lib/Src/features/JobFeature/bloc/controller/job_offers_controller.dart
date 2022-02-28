@@ -1,4 +1,6 @@
+import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
+import 'package:dr_dent/Src/features/JobFeature/bloc/Repository/delete_jop_offer_repo.dart';
 import 'package:dr_dent/Src/features/JobFeature/bloc/model/job_offer.dart';
 import 'package:dr_dent/Src/features/JobFeature/bloc/model/job_request.dart';
 import 'package:dr_dent/Src/features/JobFeature/bloc/repository/job_offers_repository.dart';
@@ -16,9 +18,12 @@ class JobOffersController extends GetxController{
 
   // ========== START FETCH DATA  ====================
   final JobOffersRepository _jobOffersRepository = JobOffersRepository();
-  Future<void> fetchJobOffers()async{
-    status = RequestStatus.loading;
-    update();
+
+  Future<void> fetchJobOffers({VoidCallback? onSuccess , bool forceLoading=true})async{
+    if(forceLoading){
+      status = RequestStatus.loading;
+      update();
+    }
     var response = await _jobOffersRepository.fetchJobOffers();
     if (response.statusCode == 200 && response.data["status"] == true) {
       debugPrint("request operation success");
@@ -35,6 +40,9 @@ class JobOffersController extends GetxController{
         }
       }
       debugPrint("convert operation success");
+      if(onSuccess!=null){
+        onSuccess();
+      }
       status = RequestStatus.done;
       update();
     }else{
@@ -43,6 +51,22 @@ class JobOffersController extends GetxController{
     }
   }
   // ================  END FETCH DATA  ====================
+
+
+
+  // ========== START DELETE DATA  ====================
+  final DeleteJopOfferRepository _deleteJopOfferRepository = DeleteJopOfferRepository();
+  Future<void> deleteJobOffers({required int id})async{
+    setLoading();
+    var response = await _deleteJopOfferRepository.deleteJopOffer(id: id);
+    if (response.statusCode == 200 && response.data["status"] == true) {
+      fetchJobOffers(onSuccess: (){Get.back();},forceLoading: false);
+    }else{
+    Get.back();
+    }
+  }
+  // ================  END DELETE DATA  ====================
+
 
   @override
   void onInit() {

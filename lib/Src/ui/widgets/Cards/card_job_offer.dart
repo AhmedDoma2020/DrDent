@@ -2,6 +2,7 @@ import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/features/JobFeature/bloc/model/job_offer.dart';
 import 'package:dr_dent/Src/features/JobFeature/ui/screens/job_screen.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
+import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/edit_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -10,7 +11,9 @@ import 'card_tag.dart';
 
 class CardJobOffer extends StatelessWidget {
   final JobOffer offer;
-  const CardJobOffer({Key? key,required this.offer}) : super(key: key);
+  final VoidCallback? onTap;
+  final bool isMine;
+  const CardJobOffer({Key? key,required this.offer,this.onTap,this.isMine=false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +56,7 @@ class CardJobOffer extends StatelessWidget {
                           color: kCMainBlack2,
                           fontSize: 14,
                           fontW: FW.medium,
+                          maxLines: 2,
                         ),
                         5.0.ESH(),
                         CustomText(
@@ -67,6 +71,7 @@ class CardJobOffer extends StatelessWidget {
                           color: kCMainGrey,
                           fontSize: 10,
                           fontW: FW.semicond,
+                          maxLines: 2,
                         ),
                         5.0.ESH(),
                         CustomText(
@@ -78,6 +83,17 @@ class CardJobOffer extends StatelessWidget {
                       ],
                     ),
                   ),
+                  isMine?
+                  16.0.ESW():0.0.ESH(),
+                  isMine?
+                  IconWidget(
+                    icon: 'assets/icons/delete.png',
+                    onEditTap: (){
+                      if(onTap!=null){
+                        onTap!();
+                      }
+                    },
+                  ):0.0.ESH(),
                 ],
               ),
               15.0.ESH(),
