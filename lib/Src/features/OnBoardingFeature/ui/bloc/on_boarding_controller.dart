@@ -34,7 +34,8 @@ class OnBoardingController extends GetxController{
     }else{
       jumpTo=0;
     }
-    pageController!.nextPage(duration: Duration(seconds: 1),curve: Curves.elasticInOut);
+    // pageController!.nextPage(duration: Duration(seconds: 1),curve: Curves.elasticInOut);
+    pageController!.jumpToPage(jumpTo);
     boardIndex = jumpTo;
     debugPrint("boardIndex in onNext is $boardIndex");
     update();

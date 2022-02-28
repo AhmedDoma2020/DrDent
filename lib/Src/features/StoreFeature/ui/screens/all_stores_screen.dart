@@ -34,7 +34,7 @@ class AllStoresScreen extends StatelessWidget {
         child:GetBuilder<AllStoresController>(
           builder: (_) =>  Column(
             children: [
-              SearchRow(onGridTap: (){_.changeIsGrid();},),
+              SearchRow(onGridTap: (){_.changeIsGrid();},onWordChange: (value){_.searchWord(word: value);}),
               16.0.ESH(),
               // const TabsCategory(),
               // 16.0.ESH(),
@@ -43,8 +43,8 @@ class AllStoresScreen extends StatelessWidget {
               _.status != RequestStatus.done?
               Center(child: Loader(),):
               !_.isGrid?
-              ListCardStoreRect(stores: _.stores,):
-              GridCardStore(stores: _.stores,),
+              ListCardStoreRect(stores: _.isSearch?_.searchStores:_.stores,):
+              GridCardStore(stores: _.isSearch?_.searchStores:_.stores,),
               )
             ],
           ),

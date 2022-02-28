@@ -1,5 +1,6 @@
 
 
+import 'package:dr_dent/Src/bloc/controller/phone_verify_controller.dart';
 import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/features/AuthFeature/bloc/repository/check_phone_repo.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/screens/reset_password_screen.dart';
@@ -24,9 +25,12 @@ class CheckPhoneController extends GetxController{
       var response =  await _chickPhoneRepository.chickPhone(phone: phoneController!.text);
       Get.back();
       if(response.statusCode == 200 && response.data["status"] == true){
-
-
-        Get.to(ResetPasswordScreen(phone:  phoneController!.text,));
+        PhoneVerifyController.verifyPhone(
+          phone: phoneController!.text,
+          onSuccess: (){
+            Get.to(ResetPasswordScreen(phone:  phoneController!.text,));
+          }
+        );
         customSnackBar(title: response.data['message']?? "",);
       }else{
         customSnackBar(title: response.data['message']?? "",);

@@ -46,7 +46,7 @@ class CompanyProductsScreen extends StatelessWidget {
         child:GetBuilder<CompanyProductsController>(
           builder: (_) =>  Column(
             children: [
-              SearchRow(onGridTap: (){_.changeIsGrid();},),
+              SearchRow(onGridTap: (){_.changeIsGrid();},onWordChange: (value){},),
               16.0.ESH(),
               // const TabsCategory(),
               // 16.0.ESH(),

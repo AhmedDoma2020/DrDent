@@ -14,6 +14,9 @@
            android:value="@integer/google_play_services_version" />
        <meta-data android:name="com.google.android.geo.API_KEY"
            android:value="AIzaSyACRf9vyKHRNQ_U9C6YwJm22d_YtYxA8Uc"/>
+       <meta-data
+           android:name="com.google.firebase.messaging.default_notification_channel_id"
+           android:value="high_importance_channel" />
        android:exported="true"
         <activity
             android:name=".MainActivity"
