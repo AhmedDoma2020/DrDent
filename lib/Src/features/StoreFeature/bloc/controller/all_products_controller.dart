@@ -16,12 +16,22 @@ class AllProductsController extends GetxController{
   List<Product> get products => _products;
 
 
+  List<Product> _searchProducts = [];
+  List<Product> get searchProducts => _searchProducts;
+
+
+  bool isSearch = false;
+
+
   bool _isGrid = false;
   bool get isGrid => _isGrid;
   void changeIsGrid(){
     _isGrid = !_isGrid;
     update();
   }
+
+
+
 
   // ========== START FETCH DATA  ====================
   final AllProductsRepository _productsRepository = AllProductsRepository();
@@ -45,6 +55,30 @@ class AllProductsController extends GetxController{
       update();
     }
   }
+
+
+
+  void searchWord({String word=''}){
+    if(word.isNotEmpty){
+      isSearch = true;
+    }else{
+      isSearch = false;
+    }
+    _searchProducts.clear();
+       _products.forEach((element) {
+         if(element.title!.contains(word)){
+            _searchProducts.add(element);
+         }
+       });
+       update();
+    _searchProducts.forEach((element) {
+      print('-------- ${element.title} ----------');
+    });
+  }
+
+
+
+
   // ================  END FETCH DATA  ====================
   @override
   void onInit() {

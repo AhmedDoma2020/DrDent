@@ -79,6 +79,7 @@ class _SelectOfferDurationRowState extends State<SelectOfferDurationRow> {
                         endRangeSelectionColor: kCSubMain,
                         startRangeSelectionColor: kCSubMain,
                         rangeSelectionColor: kCSubMain.withOpacity(0.12),
+                        enablePastDates:false,
                         // controller: dateRangePickerController,
                         // initialSelectedRanges: [PickerDateRange(_endDateTime,_startDateTime)],
                         // initialSelectedDate:_startDateTime,

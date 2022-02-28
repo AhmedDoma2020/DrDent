@@ -20,53 +20,58 @@ class JobRequestScreen extends StatelessWidget {
       builder: (_) =>
       _.status != RequestStatus.done?
       Center(child: Loader(),):
-          ListView(
-          children: [
-            _.myJobRequests.isNotEmpty?
-          Column(
+      RefreshIndicator(
+        onRefresh: ()async{
+          _.fetchJobRequests();
+        },
+            child: ListView(
             children: [
-              Padding(
-                padding:  EdgeInsets.symmetric(
-                    horizontal: 16.0.w
-                ),
-                child: Row(
-                  children: [
-                    CustomText(
-                      text: 'طلباتي',
-                      fontW: FW.demi,
-                      fontSize: 14,
-                      color: kCMainBlack2,
-                    ),
-                  ],
-                ),
-              ),
-              16.0.ESH(),
-              SizedBox(
-                  height: 180.h,
-                  child: SliderJobRequests(requests: _.myJobRequests,)
-              ),
-              16.0.ESH(),
-            ],
-          ):0.0.ESH(),
-          Padding(
-            padding:  EdgeInsets.symmetric(
-              horizontal: 16.0.w
-            ),
-            child: Row(
+              _.myJobRequests.isNotEmpty?
+            Column(
               children: [
-                CustomText(
-                  text: 'كل الطلبات',
-                  fontW: FW.demi,
-                  fontSize: 14,
-                  color: kCMainBlack2,
+                Padding(
+                  padding:  EdgeInsets.symmetric(
+                      horizontal: 16.0.w
+                  ),
+                  child: Row(
+                    children: [
+                      CustomText(
+                        text: 'طلباتي',
+                        fontW: FW.demi,
+                        fontSize: 14,
+                        color: kCMainBlack2,
+                      ),
+                    ],
+                  ),
                 ),
+                16.0.ESH(),
+                SizedBox(
+                    height: 180.h,
+                    child: SliderJobRequests(requests: _.myJobRequests,)
+                ),
+                16.0.ESH(),
               ],
+            ):0.0.ESH(),
+            Padding(
+              padding:  EdgeInsets.symmetric(
+                horizontal: 16.0.w
+              ),
+              child: Row(
+                children: [
+                  CustomText(
+                    text: 'كل الطلبات',
+                    fontW: FW.demi,
+                    fontSize: 14,
+                    color: kCMainBlack2,
+                  ),
+                ],
+              ),
             ),
-          ),
-          16.0.ESH(),
-          ListJobRequests(requests: _.jobRequests,),
+            16.0.ESH(),
+            ListJobRequests(requests: _.jobRequests,),
         ],
       ),
+          ),
     );
   }
 }

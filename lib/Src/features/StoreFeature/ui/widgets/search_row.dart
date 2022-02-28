@@ -6,7 +6,8 @@ import '/src/core/utils/extensions.dart';
 
 class SearchRow extends StatelessWidget {
   final VoidCallback? onGridTap;
-  const SearchRow({Key? key,this.onGridTap}) : super(key: key);
+  final Function(String) onWordChange;
+  const SearchRow({Key? key,this.onGridTap,required this.onWordChange}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,26 +32,27 @@ class SearchRow extends StatelessWidget {
                   color: kCMainGrey,
                 ),
                 6.7.ESW(),
-                CustomText(
-                  text: 'بحث',
-                  fontSize: 12,
-                  fontW: FW.light,
-                  color: kCMainGrey,
-                ),
-                // SizedBox(
-                //   width: 200.w,
-                //   child: TextField(
-                //     decoration: InputDecoration(
-                //         border: InputBorder.none,
-                //         hintText: 'بحث',
-                //         hintStyle: TextStyle(
-                //             color: kCMainGrey,
-                //             fontSize: 12.sp,
-                //             fontFamily: 'light'
-                //         )
-                //     ),
-                //   ),
+                // CustomText(
+                //   text: 'بحث',
+                //   fontSize: 12,
+                //   fontW: FW.light,
+                //   color: kCMainGrey,
                 // ),
+                SizedBox(
+                  width: 200.w,
+                  child: TextField(
+                    decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'بحث',
+                        hintStyle: TextStyle(
+                            color: kCMainGrey,
+                            fontSize: 12.sp,
+                            fontFamily: 'light'
+                        ),
+                    ),
+                    onChanged: onWordChange,
+                  ),
+                ),
               ],
             ),
           ),

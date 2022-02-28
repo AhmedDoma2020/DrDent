@@ -20,55 +20,60 @@ class HomeScreen extends StatelessWidget {
     BaseController  baseController = Get.put(BaseController());
     Get.put(HomeVisitsController());
     return GetBuilder<HomeVisitsController>(
-      builder: (_) =>  ListView(
-        children: [
-         _.status != RequestStatus.done?
-             0.0.ESH():
-             Column(
-               children: [
-                 _.nextVisits.isNotEmpty?
-                 Padding(
-                   padding:  EdgeInsets.symmetric(
-                       vertical: 16.h
+      builder: (_) =>  RefreshIndicator(
+        onRefresh: ()async{
+          _.fetchHomeVisits();
+        },
+        child: ListView(
+          children: [
+           _.status != RequestStatus.done?
+               0.0.ESH():
+               Column(
+                 children: [
+                   _.nextVisits.isNotEmpty?
+                   Padding(
+                     padding:  EdgeInsets.symmetric(
+                         vertical: 16.h
+                     ),
+                     child: Column(
+                       children: [
+                         TitleRowViewAll(titleSlider: 'next_visit'.tr, onTap: (){},titleOnTap: '',),
+                         16.0.ESH(),
+                         CardVisit(width: 343,),
+                       ],
+                     ),
+                   ):0.0.ESH(),
+                   _.newVisits.isNotEmpty?
+                   Padding(
+                     padding:  EdgeInsets.symmetric(
+                         vertical: 16.h
+                     ),
+                     child: SliderVisits(),
+                   ):
+                   Padding(
+                     padding:  EdgeInsets.symmetric(
+                         vertical: 16.h,
+                         horizontal: 16.w
+                     ),
+                     child: EmptyVisitsSection(),
                    ),
-                   child: Column(
-                     children: [
-                       TitleRowViewAll(titleSlider: 'next_visit'.tr, onTap: (){},titleOnTap: '',),
-                       16.0.ESH(),
-                       CardVisit(width: 343,),
-                     ],
-                   ),
-                 ):0.0.ESH(),
-                 _.newVisits.isNotEmpty?
-                 Padding(
-                   padding:  EdgeInsets.symmetric(
-                       vertical: 16.h
-                   ),
-                   child: SliderVisits(),
-                 ):
-                 Padding(
-                   padding:  EdgeInsets.symmetric(
-                       vertical: 16.h,
-                       horizontal: 16.w
-                   ),
-                   child: EmptyVisitsSection(),
-                 ),
-               ],
-             ),
-          ListView.separated(
-            separatorBuilder: (context, index) => 16.0.ESH(),
-            itemBuilder: (context, index) => HomeItem(
-              homeModel: homeModelExamples[index],
-              onTap: (){
-                print(homeModelExamples[index].id);
-                baseController.tabIndex=homeModelExamples[index].id;
-              },
+                 ],
+               ),
+            ListView.separated(
+              separatorBuilder: (context, index) => 16.0.ESH(),
+              itemBuilder: (context, index) => HomeItem(
+                homeModel: homeModelExamples[index],
+                onTap: (){
+                  print(homeModelExamples[index].id);
+                  baseController.tabIndex=homeModelExamples[index].id;
+                },
+              ),
+              itemCount  : homeModelExamples.length,
+              shrinkWrap : true,
+              physics: NeverScrollableScrollPhysics(),
             ),
-            itemCount  : homeModelExamples.length,
-            shrinkWrap : true,
-            physics: NeverScrollableScrollPhysics(),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
