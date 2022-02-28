@@ -55,6 +55,7 @@ class CardProduct extends StatelessWidget {
                 horizontal: 8.w
               ),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomText(
                     text: product.title,
@@ -68,7 +69,7 @@ class CardProduct extends StatelessWidget {
                   Row(
                     children: [
                       CustomText(
-                        text: product.storeName,
+                        text: product.companyName,
                         fontSize: 9,
                         overflow: true,
                         fontW: FW.thin,

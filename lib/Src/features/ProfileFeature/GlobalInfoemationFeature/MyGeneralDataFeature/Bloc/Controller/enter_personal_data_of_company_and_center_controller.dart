@@ -88,9 +88,11 @@ class EnterPersonalDataOfCompanyAndCenterController extends GetxController {
 
   set setFutureTaxImage(String value) {
     _futureTaxImage = value;
+    update();
   }
   set setFutureLogImage(String value) {
     _futureLogImage = value;
+    update();
   }
   final FetchProfileController _fetchProfileDoctorController =
   Get.put(FetchProfileController());

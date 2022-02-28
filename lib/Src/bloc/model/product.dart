@@ -9,6 +9,8 @@ class Product{
   int? like;
   String? price;
   String? categoryTitle;
+  String? companyName;
+  int? companyId;
   String? expireDate;
   String? usability;
   String? generalUse;
@@ -28,6 +30,8 @@ class Product{
     this.like,
     this.price,
     this.categoryTitle,
+    this.companyName,
+    this.companyId,
     this.expireDate,
     this.usability,
     this.generalUse,
@@ -47,6 +51,8 @@ class Product{
     like = map['like']??0;
     price = map['price']??'';
     categoryTitle = map['category_title']??'';
+    companyId = map['company_id']??'';
+    companyName = map['company_name']??'';
     expireDate = map['expire_date']??'';
     usability = map['usability']??'';
     generalUse = map['general_use']??'';

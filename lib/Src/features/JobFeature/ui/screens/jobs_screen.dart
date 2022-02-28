@@ -10,8 +10,10 @@ import 'package:dr_dent/Src/ui/widgets/tabs/tabs_ios.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import '/src/core/utils/extensions.dart';
 import 'add_a_job_offer_screen.dart';
+import 'add_job_request_bottun_sheet.dart';
 import 'job_requests_screen.dart';
 
 
@@ -20,27 +22,34 @@ class JobsScreen extends StatelessWidget {
   const JobsScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    GetStorage box = GetStorage();
     Get.put(JobsController());
     JobOffersController _jobOffersController= Get.put(JobOffersController());
     Get.put(JobRequestController());
     Future<void> onRefresh()async {
       await _jobOffersController.fetchJobOffers();
     }
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
+    debugPrint("box.read('user_type_id') is ${box.read('user_type_id')}");
+    return GetBuilder<JobsController>(
+      builder:(_) => Scaffold(
+      floatingActionButton: (_.tabIndex == 0 && box.read('user_type_id')==7) || (_.tabIndex == 1 && box.read('user_type_id')!=7)? FloatingActionButton(
         child: Icon(
           Icons.add,
           color: Colors.white,
           size: 24.w,
         ),
-        onPressed: () {
+        onPressed: _.tabIndex==0 && box.read('user_type_id')==7? (){
+          Get.bottomSheet(
+              AddJobRequestButtonSheet(),
+              isScrollControlled: true
+          );
+        }: _.tabIndex==1 && box.read('user_type_id')!=7?(){} : () {
           Get.to(()=> AddAJopOfferScreen());
         },
         backgroundColor: kCMain,
-      ),
-      body: GetBuilder<JobsController>(
-          builder: (_) {
-            return RefreshIndicator(
+      ):0.0.ESW(),
+      body:
+             RefreshIndicator(
             onRefresh:onRefresh ,
               child: Column(
                 children: [
@@ -56,8 +65,7 @@ class JobsScreen extends StatelessWidget {
                   ),
                 ],
               ),
-            );
-          }
+            ),
       ),
     );
   }

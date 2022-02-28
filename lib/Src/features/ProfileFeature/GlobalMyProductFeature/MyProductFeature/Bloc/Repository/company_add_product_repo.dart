@@ -25,7 +25,7 @@ class AddCompanyProductRepository with ApiKey {
           body: {
             'title':title,
             'category_id':categoryId,
-            'expire_date':"2022-02-28",
+            // 'expire_date':"2022-02-28",
             'text':text,
             'usability':usability,
             // 'general_use':generalUse,

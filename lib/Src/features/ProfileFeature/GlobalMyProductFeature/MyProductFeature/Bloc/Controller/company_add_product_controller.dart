@@ -92,7 +92,8 @@ void deleteImage(int index){
        Get.back();
        if (response.statusCode == 200 && response.data["status"] == true) {
          debugPrint("request operation success");
-         Get.put(CompanyProductsController(storeId: box.read('id')));
+         CompanyProductsController _companyProductsController = Get.put(CompanyProductsController(storeId: box.read('id')));
+         _companyProductsController.fetchProducts();
          Get.back();
          customSnackBar(title: response.data['message']??"");
          debugPrint("convert operation success");

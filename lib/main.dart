@@ -17,6 +17,7 @@ import 'Src/features/AuthFeature/ui/screens/verfication_screen.dart';
 import 'Src/features/BaseFeature/ui/screens/base_screen.dart';
 import 'Src/features/ProfileFeature/GlobalInfoemationFeature/MyGeneralDataFeature/Ui/Screen/enter_personal_data_of_company_and_center.dart';
 import 'Src/features/ProfileFeature/GlobalInfoemationFeature/MyGeneralDataFeature/Ui/Screen/enter_personal_data_of_graduated.dart';
+import 'Src/features/ProfileFeature/GlobalMyProductFeature/MyProductFeature/View/Screens/company_add_product_screen.dart';
 import 'Src/features/ProfileFeature/GlobalServicesFeature/DetectionLocationDetails/View/Screens/set_detection_location_details_screen.dart';
 import 'Src/features/JobFeature/ui/screens/job_screen.dart';
 import 'Src/features/JobFeature/ui/screens/jobs_screen.dart';

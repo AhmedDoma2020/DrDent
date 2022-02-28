@@ -11,8 +11,8 @@ class NetworkService with ApiKey{
   Future<Response> get({@required String? url, Map<String , String>? headers,bool auth = false}) async {
     Response? response;
     String apiToken =box.read("api_token")??"Not Found Token";
-    // $2y$10$IpiCoyvRmB/.luM7hiWeRO1.EVZjYtPL2/ij4mk64vDMzbNNpd7.a   4
-    String staticApiToken ="\$2y\$10\$IpiCoyvRmB/.luM7hiWeRO1.EVZjYtPL2/ij4mk64vDMzbNNpd7.a";
+    // $2y$10$NBYTyWoXPQm1Fe911Nsfo.t93YFyUodZFH9yzv8FpMVbyHP6uSgA.   5
+    String staticApiToken ="\$2y\$10\$NBYTyWoXPQm1Fe911Nsfo.t93YFyUodZFH9yzv8FpMVbyHP6uSgA.";
     log("apiToken storage in netWork >>>>>>>>>:-> $apiToken");
     log("apiToken static in netWork >>>>>>>>>:-> $staticApiToken");
     try {
@@ -40,8 +40,8 @@ class NetworkService with ApiKey{
     Map<String , String>? headers, Map<String , dynamic>? body,bool auth = false}) async {
     Response? response;
     String apiToken =box.read("api_token")??"Not Found Token";
-    // $2y$10$IpiCoyvRmB/.luM7hiWeRO1.EVZjYtPL2/ij4mk64vDMzbNNpd7.a   4
-    String staticApiToken ="\$2y\$10\$IpiCoyvRmB/.luM7hiWeRO1.EVZjYtPL2/ij4mk64vDMzbNNpd7.a";
+    // $2y$10$NBYTyWoXPQm1Fe911Nsfo.t93YFyUodZFH9yzv8FpMVbyHP6uSgA.   5
+    String staticApiToken ="\$2y\$10\$NBYTyWoXPQm1Fe911Nsfo.t93YFyUodZFH9yzv8FpMVbyHP6uSgA.";
     log("apiToken storage in netWork >>>>>>>>>:-> $apiToken");
     log("apiToken static in netWork >>>>>>>>>:-> $staticApiToken");
     dio.options.baseUrl = ApiKey.apiBaseUrl;

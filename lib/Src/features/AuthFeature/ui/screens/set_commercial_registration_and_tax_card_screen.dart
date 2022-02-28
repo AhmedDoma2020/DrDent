@@ -67,6 +67,8 @@ class SetCommercialRegistrationAndTaxCardScreen extends StatelessWidget {
                             onImageSelected: (image64){
                               _.setLogImg64 = image64;
                             },
+                            onImageCleared: (){
+                            },
                           ),
                           24.0.ESH(),
                           CustomText(
@@ -92,6 +94,7 @@ class SetCommercialRegistrationAndTaxCardScreen extends StatelessWidget {
                             onImageSelected: (image64) {
                               _.setTaxImg64 = image64;
                             },
+                            onImageCleared: (){},
                           ),
                           24.0.ESH(),
                         ],

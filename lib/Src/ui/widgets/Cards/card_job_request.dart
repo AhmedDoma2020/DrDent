@@ -1,6 +1,7 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/features/JobFeature/bloc/model/job_request.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
+import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/image_network.dart';
 import 'package:dr_dent/Src/ui/widgets/buttons/button_default.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -36,7 +37,12 @@ class CardJobRequest extends StatelessWidget {
                   clipBehavior: Clip.hardEdge,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.r),
-                      color: Colors.red
+                      color: kCLightGrey.withOpacity(0.5)
+                  ),
+                  child: ImageNetwork(
+                    url: request.ownerImage,
+                    width: 61.w,
+                    height: 61.w,
                   ),
                 ),
                 16.0.ESW(),

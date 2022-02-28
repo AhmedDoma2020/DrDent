@@ -2,6 +2,7 @@ import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import '/src/core/utils/extensions.dart';
 import 'base_button.dart';
 
@@ -52,7 +53,7 @@ class ButtonDefault extends StatelessWidget {
       // TODO return text only
       return Center(
         child: CustomText(
-          text: title,
+          text: title.tr,
           color: titleColor,
           fontSize: titleSize,
           fontW: FW.semibold,

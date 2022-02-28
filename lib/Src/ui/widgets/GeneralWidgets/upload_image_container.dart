@@ -16,10 +16,12 @@ import 'image_network.dart';
 
 class UploadImageContainer extends StatefulWidget {
   final Function(String) onImageSelected;
+  final Function onImageCleared;
   String futureImage;
 
    UploadImageContainer({
     required this.onImageSelected ,
+    required this.onImageCleared ,
     this.futureImage = "",
     Key? key,
   }) : super(key: key);
@@ -41,7 +43,7 @@ class _UploadImageContainerState extends State<UploadImageContainer> {
       });
       final bytes = File(image.path).readAsBytesSync();
       logImg64 = base64Encode(bytes);
-      widget.onImageSelected( logImg64!);
+      widget.onImageSelected(logImg64!);
     } on PlatformException catch (e) {
       debugPrint("field picked image $e");
     }
@@ -106,6 +108,7 @@ class _UploadImageContainerState extends State<UploadImageContainer> {
                     image = null;
                     logImg64 = null;
                     widget.futureImage = "";
+                    widget.onImageCleared();
                     widget.onImageSelected('');
                     debugPrint("image after deleted is $image");
                     debugPrint("futureImage after deleted is ${widget.futureImage}");

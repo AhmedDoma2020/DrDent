@@ -302,4 +302,8 @@ const Map<String, String> arAE = {
   'followers_':'المتابعَين',
   'Reservations_':'الحجوزات',
   'state_is_empty':'لا يوجد محافظات',
+  'inquire_about_product_price':'الإستعلام عن سعر المنتج',
+  'company_message':'مراسلة الشركة',
+  'Request_for_price':'طلب عرض سعر',
+
 };

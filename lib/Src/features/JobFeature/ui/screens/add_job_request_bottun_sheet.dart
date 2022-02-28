@@ -13,14 +13,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../AuthFeature/bloc/controller/fetch_specialization_controller.dart';
+
 class AddJobRequestButtonSheet extends StatelessWidget {
-  final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
 String baseImage64="";
   @override
   Widget build(BuildContext context) {
      Get.put(AddJopRequestController());
+     Get.put(FetchSpecializationController());
     return Container(
-      height: 580.h,
+      height: 520.h,
       width: double.infinity,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -31,8 +33,8 @@ String baseImage64="";
       ),
       child: GetBuilder<AddJopRequestController>(
         builder: (_) => Form(
-          key: _globalKey,
-          child: Column(
+          key: _.globalKey,
+          child: ListView(
             children: [
               TopTitleInButtonSheet(title: "Job_request".tr),
               16.0.ESH(),
@@ -118,7 +120,8 @@ String baseImage64="";
                       ButtonDefault(
                         title: 'save_'.tr,
                         onTap: () {
-                          debugPrint("baseImage64 $baseImage64");
+                          _.submit();
+                          // debugPrint("baseImage64 $baseImage64");
                           // if (_globalKey.currentState!.validate()) {
                           //   _globalKey.currentState!.save();
                           //   Get.back();
