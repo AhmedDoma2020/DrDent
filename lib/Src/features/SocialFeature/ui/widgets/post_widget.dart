@@ -14,6 +14,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class MyPostWidget extends StatelessWidget {
   final PostModel post;
   final VoidCallback onLike;
+
+ 
   const MyPostWidget({Key? key,required this.post,required this.onLike}) : super(key: key);
 
   @override
@@ -24,33 +26,30 @@ class MyPostWidget extends StatelessWidget {
       child: Column(
         children: [
           16.0.ESH(),
-          PostHeader(post: post,),
-          post.images!.isEmpty?0.0.ESW():
-          Padding(
-            padding:  EdgeInsets.only(
-              top: 14.h
-            ),
-            child:   GestureDetector(
-              onTap: () {
-                Get.to(() => PhotoViewWidget(
-                  imageProvider: NetworkImage(post.images![0]),
-                ));
-              },
-              child: ImageNetwork(
-                url: post.images![0],
-                  width: double.infinity,
-                  height: 176.h
-              ),
-            ),
+          PostHeader(
+            post: post,
           ),
+          post.images!.isEmpty
+              ? 0.0.ESW()
+              : Padding(
+                  padding: EdgeInsets.only(top: 14.h),
+                  child: GestureDetector(
+                    onTap: () {
+                      Get.to(() => PhotoViewWidget(
+                            imageProvider: NetworkImage(post.images![0]),
+                          ));
+                    },
+                    child: ImageNetwork(
+                        url: post.images![0],
+                        width: double.infinity,
+                        height: 176.h),
+                  ),
+                ),
           Container(
             width: double.infinity,
             color: kCMainScaffoldGrey,
             child: Padding(
-              padding:  EdgeInsets.symmetric(
-                vertical: 16.h,
-                horizontal: 24.w
-              ),
+              padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 24.w),
               child: CustomText(
                 text: post.content,
                 fontW: FW.light,
@@ -65,27 +64,29 @@ class MyPostWidget extends StatelessWidget {
             color: Colors.white,
             height: 50.h,
             child: Padding(
-              padding:  EdgeInsets.symmetric(
-                horizontal: 16.0.w
-              ),
+              padding: EdgeInsets.symmetric(horizontal: 16.0.w),
               child: Row(
                 children: [
-                    PostStatics(
-                      icon: 'like.png',
-                      count: '${post.likesNumber!}',
-                      onTap: (){onLike();},
-                      iconColor: post.like==1?kCMain:kCMainGrey,
-                    ),
-                   30.0.ESW(),
-                    PostStatics(
-                      icon: 'comment.png',
-                        count: '${post.commentsNumber!}',
-                        onTap: (){
-                          Get.to(()=>CommentsScreen(post: post,));
-                        },
-                    ),
-                   30.0.ESW(),
-                    PostStatics(icon: 'share.png', count: '${post.shareNumber!}'),
+                  PostStatics(
+                    icon: 'like.png',
+                    count: '${post.likesNumber!}',
+                    onTap: () {
+                      onLike();
+                    },
+                    iconColor: post.like == 1 ? kCMain : kCMainGrey,
+                  ),
+                  30.0.ESW(),
+                  PostStatics(
+                    icon: 'comment.png',
+                    count: '${post.commentsNumber!}',
+                    onTap: () {
+                      Get.to(() => CommentsScreen(
+                            post: post,
+                          ));
+                    },
+                  ),
+                  30.0.ESW(),
+                  PostStatics(icon: 'share.png', count: '${post.shareNumber!}'),
                 ],
               ),
             ),

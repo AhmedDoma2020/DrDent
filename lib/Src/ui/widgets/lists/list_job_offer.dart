@@ -5,6 +5,8 @@ import 'package:dr_dent/Src/ui/widgets/Cards/card_job_request.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import '../../../features/JobFeature/ui/screens/add_a_job_offer_screen.dart';
 import '/src/core/utils/extensions.dart';
 
 class ListJobOffers extends StatelessWidget {

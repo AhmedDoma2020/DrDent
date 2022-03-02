@@ -25,6 +25,8 @@ class JobOffersController extends GetxController{
       update();
     }
     var response = await _jobOffersRepository.fetchJobOffers();
+    status = RequestStatus.done;
+    update();
     if (response.statusCode == 200 && response.data["status"] == true) {
       debugPrint("request operation success");
       _jobOffers.clear();

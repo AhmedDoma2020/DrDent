@@ -2,49 +2,122 @@
 
 
 class JobOffer {
-  int? id;
-  String? ownerName;
-  String? ownerImage;
-  String? ownerPhone;
-  String? ownerAddress;
-  String? ownerDescription;
-  String? startPrice;
-  String? endPrice;
-  String? description;
-  String? scientificLevel;
-  List<String>? requirments;
-  List<String>? specializations;
+  JobOffer({
+    required this.id,
+    required this.name,
+    required this.phone,
+    required this.address,
+    required this.startSalary,
+    required this.endSalary,
+    required this.description,
+    required this.scientificlevelTitle,
+    required this.scientificlevelId,
+    required this.specializations,
+    required this.requirements,
+    required this.image,
+  });
+  late final int id;
+  late final String name;
+  late final String phone;
+  late final String address;
+  late final String startSalary;
+  late final String endSalary;
+  late final String description;
+  late final String scientificlevelTitle;
+  late final int scientificlevelId;
+  late final List<Specializations> specializations;
+  late final List<String> requirements;
+  late final String image;
 
+  JobOffer.fromJson(Map<String, dynamic> json){
+    id = json['id']??0;
+    name = json['name']??"";
+    phone = json['phone']??"";
+    address = json['address']??"";
+    startSalary = json['start_salary']??"";
+    endSalary = json['end_salary']??"";
+    description = json['description']??"";
+    scientificlevelTitle = json['scientificlevel']??"";
+    scientificlevelId = json['scientificlevel_id']??0;
+    if(json['specializations']!=null){
+      specializations = List.from(json['specializations']).map((e)=>Specializations.fromJson(e)).toList();
+    }else{
+      specializations = [];
+    }
+    requirements = json['requirements']!=null ? json['requirements'].cast<String>() : [];
+    image = json['image'];
+  }
 
-  JobOffer(
-  {
-    this.id,
-    this.ownerName,
-    this.ownerImage,
-    this.ownerPhone,
-    this.ownerAddress,
-    this.ownerDescription,
-    this.specializations,
-    this.endPrice,
-    this.requirments,
-    this.startPrice,
-    this.description,
-    this.scientificLevel,
-});
+}
 
+class Specializations {
+  Specializations({
+    required this.id,
+    required this.title,
+    required this.selected,
+  });
+  late final int id;
+  late final String title;
+  late final bool selected;
 
+  Specializations.fromJson(Map<String, dynamic> json){
+    id = json['id'];
+    title = json['title'];
+    selected = json['selected'];
+  }
 
-  JobOffer.fromJson(Map<String,dynamic> map){
-    id = map['id']??0;
-    ownerName = map['name']??' ';
-    ownerImage = map['image']??' ';
-    ownerPhone = map['phone']??' ';
-    ownerAddress = map['address']??' ';
-    startPrice= map['start_salary']??'0';
-    endPrice = map['end_salary']??'0';
-    description = map['description']??'';
-    scientificLevel = map['scientificlevel']??'';
-    requirments = map['requirements']!=null ? map['requirements'].cast<String>() : [];
-    specializations = map['specializations']!=null ? map['specializations'].cast<String>() : [];
+  Map<String, dynamic> toJson() {
+    final _data = <String, dynamic>{};
+    _data['id'] = id;
+    _data['title'] = title;
+    _data['selected'] = selected;
+    return _data;
   }
 }
+
+//
+// class JobOffer {
+//   int? id;
+//   String? name;
+//   String? image;
+//   String? phone;
+//   String? address;
+//   String? startSalary;
+//   String? endSalary;
+//   String? description;
+//   String? scientificlevel;
+//   List<String>? requirements;
+//   List<String>? specializations;
+//
+//
+//   JobOffer(
+//   {
+//     this.id,
+//     this.name,
+//     this.image,
+//     this.phone,
+//     this.address,
+//     this.specializations,
+//     this.endSalary,
+//     this.requirements,
+//     this.startSalary,
+//     this.description,
+//     this.scientificlevel,
+// });
+//
+//
+//
+//   JobOffer.fromJson(Map<String,dynamic> map){
+//     id = map['id']??0;
+//     name = map['name']??' ';
+//     image = map['image']??' ';
+//     phone = map['phone']??' ';
+//     address = map['address']??' ';
+//     startSalary= map['start_salary']??'0';
+//     endSalary = map['end_salary']??'0';
+//     description = map['description']??'';
+//     scientificlevel = map['scientificlevel']??'';
+//     requirements = map['requirements']!=null ? map['requirements'].cast<String>() : [];
+//     specializations = map['specializations']!=null ? map['specializations'].cast<String>() : [];
+//   }
+// }

@@ -13,11 +13,15 @@ import 'package:dr_dent/Src/ui/widgets/buttons/button_default.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-class AddAJopOfferScreen extends StatelessWidget {
 
+import '../../bloc/model/job_offer.dart';
+class AddAJopOfferScreen extends StatelessWidget {
+final JobOffer? jobOffer;
+final bool isEdit;
+AddAJopOfferScreen({this.jobOffer,this.isEdit=false});
   @override
   Widget build(BuildContext context){
-    Get.put(AddAJopOfferController());
+    Get.put(AddAJopOfferController(isEdit: isEdit,jobOffer:jobOffer));
     Get.put(FetchScientificController());
     Get.put(FetchSpecializationController());
     var node = FocusScope.of(context);
@@ -80,7 +84,7 @@ class AddAJopOfferScreen extends StatelessWidget {
                       Get.bottomSheet(
                           DegreeButtonSheet(
                             onTap:  (scientificListTitle,scientificListId){
-                              _.scientificLevelIdController!.text=scientificListTitle;
+                              _.scientificLevelTitleController!.text=scientificListTitle;
                               _.setScientificLevelId=scientificListId;
                               Get.back();
                             },
@@ -91,7 +95,7 @@ class AddAJopOfferScreen extends StatelessWidget {
                       hint: 'Degree_'.tr,
                       errorText: "must_set_Degree".tr,
                       suffixIconData: Icons.keyboard_arrow_down_outlined,
-                      controller: _.scientificLevelIdController,
+                      controller: _.scientificLevelTitleController,
                       keyboardType: TextInputType.text,
                       filledColor: kCBGTextFormFiled,
                       fieldType: FieldType.WithBorder,
@@ -140,6 +144,9 @@ class AddAJopOfferScreen extends StatelessWidget {
                   ),
                   16.0.ESH(),
                   RangeSliderWidget(
+                    isEdit: isEdit,
+                    endSalary:_.endSalary ,
+                    startSalary: _.startSalary,
                     onSelected: (startSalary,endSalary){
                       _.setStartSalary = startSalary;
                       _.setEndSalary = endSalary;

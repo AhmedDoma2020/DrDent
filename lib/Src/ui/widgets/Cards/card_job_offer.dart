@@ -15,6 +15,7 @@ class CardJobOffer extends StatelessWidget {
   final VoidCallback? onDeleteTap;
   final VoidCallback? onEditTap;
   final bool isMine;
+  const CardJobOffer({Key? key,required this.offer,this.onDeleteTap,this.isMine=false,this.onEditTap}) : super(key: key);
 
   const CardJobOffer({
     Key? key,
@@ -53,7 +54,7 @@ class CardJobOffer extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8.r),
                         color: kCLightGrey.withOpacity(0.5)),
                     child: ImageNetwork(
-                      url: offer.ownerImage,
+                      url: offer.image,
                       width: 61.w,
                       height: 61.w,
                     ),
@@ -72,14 +73,14 @@ class CardJobOffer extends StatelessWidget {
                         ),
                         5.0.ESH(),
                         CustomText(
-                          text: offer.ownerName,
+                          text: offer.name,
                           color: kCActiveDot,
                           fontSize: 10,
                           fontW: FW.light,
                         ),
                         5.0.ESH(),
                         CustomText(
-                          text: offer.ownerAddress,
+                          text: offer.address,
                           color: kCMainGrey,
                           fontSize: 10,
                           fontW: FW.semicond,
@@ -87,7 +88,7 @@ class CardJobOffer extends StatelessWidget {
                         ),
                         5.0.ESH(),
                         CustomText(
-                          text: offer.ownerPhone,
+                          text: offer.phone,
                           color: kCMainGrey,
                           fontSize: 10,
                           fontW: FW.semicond,
@@ -95,6 +96,28 @@ class CardJobOffer extends StatelessWidget {
                       ],
                     ),
                   ),
+                  isMine?
+                  16.0.ESW():0.0.ESH(),
+                  isMine?
+                  Row(
+                    children: [
+                      IconWidget(
+                        icon: 'assets/icons/edit.png',
+                        onEditTap: (){
+                          if(onEditTap!=null){
+                            onEditTap!();
+                          }
+                        },
+                      ), IconWidget(
+                        icon: 'assets/icons/delete.png',
+                        onEditTap: (){
+                          if(onDeleteTap!=null){
+                            onDeleteTap!();
+                          }
+                        },
+                      ),
+                    ],
+                  ):0.0.ESH(),
                   !isMine ? 8.0.ESW() : 0.0.ESH(),
                   !isMine
                       ? Row(
@@ -130,7 +153,7 @@ class CardJobOffer extends StatelessWidget {
                     title: 'دوام كامل',
                   ),
                   CustomText(
-                    text: 'من ${offer.startPrice} - ${offer.endPrice} جنيه',
+                    text: 'من ${offer.startSalary} - ${offer.endSalary} جنيه',
                     fontW: FW.demi,
                     fontSize: 14,
                     color: kCMainBlack2,

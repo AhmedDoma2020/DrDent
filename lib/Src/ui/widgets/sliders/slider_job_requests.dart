@@ -4,6 +4,8 @@ import 'package:dr_dent/Src/ui/widgets/Cards/card_job_request.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import '../../../features/JobFeature/ui/screens/add_job_request_bottun_sheet.dart';
 import '/src/core/utils/extensions.dart';
 class SliderJobRequests extends StatelessWidget {
   final List<JobRequest> requests;
@@ -18,6 +20,12 @@ class SliderJobRequests extends StatelessWidget {
           request: requests[index],
           onDelete: (){
             onDelete(requests[index].id!);
+          },
+          onEdit: (){
+            debugPrint("clicked her 1");
+            Get.bottomSheet(
+                AddJobRequestButtonSheet(isEdit:true,jobRequestModel: requests[index],),
+                isScrollControlled: true);
           },
         ),
         separatorBuilder: (context, index) => 16.0.ESW(),

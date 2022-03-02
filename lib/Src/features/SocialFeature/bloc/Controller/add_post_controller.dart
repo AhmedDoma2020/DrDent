@@ -12,7 +12,15 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../../../../bloc/model/post_model.dart';
+
 class AddPostController extends GetxController  {
+  final PostModel? postModel;
+  final bool isEdit;
+  AddPostController({
+    this.postModel,
+    this.isEdit=false,
+});
   RequestStatus status = RequestStatus.initial;
   TextEditingController? contentController;
 
@@ -25,9 +33,14 @@ class AddPostController extends GetxController  {
   String get shareWithButtonTitle => _shareWithButtonTitle;
   // final SocialController _socialController = Get.put(SocialController());
   final SocialController _socialController = Get.find();
-
   final AddPostRepository _addPostRepository =AddPostRepository();
 
+
+  void setData(){
+    contentController!.text  = postModel!.content!;
+
+    update();
+  }
 
   //  Future<void> addPost()async{
   //    debugPrint('contentController in add post is ${ contentController!.text}');
@@ -99,7 +112,6 @@ class AddPostController extends GetxController  {
     update();
   }
 
-  // to make image = null
 
   // to set image in post
   Future getImage() async {
@@ -156,6 +168,7 @@ bool isContentCEmpty= true;
   void onInit() {
     // TODO: implement onInit
     contentController = TextEditingController();
+    if(isEdit)setData();
     contentController!.addListener((){
       if(contentController!.text.isEmpty){
         isContentCEmpty=true;

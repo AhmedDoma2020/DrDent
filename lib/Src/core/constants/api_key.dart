@@ -92,6 +92,7 @@ mixin ApiKey{
    final String uRLEnterAndEditPersonalDataOfCompanyAndCenter = apiBaseUrl + "company_edit_general_info";
    final String uRLEnterAndEditPersonalDataOfGraduated = apiBaseUrl + "edit_graduate_personal_info";
    final String uRLAddJopRequest = apiBaseUrl + "add_job_request";
+   final String uRLEditJopRequest = apiBaseUrl + "edit_job_request";
    final String uRLAddAJopOffer = apiBaseUrl + "add_job_offer";
    final String uRLStates = apiBaseUrl + "states";
    final String uRLFetchUniversity = apiBaseUrl + "universities";

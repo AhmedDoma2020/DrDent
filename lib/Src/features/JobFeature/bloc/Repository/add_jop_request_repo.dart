@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:dr_dent/Src/core/constants/api_key.dart';
 import 'package:dr_dent/Src/core/services/network_services.dart';
 import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
+import 'package:flutter/cupertino.dart';
 
 class AddJopRequestRepository with ApiKey {
   // GetStorage box = GetStorage();
@@ -17,6 +18,10 @@ class AddJopRequestRepository with ApiKey {
     required String cV,
   }) async {
     Response response;
+    debugPrint("ownerName $ownerName");
+    debugPrint("phone $phone");
+    debugPrint("address $address");
+
     try {
       response = await _networkService.post(
           url: uRLAddJopRequest,

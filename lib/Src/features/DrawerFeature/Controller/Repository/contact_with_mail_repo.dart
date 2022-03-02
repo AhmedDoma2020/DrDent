@@ -16,7 +16,7 @@ class ContactWithUsRepository with ApiKey {
     Response response;
     try {
       response = await _networkService.post(
-          url: uRLAddJopRequest,
+          url: "",
           auth: true,
           body: {
             'email':email,
