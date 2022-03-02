@@ -55,6 +55,7 @@ class StoreScreen extends StatelessWidget {
                 Get.to(()=>AllProductsScreen());
               },
             ),
+          50.0.ESH()
         ],
       ),
           ),

@@ -17,14 +17,14 @@ class InquiryOfProductController extends GetxController{
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
   final InquiryOfProductRepository _inquiryOfProductRepository =InquiryOfProductRepository();
   GetStorage box = GetStorage();
-  void submit() async{
+  void submit({required int productId}) async{
     if(globalKey.currentState!.validate()){
       globalKey.currentState!.save();
       setLoading();
-      var response = await _inquiryOfProductRepository.inquiryOfProduct(phone: phoneController!.text, name: nameController!.text);
+      var response = await _inquiryOfProductRepository.inquiryOfProduct(phone: phoneController!.text, name: nameController!.text,productId: productId);
       Get.back();
       if(response.statusCode == 200 && response.data["status"] == true){
-Get.back();
+        Get.back();
         customSnackBar(title: response.data["message"]??"");
       }else{
         customSnackBar(title: response.data["message"]??"");

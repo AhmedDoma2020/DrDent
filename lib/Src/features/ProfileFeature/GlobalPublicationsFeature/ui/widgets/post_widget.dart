@@ -13,19 +13,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PostWidget extends StatelessWidget {
   final PostModel post;
-  final VoidCallback onLike;
-  const PostWidget({Key? key,required this.post,required this.onLike}) : super(key: key);
+  final VoidCallback? onLike;
+  final VoidCallback? onShare;
+  const PostWidget({Key? key,required this.post, this.onLike, this.onShare}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      // width: post.postType==PostType.post?double.infinity:300.w,
       width: double.infinity,
       color: Colors.white,
       child: Column(
         children: [
           16.0.ESH(),
-          PostHeader(post: post,),
-          post.images!.isEmpty?0.0.ESW():
+          PostHeader(post: post,small: post.postType==PostType.share),
+          post.images!.isEmpty?16.0.ESW():
           Padding(
             padding:  EdgeInsets.only(
               top: 14.h
@@ -45,7 +47,7 @@ class PostWidget extends StatelessWidget {
           ),
           Container(
             width: double.infinity,
-            color: kCMainScaffoldGrey,
+            color: post.postType==PostType.post?kCMainScaffoldGrey:Colors.transparent,
             child: Padding(
               padding:  EdgeInsets.symmetric(
                 vertical: 16.h,
@@ -60,6 +62,7 @@ class PostWidget extends StatelessWidget {
               ),
             ),
           ),
+          post.postType==PostType.post?
           Container(
             width: double.infinity,
             color: Colors.white,
@@ -73,7 +76,7 @@ class PostWidget extends StatelessWidget {
                     PostStatics(
                       icon: 'like.png',
                       count: '${post.likesNumber!}',
-                      onTap: (){onLike();},
+                      onTap: (){if(onLike!=null){onLike!();}},
                       iconColor: post.like==1?kCMain:kCMainGrey,
                     ),
                    30.0.ESW(),
@@ -85,11 +88,12 @@ class PostWidget extends StatelessWidget {
                         },
                     ),
                    30.0.ESW(),
-                    PostStatics(icon: 'share.png', count: '${post.shareNumber!}'),
+                    PostStatics(icon: 'share.png', count: '${post.shareNumber!}',onTap: (){if(onShare!=null){}onShare!();}),
                 ],
               ),
             ),
-          ),
+          ):
+              SizedBox(height: 0),
         ],
       ),
     );

@@ -12,15 +12,25 @@ import 'card_tag.dart';
 
 class CardJobOffer extends StatelessWidget {
   final JobOffer offer;
-  final VoidCallback? onTap;
+  final VoidCallback? onDeleteTap;
+  final VoidCallback? onEditTap;
   final bool isMine;
-  const CardJobOffer({Key? key,required this.offer,this.onTap,this.isMine=false}) : super(key: key);
+
+  const CardJobOffer({
+    Key? key,
+    required this.offer,
+    this.onDeleteTap,
+    this.onEditTap,
+    this.isMine = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        Get.to(()=>JobScreen(offer: offer,));
+      onTap: () {
+        Get.to(() => JobScreen(
+              offer: offer,
+            ));
       },
       child: Container(
         width: 343.w,
@@ -29,10 +39,7 @@ class CardJobOffer extends StatelessWidget {
           borderRadius: BorderRadius.circular(10.r),
         ),
         child: Padding(
-          padding:  EdgeInsets.symmetric(
-            horizontal: 16.w,
-            vertical: 16.h
-          ),
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
           child: Column(
             children: [
               Row(
@@ -43,9 +50,8 @@ class CardJobOffer extends StatelessWidget {
                     height: 61.w,
                     clipBehavior: Clip.hardEdge,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.r),
-                      color: kCLightGrey.withOpacity(0.5)
-                    ),
+                        borderRadius: BorderRadius.circular(8.r),
+                        color: kCLightGrey.withOpacity(0.5)),
                     child: ImageNetwork(
                       url: offer.ownerImage,
                       width: 61.w,
@@ -89,17 +95,29 @@ class CardJobOffer extends StatelessWidget {
                       ],
                     ),
                   ),
-                  isMine?
-                  16.0.ESW():0.0.ESH(),
-                  isMine?
-                  IconWidget(
-                    icon: 'assets/icons/delete.png',
-                    onEditTap: (){
-                      if(onTap!=null){
-                        onTap!();
-                      }
-                    },
-                  ):0.0.ESH(),
+                  !isMine ? 8.0.ESW() : 0.0.ESH(),
+                  !isMine
+                      ? Row(
+                          children: [
+                            IconWidget(
+                              icon: 'assets/icons/edit.png',
+                              onEditTap: () {
+                                if (onEditTap != null) {
+                                  onEditTap!();
+                                }
+                              },
+                            ),
+                            IconWidget(
+                              icon: 'assets/icons/delete.png',
+                              onEditTap: () {
+                                if (onDeleteTap != null) {
+                                  onDeleteTap!();
+                                }
+                              },
+                            ),
+                          ],
+                        )
+                      : 0.0.ESH(),
                 ],
               ),
               15.0.ESH(),
@@ -107,8 +125,8 @@ class CardJobOffer extends StatelessWidget {
               15.0.ESH(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children:[
-                   const CardTag(
+                children: [
+                  const CardTag(
                     title: 'دوام كامل',
                   ),
                   CustomText(
