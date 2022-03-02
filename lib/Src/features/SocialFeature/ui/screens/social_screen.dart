@@ -34,6 +34,9 @@ class SocialScreen extends StatelessWidget {
             onShare: (content){
             _.sharePost(postId:_.posts[index].id!,content: content);
             },
+              onShareEdit: (content){
+                _.editSharePost(postId:_.posts[index].id!,content: content);
+              },
         ):PostShareWidget(
              post: _.posts[index],
              onLike: (){
@@ -41,6 +44,9 @@ class SocialScreen extends StatelessWidget {
              },
              onShare: (content){
                _.sharePost(postId:_.posts[index].shareId!,content: content,isPostShare: true);
+             },
+             onShareEdit: (content){
+               _.editSharePost(postId:_.posts[index].id!,content: content);
              },
            ),
         separatorBuilder: (context, index) => 16.0.ESH(),
