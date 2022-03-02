@@ -6,11 +6,13 @@ import 'package:dr_dent/Src/ui/widgets/appbars/app_bars.dart';
 import 'package:dr_dent/Src/ui/widgets/buttons/button_default.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../ui/widgets/GeneralWidgets/image_network.dart';
 import '/src/core/utils/extensions.dart';
 
 class JobScreen extends StatelessWidget {
   final JobOffer offer;
-  const JobScreen({Key? key,required this.offer}) : super(key: key);
+
+  const JobScreen({Key? key, required this.offer}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class JobScreen extends StatelessWidget {
       body: Stack(
         children: [
           Padding(
-            padding:  EdgeInsets.symmetric(horizontal: 16.0.w),
+            padding: EdgeInsets.symmetric(horizontal: 16.0.w),
             child: ListView(
               children: [
                 16.0.ESH(),
@@ -34,27 +36,31 @@ class JobScreen extends StatelessWidget {
                         clipBehavior: Clip.hardEdge,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.r),
-                            color: Colors.red
+                            color: kCLightGrey.withOpacity(0.5)),
+                        child: ImageNetwork(
+                          url: offer.image,
+                          width: 61.w,
+                          height: 61.w,
                         ),
                       ),
                     ),
                     23.0.ESH(),
                     CustomText(
-                      text: offer.ownerName,
+                      text: offer.name,
                       fontSize: 14,
                       color: kCMainBlack2,
                       fontW: FW.demi,
                     ),
                     9.0.ESH(),
                     CustomText(
-                      text: offer.ownerAddress,
+                      text: offer.address,
                       fontSize: 11,
                       color: kCMainBlack2,
                       fontW: FW.semicond,
                     ),
                     7.0.ESH(),
                     CustomText(
-                      text: offer.ownerPhone,
+                      text: offer.phone,
                       fontSize: 11,
                       color: kCMainBlack2,
                       fontW: FW.semicond,
@@ -62,13 +68,14 @@ class JobScreen extends StatelessWidget {
                     10.0.ESH(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children:[
+                      children: [
                         const CardTag(
                           title: 'دوام كامل',
                         ),
                         24.0.ESW(),
                         CustomText(
-                          text: 'من ${offer.startPrice} - ${offer.endPrice} جنيه',
+                          text:
+                              'من ${offer.startSalary} - ${offer.endSalary} جنيه',
                           fontW: FW.demi,
                           fontSize: 14,
                           color: kCMainBlack2,
@@ -81,14 +88,11 @@ class JobScreen extends StatelessWidget {
                 Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(7.r),
-                      color: kCInContainerBackGround
-                  ),
+                      color: kCInContainerBackGround),
                   width: double.infinity,
                   child: Padding(
-                    padding:  EdgeInsets.symmetric(
-                        horizontal: 16.0.w,
-                        vertical: 15.0.h
-                    ),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: 16.0.w, vertical: 15.0.h),
                     child: Column(
                       children: [
                         Row(
@@ -99,13 +103,10 @@ class JobScreen extends StatelessWidget {
                               fontW: FW.demi,
                               fontSize: 14,
                             ),
-
                           ],
                         ),
                         Padding(
-                          padding:  EdgeInsets.only(
-                              top: 16.h
-                          ),
+                          padding: EdgeInsets.only(top: 16.h),
                           child: CustomText(
                             text: offer.description,
                             color: kCMainBlack2,
@@ -121,14 +122,11 @@ class JobScreen extends StatelessWidget {
                 Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(7.r),
-                      color: kCInContainerBackGround
-                  ),
+                      color: kCInContainerBackGround),
                   width: double.infinity,
                   child: Padding(
-                    padding:  EdgeInsets.symmetric(
-                        horizontal: 16.0.w,
-                        vertical: 15.0.h
-                    ),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: 16.0.w, vertical: 15.0.h),
                     child: Column(
                       children: [
                         Row(
@@ -139,14 +137,10 @@ class JobScreen extends StatelessWidget {
                               fontW: FW.demi,
                               fontSize: 14,
                             ),
-
                           ],
                         ),
-
                         Padding(
-                            padding:  EdgeInsets.only(
-                                top: 16.h
-                            ),
+                            padding: EdgeInsets.only(top: 16.h),
                             child: ListView.separated(
                               shrinkWrap: true,
                               itemBuilder: (context, index) => Row(
@@ -157,21 +151,22 @@ class JobScreen extends StatelessWidget {
                                     radius: 4.w,
                                   ),
                                   10.0.ESW(),
-                                  Expanded(
-                                    child: CustomText(
-                                      text: offer.requirments![index],
-                                      color: kCMainBlack2,
-                                      fontW: FW.semicond,
-                                      fontSize: 12,
-                                    ),
-                                  ),
+                                  offer.requirements[index] != null
+                                      ? Expanded(
+                                          child: CustomText(
+                                            text: offer.requirements[index],
+                                            color: kCMainBlack2,
+                                            fontW: FW.semicond,
+                                            fontSize: 12,
+                                          ),
+                                        )
+                                      : 0.0.ESW(),
                                 ],
                               ),
                               separatorBuilder: (context, index) => 10.0.ESH(),
-                              itemCount: offer.requirments!.length,
+                              itemCount: offer.requirements.length,
                               physics: NeverScrollableScrollPhysics(),
-                            )
-                        ),
+                            )),
                       ],
                     ),
                   ),
@@ -181,9 +176,7 @@ class JobScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding:  EdgeInsets.symmetric(
-              vertical: 16.0.h
-            ),
+            padding: EdgeInsets.symmetric(vertical: 16.0.h),
             child: Align(
               alignment: Alignment.bottomCenter,
               child: ButtonDefault(

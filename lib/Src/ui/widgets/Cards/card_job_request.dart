@@ -5,13 +5,17 @@ import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/image_network.dart';
 import 'package:dr_dent/Src/ui/widgets/buttons/button_default.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../GeneralWidgets/edit_widget.dart';
 import '/src/core/utils/extensions.dart';
 import 'card_tag.dart';
 
 class CardJobRequest extends StatelessWidget {
   final double width;
   final JobRequest request;
-  const CardJobRequest({Key? key,this.width=343,required this.request}) : super(key: key);
+  final bool isMine;
+  final VoidCallback? onDelete;
+  final VoidCallback? onEdit;
+  const CardJobRequest({Key? key,this.width=343,required this.request,this.isMine=false,this.onDelete,this.onEdit}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -80,6 +84,34 @@ class CardJobRequest extends StatelessWidget {
                     ],
                   ),
                 ),
+                !isMine?
+                8.0.ESW():0.0.ESH(),
+                !isMine?
+                Row(
+                  children: [
+                    IconWidget(
+                      icon: 'assets/icons/edit.png',
+                      onEditTap: (){
+                        debugPrint("clicked her 11");
+                          onEdit!();
+                        debugPrint("clicked her 12");
+
+                      },
+                    ),
+                    IconWidget(
+                      icon: 'assets/icons/delete.png',
+                      onEditTap: (){
+                        debugPrint("clicked her 122");
+
+                        if(onDelete!=null){
+                          debugPrint("clicked her 123");
+
+                        onDelete!();
+                        }
+                      },
+                    ),
+                  ],
+                ):0.0.ESH(),
               ],
             ),
             16.0.ESH(),

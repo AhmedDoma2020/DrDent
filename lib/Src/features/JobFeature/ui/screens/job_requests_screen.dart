@@ -47,7 +47,7 @@ class JobRequestScreen extends StatelessWidget {
                 16.0.ESH(),
                 SizedBox(
                     height: 180.h,
-                    child: SliderJobRequests(requests: _.myJobRequests,)
+                    child: SliderJobRequests(requests: _.myJobRequests,onDelete: (id){_.deleteRequest(id: id);},)
                 ),
                 16.0.ESH(),
               ],

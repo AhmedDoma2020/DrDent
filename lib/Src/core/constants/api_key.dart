@@ -42,12 +42,17 @@ mixin ApiKey{
    final String uRLFetchCategories = apiBaseUrl + "fetch_categories";
    final String uRLAllFetchAllStores = apiBaseUrl + "fetch_all_Stores";
    final String uRLLikePost = apiBaseUrl + "like_post";
+   final String uRLSharePost = apiBaseUrl + "share_post";
    final String uRLLikeComment = apiBaseUrl + "like_comment";
    final String uRLAddComment = apiBaseUrl + "add_comment";
    final String uRLAddJobOffer = apiBaseUrl + "add_job_offer";
+   final String uRLEditJobOffer = apiBaseUrl + "edit_job_offer";
    final String uRLDeleteJobOffer = apiBaseUrl + "delete_job_offer";
+   final String uRLDeleteJobRequest = apiBaseUrl + "delete_job_request";
+   final String uRLLikeProduct = apiBaseUrl + "favorite_Product";
 
-
+   final String uRLRequestProductPrice = apiBaseUrl + "send_product_information";
+   final String uRLSearchDoctors = apiBaseUrl + "search_doctors";
 
 
    // String URLFetchMajorCategorySellers(int page)=>apiBaseUrl + "major_shops"+'?page=$page'; // soon
@@ -87,6 +92,7 @@ mixin ApiKey{
    final String uRLEnterAndEditPersonalDataOfCompanyAndCenter = apiBaseUrl + "company_edit_general_info";
    final String uRLEnterAndEditPersonalDataOfGraduated = apiBaseUrl + "edit_graduate_personal_info";
    final String uRLAddJopRequest = apiBaseUrl + "add_job_request";
+   final String uRLEditJopRequest = apiBaseUrl + "edit_job_request";
    final String uRLAddAJopOffer = apiBaseUrl + "add_job_offer";
    final String uRLStates = apiBaseUrl + "states";
    final String uRLFetchUniversity = apiBaseUrl + "universities";

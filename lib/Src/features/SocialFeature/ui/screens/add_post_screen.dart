@@ -15,12 +15,19 @@ import 'package:get/get.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../../../../bloc/model/post_model.dart';
+
 class AddPostScreen extends StatelessWidget {
-  const AddPostScreen({Key? key}) : super(key: key);
+  final PostModel? postModel;
+  final bool isEdit;
+  const AddPostScreen({
+    this.postModel,
+    this.isEdit=false
+  ,Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    AddPostController _addPostController =Get.put(AddPostController());
+    AddPostController _addPostController =Get.put(AddPostController(postModel:postModel,isEdit:isEdit));
     var node = FocusScope.of(context);
     return SafeArea(
       child: GetBuilder<AddPostController>(

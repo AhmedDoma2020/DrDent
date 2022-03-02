@@ -14,12 +14,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../AuthFeature/bloc/controller/fetch_specialization_controller.dart';
+import '../../bloc/model/job_request.dart';
 
 class AddJobRequestButtonSheet extends StatelessWidget {
+  final bool isEdit;
+  final JobRequest? jobRequestModel;
+  AddJobRequestButtonSheet({Key? key, this.isEdit = false,this.jobRequestModel}) : super(key: key);
 String baseImage64="";
   @override
   Widget build(BuildContext context) {
-     Get.put(AddJopRequestController());
+     Get.put(AddJopRequestController(isEdit:isEdit,jobRequestModel:jobRequestModel));
      Get.put(FetchSpecializationController());
     return Container(
       height: 520.h,
@@ -120,7 +124,7 @@ String baseImage64="";
                       ButtonDefault(
                         title: 'save_'.tr,
                         onTap: () {
-                          _.submit();
+                          _.addJobRequest();
                           // debugPrint("baseImage64 $baseImage64");
                           // if (_globalKey.currentState!.validate()) {
                           //   _globalKey.currentState!.save();

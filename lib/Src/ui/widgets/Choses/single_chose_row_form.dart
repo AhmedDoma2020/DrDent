@@ -23,10 +23,21 @@ class SingleChoseRowForm extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          CustomText(
-            text: title,
-            fontW: FW.semibold,
-            fontSize: 24.sp,
+          Container(
+            color: Colors.amber,
+            height: 48.h,
+            width: 280.w,
+            child: FittedBox(
+              child: CustomText(
+                textAlign: TextAlign.start,
+                text: title,
+                fontW: FW.semibold,
+                fontSize: 24.sp,
+                maxLines: 1,
+              ),
+            ),
+            //192.168.0.105
+            //192.168.0.105:5555
           ),
           Container(
             height: 24.h,

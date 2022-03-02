@@ -33,7 +33,7 @@ class MySocialScreen extends StatelessWidget {
               )
               : ListView.separated(
                   physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) => PostWidget(
+                  itemBuilder: (context, index) => MyPostWidget(
                     post: _.posts[index],
                     onLike: () {
                       _.likePost(postId: _.posts[index].id!);

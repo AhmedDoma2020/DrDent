@@ -7,12 +7,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../Repository/edit_a_jop_offer_repo.dart';
+import '../model/job_offer.dart';
+import 'job_offers_controller.dart';
+
 class AddAJopOfferController extends GetxController {
+  final JobOffer? jobOffer;
+  final bool isEdit;
+  AddAJopOfferController({this.jobOffer,this.isEdit=false}) ;
   GetStorage box = GetStorage();
   TextEditingController? nameController;
   TextEditingController? phoneController;
   TextEditingController? addressController;
-  TextEditingController? scientificLevelIdController;
+  TextEditingController? scientificLevelTitleController;
   TextEditingController? specializationController;
   TextEditingController? jobTypeController;
   TextEditingController? jobDescriptionController;
@@ -21,55 +28,108 @@ class AddAJopOfferController extends GetxController {
   set setSpecializationIdSelected(List<int> value) {
     _specializationIdSelected = value;
   }
-  int? scientificLevelId;
-  int? get servicesId => scientificLevelId;
+  int? _scientificLevelId;
+  int? get scientificLevelId => _scientificLevelId;
   set setScientificLevelId(int value) {
-    scientificLevelId = value;
+    _scientificLevelId = value;
   }
 
-  double? _startSalary=1000;
-  double? get startSalary => _startSalary;
-  set setStartSalary(double value) {
+  int _startSalary=1000;
+  int get startSalary => _startSalary;
+  set setStartSalary(int value) {
     _startSalary = value;
   }
 
-  double? _endSalary=5000;
-  double? get endSalary => _endSalary;
-  set setEndSalary(double value) {
+  int _endSalary=5000;
+  int get endSalary => _endSalary;
+  set setEndSalary(int value) {
     _endSalary = value;
   }
-
+void setData(){
+    nameController!.text = jobOffer!.name;
+    phoneController!.text = jobOffer!.phone;
+    addressController!.text = jobOffer!.address;
+    scientificLevelTitleController!.text = jobOffer!.scientificlevelTitle;
+    setScientificLevelId = jobOffer!.scientificlevelId;
+    if(jobOffer!.specializations.isNotEmpty){
+      List<String> specializationsTitle=[];
+      List<int> specializationsId=[];
+      for(var item in jobOffer!.specializations){
+        specializationsTitle.add(item.title);
+        specializationsId.add(item.id);
+      }
+      specializationController!.text = specializationsTitle.join(",");
+      _specializationIdSelected = specializationsId;
+    }
+    _startSalary =int.parse(jobOffer!.startSalary.toString());
+    _endSalary =int.parse(jobOffer!.endSalary.toString());
+    jobTypeController!.text = "دوام";
+    jobDescriptionController!.text = jobOffer!.description;
+    controllers = jobOffer!.requirements.cast<TextEditingController>();
+    update();
+}
   List<String> _requirementsList=[];
   RequestStatus status = RequestStatus.initial;
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
   final AddAJopOfferRepository _addAJopOfferRepository =
   AddAJopOfferRepository();
+  final EditAJopOfferRepository _editAJopOfferRepository =
+  EditAJopOfferRepository();
+  final JobOffersController _jobOffersController = Get.find();
+
   void submit() async {
     if (globalKey.currentState!.validate()) {
       globalKey.currentState!.save();
-      _requirementsList.clear();
-      controllers.forEach((element) {
-        debugPrint('my data is ${element.text}');
-        _requirementsList.add(element.text);
+      dynamic response;
+      if(isEdit){
+        debugPrint('submit in Edit');
+        _requirementsList.clear();
+        if(jobOffer!.requirements.isNotEmpty){
+          _requirementsList =  jobOffer!.requirements;
+        }
+        debugPrint('requirements List is $_requirementsList');
+        setLoading();
+         response = await _editAJopOfferRepository.editAJopOffer(
+           jobOfferId: jobOffer!.id,
+          ownerName: nameController!.text,
+          phone: phoneController!.text,
+          address: addressController!.text,
+          scientificLevel: 1,
+          specializationId: _specializationIdSelected,
+          startSalary: _startSalary,
+          endSalary: _endSalary,
+          jobType: jobTypeController!.text,
+          description: jobDescriptionController!.text,
+          requirements:_requirementsList,
+        );
+         Get.back();
+      }else{
+        debugPrint('submit in set as first');
+        _requirementsList.clear();
+        controllers.forEach((element) {
+          debugPrint('my data is ${element.text}');
+          _requirementsList.add(element.text);
+        }
+        );
+        debugPrint('requirements List is $_requirementsList');
+        setLoading();
+         response = await _addAJopOfferRepository.addAJopOffer(
+          ownerName: nameController!.text,
+          phone: phoneController!.text,
+          address: addressController!.text,
+          scientificLevel: _scientificLevelId!,
+          specializationId: _specializationIdSelected,
+          startSalary: _startSalary,
+          endSalary: _endSalary,
+          jobType: jobTypeController!.text,
+          description: jobDescriptionController!.text,
+          requirements:_requirementsList,
+        );
+        Get.back();
       }
-      );
-      debugPrint('requirements List is $_requirementsList');
-      setLoading();
-      var response = await _addAJopOfferRepository.addAJopOffer(
-        ownerName: nameController!.text,
-        phone: phoneController!.text,
-        address: addressController!.text,
-        scientificLevel: scientificLevelId!,
-        specializationId: _specializationIdSelected,
-        startSalary: _startSalary!,
-        endSalary: _endSalary!,
-        jobType: jobTypeController!.text,
-        description: jobDescriptionController!.text,
-        requirements:_requirementsList,
-      );
-      Get.back();
       if (response.statusCode == 200 && response.data["status"] == true) {
         debugPrint("request operation success");
+        _jobOffersController.fetchJobOffers();
         Get.back();
         customSnackBar(title: response.data["message"] ?? "Error");
         debugPrint("convert operation success");
@@ -176,7 +236,7 @@ class AddAJopOfferController extends GetxController {
     nameController = TextEditingController();
     phoneController = TextEditingController();
     addressController = TextEditingController();
-    scientificLevelIdController = TextEditingController();
+    scientificLevelTitleController = TextEditingController();
     specializationController = TextEditingController();
     jobTypeController = TextEditingController();
     jobDescriptionController = TextEditingController();
@@ -215,6 +275,7 @@ class AddAJopOfferController extends GetxController {
             addNewInstance();
           },)
     );
+    if(isEdit)setData();
   }
 
   @override
@@ -222,7 +283,7 @@ class AddAJopOfferController extends GetxController {
     nameController?.dispose();
     phoneController?.dispose();
     addressController?.dispose();
-    scientificLevelIdController?.dispose();
+    scientificLevelTitleController?.dispose();
     specializationController?.dispose();
     jobTypeController?.dispose();
     jobDescriptionController?.dispose();

@@ -1,11 +1,13 @@
 
 
+import 'package:dr_dent/Src/bloc/model/post_model.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalPublicationsFeature/ui/widgets/post_widget.dart';
 import 'package:dr_dent/Src/features/SocialFeature/bloc/Controller/socail_controller.dart';
 import 'package:dr_dent/Src/ui/widgets/Dialog/loading_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../widgets/post_share_widget.dart';
 import '/src/core/utils/extensions.dart';
 class SocialScreen extends StatelessWidget {
   const SocialScreen({Key? key}) : super(key: key);
@@ -22,12 +24,25 @@ class SocialScreen extends StatelessWidget {
               _.fetchSocial();
             },
             child: ListView.separated(
-        itemBuilder: (context, index) => PostWidget(
+        itemBuilder: (context, index) =>
+           _.posts[index].postType == PostType.post?
+            PostWidget(
             post: _.posts[index],
             onLike: (){
               _.likePost(postId:_.posts[index].id!);
             },
-        ),
+            onShare: (){
+            _.sharePost(postId:_.posts[index].id!);
+            },
+        ):PostShareWidget(
+             post: _.posts[index],
+             onLike: (){
+               _.likePost(postId:_.posts[index].shareId!);
+             },
+             onShare: (){
+               _.sharePost(postId:_.posts[index].id!);
+             },
+           ),
         separatorBuilder: (context, index) => 16.0.ESH(),
         itemCount: _.posts.length,
         shrinkWrap: true,

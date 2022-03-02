@@ -6,36 +6,23 @@ import 'package:dr_dent/Src/core/services/network_services.dart';
 import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
 import 'package:flutter/cupertino.dart';
 
-class AddJopRequestRepository with ApiKey {
+class DeleteJopRequestRepository with ApiKey {
   // GetStorage box = GetStorage();
   NetworkService _networkService = NetworkService();
-
-  Future<Response> addJopRequest({
-    required String ownerName,
-    required String phone,
-    required String address,
-    required List<int> specializationId,
-    required String cV,
+  Future<Response> deleteJopRequest({
+    required int id,
   }) async {
     Response response;
-    debugPrint("ownerName $ownerName");
-    debugPrint("phone $phone");
-    debugPrint("address $address");
-
     try {
       response = await _networkService.post(
-          url: uRLAddJopRequest,
+          url: uRLDeleteJobRequest,
           auth: true,
           body: {
-            'owner_name':ownerName,
-            'phone':phone,
-            'address':address,
-            'specialization_ids':specializationId,
-            'c_v':cV,
+            'job_request_id':id,
           }
       );
     } on SocketException {
-      throw SocketException('No Internet Connection');
+      throw const SocketException('No Internet Connection');
     } on Exception {
       throw UnKnownException('there is unKnown Exception');
     } catch (e) {
