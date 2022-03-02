@@ -4,35 +4,28 @@ import 'package:dio/dio.dart';
 import 'package:dr_dent/Src/core/constants/api_key.dart';
 import 'package:dr_dent/Src/core/services/network_services.dart';
 import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
+import 'package:get_storage/get_storage.dart';
 
-class InquiryOfProductRepository with ApiKey {
+
+class LikeProductRepository with ApiKey{
   // GetStorage box = GetStorage();
   final NetworkService _networkService = NetworkService();
-
-  Future<Response> inquiryOfProduct({
-    required String phone,
-    required String name,
-    required int productId
-  }) async {
-    Response response;
-    try {
+  Future<Response> likeProduct({required int productId})async{
+    Response? response;
+    try{
       response = await _networkService.post(
-          url: uRLRequestProductPrice,
+          url:  uRLLikeProduct,
           auth: true,
-          body: {
-            'phone':phone,
-            'name':name,
+        body: {
             'product_id':productId
-            // 'device_token':"",
-            // 'device_id':deviceId,
-            // 'device_type':deviceType,
-          }
+        }
       );
-    } on SocketException {
+
+    }on SocketException{
       throw const SocketException('No Internet Connection');
-    } on Exception {
+    }on Exception{
       throw UnKnownException('there is unKnown Exception');
-    } catch (e) {
+    }catch (e){
       throw UnKnownException(e.toString());
     }
     return response;

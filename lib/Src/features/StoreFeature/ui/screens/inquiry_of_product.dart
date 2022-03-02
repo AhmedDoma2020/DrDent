@@ -19,6 +19,11 @@ class InquiryOfProductButtonSheet extends StatelessWidget {
   // final int idSelected;
   // final  Function onTap;
   // InquiryOfProductButtonSheet({Key? key, required this.onTap, this.idSelected = -1}) : super(key: key);
+  final int productId;
+
+
+  InquiryOfProductButtonSheet({required this.productId});
+
   @override
   Widget build(BuildContext context) {
     Get.put(InquiryOfProductController());
@@ -43,49 +48,52 @@ class InquiryOfProductButtonSheet extends StatelessWidget {
           child:  GetBuilder<InquiryOfProductController>(
             builder:(_) =>  Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 24.h),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      RowTopBottomSheet(title: "Request_for_price".tr),
-                      24.0.ESH(),
-                      TextFieldDefault(
-                        hint: 'full_name'.tr,
-                        errorText: "error_name_field".tr,
-                        controller: _.nameController,
-                        keyboardType: TextInputType.name,
-                        fieldType: FieldType.WithBorder,
-                        prefixIconUrl: "TFName",
-                        horizentalPadding: 16,
-                        onComplete: () {
-                          node.nextFocus();
-                        },
-                      ),
-                      16.0.ESH(),
-                      TextFieldDefault(
-                        hint: 'enter_phone'.tr,
-                        errorText: "error_phone_field".tr,
-                        controller: _.phoneController,
-                        keyboardType: TextInputType.phone,
-                        fieldType: FieldType.WithBorder,
-                        prefixIconUrl: "TFPhone",
-                        horizentalPadding: 16,
-                        onComplete: () {
-                          node.unfocus();
-                        },
-                      ),
-                    ],
-                  ),
-                  ButtonDefault(
-                    title: 'send_'.tr,
-                    onTap: () {
-                      // _.submit();
-                      Get.back();
-                    },
-                  ),
-                ],
+              child: Form(
+                key: _.globalKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        RowTopBottomSheet(title: "Request_for_price".tr),
+                        24.0.ESH(),
+                        TextFieldDefault(
+                          hint: 'full_name'.tr,
+                          errorText: "error_name_field".tr,
+                          controller: _.nameController,
+                          keyboardType: TextInputType.name,
+                          fieldType: FieldType.WithBorder,
+                          prefixIconUrl: "TFName",
+                          horizentalPadding: 16,
+                          onComplete: () {
+                            node.nextFocus();
+                          },
+                        ),
+                        16.0.ESH(),
+                        TextFieldDefault(
+                          hint: 'enter_phone'.tr,
+                          errorText: "error_phone_field".tr,
+                          controller: _.phoneController,
+                          keyboardType: TextInputType.phone,
+                          fieldType: FieldType.WithBorder,
+                          prefixIconUrl: "TFPhone",
+                          horizentalPadding: 16,
+                          onComplete: () {
+                            node.unfocus();
+                          },
+                        ),
+                      ],
+                    ),
+                    ButtonDefault(
+                      title: 'send_'.tr,
+                      onTap: () {
+                        _.submit(productId: productId);
+                        // Get.back();
+                      },
+                    ),
+                  ],
+                ),
               ),
               ),
           ),
