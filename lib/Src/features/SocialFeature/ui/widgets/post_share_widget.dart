@@ -18,7 +18,8 @@ class PostShareWidget extends StatelessWidget {
   final PostModel post;
   final VoidCallback? onLike;
   final Function(String)? onShare;
-  const PostShareWidget({Key? key,required this.post,this.onLike,this.onShare}) : super(key: key);
+  final Function(String)? onShareEdit;
+  const PostShareWidget({Key? key,required this.post,this.onShareEdit,this.onLike,this.onShare}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,14 @@ class PostShareWidget extends StatelessWidget {
       child: Column(
         children: [
           16.0.ESH(),
-          PostHeader(post: post,postType: PostType.share),
+          PostHeader(
+              post: post,
+              postType: PostType.share,
+    onShareEdit: (content){
+    if(onShareEdit!=null){
+    onShareEdit!(content!);
+    }}
+          ),
           Container(
             width: double.infinity,
             // color: kCMainScaffoldGrey,

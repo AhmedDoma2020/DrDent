@@ -20,14 +20,11 @@ class ListJobRequests extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 16.0.w),
         child: CardJobRequest(
           request: requests[index],
-
-
-        ),
+        ),),
         separatorBuilder: (context, index) => 16.0.ESH(),
         itemCount: requests.length,
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-
     );
   }
 }

@@ -4,6 +4,7 @@ import 'package:dr_dent/Src/features/JobFeature/bloc/model/job_request.dart';
 import 'package:dr_dent/Src/features/JobFeature/bloc/repository/job_offers_repository.dart';
 import 'package:dr_dent/Src/features/JobFeature/bloc/repository/job_requests_repository.dart';
 import 'package:dr_dent/Src/features/SocialFeature/bloc/Controller/like_post_controller.dart';
+import 'package:dr_dent/Src/features/SocialFeature/bloc/Repository/edit_post_repo.dart';
 import 'package:dr_dent/Src/features/SocialFeature/bloc/repository/social_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -115,11 +116,11 @@ class SocialController extends GetxController{
 
 
   // ========== START EDIT DATA  ====================
-  final SharePostRepository _sharePostRepository1 = SharePostRepository();
+  final EditPostRepository _editPostRepository = EditPostRepository();
   Future<void> editSharePost({required int postId,String content = ''})async{
     int postIndex=_posts.indexWhere((element) => element.id == postId);
     update();
-    var response = await _sharePostRepository.sharePost(postId: postId,content : content);
+    var response = await _editPostRepository.editPost(postId: postId,content : content,images: [],sharesId: [1],);
     if (response.statusCode == 200 && response.data["status"] == true) {
       debugPrint("request operation success");
       if(response.data['data']!=null){
