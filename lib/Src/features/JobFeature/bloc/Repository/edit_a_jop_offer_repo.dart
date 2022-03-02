@@ -6,32 +6,42 @@ import 'package:dr_dent/Src/core/services/network_services.dart';
 import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
 import 'package:flutter/cupertino.dart';
 
-class AddJopRequestRepository with ApiKey {
+class EditAJopOfferRepository with ApiKey {
   // GetStorage box = GetStorage();
   NetworkService _networkService = NetworkService();
 
-  Future<Response> addJopRequest({
+  Future<Response> editAJopOffer({
+    required int jobOfferId,
     required String ownerName,
     required String phone,
     required String address,
+    required int scientificLevel,
     required List<int> specializationId,
-    required String cV,
+    required int startSalary,
+    required int endSalary,
+    required String jobType,
+    required String description,
+    required List<String> requirements,
   }) async {
     Response response;
-    debugPrint("ownerName $ownerName");
-    debugPrint("phone $phone");
-    debugPrint("address $address");
-
+    debugPrint("scientificLevel $scientificLevel");
     try {
       response = await _networkService.post(
-          url: uRLAddJopRequest,
+          url: uRLEditJobOffer,
           auth: true,
           body: {
-            'owner_name':ownerName,
+            'job_offer_id':jobOfferId,
+            'name':ownerName,
             'phone':phone,
             'address':address,
-            'specialization_ids':specializationId,
-            'c_v':cV,
+            'scientific_level_id':scientificLevel,
+            'specializations':specializationId,
+            'start_salary':startSalary,
+            'end_salary':endSalary,
+            'job_type':jobType,
+            'city_id':5,
+            'description':description,
+            'requirements':requirements,
           }
       );
     } on SocketException {

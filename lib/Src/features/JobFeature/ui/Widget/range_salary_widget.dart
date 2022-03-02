@@ -6,25 +6,32 @@ import 'package:get/get.dart';
 
 class RangeSliderWidget extends StatefulWidget {
   final Function onSelected;
-  const RangeSliderWidget({required this.onSelected ,
+   int startSalary;
+   int endSalary;
+  final bool isEdit;
+   RangeSliderWidget({required this.onSelected ,
+    required this.startSalary,
+    required this.endSalary,
+    this.isEdit =false,
     Key? key}) : super(key: key);
   @override
   State<RangeSliderWidget> createState() => _RangeSliderWidgetState();
 }
 class _RangeSliderWidgetState extends State<RangeSliderWidget> {
   RangeValues _currentRangeValues = const RangeValues(1000, 5000);
-  int startSalary=1000;
-  int endSalary=5000;
+   int startSalary=1000;
+   int endSalary=5000;
 
   @override
   Widget build(BuildContext context) {
+
     return Column(
       children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomText(text: "salary_".tr,fontW: FW.medium,fontSize: 14,),
-              CustomText(text: "من $startSalary - $endSalary جنيه".tr,fontW: FW.medium,fontSize: 14,color: kCSubMain,),
+              CustomText(text: "من ${widget.startSalary} - ${widget.endSalary} جنيه".tr,fontW: FW.medium,fontSize: 14,color: kCSubMain,),
             ],
           ),
         RangeSlider(
@@ -39,9 +46,9 @@ class _RangeSliderWidgetState extends State<RangeSliderWidget> {
           onChanged: (RangeValues values) {
             setState(() {
               _currentRangeValues = values;
-              widget.onSelected(values.start,values.end);
-              startSalary =values.start.toInt();
-              endSalary =values.end.toInt();
+              widget.onSelected(values.start.toInt(),values.end.toInt());
+              widget.startSalary =values.start.toInt();
+              widget.endSalary =values.end.toInt();
             });
           },
         ),

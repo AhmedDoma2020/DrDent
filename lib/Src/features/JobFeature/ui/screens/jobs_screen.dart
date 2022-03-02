@@ -16,56 +16,67 @@ import 'add_a_job_offer_screen.dart';
 import 'add_job_request_bottun_sheet.dart';
 import 'job_requests_screen.dart';
 
-
-
 class JobsScreen extends StatelessWidget {
   const JobsScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     GetStorage box = GetStorage();
     Get.put(JobsController());
-    JobOffersController _jobOffersController= Get.put(JobOffersController());
+    JobOffersController _jobOffersController = Get.put(JobOffersController());
     Get.put(JobRequestController());
-    Future<void> onRefresh()async {
+    Future<void> onRefresh() async {
       await _jobOffersController.fetchJobOffers();
     }
     debugPrint("box.read('user_type_id') is ${box.read('user_type_id')}");
     return GetBuilder<JobsController>(
-      builder:(_) => Scaffold(
-      floatingActionButton: (_.tabIndex == 0 && box.read('user_type_id')==7) || (_.tabIndex == 1 && box.read('user_type_id')!=7)? FloatingActionButton(
-        child: Icon(
-          Icons.add,
-          color: Colors.white,
-          size: 24.w,
-        ),
-        onPressed: _.tabIndex==0 && box.read('user_type_id')==7? (){
-          Get.bottomSheet(
-              AddJobRequestButtonSheet(),
-              isScrollControlled: true
-          );
-        }: _.tabIndex==1 && box.read('user_type_id')!=7?(){} : () {
-          Get.to(()=> AddAJopOfferScreen());
-        },
-        backgroundColor: kCMain,
-      ):0.0.ESW(),
-      body:
-             RefreshIndicator(
-            onRefresh:onRefresh ,
-              child: Column(
-                children: [
-                  Padding(
-                    padding:  EdgeInsets.symmetric(vertical: 16.h),
-                    child: Center(child: TabsIos(titles: const ['طلبات توظيف','فرص العمل'], onTap: (value){_.tabIndex=value;},tabIndex: _.tabIndex,)),
-                  ),
-                  Expanded(
-                      child: [
-                        const JobRequestScreen(),
-                        const JobOffersScreen(),
-                      ][_.tabIndex]
-                  ),
-                ],
+      builder: (_) => Scaffold(
+        floatingActionButton:
+            (_.tabIndex == 0 && box.read('user_type_id') == 7) ||
+                    (_.tabIndex == 1 && box.read('user_type_id') != 7)
+                ? FloatingActionButton(
+                    child: Icon(
+                      Icons.add,
+                      color: Colors.white,
+                      size: 24.w,
+                    ),
+                    onPressed: _.tabIndex == 0 && box.read('user_type_id') == 7
+                        ? () {
+                            Get.bottomSheet(AddJobRequestButtonSheet(),
+                                isScrollControlled: true);
+                          }
+                        : _.tabIndex == 1 && box.read('user_type_id') != 7
+                            ? () {
+                      Get.to(() => AddAJopOfferScreen());
+                    }
+                            : () {
+                              },
+                    backgroundColor: kCMain,
+                  )
+                : 0.0.ESW(),
+        body: RefreshIndicator(
+          onRefresh: onRefresh,
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 16.h),
+                child: Center(
+                    child: TabsIos(
+                  titles: const ['طلبات توظيف', 'فرص العمل'],
+                  onTap: (value) {
+                    _.tabIndex = value;
+                  },
+                  tabIndex: _.tabIndex,
+                )),
               ),
-            ),
+              Expanded(
+                  child: [
+                const JobRequestScreen(),
+                const JobOffersScreen(),
+              ][_.tabIndex]),
+            ],
+          ),
+        ),
       ),
     );
   }

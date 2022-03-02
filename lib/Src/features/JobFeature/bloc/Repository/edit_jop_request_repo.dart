@@ -6,11 +6,11 @@ import 'package:dr_dent/Src/core/services/network_services.dart';
 import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
 import 'package:flutter/cupertino.dart';
 
-class AddJopRequestRepository with ApiKey {
+class EditJopRequestRepository with ApiKey {
   // GetStorage box = GetStorage();
   NetworkService _networkService = NetworkService();
 
-  Future<Response> addJopRequest({
+  Future<Response> editJopRequest({
     required String ownerName,
     required String phone,
     required String address,
@@ -24,7 +24,7 @@ class AddJopRequestRepository with ApiKey {
 
     try {
       response = await _networkService.post(
-          url: uRLAddJopRequest,
+          url: uRLEditJopRequest,
           auth: true,
           body: {
             'owner_name':ownerName,

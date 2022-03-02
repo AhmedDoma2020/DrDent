@@ -14,7 +14,8 @@ class CardJobRequest extends StatelessWidget {
   final JobRequest request;
   final bool isMine;
   final VoidCallback? onDelete;
-  const CardJobRequest({Key? key,this.width=343,required this.request,this.isMine=false,this.onDelete}) : super(key: key);
+  final VoidCallback? onEdit;
+  const CardJobRequest({Key? key,this.width=343,required this.request,this.isMine=false,this.onDelete,this.onEdit}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -83,16 +84,33 @@ class CardJobRequest extends StatelessWidget {
                     ],
                   ),
                 ),
-                isMine?
-                16.0.ESW():0.0.ESH(),
-                isMine?
-                IconWidget(
-                  icon: 'assets/icons/delete.png',
-                  onEditTap: (){
-                    if(onDelete!=null){
-                      onDelete!();
-                    }
-                  },
+                !isMine?
+                8.0.ESW():0.0.ESH(),
+                !isMine?
+                Row(
+                  children: [
+                    IconWidget(
+                      icon: 'assets/icons/edit.png',
+                      onEditTap: (){
+                        debugPrint("clicked her 11");
+                          onEdit!();
+                        debugPrint("clicked her 12");
+
+                      },
+                    ),
+                    IconWidget(
+                      icon: 'assets/icons/delete.png',
+                      onEditTap: (){
+                        debugPrint("clicked her 122");
+
+                        if(onDelete!=null){
+                          debugPrint("clicked her 123");
+
+                        onDelete!();
+                        }
+                      },
+                    ),
+                  ],
                 ):0.0.ESH(),
               ],
             ),
