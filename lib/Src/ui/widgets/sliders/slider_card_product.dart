@@ -13,7 +13,9 @@ class SliderCardProduct extends StatelessWidget {
   final VoidCallback? onViewAllTap;
   final List<Product> products;
   final String titleOnTap;
-  const SliderCardProduct({Key? key,this.onViewAllTap,this.viewAllTitle='',required this.products,this.titleOnTap='عرض الكل'}) : super(key: key);
+  final Function(int,int)? onLike;    // productId   ,  status
+
+  const SliderCardProduct({Key? key,this.onViewAllTap,this.viewAllTitle='',required this.products,this.titleOnTap='عرض الكل',this.onLike}) : super(key: key);
 
 
   @override
@@ -29,7 +31,11 @@ class SliderCardProduct extends StatelessWidget {
                 padding:  EdgeInsets.only(
                     right: index ==0 ? 16.0.w : 0,
                 ),
-                child: CardProduct(product: products[index],),
+                child: CardProduct(product: products[index],onLike: (status){
+                  if(onLike!=null){
+                    onLike!(products[index].id!,status);
+                  }
+                }),
               ),
               separatorBuilder: (context, index) => 16.0.ESW(),
               itemCount: products.length,

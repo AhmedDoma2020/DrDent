@@ -9,14 +9,14 @@ import 'package:get/get.dart';
 import '/src/core/utils/extensions.dart';
 class CardProductRect extends StatelessWidget {
   final Product product;
-
-  const CardProductRect({Key? key,required this.product}) : super(key: key);
+  final Function(int)? onLike;         // status
+  const CardProductRect({Key? key,required this.product,this.onLike}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        Get.to(()=>ProductScreen(product: product,));
+        Get.to(()=>ProductScreen(product: product,onLike: (status){if(onLike!=null){onLike!(status);}},));
       },
       child: Container(
         width: double.infinity,

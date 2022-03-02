@@ -14,11 +14,16 @@ class LikeProductController extends GetxController{
   RequestStatus status = RequestStatus.initial;
   // ========== START FETCH DATA  ====================
   final LikeProductRepository _likeProductRepository = LikeProductRepository();
-  Future<void> likeProduct({required int id , required VoidCallback onSuccess})async{
+  Future<void> likeProduct({required int id , required Function(int) onSuccess})async{
     var response = await _likeProductRepository.likeProduct(productId: id);
     if (response.statusCode == 200 && response.data["status"] == true) {
       debugPrint("request operation success");
-      onSuccess();
+      if(response.data["data"]!=null){
+        onSuccess(response.data["data"]);
+      }else{
+        print('a7aaaaaaaaaaaaaaaaaaaaaaaaa');
+        onSuccess(1);
+      }
       debugPrint("convert operation success");
     }else{
 

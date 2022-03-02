@@ -10,13 +10,14 @@ import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/image_network.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../../ui/widgets/sheets/sheet_share.dart';
 import '/src/core/utils/extensions.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PostShareWidget extends StatelessWidget {
   final PostModel post;
   final VoidCallback? onLike;
-  final VoidCallback? onShare;
+  final Function(String)? onShare;
   const PostShareWidget({Key? key,required this.post,this.onLike,this.onShare}) : super(key: key);
 
   @override
@@ -30,7 +31,8 @@ class PostShareWidget extends StatelessWidget {
           PostHeader(post: post,postType: PostType.share),
           Container(
             width: double.infinity,
-            color: kCMainScaffoldGrey,
+            // color: kCMainScaffoldGrey,
+            color: Colors.transparent,
             child: Padding(
               padding:  EdgeInsets.symmetric(
                   vertical: 16.h,
@@ -74,7 +76,14 @@ class PostShareWidget extends StatelessWidget {
                   PostStatics(
                       icon: 'share.png',
                       count: '${post.shareNumber!}',
-                      onTap: (){if(onShare!=null){}onShare!();}
+                      onTap: (){
+                        Get.bottomSheet(
+                            SheetSharePost(
+                                onSave: (content){
+                                  Get.back();
+                                 if(onShare!=null){}onShare!(content??'');
+                             }));
+                      }
                       ),
                 ],
               ),

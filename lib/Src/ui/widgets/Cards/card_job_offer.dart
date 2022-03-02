@@ -17,6 +17,7 @@ class CardJobOffer extends StatelessWidget {
   final bool isMine;
   const CardJobOffer({Key? key,required this.offer,this.onDeleteTap,this.isMine=false,this.onEditTap}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

@@ -21,7 +21,6 @@ class CustomDrawer extends StatelessWidget {
           // color: Colors.amber,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 24.w),

@@ -70,7 +70,7 @@ class SocialController extends GetxController{
 
   void increasePostCommentCounts({required int postId}){
     int postIndex = _posts.indexWhere((element) => element.id == postId);
-    if(postIndex==null || postIndex<0){
+    if(postIndex == null || postIndex<0){
     }else{
       _posts[postIndex].commentsNumber = _posts[postIndex].commentsNumber !+ 1;
       update();
@@ -82,14 +82,26 @@ class SocialController extends GetxController{
 
   // ========== START FETCH DATA  ====================
   final SharePostRepository _sharePostRepository = SharePostRepository();
-  Future<void> sharePost({required int postId,String content = 'test'})async{
-    int postIndex = _posts.indexWhere((element) => element.id == postId);
-    _posts[postIndex].shareNumber = _posts[postIndex].shareNumber !+ 1;
+  Future<void> sharePost({required int postId,String content = 'test',bool isPostShare=false})async{
+    int postIndex = -1;
+    if(isPostShare){
+      postIndex=_posts.indexWhere((element) => element.shareId == postId);
+    }else{
+      postIndex=_posts.indexWhere((element) => element.id == postId);
+    }
+    if(postIndex<0){
+
+    }else{
+      _posts[postIndex].shareNumber = _posts[postIndex].shareNumber !+ 1;
+    }
+
     update();
     var response = await _sharePostRepository.sharePost(postId: postId,content : content);
     if (response.statusCode == 200 && response.data["status"] == true) {
       debugPrint("request operation success");
       if(response.data['data']!=null){
+        PostModel post = PostModel.fromJson(response.data['data']);
+        _posts.insert(0, post);
       }
       debugPrint("convert operation success");
       update();
@@ -99,6 +111,28 @@ class SocialController extends GetxController{
     }
   }
   // ================  END FETCH DATA  ====================
+
+
+
+  // ========== START EDIT DATA  ====================
+  final SharePostRepository _sharePostRepository1 = SharePostRepository();
+  Future<void> editSharePost({required int postId,String content = ''})async{
+    int postIndex=_posts.indexWhere((element) => element.id == postId);
+    update();
+    var response = await _sharePostRepository.sharePost(postId: postId,content : content);
+    if (response.statusCode == 200 && response.data["status"] == true) {
+      debugPrint("request operation success");
+      if(response.data['data']!=null){
+        PostModel post = PostModel.fromJson(response.data['data']);
+        _posts[postIndex]=post;
+      }
+      debugPrint("convert operation success");
+      update();
+    }else{
+      update();
+    }
+  }
+  // ================  END EDIT DATA  ====================
 
 
 

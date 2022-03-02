@@ -1,6 +1,7 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/features/BaseFeature/bloc/contoller/base_controller.dart';
 import 'package:dr_dent/Src/features/HomeFeature/ui/screens/home_screen.dart';
+import 'package:dr_dent/Src/features/JobFeature/ui/Widget/sheet_jobs_cities.dart';
 import 'package:dr_dent/Src/features/JobFeature/ui/screens/jobs_screen.dart';
 import 'package:dr_dent/Src/features/SocialFeature/bloc/Controller/socail_controller.dart';
 import 'package:dr_dent/Src/features/SocialFeature/ui/screens/add_post_screen.dart';
@@ -13,6 +14,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import '../../../JobFeature/bloc/controller/job_offers_controller.dart';
+import '../../../JobFeature/bloc/controller/job_request_controller.dart';
 import '/src/core/utils/extensions.dart';
 
 
@@ -26,11 +29,23 @@ class BaseScreen extends StatelessWidget {
     debugPrint("BaseScreen2");
     Get.put(BaseController());
     Get.put(SocialController());
+    JobOffersController _jobOffersController = Get.put(JobOffersController());
+    JobRequestController _jobRequestController = Get.put(JobRequestController());
     return GetBuilder<BaseController>(
       builder: (_) =>  Scaffold(
         key: _key,
         drawer:  CustomDrawer(),
         appBar: AppBars.appBarLogo(
+          onCitiesTap: (){
+            Get.bottomSheet(
+              SheetJobsCities(onSave: (id){
+                Get.back();
+                _jobOffersController.fetchJobOffers(cityId: id);
+              },),
+              isScrollControlled: true
+            );
+          },
+          citiesHandle: _.tabIndex==1,
             onDrawerTap: (){
           _key.currentState!.openDrawer();
         }),
