@@ -62,7 +62,7 @@ class CardJobRequest extends StatelessWidget {
                       ),
                       5.0.ESH(),
                       CustomText(
-                        text: request.specializations!.join(' , '),
+                        text: request.specializationsTitle,
                         color: kCMainBlack2,
                         fontSize: 12,
                         fontW: FW.light,
@@ -84,18 +84,20 @@ class CardJobRequest extends StatelessWidget {
                     ],
                   ),
                 ),
-                !isMine?
+                isMine?
                 8.0.ESW():0.0.ESH(),
-                !isMine?
+                isMine?
                 Row(
                   children: [
                     IconWidget(
                       icon: 'assets/icons/edit.png',
                       onEditTap: (){
                         debugPrint("clicked her 11");
+                        if(onEdit!=null){
                           onEdit!();
-                        debugPrint("clicked her 12");
-
+                          debugPrint("clicked her 12");
+                        }
+                        debugPrint("clicked her 13");
                       },
                     ),
                     IconWidget(

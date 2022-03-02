@@ -11,6 +11,7 @@ class EditJopRequestRepository with ApiKey {
   NetworkService _networkService = NetworkService();
 
   Future<Response> editJopRequest({
+    required int jobRequestId,
     required String ownerName,
     required String phone,
     required String address,
@@ -27,7 +28,8 @@ class EditJopRequestRepository with ApiKey {
           url: uRLEditJopRequest,
           auth: true,
           body: {
-            'owner_name':ownerName,
+            'jop_request_id':jobRequestId,
+            'name':ownerName,
             'phone':phone,
             'address':address,
             'specialization_ids':specializationId,

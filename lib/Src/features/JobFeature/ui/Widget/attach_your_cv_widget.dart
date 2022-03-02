@@ -12,11 +12,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../../ui/widgets/GeneralWidgets/image_network.dart';
+
 
 class AttachYourCVIWidget extends StatefulWidget {
   final Function(String) onTap;
-  const AttachYourCVIWidget({
-    required this.onTap ,
+   String futureImage;
+
+   AttachYourCVIWidget({
+    required this.onTap,
+    this.futureImage = "",
     Key? key,
   }) : super(key: key);
   @override
@@ -44,6 +49,7 @@ class _AttachYourCVIWidgetState extends State<AttachYourCVIWidget> {
   }
   @override
   Widget build(BuildContext context) {
+    debugPrint('futureImage in build is ${widget.futureImage}');
     return Container(
       width: double.infinity,
       height: 82.h,
@@ -55,7 +61,8 @@ class _AttachYourCVIWidgetState extends State<AttachYourCVIWidget> {
           width: 1.w,
         ),
       ),
-      child: image != null
+      child:
+      image != null || widget.futureImage != ''
           ? Stack(
         children: [
           GestureDetector(
@@ -71,11 +78,22 @@ class _AttachYourCVIWidgetState extends State<AttachYourCVIWidget> {
             },
             child: ClipRRect(
               borderRadius: BorderRadius.circular(24.r),
-              child: Image.file(
+              child: widget.futureImage ==''?
+              Image.file(
                 image!,
                 fit: BoxFit.cover,
                 width: double.infinity,
                 height: 82.h,
+              ):GestureDetector(
+                onTap: () {
+                  Get.to(() => PhotoViewWidget(imageProvider: NetworkImage(widget.futureImage),));
+                },
+                child: ImageNetwork(
+                  url: widget.futureImage,
+                  height: double.infinity,
+                  width: double.infinity,
+                  boxFit: BoxFit.fill,
+                ),
               ),
             ),
           ),
@@ -89,6 +107,7 @@ class _AttachYourCVIWidgetState extends State<AttachYourCVIWidget> {
                     image = null;
                     img64 = null;
                     widget.onTap("");
+                    widget.futureImage ='';
                   });
                 },
                 child: Container(

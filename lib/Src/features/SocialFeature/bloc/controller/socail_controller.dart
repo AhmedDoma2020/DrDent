@@ -43,6 +43,12 @@ class SocialController extends GetxController{
   // ================  END FETCH DATA  ====================
 
 
+  void deletePost(int id){
+    int index = _posts.indexWhere((element) => element.id == id);
+    _posts.removeAt(index);
+    update();
+  }
+
   final LikePostController _likePostController = Get.put(LikePostController());
   Future<void> likePost({required int postId})async{
     int postIndex = _posts.indexWhere((element) => element.id == postId);

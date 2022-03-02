@@ -105,5 +105,7 @@ mixin ApiKey{
    final String uRLSetAvatar = apiBaseUrl + "set_user_image";
    final String uRLSetCover = apiBaseUrl + "set_cover_image";
    final String uRLAddPost = apiBaseUrl + "add_post";
+   final String uRLEditPost = apiBaseUrl + "edit_post";
+   final String uRLDeletePost = apiBaseUrl + "delete_post";
    final String uRLJobTitles = apiBaseUrl + "job_titles";
 }

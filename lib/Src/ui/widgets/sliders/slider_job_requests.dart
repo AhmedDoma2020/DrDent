@@ -22,9 +22,7 @@ class SliderJobRequests extends StatelessWidget {
             onDelete(requests[index].id!);
           },
           onEdit: (){
-            debugPrint("clicked her 1");
-            Get.bottomSheet(
-                AddJobRequestButtonSheet(isEdit:true,jobRequestModel: requests[index],),
+            Get.bottomSheet(AddJobRequestButtonSheet(isEdit: true,jobRequestModel:requests[index]),
                 isScrollControlled: true);
           },
         ),

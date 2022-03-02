@@ -1,34 +1,25 @@
-
-
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:dr_dent/Src/core/constants/api_key.dart';
 import 'package:dr_dent/Src/core/services/network_services.dart';
 import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
-import 'package:flutter/cupertino.dart';
 
-class AddPostRepository with ApiKey {
+class DeletePostRepository with ApiKey {
   // GetStorage box = GetStorage();
   final NetworkService _networkService = NetworkService();
-  Future<Response> addPost({
-    required String content,
-    required List<String> images,
-    required List<int> sharesId,
+
+  Future<Response> deletePost({
+    required int postId,
   }) async {
-    log("imagesList in repo is $images");
-    log("tags in repo is $sharesId");
     Response response;
     try {
       response = await _networkService.post(
-          url: uRLAddPost,
-          auth: true,
-          body: {
-            'content':content,
-            'images':images,
-            'user_type_ids':sharesId,
-          }
+        url: uRLDeletePost,
+        auth: true,
+        body: {
+          'post_id': postId,
+        },
       );
     } on SocketException {
       throw SocketException('No Internet Connection');

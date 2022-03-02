@@ -42,9 +42,9 @@ class AddPostScreen extends StatelessWidget {
                   height: 48,
                   radius: 6,
                   title: 'publishing_'.tr,
-                  buttonColor: _.img64 != null || !_.isContentCEmpty ?kCActiveButton:kCActiveButton.withOpacity(0.3),
+                  buttonColor: _.img64 != null|| _.futurePostImage!='' || !_.isContentCEmpty || _.contentController!.text.isNotEmpty ?kCActiveButton:kCActiveButton.withOpacity(0.3),
                   titleSize: 13,
-                  onTap: _.img64 != null ||  !_.isContentCEmpty ? () {
+                  onTap: _.img64 != null || _.futurePostImage!=''||  !_.isContentCEmpty || _.contentController!.text.isNotEmpty ? () {
                     _.submit();
                   }:(){},
                 ),
@@ -83,9 +83,10 @@ class AddPostScreen extends StatelessWidget {
                         ),
                       ),
                       16.0.ESH(),
-                      _.image != null
-                          ?
-                      AddImagePostForm():0.0.ESW(),
+                      _.image != null || _.futurePostImage != ''?
+                      AddImagePostForm(
+                        futureImage: _.futurePostImage,
+                      ):0.0.ESW(),
                       60.0.ESH(),
                     ],
                   ),

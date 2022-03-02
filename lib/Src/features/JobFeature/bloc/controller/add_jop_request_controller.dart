@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../../../../ui/widgets/custom_snack_bar.dart';
 import '../Repository/edit_jop_request_repo.dart';
 import '../model/job_request.dart';
 
@@ -32,18 +33,29 @@ class AddJopRequestController extends GetxController {
   set setCVImage(String value) {
     _cVImage = value;
   }
+
   String _futureCVImage = '';
   String get futureCVImage => _futureCVImage;
   set setFutureCVImage(String value) {
     _futureCVImage = value;
+    update();
   }
 
   void setData() {
     nameController!.text = jobRequestModel!.ownerName!;
     phoneController!.text = jobRequestModel!.ownerPhone!;
     addressController!.text = jobRequestModel!.ownerAddress!;
-    addressController!.text = jobRequestModel!.specializations!.join(",");
-    setFutureCVImage = jobRequestModel!.cv!;
+    if(jobRequestModel!.specializations!.isNotEmpty){
+      List<String> specializationsTitle=[];
+      List<int> specializationsId=[];
+      for(var item in jobRequestModel!.specializations!){
+        specializationsTitle.add(item.title);
+        specializationsId.add(item.id);
+      }
+      specializationController!.text = specializationsTitle.join(",");
+      _specializationIdSelected = specializationsId;
+    }
+    setFutureCVImage = "http://dr-dent.crazyideaco.com/uploads/users/default.png";
     update();
   }
 
@@ -56,38 +68,47 @@ class AddJopRequestController extends GetxController {
 
   void addJobRequest() async {
     if (globalKey.currentState!.validate()) {
-      globalKey.currentState!.save();
-      dynamic response ;
-      if(isEdit){
-        setLoading();
-         response = await _editJopRequestRepository.editJopRequest(
-          ownerName: nameController!.text,
-          phone: phoneController!.text,
-          address: addressController!.text,
-          specializationId: _specializationIdSelected,
-          cV: _cVImage,
-        );
-        Get.back();
+      if(_cVImage !='' || _futureCVImage != ''){
+        globalKey.currentState!.save();
+        dynamic response ;
+        if(isEdit){
+          debugPrint("Is Edit");
+          setLoading();
+          response = await _editJopRequestRepository.editJopRequest(
+            jobRequestId: jobRequestModel!.id!,
+            ownerName: nameController!.text,
+            phone: phoneController!.text,
+            address: addressController!.text,
+            specializationId: _specializationIdSelected,
+            cV: _cVImage,
+          );
+          Get.back();
+        }else{
+          debugPrint("Is Not Edit");
+
+          setLoading();
+          response = await _addJopRequestRepository.addJopRequest(
+            name: nameController!.text,
+            phone: phoneController!.text,
+            address: addressController!.text,
+            specializationId: _specializationIdSelected,
+            cV: _cVImage,
+          );
+          Get.back();
+        }
+        if (response.statusCode == 200 && response.data["status"] == true) {
+          debugPrint("request operation success");
+          Get.back();
+          customSnackBar(title: response.data["message"]??"");
+          debugPrint("convert operation success");
+          status = RequestStatus.done;
+          update();
+        } else {
+          status = RequestStatus.error;
+          update();
+        }
       }else{
-        setLoading();
-         response = await _addJopRequestRepository.addJopRequest(
-          ownerName: nameController!.text,
-          phone: phoneController!.text,
-          address: addressController!.text,
-          specializationId: _specializationIdSelected,
-          cV: _cVImage,
-        );
-        Get.back();
-      }
-      if (response.statusCode == 200 && response.data["status"] == true) {
-        debugPrint("request operation success");
-        Get.back();
-        debugPrint("convert operation success");
-        status = RequestStatus.done;
-        update();
-      } else {
-        status = RequestStatus.error;
-        update();
+        customSnackBar(title:"must_attach_your_CV".tr);
       }
     }
   }
