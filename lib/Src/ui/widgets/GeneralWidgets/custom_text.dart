@@ -2,6 +2,7 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 
 
@@ -40,7 +41,7 @@ class CustomText extends StatelessWidget {
     return Padding(
       padding: padding ?? EdgeInsets.all(0),
       child: Text(
-        text?? '',
+        text!.tr,
         textAlign: textAlign ?? TextAlign.start,
         maxLines: maxLines??null,
         style: TextStyle(

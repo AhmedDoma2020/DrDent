@@ -1,11 +1,8 @@
-import 'package:dr_dent/Src/bloc/controller/featch_state_and_city_controller.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/widgets/specialization_button_sheet.dart';
 import 'package:dr_dent/Src/features/JobFeature/bloc/controller/add_jop_request_controller.dart';
 import 'package:dr_dent/Src/features/JobFeature/ui/Widget/attach_your_cv_widget.dart';
-import 'package:dr_dent/Src/features/JobFeature/ui/Widget/city_button_sheet.dart';
-import 'package:dr_dent/Src/features/JobFeature/ui/Widget/state_button_sheet.dart';
 import 'package:dr_dent/Src/ui/widgets/TextFields/text_field_default.dart';
 import 'package:dr_dent/Src/ui/widgets/buttons/button_default.dart';
 import 'package:dr_dent/Src/ui/widgets/top_title_in_button_sheet.dart';
@@ -19,12 +16,16 @@ import '../../bloc/model/job_request.dart';
 class AddJobRequestButtonSheet extends StatelessWidget {
   final bool isEdit;
   final JobRequest? jobRequestModel;
-  AddJobRequestButtonSheet({Key? key, this.isEdit = false,this.jobRequestModel}) : super(key: key);
-String baseImage64="";
+
+  AddJobRequestButtonSheet(
+      {Key? key, this.isEdit = false, this.jobRequestModel})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-     Get.put(AddJopRequestController(isEdit:isEdit,jobRequestModel:jobRequestModel));
-     Get.put(FetchSpecializationController());
+    Get.put(AddJopRequestController(
+        isEdit: isEdit, jobRequestModel: jobRequestModel));
+    Get.put(FetchSpecializationController());
     return Container(
       height: 520.h,
       width: double.infinity,
@@ -80,6 +81,7 @@ String baseImage64="";
                         fieldType: FieldType.WithBorder,
                         disableBorder: Colors.transparent,
                         enableBorder: Colors.transparent,
+                        maxLines: 2,
                         horizentalPadding: 16,
                       ),
                       16.0.ESH(),
@@ -88,14 +90,16 @@ String baseImage64="";
                           Get.bottomSheet(
                               SpecializationButtonSheet(
                                 specializationIdsSelected: [],
-
-                                onTapNotEmpty: (specializationIdList,specializationTitleList){
-                                  _.setSpecializationIdSelected = specializationIdList;
-                                  _.specializationController!.text=specializationTitleList;
+                                onTapNotEmpty: (specializationIdList,
+                                    specializationTitleList) {
+                                  _.setSpecializationIdSelected =
+                                      specializationIdList;
+                                  _.specializationController!.text =
+                                      specializationTitleList;
                                 },
-                                onTapEmpty: (){
+                                onTapEmpty: () {
                                   _.specializationController!.clear();
-                                  _.setSpecializationIdSelected=[];
+                                  _.setSpecializationIdSelected = [];
                                 },
                               ),
                               isScrollControlled: true);
@@ -116,8 +120,10 @@ String baseImage64="";
                       ),
                       16.0.ESH(),
                       AttachYourCVIWidget(
-                        onTap: (image64){
-                          baseImage64=image64;
+                        futureImage: _.futureCVImage,
+                        onTap: (image64) {
+                          _.setCVImage = image64;
+                          _.setFutureCVImage = image64;
                         },
                       ),
                       16.0.ESH(),

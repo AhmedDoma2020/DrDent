@@ -25,6 +25,7 @@ class LoginController extends GetxController{
       Get.back();
      if(response.statusCode == 200 && response.data["status"] == true){
        box.write("id", response.data["data"]["id"]);
+       debugPrint("box.read('id') in logIn is ${box.read('id')}");
        box.write("name", response.data["data"]["name"]);
        box.write("phone", response.data["data"]["phone"]);
        box.write("email", response.data["data"]["email"]);
