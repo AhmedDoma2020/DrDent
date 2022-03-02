@@ -44,8 +44,13 @@ class AllProductsScreen extends StatelessWidget {
                   duration: const Duration(milliseconds: 500),
                    curve: Curves.easeIn,
                    child: !_.isGrid?
-                   ListCardProductRect(products: _.isSearch?_.searchProducts:_.products,):
-                   GridCardProduct(products: _.isSearch?_.searchProducts:_.products,),
+                   ListCardProductRect(products: _.isSearch?_.searchProducts:_.products,onLike: (id,status){
+                  _.handleLikeProduct(id: id, status: status);
+               }):
+                   GridCardProduct(products: _.isSearch?_.searchProducts:_.products,onLike: (id,status){
+                     _.handleLikeProduct(id: id, status: status);
+                   }
+                   ),
               )
               )
             ],

@@ -26,34 +26,6 @@ class PostHeader extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
-                  width: 40.w,
-                  height: 40.w,
-                  clipBehavior: Clip.hardEdge,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(40.r),
-                  ),
-                  child: ImageNetwork(
-                      width: 40.w, height: 40.w, url: post.ownerImage),
-                ),
-                16.0.ESW(),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CustomText(
-                      text: post.ownerName,
-                      color: kCMainBlack2,
-                      fontSize: 16,
-                      fontW: FW.bold,
-                    ),
-                    3.0.ESH(),
-                    CustomText(
-                      text: post.date,
-                      color: kCMainBlack2,
-                      fontSize: 12,
-                      fontW: FW.light,
-                    ),
-                  ],
             Container(
               width: small?30.w:40.w,
               height: small?30.w:40.w,
@@ -100,6 +72,7 @@ class PostHeader extends StatelessWidget {
             ),
           ],
         ),
+        ],)
       ),
     );
   }

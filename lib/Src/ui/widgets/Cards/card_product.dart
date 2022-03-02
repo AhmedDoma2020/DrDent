@@ -14,13 +14,18 @@ class CardProduct extends StatelessWidget {
   final double width;
   final double height;
   final Product product;
-  const CardProduct({Key? key,this.width=192.14,this.height=169,required this.product}) : super(key: key);
+  final Function(int)? onLike;         // status
+  const CardProduct({Key? key,this.width=192.14,this.height=169,required this.product,this.onLike}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        Get.to(()=>ProductScreen(product: product,));
+        Get.to(()=>ProductScreen(product: product,onLike: (status){
+          if(onLike!=null){
+            onLike!(status);
+          }
+        },));
       },
       child: Container(
         height: height.h,

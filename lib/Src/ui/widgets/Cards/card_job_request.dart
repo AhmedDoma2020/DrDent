@@ -62,7 +62,7 @@ class CardJobRequest extends StatelessWidget {
                       ),
                       5.0.ESH(),
                       CustomText(
-                        text: request.specializations!.join(' , '),
+                        text:request.specializations!.join(' , '),
                         color: kCMainBlack2,
                         fontSize: 12,
                         fontW: FW.light,

@@ -31,16 +31,16 @@ class SocialScreen extends StatelessWidget {
             onLike: (){
               _.likePost(postId:_.posts[index].id!);
             },
-            onShare: (){
-            _.sharePost(postId:_.posts[index].id!);
+            onShare: (content){
+            _.sharePost(postId:_.posts[index].id!,content: content);
             },
         ):PostShareWidget(
              post: _.posts[index],
              onLike: (){
-               _.likePost(postId:_.posts[index].shareId!);
+               _.likePost(postId:_.posts[index].id!);
              },
-             onShare: (){
-               _.sharePost(postId:_.posts[index].id!);
+             onShare: (content){
+               _.sharePost(postId:_.posts[index].shareId!,content: content,isPostShare: true);
              },
            ),
         separatorBuilder: (context, index) => 16.0.ESH(),

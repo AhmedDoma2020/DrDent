@@ -9,7 +9,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '/src/core/utils/extensions.dart';
 class ListCardProductRect extends StatelessWidget {
   final List<Product> products;
-   ListCardProductRect({Key? key,required this.products}) : super(key: key);
+  final Function(int,int)? onLike;                // product id         // status
+   ListCardProductRect({Key? key,required this.products,this.onLike}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return  ListView.separated(
@@ -19,7 +20,7 @@ class ListCardProductRect extends StatelessWidget {
             // right: 16.w,
             // left: 16.0
           ),
-          child: CardProductRect(product: products[index],),
+          child: CardProductRect(product: products[index],onLike: (status){if(onLike!=null){onLike!(products[index].id!,status);}}),
         ),
         separatorBuilder: (context, index) => 16.0.ESH(),
         itemCount: products.length,

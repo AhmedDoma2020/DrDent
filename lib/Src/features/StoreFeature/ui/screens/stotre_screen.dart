@@ -38,6 +38,9 @@ class StoreScreen extends StatelessWidget {
               viewAllTitle: 'أحدث المنتجات',
                titleOnTap: '',
               products: _.recentlyProducts,
+              onLike: (id,status){
+                _.handleLikeProduct(id: id, status: status);
+              },
             ),
             32.0.ESH(),
             SliderCardCompany(
@@ -51,6 +54,9 @@ class StoreScreen extends StatelessWidget {
             SliderCardProduct(
               viewAllTitle: 'كل المنتجات',
               products: _.products,
+              onLike: (id,status){
+                _.handleLikeProduct(id: id, status: status);
+              },
               onViewAllTap: (){
                 Get.to(()=>AllProductsScreen());
               },

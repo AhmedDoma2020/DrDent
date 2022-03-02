@@ -109,7 +109,7 @@ class AppBars {
 
 
 
-  static AppBar appBarLogo({String logo='logo.png',required VoidCallback onDrawerTap}){
+  static AppBar appBarLogo({bool citiesHandle=false,String logo='logo.png',required VoidCallback onDrawerTap,VoidCallback? onCitiesTap}){
     return AppBar(
       title: Image.asset(
         'assets/icons/$logo',
@@ -126,6 +126,22 @@ class AppBars {
       backgroundColor: Colors.white,
       centerTitle: true,
       elevation: 0.0,
+      actions: [
+        citiesHandle?
+        Padding(
+          padding:  EdgeInsets.symmetric(horizontal: 16.w),
+          child: GestureDetector(
+            onTap:onCitiesTap??(){},
+            child: Center(
+              child: Image.asset(
+                'assets/icons/delete.png',
+                color: kCMain,
+                height: 25.h,
+              ),
+            ),
+          ),
+        ):0.0.ESW()
+      ],
     );
   }
 

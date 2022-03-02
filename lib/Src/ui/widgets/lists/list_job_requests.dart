@@ -18,7 +18,7 @@ class ListJobRequests extends StatelessWidget {
         separatorBuilder: (context, index) => 16.0.ESH(),
         itemCount: requests.length,
         shrinkWrap: true,
-       physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
     );
   }
 }

@@ -66,6 +66,26 @@ class StoreController extends GetxController{
     }
   }
   // ================  END FETCH DATA  ====================
+
+
+
+  void handleLikeProduct({required int id , required int status}){
+    print('a8aaaaaaaaaaaaaaaaaaaaaaa999999');
+    int _recentlyProductIndex = _recentlyProducts.indexWhere((element) => element.id==id);
+    int _allProductIndex = _products.indexWhere((element) => element.id==id);
+    if(_recentlyProductIndex>-1){
+
+      _recentlyProducts[_recentlyProductIndex].like=status;
+      print(' _recentlyProducts[_recentlyProductIndex].like id ${_recentlyProducts[_recentlyProductIndex].like}');
+    }
+    if(_allProductIndex>-1){
+      _products[_allProductIndex].like=status;
+      print(' _products[_recentlyProductIndex].like id ${_products[_allProductIndex].like}');
+    }
+    update();
+  }
+
+
   @override
   void onInit() {
     super.onInit();

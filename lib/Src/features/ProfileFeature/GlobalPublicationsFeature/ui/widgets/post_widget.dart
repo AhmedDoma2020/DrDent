@@ -6,6 +6,7 @@ import 'package:dr_dent/Src/features/SocialFeature/ui/widgets/post_header.dart';
 import 'package:dr_dent/Src/features/SocialFeature/ui/widgets/post_statics.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/image_network.dart';
+import 'package:dr_dent/Src/ui/widgets/sheets/sheet_share.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '/src/core/utils/extensions.dart';
@@ -14,7 +15,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class PostWidget extends StatelessWidget {
   final PostModel post;
   final VoidCallback? onLike;
-  final VoidCallback? onShare;
+  final Function(String)? onShare;
   const PostWidget({Key? key,required this.post, this.onLike, this.onShare}) : super(key: key);
 
   @override
@@ -88,7 +89,12 @@ class PostWidget extends StatelessWidget {
                         },
                     ),
                    30.0.ESW(),
-                    PostStatics(icon: 'share.png', count: '${post.shareNumber!}',onTap: (){if(onShare!=null){}onShare!();}),
+                    PostStatics(icon: 'share.png', count: '${post.shareNumber!}',onTap: (){
+                      Get.bottomSheet(
+                          SheetSharePost(onSave: (content){
+                            if(onShare!=null){}onShare!(content??'');
+                      }));
+                    }),
                 ],
               ),
             ),
