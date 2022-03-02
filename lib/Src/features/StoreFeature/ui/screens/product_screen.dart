@@ -11,6 +11,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:get_storage/get_storage.dart';
+import '../../bloc/controller/like_product_controller.dart';
 import '/src/core/utils/extensions.dart';
 import 'inquiry_of_product.dart';
 
@@ -20,6 +21,7 @@ class ProductScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    LikeProductController _likeProductController = Get.put(LikeProductController());
     GetStorage box = GetStorage();
     return Scaffold(
       body: SafeArea(
@@ -28,22 +30,50 @@ class ProductScreen extends StatelessWidget {
           children: [
             Column(
               children: [
-                Container(
-                  width: double.infinity,
-                  height: 300.h,
-                  clipBehavior: Clip.hardEdge,
-                  decoration: BoxDecoration(
-                    color: Colors.yellow,
-                    borderRadius: BorderRadius.only(
-                      bottomLeft:  Radius.circular(30.r),
-                      bottomRight: Radius.circular(30.r),
-                    )
-                  ),
-                  child: ImageNetwork(
-                    url: product.images!.isNotEmpty? product.images!.first : '',
-                    width: double.infinity,
-                    height: 300.h,
-                  ),
+                Stack(
+                  children: [
+                    Container(
+                      width: double.infinity,
+                      height: 300.h,
+                      clipBehavior: Clip.hardEdge,
+                      decoration: BoxDecoration(
+                        color: Colors.yellow,
+                        borderRadius: BorderRadius.only(
+                          bottomLeft:  Radius.circular(30.r),
+                          bottomRight: Radius.circular(30.r),
+                        )
+                      ),
+                      child: ImageNetwork(
+                        url: product.images!.isNotEmpty? product.images!.first : '',
+                        width: double.infinity,
+                        height: 300.h,
+                      ),
+                    ),
+                    Padding(
+                      padding:  EdgeInsets.symmetric(
+                        vertical: 16.h,
+                        horizontal: 16.w
+
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          2.0.ESW(),
+                          GestureDetector(
+                            onTap: (){
+                              _likeProductController.likeProduct(id: product.id!, onSuccess: (){});
+                            },
+                            child: Container(
+                              width: 40.h,
+                              height: 40.h,
+                              decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(40.r)),
+                              child: Center(child: Icon(product.like==1?Icons.favorite:Icons.favorite_border,color: kCMain,size: 20.h,)),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
                 16.0.ESH(),
                 Padding(
@@ -84,7 +114,7 @@ class ProductScreen extends StatelessWidget {
                 onTap: () {
                   Get.bottomSheet(
                       InquiryOfProductButtonSheet(
-
+                         productId: product.id!,
                       ),
                   );
                 }

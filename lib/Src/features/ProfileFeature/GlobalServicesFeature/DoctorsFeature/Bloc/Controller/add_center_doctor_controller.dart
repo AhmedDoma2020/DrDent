@@ -1,3 +1,4 @@
+import 'package:dr_dent/Src/bloc/model/doctor.dart';
 import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/BaseFeature/ui/screens/base_screen.dart';
@@ -8,12 +9,18 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../../../../../../bloc/model/center_doctor_model.dart';
+import '../Repository/search_doctors_repo.dart';
 import 'fetch_center_doctor_controller.dart';
 
 class AddCenterDoctorController extends GetxController {
   final bool isAuth;
   final bool isEdit;
   final CenterDoctorModel? centerDoctorModel;
+
+
+
+  List<Doctor> doctors=[];
+
 
   AddCenterDoctorController({this.isAuth =false,this.isEdit =false,this.centerDoctorModel});
 
@@ -122,6 +129,44 @@ class AddCenterDoctorController extends GetxController {
       }
     }
   }
+
+
+
+
+
+  // ========== START FETCH DATA  ====================
+  final SearchDoctorsRepository _productsRepository = SearchDoctorsRepository();
+  Future<void> searchDoctors({String doctorName=''})async{
+    status = RequestStatus.loading;
+    update();
+    var response = await _productsRepository.searchDoctors(doctorName: doctorName);
+    if (response.statusCode == 200 && response.data["status"] == true) {
+      if(response.data['data']!=null){
+        doctors.clear();
+        for (var item in response.data['data']) {
+          doctors.add(Doctor.fromJson(item));
+        }
+      }
+      debugPrint("convert operation success");
+      status = RequestStatus.done;
+      update();
+    }else{
+      status = RequestStatus.error;
+      update();
+    }
+  }
+  // ================  END FETCH DATA  ====================
+
+
+
+
+
+
+
+
+
+
+
 
   @override
   void onInit() {

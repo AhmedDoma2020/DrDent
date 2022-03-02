@@ -28,7 +28,9 @@ class SliderJobOffers extends StatelessWidget {
           onEditTap: () {
             Get.to(() =>
                 AddAJopOfferScreen(isEdit: true, jobOffer: offers[index]));
+            
           },
+        
           isMine: true),
       separatorBuilder: (context, index) => 16.0.ESW(),
       itemCount: offers.length,

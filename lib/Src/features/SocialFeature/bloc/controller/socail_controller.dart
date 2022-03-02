@@ -8,6 +8,8 @@ import 'package:dr_dent/Src/features/SocialFeature/bloc/repository/social_reposi
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+import '../Repository/share_post_repository.dart';
+
 class SocialController extends GetxController{
   //
   RequestStatus status = RequestStatus.initial;
@@ -69,6 +71,30 @@ class SocialController extends GetxController{
     }
 
   }
+
+
+
+  // ========== START FETCH DATA  ====================
+  final SharePostRepository _sharePostRepository = SharePostRepository();
+  Future<void> sharePost({required int postId,String content = 'test'})async{
+    int postIndex = _posts.indexWhere((element) => element.id == postId);
+    _posts[postIndex].shareNumber = _posts[postIndex].shareNumber !+ 1;
+    update();
+    var response = await _sharePostRepository.sharePost(postId: postId,content : content);
+    if (response.statusCode == 200 && response.data["status"] == true) {
+      debugPrint("request operation success");
+      if(response.data['data']!=null){
+      }
+      debugPrint("convert operation success");
+      update();
+    }else{
+      _posts[postIndex].shareNumber = _posts[postIndex].shareNumber !- 1;
+      update();
+    }
+  }
+  // ================  END FETCH DATA  ====================
+
+
 
 
   @override

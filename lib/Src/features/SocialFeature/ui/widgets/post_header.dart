@@ -10,8 +10,9 @@ import '/src/core/utils/extensions.dart';
 
 class PostHeader extends StatelessWidget {
   final PostModel post;
-
-  const PostHeader({Key? key, required this.post}) : super(key: key);
+  final PostType postType;
+  final bool small;
+  const PostHeader({this.small=false,Key? key,required this.post,this.postType=PostType.post}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +54,35 @@ class PostHeader extends StatelessWidget {
                       fontW: FW.light,
                     ),
                   ],
+            Container(
+              width: small?30.w:40.w,
+              height: small?30.w:40.w,
+              clipBehavior: Clip.hardEdge,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(40.r),
+              ),
+              child: ImageNetwork(
+                width: small?30.w:40.w,
+                height: small?30.w:40.w,
+                url: postType==PostType.post?post.ownerImage:post.shareImage
+              ),
+            ),
+            16.0.ESW(),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CustomText(
+                  text: postType==PostType.post?post.ownerName:post.shareName,
+                  color: kCMainBlack2,
+                  fontSize: small?12:16,
+                  fontW: FW.bold,
+                ),
+                3.0.ESH(),
+                CustomText(
+                  text: post.date,
+                  color: kCMainBlack2,
+                  fontSize: small?9:12,
+                  fontW: FW.light,
                 ),
               ],
             ),

@@ -23,6 +23,7 @@ class ListJobOffers extends StatelessWidget {
             top: index == 0 ? 16.w : 0.0.w, left: 16.w, right: 16.w),
         child: CardJobOffer(
           offer: offers[index],
+
         ),
       ),
       separatorBuilder: (context, index) => 16.0.ESH(),
