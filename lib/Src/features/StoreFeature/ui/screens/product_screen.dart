@@ -15,10 +15,16 @@ import '../../bloc/controller/like_product_controller.dart';
 import '/src/core/utils/extensions.dart';
 import 'inquiry_of_product.dart';
 
-class ProductScreen extends StatelessWidget {
+class ProductScreen extends StatefulWidget {
   final Product product;
-  const ProductScreen({Key? key,required this.product}) : super(key: key);
+  final Function(int)? onLike;         // status
+  const ProductScreen({Key? key,required this.product,this.onLike}) : super(key: key);
 
+  @override
+  State<ProductScreen> createState() => _ProductScreenState();
+}
+
+class _ProductScreenState extends State<ProductScreen> {
   @override
   Widget build(BuildContext context) {
     LikeProductController _likeProductController = Get.put(LikeProductController());
@@ -44,7 +50,7 @@ class ProductScreen extends StatelessWidget {
                         )
                       ),
                       child: ImageNetwork(
-                        url: product.images!.isNotEmpty? product.images!.first : '',
+                        url: widget.product.images!.isNotEmpty? widget.product.images!.first : '',
                         width: double.infinity,
                         height: 300.h,
                       ),
@@ -59,15 +65,23 @@ class ProductScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           2.0.ESW(),
+                          widget.product.companyId == box.read('id')?0.0.ESW():
                           GestureDetector(
                             onTap: (){
-                              _likeProductController.likeProduct(id: product.id!, onSuccess: (){});
+                              _likeProductController.likeProduct(id: widget.product.id!, onSuccess: (status){
+                                setState(() {
+                                  widget.product.like=status;
+                                });
+                                if(widget.onLike!=null){
+                                  widget.onLike!(status);
+                                }
+                              });
                             },
                             child: Container(
                               width: 40.h,
                               height: 40.h,
                               decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(40.r)),
-                              child: Center(child: Icon(product.like==1?Icons.favorite:Icons.favorite_border,color: kCMain,size: 20.h,)),
+                              child: Center(child: Icon(widget.product.like==1?Icons.favorite:Icons.favorite_border,color: kCMain,size: 20.h,)),
                             ),
                           ),
                         ],
@@ -85,20 +99,20 @@ class ProductScreen extends StatelessWidget {
                     physics: BouncingScrollPhysics(),
                     children: [
                       CustomText(
-                        text: product.categoryTitle,
+                        text: widget.product.categoryTitle,
                         color: kCMainGrey,
                         fontW: FW.thin,
                         fontSize: 14,
                       ),
                       4.0.ESH(),
                        ProductInfoItem(
-                        title: product.title!,
-                        subtitle: product.description!
+                        title: widget.product.title!,
+                        subtitle: widget.product.description!
                       ),
                       15.0.ESH(),
                       ProductInfoItem(
                         title: 'How_to_use'.tr,
-                        subtitle: product.usability!,
+                        subtitle: widget.product.usability!,
                       ),
                       // 100.0.ESH(),
                     ],
@@ -106,7 +120,7 @@ class ProductScreen extends StatelessWidget {
                 ),
               ],
             ),
-            product.companyId == box.read('id')?0.0.ESW():
+            widget.product.companyId == box.read('id')?0.0.ESW():
             Padding(
               padding:  EdgeInsets.only(bottom: 24.h,right: 16.w,left: 16.w),
               child: ButtonDefault(
@@ -114,7 +128,7 @@ class ProductScreen extends StatelessWidget {
                 onTap: () {
                   Get.bottomSheet(
                       InquiryOfProductButtonSheet(
-                         productId: product.id!,
+                         productId: widget.product.id!,
                       ),
                   );
                 }

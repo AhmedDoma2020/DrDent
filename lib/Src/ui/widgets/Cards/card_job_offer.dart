@@ -17,13 +17,6 @@ class CardJobOffer extends StatelessWidget {
   final bool isMine;
   const CardJobOffer({Key? key,required this.offer,this.onDeleteTap,this.isMine=false,this.onEditTap}) : super(key: key);
 
-  const CardJobOffer({
-    Key? key,
-    required this.offer,
-    this.onDeleteTap,
-    this.onEditTap,
-    this.isMine = false,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
