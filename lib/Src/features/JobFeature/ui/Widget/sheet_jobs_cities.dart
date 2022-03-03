@@ -15,7 +15,7 @@ import 'package:get/get.dart';
 import '/src/core/utils/extensions.dart';
 
 class SheetJobsCities extends StatelessWidget {
-  final Function(int) onSave;
+  final Function(int,String) onSave;
 
 
   SheetJobsCities({required this.onSave});
@@ -119,8 +119,8 @@ class SheetJobsCities extends StatelessWidget {
                       ButtonDefault(
                         title: 'save_'.tr,
                         onTap: () {
-                         if(_.cityId!=null){
-                           onSave(_.cityId!);
+                         if(_.cityController!.text.isNotEmpty){
+                           onSave(_ .cityId!,_.cityController!.text);
                          }
                         },
                       ),

@@ -38,7 +38,7 @@ class BaseScreen extends StatelessWidget {
         appBar: AppBars.appBarLogo(
           onCitiesTap: (){
             Get.bottomSheet(
-              SheetJobsCities(onSave: (id){
+              SheetJobsCities(onSave: (id,title){
                 Get.back();
                 _jobOffersController.fetchJobOffers(cityId: id);
               },),

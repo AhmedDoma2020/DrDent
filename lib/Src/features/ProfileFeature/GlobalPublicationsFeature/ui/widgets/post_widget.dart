@@ -57,7 +57,8 @@ class PostWidget extends StatelessWidget {
           ),
           Container(
             width: double.infinity,
-            color: post.postType==PostType.post?kCMainScaffoldGrey:Colors.transparent,
+            // color: post.postType==PostType.post?kCMainScaffoldGrey:Colors.transparent,
+            color: Colors.transparent,
             child: Padding(
               padding:  EdgeInsets.symmetric(
                 vertical: 16.h,

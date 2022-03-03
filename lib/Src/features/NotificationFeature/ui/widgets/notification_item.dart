@@ -4,11 +4,13 @@ import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/image_network.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
+import '../../bloc/models/notification_model.dart';
 import '/src/core/utils/extensions.dart';
 
 
 class NotificationItem extends StatelessWidget {
-  const NotificationItem({Key? key}) : super(key: key);
+  final NotificationModel notification;
+  const NotificationItem({Key? key,required this.notification}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class NotificationItem extends StatelessWidget {
               child: ImageNetwork(
                 width: 40.w,
                 height: 40.w,
-                url: 'https://images.pexels.com/photos/10440645/pexels-photo-10440645.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+                url: notification.image
               ),
             ),
             16.0.ESW(),
@@ -39,14 +41,14 @@ class NotificationItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomText(
-                      text: 'هذا النص هو مثال ',
+                      text: notification.title,
                       fontW: FW.light,
                       fontSize: 10,
                       color: kCMainGrey,
                     ),
                     6.0.ESH(),
                     CustomText(
-                      text: 'هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص',
+                      text: notification.subtitle,
                       fontW: FW.light,
                       fontSize: 14,
                       color: kCMainBlack2,
