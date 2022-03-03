@@ -52,9 +52,10 @@ class CardCompany extends StatelessWidget {
                 horizontal: 16.0.w
               ),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomText(
-                    text: 'أدوات تنظيف الأسنان',
+                    text: store.name,
                     fontSize: 14,
                     overflow: true,
                     fontW: FW.demi,
@@ -65,7 +66,7 @@ class CardCompany extends StatelessWidget {
                   Row(
                     children: [
                       for(int i=0 ; i<5 ; i++)
-                        Icon(Icons.star,color: i<4 ? kCMainRate:kCLightGrey,size: 8.w,),
+                        Icon(Icons.star,color: i<store.rate! ? kCMainRate:kCLightGrey,size: 8.w,),
                       4.5.ESW(),
                       CustomText(
                         text: '4',
@@ -80,7 +81,7 @@ class CardCompany extends StatelessWidget {
                   Row(
                     children: [
                       CustomText(
-                        text: store.name,
+                        text: store.address,
                         fontSize: 9,
                         overflow: true,
                         fontW: FW.thin,

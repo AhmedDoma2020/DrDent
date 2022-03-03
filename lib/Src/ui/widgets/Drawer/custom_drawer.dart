@@ -1,5 +1,6 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/screens/login_screen.dart';
+import 'package:dr_dent/Src/features/NotificationFeature/ui/screens/notifications_screen.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/View/profile_screen.dart';
 import 'package:dr_dent/Src/features/VisitsFeature/ui/screens/my_visits_screen.dart';
 import 'package:dr_dent/src/core/utils/extensions.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../../../features/StoreFeature/ui/screens/saved_products.dart';
 import 'Widget/row_of_item_drawer.dart';
 import 'Widget/top_info_drawer.dart';
 
@@ -49,13 +51,13 @@ class CustomDrawer extends StatelessWidget {
                         icon: "assets/icons/personalInfoIcon.png"),
                     RowOfItemDrawer(
                         onTap: () {
-                          debugPrint("abc");
+                          Get.to(()=>NotificationsScreen());
                         },
                         title: "Notification_",
                         icon: "assets/icons/notification-bing.png"),
                     RowOfItemDrawer(
                         onTap: () {
-                          debugPrint("abc");
+                          Get.to(()=>SavedProducts());
                         },
                         title: "fav_list",
                         icon: "assets/icons/heart.png"),

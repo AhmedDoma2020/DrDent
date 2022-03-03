@@ -50,6 +50,8 @@ mixin ApiKey{
    final String uRLDeleteJobOffer = apiBaseUrl + "delete_job_offer";
    final String uRLDeleteJobRequest = apiBaseUrl + "delete_job_request";
    final String uRLLikeProduct = apiBaseUrl + "favorite_Product";
+   final String uRLSavedProducts = apiBaseUrl + "your_favorite_products";
+   final String uRLNotifications = apiBaseUrl + "your_notifications";
 
    final String uRLRequestProductPrice = apiBaseUrl + "send_product_information";
    final String uRLSearchDoctors = apiBaseUrl + "search_doctors";
