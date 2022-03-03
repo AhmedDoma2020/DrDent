@@ -52,9 +52,14 @@ mixin ApiKey{
    final String uRLLikeProduct = apiBaseUrl + "favorite_Product";
    final String uRLSavedProducts = apiBaseUrl + "your_favorite_products";
    final String uRLNotifications = apiBaseUrl + "your_notifications";
+   final String uRLQuestions = apiBaseUrl + "questions";
+   final String uRLPrivacy = apiBaseUrl + "privacy";
+   final String uRLConditions = apiBaseUrl + "conditions";
+   final String uRLCompanyProductInformations = apiBaseUrl + "company_product_informations";
 
    final String uRLRequestProductPrice = apiBaseUrl + "send_product_information";
    final String uRLSearchDoctors = apiBaseUrl + "search_doctors";
+   final String uRLDeleteRequest = apiBaseUrl + "delete_product_information";
 
 
    // String URLFetchMajorCategorySellers(int page)=>apiBaseUrl + "major_shops"+'?page=$page'; // soon

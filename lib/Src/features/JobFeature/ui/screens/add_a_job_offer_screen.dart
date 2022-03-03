@@ -82,9 +82,9 @@ AddAJopOfferScreen({this.jobOffer,this.isEdit=false});
                   16.0.ESH(),
                   GestureDetector(
                     onTap: (){
-                      Get.bottomSheet(SheetJobsCities(onSave: (id){
+                      Get.bottomSheet(SheetJobsCities(onSave: (id,title){
                         _.setCityId = id;
-
+                        _.cityController!.text=title;
                       }));
                     },
                     child: TextFieldDefault(
