@@ -134,8 +134,8 @@ class AppBars {
             onTap:onCitiesTap??(){},
             child: Center(
               child: Image.asset(
-                'assets/icons/delete.png',
-                color: kCMain,
+                'assets/icons/filterIcon.png',
+                color: kCMainBlack,
                 height: 25.h,
               ),
             ),

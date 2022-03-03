@@ -23,7 +23,7 @@ class AddAJopOfferRepository with ApiKey {
     required List<String> requirements,
   }) async {
     Response response;
-    debugPrint("scientificLevel $scientificLevel");
+    debugPrint("requirements in repo ${requirements.length}");
     try {
       response = await _networkService.post(
           url: uRLAddJobOffer,
@@ -39,7 +39,7 @@ class AddAJopOfferRepository with ApiKey {
             'job_type':jobType,
             'city_id':5,
             'description':description,
-            'requirements':requirements,
+            if(requirements.length>0)'requirements':requirements,
           }
       );
     } on SocketException {

@@ -15,7 +15,7 @@ class MySocialRepository with ApiKey{
     try{
       response = await _networkService.get(
           url:  uRLFetchMyPosts,
-          auth: true
+          auth: true,
       );
     }on SocketException{
       throw const SocketException('No Internet Connection');
