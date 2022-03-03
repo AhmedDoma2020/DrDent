@@ -28,7 +28,7 @@ class EditJopRequestRepository with ApiKey {
           url: uRLEditJopRequest,
           auth: true,
           body: {
-            'jop_request_id':jobRequestId,
+            'job_request_id':jobRequestId,
             'name':ownerName,
             'phone':phone,
             'address':address,

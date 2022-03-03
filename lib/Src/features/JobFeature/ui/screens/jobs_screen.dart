@@ -24,7 +24,7 @@ class JobsScreen extends StatelessWidget {
     GetStorage box = GetStorage();
     Get.put(JobsController());
     JobOffersController _jobOffersController = Get.put(JobOffersController());
-    Get.put(JobRequestController());
+    Get.put(FetchJobRequestController());
     Future<void> onRefresh() async {
       await _jobOffersController.fetchJobOffers();
     }

@@ -10,6 +10,9 @@ class JobOffer {
     required this.startSalary,
     required this.endSalary,
     required this.description,
+    required this.cityTitle,
+    required this.cityId,
+    required this.jobTypeId,
     required this.scientificlevelTitle,
     required this.scientificlevelId,
     required this.specializations,
@@ -24,7 +27,10 @@ class JobOffer {
   late final String endSalary;
   late final String description;
   late final String scientificlevelTitle;
+  late final String cityTitle;
   late final int scientificlevelId;
+  late final int cityId;
+  late final int jobTypeId;
   late final List<Specializations> specializations;
   late final List<String> requirements;
   late final String image;
@@ -38,7 +44,10 @@ class JobOffer {
     endSalary = json['end_salary']??"";
     description = json['description']??"";
     scientificlevelTitle = json['scientificlevel']??"";
-    scientificlevelId = json['scientificlevel_id']??0;
+    scientificlevelId = json['scientific_level_id']??0;
+    cityTitle = json['city_title']??"";
+    cityId = json['city_id']??0;
+    jobTypeId = json['job_type']??0;
     if(json['specializations']!=null){
       specializations = List.from(json['specializations']).map((e)=>Specializations.fromJson(e)).toList();
     }else{

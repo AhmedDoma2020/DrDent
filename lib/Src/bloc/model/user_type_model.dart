@@ -8,7 +8,7 @@ class UserType {
   UserType({required this.id, required this.title, required this.val,});
 }
 
-List<UserType> types = [
+List<UserType> genderTypes = [
   UserType(
     id: 0,
     val:"male",
@@ -18,5 +18,18 @@ List<UserType> types = [
     id: 1,
     val:"female",
     title: "female_doctor".tr,
+  ),
+];
+
+List<UserType> jobTypes = [
+  UserType(
+    id: 0,
+    val:"male",
+    title: "full_time".tr,
+  ),
+  UserType(
+    id: 1,
+    val:"female",
+    title: "part_time".tr,
   ),
 ];

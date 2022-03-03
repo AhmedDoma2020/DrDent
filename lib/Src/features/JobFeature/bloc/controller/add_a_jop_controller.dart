@@ -22,7 +22,6 @@ class AddAJopOfferController extends GetxController {
   TextEditingController? cityController;
   TextEditingController? scientificLevelTitleController;
   TextEditingController? specializationController;
-  TextEditingController? jobTypeController;
   TextEditingController? jobDescriptionController;
   List<int> _specializationIdSelected = [];
   List<int> get specializationIdSelected => _specializationIdSelected;
@@ -54,6 +53,13 @@ class AddAJopOfferController extends GetxController {
     update();
   }
 
+  int _jobTypeId = 0;
+  int get jobTypeId => _jobTypeId;
+  set setJobTypeId(int value) {
+    _jobTypeId = value;
+    update();
+  }
+
 
   void setData(){
     nameController!.text = jobOffer!.name;
@@ -73,9 +79,11 @@ class AddAJopOfferController extends GetxController {
     }
     _startSalary =int.parse(jobOffer!.startSalary.toString());
     _endSalary =int.parse(jobOffer!.endSalary.toString());
-    jobTypeController!.text = "دوام";
     jobDescriptionController!.text = jobOffer!.description;
     controllers = jobOffer!.requirements.cast<TextEditingController>();
+    setCityId = jobOffer!.cityId;
+    cityController!.text = jobOffer!.cityTitle;
+    setJobTypeId = jobOffer!.jobTypeId;
     update();
 }
   List<String> _requirementsList=[];
@@ -104,11 +112,12 @@ class AddAJopOfferController extends GetxController {
           ownerName: nameController!.text,
           phone: phoneController!.text,
           address: addressController!.text,
-          scientificLevel: 1,
+          scientificLevel: _scientificLevelId!,
+          cityId: _cityId,
           specializationId: _specializationIdSelected,
           startSalary: _startSalary,
           endSalary: _endSalary,
-          jobType: jobTypeController!.text,
+          jobType: _jobTypeId,
           description: jobDescriptionController!.text,
           requirements:_requirementsList,
         );
@@ -131,9 +140,10 @@ class AddAJopOfferController extends GetxController {
           address: addressController!.text,
           scientificLevel: _scientificLevelId!,
           specializationId: _specializationIdSelected,
+          cityId: _cityId,
           startSalary: _startSalary,
           endSalary: _endSalary,
-          jobType: jobTypeController!.text,
+          jobType:_jobTypeId,
           description: jobDescriptionController!.text,
           requirements:_requirementsList,
         );
@@ -251,7 +261,6 @@ class AddAJopOfferController extends GetxController {
     cityController = TextEditingController();
     scientificLevelTitleController = TextEditingController();
     specializationController = TextEditingController();
-    jobTypeController = TextEditingController();
     jobDescriptionController = TextEditingController();
     _specializationIdSelected = [];
 
@@ -299,7 +308,6 @@ class AddAJopOfferController extends GetxController {
     cityController?.dispose();
     scientificLevelTitleController?.dispose();
     specializationController?.dispose();
-    jobTypeController?.dispose();
     jobDescriptionController?.dispose();
     super.dispose();
   }

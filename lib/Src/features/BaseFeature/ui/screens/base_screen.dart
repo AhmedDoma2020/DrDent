@@ -30,7 +30,7 @@ class BaseScreen extends StatelessWidget {
     Get.put(BaseController());
     Get.put(SocialController());
     JobOffersController _jobOffersController = Get.put(JobOffersController());
-    JobRequestController _jobRequestController = Get.put(JobRequestController());
+    FetchJobRequestController _jobRequestController = Get.put(FetchJobRequestController());
     return GetBuilder<BaseController>(
       builder: (_) =>  Scaffold(
         key: _key,
