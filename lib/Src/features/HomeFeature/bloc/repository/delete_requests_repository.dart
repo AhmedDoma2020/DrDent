@@ -7,15 +7,19 @@ import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
 import 'package:get_storage/get_storage.dart';
 
 
-class HomeVisitsRepository with ApiKey{
+class DeleteRequestsRepository with ApiKey{
   final NetworkService _networkService = NetworkService();
-  Future<Response> fetchHomeVisits()async{
+  Future<Response> deleteRequests({id})async{
     Response? response;
     try{
-      response = await _networkService.get(
-          url:  uRLFetchHomeVisits,
-          auth: true
+      response = await _networkService.post(
+          url:  uRLDeleteRequest,
+          auth: true,
+        body: {
+            'product_information_id' : id
+        }
       );
+
     }on SocketException{
       throw const SocketException('No Internet Connection');
     }on Exception{
