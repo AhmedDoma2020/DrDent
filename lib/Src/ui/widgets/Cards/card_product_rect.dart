@@ -6,11 +6,15 @@ import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/image_network.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import '../GeneralWidgets/delete_widget.dart';
+import '../GeneralWidgets/edit_widget.dart';
 import '/src/core/utils/extensions.dart';
 class CardProductRect extends StatelessWidget {
   final Product product;
-  final Function(int)? onLike;         // status
-  const CardProductRect({Key? key,required this.product,this.onLike}) : super(key: key);
+  final Function(int)? onLike;
+  final VoidCallback onDeleteTap;
+  final VoidCallback onEditTap;// status
+  const CardProductRect({Key? key,required this.product,this.onLike,required this.onEditTap,required this.onDeleteTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +34,7 @@ class CardProductRect extends StatelessWidget {
             vertical: 16.h
           ),
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 width: 80.w,
@@ -65,6 +70,8 @@ class CardProductRect extends StatelessWidget {
                   ],
                 ),
               ),
+              // IconWidget(onEditTap: onEditTap,icon: "assets/icons/edit.png",),
+              DeleteWidget(onDeleteTap: onDeleteTap),
             ],
           ),
         ),

@@ -180,7 +180,7 @@ const Map<String, String> arAE = {
   "select_state": "اختر المحافظه",
   "must_select_state": "يجب اختر المحافظه",
   "select_city": "اختر المدينه",
-  "must_select_city": "يجب اختر المدينه",
+  "must_select_city": "يجب اختيار المدينه",
   "search_": "ابحث",
   "Job_classification": "تصنيف الوظائف",
   "Job_request": "طلب عمل",
@@ -307,5 +307,8 @@ const Map<String, String> arAE = {
   'Request_for_price':'طلب عرض سعر',
   'Edit_':'تعدبل',
   'Delete_':'حذف',
+  'full_time':'دوام كلى',
+  'part_time':'دوام جزئى',
+  'no_found_cv':'لا يوجد سيره ذاتيه',
 
 };

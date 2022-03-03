@@ -20,7 +20,8 @@ class AddJopRequestRepository with ApiKey {
     Response response;
     debugPrint("ownerName $name");
     debugPrint("phone $phone");
-    debugPrint("address $address");
+    debugPrint("specializationId in repo  $specializationId");
+    debugPrint("cV in repo  $cV");
 
     try {
       response = await _networkService.post(
@@ -30,8 +31,8 @@ class AddJopRequestRepository with ApiKey {
             'name':name,
             'phone':phone,
             'address':address,
-            'specialization_ids':specializationId,
-            'c_v':cV,
+            'specializations':specializationId,
+            'cv':cV,
           }
       );
     } on SocketException {

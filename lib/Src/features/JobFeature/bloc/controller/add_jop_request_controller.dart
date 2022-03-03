@@ -8,11 +8,11 @@ import 'package:get_storage/get_storage.dart';
 import '../../../../ui/widgets/custom_snack_bar.dart';
 import '../Repository/edit_jop_request_repo.dart';
 import '../model/job_request.dart';
+import 'job_request_controller.dart';
 
 class AddJopRequestController extends GetxController {
   final bool isEdit;
   final JobRequest? jobRequestModel;
-
   AddJopRequestController({this.isEdit = false, this.jobRequestModel});
 
   GetStorage box = GetStorage();
@@ -55,7 +55,7 @@ class AddJopRequestController extends GetxController {
       specializationController!.text = specializationsTitle.join(",");
       _specializationIdSelected = specializationsId;
     }
-    setFutureCVImage = "http://dr-dent.crazyideaco.com/uploads/users/default.png";
+    setFutureCVImage = jobRequestModel!.cv!;
     update();
   }
 
@@ -65,7 +65,7 @@ class AddJopRequestController extends GetxController {
       AddJopRequestRepository();
   final EditJopRequestRepository _editJopRequestRepository =
   EditJopRequestRepository();
-
+  final FetchJobRequestController _fetchJobRequestController = Get.find();
   void addJobRequest() async {
     if (globalKey.currentState!.validate()) {
       if(_cVImage !='' || _futureCVImage != ''){
@@ -85,7 +85,6 @@ class AddJopRequestController extends GetxController {
           Get.back();
         }else{
           debugPrint("Is Not Edit");
-
           setLoading();
           response = await _addJopRequestRepository.addJopRequest(
             name: nameController!.text,
@@ -98,6 +97,7 @@ class AddJopRequestController extends GetxController {
         }
         if (response.statusCode == 200 && response.data["status"] == true) {
           debugPrint("request operation success");
+          _fetchJobRequestController.fetchJobRequests();
           Get.back();
           customSnackBar(title: response.data["message"]??"");
           debugPrint("convert operation success");

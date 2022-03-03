@@ -66,6 +66,7 @@ class SheetJobsCities extends StatelessWidget {
                                   _.setCityId = 0;
                                   _.cityController!.clear();
                                   stateAndCity.changeCityIndex(-1);
+                                  stateAndCity.setStateIndexSelected = -1;
                                 },
                               ),
                               isScrollControlled: true);
@@ -121,6 +122,8 @@ class SheetJobsCities extends StatelessWidget {
                         onTap: () {
                          if(_.cityController!.text.isNotEmpty){
                            onSave(_ .cityId!,_.cityController!.text);
+                         }else{
+                           customSnackBar(title: "must_select_state_first".tr);
                          }
                         },
                       ),

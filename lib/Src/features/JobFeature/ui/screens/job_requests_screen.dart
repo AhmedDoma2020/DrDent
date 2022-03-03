@@ -16,8 +16,8 @@ class JobRequestScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    JobRequestController _jobRequestController = Get.find();
-    return GetBuilder<JobRequestController>(
+    FetchJobRequestController _jobRequestController = Get.find();
+    return GetBuilder<FetchJobRequestController>(
       builder: (_) => _.status != RequestStatus.done
           ? Center(
               child: Loader(),

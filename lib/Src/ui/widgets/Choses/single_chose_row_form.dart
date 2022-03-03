@@ -24,8 +24,8 @@ class SingleChoseRowForm extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            color: Colors.amber,
-            height: 48.h,
+            // color: Colors.amber,
+            height: 40.h,
             width: 280.w,
             child: FittedBox(
               child: CustomText(

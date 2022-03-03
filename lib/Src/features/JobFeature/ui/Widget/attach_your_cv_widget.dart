@@ -78,7 +78,7 @@ class _AttachYourCVIWidgetState extends State<AttachYourCVIWidget> {
             },
             child: ClipRRect(
               borderRadius: BorderRadius.circular(24.r),
-              child: widget.futureImage ==''?
+              child:  image != null?
               Image.file(
                 image!,
                 fit: BoxFit.cover,

@@ -8,6 +8,7 @@ import 'package:dr_dent/Src/features/JobFeature/bloc/controller/add_a_jop_contro
 import 'package:dr_dent/Src/features/JobFeature/ui/Widget/job_requirements_widget.dart';
 import 'package:dr_dent/Src/features/JobFeature/ui/Widget/range_salary_widget.dart';
 import 'package:dr_dent/Src/features/JobFeature/ui/Widget/sheet_jobs_cities.dart';
+import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:dr_dent/Src/ui/widgets/TextFields/text_field_default.dart';
 import 'package:dr_dent/Src/ui/widgets/appbars/app_bars.dart';
 import 'package:dr_dent/Src/ui/widgets/buttons/button_default.dart';
@@ -15,20 +16,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../../ui/widgets/Radio/row_job_type_radio_widget.dart';
 import '../../bloc/model/job_offer.dart';
+
 class AddAJopOfferScreen extends StatelessWidget {
-final JobOffer? jobOffer;
-final bool isEdit;
-AddAJopOfferScreen({this.jobOffer,this.isEdit=false});
+  final JobOffer? jobOffer;
+  final bool isEdit;
+
+  AddAJopOfferScreen({this.jobOffer, this.isEdit = false});
+
   @override
-  Widget build(BuildContext context){
-    Get.put(AddAJopOfferController(isEdit: isEdit,jobOffer:jobOffer));
+  Widget build(BuildContext context) {
+    Get.put(AddAJopOfferController(isEdit: isEdit, jobOffer: jobOffer));
     Get.put(FetchScientificController());
     Get.put(FetchSpecializationController());
     var node = FocusScope.of(context);
     return SafeArea(
       child: Scaffold(
-        appBar: AppBars.appBarDefault(title: "add_jop_offer".tr,isBack: true),
+        appBar: AppBars.appBarDefault(title: "add_jop_offer".tr, isBack: true),
         body: GetBuilder<AddAJopOfferController>(
           builder: (_) => Padding(
             padding: EdgeInsets.symmetric(horizontal: 24.w),
@@ -81,23 +86,29 @@ AddAJopOfferScreen({this.jobOffer,this.isEdit=false});
                   ),
                   16.0.ESH(),
                   GestureDetector(
-                    onTap: (){
-                      Get.bottomSheet(SheetJobsCities(onSave: (id,title){
-                        _.setCityId = id;
-                        _.cityController!.text=title;
-                      }));
+                    onTap: () {
+                      Get.bottomSheet(
+                        SheetJobsCities(
+                          onSave: (id, title) {
+                            _.setCityId = id;
+                            _.cityController!.text = title;
+                            Get.back();
+                          },
+                        ),
+                      );
                     },
                     child: TextFieldDefault(
-                      hint: 'enter_address'.tr,
-                      errorText: "must_enter_address".tr,
+                      hint: 'select_city'.tr,
+                      errorText: "must_select_city".tr,
                       controller: _.cityController,
+                      suffixIconData: Icons.keyboard_arrow_down_outlined,
                       keyboardType: TextInputType.name,
                       filledColor: kCBGTextFormFiled,
                       fieldType: FieldType.WithBorder,
                       enableBorder: Colors.transparent,
                       horizentalPadding: 16,
                       enable: false,
-                      disableBorder:  Colors.transparent,
+                      disableBorder: Colors.transparent,
                       onComplete: () {
                         node.nextFocus();
                       },
@@ -106,15 +117,14 @@ AddAJopOfferScreen({this.jobOffer,this.isEdit=false});
                   16.0.ESH(),
                   GestureDetector(
                     onTap: () {
-                      Get.bottomSheet(
-                          DegreeButtonSheet(
-                            onTap:  (scientificListTitle,scientificListId){
-                              _.scientificLevelTitleController!.text=scientificListTitle;
-                              _.setScientificLevelId=scientificListId;
-                              Get.back();
-                            },
-                          ),
-                          isScrollControlled: true);
+                      Get.bottomSheet(DegreeButtonSheet(
+                        onTap: (scientificListTitle, scientificListId) {
+                          _.scientificLevelTitleController!.text =
+                              scientificListTitle;
+                          _.setScientificLevelId = scientificListId;
+                          Get.back();
+                        },
+                      ), isScrollControlled: true);
                     },
                     child: TextFieldDefault(
                       hint: 'Degree_'.tr,
@@ -138,14 +148,18 @@ AddAJopOfferScreen({this.jobOffer,this.isEdit=false});
                     onTap: () {
                       Get.bottomSheet(
                           SpecializationButtonSheet(
-                            specializationIdsSelected: _.specializationIdSelected,
-                            onTapNotEmpty: (specializationIdList,specializationTitleList){
-                              _.setSpecializationIdSelected = specializationIdList;
-                              _.specializationController!.text=specializationTitleList;
+                            specializationIdsSelected:
+                                _.specializationIdSelected,
+                            onTapNotEmpty: (specializationIdList,
+                                specializationTitleList) {
+                              _.setSpecializationIdSelected =
+                                  specializationIdList;
+                              _.specializationController!.text =
+                                  specializationTitleList;
                             },
-                            onTapEmpty: (){
+                            onTapEmpty: () {
                               _.specializationController!.clear();
-                              _.setSpecializationIdSelected=[];
+                              _.setSpecializationIdSelected = [];
                             },
                           ),
                           isScrollControlled: true);
@@ -170,25 +184,25 @@ AddAJopOfferScreen({this.jobOffer,this.isEdit=false});
                   16.0.ESH(),
                   RangeSliderWidget(
                     isEdit: isEdit,
-                    endSalary:_.endSalary ,
+                    endSalary: _.endSalary,
                     startSalary: _.startSalary,
-                    onSelected: (startSalary,endSalary){
+                    onSelected: (startSalary, endSalary) {
                       _.setStartSalary = startSalary;
                       _.setEndSalary = endSalary;
                     },
                   ),
                   16.0.ESH(),
-                  TextFieldDefault(
-                    hint: 'enter_jop'.tr,
-                    errorText: "must_enter_jop_".tr,
-                    controller: _.jobTypeController,
-                    keyboardType: TextInputType.name,
-                    filledColor: kCBGTextFormFiled,
-                    fieldType: FieldType.WithBorder,
-                    enableBorder: Colors.transparent,
-                    horizentalPadding: 16,
-                    onComplete: () {
-                      node.nextFocus();
+                  CustomText(
+                    text: "enter_jop".tr,
+                    fontW: FW.semicond,
+                    fontSize: 16,
+                  ),
+                  RowJobTypeRadioWidget(
+                    userInPutType: _.jobTypeId,
+                    onTap: (id) {
+                      debugPrint("_jobTypeId is $id");
+                      _.setJobTypeId = id;
+                      debugPrint("_jobTypeId is2 ${_.jobTypeId}");
                     },
                   ),
                   16.0.ESH(),
@@ -216,7 +230,6 @@ AddAJopOfferScreen({this.jobOffer,this.isEdit=false});
                       // debugPrint("SpecializationIdSelected ${_.specializationIdSelected}");
                       // debugPrint("ServicesId ${_.servicesId}");
                       _.submit();
-
                     },
                   ),
                   24.0.ESH(),
