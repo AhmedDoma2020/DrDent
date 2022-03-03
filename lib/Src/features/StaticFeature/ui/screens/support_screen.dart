@@ -4,6 +4,7 @@ import 'package:dr_dent/Src/ui/widgets/appbars/app_bars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import '../../../DrawerFeature/View/Ui/contact_with_mail_screen.dart';
 import '/src/core/utils/extensions.dart';
 
 
@@ -34,20 +35,22 @@ class SupportScreen extends StatelessWidget {
             },
           ),
           24.0.ESH(),
-         SupportItem(
-            title: 'خدمة العملاء',
-            subtitle: 'ابدأ المحادثة الآن',
-            color: Color(0xffF67956),
-            icon: 'chatrowitem.png',
-           onTap: (){},
-          ),
-          24.0.ESH(),
+         // SupportItem(
+         //    title: 'خدمة العملاء',
+         //    subtitle: 'ابدأ المحادثة الآن',
+         //    color: Color(0xffF67956),
+         //    icon: 'chatrowitem.png',
+         //   onTap: (){},
+         //  ),
+         //  24.0.ESH(),
           SupportItem(
           title: 'البريد الإلكتروني',
             subtitle: 'ارسل رسالتك ونقوم بالرد عليك على بريدك الإلكتروني',
             icon: 'emailrow.png',
             color: Color(0xff1151D9),
-            onTap: (){},
+            onTap: (){
+            Get.to(()=>ContactWithMail());
+            },
           )
         ]
       ),

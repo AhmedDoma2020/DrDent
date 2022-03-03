@@ -23,8 +23,8 @@ class ContactWithMail extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 24.w),
             child: GetBuilder<ContactWithUSController>(
               builder:(_) =>  Form(
+                key: _.globalKey,
                 child: Column(
-                  key: _.globalKey,
                   children: [
                     24.0.ESH(),
                     TextFieldDefault(

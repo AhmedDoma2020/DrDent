@@ -2,6 +2,7 @@ import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/screens/login_screen.dart';
 import 'package:dr_dent/Src/features/NotificationFeature/ui/screens/notifications_screen.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/View/profile_screen.dart';
+import 'package:dr_dent/Src/features/StaticFeature/ui/screens/support_screen.dart';
 import 'package:dr_dent/Src/features/VisitsFeature/ui/screens/my_visits_screen.dart';
 import 'package:dr_dent/src/core/utils/extensions.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../../../features/StaticFeature/ui/screens/conditions_screen.dart';
+import '../../../features/StaticFeature/ui/screens/privacy_screen.dart';
 import '../../../features/StoreFeature/ui/screens/saved_products.dart';
 import 'Widget/row_of_item_drawer.dart';
 import 'Widget/top_info_drawer.dart';
@@ -61,12 +64,12 @@ class CustomDrawer extends StatelessWidget {
                         },
                         title: "fav_list",
                         icon: "assets/icons/heart.png"),
-                    RowOfItemDrawer(
-                        onTap: () {
-                          debugPrint("abc");
-                        },
-                        title: "saved_list",
-                        icon: "assets/icons/savedIcon.png"),
+                    // RowOfItemDrawer(
+                    //     onTap: () {
+                    //       debugPrint("abc");
+                    //     },
+                    //     title: "saved_list",
+                    //     icon: "assets/icons/savedIcon.png"),
                     RowOfItemDrawer(
                         onTap: () {
                           debugPrint("abc");
@@ -75,19 +78,19 @@ class CustomDrawer extends StatelessWidget {
                         icon: "assets/icons/lanIconng.png"),
                     RowOfItemDrawer(
                         onTap: () {
-                          debugPrint("abc");
+                          Get.to(()=>PrivacyScreen());
                         },
                         title: "Privacy_policy",
                         icon: "assets/icons/security-safe.png"),
                     RowOfItemDrawer(
                         onTap: () {
-                          debugPrint("abc");
+                          Get.to(()=>ConditionsScreen());
                         },
                         title: "terms_and_Conditions",
                         icon: "assets/icons/privacyIcon.png"),
                     RowOfItemDrawer(
                         onTap: () {
-                          debugPrint("abc");
+                          Get.to(()=>SupportScreen());
                         },
                         title: "support_",
                         icon: "assets/icons/headphone.png"),
