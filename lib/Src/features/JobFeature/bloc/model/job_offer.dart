@@ -44,11 +44,17 @@ class JobOffer {
     }else{
       specializations = [];
     }
-    requirements = json['requirements']!=null ? json['requirements'].cast<String>() : [];
+    if(json['requirements']!=null){
+      List<String> requirementsLocal =[];
+      for(var item in json['requirements']){
+        requirementsLocal.add(item??'');
+      }
+      requirements  = requirementsLocal;
+    }
     image = json['image'];
   }
-
 }
+
 
 class Specializations {
   Specializations({

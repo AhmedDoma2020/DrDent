@@ -7,6 +7,7 @@ import 'package:dr_dent/Src/features/AuthFeature/ui/widgets/specialization_butto
 import 'package:dr_dent/Src/features/JobFeature/bloc/controller/add_a_jop_controller.dart';
 import 'package:dr_dent/Src/features/JobFeature/ui/Widget/job_requirements_widget.dart';
 import 'package:dr_dent/Src/features/JobFeature/ui/Widget/range_salary_widget.dart';
+import 'package:dr_dent/Src/features/JobFeature/ui/Widget/sheet_jobs_cities.dart';
 import 'package:dr_dent/Src/ui/widgets/TextFields/text_field_default.dart';
 import 'package:dr_dent/Src/ui/widgets/appbars/app_bars.dart';
 import 'package:dr_dent/Src/ui/widgets/buttons/button_default.dart';
@@ -77,6 +78,30 @@ AddAJopOfferScreen({this.jobOffer,this.isEdit=false});
                     onComplete: () {
                       node.nextFocus();
                     },
+                  ),
+                  16.0.ESH(),
+                  GestureDetector(
+                    onTap: (){
+                      Get.bottomSheet(SheetJobsCities(onSave: (id){
+                        _.setCityId = id;
+
+                      }));
+                    },
+                    child: TextFieldDefault(
+                      hint: 'enter_address'.tr,
+                      errorText: "must_enter_address".tr,
+                      controller: _.cityController,
+                      keyboardType: TextInputType.name,
+                      filledColor: kCBGTextFormFiled,
+                      fieldType: FieldType.WithBorder,
+                      enableBorder: Colors.transparent,
+                      horizentalPadding: 16,
+                      enable: false,
+                      disableBorder:  Colors.transparent,
+                      onComplete: () {
+                        node.nextFocus();
+                      },
+                    ),
                   ),
                   16.0.ESH(),
                   GestureDetector(

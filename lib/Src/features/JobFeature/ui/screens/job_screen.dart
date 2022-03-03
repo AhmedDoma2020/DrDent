@@ -119,6 +119,7 @@ class JobScreen extends StatelessWidget {
                   ),
                 ),
                 16.0.ESH(),
+                offer.requirements.isNotEmpty?
                 Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(7.r),
@@ -151,8 +152,8 @@ class JobScreen extends StatelessWidget {
                                     radius: 4.w,
                                   ),
                                   10.0.ESW(),
-                                  offer.requirements[index] != null
-                                      ? Expanded(
+
+                                       Expanded(
                                           child: CustomText(
                                             text: offer.requirements[index],
                                             color: kCMainBlack2,
@@ -160,7 +161,7 @@ class JobScreen extends StatelessWidget {
                                             fontSize: 12,
                                           ),
                                         )
-                                      : 0.0.ESW(),
+
                                 ],
                               ),
                               separatorBuilder: (context, index) => 10.0.ESH(),
@@ -170,7 +171,7 @@ class JobScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                ),
+                ):0.0.ESW(),
                 100.0.ESH(),
               ],
             ),

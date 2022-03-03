@@ -111,29 +111,6 @@ class CardJobOffer extends StatelessWidget {
                       ),
                     ],
                   ):0.0.ESH(),
-                  !isMine ? 8.0.ESW() : 0.0.ESH(),
-                  !isMine
-                      ? Row(
-                          children: [
-                            IconWidget(
-                              icon: 'assets/icons/edit.png',
-                              onEditTap: () {
-                                if (onEditTap != null) {
-                                  onEditTap!();
-                                }
-                              },
-                            ),
-                            IconWidget(
-                              icon: 'assets/icons/delete.png',
-                              onEditTap: () {
-                                if (onDeleteTap != null) {
-                                  onDeleteTap!();
-                                }
-                              },
-                            ),
-                          ],
-                        )
-                      : 0.0.ESH(),
                 ],
               ),
               15.0.ESH(),
