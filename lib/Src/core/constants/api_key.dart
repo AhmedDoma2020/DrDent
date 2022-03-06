@@ -27,7 +27,7 @@ mixin ApiKey{
    final String uRLEditDayTime = apiBaseUrl + "delete_work_space_time";
    final String uRLFetchJobRequests = apiBaseUrl + "fetch_job_requests";
    final String uRLFetchPosts = apiBaseUrl + "fetch_social";
-   final String uRLFetchMyPosts = apiBaseUrl + "my_posts";
+   final String uRLFetchMyPosts = apiBaseUrl + "user_posts";
    final String uRLStore = apiBaseUrl + "fetch_social";
    final String uRLFetchStore = apiBaseUrl + "fetch_store";
    final String uRLFetchPostComments = apiBaseUrl + "fetch_post_comments";
@@ -117,4 +117,9 @@ mixin ApiKey{
    final String uRLEditPost = apiBaseUrl + "edit_post";
    final String uRLDeletePost = apiBaseUrl + "delete_post";
    final String uRLJobTitles = apiBaseUrl + "job_titles";
+   final String uRLFollowAnfUnFollow = apiBaseUrl + "follow_user";
+   final String uRLMyFollowing = apiBaseUrl + "user_followings";
+   final String uRLMyFollowers = apiBaseUrl + "user_followers";
+   final String uRLUserPatient = apiBaseUrl + "user_patients";
+   final String uRLFetchSocialProfile = apiBaseUrl + "fetch_user_profile";
 }

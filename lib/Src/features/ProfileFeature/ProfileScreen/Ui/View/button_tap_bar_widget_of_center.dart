@@ -11,7 +11,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class ButtonTapBarWidgetOfCenter extends StatelessWidget {
+  final int userId;
+
   const ButtonTapBarWidgetOfCenter({
+    required this.userId,
     Key? key,
   }) : super(key: key);
 
@@ -48,7 +51,7 @@ class ButtonTapBarWidgetOfCenter extends StatelessWidget {
             child: [
               GlobalInformationDetailsWidgetOfCenter(),
               GlobalServicesWidgetOfCenter(),
-              MySocialScreen(),
+              MySocialScreen(userId: userId),
             ][_.tabIndex],
           ),
           24.0.ESH(),

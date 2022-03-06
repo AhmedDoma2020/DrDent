@@ -4,11 +4,14 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Bloc/Controller/featch_profile_controller.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/View/following_screen.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/Widget/profile_row_info_item.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+
+import '../View/follower_screen.dart';
 
 class ProfileRowInfoAndRate extends StatelessWidget {
   @override
@@ -58,16 +61,23 @@ class ProfileRowInfoAndRate extends StatelessWidget {
                     icon: "assets/icons/pationtNimIcon.png",
                     num: "${_.patientsNum ?? 0}",
                     title: "patients_",
+                    onTap: (){},
                   ),
                   ProfileRowInfoItem(
                     icon: "assets/icons/followingNumIcon.png",
                     num: "${_.followersNum ?? 0}",
                     title: "following_",
+                    onTap: (){
+                     Get.to(()=> FollowersScreen(userId: _.id!,));
+                    },
                   ),
                   ProfileRowInfoItem(
                     icon: "assets/icons/followersNumIcon.png",
                     num: "${_.followingNum ?? 0}",
                     title: "followers_",
+                    onTap: (){
+                      Get.to(()=> FollowingScreen(userId: _.id!,));
+                    },
                   ),
                 ],
               ),
