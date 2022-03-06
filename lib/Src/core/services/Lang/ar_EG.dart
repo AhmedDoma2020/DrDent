@@ -310,5 +310,13 @@ const Map<String, String> arAE = {
   'full_time':'دوام كلى',
   'part_time':'دوام جزئى',
   'no_found_cv':'لا يوجد سيره ذاتيه',
+  'block_account':'حظر الحساب',
+  'report_':'ابلاغ',
+  'follow_':'متابعة',
+  'un_follow':'الغاء المتابعة',
+  'Doctor_data':'بيانات الطبيب',
+  'Doctor_services':'خدمات الطبيب',
+  'work_data':'بيانات العمل',
+
 
 };

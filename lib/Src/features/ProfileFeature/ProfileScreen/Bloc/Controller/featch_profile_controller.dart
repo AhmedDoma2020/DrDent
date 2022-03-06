@@ -6,6 +6,7 @@ import 'package:get_storage/get_storage.dart';
 
 class FetchProfileController extends GetxController {
   String? _phone;
+  int? _id;
   String? _name;
   String? _avatar;
   String? _cover;
@@ -39,6 +40,7 @@ class FetchProfileController extends GetxController {
   String _graduationDegree = '';
   int _universityId = 0;
 
+  int? get id => _id;
   String get universityTitle => _universityTitle;
   String get graduationDegree => _graduationDegree;
   int get universityId => _universityId;
@@ -87,6 +89,7 @@ class FetchProfileController extends GetxController {
     if (response.statusCode == 200 && response.data["status"] == true) {
       debugPrint("request operation success");
       box.write('id', response.data['data']['id']);
+      _id = response.data['data']['id'] ?? 0;
       _phone = response.data['data']['phone'] ?? "";
       _name = response.data['data']['name'] ?? "";
       _avatar = response.data['data']['image'] ?? "";

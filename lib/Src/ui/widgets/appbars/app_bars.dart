@@ -12,7 +12,7 @@ class AppBars {
   static AppBar appBarDefault({ bool isBack=true, TabBar? tabBar,String title='',Widget secondIconImage=const SizedBox(width: 0,) , VoidCallback? onTap}){
     return AppBar(
       title: CustomText(
-        text: title,
+        text: title.tr,
         fontW: FW.semibold,
         fontSize: 16,
         color: kCBlackTitle,

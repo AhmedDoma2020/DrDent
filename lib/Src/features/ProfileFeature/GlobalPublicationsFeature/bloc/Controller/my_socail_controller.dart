@@ -10,7 +10,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class MySocialController extends GetxController{
-  //
+  final int userId ;
+
+  MySocialController({required this.userId}); //
   RequestStatus status = RequestStatus.initial;
   List<PostModel> _posts = [];
   List<PostModel> get posts => _posts;
@@ -20,7 +22,7 @@ class MySocialController extends GetxController{
   Future<void> fetchSocial()async{
     status = RequestStatus.loading;
     update();
-    var response = await _mySocialRepository.fetchMySocial();
+    var response = await _mySocialRepository.fetchMySocial(userId: userId);
     if (response.statusCode == 200 && response.data["status"] == true) {
       debugPrint("request operation success");
       if(response.data['data']!=null){

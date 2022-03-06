@@ -10,11 +10,12 @@ import 'package:get/get.dart';
 import '/src/core/utils/extensions.dart';
 
 class MySocialScreen extends StatelessWidget {
-  const MySocialScreen({Key? key}) : super(key: key);
+  final int userId ;
+  const MySocialScreen({required this.userId ,Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Get.put(MySocialController());
+    Get.put(MySocialController(userId: userId));
     return GetBuilder<MySocialController>(
       builder: (_) => _.status != RequestStatus.done
           ? Center(

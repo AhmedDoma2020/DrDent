@@ -10,8 +10,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-class ProfileScreen extends StatelessWidget {
-   const ProfileScreen({Key? key}) : super(key: key);
+import '../Widget/profile_social_info_widget.dart';
+
+class SocialProfileScreen extends StatelessWidget {
+  const SocialProfileScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     GetStorage box = GetStorage();
@@ -21,14 +23,14 @@ class ProfileScreen extends StatelessWidget {
       child: Scaffold(
         body: GetBuilder<FetchProfileController>(
           builder:(proController) => proController.status == RequestStatus.loading ? Center(child: Loader(),):
-             ListView(
-              children: [
-                profileInfoWidget(),
-                8.0.ESH(),
-                ProfileRowInfoAndRate(),
-                profileIOSTapBarType(userTypeId:box.read('user_type_id')??4,userId:proController.id! ),
-              ],
-            ),
+          ListView(
+            children: [
+              profileSocialInfoWidget(),
+              8.0.ESH(),
+              ProfileRowInfoAndRate(),
+              socialProfileIOSTapBarType(userTypeId: 3,userId:proController.id!),
+            ],
+          ),
         ),
       ),
     );

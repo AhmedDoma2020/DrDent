@@ -8,6 +8,7 @@ import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/View/button
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/View/button_tap_bar_widget_of_company.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/View/button_tap_bar_widget_of_doctor.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/View/button_tap_bar_widget_of_graduated.dart';
+import '../../features/SocialProfileFeature/SocialProfileScreen/View/Screen/social_profile_ios_tap_bar_widget_of_doctor.dart';
 import 'package:dr_dent/Src/features/WorkTimeFeature/ui/bloc/controller/work_time_controller.dart';
 import 'package:dr_dent/Src/features/WorkTimeFeature/ui/screens/work_time_screen.dart';
 import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
@@ -106,27 +107,56 @@ navigationAfterStartNowScreen({required int grade}) {
   }
 }
 
-Widget buttonTapBarType({required int userTypeId}) {
+Widget profileIOSTapBarType({required int userTypeId , required int userId}) {
   switch (userTypeId) {
     case 3:
       {
-        return const ButtonTapBarWidgetOfDoctor();
+        return  ButtonTapBarWidgetOfDoctor(userId: userId,);
       }
     case 4:
       {
-        return const ButtonTapBarWidgetOfCenter();
+        return  ButtonTapBarWidgetOfCenter(userId: userId,);
       }
     case 5:
       {
-        return const ButtonTapBarWidgetOfCompany();
+        return  ButtonTapBarWidgetOfCompany(userId: userId,);
       }
     case 6:
       {
-        return const ButtonTapBarWidgetOfCompany();
+        return  ButtonTapBarWidgetOfCompany(userId: userId,);
       }
     case 7:
       {
-        return const ButtonTapBarWidgetOfGraduated();
+        return  ButtonTapBarWidgetOfGraduated(userId: userId,);
+      }
+    default:
+      {
+        return Container();
+      }
+  }
+}
+
+Widget socialProfileIOSTapBarType({required int userTypeId, required int userId}) {
+  switch (userTypeId) {
+    case 3:
+      {
+        return  SocialIOSTapBarWidgetOfDoctor(userId: userId,);
+      }
+    case 4:
+      {
+        return  ButtonTapBarWidgetOfCenter(userId: userId,);
+      }
+    case 5:
+      {
+        return  ButtonTapBarWidgetOfCompany(userId: userId,);
+      }
+    case 6:
+      {
+        return  ButtonTapBarWidgetOfCompany(userId: userId,);
+      }
+    case 7:
+      {
+        return  ButtonTapBarWidgetOfGraduated(userId: userId,);
       }
     default:
       {
