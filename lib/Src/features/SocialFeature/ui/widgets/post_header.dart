@@ -1,6 +1,7 @@
 import 'package:dr_dent/Src/bloc/model/post_model.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/features/SocialFeature/bloc/Controller/delete_post_controller.dart';
+import 'package:dr_dent/Src/features/SocialProfileFeature/SocialProfileScreen/View/Screen/social_profile_screen.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/image_network.dart';
 import 'package:dr_dent/Src/ui/widgets/sheets/sheet_share.dart';
@@ -41,19 +42,24 @@ class PostHeader extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(
-                    width: small ? 30.w : 40.w,
-                    height: small ? 30.w : 40.w,
-                    clipBehavior: Clip.hardEdge,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(40.r),
+                  GestureDetector(
+                    onTap: (){
+                      Get.to(()=>SocialProfileScreen(userId: post.ownerId!,));
+                    },
+                    child: Container(
+                      width: small ? 30.w : 40.w,
+                      height: small ? 30.w : 40.w,
+                      clipBehavior: Clip.hardEdge,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(40.r),
+                      ),
+                      child: ImageNetwork(
+                          width: small ? 30.w : 40.w,
+                          height: small ? 30.w : 40.w,
+                          url: postType == PostType.post
+                              ? post.ownerImage
+                              : post.shareImage),
                     ),
-                    child: ImageNetwork(
-                        width: small ? 30.w : 40.w,
-                        height: small ? 30.w : 40.w,
-                        url: postType == PostType.post
-                            ? post.ownerImage
-                            : post.shareImage),
                   ),
                   16.0.ESW(),
                   Column(

@@ -28,8 +28,8 @@ class NetworkService with ApiKey {
               headers: headers ??
                   {
                     'Accept-Language': 'ar',
-                    // if (auth) 'Authorization': 'Bearer ' + apiToken
-                    'Authorization': 'Bearer ' + staticApiToken
+                    if (auth) 'Authorization': 'Bearer ' + apiToken
+                    // 'Authorization': 'Bearer ' + staticApiToken
                   }));
     } on DioError catch (e) {
       if (e.response != null) {
@@ -64,8 +64,8 @@ class NetworkService with ApiKey {
           headers: headers ??
               {
                 'Accept-Language': 'ar',
-                // if (auth) 'Authorization': 'Bearer ' + apiToken
-                'Authorization': 'Bearer ' + staticApiToken
+                if (auth) 'Authorization': 'Bearer ' + apiToken
+                // 'Authorization': 'Bearer ' + staticApiToken
               },
           // requestEncoder: encoding,
         ),
