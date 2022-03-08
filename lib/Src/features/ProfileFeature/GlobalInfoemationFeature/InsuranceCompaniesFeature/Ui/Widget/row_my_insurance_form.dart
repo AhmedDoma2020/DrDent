@@ -11,10 +11,12 @@ class RowMyInsuranceForm extends StatelessWidget {
   const RowMyInsuranceForm({
     required this.insurance,
     required this.onDeleteTap,
+     this.isDelete = true,
     Key? key,
   }) : super(key: key);
   final InsuranceModel insurance;
   final VoidCallback onDeleteTap;
+  final bool isDelete ;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -51,6 +53,7 @@ class RowMyInsuranceForm extends StatelessWidget {
                   )),
             ],
           ),
+          isDelete?
           InkWell(
             onTap: onDeleteTap,
             borderRadius: BorderRadius.circular(777.r),
@@ -69,7 +72,7 @@ class RowMyInsuranceForm extends StatelessWidget {
                 ),
               ),
             ),
-          ),
+          ):0.0.ESW(),
         ],
       ),
     );

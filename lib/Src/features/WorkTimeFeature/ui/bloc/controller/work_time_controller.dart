@@ -32,12 +32,18 @@ class WorkTimeController extends GetxController {
   int? _dayBookingType;
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
 
+
+
+
+
+
   final int? workSpaceId;
   final int? doctorId;
   final UserTypeEnum userType;
   final bool isEdit;
   final String fetchDetectionTime;
   final String fetchDayBooking;
+  final int? dayBookingTypeEdit;
 
   WorkTimeController({
     this.isEdit = false,
@@ -46,6 +52,7 @@ class WorkTimeController extends GetxController {
     this.userType = UserTypeEnum.doctor,
     this.fetchDayBooking = '',
     this.fetchDetectionTime = '',
+    this.dayBookingTypeEdit
   });
 
   List<String> dayBookingTitles = [
@@ -221,6 +228,12 @@ class WorkTimeController extends GetxController {
   void onInit() {
     detectionTime = TextEditingController();
     dayBookingController = TextEditingController();
+    if(dayBookingTypeEdit!=null){
+      print('ahmed fathy $dayBookingTypeEdit');
+      _dayBookingType = dayBookingTypeEdit;
+      dayBookingController.text = dayBookingTitles[dayBookingTypeEdit!];
+      update();
+    }
     if (isEdit) setDetectionTimeAndDayBooking();
     fetchDays();
     super.onInit();

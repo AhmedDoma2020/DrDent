@@ -20,11 +20,12 @@ import 'company_add_product_screen.dart';
 
 
 class CompanyProductsScreen extends StatelessWidget {
-  const CompanyProductsScreen({Key? key}) : super(key: key);
+  final int userId;
+   CompanyProductsScreen({required this.userId ,Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     GetStorage box = GetStorage();
-    Get.put(CompanyProductsController(storeId: box.read('id')));
+    Get.put(CompanyProductsController(storeId: userId));
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         child: Icon(

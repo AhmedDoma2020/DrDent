@@ -8,7 +8,9 @@ import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/View/button
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/View/button_tap_bar_widget_of_company.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/View/button_tap_bar_widget_of_doctor.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/View/button_tap_bar_widget_of_graduated.dart';
-import '../../features/SocialProfileFeature/SocialProfileScreen/View/Screen/social_profile_ios_tap_bar_widget_of_doctor.dart';
+import 'package:dr_dent/Src/features/SocialProfileFeature/SocialProfileScreen/View/Screen/social_profile_ios_tap_bar_widget_of_company_&_lab.dart';
+import 'package:dr_dent/Src/features/SocialProfileFeature/SocialProfileScreen/View/Screen/social_profile_ios_tap_bar_widget_of_graduated.dart';
+import '../../features/SocialProfileFeature/SocialProfileScreen/View/Screen/social_profile_ios_tap_bar_widget_of_doctor_&_center.dart';
 import 'package:dr_dent/Src/features/WorkTimeFeature/ui/bloc/controller/work_time_controller.dart';
 import 'package:dr_dent/Src/features/WorkTimeFeature/ui/screens/work_time_screen.dart';
 import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
@@ -144,19 +146,19 @@ Widget socialProfileIOSTapBarType({required int userTypeId, required int userId}
       }
     case 4:
       {
-        return  ButtonTapBarWidgetOfCenter(userId: userId,);
+        return  SocialIOSTapBarWidgetOfDoctor(userId: userId,);
       }
     case 5:
       {
-        return  ButtonTapBarWidgetOfCompany(userId: userId,);
+        return  SocialIOSTapBarWidgetOfCompanyAndLab(userId: userId,);
       }
     case 6:
       {
-        return  ButtonTapBarWidgetOfCompany(userId: userId,);
+        return  SocialIOSTapBarWidgetOfCompanyAndLab(userId: userId,);
       }
     case 7:
       {
-        return  ButtonTapBarWidgetOfGraduated(userId: userId,);
+        return  SocialIOSTapBarWidgetOfGraduated(userId: userId,);
       }
     default:
       {
