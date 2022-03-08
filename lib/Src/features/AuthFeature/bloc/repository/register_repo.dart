@@ -4,10 +4,12 @@ import 'package:dio/dio.dart';
 import 'package:dr_dent/Src/core/constants/api_key.dart';
 import 'package:dr_dent/Src/core/services/network_services.dart';
 import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class RegisterRepository with ApiKey {
   // GetStorage box = GetStorage();
   final NetworkService _networkService = NetworkService();
+  final FirebaseMessaging _fcm = FirebaseMessaging.instance;
   Future<Response> register({
     required String name,
     required String phone,
@@ -18,8 +20,15 @@ class RegisterRepository with ApiKey {
     required String password,
     int? deviceId,
     String? deviceType,
+
   }) async {
     Response response;
+    String? token = '';
+    try{
+      token = await _fcm.getToken();
+    }catch(e){
+      print('an error occur in fetch token');
+    }
     try {
       response = await _networkService.post(
           url: uRLRegister,
