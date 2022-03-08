@@ -177,7 +177,7 @@ const Map<String, String> arAE = {
   "job_description": "وصف للوظيفة",
   "salary_": "الراتب",
   "add_other_requirements": "اضف متطلبات اخر",
-  "select_state": "اختر المحافظه",
+  "select_state": "اختر المنطقه",
   "must_select_state": "يجب اختر المحافظه",
   "select_city": "اختر المدينه",
   "must_select_city": "يجب اختيار المدينه",
@@ -251,6 +251,7 @@ const Map<String, String> arAE = {
   "upload_a_photo_of_your_graduation_certificate": "قم بتحميل صورة شهادة التخرج الخاصة بك",
   "center_branches": "فروع المركز",
   "my_products": "منتجاتي",
+  "products_": "المنتجات",
   "company_products": "منتجات الشركة",
   "Profile_": "حسابي",
   "Notification_": "الإشعارات",
@@ -317,6 +318,14 @@ const Map<String, String> arAE = {
   'Doctor_data':'بيانات الطبيب',
   'Doctor_services':'خدمات الطبيب',
   'work_data':'بيانات العمل',
+  'Waiting_time':'مدة الإنتظار',
+  'Detection_price':'سعر الكشف',
+  'doctors_certificate':'شهادات الطبيب',
+  'Doctors_clinics':'عيادات الطبيب',
+  'upload_certification_success':'تم الرفع بنجاح',
+  'Faculty_of_Dentistry':'كلية طب الاسنان',
+  'overall_rating':'التقدير العام',
+  'C-V':'السيرة الزاتية',
 
 
 };

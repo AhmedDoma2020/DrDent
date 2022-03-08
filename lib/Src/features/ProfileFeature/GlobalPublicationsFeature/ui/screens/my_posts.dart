@@ -7,11 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../widgets/post_widget.dart';
 import '/src/core/utils/extensions.dart';
 
 class MySocialScreen extends StatelessWidget {
-  final int userId ;
-  const MySocialScreen({required this.userId ,Key? key}) : super(key: key);
+  final int userId;
+
+  const MySocialScreen({required this.userId, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,18 +25,18 @@ class MySocialScreen extends StatelessWidget {
             )
           : _.posts.isEmpty
               ? Container(
-        height: 300.h,
-                color: Colors.teal,
-                child: EmptyWidget(
-                image: "assets/image/emptyPosts.png",
-                onTapButton: () {},
-                title: 'You_have_not_shared_any_posts_yet'.tr,
-                availableButton: false,
+                  height: 300.h,
+                  color: Colors.teal,
+                  child: EmptyWidget(
+                    image: "assets/image/emptyPosts.png",
+                    onTapButton: () {},
+                    title: 'You_have_not_shared_any_posts_yet'.tr,
+                    availableButton: false,
                   ),
-              )
+                )
               : ListView.separated(
                   physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) => MyPostWidget(
+                  itemBuilder: (context, index) => PostWidget(
                     post: _.posts[index],
                     onLike: () {
                       _.likePost(postId: _.posts[index].id!);

@@ -45,7 +45,7 @@ class AddDoctorCertificationController extends GetxController {
       Get.back();
       if (response.statusCode == 200 && response.data["status"] == true) {
         _fetchDoctorCertificationController.fetchCertification();
-        customSnackBar(title: response.data["message"]??"");
+        customSnackBar(title: "upload_certification_success");
       }else{
         customSnackBar(title: response.data["message"]??"");
       }

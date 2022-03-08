@@ -82,7 +82,7 @@ class _AvatarFormState extends State<AvatarForm> {
                             url: widget.futureImage,
                             height: double.infinity,
                             width: double.infinity,
-                            boxFit: BoxFit.fill,
+                            boxFit: BoxFit.cover,
                           ),
                         ),
                   radius: 80.r,

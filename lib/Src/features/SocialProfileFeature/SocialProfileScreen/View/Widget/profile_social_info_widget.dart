@@ -10,11 +10,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../../Block/Controller/featch_social_profile_controller.dart';
+
 class profileSocialInfoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     GetStorage box = GetStorage();
-    return GetBuilder<FetchProfileController>(
+    return GetBuilder<FetchSocialProfileController>(
       builder: (_) => SizedBox(
         // height: 310.h,
         width: double.infinity,
@@ -27,7 +29,7 @@ class profileSocialInfoWidget extends StatelessWidget {
                     GestureDetector(
                       onTap: () {
                         Get.to(() => PhotoViewWidget(
-                              imageProvider: NetworkImage(_.cover!),
+                              imageProvider: NetworkImage(_.userProfileModel!.cover),
                             ));
                       },
                       child: SizedBox(
@@ -36,7 +38,7 @@ class profileSocialInfoWidget extends StatelessWidget {
                         child: ImageNetwork(
                           height: 192.h,
                           width: double.infinity,
-                          url: _.cover,
+                          url: _.userProfileModel!.cover,
                         ),
                       ),
                     ),
@@ -149,7 +151,7 @@ class profileSocialInfoWidget extends StatelessWidget {
                               // color: Colors.greenAccent,
                               width: 120.w,
                               child: CustomText(
-                                text: _.name,
+                                text: _.userProfileModel!.name,
                                 fontW: FW.bold,
                                 fontSize: 14,
                                 overflow: true,
@@ -209,7 +211,7 @@ class profileSocialInfoWidget extends StatelessWidget {
                         onTap: () {
                           Get.to(
                             () => PhotoViewWidget(
-                              imageProvider: NetworkImage(_.avatar!),
+                              imageProvider: NetworkImage(_.userProfileModel!.image),
                             ),
                           );
                         },
@@ -219,7 +221,7 @@ class profileSocialInfoWidget extends StatelessWidget {
                           child: ImageNetwork(
                             width: 92.h,
                             height: 92.h,
-                            url: _.avatar,
+                            url:_.userProfileModel!.image,
                           ),
                         ),
                       ),

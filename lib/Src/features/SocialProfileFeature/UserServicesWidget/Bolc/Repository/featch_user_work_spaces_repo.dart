@@ -5,15 +5,14 @@ import 'package:dr_dent/Src/core/constants/api_key.dart';
 import 'package:dr_dent/Src/core/services/network_services.dart';
 import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
 import 'package:flutter/cupertino.dart';
-class FetchSocialProfileRepository with ApiKey{
+class FetchUserWorkspacesRepository with ApiKey{
   final NetworkService _networkService = NetworkService();
-  Future<Response> fetchSocialProfile({required int userId})async{
+  Future<Response> fetchUSerServices({required int userId})async{
     Response response;
     debugPrint("userId in repo is $userId");
-
     try{
       response = await _networkService.post(
-        url:uRLFetchSocialProfile,
+        url:uRLFetchUserWorkSpace,
         auth: true,
         body: {
           "user_id":userId,
