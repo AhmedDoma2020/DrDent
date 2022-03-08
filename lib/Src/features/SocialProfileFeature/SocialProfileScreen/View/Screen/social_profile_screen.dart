@@ -17,10 +17,12 @@ import '../Widget/profile_social_info_widget.dart';
 class SocialProfileScreen extends StatelessWidget {
   final int userId;
   const SocialProfileScreen({required this.userId,Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     GetStorage box = GetStorage();
     debugPrint("box.read('user_type_id') in profile is ${box.read('user_type_id')}");
+    debugPrint("userId is $userId");
     Get.put(FetchSocialProfileController(userId: userId));
     return SafeArea(
       child: Scaffold(
@@ -31,7 +33,7 @@ class SocialProfileScreen extends StatelessWidget {
               profileSocialInfoWidget(),
               8.0.ESH(),
               SocialProfileRowInfoAndRate(),
-              socialProfileIOSTapBarType(userTypeId: 5,userId: userId),
+              socialProfileIOSTapBarType(userTypeId: _.userProfileModel!.userTypeId,userId: userId),
             ],
           ),
         ),
