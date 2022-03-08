@@ -236,55 +236,62 @@ class profileInfoWidget extends StatelessWidget {
               ],
             ),
             Positioned(
-              top: 160.h,
+              top: 152.h,
               right: 24.w,
               // left: 24.w,
               child: Container(
-                height: 98.h,
-                width: 98.h,
-                color: Colors.transparent,
-                child: Center(
-                  child: Stack(
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(777.r),
-                        child: GestureDetector(
-                          onTap: () {
-                            Get.to(() => PhotoViewWidget(
-                              imageProvider: NetworkImage(_.avatar!),
-                            ));
-                          },
-                          child: SizedBox(
-                            height: 92.h,
-                            width: 92.h,
-                            child: ImageNetwork(
-                              width: 92.h,
+                height: 101.h,
+                width: 101.h,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(777.r)
+                ),
+                child: Container(
+                  height: 98.h,
+                  width: 98.h,
+                  color: Colors.transparent,
+                  child: Center(
+                    child: Stack(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(777.r),
+                          child: GestureDetector(
+                            onTap: () {
+                              Get.to(() => PhotoViewWidget(
+                                imageProvider: NetworkImage(_.avatar!),
+                              ));
+                            },
+                            child: SizedBox(
                               height: 92.h,
-                              url: _.avatar,
+                              width: 92.h,
+                              child: ImageNetwork(
+                                width: 92.h,
+                                height: 92.h,
+                                url: _.avatar,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        left: 0,
-                        child: InkWell(
-                          onTap: () {
-                            debugPrint("a7AMED");
-                            _setAvatarController.getImage();
-                          },
-                          child: CircleAvatar(
-                            backgroundColor: kCMain,
-                            child: ImageIcon(
-                              const AssetImage("assets/icons/cameraIcon.png"),
-                              color: Colors.white,
-                              size: 16.h,
+                        Positioned(
+                          bottom: 0,
+                          left: 0,
+                          child: InkWell(
+                            onTap: () {
+                              _setAvatarController.getImage();
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: kCMain,
+                              child: ImageIcon(
+                                const AssetImage("assets/icons/cameraIcon.png"),
+                                color: Colors.white,
+                                size: 16.h,
+                              ),
+                              radius: 16.h,
                             ),
-                            radius: 16.h,
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

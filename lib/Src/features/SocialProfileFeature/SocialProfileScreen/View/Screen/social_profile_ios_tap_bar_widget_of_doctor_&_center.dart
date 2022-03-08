@@ -2,8 +2,8 @@ import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalPublicationsFeature/ui/screens/my_posts.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Bloc/Controller/profile_tab_index_controller.dart';
-import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/Widget/CenterWidgets/global_services_widget_of_center.dart';
-import 'package:dr_dent/Src/features/SocialProfileFeature/DoctorInfo/View/Screen/doctor_info.dart';
+import 'package:dr_dent/Src/features/SocialProfileFeature/UserInfoWidget/View/Screen/doctor_&_center_info.dart';
+import 'package:dr_dent/Src/features/SocialProfileFeature/UserServicesWidget/View/Sceen/user_services_widget.dart';
 import 'package:dr_dent/Src/ui/widgets/tabs/tabs_ios.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -49,8 +49,8 @@ class SocialIOSTapBarWidgetOfDoctor extends StatelessWidget {
           SizedBox(
             child: [
               MySocialScreen(userId: userId),
-              SocialProfileTapItemOdDoctorInfo(),
-              GlobalServicesWidgetOfCenter(),
+              SocialProfileTapItemOfDoctorAndCenterInfo(),
+              UserServicesWidget(userId:userId ),
             ][_.tabIndex],
           ),
           24.0.ESH(),

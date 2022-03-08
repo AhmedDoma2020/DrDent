@@ -5,6 +5,8 @@ import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Bloc/Controlle
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Bloc/Controller/profile_tab_index_controller.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/Widget/profile_info_widget.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/Widget/profile_row_info_widget.dart';
+import 'package:dr_dent/Src/features/SocialProfileFeature/SocialProfileScreen/Block/Controller/featch_social_profile_controller.dart';
+import 'package:dr_dent/Src/features/SocialProfileFeature/SocialProfileScreen/View/Widget/social_profile_row_info_and_rate.dart';
 import 'package:dr_dent/Src/ui/widgets/Dialog/loading_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,22 +15,23 @@ import 'package:get_storage/get_storage.dart';
 import '../Widget/profile_social_info_widget.dart';
 
 class SocialProfileScreen extends StatelessWidget {
-  const SocialProfileScreen({Key? key}) : super(key: key);
+  final int userId;
+  const SocialProfileScreen({required this.userId,Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     GetStorage box = GetStorage();
     debugPrint("box.read('user_type_id') in profile is ${box.read('user_type_id')}");
-    Get.put(FetchProfileController());
+    Get.put(FetchSocialProfileController(userId: userId));
     return SafeArea(
       child: Scaffold(
-        body: GetBuilder<FetchProfileController>(
-          builder:(proController) => proController.status == RequestStatus.loading ? Center(child: Loader(),):
+        body: GetBuilder<FetchSocialProfileController>(
+          builder:(_) => _.status == RequestStatus.loading ? Center(child: Loader(),):
           ListView(
             children: [
               profileSocialInfoWidget(),
               8.0.ESH(),
-              ProfileRowInfoAndRate(),
-              socialProfileIOSTapBarType(userTypeId: 3,userId:proController.id!),
+              SocialProfileRowInfoAndRate(),
+              socialProfileIOSTapBarType(userTypeId: 5,userId: userId),
             ],
           ),
         ),

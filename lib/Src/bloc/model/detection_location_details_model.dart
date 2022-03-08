@@ -42,14 +42,17 @@ class WorkSpaceDetailsModel {
     detectionTime = json['detection_time']??"";
     if(json['day_booking']!=null){
       dayBooking = json['day_booking']??"";
-
     }else{
       dayBooking = "";
     }
-    reservationType = json['reservation_type']??"";
+    reservationType = json['reservation_type']??0;
     image = json['image']??"";
     city = json['city']??"";
-    address = Address.fromJson(json['address']);
+    if(json['address']!=null){
+      address = Address.fromJson(json['address']);
+    }else{
+      address = [] as Address;
+    }
     bulidingNumber = json['buliding_number']??"";
     flatNumber = json['flat_number']??"";
     isSelected = false ;

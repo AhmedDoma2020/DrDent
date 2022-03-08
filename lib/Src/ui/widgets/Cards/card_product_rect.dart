@@ -14,7 +14,8 @@ class CardProductRect extends StatelessWidget {
   final Function(int)? onLike;
   final VoidCallback onDeleteTap;
   final VoidCallback onEditTap;// status
-  const CardProductRect({Key? key,required this.product,this.onLike,required this.onEditTap,required this.onDeleteTap}) : super(key: key);
+  final bool isDelete;
+  const CardProductRect({this.isDelete =true ,Key? key,required this.product,this.onLike,required this.onEditTap,required this.onDeleteTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +72,7 @@ class CardProductRect extends StatelessWidget {
                 ),
               ),
               // IconWidget(onEditTap: onEditTap,icon: "assets/icons/edit.png",),
-              DeleteWidget(onDeleteTap: onDeleteTap),
+              isDelete? DeleteWidget(onDeleteTap: onDeleteTap):0.0.ESW(),
             ],
           ),
         ),

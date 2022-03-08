@@ -25,11 +25,10 @@ class ListCardProductRect extends StatelessWidget {
         child: CardProductRect(
           onEditTap: () {
             Get.to(()=>  CompanyAddProduct(isEdit: true,productModel: products[index],));
-
           },
           onDeleteTap: () {
-
           },
+          isDelete: false,
           product: products[index],
           onLike: (status) {
             if (onLike != null) {

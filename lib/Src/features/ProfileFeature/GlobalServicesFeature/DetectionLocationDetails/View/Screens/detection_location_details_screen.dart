@@ -29,6 +29,7 @@ class DetectionLocationDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     FetchWorkSpaceDetailsController _fetchWorkSpaceDetailsController =
         Get.put(FetchWorkSpaceDetailsController());
+
     Future<void> onRefresh() async {
       await _fetchWorkSpaceDetailsController.fetchMyWorkSpaceDetails();
     }
@@ -95,6 +96,7 @@ class DetectionLocationDetailsScreen extends StatelessWidget {
                                   isEdit:true,
                                   userType: userType,
                                   isBack: true,
+                                 dayBookingTypeEdit: _.myWorkSpaceDetails[index].reservationType,
                                   doctorId: box.read('id'),
                                   onSuccess: () {
                                     Get.back();

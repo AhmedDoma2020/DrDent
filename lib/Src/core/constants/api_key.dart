@@ -122,4 +122,6 @@ mixin ApiKey{
    final String uRLMyFollowers = apiBaseUrl + "user_followers";
    final String uRLUserPatient = apiBaseUrl + "user_patients";
    final String uRLFetchSocialProfile = apiBaseUrl + "fetch_user_profile";
+   final String uRLFetchUserServices = apiBaseUrl + "user_services";
+   final String uRLFetchUserWorkSpace = apiBaseUrl + "user_work_spaces";
 }
