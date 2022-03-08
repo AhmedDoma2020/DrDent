@@ -61,5 +61,4 @@ class Product{
     storeId = map['store_id']??0;
     categoryId = map['category_id']??0;
   }
-
 }

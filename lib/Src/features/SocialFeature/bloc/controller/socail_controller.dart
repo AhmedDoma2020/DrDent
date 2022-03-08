@@ -1,4 +1,5 @@
 import 'package:dr_dent/Src/bloc/model/post_model.dart';
+import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/JobFeature/bloc/model/job_request.dart';
 import 'package:dr_dent/Src/features/JobFeature/bloc/repository/job_offers_repository.dart';
@@ -95,7 +96,7 @@ class SocialController extends GetxController{
     }else{
       _posts[postIndex].shareNumber = _posts[postIndex].shareNumber !+ 1;
     }
-
+    // setLoading();
     update();
     var response = await _sharePostRepository.sharePost(postId: postId,content : content);
     if (response.statusCode == 200 && response.data["status"] == true) {

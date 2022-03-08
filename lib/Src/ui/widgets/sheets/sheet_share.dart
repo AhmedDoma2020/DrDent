@@ -90,10 +90,12 @@ class _SheetSharePostState extends State<SheetSharePost> {
                   ButtonDefault(
                     title: 'حفظ',
                     onTap: () {
+                      Get.back();
+                      node.unfocus();
                      if(widget.onSave!=null){
                        widget.onSave(contentController.text);
                      }else{
-                       Get.back();
+                       // Get.back();
                      }
                     },
                   ),

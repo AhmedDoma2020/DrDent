@@ -24,6 +24,7 @@ class DeletePostController extends GetxController  {
 
   // to delete post
   void deletePost({required int postId}) async {
+    Get.closeCurrentSnackbar();
     setLoading();
    var response = await _deletePostRepository.deletePost(postId: postId);
    Get.back();

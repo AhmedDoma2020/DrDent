@@ -15,6 +15,7 @@ import 'package:get/get.dart';
 import '/src/core/utils/extensions.dart';
 
 class LoginScreen extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     LoginController loginController = Get.put(LoginController());
