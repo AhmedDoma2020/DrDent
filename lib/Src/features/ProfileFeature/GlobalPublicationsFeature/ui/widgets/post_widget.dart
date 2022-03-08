@@ -101,7 +101,8 @@ class PostWidget extends StatelessWidget {
                    30.0.ESW(),
                     PostStatics(icon: 'share.png', count: '${post.shareNumber!}',onTap: (){
                       Get.bottomSheet(
-                          SheetSharePost(onSave: (content){
+                          SheetSharePost(
+                              onSave: (content){
                             if(onShare!=null){}onShare!(content??'');
                       }));
                     }),

@@ -171,10 +171,8 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home:
-        // ProfileScreen()
-        SocialProfileScreen(userId: 665)
-        ,
+
+        home:SplashScreen(),
       ),
     );
   }

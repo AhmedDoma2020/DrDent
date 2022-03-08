@@ -5,6 +5,7 @@ import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/JobFeature/bloc/model/job_request.dart';
 import 'package:dr_dent/Src/features/JobFeature/bloc/repository/job_requests_repository.dart';
 import 'package:dr_dent/Src/features/StoreFeature/bloc/repository/all_products_repository.dart';
+import 'package:dr_dent/Src/features/StoreFeature/bloc/repository/saved_products_repository.dart';
 import 'package:dr_dent/Src/features/StoreFeature/bloc/repository/store_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -17,11 +18,11 @@ class SavedProductsController extends GetxController{
 
 
   // ========== START FETCH DATA  ====================
-  final AllProductsRepository _productsRepository = AllProductsRepository();
+  final SavedProductsRepository _savedProductsRepository = SavedProductsRepository();
   Future<void> fetchSavedProducts()async{
     status = RequestStatus.loading;
     update();
-    var response = await _productsRepository.fetchAllProducts();
+    var response = await _savedProductsRepository.fetchAllProducts();
     if (response.statusCode == 200 && response.data["status"] == true) {
       debugPrint("request operation success");
       if(response.data['data']!=null){
