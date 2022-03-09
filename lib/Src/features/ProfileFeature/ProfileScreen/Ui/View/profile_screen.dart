@@ -32,7 +32,9 @@ class ProfileScreen extends StatelessWidget {
                         8.0.ESH(),
                         ProfileRowInfoAndRate(),
                         profileIOSTapBarType(
-                          userTypeId: box.read('user_type_id') ?? 3,
+                          userTypeId:
+                          box.read('user_type_id') ??
+                              3,
                           userId: proController.id!,
                         ),
                       ],
