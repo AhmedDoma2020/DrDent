@@ -21,6 +21,13 @@ class EnterPersonalDataOfCompanyAndCenterController extends GetxController {
   TextEditingController? logRecordController;
   TextEditingController? addressController;
   TextEditingController? aboutController;
+  final GlobalKey<FormState> globalKey2 = GlobalKey<FormState>();
+  TextEditingController? cityController = TextEditingController();
+  TextEditingController? stateController = TextEditingController();
+  TextEditingController? buildNumController = TextEditingController();
+  TextEditingController? flatNumController = TextEditingController();
+  TextEditingController? spMarkController = TextEditingController();
+
 
   String _avatar = "";
   String get avatar => _avatar;
@@ -139,11 +146,11 @@ class EnterPersonalDataOfCompanyAndCenterController extends GetxController {
               name: nameController!.text,
               administratorPhone: administratorPhoneController!.text,
               administratorName: administratorNameController!.text,
-              // stateId: stateId!,
-              // cityId: cityId!,
-              // lat: lat!,
-              // lon: lon!,
-              // address: addressController!.text,
+              stateId: stateId!,
+              cityId: cityId!,
+              lat: lat!,
+              lon: lon!,
+              address: addressController!.text,
               taxNumber: taxNumberController!.text,
               logRecord: logRecordController!.text,
               taxNumberImage: taxImage,

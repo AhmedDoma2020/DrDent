@@ -1,5 +1,6 @@
 import 'package:dr_dent/Src/bloc/controller/featch_state_and_city_controller.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/MyGeneralDataFeature/Bloc/Controller/enter_personal_data_of_company_and_center_controller.dart';
 import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
 import '../../../ProfileFeature/GlobalServicesFeature/DetectionLocationDetails/Bloc/Controller/set_detection_location_details_controller.dart';
 import 'package:dr_dent/Src/features/JobFeature/ui/Widget/city_button_sheet.dart';
@@ -14,13 +15,15 @@ import 'package:get/get.dart';
 
 import '/src/core/utils/extensions.dart';
 
-class SetLocationButtonSheet extends StatelessWidget {
+class SetLocationButtonSheetOfCompanyAndCenter extends StatelessWidget {
+  final bool isCompany;
   final String address;
   final double lat;
   final double lon;
 
-  const SetLocationButtonSheet({
+  const SetLocationButtonSheetOfCompanyAndCenter({
     Key? key,
+     this.isCompany = false,
     required this.address,
     required this.lat,
     required this.lon,
@@ -50,7 +53,7 @@ class SetLocationButtonSheet extends StatelessWidget {
           child: SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: GetBuilder<SetWorkSpaceDetailsDetailsController>(
+              child: GetBuilder<EnterPersonalDataOfCompanyAndCenterController>(
                 builder: (_) => Form(
                   key: _.globalKey2,
                   child: GetBuilder<FetchStateAndCityController>(

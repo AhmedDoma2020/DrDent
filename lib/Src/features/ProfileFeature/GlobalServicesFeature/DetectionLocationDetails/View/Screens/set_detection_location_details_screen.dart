@@ -2,7 +2,7 @@ import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/widgets/upload_photo_of_work_licenses.dart';
 import 'package:dr_dent/Src/features/LocationFeature/ui/screens/set_location_map_screen.dart';
-import 'package:dr_dent/Src/features/LocationFeature/ui/screens/set_location_sheet.dart';
+import 'package:dr_dent/Src/features/LocationFeature/ui/screens/set_location_sheet_of_doctor.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/DoctorsFeature/Ui/View/add_center_doctor_screen.dart';
 import 'package:dr_dent/Src/ui/widgets/TextFields/text_field_default.dart';
 import 'package:dr_dent/Src/ui/widgets/appbars/app_bars.dart';
@@ -131,7 +131,7 @@ class SetDetectionLocationDetailsScreen extends StatelessWidget {
                               () => MapScreen(
                             targetPosition: LatLng(workSpace!.address.lat,workSpace!.address.lon),
                             onSave: (lat, lon, address) {
-                              Get.bottomSheet(SetLocationButtonSheet(
+                              Get.bottomSheet(SetLocationButtonSheetOfDoctor(
                                 lon: lon,
                                 address: address,
                                 lat: lat,
@@ -143,7 +143,7 @@ class SetDetectionLocationDetailsScreen extends StatelessWidget {
                         Get.to(
                           () => MapScreen(
                             onSave: (lat, lon, address) {
-                              Get.bottomSheet(SetLocationButtonSheet(
+                              Get.bottomSheet(SetLocationButtonSheetOfDoctor(
                                 lon: lon,
                                 address: address,
                                 lat: lat,

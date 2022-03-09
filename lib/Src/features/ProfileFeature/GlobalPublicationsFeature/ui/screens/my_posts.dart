@@ -1,5 +1,7 @@
+import 'package:dr_dent/Src/bloc/model/post_model.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalPublicationsFeature/bloc/Controller/my_socail_controller.dart';
+import 'package:dr_dent/Src/features/SocialFeature/ui/widgets/post_share_widget.dart';
 import 'package:dr_dent/Src/features/SocialFeature/ui/widgets/post_widget.dart';
 import 'package:dr_dent/Src/ui/widgets/Dialog/loading_dialog.dart';
 import 'package:dr_dent/Src/ui/widgets/EmptyWidget/empty_widget.dart';
@@ -36,7 +38,15 @@ class MySocialScreen extends StatelessWidget {
                 )
               : ListView.separated(
                   physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) => PostWidget(
+                  itemBuilder: (context, index) =>
+                  _.posts[index].postType == PostType.post?
+
+                      PostWidget(
+                    post: _.posts[index],
+                    onLike: () {
+                      _.likePost(postId: _.posts[index].id!);
+                    },
+                  ): PostShareWidget(
                     post: _.posts[index],
                     onLike: () {
                       _.likePost(postId: _.posts[index].id!);
