@@ -25,8 +25,7 @@ class CityButtonSheet2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FetchStateAndCityController _fetchStateAndCityController =
-        Get.put(FetchStateAndCityController());
+    FetchStateAndCityController _fetchStateAndCityController = Get.put(FetchStateAndCityController());
     return Align(
       alignment: Alignment.bottomCenter,
       child: Material(

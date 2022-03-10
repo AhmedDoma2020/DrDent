@@ -28,10 +28,13 @@ class SocialController extends GetxController{
       debugPrint("request operation success");
       if(response.data['data']!=null){
         _posts.clear();
-        if(response.data['data']['data']!=null){
-          for (var item in response.data['data']['data']) {
-            _posts.add(PostModel.fromJson(item));
-          }
+        // if(response.data['data']['data']!=null){
+        //   for (var item in response.data['data']['data']) {
+        //     _posts.add(PostModel.fromJson(item));
+        //   }
+        // }
+        for (var item in response.data['data']) {
+          _posts.add(PostModel.fromJson(item));
         }
       }
       debugPrint("convert operation success");

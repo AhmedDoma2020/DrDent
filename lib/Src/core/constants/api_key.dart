@@ -98,7 +98,7 @@ mixin ApiKey{
    final String uRLFetchScientific = apiBaseUrl + "fetch_seintific_levels";
    final String uRLFetchSpecialization = apiBaseUrl + "specializations";
    final String uRLEnterAndEditPersonalDataOfDoctor = apiBaseUrl + "edit_doctor_personal_info";
-   final String uRLEnterInfoToApplyJob = apiBaseUrl + "enter_info_to_apply_job";
+   final String uRLEnterInfoToApplyJob = apiBaseUrl + "apply_for_job_offer";
    final String uRLEnterAndEditPersonalDataOfCompanyAndCenter = apiBaseUrl + "company_edit_general_info";
    final String uRLEnterAndEditPersonalDataOfGraduated = apiBaseUrl + "edit_graduate_personal_info";
    final String uRLAddJopRequest = apiBaseUrl + "add_job_request";
@@ -112,6 +112,7 @@ mixin ApiKey{
    final String uRLDeleteDoctorCertification = apiBaseUrl + "delete_doctor_certificate";
    final String uRLFetchDoctorCertification = apiBaseUrl + "fetch_doctor_certificate";
    final String uRLCenterAddDoctor = apiBaseUrl + "center_add_doctor";
+   final String uRLCenterEditDoctor = apiBaseUrl + "center_edit_doctor";
    final String uRLSetAvatar = apiBaseUrl + "set_user_image";
    final String uRLSetCover = apiBaseUrl + "set_cover_image";
    final String uRLAddPost = apiBaseUrl + "add_post";

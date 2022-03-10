@@ -20,7 +20,7 @@ class SocialProfileRowInfoAndRate extends StatelessWidget {
         // color: Colors.red,
         height: 128.h,
         width: double.infinity,
-        child: Column(
+        child: Column( 
           children: [
             Padding(
               padding: EdgeInsets.only(right: 130.w),
@@ -50,38 +50,112 @@ class SocialProfileRowInfoAndRate extends StatelessWidget {
               ),
             ),
             24.0.ESH(),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.w),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ProfileRowInfoItem(
-                    icon: "assets/icons/pationtNimIcon.png",
-                    num: "${_.userProfileModel!.patients }",
-                    title: "patients_",
-                    onTap: (){},
-                  ),
-                  ProfileRowInfoItem(
-                    icon: "assets/icons/followingNumIcon.png",
-                    num: "${_.userProfileModel!.followersNumber}",
-                    title: "following_",
-                    onTap: (){
-                      Get.to(()=> FollowersScreen(userId: _.userProfileModel!.id,));
-                    },
-                  ),
-                  ProfileRowInfoItem(
-                    icon: "assets/icons/followersNumIcon.png",
-                    num: "${_.userProfileModel!.followingsNumber}",
-                    title: "followers_",
-                    onTap: (){
-                      Get.to(()=> FollowingScreen(userId: _.userProfileModel!.id,));
-                    },
-                  ),
-                ],
-              ),
+            _.userProfileModel!.userTypeId == 3|| _.userProfileModel!.userTypeId == 4?
+            SocialRowOfTAps3(
+              patientsNum: _.userProfileModel!.patients,
+              followingNum: _.userProfileModel!.followingsNumber,
+              followersNum: _.userProfileModel!.followersNumber,
+              id: _.userProfileModel!.id,
+            ):SocialRowOfTAps2(
+              id: _.userProfileModel!.id,
+              followersNum: _.userProfileModel!.followersNumber,
+              followingNum: _.userProfileModel!.followingsNumber,
             )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class SocialRowOfTAps3 extends StatelessWidget {
+  final int patientsNum;
+  final int followersNum;
+  final int followingNum;
+  final int id;
+
+  const SocialRowOfTAps3({
+    required this.id,
+    required this.patientsNum,
+    required this.followersNum,
+    required this.followingNum,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 24.w),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          ProfileRowInfoItem(
+            icon: "assets/icons/pationtNimIcon.png",
+            num: "$patientsNum",
+            title: "patients_",
+            onTap: (){},
+          ),
+          ProfileRowInfoItem(
+            icon: "assets/icons/followingNumIcon.png",
+            num: "$followersNum",
+            title: "following_",
+            onTap: (){
+              Get.to(()=> FollowersScreen(userId: id,));
+            },
+          ),
+          ProfileRowInfoItem(
+            icon: "assets/icons/followersNumIcon.png",
+            num: "$followingNum",
+            title: "followers_",
+            onTap: (){
+              Get.to(()=> FollowingScreen(userId:id,));
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+class SocialRowOfTAps2 extends StatelessWidget {
+  final int followersNum;
+  final int followingNum;
+  final int id;
+
+  const SocialRowOfTAps2({
+    required this.id,
+    required this.followersNum,
+    required this.followingNum,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 0.w),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          0.0.ESW(),
+          ProfileRowInfoItem(
+            icon: "assets/icons/followingNumIcon.png",
+            num: "$followersNum",
+            title: "following_",
+            onTap: () {
+              Get.to(() => FollowersScreen(userId: id,));
+            },
+          ),
+          ProfileRowInfoItem(
+            icon: "assets/icons/followersNumIcon.png",
+            num: "$followingNum",
+            title: "followers_",
+            onTap: () {
+              Get.to(() => FollowingScreen(userId: id,));
+            },
+          ),
+          0.0.ESW(),
+        ],
       ),
     );
   }

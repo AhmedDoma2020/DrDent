@@ -4,6 +4,7 @@
 class JobOffer {
   JobOffer({
     required this.id,
+    required this.userId,
     required this.name,
     required this.phone,
     required this.address,
@@ -20,6 +21,7 @@ class JobOffer {
     required this.image,
   });
   late final int id;
+  late final int userId;
   late final String name;
   late final String phone;
   late final String address;
@@ -37,6 +39,7 @@ class JobOffer {
 
   JobOffer.fromJson(Map<String, dynamic> json){
     id = json['id']??0;
+    userId = json['user_id']??0;
     name = json['name']??"";
     phone = json['phone']??"";
     address = json['address']??"";

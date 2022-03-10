@@ -38,7 +38,7 @@ class EnterYourInformationToApplyJobController extends GetxController {
     _servicesId = value;
   }
 
-  String _gender ="";
+  String _gender ="male";
   String get gender => _gender;
   set setGender(String value) {
     _gender = value;
@@ -66,28 +66,32 @@ class EnterYourInformationToApplyJobController extends GetxController {
       globalKey.currentState!.save();
       if(_graduationCertificateImage !=""){
         if(_cVImage!= ""){
-          customSnackBar(title: "Done",);
+          // customSnackBar(title: "Done",);
        setLoading();
       var response = await _enterYourInformationToApplyRepository.enterYourInformationToApply(
+        jobOfferId: offerId,
         name: nameController!.text,
         phone: phoneController!.text,
         email: emailController!.text,
         gender: _gender,
-        university: universityController!.text,
+        universityId: _universityId,
         specializationId: _specializationIdSelected,
         graduationYear: graduationYearController!.text,
         universityDegree: universityDegreeController!.text,
         graduationCertificateImage: _graduationCertificateImage,
         cVImage: _cVImage,
       );
+      Get.back();
           if (response.statusCode == 200 && response.data["status"] == true) {
             debugPrint("request operation success");
-
+            Get.back();
+            customSnackBar(title: response.data['message']??"",);
             debugPrint("convert operation success");
             status = RequestStatus.done;
             update();
           } else {
             status = RequestStatus.error;
+            customSnackBar(title: response.data['message']??"",);
             update();
           }
         }else{

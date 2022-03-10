@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -21,7 +22,7 @@ class EditJopRequestRepository with ApiKey {
     Response response;
     debugPrint("ownerName $ownerName");
     debugPrint("phone $phone");
-    debugPrint("address $address");
+    log("cV in EditJopRequestRepository  $cV");
 
     try {
       response = await _networkService.post(
@@ -32,8 +33,8 @@ class EditJopRequestRepository with ApiKey {
             'name':ownerName,
             'phone':phone,
             'address':address,
-            'specialization_ids':specializationId,
-            'c_v':cV,
+            'specializations':specializationId,
+            'cv':cV,
           }
       );
     } on SocketException {

@@ -19,10 +19,10 @@ class SheetJobsCities extends StatelessWidget {
 
 
   SheetJobsCities({required this.onSave});
-
   @override
   Widget build(BuildContext context) {
     Get.put(FetchStateAndCityController());
+
     Get.put(SetWorkSpaceDetailsDetailsController());
     var node = FocusScope.of(context);
     return Align(
