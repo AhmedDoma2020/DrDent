@@ -4,6 +4,7 @@ import 'package:dr_dent/Src/ui/widgets/buttons/button_default.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import '/src/core/utils/extensions.dart';
 class PackageWidget extends StatelessWidget {
   const PackageWidget({Key? key}) : super(key: key);
@@ -26,7 +27,7 @@ class PackageWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CustomText(
-              text: 'باقة مميزة',
+              text: 'special_package',
               color: kCMainBlack2,
               fontW: FW.semicond,
               fontSize: 16,
@@ -42,7 +43,7 @@ class PackageWidget extends StatelessWidget {
                   fontSize: 24,
                 ),
                 CustomText(
-                  text: 'سنويا/',
+                  text: 'per_year',
                   color: kCMainBlack2,
                   fontW: FW.light,
                   fontSize: 12,
@@ -51,13 +52,13 @@ class PackageWidget extends StatelessWidget {
             ),
             32.0.ESH(),
             ButtonDefault(
-              title: 'اشترك الآن',
+              title: 'subscribe_now',
               width: 179,
               height: 48,
             ),
             15.0.ESH(),
             CustomText(
-              text: 'يتجدد بسعر 25000 جنيه /سنويا',
+              text: '${'renewed_at_a_price'.tr} 25000 ${'E_G_P'.tr} ${'per_year'.tr}',
               color: kCMainBlack2,
               fontW: FW.light,
               fontSize: 12,

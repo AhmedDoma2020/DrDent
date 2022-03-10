@@ -23,7 +23,7 @@ class EnterYourInformationToApplyRepository with ApiKey {
     required List<int> specializationId,
   }) async {
     Response response;
-    try {git
+    try {
       response = await _networkService.post(
           url: uRLEnterInfoToApplyJob,
           auth: true,
@@ -38,8 +38,6 @@ class EnterYourInformationToApplyRepository with ApiKey {
             'specializations':specializationId,
             'certification_image':graduationCertificateImage,
             'cVImage':cVImage,
-
-
           }
       );
     } on SocketException {

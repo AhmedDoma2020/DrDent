@@ -295,7 +295,7 @@ class _MapScreenState extends State<MapScreen> {
                           Row(
                             children: [
                               CustomText(
-                                text: 'التوصيل الي',
+                                text: 'Delivery_to',
                                 color: kCBlackTitle,
                                 fontW: FW.regular,
                                 fontSize: 12.8,

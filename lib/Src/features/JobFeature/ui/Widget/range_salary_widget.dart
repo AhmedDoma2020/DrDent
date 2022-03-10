@@ -31,7 +31,7 @@ class _RangeSliderWidgetState extends State<RangeSliderWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomText(text: "salary_".tr,fontW: FW.semicond,fontSize: 16,),
-              CustomText(text: "من ${widget.startSalary} - ${widget.endSalary} جنيه".tr,fontW: FW.medium,fontSize: 14,color: kCSubMain,),
+              CustomText(text: "${'from_'.tr} ${widget.startSalary} - ${widget.endSalary} ${'E_G_P'.tr}".tr,fontW: FW.medium,fontSize: 14,color: kCSubMain,),
             ],
           ),
         RangeSlider(

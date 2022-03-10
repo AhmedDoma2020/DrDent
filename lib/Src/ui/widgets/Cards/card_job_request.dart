@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../core/services/photo_view.dart';
-import '../GeneralWidgets/edit_widget.dart';
+import '../GeneralWidgets/icon_widget.dart';
 import '../custom_snack_bar.dart';
 import '/src/core/utils/extensions.dart';
 import 'card_tag.dart';
@@ -125,7 +125,7 @@ class CardJobRequest extends StatelessWidget {
             ),
             16.0.ESH(),
             ButtonDefault(
-              title: 'عرض السيرة الزاتية',
+              title: 'View_biography',
               height: 46.h,
               onTap: request.cv! ==''?(){
                 customSnackBar(title: "no_found_cv".tr);

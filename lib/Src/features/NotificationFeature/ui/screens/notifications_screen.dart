@@ -15,7 +15,7 @@ class NotificationsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(NotificationsController());
     return Scaffold(
-      appBar: AppBars.appBarDefault(title: 'الإشعارات'),
+      appBar: AppBars.appBarDefault(title: 'notifications_'.tr),
       body: GetBuilder<NotificationsController>(
         builder: (_) =>
             _.status != RequestStatus.done?

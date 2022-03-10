@@ -19,7 +19,7 @@ class VisitsWaitingScreen extends StatelessWidget {
           _.status != RequestStatus.done?
           Center(child: Loader(),):
           _.visits.isEmpty?
-          EmptyIconWidget(title: '! ليس لديك حجوزات الآن',image: 'novisits.png',):
+          const EmptyIconWidget(title: 'no_visits_yet',image: 'novisits.png',):
           ListView.separated(
           itemBuilder: (context, index) => Padding(
             padding:  EdgeInsets.symmetric(

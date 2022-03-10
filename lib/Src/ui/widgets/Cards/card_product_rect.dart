@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../GeneralWidgets/delete_widget.dart';
-import '../GeneralWidgets/edit_widget.dart';
+import '../GeneralWidgets/icon_widget.dart';
 import '/src/core/utils/extensions.dart';
 class CardProductRect extends StatelessWidget {
   final Product product;

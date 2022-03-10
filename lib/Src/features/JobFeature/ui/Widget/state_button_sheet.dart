@@ -9,12 +9,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../../core/utils/request_status.dart';
 import '/src/core/utils/extensions.dart';
+import '../../../../core/utils/request_status.dart';
 
 class StateButtonSheet extends StatelessWidget {
   final List<StateAndCityModel> stateList;
-  final Function(int,String) onTap;
+  final Function(int, String) onTap;
   final int stateIndex;
 
   const StateButtonSheet({
@@ -26,7 +26,8 @@ class StateButtonSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FetchStateAndCityController _fetchStateAndCityController = Get.put(FetchStateAndCityController());
+    FetchStateAndCityController _fetchStateAndCityController =
+        Get.put(FetchStateAndCityController());
     return Align(
       alignment: Alignment.bottomCenter,
       child: Material(
@@ -54,28 +55,38 @@ class StateButtonSheet extends StatelessWidget {
               ),
               24.0.ESH(),
               GetBuilder<FetchStateAndCityController>(
-                builder:(_) =>  SizedBox(
+                builder: (_) => SizedBox(
                   height: 400.h,
-                  child: _.status ==RequestStatus.loading ?Center(child: Loader(),)  : _.stateAndCityList.isEmpty?CustomText(text: "state_is_empty".tr,fontW: FW.semicond,) : ListView.separated(
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) => InkWell(
-                      onTap: () {
-                        _.changeStateIndex(index);
-                        onTap(stateList[index].id, stateList[index].title);
-                        _.setStateIndexSelected = index;
-                        Get.back();
-                      },
-                      child: SingleChoseRowForm(
-                        title: stateList[index].title,
-                        isSelected: stateIndex == index,
-                      ),
-                    ),
-                    separatorBuilder: (context, index) => Divider(
-                      height: 2.h,
-                      color: kCTFEnableBorder,
-                    ),
-                    itemCount: stateList.length,
-                  ),
+                  child: _.status == RequestStatus.loading
+                      ? Center(
+                          child: Loader(),
+                        )
+                      : _.stateAndCityList.isEmpty
+                          ? CustomText(
+                              text: "state_is_empty".tr,
+                              fontW: FW.semicond,
+                            )
+                          : ListView.separated(
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) => InkWell(
+                                onTap: () {
+                                  _.changeStateIndex(index);
+                                  onTap(stateList[index].id,
+                                      stateList[index].title);
+                                  _.setStateIndexSelected = index;
+                                  Get.back();
+                                },
+                                child: SingleChoseRowForm(
+                                  title: stateList[index].title,
+                                  isSelected: stateIndex == index,
+                                ),
+                              ),
+                              separatorBuilder: (context, index) => Divider(
+                                height: 2.h,
+                                color: kCTFEnableBorder,
+                              ),
+                              itemCount: stateList.length,
+                            ),
                 ),
               ),
             ],

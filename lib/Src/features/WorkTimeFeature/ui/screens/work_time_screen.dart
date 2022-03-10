@@ -46,7 +46,7 @@ class WorkTimeScreen extends StatelessWidget {
     debugPrint("doctorId in WorkTimeScreen is $doctorId");
     Get.put(WorkTimeController(workSpaceId: workspaceId,dayBookingTypeEdit:dayBookingTypeEdit, doctorId: doctorId, userType: userType,isEdit: isEdit,fetchDayBooking: fetchDayBooking,fetchDetectionTime:fetchDetectionTime ,));
     return Scaffold(
-      appBar: AppBars.appBarDefault(title: 'مواعيد العمل', isBack: isBack),
+      appBar: AppBars.appBarDefault(title: 'jop_time', isBack: isBack),
       body: GetBuilder<WorkTimeController>(
         builder: (_) => Stack(
           children: [
@@ -63,7 +63,7 @@ class WorkTimeScreen extends StatelessWidget {
                         Column(
                           children: [
                             IconTitleRow(
-                              title: 'ضبط اعدادات العمل',
+                              title: 'Adjust_work_settings',
                               icon: 'work_time.png',
                             ),
                             15.0.ESH(),
@@ -91,7 +91,7 @@ class WorkTimeScreen extends StatelessWidget {
                                                   MainAxisAlignment.center,
                                                   children: [
                                                     CustomText(
-                                                      text: 'اختر نوع استقبال الحجوزات',
+                                                      text: 'Choose_the_type_of_booking_reception',
                                                       color: kCMainBlack2,
                                                       fontSize: 13,
                                                       fontW: FW.semibold,
@@ -119,7 +119,7 @@ class WorkTimeScreen extends StatelessWidget {
                                                             children: [
                                                               CustomText(
                                                                 text:
-                                                                'قبول الحجوزات ف نفس اليوم',
+                                                                'Accepting_same_day_reservations',
                                                                 color: kCMainBlack2,
                                                                 fontSize: 13,
                                                                 fontW: FW.semibold,
@@ -146,7 +146,7 @@ class WorkTimeScreen extends StatelessWidget {
                                                             children: [
                                                               CustomText(
                                                                 text:
-                                                                'قبول الحجوزات قبلها بيوم',
+                                                                'Accepting_reservations_the_day_before',
                                                                 color: kCMainBlack2,
                                                                 fontSize: 13,
                                                                 fontW: FW.semibold,
@@ -167,9 +167,9 @@ class WorkTimeScreen extends StatelessWidget {
                                 );
                               },
                               child: TextFieldDefault(
-                                hint: 'استقبال الحجوزات',
+                                hint: 'Receiving_reservations'.tr,
                                 enable: false,
-                                errorText: 'يجب اختيار نوع استقبال الحجوزات',
+                                errorText: 'error_Receiving_reservations_field'.tr,
                                 horizentalPadding: 0,
                                 suffixIconData: Icons.keyboard_arrow_down_outlined,
                                 controller: _.dayBookingController,
@@ -177,8 +177,8 @@ class WorkTimeScreen extends StatelessWidget {
                             ),
                             15.0.ESH(),
                             TextFieldDefault(
-                              hint: 'مدة الكشف',
-                              errorText: 'يجب ادخال مدة الكشف',
+                              hint: 'Detection_time'.tr,
+                              errorText: 'error_Detection_time_field'.tr,
                               keyboardType: TextInputType.datetime,
                               horizentalPadding: 0,
                               controller: _.detectionTime,
@@ -187,7 +187,7 @@ class WorkTimeScreen extends StatelessWidget {
                           ],
                         ),
                         IconTitleRow(
-                          title: 'ساعات العمل',
+                          title: 'work_hours',
                           icon: 'hours.png',
                         ),
                       ],
@@ -238,7 +238,7 @@ class WorkTimeScreen extends StatelessWidget {
                 height: 100.h,
                 child: Center(
                   child: ButtonDefault(
-                    title: 'حفظ',
+                    title: 'save_',
                     onTap: () {
                       if (userType == UserTypeEnum.doctor) {
                         _.addDayTimeDetails(onSuccess: onSuccess);

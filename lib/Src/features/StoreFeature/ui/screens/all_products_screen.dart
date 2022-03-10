@@ -18,7 +18,7 @@ class AllProductsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(AllProductsController());
     return Scaffold(
-      appBar: AppBars.appBarDefault(title: 'كل المنتجات'),
+      appBar: AppBars.appBarDefault(title: 'all_product'),
       body: Padding(
         padding: EdgeInsets.only(right: 16.w, left: 16.w, top: 10.h),
         child: GetBuilder<AllProductsController>(

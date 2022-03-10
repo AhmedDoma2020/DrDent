@@ -16,7 +16,7 @@ class QuestionsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(QuestionsController());
     return Scaffold(
-        appBar: AppBars.appBarDefault(title: 'الأسألة الشائعة'),
+        appBar: AppBars.appBarDefault(title: 'common_questions'),
         body: GetBuilder<QuestionsController>(
           builder: (_) {
             return

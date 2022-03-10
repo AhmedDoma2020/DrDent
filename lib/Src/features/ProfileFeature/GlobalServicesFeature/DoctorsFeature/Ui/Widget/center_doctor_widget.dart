@@ -11,7 +11,7 @@ import 'package:dr_dent/Src/features/WorkTimeFeature/ui/bloc/controller/work_tim
 import 'package:dr_dent/Src/features/WorkTimeFeature/ui/screens/work_time_screen.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/delete_widget.dart';
-import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/edit_widget.dart';
+import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/icon_widget.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/image_network.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

@@ -3,7 +3,7 @@ import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/delete_widget.dart';
-import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/edit_widget.dart';
+import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/icon_widget.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/image_network.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
