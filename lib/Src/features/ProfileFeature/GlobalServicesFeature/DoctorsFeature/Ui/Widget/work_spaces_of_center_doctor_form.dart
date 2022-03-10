@@ -6,7 +6,7 @@ import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/Doctor
 import 'package:dr_dent/Src/features/WorkTimeFeature/ui/bloc/controller/work_time_controller.dart';
 import 'package:dr_dent/Src/features/WorkTimeFeature/ui/screens/work_time_screen.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
-import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/edit_widget.dart';
+import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/icon_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';

@@ -130,11 +130,11 @@ class BaseScreen extends StatelessWidget {
                                     ),
                                     CustomText(
                                       text: [
-                                        'الرئيسية',
-                                        'الوظائف',
+                                        'home_',
+                                        'jobs_',
                                         '',
-                                        'تواصل',
-                                        'المتجر',
+                                        'social_',
+                                        'store_',
                                       ][i],
                                       color: i == _.tabIndex ? kCMain:kCMainGrey,
                                       fontW: FW.light,

@@ -53,6 +53,7 @@ class EnterYourInformationToApplyRepository with ApiKey {
             'specializations':specializationId,
             'certification_image':graduationCertificateImage,
             'cv':cVImage,
+
           }
       );
     } on SocketException {

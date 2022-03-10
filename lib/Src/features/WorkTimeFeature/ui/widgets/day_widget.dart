@@ -126,7 +126,7 @@ class DayWidget extends StatelessWidget {
                                         vertical: 9.h, horizontal: 21.w),
                                     child: Center(
                                       child: CustomText(
-                                        text: 'إضافة  فترة',
+                                        text: 'add_duration',
                                         color: kCMain,
                                         fontW: FW.medium,
                                         fontSize: 12,
@@ -178,7 +178,7 @@ class DayWidget extends StatelessWidget {
                                         vertical: 9.h, horizontal: 21.w),
                                     child: Center(
                                       child: CustomText(
-                                        text: 'إضافة  فترة',
+                                        text: 'add_duration',
                                         color: kCMain,
                                         fontW: FW.medium,
                                         fontSize: 12,

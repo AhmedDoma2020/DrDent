@@ -27,7 +27,7 @@ class ConditionsScreen extends StatelessWidget {
               children: [
                 16.0.ESH(),
                 CustomText(
-                  text: 'الشروط والاحكام',
+                  text: 'Terms_and_Conditions',
                   color: kCMainBlack2,
                   fontSize: 18,
                   fontW: FW.demi,

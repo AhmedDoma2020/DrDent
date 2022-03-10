@@ -32,12 +32,12 @@ class ResetPasswordScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       const TitleSubtitle(
-                        tile: 'ادخل كلمة المرور الجديدة',
+                        tile: 'create_new_password',
                         subtitle: '',
                       ),
                       TextFieldDefault(
-                        hint: 'كلمة المرور الجديدة',
-                        errorText: "يجب ادخال كلمة المرور الجديدة",
+                        hint: 'new_password'.tr,
+                        errorText: "error_new_password_field".tr,
                         controller: _.passwordController,
                         secureType: SecureType.Toggle,
                         fieldType: FieldType.WithBorder,
@@ -50,8 +50,8 @@ class ResetPasswordScreen extends StatelessWidget {
                       ),
                       16.0.ESH(),
                       TextFieldDefault(
-                        hint: 'ادخل كلمة مرور',
-                        errorText: "يجب ادخال كلمة المرور",
+                        hint: 'enter_password'.tr,
+                        errorText: "error_password_field".tr,
                         controller: _.confirmPasswordController,
                         secureType: SecureType.Toggle,
                         horizentalPadding: 16,

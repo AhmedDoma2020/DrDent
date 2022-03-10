@@ -17,7 +17,7 @@ class SavedProducts extends StatelessWidget {
     Get.put(SavedProductsController());
     return GetBuilder<SavedProductsController>(
       builder: (_) => Scaffold(
-        appBar: AppBars.appBarDefault(title: 'قائمة المحفوظات'),
+        appBar: AppBars.appBarDefault(title: 'saved_list'),
         body:
             _.status != RequestStatus.done?
             Center(child: Loader(),):
@@ -25,7 +25,7 @@ class SavedProducts extends StatelessWidget {
         EmptyWidget(
           onTapButton: () {  },
           image: 'assets/icons/emp.png',
-          title: ' ! لا يوجد لديك قائمة مفضلات لعرضها',
+          title: 'You_do_net_have_a_wishlist_to_display',
           availableButton: false,
         ):
         ListCardProductRect(products: _.products,onLike: (id,status){_.handleLikeProduct(id: id, status: status);}),

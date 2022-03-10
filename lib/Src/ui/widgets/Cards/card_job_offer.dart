@@ -2,7 +2,7 @@ import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/features/JobFeature/bloc/model/job_offer.dart';
 import 'package:dr_dent/Src/features/JobFeature/ui/screens/job_screen.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
-import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/edit_widget.dart';
+import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/icon_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -120,10 +120,10 @@ class CardJobOffer extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const CardTag(
-                    title: 'دوام كامل',
+                    title: 'Full_time',
                   ),
                   CustomText(
-                    text: 'من ${offer.startSalary} - ${offer.endSalary} جنيه',
+                    text: '${'from_'.tr} ${offer.startSalary} - ${offer.endSalary} ${'E_G_P'.tr}',
                     fontW: FW.demi,
                     fontSize: 14,
                     color: kCMainBlack2,

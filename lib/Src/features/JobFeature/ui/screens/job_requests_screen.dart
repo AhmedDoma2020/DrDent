@@ -36,7 +36,7 @@ class JobRequestScreen extends StatelessWidget {
                               child: Row(
                                 children: [
                                   CustomText(
-                                    text: 'طلباتي',
+                                    text: 'My_requests',
                                     fontW: FW.demi,
                                     fontSize: 14,
                                     color: kCMainBlack2,
@@ -62,7 +62,7 @@ class JobRequestScreen extends StatelessWidget {
                     child: Row(
                       children: [
                         CustomText(
-                          text: 'كل الطلبات',
+                          text: 'all_requests',
                           fontW: FW.demi,
                           fontSize: 14,
                           color: kCMainBlack2,

@@ -17,7 +17,7 @@ class MyVisitScreen extends StatelessWidget {
     Get.put(MyVisitsController());
     return GetBuilder<MyVisitsController>(
       builder: (_) =>  Scaffold(
-        appBar: AppBars.appBarDefault(title: 'الحجوزات'),
+        appBar: AppBars.appBarDefault(title: 'Reservations_'),
         body: Column(
           children: [
             Padding(
@@ -29,9 +29,9 @@ class MyVisitScreen extends StatelessWidget {
                 children: [
                    TabsIos(
                      titles: const [
-                     'جديدة',
-                     'قيد الأنتظار',
-                     'منتهية'
+                     'New_',
+                     'pending_',
+                     'finished_'
                    ],
                    onTap: (index){
                        _.tabIndex=index;

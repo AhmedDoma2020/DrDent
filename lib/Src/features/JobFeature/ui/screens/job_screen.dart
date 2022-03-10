@@ -73,12 +73,12 @@ class JobScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const CardTag(
-                          title: 'دوام كامل',
+                          title: 'Full_time',
                         ),
                         24.0.ESW(),
                         CustomText(
                           text:
-                              'من ${offer.startSalary} - ${offer.endSalary} جنيه',
+                              '${'from_'.tr} ${offer.startSalary} - ${offer.endSalary} ${'E_G_P'.tr}',
                           fontW: FW.demi,
                           fontSize: 14,
                           color: kCMainBlack2,
@@ -101,7 +101,7 @@ class JobScreen extends StatelessWidget {
                         Row(
                           children: [
                             CustomText(
-                              text: 'وصف الوظيفة',
+                              text: 'job_description_',
                               color: kCMainBlack2,
                               fontW: FW.demi,
                               fontSize: 14,
@@ -136,7 +136,7 @@ class JobScreen extends StatelessWidget {
                         Row(
                           children: [
                             CustomText(
-                              text: 'متطلبات الوظيفة',
+                              text: 'Job_requirements',
                               color: kCMainBlack2,
                               fontW: FW.demi,
                               fontSize: 14,
@@ -186,7 +186,7 @@ class JobScreen extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: ButtonDefault(
                 height: 55,
-                title: 'التقديم علي الوظيفة',
+                title: 'Apply_for_a_job'.tr,
                 onTap: (){
                   Get.bottomSheet(
                       EnterYourInfoToApplyJopButtonSheet(offerId: offer.id),

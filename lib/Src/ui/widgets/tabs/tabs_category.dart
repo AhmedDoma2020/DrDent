@@ -24,7 +24,7 @@ class TabsCategory extends StatelessWidget {
                 padding:  EdgeInsets.symmetric(horizontal: 16.w),
                 child: Center(
                   child: CustomText(
-                    text: 'مواد خام',
+                    text: 'Raw_materials',
                     color: kCMainBlack2,
                     fontW: FW.thin,
                     fontSize: 14,

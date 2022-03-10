@@ -24,7 +24,7 @@ class AllStoresScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(AllStoresController());
     return Scaffold(
-      appBar: AppBars.appBarDefault(title: 'كل الشركات'),
+      appBar: AppBars.appBarDefault(title: 'all_company'),
       body: Padding(
         padding:  EdgeInsets.only(
           right: 16.w,

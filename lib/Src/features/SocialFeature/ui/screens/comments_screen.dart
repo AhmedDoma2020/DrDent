@@ -22,7 +22,7 @@ class CommentsScreen extends StatelessWidget {
     Get.put(PostCommentsController(id: post.id!));
     // SocialController _socialController = Get.find();
     return Scaffold(
-      appBar: AppBars.appBarDefault(title: 'التعليقات'),
+      appBar: AppBars.appBarDefault(title: 'Comments_'),
       body: GetBuilder<PostCommentsController>(
         builder: (_) =>
            Stack(
@@ -61,7 +61,7 @@ class CommentsScreen extends StatelessWidget {
                                width: 310.w,
                                child: TextFieldDefault(
                                  verticalPadding: 0,
-                                 hint: 'اكتب تعليقا',
+                                 hint: 'Write_a_comment'.tr,
                                  fieldType: FieldType.WithBorder,
                                  controller: _.commentController,
                                ),
