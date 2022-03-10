@@ -20,7 +20,7 @@ class _MapWidgetState extends State<MapWidget> {
   Widget build(BuildContext context) {
     return
       GoogleMap(
-      mapType: MapType.hybrid,
+      mapType: MapType.normal,
       initialCameraPosition: CameraPosition(
         target: widget.coordinates,
         zoom: 14.4746,

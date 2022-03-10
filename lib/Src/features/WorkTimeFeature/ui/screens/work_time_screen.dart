@@ -44,7 +44,7 @@ class WorkTimeScreen extends StatelessWidget {
     debugPrint(" box.read('id') in WorkTimeScreen is ${ box.read('id')}");
     debugPrint("workspaceId in WorkTimeScreen is $workspaceId");
     debugPrint("doctorId in WorkTimeScreen is $doctorId");
-    Get.put(WorkTimeController(workSpaceId: workspaceId,dayBookingTypeEdit:0, doctorId: doctorId, userType: userType,isEdit: isEdit,fetchDayBooking: fetchDayBooking,fetchDetectionTime:fetchDetectionTime ,));
+    Get.put(WorkTimeController(workSpaceId: workspaceId,dayBookingTypeEdit:dayBookingTypeEdit, doctorId: doctorId, userType: userType,isEdit: isEdit,fetchDayBooking: fetchDayBooking,fetchDetectionTime:fetchDetectionTime ,));
     return Scaffold(
       appBar: AppBars.appBarDefault(title: 'مواعيد العمل', isBack: isBack),
       body: GetBuilder<WorkTimeController>(

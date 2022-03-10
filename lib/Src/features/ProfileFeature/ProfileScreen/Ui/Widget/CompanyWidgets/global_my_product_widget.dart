@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class GlobalMyProductWidget extends StatelessWidget {
+  final bool isMine;
   final int userId ;
-  const GlobalMyProductWidget({required this.userId,Key? key}) : super(key: key);
+  const GlobalMyProductWidget({this.isMine= false,required this.userId,Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class GlobalMyProductWidget extends StatelessWidget {
           icon: "assets/icons/personalInfoIcon.png",
           title: "company_products",
           onTap: () {
-            Get.to(() =>  CompanyProductsScreen(userId: userId,));
+            Get.to(() =>  CompanyProductsScreen(userId: userId,isMine: isMine,));
             },
         ),
 

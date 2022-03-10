@@ -20,8 +20,9 @@ import 'company_add_product_screen.dart';
 
 
 class CompanyProductsScreen extends StatelessWidget {
+  final bool isMine;
   final int userId;
-   CompanyProductsScreen({required this.userId ,Key? key}) : super(key: key);
+   CompanyProductsScreen({this.isMine = false,required this.userId ,Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     GetStorage box = GetStorage();
@@ -78,6 +79,7 @@ class CompanyProductsScreen extends StatelessWidget {
                               productModel: _.products[index],
                             ));
                           },
+                          isDelete: isMine,
                           onDeleteTap: () {
                             debugPrint("abc123");
                             _.deleteProduct(id: _.products[index].id!);

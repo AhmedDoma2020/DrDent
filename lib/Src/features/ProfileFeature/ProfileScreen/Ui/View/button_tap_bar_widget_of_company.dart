@@ -51,7 +51,7 @@ class ButtonTapBarWidgetOfCompany extends StatelessWidget {
           SizedBox(
             child: [
               GlobalInformationDetailsWidgetOfCompany(),
-              GlobalMyProductWidget(userId: userId),
+              GlobalMyProductWidget(userId: userId ,isMine:true),
               MySocialScreen(userId:  userId),
             ][_.tabIndex],
           ),

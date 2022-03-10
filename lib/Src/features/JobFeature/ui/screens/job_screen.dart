@@ -1,14 +1,17 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
+import 'package:dr_dent/Src/features/JobFeature/bloc/controller/enter_your_information_to_apply_controller.dart';
 import 'package:dr_dent/Src/features/JobFeature/bloc/model/job_offer.dart';
+import 'package:dr_dent/Src/features/JobFeature/ui/screens/enter_your_information_to_apply_job_button_sheet.dart';
 import 'package:dr_dent/Src/ui/widgets/Cards/card_tag.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:dr_dent/Src/ui/widgets/appbars/app_bars.dart';
 import 'package:dr_dent/Src/ui/widgets/buttons/button_default.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_storage/get_storage.dart';
 import '../../../../ui/widgets/GeneralWidgets/image_network.dart';
 import '/src/core/utils/extensions.dart';
-
+import 'package:get/get.dart';
 class JobScreen extends StatelessWidget {
   final JobOffer offer;
 
@@ -16,9 +19,10 @@ class JobScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GetStorage box = GetStorage();
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBars.appBarDefault(title: 'تفاصيل الوظيفة'),
+      appBar: AppBars.appBarDefault(title: 'job_details'.tr),
       body: Stack(
         children: [
           Padding(
@@ -152,7 +156,6 @@ class JobScreen extends StatelessWidget {
                                     radius: 4.w,
                                   ),
                                   10.0.ESW(),
-
                                        Expanded(
                                           child: CustomText(
                                             text: offer.requirements[index],
@@ -161,7 +164,6 @@ class JobScreen extends StatelessWidget {
                                             fontSize: 12,
                                           ),
                                         )
-
                                 ],
                               ),
                               separatorBuilder: (context, index) => 10.0.ESH(),
@@ -176,6 +178,9 @@ class JobScreen extends StatelessWidget {
               ],
             ),
           ),
+          box.read('user_type_id') == 7
+          // || box.read('id') == offer.
+    ?
           Padding(
             padding: EdgeInsets.symmetric(vertical: 16.0.h),
             child: Align(
@@ -183,9 +188,15 @@ class JobScreen extends StatelessWidget {
               child: ButtonDefault(
                 height: 55,
                 title: 'التقديم علي الوظيفة',
+                onTap: (){
+                  Get.bottomSheet(
+                      EnterYourInfoToApplyJopButtonSheet(offerId: offer.id),
+                    isScrollControlled: true,
+                  );
+                },
               ),
             ),
-          ),
+          ):0.0.ESW(),
         ],
       ),
     );

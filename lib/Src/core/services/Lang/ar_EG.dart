@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 const Map<String, String> arAE = {
+
   "onBoarding_title_1": "الكشوفات والمواعيد",
   "onBoarding_title_2": "تواصل اجتماعي",
   "onBoarding_title_3": "المنتجات الطبيه",
@@ -326,6 +327,12 @@ const Map<String, String> arAE = {
   'Faculty_of_Dentistry':'كلية طب الاسنان',
   'overall_rating':'التقدير العام',
   'C-V':'السيرة الزاتية',
-
+  'Company_History':'تاريخ الشركة',
+  'about_company':'عن الشركة',
+  'error_about_company_field':'عن الشركة',
+  'change_lan':'تغيير اللغة',
+  'Select_the_language_in_which_you_want_to_proceed_in_the_application':'حدد اللغة التي تريد المتابعة في التطبيق من خلالها',
+"doctors_":"الاطباء",
+"job_details":"تفاصيل الوظيفة",
 
 };

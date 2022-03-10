@@ -39,7 +39,21 @@ class FetchProfileController extends GetxController {
   String _universityTitle = '';
   String _graduationDegree = '';
   int _universityId = 0;
+  int _cityId = 0;
+  int _stateId = 0;
+  int _buildNum=0;
+  int _flatNum=0;
+  String _mark ='';
+  double _lat=0.0;
+  double _lon= 0.0;
 
+  double get lat => _lat;
+  double get lon => _lon;
+  int get cityId => _cityId;
+  int get stateId => _stateId;
+  int get buildNum => _buildNum;
+  int get flatNum => _flatNum;
+  String get mark => _mark;
   int? get id => _id;
   String get universityTitle => _universityTitle;
   String get graduationDegree => _graduationDegree;
@@ -144,6 +158,13 @@ class FetchProfileController extends GetxController {
       _universityTitle = response.data['data']['university_title'] ?? '';
       _universityId = response.data['data']['university_id'] ?? 0;
       _graduationDegree = response.data['data']['graduation_degree'] ?? 0;
+      _cityId = response.data['data']['city_id'] ?? 0;
+      _stateId = response.data['data']['state_id'] ?? 0;
+      _flatNum = response.data['data']['state_id'] ?? 0;
+      _buildNum = response.data['data']['state_id'] ?? 0;
+      _mark = response.data['data']['mark'] ??"";
+      _lat = response.data['data']['lat'] ??0.0;
+      _lon= response.data['data']['lon'] ??0.0;
       debugPrint("convert operation success");
       status = RequestStatus.done;
       update();

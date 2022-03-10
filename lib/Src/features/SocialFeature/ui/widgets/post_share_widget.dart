@@ -19,7 +19,14 @@ class PostShareWidget extends StatelessWidget {
   final VoidCallback? onLike;
   final Function(String)? onShare;
   final Function(String)? onShareEdit;
-  const PostShareWidget({Key? key,required this.post,this.onShareEdit,this.onLike,this.onShare}) : super(key: key);
+
+  const PostShareWidget(
+      {Key? key,
+      required this.post,
+      this.onShareEdit,
+      this.onLike,
+      this.onShare})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,20 +39,17 @@ class PostShareWidget extends StatelessWidget {
           PostHeader(
               post: post,
               postType: PostType.share,
-    onShareEdit: (content){
-    if(onShareEdit!=null){
-    onShareEdit!(content!);
-    }}
-          ),
+              onShareEdit: (content) {
+                if (onShareEdit != null) {
+                  onShareEdit!(content!);
+                }
+              }),
           Container(
             width: double.infinity,
             // color: kCMainScaffoldGrey,
             color: Colors.transparent,
             child: Padding(
-              padding:  EdgeInsets.symmetric(
-                  vertical: 16.h,
-                  horizontal: 24.w
-              ),
+              padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 24.w),
               child: CustomText(
                 text: post.shareContent,
                 fontW: FW.light,
@@ -61,38 +65,40 @@ class PostShareWidget extends StatelessWidget {
             color: Colors.white,
             height: 50.h,
             child: Padding(
-              padding:  EdgeInsets.symmetric(
-                  horizontal: 16.0.w
-              ),
+              padding: EdgeInsets.symmetric(horizontal: 16.0.w),
               child: Row(
                 children: [
                   PostStatics(
                     icon: 'like.png',
                     count: '${post.shareLikeNumbers!}',
-                    onTap: (){if(onLike!=null){onLike!();}},
-                    iconColor: post.like==1?kCMain:kCMainGrey,
+                    onTap: () {
+                      if (onLike != null) {
+                        onLike!();
+                      }
+                    },
+                    iconColor: post.like == 1 ? kCMain : kCMainGrey,
                   ),
                   30.0.ESW(),
                   PostStatics(
                     icon: 'comment.png',
                     count: '${post.shareCommentsNumbers!}',
-                    onTap: (){
-                      Get.to(()=>CommentsScreen(post: post,));
+                    onTap: () {
+                      Get.to(() => CommentsScreen(
+                            post: post,
+                          ));
                     },
                   ),
                   30.0.ESW(),
                   PostStatics(
                       icon: 'share.png',
                       count: '${post.shareNumber!}',
-                      onTap: (){
-                        Get.bottomSheet(
-                            SheetSharePost(
-                                onSave: (content){
-                                  Get.back();
-                                 if(onShare!=null){}onShare!(content??'');
-                             }));
-                      }
-                      ),
+                      onTap: () {
+                        Get.bottomSheet(SheetSharePost(onSave: (content) {
+                          Get.back();
+                          if (onShare != null) {}
+                          onShare!(content ?? '');
+                        }));
+                      }),
                 ],
               ),
             ),

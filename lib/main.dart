@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:dr_dent/Src/features/AuthFeature/bloc/controller/set_work_license_controller.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/screens/login_screen.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/screens/start_now_screen.dart';
+import 'package:dr_dent/Src/features/DrawerFeature/View/Ui/lan_screen.dart';
 import 'package:dr_dent/Src/features/OnBoardingFeature/ui/views/on_boarding_screen.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/InsuranceCompaniesFeature/Ui/Screen/insurance_companies_screen.dart';
 import 'Src/features/SocialProfileFeature/SocialProfileScreen/View/Screen/social_profile_screen.dart';
