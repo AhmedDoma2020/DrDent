@@ -15,7 +15,7 @@ class PrivacyScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(PrivacyController());
     return Scaffold(
-      appBar: AppBars.appBarDefault(title: 'سياسة الخصوصية'),
+      appBar: AppBars.appBarDefault(title: 'Privacy_policy'),
       body: GetBuilder<PrivacyController>(
         assignId: true,
         builder: (_) {
@@ -26,7 +26,7 @@ class PrivacyScreen extends StatelessWidget {
               children: [
                 16.0.ESH(),
                 CustomText(
-                  text: 'سياسة الخصوصية',
+                  text: 'Privacy_policy',
                   color: kCMainBlack2,
                   fontSize: 18,
                   fontW: FW.demi,

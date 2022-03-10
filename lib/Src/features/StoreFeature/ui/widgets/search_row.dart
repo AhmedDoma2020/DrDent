@@ -43,7 +43,7 @@ class SearchRow extends StatelessWidget {
                   child: TextField(
                     decoration: InputDecoration(
                         border: InputBorder.none,
-                        hintText: 'بحث',
+                        hintText: '_search_',
                         hintStyle: TextStyle(
                             color: kCMainGrey,
                             fontSize: 12.sp,

@@ -72,10 +72,10 @@ class _SheetSharePostState extends State<SheetSharePost> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      RowTopBottomSheet(title: 'مشاركة المنشور'),
+                      RowTopBottomSheet(title: 'share_post'),
                       24.0.ESH(),
                       TextFieldDefault(
-                        hint: 'اكتب محتوي المنشور',
+                        hint: 'Write_the_content_of_the_post'.tr,
                         controller: contentController,
                         keyboardType: TextInputType.name,
                         fieldType: FieldType.WithBorder,
@@ -88,7 +88,7 @@ class _SheetSharePostState extends State<SheetSharePost> {
                     ],
                   ),
                   ButtonDefault(
-                    title: 'حفظ',
+                    title: 'save_',
                     onTap: () {
                       Get.back();
                       node.unfocus();

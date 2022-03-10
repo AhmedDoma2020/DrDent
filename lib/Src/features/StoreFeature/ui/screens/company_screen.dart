@@ -85,7 +85,7 @@ class CompanyScreen extends StatelessWidget {
                               ),
                               13.0.ESW(),
                               CustomText(
-                                text: '${store.reviewers} تقييم',
+                                text: '${store.reviewers} ${'ratting_'.tr}',
                                 color: kCActiveButton,
                                 fontSize: 10,
                                 fontW: FW.light,
@@ -98,7 +98,7 @@ class CompanyScreen extends StatelessWidget {
                         Row(
                           children: [
                             CustomText(
-                              text: store.open==1?'مفتوح الان':'مغلق الان',
+                              text: store.open==1?'opened_now':'closed_now',
                               fontW: FW.semicond,
                               fontSize: 12,
                               color: kCActiveButton,
@@ -140,7 +140,7 @@ class CompanyScreen extends StatelessWidget {
                         :0.0.ESH(),
                         9.0.ESH(),
                         CustomText(
-                          text: 'تاريخ الشركة',
+                          text: 'Company_History',
                           color: kCMainBlack2,
                           fontSize: 14,
                           fontW: FW.demi,
@@ -198,7 +198,7 @@ class CompanyScreen extends StatelessWidget {
             child: Align(
               alignment: Alignment.bottomCenter,
               child: ButtonDefault(
-                title: 'عرض منتجات الشركة',
+                title: 'View_the_company_is_products',
                 onTap: (){
                   Get.to(()=>CompanyProductsScreen(store: store,));
                 },

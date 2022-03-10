@@ -62,7 +62,7 @@ class JobsScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(vertical: 16.h),
                 child: Center(
                     child: TabsIos(
-                  titles: const ['طلبات توظيف', 'فرص العمل'],
+                  titles: const ['Job_requests', 'Jobs_chances'],
                   onTap: (value) {
                     _.tabIndex = value;
                   },

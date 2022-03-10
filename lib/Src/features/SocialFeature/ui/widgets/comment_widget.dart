@@ -80,7 +80,7 @@ class CommentWidget extends StatelessWidget {
                       GestureDetector(
                         onTap:onLike??(){},
                         child: CustomText(
-                          text: 'اعحبني',
+                          text: 'liked_me',
                           color: kCMainBlack2,
                           fontSize: 12,
                           fontW: FW.demi,

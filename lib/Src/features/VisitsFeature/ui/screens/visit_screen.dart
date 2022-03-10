@@ -12,7 +12,7 @@ class VisitScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBars.appBarDefault(title: 'تفاصيل الحجز'),
+      appBar: AppBars.appBarDefault(title: 'booking_details'),
       body: Padding(
         padding:  EdgeInsets.symmetric(
           horizontal: 16.w,

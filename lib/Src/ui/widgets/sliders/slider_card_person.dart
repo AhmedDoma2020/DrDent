@@ -30,7 +30,7 @@ class SliderCardPerson extends StatelessWidget {
           Column(
           children: [
             TitleRowViewAll(
-              titleSlider: 'طلبات الاستعلام', titleOnTap: ' ', onTap: () {},),
+              titleSlider: 'Query_requests', titleOnTap: ' ', onTap: () {},),
             12.0.ESH(),
             SizedBox(
               height: 90.h,
