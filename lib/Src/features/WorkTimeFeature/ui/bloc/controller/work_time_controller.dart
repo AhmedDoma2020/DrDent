@@ -77,7 +77,7 @@ class WorkTimeController extends GetxController {
 
   void setDetectionTimeAndDayBooking() {
     detectionTime.text = fetchDetectionTime;
-    dayBookingController.text = fetchDayBooking;
+    // dayBookingController.text = fetchDayBooking;
     update();
   }
 

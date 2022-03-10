@@ -26,7 +26,6 @@ class PostHeader extends StatelessWidget {
     required this.post,
     this.postType = PostType.post,
   }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     DeletePostController _deletePostController =
@@ -43,8 +42,18 @@ class PostHeader extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   GestureDetector(
-                    onTap: (){
-                      Get.to(()=>SocialProfileScreen(userId: post.ownerId!,));
+                    onTap:post.postType ==PostType.post? (){
+                      debugPrint("box.read('id') is ${box.read('id')}");
+                      debugPrint("post.ownerId! is ${post.ownerId!}");
+                      if(box.read('id') != post.ownerId!){
+                        Get.to(()=>SocialProfileScreen(userId: post.ownerId!,));
+                      }
+                    }:(){
+                      debugPrint("box.read('id') is ${box.read('id')}");
+                      debugPrint("post.shareId! is ${post.shareOwnerId!}");
+                      if(box.read('id') != post.shareOwnerId!){
+                        Get.to(()=>SocialProfileScreen(userId: post.shareOwnerId!,));
+                      }
                     },
                     child: Container(
                       width: small ? 30.w : 40.w,
@@ -84,7 +93,8 @@ class PostHeader extends StatelessWidget {
                   ),
                 ],
               ),
-              post.ownerId == box.read('id') || post.shareId == box.read('id')
+
+              ( post.postType ==  PostType.post && post.ownerId == box.read('id')) || ( post.postType ==  PostType.share && post.shareOwnerId == box.read('id'))
                   ? small
                       ? 0.0.ESW()
                       : PopupMenuButton(
@@ -99,8 +109,7 @@ class PostHeader extends StatelessWidget {
                                   onTap: postType == PostType.post
                                       ? () {
                                           Get.back();
-                                          Get.to(() => AddPostScreen(
-                                              postModel: post, isEdit: true));
+                                          Get.to(() => AddPostScreen(postModel: post, isEdit: true));
                                         }
                                       : () {
                                           Get.back();

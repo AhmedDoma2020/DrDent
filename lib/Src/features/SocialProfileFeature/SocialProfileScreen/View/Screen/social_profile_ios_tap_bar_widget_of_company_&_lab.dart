@@ -53,7 +53,7 @@ class SocialIOSTapBarWidgetOfCompanyAndLab extends StatelessWidget {
             child: [
               MySocialScreen(userId: userId),
               SocialProfileTapItemOfCompanyAndLabInfo(),
-              GlobalMyProductWidget(userId:userId),
+              GlobalMyProductWidget(userId:userId, isMine: false),
             ][_.tabIndex],
           ),
           24.0.ESH(),

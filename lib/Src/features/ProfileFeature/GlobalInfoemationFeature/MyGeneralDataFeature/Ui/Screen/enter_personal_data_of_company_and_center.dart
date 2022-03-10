@@ -114,21 +114,21 @@ class EnterPersonalDataOfCompanyAndCenterScreen extends StatelessWidget {
 
                         InkWell(
                           onTap:
-                          // isEdit ? () {
-                          //   Get.to(
-                          //         () =>
-                          //         MapScreen(
-                          //           targetPosition: LatLng( , ),
-                          //           onSave: (lat, lon, address) {
-                          //             Get.bottomSheet(SetLocationButtonSheetOfCompanyAndCenter(
-                          //               lon: lon,
-                          //               address: address,
-                          //               lat: lat,
-                          //             ));
-                          //           },
-                          //         ),
-                          //   );
-                          // } :
+                          isEdit ? () {
+                            Get.to(
+                                  () =>
+                                  MapScreen(
+                                    targetPosition: LatLng( _.lat!,_.lon! ),
+                                    onSave: (lat, lon, address) {
+                                      Get.bottomSheet(SetLocationButtonSheetOfCompanyAndCenter(
+                                        lon: lon,
+                                        address: address,
+                                        lat: lat,
+                                      ));
+                                    },
+                                  ),
+                            );
+                          } :
                               () {
                             Get.to(
                                   () =>
@@ -161,7 +161,7 @@ class EnterPersonalDataOfCompanyAndCenterScreen extends StatelessWidget {
                             },
                           ),
                         ),
-
+                        16.0.ESH(),
                         TextFieldDefault(
                           hint: 'commercial_registration_num'.tr,
                           errorText: "error_commercial_registration_num_field"
@@ -209,6 +209,22 @@ class EnterPersonalDataOfCompanyAndCenterScreen extends StatelessWidget {
                           },
                           onImageCleared: () {
                             _.setFutureLogImage = '';
+                          },
+                        ),
+                        16.0.ESH(),
+                        TextFieldDefault(
+                          hint: 'about_company'.tr,
+                          errorText:
+                          "error_about_company_field".tr,
+                          controller: _.aboutController,
+                          keyboardType: TextInputType.multiline,
+                          filledColor: kCBGTextFormFiled,
+                          fieldType: FieldType.WithBorder,
+                          enableBorder: Colors.transparent,
+                          horizentalPadding: 16,
+                          maxLines: 4,
+                          onComplete: () {
+                            node.unfocus();
                           },
                         ),
                         16.0.ESH(),

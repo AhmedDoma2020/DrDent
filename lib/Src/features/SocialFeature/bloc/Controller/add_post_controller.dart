@@ -53,7 +53,9 @@ class AddPostController extends GetxController {
   void setData() {
     contentController!.text = postModel!.content!;
     debugPrint("contentController 1 is");
-    _futurePostImage = postModel!.images![0];
+    if(postModel!.images!.isNotEmpty){
+      _futurePostImage = postModel!.images![0];
+    }
     if (postModel!.postTo!.isNotEmpty) {
       List<int> postToIdSelected = [];
       for (var item in postModel!.postTo!) {
@@ -103,7 +105,7 @@ class AddPostController extends GetxController {
       _shareItemsDoctorList[index].isSelected =
           !_shareItemsDoctorList[index].isSelected;
       if (_shareItemsDoctorList[index].isSelected == true) {
-        _shareItemsIdsSelected = [1];
+        _shareItemsIdsSelected = [0];
         _shareWithButtonTitle = _shareItemsDoctorList[index].title;
       } else {
         _shareItemsIdsSelected.clear();
@@ -230,7 +232,7 @@ class AddPostController extends GetxController {
     debugPrint("contentController 6 is");
     _shareItemsDoctorList = shareItemsDoctorListModel;
     _shareItemsDoctorList[0].isSelected = true;
-    _shareItemsIdsSelected = [1];
+    _shareItemsIdsSelected = [0];
     _shareWithButtonTitle = _shareItemsDoctorList[0].title;
     super.onInit();
   }

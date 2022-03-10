@@ -21,6 +21,7 @@ class PostModel {
   String? shareContent;
   String? shareImage;
   int? shareId;
+  int? shareOwnerId;
   int? shareLikeNumbers;
   int? shareCommentsNumbers;
   int? shareSharesNumbers;
@@ -45,6 +46,7 @@ class PostModel {
       this.shareCommentsNumbers,
       this.shareContent,
       this.shareId,
+      this.shareOwnerId,
       this.shareImage,
       this.shareLikeNumbers,
       this.shareName,
@@ -70,6 +72,7 @@ class PostModel {
     shareContent = map['shared_content'] ?? '';
     shareImage = map['sharer_image'] ?? '';
     shareId = map['sharer_id'] ?? 0;
+    shareOwnerId = map['sharer_owner_id'] ?? 0;
     shareLikeNumbers = map['shared_likes_number'] ?? 0;
     shareSharesNumbers = map['shared_share_number'] ?? 0;
     shareCommentsNumbers = map['shared_comments_number'] ?? 0;

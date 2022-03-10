@@ -41,7 +41,7 @@ class RegisterRepository with ApiKey {
             'adminstrator_name':administratorName,
             'adminstrator_phone':administratorPhone,
             'code':"20",
-            // 'device_token':"",
+            'device_token':token,
             // 'device_id':deviceId,
             // 'device_type':deviceType,
           }

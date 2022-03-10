@@ -3,6 +3,7 @@ import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:dr_dent/src/core/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
 class RowOfItemDrawer extends StatelessWidget {
@@ -20,7 +21,10 @@ class RowOfItemDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(4.r),
-      onTap: onTap,
+      onTap: (){
+        Get.back();
+        onTap();
+      },
       highlightColor: kCSubMain.withOpacity(.1),
       splashColor: kCSubMain.withOpacity(.2),
       child: ClipRRect(

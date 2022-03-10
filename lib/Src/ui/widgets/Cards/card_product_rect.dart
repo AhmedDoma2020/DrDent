@@ -15,7 +15,7 @@ class CardProductRect extends StatelessWidget {
   final VoidCallback onDeleteTap;
   final VoidCallback onEditTap;// status
   final bool isDelete;
-  const CardProductRect({this.isDelete =true ,Key? key,required this.product,this.onLike,required this.onEditTap,required this.onDeleteTap}) : super(key: key);
+  const CardProductRect({this.isDelete =false ,Key? key,required this.product,this.onLike,required this.onEditTap,required this.onDeleteTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

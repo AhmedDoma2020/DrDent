@@ -1,7 +1,7 @@
 mixin ApiKey{
 
 
-   static const String apiBaseUrl = 'http://dr-dent.crazyideaco.com/api/';
+   static const String apiBaseUrl = 'https://dr-dent.crazyideaco.com/api/';
 
 
    final String uRLLogin = apiBaseUrl + "login";
@@ -98,6 +98,7 @@ mixin ApiKey{
    final String uRLFetchScientific = apiBaseUrl + "fetch_seintific_levels";
    final String uRLFetchSpecialization = apiBaseUrl + "specializations";
    final String uRLEnterAndEditPersonalDataOfDoctor = apiBaseUrl + "edit_doctor_personal_info";
+   final String uRLEnterInfoToApplyJob = apiBaseUrl + "enter_info_to_apply_job";
    final String uRLEnterAndEditPersonalDataOfCompanyAndCenter = apiBaseUrl + "company_edit_general_info";
    final String uRLEnterAndEditPersonalDataOfGraduated = apiBaseUrl + "edit_graduate_personal_info";
    final String uRLAddJopRequest = apiBaseUrl + "add_job_request";

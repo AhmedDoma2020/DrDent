@@ -27,7 +27,7 @@ class NetworkService with ApiKey {
           options: Options(
               headers: headers ??
                   {
-                    'Accept-Language': 'ar',
+                    'Accept-Language': '${box.read("lan")??'ar'}',
                     if (auth) 'Authorization': 'Bearer ' + apiToken
                     // 'Authorization': 'Bearer ' + staticApiToken
                   }));
@@ -63,7 +63,7 @@ class NetworkService with ApiKey {
         options: Options(
           headers: headers ??
               {
-                'Accept-Language': 'ar',
+                'Accept-Language': '${box.read("lan")??'ar'}',
                 if (auth) 'Authorization': 'Bearer ' + apiToken
                 // 'Authorization': 'Bearer ' + staticApiToken
               },

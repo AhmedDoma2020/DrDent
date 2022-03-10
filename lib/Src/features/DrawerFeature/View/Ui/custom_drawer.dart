@@ -1,5 +1,7 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/screens/login_screen.dart';
+import 'package:dr_dent/Src/features/DrawerFeature/View/Widget/row_of_item_drawer.dart';
+import 'package:dr_dent/Src/features/DrawerFeature/View/Widget/top_info_drawer.dart';
 import 'package:dr_dent/Src/features/NotificationFeature/ui/screens/notifications_screen.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Ui/View/profile_screen.dart';
 import 'package:dr_dent/Src/features/StaticFeature/ui/screens/support_screen.dart';
@@ -10,11 +12,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../../../features/StaticFeature/ui/screens/conditions_screen.dart';
-import '../../../features/StaticFeature/ui/screens/privacy_screen.dart';
-import '../../../features/StoreFeature/ui/screens/saved_products.dart';
-import 'Widget/row_of_item_drawer.dart';
-import 'Widget/top_info_drawer.dart';
+import '../../../StaticFeature/ui/screens/conditions_screen.dart';
+import '../../../StaticFeature/ui/screens/privacy_screen.dart';
+import '../../../StoreFeature/ui/screens/saved_products.dart';
+import 'lan_screen.dart';
+
 
 class CustomDrawer extends StatelessWidget {
   GetStorage box = GetStorage();
@@ -72,7 +74,7 @@ class CustomDrawer extends StatelessWidget {
                     //     icon: "assets/icons/savedIcon.png"),
                     RowOfItemDrawer(
                         onTap: () {
-                          debugPrint("abc");
+                              Get.to(()=>LanScreen());
                         },
                         title: "lan_",
                         icon: "assets/icons/lanIconng.png"),

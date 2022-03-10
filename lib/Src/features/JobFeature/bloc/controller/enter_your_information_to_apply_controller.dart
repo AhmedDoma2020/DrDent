@@ -1,3 +1,4 @@
+import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
 import '../../../ProfileFeature/GlobalInfoemationFeature/MyGeneralDataFeature/Bloc/Repo/enter_and_edit_personal_data_of_doctor_repo.dart';
 import 'package:dr_dent/Src/features/JobFeature/bloc/Repository/add_a_jop_offer_repo.dart';
@@ -8,6 +9,9 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class EnterYourInformationToApplyJobController extends GetxController {
+  final int offerId;
+
+  EnterYourInformationToApplyJobController({required this.offerId});
   GetStorage box = GetStorage();
   TextEditingController? nameController;
   TextEditingController? phoneController;
@@ -22,8 +26,8 @@ class EnterYourInformationToApplyJobController extends GetxController {
     _specializationIdSelected = value;
   }
 
-  int? _universityId;
-  int? get universityId => _universityId;
+  int _universityId =0;
+  int get universityId => _universityId;
   set setUniversityId(int value) {
     _universityId = value;
   }
@@ -63,30 +67,29 @@ class EnterYourInformationToApplyJobController extends GetxController {
       if(_graduationCertificateImage !=""){
         if(_cVImage!= ""){
           customSnackBar(title: "Done",);
-// setLoadingDialog();
-//       var response = await _enterYourInformationToApplyRepository.enterYourInformationToApply(
-//         name: nameController!.text,
-//         phone: phoneController!.text,
-//         email: emailController!.text,
-//         university: universityController!.text,
-//         specializationId: _specializationIdSelected,
-//         graduationYear: graduationYearController!.text,
-//         universityDegree: universityDegreeController!.text,
-//         gender: _gender,
-//         graduationCertificateImage: _graduationCertificateImage,
-//         cVImage: _cVImage,
-//       );
+       setLoading();
+      var response = await _enterYourInformationToApplyRepository.enterYourInformationToApply(
+        name: nameController!.text,
+        phone: phoneController!.text,
+        email: emailController!.text,
+        gender: _gender,
+        university: universityController!.text,
+        specializationId: _specializationIdSelected,
+        graduationYear: graduationYearController!.text,
+        universityDegree: universityDegreeController!.text,
+        graduationCertificateImage: _graduationCertificateImage,
+        cVImage: _cVImage,
+      );
+          if (response.statusCode == 200 && response.data["status"] == true) {
+            debugPrint("request operation success");
 
-          // if (response.statusCode == 200 && response.data["status"] == true) {
-          //   debugPrint("request operation success");
-          //
-          //   debugPrint("convert operation success");
-          //   status = RequestStatus.done;
-          //   update();
-          // } else {
-          //   status = RequestStatus.error;
-          //   update();
-          // }
+            debugPrint("convert operation success");
+            status = RequestStatus.done;
+            update();
+          } else {
+            status = RequestStatus.error;
+            update();
+          }
         }else{
           customSnackBar(title: "must_attach_your_CV".tr,);
         }

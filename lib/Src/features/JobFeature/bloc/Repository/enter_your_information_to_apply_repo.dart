@@ -14,7 +14,7 @@ class EnterYourInformationToApplyRepository with ApiKey {
     required String name,
     required String phone,
     required String email,
-    required int gender,
+    required String gender,
     required String university,
     required String graduationYear,
     required String universityDegree,
@@ -23,21 +23,23 @@ class EnterYourInformationToApplyRepository with ApiKey {
     required List<int> specializationId,
   }) async {
     Response response;
-    try {
+    try {git
       response = await _networkService.post(
-          url: uRLEnterAndEditPersonalDataOfDoctor,
+          url: uRLEnterInfoToApplyJob,
           auth: true,
           body: {
-            'owner_name':name,
+            'name':name,
             'phone':phone,
-            'address':email,
-            'seintific_level':gender,
-            'specialization_ids':specializationId,
-            'university':university,
+            'email':email,
+            'gender':gender,
             'graduation_year':graduationYear,
             'universityDegree':universityDegree,
-            'description':graduationCertificateImage,
+            'university_id':university,
+            'specializations':specializationId,
+            'certification_image':graduationCertificateImage,
             'cVImage':cVImage,
+
+
           }
       );
     } on SocketException {
