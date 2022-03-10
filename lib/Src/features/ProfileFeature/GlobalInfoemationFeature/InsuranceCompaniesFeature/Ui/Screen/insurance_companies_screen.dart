@@ -29,6 +29,7 @@ class InsuranceCompaniesScreen extends StatelessWidget {
             size: 24.w,
           ),
           onPressed: () {
+            Get.closeAllSnackbars();
             Get.bottomSheet(AvailableInsuranceSheet());
           },
           backgroundColor: kCMain,

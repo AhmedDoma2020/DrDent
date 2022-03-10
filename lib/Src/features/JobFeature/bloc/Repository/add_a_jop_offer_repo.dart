@@ -24,7 +24,7 @@ class AddAJopOfferRepository with ApiKey {
     required List<String> requirements,
   }) async {
     Response response;
-    debugPrint("requirements in repo ${requirements.length}");
+    debugPrint("jobType in repo $jobType");
     try {
       response = await _networkService.post(
           url: uRLAddJobOffer,

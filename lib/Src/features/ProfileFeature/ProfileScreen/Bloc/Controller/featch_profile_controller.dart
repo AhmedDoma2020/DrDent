@@ -46,6 +46,9 @@ class FetchProfileController extends GetxController {
   String _mark ='';
   double _lat=0.0;
   double _lon= 0.0;
+  String _cv='';
+
+  String get cv => _cv;
 
   double get lat => _lat;
   double get lon => _lon;
@@ -165,6 +168,7 @@ class FetchProfileController extends GetxController {
       _mark = response.data['data']['mark'] ??"";
       _lat = response.data['data']['lat'] ??0.0;
       _lon= response.data['data']['lon'] ??0.0;
+      _cv= response.data['data']['cv'] ??'';
       debugPrint("convert operation success");
       status = RequestStatus.done;
       update();

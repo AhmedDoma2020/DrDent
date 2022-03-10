@@ -91,7 +91,7 @@ const Map<String, String> arAE = {
   "delete_success": "تم الحذف بنجاح",
   "empty_insurance_company_title": "ليس لديك شركات تأمين بعد من فضلك قم بإضافة شركات  التأمين المشترك فيها",
   "empty_services_title": "! ليس لديك خدمات بعد قم بإضافة الخدمات التي تقوم بتقديمها للمريض",
-  "empty_assistant_title": "! ليس لديك خدمات بعد قم بإضافة الخدمات التي تقوم بتقديمها للمريض",
+  "empty_assistant_title": "ليس لديك أي مساعدين بعد ! قم بإضافه بيانات المساعدين لك",
   "empty_doctor_title": "! لم تقم بإضافة أطباء بعد",
   "empty_doctor_title_subtitle": "قم بإضافة أطباء المركز وبيانات كل طبيب",
   "Service_cost:":"تكلفة الخدمة:",

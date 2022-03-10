@@ -27,14 +27,13 @@ class SingleChoseRowForm extends StatelessWidget {
             // color: Colors.amber,
             height: 40.h,
             width: 280.w,
-            child: FittedBox(
-              child: CustomText(
-                textAlign: TextAlign.start,
-                text: title,
-                fontW: FW.semibold,
-                fontSize: 24.sp,
-                maxLines: 1,
-              ),
+            child: CustomText(
+              textAlign: TextAlign.start,
+              text: title,
+              fontW: FW.semibold,
+              fontSize: 22,
+              maxLines: 1,
+              overflow: true,
             ),
             //192.168.0.105
             //192.168.0.105:5555

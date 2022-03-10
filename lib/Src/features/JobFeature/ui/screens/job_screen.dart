@@ -14,7 +14,6 @@ import '/src/core/utils/extensions.dart';
 import 'package:get/get.dart';
 class JobScreen extends StatelessWidget {
   final JobOffer offer;
-
   const JobScreen({Key? key, required this.offer}) : super(key: key);
 
   @override
@@ -179,7 +178,7 @@ class JobScreen extends StatelessWidget {
             ),
           ),
           box.read('user_type_id') == 7
-          // || box.read('id') == offer.
+          && box.read('id') != offer.userId
     ?
           Padding(
             padding: EdgeInsets.symmetric(vertical: 16.0.h),

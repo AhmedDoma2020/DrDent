@@ -43,7 +43,7 @@ class CategoryButtonSheet extends StatelessWidget {
             children: [
               24.0.ESH(),
               RowTopBottomSheet(
-                title: "select_service".tr,
+                title: "choose_the_category".tr,
                 isClose: false,
               ),
               24.0.ESH(),

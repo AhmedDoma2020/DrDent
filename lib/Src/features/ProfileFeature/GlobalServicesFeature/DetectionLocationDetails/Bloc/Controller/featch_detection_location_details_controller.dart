@@ -12,6 +12,7 @@ import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyServ
 import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class FetchWorkSpaceDetailsController extends GetxController {
   List<WorkSpaceDetailsModel> _myWorkSpaceDetails = [];
@@ -86,10 +87,12 @@ class FetchWorkSpaceDetailsController extends GetxController {
       update();
     }
   }
-
+GetStorage box = GetStorage();
   @override
   void onInit() {
     super.onInit();
-    fetchMyWorkSpaceDetails();
+    if(box.read('user_type_id') != 7){
+      fetchMyWorkSpaceDetails();
+    }
   }
 }

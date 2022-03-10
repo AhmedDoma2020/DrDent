@@ -125,7 +125,8 @@ class CompanyAddProduct extends StatelessWidget {
                 16.0.ESH(),
                 GestureDetector(
                   onTap: () {
-                    Get.bottomSheet(CategoryButtonSheet(
+                    Get.bottomSheet(
+                        CategoryButtonSheet(
                       onTap: (id, title) {
                         _.setCategoryId = id;
                         _.productRatingController!.text = title;

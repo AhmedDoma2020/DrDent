@@ -62,7 +62,9 @@ class EnterPersonalDataOfGraduatedController extends GetxController {
   String get futureAvatar => _futureAvatar;
   String _futureCertification   ='';
   String get futureCertification => _futureCertification;
+String _futureCv='';
 
+  String get futureCv => _futureCv;
 
   void setData() {
     if (isEdit == true) {
@@ -81,6 +83,9 @@ class EnterPersonalDataOfGraduatedController extends GetxController {
       degreeController!.text = _fetchProfileDoctorController.degreeTitle;
       _universityId = _fetchProfileDoctorController.universityId;
       _futureCertification = _fetchProfileDoctorController.photoOfWorkLicenses;
+      debugPrint(" _fetchProfileDoctorController.cv ${ _fetchProfileDoctorController.cv}");
+
+      _futureCv = _fetchProfileDoctorController.cv;
       update();
     }
   }
@@ -95,7 +100,7 @@ class EnterPersonalDataOfGraduatedController extends GetxController {
       globalKey.currentState!.save();
       if (_avatar != "" || _futureAvatar != '') {
         if(_graduationCertificateImage != "" || _futureCertification != ""){
-          if(_cVImage != ""){
+          if(_cVImage != ""|| _futureCv != ''){
             setLoading();
             var response = await _enterAndEditPersonalDataOfGraduatedRepository
                 .enterAndEditPersonalDataOfGraduated(

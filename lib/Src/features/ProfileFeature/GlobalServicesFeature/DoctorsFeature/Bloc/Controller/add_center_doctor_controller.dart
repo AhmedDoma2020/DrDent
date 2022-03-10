@@ -3,6 +3,7 @@ import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/BaseFeature/ui/screens/base_screen.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/DoctorsFeature/Bloc/Repository/add_center_doctor_repo.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/DoctorsFeature/Bloc/Repository/edit_center_doctor_repo.dart';
 import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -86,22 +87,39 @@ class AddCenterDoctorController extends GetxController {
   RequestStatus status = RequestStatus.initial;
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
   final AddCenterDoctorRepository _addCenterDoctorRepository = AddCenterDoctorRepository();
+  final EditCenterDoctorRepository _editCenterDoctorRepository = EditCenterDoctorRepository();
   void submit() async {
     if (globalKey.currentState!.validate()) {
       globalKey.currentState!.save();
-      if (_avatar != "") {
-        // customSnackBar(title: "Done",);
-        setLoading();
-        var response = await _addCenterDoctorRepository.addCenterDoctor(
-          name: nameController!.text,
-          phone: phoneController!.text,
-          specializationIds: _specializationIdSelected,
-          gender: _gender,
-          notes: noteController!.text,
-          avatar: _avatar,
-          jobTitleId: _jopTitleId,
-        );
-        Get.back();
+      if (_avatar != "" || _futureAvatar!= '') {
+        dynamic response;
+        if(isEdit){
+          setLoading();
+          response = await _editCenterDoctorRepository.editCenterDoctor(
+            doctorId: centerDoctorModel!.id,
+            name: nameController!.text,
+            phone: phoneController!.text,
+            specializationIds: _specializationIdSelected,
+            gender: _gender,
+            notes: noteController!.text,
+            avatar: _avatar,
+            jobTitleId: _jopTitleId,
+          );
+          Get.back();
+        }else{
+          setLoading();
+           response = await _addCenterDoctorRepository.addCenterDoctor(
+            name: nameController!.text,
+            phone: phoneController!.text,
+            specializationIds: _specializationIdSelected,
+            gender: _gender,
+            notes: noteController!.text,
+            avatar: _avatar,
+            jobTitleId: _jopTitleId,
+          );
+          Get.back();
+        }
+
         if (response.statusCode == 200 && response.data["status"] == true) {
           debugPrint("request operation success");
           if(isAuth){

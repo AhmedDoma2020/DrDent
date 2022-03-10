@@ -51,7 +51,6 @@ class CenterDoctorModel {
     }
     if(json['job_title']!=null){
       jobTitle =  json['job_title']??"";
-
     }else{
       jobTitle ="";
     }
@@ -72,14 +71,6 @@ class Specialization {
     id = json['id'];
     title = json['title'];
     selected = json['selected'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['title'] = title;
-    _data['selected'] = selected;
-    return _data;
   }
 }
 
