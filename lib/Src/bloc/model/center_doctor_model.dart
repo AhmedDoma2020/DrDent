@@ -1,7 +1,6 @@
 
 
 
-import 'package:flutter/cupertino.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
 class CenterDoctorModel {

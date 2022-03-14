@@ -210,7 +210,7 @@ class WorkTimeController extends GetxController {
           dayBookingType: _dayBookingType ?? 0,
           workspaceId: workSpaceId!,
           doctorId: doctorId!);
-      Get.back();
+          Get.back();
       if (response.statusCode == 200 && response.data["status"] == true) {
         debugPrint("request operation success");
         onSuccess();

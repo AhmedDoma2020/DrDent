@@ -46,7 +46,10 @@ class ButtonDefault extends StatelessWidget {
       radius: radius.r,
       borderColor: active! ? borderColor :disActiveBorderColor,
       buttonColor: active! ? buttonColor:disActiveButtonColor.withOpacity(0.08),
-      onTap: onTap,
+      onTap: (){
+        Get.closeAllSnackbars();
+        onTap!();
+      },
       child: child??drawChild(),
     );
   }

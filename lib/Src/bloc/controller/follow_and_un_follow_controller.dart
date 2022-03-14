@@ -1,9 +1,5 @@
-import 'package:dr_dent/Src/bloc/model/user_profile_model.dart';
 import 'package:dr_dent/Src/bloc/repository/follow_and_un_follow_repo.dart';
-import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
-import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Bloc/Repo/featch_profile_repo.dart';
-import 'package:dr_dent/Src/features/SocialProfileFeature/SocialProfileScreen/Block/Repository/featch_social_profile_repo.dart';
 import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';

@@ -7,6 +7,7 @@ import 'package:dr_dent/Src/features/AuthFeature/ui/screens/start_now_screen.dar
 import 'package:dr_dent/Src/features/DrawerFeature/View/Ui/lan_screen.dart';
 import 'package:dr_dent/Src/features/OnBoardingFeature/ui/views/on_boarding_screen.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/InsuranceCompaniesFeature/Ui/Screen/insurance_companies_screen.dart';
+import 'Src/features/ProfileFeature/GlobalInfoemationFeature/MyCertificationFeature/Ui/Screen/certification_of_doctor_screen.dart';
 import 'Src/features/SocialProfileFeature/SocialProfileScreen/View/Screen/social_profile_screen.dart';
 import 'package:dr_dent/Src/features/WorkTimeFeature/ui/screens/work_time_screen.dart';
 import 'package:dr_dent/Src/features/SplachFeature/ui/splash_screen.dart';
@@ -63,7 +64,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   flutterLocalNotificationsPlugin.show(
       0,
       message.data['title'],
-      message.data['msg'],
+      message.data['body'],
       NotificationDetails(
         android: AndroidNotificationDetails(
           channel.id,
@@ -136,7 +137,7 @@ class _MyAppState extends State<MyApp> {
         flutterLocalNotificationsPlugin.show(
             0,
             message.data['title'],
-            message.data['msg'],
+            message.data['body'],
             NotificationDetails(
               android: AndroidNotificationDetails(
                 channel.id,
@@ -172,7 +173,7 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home:SplashScreen(),
+        home: SplashScreen(),
       ),
     );
   }
