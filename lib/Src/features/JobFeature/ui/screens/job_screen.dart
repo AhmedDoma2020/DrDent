@@ -72,8 +72,8 @@ class JobScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const CardTag(
-                          title: 'Full_time',
+                         CardTag(
+                          title: offer.jobTypeId == 0? 'Full_time':'part_time',
                         ),
                         24.0.ESW(),
                         CustomText(

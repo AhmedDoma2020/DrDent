@@ -19,10 +19,10 @@ class LikeProductController extends GetxController{
     if (response.statusCode == 200 && response.data["status"] == true) {
       debugPrint("request operation success");
       if(response.data["data"]!=null){
-        onSuccess(response.data["data"]);
+        onSuccess(response.data["data"]??0);
       }else{
         print('a7aaaaaaaaaaaaaaaaaaaaaaaaa');
-        onSuccess(1);
+        onSuccess(0);
       }
       debugPrint("convert operation success");
     }else{

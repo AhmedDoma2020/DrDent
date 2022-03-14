@@ -1,24 +1,28 @@
 import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:dr_dent/Src/core/constants/api_key.dart';
 import 'package:dr_dent/Src/core/services/network_services.dart';
 import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:flutter/cupertino.dart';
 
 
-class InformationRequestsRepository with ApiKey{
+class FollowAndUnFollowRepository with ApiKey{
   final NetworkService _networkService = NetworkService();
-  Future<Response> fetchInformationRequest()async{
-    Response? response;
+  Future<Response> followAndUnFollow({
+  required int userId,
+})async{
+    debugPrint('userId in followRepo $userId');
+    Response response;
     try{
-      response = await _networkService.get(
-          url:  uRLCompanyProductInformations,
-          auth: true
+      response = await _networkService.post(
+        url: uRLFollowAndUnFollow,
+        body: {
+          'user_id':userId,
+        },
+        auth: true
       );
-
     }on SocketException{
-      throw const SocketException('No Internet Connection');
+      throw SocketException('No Internet Connection');
     }on Exception{
       throw UnKnownException('there is unKnown Exception');
     }catch (e){
@@ -27,3 +31,5 @@ class InformationRequestsRepository with ApiKey{
     return response;
   }
 }
+
+

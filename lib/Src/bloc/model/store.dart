@@ -27,8 +27,8 @@ class Store{
     image = map['image']??' ';
     phone = map['phone']??' ';
     address = map['address']??' ';
-    lat = map['lat']??null;
-    lon = map['lon']??null;
+    lat = map['lat'] != null  ?   map['lat'].toString() : "0.0";
+    lon = map['lon']!= null  ? map['lon'].toString() :"0.0";
     history = map['about']??' ';
     lisences = map['lisences']!=null ? map['lisences'].cast<String>() :[];
   }

@@ -93,18 +93,18 @@ class RowOfTAps3 extends StatelessWidget {
           ),
           ProfileRowInfoItem(
             icon: "assets/icons/followingNumIcon.png",
-            num: "$followersNum",
+            num: "$followingNum",
             title: "following_",
             onTap: () {
-              Get.to(() => FollowersScreen(userId: id,));
+              Get.to(() => FollowingScreen(userId: id,));
             },
           ),
           ProfileRowInfoItem(
             icon: "assets/icons/followersNumIcon.png",
-            num: "$followingNum",
+            num: "$followersNum",
             title: "followers_",
             onTap: () {
-              Get.to(() => FollowingScreen(userId: id,));
+              Get.to(() => FollowersScreen(userId: id,));
             },
           ),
 
@@ -136,18 +136,18 @@ class RowOfTAps2 extends StatelessWidget {
           0.0.ESW(),
           ProfileRowInfoItem(
             icon: "assets/icons/followingNumIcon.png",
-            num: "$followersNum",
+            num: "$followingNum",
             title: "following_",
             onTap: () {
-              Get.to(() => FollowersScreen(userId: id,));
+              Get.to(() => FollowingScreen(userId: id,));
             },
           ),
           ProfileRowInfoItem(
             icon: "assets/icons/followersNumIcon.png",
-            num: "$followingNum",
+            num: "$followersNum",
             title: "followers_",
             onTap: () {
-              Get.to(() => FollowingScreen(userId: id,));
+              Get.to(() => FollowersScreen(userId: id,));
             },
           ),
           0.0.ESW(),

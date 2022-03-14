@@ -2,6 +2,7 @@ import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import '/src/core/utils/extensions.dart';
 
 class SearchRow extends StatelessWidget {
@@ -43,7 +44,7 @@ class SearchRow extends StatelessWidget {
                   child: TextField(
                     decoration: InputDecoration(
                         border: InputBorder.none,
-                        hintText: '_search_',
+                        hintText: '_search_'.tr,
                         hintStyle: TextStyle(
                             color: kCMainGrey,
                             fontSize: 12.sp,

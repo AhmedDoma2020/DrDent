@@ -23,14 +23,17 @@ class NetworkService with ApiKey {
     log("apiToken static in netWork >>>>>>>>>:-> $staticApiToken");
     try {
       dio.options.baseUrl = ApiKey.apiBaseUrl;
-      response = await dio.get(url!,
-          options: Options(
-              headers: headers ??
-                  {
-                    'Accept-Language': '${box.read("lan")??'ar'}',
-                    if (auth) 'Authorization': 'Bearer ' + apiToken
-                    // 'Authorization': 'Bearer ' + staticApiToken
-                  }));
+      response = await dio.get(
+        url!,
+        options: Options(
+          headers: headers ??
+              {
+                'Accept-Language': '${box.read("lan") ?? 'ar'}',
+                if (auth) 'Authorization': 'Bearer ' + apiToken
+                // 'Authorization': 'Bearer ' + staticApiToken
+              },
+        ),
+      );
     } on DioError catch (e) {
       if (e.response != null) {
         response = e.response;

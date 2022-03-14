@@ -12,7 +12,7 @@ class InfoRequestModel{
     InfoRequestModel.fromJson(Map<String,dynamic> map){
       id = map['id']??0;
       name = map['name']??'';
-      phone = map['phone']??'';
+      phone = map['phone']!=null ? map['phone'].toString() : ' ';
     }
 }
 

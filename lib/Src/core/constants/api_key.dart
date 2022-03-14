@@ -126,4 +126,7 @@ mixin ApiKey{
    final String uRLFetchSocialProfile = apiBaseUrl + "fetch_user_profile";
    final String uRLFetchUserServices = apiBaseUrl + "user_services";
    final String uRLFetchUserWorkSpace = apiBaseUrl + "user_work_spaces";
+   final String uRLFollowAndUnFollow = apiBaseUrl + "follow_user";
+   final String uRLReportUser = apiBaseUrl + "report_user";
+   final String uRLBlockUser = apiBaseUrl + "block_user";
 }

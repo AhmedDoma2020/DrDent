@@ -2,6 +2,7 @@ import 'package:dr_dent/Src/bloc/model/visit.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/HomeFeature/bloc/repository/delete_requests_repository.dart';
 import 'package:dr_dent/Src/features/HomeFeature/bloc/repository/home_visits_repository.dart';
+import 'package:dr_dent/Src/features/HomeFeature/bloc/repository/information_requests_repository.dart';
 import 'package:dr_dent/Src/features/JobFeature/bloc/model/job_offer.dart';
 import 'package:dr_dent/Src/features/JobFeature/bloc/model/job_request.dart';
 import 'package:dr_dent/Src/features/JobFeature/bloc/repository/job_offers_repository.dart';
@@ -18,13 +19,14 @@ class InformationRequestsController extends GetxController {
   List<InfoRequestModel> get requests => _requests;
 
 // ========== START FETCH DATA  ====================
-  final HomeVisitsRepository _homeVisitsRepository = HomeVisitsRepository();
+  final InformationRequestsRepository _informationRequestsRepository = InformationRequestsRepository();
   Future<void> fetchInformationRequests() async {
     status = RequestStatus.loading;
     update();
-    var response = await _homeVisitsRepository.fetchHomeVisits();
+    var response = await _informationRequestsRepository.fetchInformationRequest();
     if (response.statusCode == 200 && response.data["status"] == true) {
       debugPrint("request operation success");
+      debugPrint("response.data['data'] in social ${response.data['data']}");
       _requests.clear();
       if (response.data['data'] != null) {
         for (var item in response.data['data']) {
