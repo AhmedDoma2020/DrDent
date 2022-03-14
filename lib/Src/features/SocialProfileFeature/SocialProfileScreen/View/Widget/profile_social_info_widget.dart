@@ -1,20 +1,20 @@
+import 'package:dr_dent/Src/bloc/controller/follow_and_un_follow_controller.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/services/photo_view.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
-import 'package:dr_dent/Src/features/ProfileFeature/ProfileScreen/Bloc/Controller/featch_profile_controller.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/image_network.dart';
-import 'package:dr_dent/Src/ui/widgets/buttons/button_default.dart';
+import 'package:dr_dent/Src/ui/widgets/buttons/follow_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-
 import '../../Block/Controller/featch_social_profile_controller.dart';
 
 class profileSocialInfoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    FollowAndUnFollowController _followAndUnFollowController = Get.find();
     GetStorage box = GetStorage();
     return GetBuilder<FetchSocialProfileController>(
       builder: (_) => SizedBox(
@@ -28,9 +28,12 @@ class profileSocialInfoWidget extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Get.to(() => PhotoViewWidget(
-                              imageProvider: NetworkImage(_.userProfileModel!.cover),
-                            ));
+                        Get.to(
+                          () => PhotoViewWidget(
+                            imageProvider:
+                                NetworkImage(_.userProfileModel!.cover),
+                          ),
+                        );
                       },
                       child: SizedBox(
                         height: 192.h,
@@ -160,14 +163,10 @@ class profileSocialInfoWidget extends StatelessWidget {
                             ),
                             Padding(
                               padding: EdgeInsets.only(left: 24.w),
-                              child: ButtonDefault(
-                                title: 'follow_'.tr,
-                                iconImage: "blockProfile.png",
-                                height: 30,
-                                width: 96,
-                                radius: 4,
-                                titleSize: 12,
+                              child: FollowButton(
+                                userId: _.userProfileModel!.id,
                                 onTap: () {},
+                                isFollow: _.userProfileModel!.isFollow,
                               ),
                             ),
                           ],
@@ -211,7 +210,8 @@ class profileSocialInfoWidget extends StatelessWidget {
                         onTap: () {
                           Get.to(
                             () => PhotoViewWidget(
-                              imageProvider: NetworkImage(_.userProfileModel!.image),
+                              imageProvider:
+                                  NetworkImage(_.userProfileModel!.image),
                             ),
                           );
                         },
@@ -221,7 +221,7 @@ class profileSocialInfoWidget extends StatelessWidget {
                           child: ImageNetwork(
                             width: 92.h,
                             height: 92.h,
-                            url:_.userProfileModel!.image,
+                            url: _.userProfileModel!.image,
                           ),
                         ),
                       ),

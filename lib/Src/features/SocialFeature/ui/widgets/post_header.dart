@@ -42,7 +42,7 @@ class PostHeader extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   GestureDetector(
-                    onTap:post.postType ==PostType.post? (){
+                    onTap: post.postType ==PostType.post? (){
                       debugPrint("box.read('id') is ${box.read('id')}");
                       debugPrint("post.ownerId! is ${post.ownerId!}");
                       if(box.read('id') != post.ownerId!){

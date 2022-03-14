@@ -28,7 +28,7 @@ class CompanyProductsScreen extends StatelessWidget {
     GetStorage box = GetStorage();
     Get.put(CompanyProductsController(storeId: userId));
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: isMine? FloatingActionButton(
         child: Icon(
           Icons.add,
           color: Colors.white,
@@ -38,7 +38,7 @@ class CompanyProductsScreen extends StatelessWidget {
           Get.to(()=> const CompanyAddProduct());
         },
         backgroundColor: kCMain,
-      ),
+      ):0.0.ESW(),
       appBar: AppBars.appBarDefault(title: 'كل المنتجات'),
       body: Padding(
         padding:  EdgeInsets.only(

@@ -30,7 +30,9 @@ class ButtonDefault extends StatelessWidget {
   final Color disActiveBorderColor;
   final bool? active;
   final Widget? child;
+  final bool isLoading;
   ButtonDefault({
+    this.isLoading=false,
     this.child,
     this.borderColor,this.disActiveButtonColor=kCDisActiveButton,this.disActiveBorderColor=kCDisActiveButton,this.titleSize=16,this.iconHeight=12,this.radius=kNRadius,this.title='', this.iconImage='', this.buttonColor=kCActiveButton, this.titleColor=kCButtonTitle,
     this.iconColor=kCButtonTitle, this.onTap,this.height=48,this.width=343,this.active=true
@@ -82,6 +84,14 @@ class ButtonDefault extends StatelessWidget {
               fontW: FW.semibold,
             ),
             7.0.ESW(),
+            isLoading? SizedBox(
+              height: 12.h,
+              width: 12.h,
+              child: CircularProgressIndicator(
+                color: Colors.white,
+                strokeWidth: 2.w,
+              ),
+            ):
             Image.asset(
               'assets/icons/$iconImage',
               color: iconColor,

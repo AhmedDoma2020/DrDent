@@ -159,7 +159,7 @@ class profileInfoWidget extends StatelessWidget {
                               width: 200,
                               child: CustomText(
                                 text:
-                                "${"Specialization_".tr} ${_.specialization}",
+                                _.specialization,
                                 fontW: FW.semicond,
                                 fontSize: 14,
                                 overflow: true,

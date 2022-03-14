@@ -25,12 +25,13 @@ class CheckPhoneController extends GetxController{
       var response =  await _chickPhoneRepository.chickPhone(phone: phoneController!.text);
       Get.back();
       if(response.statusCode == 200 && response.data["status"] == true){
-        // PhoneVerifyController.verifyPhone(
-        //   phone: phoneController!.text,
-        //   onSuccess: (){
-        //     Get.to(ResetPasswordScreen(phone:  phoneController!.text,));
-        //   }
-        // );
+
+        PhoneVerifyController.verifyPhone(
+          phone: phoneController!.text,
+          onSuccess: (){
+            Get.to(ResetPasswordScreen(phone:  phoneController!.text,));
+          }
+        );
         Get.to(ResetPasswordScreen(phone:  phoneController!.text,));
         customSnackBar(title: response.data['message']?? "",);
       }else{

@@ -48,6 +48,7 @@ class UserProfileModel {
     required this.price,
     required this.workAddress,
     required this.insurances,
+    required this.isFollow,
   });
   late final int id;
   late final String name;
@@ -93,6 +94,7 @@ class UserProfileModel {
   late final int price;
   late final String workAddress;
   late final List<InsuranceModel> insurances;
+  late final int isFollow;
 
   UserProfileModel.fromJson(Map<String, dynamic> json){
     id = json['id']??0;
@@ -149,6 +151,7 @@ class UserProfileModel {
     universityTitle = json['university_title']??"";
     graduationDegree = json['graduation_degree']??"";
     cv = json['cv']??"";
+    isFollow = json['is_follow']??0;
     if(json['certificates']!= null){
       certificates = List.castFrom<dynamic, String>(json['certificates']);
     }else{
@@ -160,6 +163,7 @@ class UserProfileModel {
     if(json['insurances']!=null){
       insurances = List.from(json['insurances']).map((e)=>InsuranceModel.fromJson(e)).toList();
     }
+
   }
 
 }

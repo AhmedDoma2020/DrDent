@@ -18,10 +18,25 @@ class SocialProfileRowInfoAndRate extends StatelessWidget {
     return GetBuilder<FetchSocialProfileController>(
       builder:(_) => SizedBox(
         // color: Colors.red,
-        height: 128.h,
+        height: 148.h,
         width: double.infinity,
         child: Column( 
           children: [
+            Padding(
+              padding: EdgeInsets.only(right: 130.w),
+              child: SizedBox(
+                // color: Colors.greenAccent,
+                width: 220.w,
+                child: CustomText(
+                  text: _.userProfileModel!.specializationsTitle,
+                  fontW: FW.semicond,
+                  fontSize: 14,
+                  overflow: true,
+                  maxLines: 1,
+                ),
+              ),
+            ),
+            8.0.ESH(),
             Padding(
               padding: EdgeInsets.only(right: 130.w),
               child: Row(
@@ -97,18 +112,18 @@ class SocialRowOfTAps3 extends StatelessWidget {
           ),
           ProfileRowInfoItem(
             icon: "assets/icons/followingNumIcon.png",
-            num: "$followersNum",
+            num: "$followingNum",
             title: "following_",
             onTap: (){
-              Get.to(()=> FollowersScreen(userId: id,));
+              Get.to(()=> FollowingScreen(userId: id,));
             },
           ),
           ProfileRowInfoItem(
             icon: "assets/icons/followersNumIcon.png",
-            num: "$followingNum",
+            num: "$followersNum",
             title: "followers_",
             onTap: (){
-              Get.to(()=> FollowingScreen(userId:id,));
+              Get.to(()=> FollowersScreen(userId:id,));
             },
           ),
         ],
@@ -140,18 +155,18 @@ class SocialRowOfTAps2 extends StatelessWidget {
           0.0.ESW(),
           ProfileRowInfoItem(
             icon: "assets/icons/followingNumIcon.png",
-            num: "$followersNum",
+            num: "$followingNum",
             title: "following_",
             onTap: () {
-              Get.to(() => FollowersScreen(userId: id,));
+              Get.to(() => FollowingScreen(userId: id,));
             },
           ),
           ProfileRowInfoItem(
             icon: "assets/icons/followersNumIcon.png",
-            num: "$followingNum",
+            num: "$followersNum",
             title: "followers_",
             onTap: () {
-              Get.to(() => FollowingScreen(userId: id,));
+              Get.to(() => FollowersScreen(userId: id,));
             },
           ),
           0.0.ESW(),

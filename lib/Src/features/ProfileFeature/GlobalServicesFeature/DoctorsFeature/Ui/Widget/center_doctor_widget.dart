@@ -111,9 +111,9 @@ int workSpaceIdSelected = 0;
                           ),
                           8.0.ESW(),
                           Container(
-                              width: 40.w,
-                              // constraints: BoxConstraints(maxWidth: 200.w, minWidth: 120.w),
-                              // color: Colors.yellow,
+                            // constraints: BoxConstraints(minWidth: 100.w),
+                              constraints: BoxConstraints(maxWidth: 100.w, minWidth: 80.w),
+                              color: Colors.yellow,
                               child: CustomText(
                                 text: "${"price_examination".tr}:",
                                 fontSize: 12,

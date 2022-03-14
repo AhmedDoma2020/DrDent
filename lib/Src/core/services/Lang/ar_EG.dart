@@ -307,7 +307,7 @@ const Map<String, String> arAE = {
   'inquire_about_product_price':'الإستعلام عن سعر المنتج',
   'company_message':'مراسلة الشركة',
   'Request_for_price':'طلب عرض سعر',
-  'Edit_':'تعدبل',
+  'Edit_':'تعديل',
   'Delete_':'حذف',
   'full_time':'دوام كلى',
   'part_time':'دوام جزئى',
