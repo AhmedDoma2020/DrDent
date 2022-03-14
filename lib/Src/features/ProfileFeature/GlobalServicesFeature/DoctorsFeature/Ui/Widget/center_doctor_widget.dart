@@ -113,7 +113,7 @@ int workSpaceIdSelected = 0;
                           Container(
                             // constraints: BoxConstraints(minWidth: 100.w),
                               constraints: BoxConstraints(maxWidth: 100.w, minWidth: 80.w),
-                              color: Colors.yellow,
+                              // color: Colors.yellow,
                               child: CustomText(
                                 text: "${"price_examination".tr}:",
                                 fontSize: 12,
