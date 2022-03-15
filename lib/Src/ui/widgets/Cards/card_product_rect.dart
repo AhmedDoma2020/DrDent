@@ -71,7 +71,7 @@ class CardProductRect extends StatelessWidget {
                   ],
                 ),
               ),
-              // IconWidget(onEditTap: onEditTap,icon: "assets/icons/edit.png",),
+              IconWidget(onEditTap: onEditTap,icon: "assets/icons/edit.png",),
               isDelete? DeleteWidget(onDeleteTap: onDeleteTap):0.0.ESW(),
             ],
           ),

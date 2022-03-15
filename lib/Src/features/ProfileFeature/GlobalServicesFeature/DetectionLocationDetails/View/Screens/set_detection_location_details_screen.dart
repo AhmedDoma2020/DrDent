@@ -110,7 +110,9 @@ class SetDetectionLocationDetailsScreen extends StatelessWidget {
                         node.nextFocus();
                       },
                     ),
+                    box.read('user_type_id') == 4?0.0.ESH():
                     16.0.ESH(),
+                    box.read('user_type_id') == 4?0.0.ESH():
                     TextFieldDefault(
                       hint: 'price_examination'.tr,
                       errorText: "error_price_examination_field".tr,

@@ -26,6 +26,7 @@ class ProductScreen extends StatefulWidget {
 }
 
 class _ProductScreenState extends State<ProductScreen> {
+  int indexOfPageView=0;
   @override
   Widget build(BuildContext context) {
     debugPrint(
@@ -57,6 +58,11 @@ class _ProductScreenState extends State<ProductScreen> {
                           ? Stack(
                               children: [
                                 PageView(
+                                  onPageChanged: (indexNum){
+                                    setState(() {
+                                      indexOfPageView = indexNum;
+                                    });
+                                  },
                                   scrollDirection: Axis.horizontal,
                                   controller: controller,
                                   children: widget.product.images!
@@ -73,19 +79,22 @@ class _ProductScreenState extends State<ProductScreen> {
                                     padding: EdgeInsets.only(bottom: 16.h),
                                     child: Container(
                                       alignment: Alignment.center,
-                                      color: Colors.black,
+                                      color: Colors.transparent,
                                       height: 4,
-                                      width: double.infinity,
+                                      width: 28.w * widget.product.images!.length,
                                       child: Center(
                                         child: ListView.separated(
                                           scrollDirection: Axis.horizontal,
                                           itemBuilder: (context, index) => Container(
-                                            height: 4.h,
+                                            decoration: BoxDecoration(
+                                              color: indexOfPageView == index ? kCMainGrey: kCMainLightGrey.withOpacity(0.5),
+                                              borderRadius: BorderRadius.circular(2.r)
+                                            ),
+                                            height: 5.h,
                                             width: 20.w,
-                                            color: Colors.red,
                                           ),
                                           separatorBuilder: (context, index) =>
-                                              2.0.ESW(),
+                                              5.0.ESW(),
                                           itemCount: widget.product.images!.length,
                                         ),
                                       ),
