@@ -130,6 +130,16 @@ void deleteImage(int index){
      if(_images.isNotEmpty){
        globalKey.currentState!.save();
        dynamic response;
+
+       List<String> sentImages = [];
+       images.forEach((element) {
+         if(sentImages.contains('/uploads/')){
+             sentImages.add(element.substring(element.indexOf('/uploads/')+1));
+         }else{
+             sentImages.add(element);
+         }
+       });
+
        if(isEdit){
          setLoading();
          response = await _editCompanyProductRepository.editCompanyProduct(
@@ -140,7 +150,7 @@ void deleteImage(int index){
            usability: usabilityController!.text,
            // generalUse: generalUse,
            // sideEffects: sideEffects,
-           images: images,
+           images: sentImages,
          );
          Get.back();
        }else{
