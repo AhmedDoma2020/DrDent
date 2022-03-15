@@ -54,6 +54,7 @@ dependencies:
   geocoding:
   flutter_spinkit:
   google_sign_in:
+  device_preview: ^1.0.0
 #  firebase_auth: ^3.3.8
   firebase_core: ^1.12.0
   firebase_messaging: ^11.2.6
@@ -64,6 +65,7 @@ dependencies:
   ffi: ^1.1.2
   flutter_local_notifications: ^9.3.2
   url_launcher: ^6.0.20
+  flutter_offline: ^2.1.0
 
 
 dev_dependencies:

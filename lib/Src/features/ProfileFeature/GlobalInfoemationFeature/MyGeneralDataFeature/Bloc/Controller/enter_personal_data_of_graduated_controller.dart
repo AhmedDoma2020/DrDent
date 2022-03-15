@@ -160,6 +160,7 @@ String _futureCv='';
     if(isEdit){
       setData();
     }else{
+      _futureAvatar = box.read('image');
       _futureCertification = box.read('work_lisence');
     }
   }

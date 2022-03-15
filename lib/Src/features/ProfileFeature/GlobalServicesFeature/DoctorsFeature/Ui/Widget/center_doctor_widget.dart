@@ -125,7 +125,7 @@ int workSpaceIdSelected = 0;
                                   maxWidth: 60.w, minWidth: 40.w),
                               // color: Colors.yellow,
                               child: CustomText(
-                                text: widget.doctor.id.toString(),
+                                text: widget.doctor.price.toString(),
                                 fontSize: 12,
                                 fontW: FW.semibold,
                               )),
@@ -221,11 +221,13 @@ int workSpaceIdSelected = 0;
                               shrinkWrap: true,
                               itemBuilder: (context, index) =>
                                   WorkSpacesOfCenterDoctorForm(
-                                workSpaceName:
-                                    widget.doctor.workspaces[index].name,
+                                    fetchDetectionTime:  widget.doctor.workspaces[index].detectionTime,
+                                dayBookingTypeEdit:  widget.doctor.workspaces[index].reservationType,
+                                workSpaceName: widget.doctor.workspaces[index].name,
                                 days: widget.doctor.workspaces[index].days,
-                                    workSpaceId: widget.doctor.workspaces[index].id,
-                                    doctorId: widget.doctor.id,
+
+                                workSpaceId: widget.doctor.workspaces[index].id,
+                                doctorId: widget.doctor.id,
                               ),
                               separatorBuilder: (context, index) => Padding(
                                 padding: EdgeInsets.symmetric(vertical: 15.h),
@@ -250,8 +252,11 @@ int workSpaceIdSelected = 0;
                                 },
                                 onContainTap: (){
                                   Get.back();
-                                  Get.to(WorkTimeScreen(
+                                  Get.to(
+                                    WorkTimeScreen(
                                     userType: UserTypeEnum.doctor,
+                                    isEdit: true,
+                                    // dayBookingTypeEdit: widget.doctor.workspaces[],
                                     onSuccess:(){
                                       Get.back();
                                       _fetchCenterDoctorController.fetchCenterDoctor();

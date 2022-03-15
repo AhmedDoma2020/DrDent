@@ -5,6 +5,7 @@ mixin ApiKey{
 
 
    final String uRLLogin = apiBaseUrl + "login";
+   final String uRLLogout = apiBaseUrl + "logout";
    final String uRLRegister = apiBaseUrl + "register";
    final String uRLLoginWithEmail = apiBaseUrl + "login_with_gmail";
    final String uRLVerifyPhone = apiBaseUrl + "verify_phone";

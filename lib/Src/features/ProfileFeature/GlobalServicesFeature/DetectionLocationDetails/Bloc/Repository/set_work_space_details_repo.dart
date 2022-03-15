@@ -25,7 +25,7 @@ class SetWorkSpaceDetailsRepository with ApiKey {
     required String image,
   }) async {
     Response response;
-    // debugPrint("address in repo is $address");
+    debugPrint("price in repo is $price");
     try {
       response = await _networkService.post(
           url: uRLSetWorkSpace,
@@ -34,6 +34,7 @@ class SetWorkSpaceDetailsRepository with ApiKey {
             'name':name,
             'phone':phone1,
             'mobile':phone2,
+            if(price.isNotEmpty)
             'price':price,
             'address':address,
             'lat':lat,

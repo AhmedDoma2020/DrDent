@@ -15,6 +15,7 @@ class EditCenterDoctorRepository with ApiKey {
 
     required int doctorId,
     required String name,
+    required String price,
     required String phone,
     required String avatar,
     required String gender,
@@ -40,6 +41,8 @@ class EditCenterDoctorRepository with ApiKey {
             'phone':phone,
             'image':avatar,
             'gender':gender,
+            'price':price,
+
             'specializations':specializationIds,
             'job_title_id':jobTitleId,
             'notes':notes,

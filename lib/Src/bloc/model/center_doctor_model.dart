@@ -8,6 +8,7 @@ class CenterDoctorModel {
     required this.id,
     required this.name,
     required this.phone,
+    required this.price,
     required this.doctorInfo,
     required this.image,
     required this.gender,
@@ -18,6 +19,7 @@ class CenterDoctorModel {
   late final int id;
   late final String name;
   late final String phone;
+  late final int price;
   late final String doctorInfo;
   late final String image;
   late final String gender;
@@ -27,11 +29,12 @@ class CenterDoctorModel {
   late final List<Workspaces> workspaces;
 
   CenterDoctorModel.fromJson(Map<String, dynamic> json){
-    id = json['id'];
-    name = json['name'];
-    phone = json['phone'];
-    doctorInfo = json['doctor_info'];
-    image = json['image'];
+    id = json['id']??0;
+    name = json['name']??"";
+    phone = json['phone']??"";
+    price = json['price']??0;
+    doctorInfo = json['doctor_info']??"";
+    image = json['image']??"";
     if(json['specialization'] == null){
       specialization = [Specialization(id: 0,title: "no_Specialization".tr,selected: false,)];
     }else{
@@ -42,7 +45,11 @@ class CenterDoctorModel {
       }
       specializationTitle = specializationList.join(",");
     }
-    workspaces = List.from(json['workspaces']).map((e)=>Workspaces.fromJson(e)).toList();
+    if(json['workspaces'] != null){
+      workspaces = List.from(json['workspaces']).map((e)=>Workspaces.fromJson(e)).toList();
+    }else{
+      workspaces =[];
+    }
     if(json['gender'] != null ){
       gender =  json['gender']??"Male";
     }else{
@@ -67,9 +74,9 @@ class Specialization {
   late final bool selected;
 
   Specialization.fromJson(Map<String, dynamic> json){
-    id = json['id'];
-    title = json['title'];
-    selected = json['selected'];
+    id = json['id']??0;
+    title = json['title']??"";
+    selected = json['selected']??"";
   }
 }
 
@@ -80,22 +87,24 @@ class Workspaces {
     required this.days,
   });
   late final int id;
+  late final int reservationType;
   late final String name;
+  late final String detectionTime;
   late final List<Days> days;
 
   Workspaces.fromJson(Map<String, dynamic> json){
-    id = json['id'];
-    name = json['name'];
-    days = List.from(json['days']).map((e)=>Days.fromJson(e)).toList();
+    id = json['id']??0;
+    name = json['name']??"";
+    reservationType = json['reservation_type']??0;
+    detectionTime = json['detection_time']??"";
+    if(json['days'] !=null){
+      days = List.from(json['days']).map((e)=>Days.fromJson(e)).toList();
+    }else{
+      days =[];
+    }
   }
 
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['name'] = name;
-    _data['days'] = days.map((e)=>e.toJson()).toList();
-    return _data;
-  }
+
 }
 
 class Days {
@@ -109,18 +118,16 @@ class Days {
   late final List<Times> times;
 
   Days.fromJson(Map<String, dynamic> json){
-    id = json['id'];
-    title = json['title'];
-    times = List.from(json['times']).map((e)=>Times.fromJson(e)).toList();
+    id = json['id']??0;
+    title = json['title']??"";
+    if(json['times'] != null){
+      times = List.from(json['times']).map((e)=>Times.fromJson(e)).toList();
+    }else{
+      times = [];
+    }
   }
 
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['title'] = title;
-    _data['times'] = times.map((e)=>e.toJson()).toList();
-    return _data;
-  }
+
 }
 
 class Times {
@@ -136,19 +143,10 @@ class Times {
   late final int emergencyBookings;
 
   Times.fromJson(Map<String, dynamic> json){
-    id = json['id'];
-    startTime = json['start_time'];
-    endTime = json['end_time'];
-    emergencyBookings = json['emergency_bookings'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['start_time'] = startTime;
-    _data['end_time'] = endTime;
-    _data['emergency_bookings'] = emergencyBookings;
-    return _data;
+    id = json['id']??0;
+    startTime = json['start_time']??"";
+    endTime = json['end_time']??"";
+    emergencyBookings = json['emergency_bookings']??"";
   }
 }
 // class CenterDoctorModel {

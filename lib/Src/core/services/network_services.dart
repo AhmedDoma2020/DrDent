@@ -17,7 +17,7 @@ class NetworkService with ApiKey {
     String apiToken = box.read("api_token") ?? "Not Found Token";
     // $2y$10$D4jqX8SI834Od0ODWTH8WeR9za2VPivcPXz7B5Kz/psqAVpoXEeGe  3
     String staticApiToken =
-        "\$2y\$10\$D4jqX8SI834Od0ODWTH8WeR9za2VPivcPXz7B5Kz/psqAVpoXEeGe";
+        "\$2y\$10\$NBYTyWoXPQm1Fe911Nsfo.t93YFyUodZFH9yzv8FpMVbyHP6uSgA.";
     log("apiToken storage in netWork >>>>>>>>>:-> $apiToken");
     log("apiToken static in netWork >>>>>>>>>:-> $staticApiToken");
     try {
@@ -52,9 +52,9 @@ class NetworkService with ApiKey {
       bool auth = false}) async {
     Response? response;
     String apiToken = box.read("api_token") ?? "Not Found Token";
-    // $2y$10$D4jqX8SI834Od0ODWTH8WeR9za2VPivcPXz7B5Kz/psqAVpoXEeGe  3
+    // $2y$10$D4jqX8SI834Od0ODWTH8WeR9za2VPivcPXz7B5Kz/psqAVpoXEeGe   3
     String staticApiToken =
-        "\$2y\$10\$D4jqX8SI834Od0ODWTH8WeR9za2VPivcPXz7B5Kz/psqAVpoXEeGe";
+        "\$2y\$10\$NBYTyWoXPQm1Fe911Nsfo.t93YFyUodZFH9yzv8FpMVbyHP6uSgA.";
     log("apiToken storage in netWork >>>>>>>>>:-> $apiToken");
     log("apiToken static in netWork >>>>>>>>>:-> $staticApiToken");
     dio.options.baseUrl = ApiKey.apiBaseUrl;

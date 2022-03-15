@@ -88,6 +88,20 @@ class AddCenterDoctorScreen extends StatelessWidget {
                       },
                     ),
                     16.0.ESH(),
+                    TextFieldDefault(
+                      hint: 'price_examination'.tr,
+                      errorText: "error_price_examination_field".tr,
+                      controller: _.priceExaminationController,
+                      keyboardType: TextInputType.number,
+                      filledColor: kCBGTextFormFiled,
+                      fieldType: FieldType.WithBorder,
+                      enableBorder: Colors.transparent,
+                      horizentalPadding: 16,
+                      onComplete: () {
+                        node.nextFocus();
+                      },
+                    ),
+                    16.0.ESH(),
                     GestureDetector(
                       onTap: () {
                         Get.bottomSheet(
