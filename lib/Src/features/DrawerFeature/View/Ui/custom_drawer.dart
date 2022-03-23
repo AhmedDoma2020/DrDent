@@ -1,4 +1,5 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
+import 'package:dr_dent/Src/features/AuthFeature/bloc/controller/log_out_controller.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/screens/login_screen.dart';
 import 'package:dr_dent/Src/features/DrawerFeature/View/Widget/row_of_item_drawer.dart';
 import 'package:dr_dent/Src/features/DrawerFeature/View/Widget/top_info_drawer.dart';
@@ -22,6 +23,7 @@ class CustomDrawer extends StatelessWidget {
   GetStorage box = GetStorage();
   @override
   Widget build(BuildContext context) {
+    LogOutController _logOutController = Get.put(LogOutController());
     return Drawer(
       child: SafeArea(
         child: Container(
@@ -48,12 +50,12 @@ class CustomDrawer extends StatelessWidget {
                         },
                         title: "Profile_",
                         icon: "assets/icons/personalInfoIcon.png"),
-                    RowOfItemDrawer(
-                        onTap: () {
-                          Get.to(() => MyVisitScreen());
-                        },
-                        title: "Reservations_",
-                        icon: "assets/icons/personalInfoIcon.png"),
+                    // RowOfItemDrawer(
+                    //     onTap: () {
+                    //       Get.to(() => MyVisitScreen());
+                    //     },
+                    //     title: "Reservations_",
+                    //     icon: "assets/icons/personalInfoIcon.png"),
                     RowOfItemDrawer(
                         onTap: () {
                           Get.to(()=>NotificationsScreen());
@@ -99,8 +101,7 @@ class CustomDrawer extends StatelessWidget {
                     RowOfItemDrawer(
                         onTap: () {
                           debugPrint("abc");
-                          box.remove("log_in");
-                          Get.offAll(()=>LoginScreen());
+                          _logOutController.logOut();
                         },
                         title: "log_out",
                         icon: "assets/icons/logout.png"),

@@ -28,7 +28,7 @@ class SocialProfileRowInfoAndRate extends StatelessWidget {
                 // color: Colors.greenAccent,
                 width: 220.w,
                 child: CustomText(
-                  text: _.userProfileModel!.specializationsTitle,
+                  text: _.userProfileModel!.userTypeId == 5 || _.userProfileModel!.userTypeId == 6 ? _.userProfileModel!.phone:_.userProfileModel!.specializationsTitle,
                   fontW: FW.semicond,
                   fontSize: 14,
                   overflow: true,

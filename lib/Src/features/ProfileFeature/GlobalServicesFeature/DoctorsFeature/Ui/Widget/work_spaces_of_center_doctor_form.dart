@@ -12,12 +12,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class WorkSpacesOfCenterDoctorForm extends StatelessWidget {
+  final String fetchDetectionTime;
   final String workSpaceName;
   final int workSpaceId;
   final int doctorId;
+  final int dayBookingTypeEdit;
   final List<Days> days;
 
   const WorkSpacesOfCenterDoctorForm({
+    required this.fetchDetectionTime,
+    required this.dayBookingTypeEdit,
     required this.workSpaceName,
     required this.workSpaceId,
     required this.doctorId,
@@ -27,6 +31,8 @@ class WorkSpacesOfCenterDoctorForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint("fetchDetectionTime $fetchDetectionTime");
+    debugPrint("dayBookingTypeEdit $dayBookingTypeEdit");
     FetchCenterDoctorController _fetchCenterDoctorController =  Get.find();
     return Container(
       width: double.infinity,
@@ -54,7 +60,10 @@ class WorkSpacesOfCenterDoctorForm extends StatelessWidget {
               ),
               IconWidget(onEditTap: (){
                 Get.to(WorkTimeScreen(
-                  userType: UserTypeEnum.doctor,
+                  userType: UserTypeEnum.centerDoctor,
+                  dayBookingTypeEdit: dayBookingTypeEdit,
+                  fetchDetectionTime: fetchDetectionTime,
+                  isEdit: true,
                   onSuccess:(){
                     Get.back();
                     _fetchCenterDoctorController.fetchCenterDoctor();
@@ -64,7 +73,8 @@ class WorkSpacesOfCenterDoctorForm extends StatelessWidget {
                   isBack: true,
 
                 ),);
-              },icon: "assets/icons/timeIcon.png",)
+              }
+              ,icon: "assets/icons/timeIcon.png",)
             ],
           ),
           14.0.ESH(),

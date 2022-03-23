@@ -1,13 +1,12 @@
 
 import 'package:dr_dent/Src/bloc/model/state_and_city_model.dart';
 import 'package:dr_dent/Src/bloc/repository/fetch_state_repo.dart';
-import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
 
 class FetchStateAndCityController extends GetxController {
-  List<StateAndCityModel> _stateAndCityList = [];
+  final List<StateAndCityModel> _stateAndCityList = [];
   List<StateAndCityModel> get stateAndCityList => _stateAndCityList;
   TextEditingController? stateController;
   TextEditingController? cityController;

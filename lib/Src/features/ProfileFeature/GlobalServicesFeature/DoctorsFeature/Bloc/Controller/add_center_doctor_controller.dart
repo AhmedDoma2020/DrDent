@@ -31,6 +31,7 @@ class AddCenterDoctorController extends GetxController {
   TextEditingController? jobTitleController;
   TextEditingController? jobTitleAndSpecializationController;
   TextEditingController? noteController;
+  TextEditingController? priceExaminationController;
   List<int> _specializationIdSelected=[];
   List<int> get specializationIdSelected => _specializationIdSelected;
   set setSpecializationIdSelected(List<int> value) {
@@ -80,6 +81,7 @@ class AddCenterDoctorController extends GetxController {
       }
       jobTitleAndSpecializationController!.text = _specializationTitleSelected.join(",");
       setSpecializationIdSelected = _specializationIdSelected;
+      priceExaminationController!.text = centerDoctorModel!.price.toString();
     }
     noteController!.text = centerDoctorModel!.doctorInfo;
     update();
@@ -96,6 +98,7 @@ class AddCenterDoctorController extends GetxController {
         if(isEdit){
           setLoading();
           response = await _editCenterDoctorRepository.editCenterDoctor(
+            price: priceExaminationController!.text,
             doctorId: centerDoctorModel!.id,
             name: nameController!.text,
             phone: phoneController!.text,
@@ -109,7 +112,8 @@ class AddCenterDoctorController extends GetxController {
         }else{
           setLoading();
            response = await _addCenterDoctorRepository.addCenterDoctor(
-            name: nameController!.text,
+             price: priceExaminationController!.text,
+             name: nameController!.text,
             phone: phoneController!.text,
             specializationIds: _specializationIdSelected,
             gender: _gender,
@@ -194,6 +198,7 @@ class AddCenterDoctorController extends GetxController {
     jobTitleController = TextEditingController();
     jobTitleAndSpecializationController = TextEditingController();
     noteController = TextEditingController();
+    priceExaminationController = TextEditingController();
     if(isEdit)setData();
   }
 
@@ -204,6 +209,7 @@ class AddCenterDoctorController extends GetxController {
     jobTitleController?.dispose();
     jobTitleAndSpecializationController?.dispose();
     noteController?.dispose();
+    priceExaminationController?.dispose();
     super.dispose();
   }
 }

@@ -19,25 +19,25 @@ import '../Repository/edit_post_repo.dart';
 class DeletePostController extends GetxController  {
 
 
-  // final SocialController _socialController = Get.find();
-  final DeletePostRepository _deletePostRepository =DeletePostRepository();
-
-  // to delete post
-  void deletePost({required int postId}) async {
-    Get.closeCurrentSnackbar();
-    setLoading();
-   var response = await _deletePostRepository.deletePost(postId: postId);
-   Get.back();
-   if (response.statusCode == 200 && response.data["status"] == true) {
-     // _socialController.deletePost(postId);
-        customSnackBar(title: response.data["message"]??"");
-        debugPrint("convert operation success");
-        update();
-      } else {
-        debugPrint('response in add post is $response');
-        customSnackBar(title: response.data["message"]??"");
-        update();
-      }
-
-  }
+  // // final SocialController _socialController = Get.find();
+  // final DeletePostRepository _deletePostRepository =DeletePostRepository();
+  //
+  // // to delete post
+  // void deletePost({required int postId}) async {
+  //   Get.closeCurrentSnackbar();
+  //   setLoading();
+  //  var response = await _deletePostRepository.deletePost(postId: postId);
+  //  Get.back();
+  //  if (response.statusCode == 200 && response.data["status"] == true) {
+  //    // _socialController.deletePost(postId);
+  //       customSnackBar(title: response.data["message"]??"");
+  //       debugPrint("convert operation success");
+  //       update();
+  //     } else {
+  //       debugPrint('response in add post is $response');
+  //       customSnackBar(title: response.data["message"]??"");
+  //       update();
+  //     }
+  //
+  // }
 }

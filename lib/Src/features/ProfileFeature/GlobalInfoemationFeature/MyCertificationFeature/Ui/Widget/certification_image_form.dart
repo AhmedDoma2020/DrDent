@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/services/photo_view.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/image_network.dart';
 import 'package:flutter/material.dart';
@@ -27,11 +29,12 @@ class CertificationImageForm extends StatelessWidget {
                 onTap: (){
                   Get.to(() => PhotoViewWidget(imageProvider: NetworkImage(image),));
                 },
-                  child: ImageNetwork(
-                url: image,
-                width: double.infinity,
-                height: double.infinity,
-              )),
+                  child:CachedNetworkImage(
+                    imageUrl: image,
+                    fit: BoxFit.cover,
+                    errorWidget: (context, url, error) =>
+                    const Icon(Icons.error, color: kCTFErrorText),
+                  )),
             ),
             Positioned(
               top: 8.h,

@@ -24,7 +24,7 @@ class FollowButton extends StatefulWidget {
 class _FollowButtonState extends State<FollowButton> {
   @override
   Widget build(BuildContext context) {
-    FollowAndUnFollowController _followAndUnFollowController = Get.find();
+    FollowAndUnFollowController _followAndUnFollowController = Get.put(FollowAndUnFollowController());
 
     return GetBuilder<FollowAndUnFollowController>(builder: (_) => ButtonDefault(
         title: widget.isFollow == 0 ? 'follow_' : "un_follow",

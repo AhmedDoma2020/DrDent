@@ -22,6 +22,7 @@ class AddDoctorCertificationController extends GetxController {
   FetchDoctorCertificationController _fetchDoctorCertificationController = Get.put(FetchDoctorCertificationController());
 
   Future getImages() async {
+    _certificationList.clear();
     final imageFileList = (await _picker.pickMultiImage())!;
      _imageFileList = imageFileList;
     for (var item in imageFileList){

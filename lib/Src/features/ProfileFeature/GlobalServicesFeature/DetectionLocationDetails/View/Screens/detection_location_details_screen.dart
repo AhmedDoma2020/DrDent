@@ -29,11 +29,9 @@ class DetectionLocationDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     FetchWorkSpaceDetailsController _fetchWorkSpaceDetailsController =
         Get.put(FetchWorkSpaceDetailsController());
-
     Future<void> onRefresh() async {
       await _fetchWorkSpaceDetailsController.fetchMyWorkSpaceDetails();
     }
-
     return SafeArea(
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
@@ -100,6 +98,7 @@ class DetectionLocationDetailsScreen extends StatelessWidget {
                                   doctorId: box.read('id'),
                                   onSuccess: () {
                                     Get.back();
+                                    _.fetchMyWorkSpaceDetails();
                                   },
                                   workspaceId: _.myWorkSpaceDetails[index].id,
                                   fetchDayBooking: _.myWorkSpaceDetails[index].dayBooking,

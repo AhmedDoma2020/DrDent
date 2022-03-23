@@ -8,19 +8,22 @@ import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/image_network.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_storage/get_storage.dart';
 
 class DetectionLocationDetailsWidget extends StatelessWidget {
   final WorkSpaceDetailsModel model;
   final VoidCallback onDeleteTap;
   final VoidCallback onTimeTap;
   final VoidCallback onEditTap;
-  const DetectionLocationDetailsWidget({
+   DetectionLocationDetailsWidget({
     required this.model,
     required this.onDeleteTap,
     required this.onTimeTap,
     required this.onEditTap,
     Key? key,
   }) : super(key: key);
+
+  GetStorage box = GetStorage();
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +104,11 @@ class DetectionLocationDetailsWidget extends StatelessWidget {
                             ),
                           ],
                         ),
+                        box.read('user_type_id') == 4?0.0.ESH():
+
                         8.0.ESH(),
+                        box.read('user_type_id') == 4?0.0.ESH():
+
                         Row(
                           children: [
                             ImageIcon(

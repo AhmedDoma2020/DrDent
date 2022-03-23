@@ -1,6 +1,7 @@
 import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/BaseFeature/bloc/contoller/base_controller.dart';
 import 'package:dr_dent/Src/features/HomeFeature/bloc/controller/home_visits_controller.dart';
+import 'package:dr_dent/Src/features/HomeFeature/bloc/controller/information_requets_controller.dart';
 import 'package:dr_dent/Src/features/HomeFeature/bloc/model/home_model.dart';
 import 'package:dr_dent/Src/features/HomeFeature/ui/widgets/empty_visits_section.dart';
 import 'package:dr_dent/Src/features/HomeFeature/ui/widgets/home_item.dart';
@@ -23,11 +24,16 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     GetStorage box = GetStorage();
     BaseController  baseController = Get.put(BaseController());
+    InformationRequestsController _informationRequestsController = Get.put(InformationRequestsController());
     Get.put(HomeVisitsController());
+Future<void>  refreshIndicator()async{
+  await _informationRequestsController.fetchInformationRequests();
+}
     return GetBuilder<HomeVisitsController>(
       builder: (_) =>  RefreshIndicator(
         onRefresh: ()async{
           _.fetchHomeVisits();
+          refreshIndicator();
         },
         child: ListView(
           children: [

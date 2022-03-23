@@ -31,6 +31,7 @@ class _MapScreenState extends State<MapScreen> {
   Set<Marker> _markers = {};
   BitmapDescriptor? mapMarker;
   bool isMove = false;
+  bool isTap = false;
   bool isLoading = true;
 
   String? address = ' ';
@@ -41,30 +42,44 @@ class _MapScreenState extends State<MapScreen> {
       isLoading = true;
     });
     debugPrint("enter setAddress 2");
-    if(widget.targetPosition!=null){
-      await placemarkFromCoordinates(widget.targetPosition!.latitude, widget.targetPosition!.longitude, localeIdentifier: "ar")
+    if (widget.targetPosition != null) {
+      await placemarkFromCoordinates(
+              isTap
+                  ? targetPosition!.latitude
+                  : widget.targetPosition!.latitude,
+              isTap
+                  ? targetPosition!.longitude
+                  : widget.targetPosition!.longitude,
+              localeIdentifier: "ar")
           .then((value) {
         debugPrint("enter setAddress 3");
         setState(() {
           var data = value.first;
           //  address = data.administrativeArea + data.locality + data.street;
           //  address = "${data.administrativeArea} - ${data.locality} - ${data.street} - ${data.name}";
-          address = "${data.administrativeArea} - ${data.locality} - ${data.street}";
+          address =
+              "${data.administrativeArea} - ${data.locality} - ${data.street}";
+
+          debugPrint("address selected & targetPosition!=null is $address");
           debugPrint("enter setAddress 4");
         });
         isLoading = false;
         debugPrint("enter setAddress 5");
       });
       debugPrint("enter setAddress 6");
-    }else{
-      await placemarkFromCoordinates(targetPosition!.latitude, targetPosition!.longitude, localeIdentifier: "ar")
+    } else {
+      await placemarkFromCoordinates(
+              targetPosition!.latitude, targetPosition!.longitude,
+              localeIdentifier: "ar")
           .then((value) {
         debugPrint("enter setAddress 3");
         setState(() {
           var data = value.first;
           //  address = data.administrativeArea + data.locality + data.street;
           //  address = "${data.administrativeArea} - ${data.locality} - ${data.street} - ${data.name}";
-          address = "${data.administrativeArea} - ${data.locality} - ${data.street}";
+          address =
+              "${data.administrativeArea} - ${data.locality} - ${data.street}";
+          debugPrint("address selected & targetPosition==null is  $address");
           debugPrint("enter setAddress 4");
         });
         isLoading = false;
@@ -72,7 +87,6 @@ class _MapScreenState extends State<MapScreen> {
       });
       debugPrint("enter setAddress 6");
     }
-
   }
 
   void setCustomMarker() async {
@@ -257,16 +271,20 @@ class _MapScreenState extends State<MapScreen> {
                 onMapCreated: _onMapCreated,
                 markers: _markers,
                 onTap: (LatLng pos) {
-                  setState(() {
-                    targetPosition = pos;
-                    _markers.clear();
-                    _markers.add(Marker(
-                      markerId: const MarkerId("my location"),
-                      position: targetPosition!,
-                      // icon: mapMarker!,
-                      // icon: mapMarker!,
-                    ));
-                  });
+                  debugPrint("first 111111111");
+                  setState(
+                    () {
+                      isTap=true;
+                      targetPosition = pos;
+                      _markers.clear();
+                      _markers.add(Marker(
+                        markerId: const MarkerId("my location"),
+                        position: targetPosition!,
+                        // icon: mapMarker!,
+                        // icon: mapMarker!,
+                      ));
+                    },
+                  );
                   setAddress();
                 },
                 // onCameraMove: (CameraPosition position){

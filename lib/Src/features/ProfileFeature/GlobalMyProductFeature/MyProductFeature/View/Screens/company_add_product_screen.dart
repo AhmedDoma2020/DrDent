@@ -81,11 +81,12 @@ class CompanyAddProduct extends StatelessWidget {
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) => ImageFormForm(
+                          itemBuilder: (context, index) =>
+                              ImageFormForm(
                             onDelete: () {
                               _.deleteImage(index);
                             },
-                            image: _.imageFileList[index],
+                            image:  _.imageFileList[index],
                           ),
                           separatorBuilder: (context, index) => 16.0.ESW(),
                           itemCount: _.imageFileList.length,

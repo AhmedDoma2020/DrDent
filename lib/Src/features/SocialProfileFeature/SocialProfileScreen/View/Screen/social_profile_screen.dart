@@ -1,9 +1,7 @@
 import 'package:dr_dent/Src/bloc/controller/follow_and_un_follow_controller.dart';
 import 'package:dr_dent/Src/bloc/controller/navigation_routs_controller.dart';
-import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/services/photo_view.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
-
 import 'package:dr_dent/Src/features/SocialProfileFeature/SocialProfileScreen/Block/Controller/featch_social_profile_controller.dart';
 import 'package:dr_dent/Src/features/SocialProfileFeature/SocialProfileScreen/View/Widget/social_profile_row_info_and_rate.dart';
 import 'package:dr_dent/Src/ui/widgets/Dialog/loading_dialog.dart';
@@ -16,21 +14,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../Widget/profile_social_info_widget.dart';
-
 class SocialProfileScreen extends StatelessWidget {
   final int userId;
 
   const SocialProfileScreen({required this.userId, Key? key}) : super(key: key);
 
-  Widget buildSliverAppBar({required String name, required String cover , required String avatar , required int id, required int isFollow}) {
+  Widget buildSliverAppBar(
+      {required String name,
+      required String cover,
+      required String avatar,
+      required int id,
+      required int isFollow}) {
     return SliverAppBar(
       expandedHeight: 200.h,
       pinned: true,
       stretch: true,
-      iconTheme: const IconThemeData(
-        color: Colors.black
-      ),
+      iconTheme: const IconThemeData(color: Colors.black),
       actions: [
         PopUpMenuOfReportAndBlockProfile(
           userId: id,
@@ -39,28 +38,35 @@ class SocialProfileScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: true,
-        title: CustomText(
-          text: name,
-          fontW: FW.semicond,
-          textAlign: TextAlign.center,
-          // fontSize: 20,
+        title: Container(
+          width: 100.w,
+          // color: Colors.red,
+          child: CustomText(
+            text: name,
+            fontW: FW.semicond,
+            textAlign: TextAlign.center,
+            overflow: true,
+            // fontSize: 20,
+          ),
         ),
         titlePadding: EdgeInsets.only(
-            left:126.w,right: 126.w,bottom: 18.h),
+          // left: 126.w,
+          right: 0.w,
+          bottom: 18.h,
+        ),
         background: Stack(
           children: [
             GestureDetector(
               onTap: () {
                 Get.to(
-                      () => PhotoViewWidget(
-                    imageProvider:
-                    NetworkImage(cover),
+                  () => PhotoViewWidget(
+                    imageProvider: NetworkImage(cover),
                   ),
                 );
               },
               child: ImageNetwork(
-                url:cover ,
-                height: 188.h,
+                url: cover,
+                height: 156.h,
                 width: double.infinity,
               ),
             ),
@@ -86,9 +92,8 @@ class SocialProfileScreen extends StatelessWidget {
                           child: GestureDetector(
                             onTap: () {
                               Get.to(
-                                    () => PhotoViewWidget(
-                                  imageProvider:
-                                  NetworkImage(avatar),
+                                () => PhotoViewWidget(
+                                  imageProvider: NetworkImage(avatar),
                                 ),
                               );
                             },
@@ -110,22 +115,18 @@ class SocialProfileScreen extends StatelessWidget {
               ),
             ),
             Positioned(
-              bottom: 20.h,
-              left: 0.w,
+              bottom: 18.h,
+              left: 8.w,
               child: Center(
-                child: Padding(
-                  padding: EdgeInsets.only(left: 24.w),
-                  child: FollowButton(
-                    userId: id,
-                    onTap: () {},
-                    isFollow: isFollow,
-                  ),
+                child: FollowButton(
+                  userId: id,
+                  onTap: () {},
+                  isFollow: isFollow,
                 ),
               ),
             ),
           ],
         ),
-
       ),
     );
   }
@@ -141,29 +142,32 @@ class SocialProfileScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: GetBuilder<FetchSocialProfileController>(
-        builder: (_) => _.status == RequestStatus.loading ? Center(child: Loader(),): CustomScrollView(
-        slivers: [
-          buildSliverAppBar(
-            isFollow: _.userProfileModel!.isFollow,
-            id: _.userProfileModel!.id,
-            name: _.userProfileModel!.name,
-            avatar: _.userProfileModel!.image,
-            cover: _.userProfileModel!.cover,
-          ),
-          SliverList(
-              delegate: SliverChildListDelegate([
-            SocialProfileRowInfoAndRate(),
-
-             socialProfileIOSTapBarType(userTypeId: _.userProfileModel!.userTypeId, userId: userId),
-
-          ])),
-        ],
-      ),),
+        builder: (_) => _.status == RequestStatus.loading
+            ? Center(
+                child: Loader(),
+              )
+            : CustomScrollView(
+                slivers: [
+                  buildSliverAppBar(
+                    isFollow: _.userProfileModel!.isFollow,
+                    id: _.userProfileModel!.id,
+                    name: _.userProfileModel!.name,
+                    avatar: _.userProfileModel!.image,
+                    cover: _.userProfileModel!.cover,
+                  ),
+                  SliverList(
+                      delegate: SliverChildListDelegate([
+                    SocialProfileRowInfoAndRate(),
+                    socialProfileIOSTapBarType(
+                        userTypeId: _.userProfileModel!.userTypeId,
+                        userId: userId),
+                  ])),
+                ],
+              ),
+      ),
     );
   }
 }
-
-
 
 //
 // @override

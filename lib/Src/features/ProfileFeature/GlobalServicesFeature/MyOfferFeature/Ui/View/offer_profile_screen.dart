@@ -133,7 +133,7 @@ class OfferProfileScreen extends StatelessWidget {
                                 maxWidth: 300.w,
                               ),
                               child: CustomText(
-                                text: offerAndDiscount.bookingInfo,
+                                text: offerAndDiscount.offerInfo,
                                 fontW: FW.semicond,
                                 fontSize: 12,
                                 color: kCMainGrey,
@@ -153,7 +153,7 @@ class OfferProfileScreen extends StatelessWidget {
                                 maxWidth: 300.w,
                               ),
                               child: CustomText(
-                                text: offerAndDiscount.offerInfo,
+                                text: offerAndDiscount.bookingInfo,
                                 fontW: FW.semicond,
                                 fontSize: 12,
                                 color: kCMainGrey,

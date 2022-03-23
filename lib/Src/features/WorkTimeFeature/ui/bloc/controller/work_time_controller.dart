@@ -23,6 +23,7 @@ enum UserTypeEnum {
   graduated,
   company,
   lab,
+  centerDoctor,
 }
 
 class WorkTimeController extends GetxController {
@@ -92,7 +93,7 @@ class WorkTimeController extends GetxController {
     debugPrint("userType in workTime controller is in fetchDays$userType");
     update();
     late var response;
-    if (userType == UserTypeEnum.doctor) {
+    if (userType == UserTypeEnum.doctor || userType == UserTypeEnum.centerDoctor) {
       response = await _fetchDaysRepository.fetchDays(
           workspaceId: workSpaceId!, doctorId: doctorId!);
     } else if (userType == UserTypeEnum.center) {
@@ -101,7 +102,6 @@ class WorkTimeController extends GetxController {
     } else if (userType == UserTypeEnum.company) {
       response = await _fetchDaysForCompanyRepository.fetchDaysForCompany();
     }
-
     if (response.statusCode == 200 && response.data["status"] == true) {
       debugPrint("request operation success");
       days.clear();
@@ -210,7 +210,7 @@ class WorkTimeController extends GetxController {
           dayBookingType: _dayBookingType ?? 0,
           workspaceId: workSpaceId!,
           doctorId: doctorId!);
-      Get.back();
+          Get.back();
       if (response.statusCode == 200 && response.data["status"] == true) {
         debugPrint("request operation success");
         onSuccess();

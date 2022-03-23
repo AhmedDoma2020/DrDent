@@ -109,27 +109,37 @@ navigationAfterStartNowScreen({required int grade}) {
   }
 }
 
-Widget profileIOSTapBarType({required int userTypeId , required int userId}) {
+Widget profileIOSTapBarType({required int userTypeId, required int userId}) {
   switch (userTypeId) {
     case 3:
       {
-        return  ButtonTapBarWidgetOfDoctor(userId: userId,);
+        return ButtonTapBarWidgetOfDoctor(
+          userId: userId,
+        );
       }
     case 4:
       {
-        return  ButtonTapBarWidgetOfCenter(userId: userId,);
+        return ButtonTapBarWidgetOfCenter(
+          userId: userId,
+        );
       }
     case 5:
       {
-        return  ButtonTapBarWidgetOfCompany(userId: userId,);
+        return ButtonTapBarWidgetOfCompany(
+          userId: userId,
+        );
       }
     case 6:
       {
-        return  ButtonTapBarWidgetOfCompany(userId: userId,);
+        return ButtonTapBarWidgetOfCompany(
+          userId: userId,
+        );
       }
     case 7:
       {
-        return  ButtonTapBarWidgetOfGraduated(userId: userId,);
+        return ButtonTapBarWidgetOfGraduated(
+          userId: userId,
+        );
       }
     default:
       {
@@ -138,27 +148,38 @@ Widget profileIOSTapBarType({required int userTypeId , required int userId}) {
   }
 }
 
-Widget socialProfileIOSTapBarType({required int userTypeId, required int userId}) {
+Widget socialProfileIOSTapBarType(
+    {required int userTypeId, required int userId}) {
   switch (userTypeId) {
     case 3:
       {
-        return  SocialIOSTapBarWidgetOfDoctor(userId: userId,);
+        return SocialIOSTapBarWidgetOfDoctor(
+          userId: userId,
+        );
       }
     case 4:
       {
-        return  SocialIOSTapBarWidgetOfDoctor(userId: userId,);
+        return SocialIOSTapBarWidgetOfDoctor(
+          userId: userId,
+        );
       }
     case 5:
       {
-        return  SocialIOSTapBarWidgetOfCompanyAndLab(userId: userId,);
+        return SocialIOSTapBarWidgetOfCompanyAndLab(
+          userId: userId,
+        );
       }
     case 6:
       {
-        return  SocialIOSTapBarWidgetOfCompanyAndLab(userId: userId,);
+        return SocialIOSTapBarWidgetOfCompanyAndLab(
+          userId: userId,
+        );
       }
     case 7:
       {
-        return  SocialIOSTapBarWidgetOfGraduated(userId: userId,);
+        return SocialIOSTapBarWidgetOfGraduated(
+          userId: userId,
+        );
       }
     default:
       {

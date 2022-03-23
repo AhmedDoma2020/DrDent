@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:dr_dent/Src/core/constants/api_key.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,9 +15,9 @@ class NetworkService with ApiKey {
       bool auth = false}) async {
     Response? response;
     String apiToken = box.read("api_token") ?? "Not Found Token";
-    // $2y$10$NBYTyWoXPQm1Fe911Nsfo.t93YFyUodZFH9yzv8FpMVbyHP6uSgA.   5
+    // $2y$10$D4jqX8SI834Od0ODWTH8WeR9za2VPivcPXz7B5Kz/psqAVpoXEeGe  3
     String staticApiToken =
-        "\$2y\$10\$B3c/TiKUC3q8D9Jaj2VqZ.3Y.bGmN5dQE6czN3c4Mygi6olzUBbQi";
+        "\$2y\$10\$NBYTyWoXPQm1Fe911Nsfo.t93YFyUodZFH9yzv8FpMVbyHP6uSgA.";
     log("apiToken storage in netWork >>>>>>>>>:-> $apiToken");
     log("apiToken static in netWork >>>>>>>>>:-> $staticApiToken");
     try {
@@ -53,9 +52,9 @@ class NetworkService with ApiKey {
       bool auth = false}) async {
     Response? response;
     String apiToken = box.read("api_token") ?? "Not Found Token";
-    // $2y$10$NBYTyWoXPQm1Fe911Nsfo.t93YFyUodZFH9yzv8FpMVbyHP6uSgA.   5
+    // $2y$10$D4jqX8SI834Od0ODWTH8WeR9za2VPivcPXz7B5Kz/psqAVpoXEeGe   3
     String staticApiToken =
-        "\$2y\$10\$B3c/TiKUC3q8D9Jaj2VqZ.3Y.bGmN5dQE6czN3c4Mygi6olzUBbQi";
+        "\$2y\$10\$NBYTyWoXPQm1Fe911Nsfo.t93YFyUodZFH9yzv8FpMVbyHP6uSgA.";
     log("apiToken storage in netWork >>>>>>>>>:-> $apiToken");
     log("apiToken static in netWork >>>>>>>>>:-> $staticApiToken");
     dio.options.baseUrl = ApiKey.apiBaseUrl;

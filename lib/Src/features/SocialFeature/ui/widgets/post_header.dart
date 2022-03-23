@@ -1,6 +1,7 @@
 import 'package:dr_dent/Src/bloc/model/post_model.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/features/SocialFeature/bloc/Controller/delete_post_controller.dart';
+import 'package:dr_dent/Src/features/SocialFeature/bloc/Controller/socail_controller.dart';
 import 'package:dr_dent/Src/features/SocialProfileFeature/SocialProfileScreen/View/Screen/social_profile_screen.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/image_network.dart';
@@ -28,8 +29,7 @@ class PostHeader extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    DeletePostController _deletePostController =
-        Get.put(DeletePostController());
+    SocialController _socialController = Get.find();
     GetStorage box = GetStorage();
     return Container(
       child: Padding(
@@ -145,7 +145,7 @@ class PostHeader extends StatelessWidget {
                                 child: ListTile(
                                   onTap: () {
                                     Get.back();
-                                    _deletePostController.deletePost(
+                                    _socialController.deletePost(
                                         postId: post.id!);
                                   },
                                   title: CustomText(

@@ -28,8 +28,10 @@ class CompanyProductsScreen extends StatelessWidget {
     GetStorage box = GetStorage();
     Get.put(CompanyProductsController(storeId: userId));
     return Scaffold(
-      floatingActionButton: isMine? FloatingActionButton(
-        child: Icon(
+      floatingActionButton:
+      isMine?
+      FloatingActionButton(
+              child: Icon(
           Icons.add,
           color: Colors.white,
           size: 24.w,
@@ -39,7 +41,7 @@ class CompanyProductsScreen extends StatelessWidget {
         },
         backgroundColor: kCMain,
       ):0.0.ESW(),
-      appBar: AppBars.appBarDefault(title: 'كل المنتجات'),
+      appBar: AppBars.appBarDefault(title: 'all_product'),
       body: Padding(
         padding:  EdgeInsets.only(
             right: 16.w,
@@ -53,10 +55,12 @@ class CompanyProductsScreen extends StatelessWidget {
               16.0.ESH(),
               // const TabsCategory(),
               // 16.0.ESH(),
-              Expanded(
+              SizedBox(
+                height: 640,
                   child:
                   _.status != RequestStatus.done?
-                  Center(child: Loader(),):_.products.isEmpty ?EmptyWidget(
+                  Center(child: Loader(),):_.products.isEmpty ?
+                  EmptyWidget(
                     image: "assets/image/emptyProduct.png",
                     onTapButton: () {},
                     title: 'There_are_no_products_to_display'.tr,
