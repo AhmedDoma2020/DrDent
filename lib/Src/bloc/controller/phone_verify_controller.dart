@@ -12,8 +12,8 @@ class PhoneVerifyController{
     var _auth = FirebaseAuth.instance;
     setLoading();
     _auth.verifyPhoneNumber(
-        // phoneNumber: phone!.startsWith("0")?"+2$phone":"+20$phone",
-        phoneNumber: "+201212648022",
+        phoneNumber: phone!.startsWith("0")?"+2$phone":"+20$phone",
+        // phoneNumber: "+201212648022",
         timeout: Duration(seconds: 60),
         verificationCompleted: (PhoneAuthCredential credential) async {
           onSuccess!();
