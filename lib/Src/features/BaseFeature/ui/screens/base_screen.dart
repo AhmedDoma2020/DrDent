@@ -58,7 +58,7 @@ class BaseScreen extends StatelessWidget {
                 JobsScreen(),
                 Container(),
                 SocialScreen(),
-                StoreScreen()
+                StoreScreen(),
               ][_.tabIndex],
             ),
             Align(

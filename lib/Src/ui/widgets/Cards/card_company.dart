@@ -69,7 +69,7 @@ class CardCompany extends StatelessWidget {
                         Icon(Icons.star,color: i<store.rate! ? kCMainRate:kCLightGrey,size: 8.w,),
                       4.5.ESW(),
                       CustomText(
-                        text: '4',
+                        text: store.rate.toString(),
                         fontSize: 10,
                         overflow: true,
                         fontW: FW.semicond,
@@ -80,12 +80,15 @@ class CardCompany extends StatelessWidget {
                   3.0.ESH(),
                   Row(
                     children: [
-                      CustomText(
-                        text: store.address,
-                        fontSize: 9,
-                        overflow: true,
-                        fontW: FW.thin,
-                        color: kCMainGrey,
+                      SizedBox(
+                        width:120.w,
+                        child: CustomText(
+                          text: store.address,
+                          fontSize: 9,
+                          overflow: true,
+                          fontW: FW.thin,
+                          color: kCMainGrey,
+                        ),
                       ),
                     ],
                   ),

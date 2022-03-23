@@ -119,8 +119,8 @@ class CardJobOffer extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const CardTag(
-                    title: 'Full_time',
+                   CardTag(
+                    title: offer.jobTypeId == 0? 'Full_time':'part_time' ,
                   ),
                   CustomText(
                     text: '${'from_'.tr} ${offer.startSalary} - ${offer.endSalary} ${'E_G_P'.tr}',

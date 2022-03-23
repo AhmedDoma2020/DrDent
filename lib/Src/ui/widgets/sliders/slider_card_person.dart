@@ -15,39 +15,44 @@ import '../Cards/card_person.dart';
 import '/src/core/utils/extensions.dart';
 
 class SliderCardPerson extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-    Get.put(InformationRequestsController());
     return GetBuilder<InformationRequestsController>(
       assignId: true,
       builder: (_) {
-        return
-          _.status != RequestStatus.done?
-              0.0.ESH():
-              _.requests.isEmpty?
-                  0.0.ESH():
-          Column(
-          children: [
-            TitleRowViewAll(
-              titleSlider: 'Query_requests', titleOnTap: ' ', onTap: () {},),
-            12.0.ESH(),
-            SizedBox(
-              height: 90.h,
-              child: ListView.separated(
-                itemBuilder: (context, index) =>
-                    Padding(
-                      padding: EdgeInsets.only(right: index == 0 ? 16.w : 0),
-                      child: CardPerson(request:_.requests[index],onDelete: (){_.deleteInformationRequests(requestIndex: index);}),
-                    ),
-                separatorBuilder: (context, index) => 16.0.ESW(),
-                itemCount: _.requests.length,
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-              ),
-            ),
-          ],
-        );
+        return _.status != RequestStatus.done
+            ? 0.0.ESH()
+            : _.requests.isEmpty
+                ? 0.0.ESH()
+                : Column(
+                    children: [
+                      TitleRowViewAll(
+                        titleSlider: 'Query_requests',
+                        titleOnTap: ' ',
+                        onTap: () {},
+                      ),
+                      12.0.ESH(),
+                      SizedBox(
+                        height: 104.h,
+                        child: ListView.separated(
+                          itemBuilder: (context, index) => Padding(
+                            padding:
+                                EdgeInsets.only(right: index == 0 ? 16.w : 0),
+                            child: CardPerson(
+                                request: _.requests[index],
+                                onDelete: () {
+                                  _.deleteInformationRequests(
+                                      requestIndex: index);
+                                }),
+                          ),
+                          separatorBuilder: (context, index) => 16.0.ESW(),
+                          itemCount: _.requests.length,
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                        ),
+                      ),
+                    ],
+                  );
       },
     );
   }

@@ -66,7 +66,7 @@ class SocialProfileScreen extends StatelessWidget {
               },
               child: ImageNetwork(
                 url: cover,
-                height: 188.h,
+                height: 156.h,
                 width: double.infinity,
               ),
             ),

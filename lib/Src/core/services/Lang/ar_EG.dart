@@ -372,6 +372,7 @@ const Map<String, String> arAE = {
 "Get_answers_to_all_your_questions_instantly":"احصل على إجابات لكل استفساراتك فورا",
 "Send_your_message_and_we_will_reply_to_you_on_your_email":"ارسل رسالتك ونقوم بالرد عليك على بريدك الإلكتروني",
 "all_product":"كل المنتجات",
+"company_data":"بيانات الشركه",
 "all_company":"كل الشركات",
 "ratting_":"تقييم",
 "closed_now":"مغلق الان",

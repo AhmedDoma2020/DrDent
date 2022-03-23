@@ -50,12 +50,12 @@ class CustomDrawer extends StatelessWidget {
                         },
                         title: "Profile_",
                         icon: "assets/icons/personalInfoIcon.png"),
-                    RowOfItemDrawer(
-                        onTap: () {
-                          Get.to(() => MyVisitScreen());
-                        },
-                        title: "Reservations_",
-                        icon: "assets/icons/personalInfoIcon.png"),
+                    // RowOfItemDrawer(
+                    //     onTap: () {
+                    //       Get.to(() => MyVisitScreen());
+                    //     },
+                    //     title: "Reservations_",
+                    //     icon: "assets/icons/personalInfoIcon.png"),
                     RowOfItemDrawer(
                         onTap: () {
                           Get.to(()=>NotificationsScreen());

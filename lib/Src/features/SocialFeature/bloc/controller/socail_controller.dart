@@ -5,8 +5,10 @@ import 'package:dr_dent/Src/features/JobFeature/bloc/model/job_request.dart';
 import 'package:dr_dent/Src/features/JobFeature/bloc/repository/job_offers_repository.dart';
 import 'package:dr_dent/Src/features/JobFeature/bloc/repository/job_requests_repository.dart';
 import 'package:dr_dent/Src/features/SocialFeature/bloc/Controller/like_post_controller.dart';
+import 'package:dr_dent/Src/features/SocialFeature/bloc/Repository/delete_post_repo.dart';
 import 'package:dr_dent/Src/features/SocialFeature/bloc/Repository/edit_post_repo.dart';
 import 'package:dr_dent/Src/features/SocialFeature/bloc/repository/social_repository.dart';
+import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -48,10 +50,32 @@ class SocialController extends GetxController{
   // ================  END FETCH DATA  ====================
 
 
-  void deletePost(int id){
+  void deletePostLocal(int id){
     int index = _posts.indexWhere((element) => element.id == id);
     _posts.removeAt(index);
     update();
+  }
+
+  // final SocialController _socialController = Get.find();
+  final DeletePostRepository _deletePostRepository =DeletePostRepository();
+
+  // to delete post
+  void deletePost({required int postId}) async {
+    Get.closeCurrentSnackbar();
+    setLoading();
+    var response = await _deletePostRepository.deletePost(postId: postId);
+    Get.back();
+    if (response.statusCode == 200 && response.data["status"] == true) {
+      // _socialController.deletePost(postId);
+      deletePostLocal(postId);
+      customSnackBar(title: response.data["message"]??"");
+      debugPrint("convert operation success");
+      update();
+    } else {
+      debugPrint('response in add post is $response');
+      customSnackBar(title: response.data["message"]??"");
+      update();
+    }
   }
 
   final LikePostController _likePostController = Get.put(LikePostController());

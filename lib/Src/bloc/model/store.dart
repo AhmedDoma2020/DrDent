@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 class Store{
 
   int? id;
@@ -22,6 +24,7 @@ class Store{
     id = map['id']??0;
     rate = map['rate']??0;
     open = map['open']??0;
+    debugPrint("map['open'] is ${map['open']??8}");
     reviewers = map['reviewers']??0;
     name = map['name']??' ';
     image = map['image']??' ';
