@@ -36,8 +36,8 @@ class SocialIOSTapBarWidgetOfGraduated extends StatelessWidget {
                     _.tabIndex = index;
                   },
                   titles:[
-                    'my_posts'.tr,
-                    'Doctor_data'.tr,
+                    'posts_'.tr,
+                    'data_'.tr,
                   ],
                   tabIndex: _.tabIndex,
                   activeCardColor: Colors.white,

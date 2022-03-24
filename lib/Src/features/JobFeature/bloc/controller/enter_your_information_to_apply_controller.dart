@@ -8,6 +8,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import 'job_offers_controller.dart';
+
 class EnterYourInformationToApplyJobController extends GetxController {
   final int offerId;
 
@@ -55,7 +57,7 @@ class EnterYourInformationToApplyJobController extends GetxController {
   set setCVImage(String value) {
     _cVImage = value;
   }
-
+  JobOffersController _jobOffersController = Get.find();
 
   RequestStatus status = RequestStatus.initial;
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
@@ -84,6 +86,7 @@ class EnterYourInformationToApplyJobController extends GetxController {
       Get.back();
           if (response.statusCode == 200 && response.data["status"] == true) {
             debugPrint("request operation success");
+            _jobOffersController.changeIsApplied(offerId: offerId);
             Get.back();
             customSnackBar(title: response.data['message']??"",);
             debugPrint("convert operation success");

@@ -15,7 +15,8 @@ class CardJobOffer extends StatelessWidget {
   final VoidCallback? onDeleteTap;
   final VoidCallback? onEditTap;
   final bool isMine;
-  const CardJobOffer({Key? key,required this.offer,this.onDeleteTap,this.isMine=false,this.onEditTap}) : super(key: key);
+  final int index;
+  const CardJobOffer({Key? key,required this.offer,this.onDeleteTap,this.isMine=false,this.onEditTap,required this.index}) : super(key: key);
 
 
   @override
@@ -23,6 +24,7 @@ class CardJobOffer extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Get.to(() => JobScreen(
+          index:index ,
               offer: offer,
             ));
       },

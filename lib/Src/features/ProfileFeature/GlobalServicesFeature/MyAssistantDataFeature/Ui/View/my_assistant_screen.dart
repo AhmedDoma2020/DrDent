@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
@@ -69,8 +71,12 @@ class MyAssistantScreen extends StatelessWidget {
                           ),isScrollControlled: true);
                         },
                         onDeleteTap: _.snackBarStatus == SnackbarStatus.CLOSED? () {
-                          _.deleteAssistant(assistantId: _.myAssistantList[index].id,);
-                        }:(){},
+                          Get.closeAllSnackbars();
+                          Timer(const Duration(seconds: 1), () {
+                            _.deleteAssistant(assistantId: _.myAssistantList[index].id,);
+                          });
+                        }:(){
+                        },
                       ),
                       separatorBuilder: (context, index) => 16.0.ESH(),
                       itemCount: _.myAssistantList.length,

@@ -96,7 +96,7 @@ class DayWidget extends StatelessWidget {
                             children: [
                               GestureDetector(
                                 onTap: () {
-                                  debugPrint("open sheet");
+                                  debugPrint("open sheet edit work space");
                                   Get.bottomSheet(SheetAddDayDetails(
                                     userType: userType,
                                     onSave: (start, end, visitsCount) {

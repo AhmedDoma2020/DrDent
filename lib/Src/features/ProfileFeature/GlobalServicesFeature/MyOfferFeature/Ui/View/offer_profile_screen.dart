@@ -9,10 +9,10 @@ import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
 class OfferProfileScreen extends StatelessWidget {
   final OfferAndDiscountModel offerAndDiscount;
-  final String getServicesTitle;
+  // final String getServicesTitle;
   const OfferProfileScreen({
     required this.offerAndDiscount,
-    required this.getServicesTitle,
+    // required this.getServicesTitle,
     Key? key,
   }) : super(key: key);
 
@@ -63,7 +63,7 @@ class OfferProfileScreen extends StatelessWidget {
                               constraints: BoxConstraints(maxWidth: 260.w),
                               // color: Colors.greenAccent,
                               child: CustomText(
-                                text: getServicesTitle,
+                                text: offerAndDiscount.servicesTitle,
                                 fontW: FW.light,
                                 fontSize: 10,
                                 color: kCMainGrey,

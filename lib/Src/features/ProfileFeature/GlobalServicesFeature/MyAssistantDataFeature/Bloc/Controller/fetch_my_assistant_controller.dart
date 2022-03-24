@@ -65,11 +65,13 @@ class FetchMyAssistantController extends GetxController {
       status = RequestStatus.done;
       customSnackBar(
         title: response.data["message"] ?? "Error",
+
         snackBarStatus: (SnackbarStatus? status) {
           _snackBarStatus = status;
           update();
           debugPrint("SnackbarStatus is $status");
         },
+
       );
       update();
     } else {

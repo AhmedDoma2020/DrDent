@@ -21,7 +21,6 @@ class ButtonTapBarWidgetOfCenter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(ProfileTapIndexController());
-
     return  GetBuilder<ProfileTapIndexController>(
       builder: (_) => Column(
         children: [

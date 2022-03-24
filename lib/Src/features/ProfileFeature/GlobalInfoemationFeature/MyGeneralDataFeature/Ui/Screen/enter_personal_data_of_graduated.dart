@@ -77,6 +77,7 @@ class EnterPersonalDataOfGraduatedScreen extends StatelessWidget {
                     ),
                     16.0.ESH(),
                     RowGenderWidget(
+                      userInPutType: _.gender,
                       onTap: (gender) {
                         _.estGender = gender;
                       },

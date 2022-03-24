@@ -33,7 +33,7 @@ class WorkSpacesOfCenterDoctorForm extends StatelessWidget {
   Widget build(BuildContext context) {
     debugPrint("fetchDetectionTime $fetchDetectionTime");
     debugPrint("dayBookingTypeEdit $dayBookingTypeEdit");
-    FetchCenterDoctorController _fetchCenterDoctorController =  Get.find();
+    FetchCenterDoctorController _fetchCenterDoctorController = Get.find();
     return Container(
       width: double.infinity,
       // color: Colors.white,
@@ -45,7 +45,12 @@ class WorkSpacesOfCenterDoctorForm extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  ImageIcon(const AssetImage("assets/icons/examination_and_clinic_data.png"),color: kCSubMain,size: 24.h,),
+                  ImageIcon(
+                    const AssetImage(
+                        "assets/icons/examination_and_clinic_data.png"),
+                    color: kCSubMain,
+                    size: 24.h,
+                  ),
                   8.0.ESW(),
                   SizedBox(
                     width: 188.w,
@@ -58,23 +63,26 @@ class WorkSpacesOfCenterDoctorForm extends StatelessWidget {
                   ),
                 ],
               ),
-              IconWidget(onEditTap: (){
-                Get.to(WorkTimeScreen(
-                  userType: UserTypeEnum.centerDoctor,
-                  dayBookingTypeEdit: dayBookingTypeEdit,
-                  fetchDetectionTime: fetchDetectionTime,
-                  isEdit: true,
-                  onSuccess:(){
-                    Get.back();
-                    _fetchCenterDoctorController.fetchCenterDoctor();
-                  },
-                  workspaceId:workSpaceId,
-                  doctorId: doctorId,
-                  isBack: true,
-
-                ),);
-              }
-              ,icon: "assets/icons/timeIcon.png",)
+              IconWidget(
+                onEditTap: () {
+                  Get.to(
+                    WorkTimeScreen(
+                      userType: UserTypeEnum.centerDoctor,
+                      dayBookingTypeEdit: dayBookingTypeEdit,
+                      fetchDetectionTime: fetchDetectionTime,
+                      isEdit: true,
+                      onSuccess: () {
+                        Get.back();
+                        _fetchCenterDoctorController.fetchCenterDoctor();
+                      },
+                      workspaceId: workSpaceId,
+                      doctorId: doctorId,
+                      isBack: true,
+                    ),
+                  );
+                },
+                icon: "assets/icons/timeIcon.png",
+              )
             ],
           ),
           14.0.ESH(),
