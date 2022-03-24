@@ -51,11 +51,15 @@ class CardPerson extends StatelessWidget {
                     fontW: FW.regular,
                     fontSize: 12,
                   ),7.0.ESH(),
-                  CustomText(
-                    text: request.product.title,
-                    color: kCMainGrey,
-                    fontW: FW.regular,
-                    fontSize: 12,
+                  SizedBox(
+                    width: 200.w,
+                    child: CustomText(
+                      text: request.product.title,
+                      color: kCMainGrey,
+                      fontW: FW.regular,
+                      fontSize: 12,
+                      overflow: true,
+                    ),
                   ),
                 ],
               ),

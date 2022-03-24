@@ -317,7 +317,9 @@ const Map<String, String> arAE = {
   'follow_':'متابعة',
   'un_follow':'الغاء المتابعة',
   'Doctor_data':'بيانات الطبيب',
+  'medical_data':'بيانات طبيه',
   'Doctor_services':'خدمات الطبيب',
+  'services_':'الخدمات',
   'work_data':'بيانات العمل',
   'Waiting_time':'مدة الإنتظار',
   'Detection_price':'سعر الكشف',
@@ -400,6 +402,13 @@ const Map<String, String> arAE = {
 "Write_the_content_of_the_post":"اكتب محتوي المنشور",
 "Query_requests":"طلبات الاستعلام",
 "Raw_materials":"مواد خام",
+"no_followers_yet":"! لا يوجد لديك قوائم تتابعها بعد لعرضها",
+"no_following_yet":"! لا يوجد لديك قوائم متابعين بعد لعرضها",
+"posts_":"المنشورات",
+"data_":"البيانات",
+"no_notification_yet":"لا يوجد اشعارات بعد لعرضها",
+"Apply_for_a_job_successFly":"تم التقديم بنجاح",
+
 
 
 };

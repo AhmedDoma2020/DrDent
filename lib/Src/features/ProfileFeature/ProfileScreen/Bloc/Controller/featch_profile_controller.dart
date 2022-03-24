@@ -41,8 +41,8 @@ class FetchProfileController extends GetxController {
   int _universityId = 0;
   int _cityId = 0;
   int _stateId = 0;
-  int _buildNum=0;
-  int _flatNum=0;
+  String _buildNum='';
+  String _flatNum='';
   String _mark ='';
   double _lat=0.0;
   double _lon= 0.0;
@@ -54,8 +54,8 @@ class FetchProfileController extends GetxController {
   double get lon => _lon;
   int get cityId => _cityId;
   int get stateId => _stateId;
-  int get buildNum => _buildNum;
-  int get flatNum => _flatNum;
+  String get buildNum => _buildNum;
+  String get flatNum => _flatNum;
   String get mark => _mark;
   int? get id => _id;
   String get universityTitle => _universityTitle;
@@ -163,9 +163,12 @@ class FetchProfileController extends GetxController {
       _graduationDegree = response.data['data']['graduation_degree'] ?? 0;
       _cityId = response.data['data']['city_id'] ?? 0;
       _stateId = response.data['data']['state_id'] ?? 0;
-      _flatNum = response.data['data']['state_id'] ?? 0;
-      _buildNum = response.data['data']['state_id'] ?? 0;
+      _flatNum = response.data['data']['flat_number'] ?? 0;
+      _buildNum = response.data['data']['buliding_number'] ?? 0;
       _mark = response.data['data']['mark'] ??"";
+      debugPrint("response.data['data']['flat_number'] is ${_flatNum}");
+      debugPrint("response.data['data']['buliding_number'] is ${_buildNum}");
+      debugPrint("response.data['data']['mark'] is ${_mark}");
       _lat = response.data['data']['lat'] ??0.0;
       _lon= response.data['data']['lon'] ??0.0;
       _cv= response.data['data']['cv'] ??'';

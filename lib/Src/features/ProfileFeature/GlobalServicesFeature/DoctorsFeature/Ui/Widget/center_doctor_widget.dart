@@ -225,7 +225,6 @@ int workSpaceIdSelected = 0;
                                 dayBookingTypeEdit:  widget.doctor.workspaces[index].reservationType,
                                 workSpaceName: widget.doctor.workspaces[index].name,
                                 days: widget.doctor.workspaces[index].days,
-
                                 workSpaceId: widget.doctor.workspaces[index].id,
                                 doctorId: widget.doctor.id,
                               ),
@@ -254,7 +253,7 @@ int workSpaceIdSelected = 0;
                                   Get.back();
                                   Get.to(
                                     WorkTimeScreen(
-                                    userType: UserTypeEnum.doctor,
+                                    userType: UserTypeEnum.centerDoctor,
                                     isEdit: true,
                                     // dayBookingTypeEdit: widget.doctor.workspaces[],
                                     onSuccess:(){

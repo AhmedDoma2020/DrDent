@@ -33,17 +33,18 @@ class SliderCardPerson extends StatelessWidget {
                       ),
                       12.0.ESH(),
                       SizedBox(
-                        height: 104.h,
+                        height: 112.h,
                         child: ListView.separated(
                           itemBuilder: (context, index) => Padding(
                             padding:
                                 EdgeInsets.only(right: index == 0 ? 16.w : 0),
                             child: CardPerson(
-                                request: _.requests[index],
-                                onDelete: () {
-                                  _.deleteInformationRequests(
-                                      requestIndex: index);
-                                }),
+                              request: _.requests[index],
+                              onDelete: () {
+                                _.deleteInformationRequests(
+                                    requestIndex: index);
+                              },
+                            ),
                           ),
                           separatorBuilder: (context, index) => 16.0.ESW(),
                           itemCount: _.requests.length,

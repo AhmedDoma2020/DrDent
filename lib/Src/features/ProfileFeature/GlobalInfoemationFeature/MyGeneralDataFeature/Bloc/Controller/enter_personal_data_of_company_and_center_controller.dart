@@ -129,8 +129,9 @@ class EnterPersonalDataOfCompanyAndCenterController extends GetxController {
       aboutController!.text = _fetchProfileDoctorController.about;
       // administratorPhoneController!.text = _fetchProfileDoctorController.!;
 
-      debugPrint("nameController!.text ${nameController!.text}");
-      debugPrint("degreeController!.text ${phoneController!.text}");
+      debugPrint("_fetchProfileDoctorController.buildNum.toString() ${_fetchProfileDoctorController.buildNum.toString()}");
+      debugPrint("_fetchProfileDoctorController.flatNum.toString() ${_fetchProfileDoctorController.flatNum.toString()}");
+      debugPrint("_fetchProfileDoctorController.mark ${_fetchProfileDoctorController.mark}");
       update();
     }
   }

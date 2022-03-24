@@ -22,6 +22,7 @@ class SliderJobOffers extends StatelessWidget {
     return ListView.separated(
       itemBuilder: (context, index) => CardJobOffer(
           offer: offers[index],
+          index: index,
           onDeleteTap: () {
             onDelete(offers[index].id);
           },

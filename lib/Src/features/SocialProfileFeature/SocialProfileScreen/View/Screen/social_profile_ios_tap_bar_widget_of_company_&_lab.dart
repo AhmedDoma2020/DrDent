@@ -37,7 +37,7 @@ class SocialIOSTapBarWidgetOfCompanyAndLab extends StatelessWidget {
                     _.tabIndex = index;
                   },
                   titles:[
-                    'my_posts'.tr,
+                    'posts_'.tr,
                     'company_data'.tr,
                     'products_'.tr,
                   ],

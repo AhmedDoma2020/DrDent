@@ -71,7 +71,11 @@ class JobOffersController extends GetxController{
   // ================  END DELETE DATA  ====================
 
 
-
+void changeIsApplied({required int offerId}){
+  final int indexOffer =  _jobOffers.indexWhere((element) => element.id == offerId);
+  _jobOffers[indexOffer].isApplied = 1;
+  update();
+}
 
   @override
   void onInit() {

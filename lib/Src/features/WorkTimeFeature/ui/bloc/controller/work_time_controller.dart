@@ -128,12 +128,16 @@ class WorkTimeController extends GetxController {
     debugPrint("userType in workTime controller is in addDayTime$userType");
     late var response;
     setLoading();
-    if (userType == UserTypeEnum.doctor) {
+    if (userType == UserTypeEnum.doctor || userType == UserTypeEnum.centerDoctor ) {
+      debugPrint("addDayTime in workTime controller is in addDayTime her1");
+
       response = await _addDayTimeRepository.addDayTime(
           dayId: dayId,
           dayTime: dayTime,
           workSpaceId: workSpaceId!,
           doctorId: doctorId!);
+      debugPrint("addDayTime in workTime controller is in addDayTime her2");
+
     } else if (userType == UserTypeEnum.center) {
       response = await _addDayTimeForCenterRepository.addDayTimeForCenter(
         dayId: dayId,
@@ -146,6 +150,7 @@ class WorkTimeController extends GetxController {
         dayTime: dayTime,
       );
     }
+
     Get.back();
     if (response.statusCode == 200 && response.data["status"] == true) {
       customSnackBar(title: response.data["message"] ?? "Error");

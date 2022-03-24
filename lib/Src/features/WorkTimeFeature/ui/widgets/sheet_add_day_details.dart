@@ -60,6 +60,7 @@ class _SheetAddDayDetailsState extends State<SheetAddDayDetails> {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint(" widget.userType in SheetAddDayDetails is ${widget.userType}");
     var node = FocusScope.of(context);
     return Material(
       borderRadius: BorderRadius.only(
@@ -68,7 +69,7 @@ class _SheetAddDayDetailsState extends State<SheetAddDayDetails> {
       ),
       child: Container(
         width: double.infinity,
-        height: widget.userType != UserTypeEnum.doctor? 260.h:340.h,
+        height: widget.userType != UserTypeEnum.doctor && widget.userType != UserTypeEnum.centerDoctor ? 260.h:340.h,
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.only(
@@ -150,7 +151,7 @@ class _SheetAddDayDetailsState extends State<SheetAddDayDetails> {
                       ),
                     ],
                   ),
-                  widget.userType != UserTypeEnum.doctor
+                  widget.userType != UserTypeEnum.doctor && widget.userType != UserTypeEnum.centerDoctor
                       ? 16.0.ESH()
                       : Column(
                           children: [

@@ -90,17 +90,23 @@ class AppBars {
           size: 24.h,
         ),
       ),
+
       actions: [
         isSkip ==true?
-        IconButton(
-          onPressed:onTapSkip,
-          icon: CustomText(
-            text: "skip_".tr,
-            fontW: FW.semibold,
-            fontSize: 12,
+        SizedBox(
+          width: 60.w,
+          child: IconButton(
+            padding: EdgeInsets.zero,
+            onPressed:onTapSkip,
+            icon: CustomText(
+              text: "skip_".tr,
+              fontW: FW.semibold,
+              fontSize: 12,
+            ),
           ),
         ):0.0.ESH()
       ],
+
       bottom: tabBar,
     );
   }

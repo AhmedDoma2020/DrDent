@@ -25,7 +25,7 @@ class MyDoctorScreen extends StatelessWidget {
     }
     return SafeArea(
       child: Scaffold(
-        floatingActionButton: FloatingActionButton(
+        floatingActionButton: FloatingActionButton (
           child: Icon(
             Icons.add,
             color: Colors.white,

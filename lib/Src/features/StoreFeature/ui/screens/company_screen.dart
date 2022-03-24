@@ -33,7 +33,6 @@ class CompanyScreen extends StatelessWidget {
               url: store.image
             ),
           ),
-
           Column(
             children: [
               SizedBox(
@@ -115,16 +114,19 @@ class CompanyScreen extends StatelessWidget {
                               height: 16.h,
                             ),
                             10.0.ESW(),
-                            CustomText(
-                              text: store.address,
-                              fontW: FW.medium,
-                              fontSize: 12,
-                              color: kCMainBlack2,
+                            SizedBox(
+                              width: ScreenUtil().screenWidth - 60,
+                              child: CustomText(
+                                text: store.address,
+                                fontW: FW.medium,
+                                fontSize: 12,
+                                color: kCMainBlack2,
+                              ),
                             ),
                           ],
                         ),
+                        4.0.ESH(),
                         store.lat!=null || store.lon!=null ?
-
                         Container(
                           height: 200.h,
                           width: double.infinity,

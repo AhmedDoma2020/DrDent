@@ -19,6 +19,7 @@ class JobOffer {
     required this.specializations,
     required this.requirements,
     required this.image,
+    required this.isApplied,
   });
   late final int id;
   late final int userId;
@@ -36,6 +37,7 @@ class JobOffer {
   late final List<Specializations> specializations;
   late final List<String> requirements;
   late final String image;
+  late  int isApplied;
 
   JobOffer.fromJson(Map<String, dynamic> json){
     id = json['id']??0;
@@ -64,6 +66,7 @@ class JobOffer {
       requirements  = requirementsLocal;
     }
     image = json['image'];
+    isApplied = json['is_applied'];
   }
 }
 

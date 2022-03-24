@@ -81,7 +81,7 @@ class CardCompany extends StatelessWidget {
                   Row(
                     children: [
                       SizedBox(
-                        width:120.w,
+                        width:112.w,
                         child: CustomText(
                           text: store.address,
                           fontSize: 9,

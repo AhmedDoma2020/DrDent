@@ -22,7 +22,7 @@ class GlobalInformationDetailsWidgetOfCenter extends StatelessWidget {
               onTap: () {
                 Get.to(() => const EnterPersonalDataOfCompanyAndCenterScreen(
                       isEdit: true,
-                    ));
+                    ),);
               },
             ),
           ),

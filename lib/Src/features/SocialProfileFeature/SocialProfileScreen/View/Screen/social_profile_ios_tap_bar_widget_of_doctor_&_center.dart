@@ -34,9 +34,9 @@ class SocialIOSTapBarWidgetOfDoctor extends StatelessWidget {
                     _.tabIndex = index;
                   },
                   titles:[
-                    'my_posts'.tr,
-                    'Doctor_data'.tr,
-                    'Doctor_services'.tr,
+                    'posts_'.tr,
+                    'medical_data'.tr,
+                    'services_'.tr,
                   ],
                   tabIndex: _.tabIndex,
                   activeCardColor: Colors.white,

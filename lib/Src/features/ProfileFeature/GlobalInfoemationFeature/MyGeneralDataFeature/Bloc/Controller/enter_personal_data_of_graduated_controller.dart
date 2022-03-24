@@ -83,7 +83,8 @@ String _futureCv='';
       degreeController!.text = _fetchProfileDoctorController.degreeTitle;
       _universityId = _fetchProfileDoctorController.universityId;
       _futureCertification = _fetchProfileDoctorController.photoOfWorkLicenses;
-      debugPrint(" _fetchProfileDoctorController.cv ${ _fetchProfileDoctorController.cv}");
+      estGender = _fetchProfileDoctorController.gender!;
+      debugPrint(" _fetchProfileDoctorController.gender ${ _fetchProfileDoctorController.gender}");
 
       _futureCv = _fetchProfileDoctorController.cv;
       update();
