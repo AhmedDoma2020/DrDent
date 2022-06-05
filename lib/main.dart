@@ -81,8 +81,8 @@ const AndroidNotificationChannel channel = AndroidNotificationChannel(
   'High Importance Notifications', // title
   description: 'This channel is used for important notifications.', // description
   importance: Importance.high,
-
 );
+
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 FlutterLocalNotificationsPlugin();
 // end background
@@ -159,6 +159,7 @@ class _MyAppState extends State<MyApp> {
     registerNotification();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(

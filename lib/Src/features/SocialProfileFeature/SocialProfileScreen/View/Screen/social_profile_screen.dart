@@ -25,6 +25,8 @@ class SocialProfileScreen extends StatelessWidget {
       required String avatar,
       required int id,
       required int isFollow}) {
+    GetStorage box = GetStorage();
+
     return SliverAppBar(
       expandedHeight: 200.h,
       pinned: true,
@@ -75,6 +77,10 @@ class SocialProfileScreen extends StatelessWidget {
               left: 16.w,
               right: 16.w,
               child: Row(
+                mainAxisAlignment:
+                (box.read('lan') == "en")
+                    ? MainAxisAlignment.end :
+                MainAxisAlignment.start,
                 children: [
                   Container(
                     height: 100.h,

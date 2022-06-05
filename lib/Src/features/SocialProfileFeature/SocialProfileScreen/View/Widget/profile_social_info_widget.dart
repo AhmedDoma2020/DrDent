@@ -80,8 +80,7 @@ class profileSocialInfoWidget extends StatelessWidget {
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 8.w),
                             child: PopupMenuButton(
-                              icon: Icon(Icons.more_vert,
-                                  color: Colors.white, size: 28.h),
+                              icon: Icon(Icons.more_vert, color: Colors.white, size: 28.h),
                               itemBuilder: (context) => <PopupMenuEntry>[
                                 PopupMenuItem(
                                   padding:
@@ -106,6 +105,7 @@ class profileSocialInfoWidget extends StatelessWidget {
                                     ),
                                   ),
                                 ),
+
                                 PopupMenuItem(
                                   padding:
                                       EdgeInsets.symmetric(horizontal: 0.w),
