@@ -12,11 +12,10 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '/src/core/utils/extensions.dart';
 import 'company_products_screen.dart';
 
-
 class CompanyScreen extends StatelessWidget {
   final Store store;
 
-  const CompanyScreen({Key? key,required this.store}) : super(key: key);
+  const CompanyScreen({Key? key, required this.store}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +27,7 @@ class CompanyScreen extends StatelessWidget {
             width: double.infinity,
             height: 300.h,
             child: ImageNetwork(
-              width: double.infinity,
-              height: 300.h,
-              url: store.image
-            ),
+                width: double.infinity, height: 300.h, url: store.image),
           ),
           Column(
             children: [
@@ -43,61 +39,64 @@ class CompanyScreen extends StatelessWidget {
                 child: Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(24.r),
-                      topLeft:  Radius.circular(24.r),
-
-                    ),
-                    color: Colors.white
-                  ),
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(24.r),
+                        topLeft: Radius.circular(24.r),
+                      ),
+                      color: Colors.white),
                   child: Padding(
-                    padding:  EdgeInsets.symmetric(
-                        horizontal: 16.0.w
-                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 16.0.w),
                     child: ListView(
                       children: [
-                          16.0.ESH(),
-                          CustomText(
-                            text: store.name,
-                            color: kCMainBlack2,
-                            fontW: FW.demi,
-                            fontSize: 18,
-                          ),
-                          8.0.ESH(),
-                          CustomText(
+                        16.0.ESH(),
+                        CustomText(
+                          text: store.name,
+                          color: kCMainBlack2,
+                          fontW: FW.demi,
+                          fontSize: 18,
+                        ),
+                        8.0.ESH(),
+                        CustomText(
                           text: store.phone,
                           color: kCMainBlack2,
                           fontW: FW.medium,
                           fontSize: 14,
                         ),
-                          8.0.ESH(),
-                          Row(
-                            children: [
-                              for(int i=0 ; i<5 ; i++ )
-                                  Icon(Icons.star,color: i<5 ? kCMainRate:kCMainRate.withOpacity(.6),size: 12.h,),
-                              2.6.ESW(),
-                              CustomText(
-                                text: store.rate.toString(),
-                                color: kCMainBlack2,
-                                fontSize: 9,
-                                fontW: FW.semicond,
+                        8.0.ESH(),
+                        Row(
+                          children: [
+                            for (int i = 0; i < 5; i++)
+                              Icon(
+                                Icons.star,
+                                color: i < 5
+                                    ? kCMainRate
+                                    : kCMainRate.withOpacity(.6),
+                                size: 12.h,
                               ),
-                              13.0.ESW(),
-                              CustomText(
-                                text: '${store.reviewers} ${'ratting_'.tr}',
-                                color: kCActiveButton,
-                                fontSize: 10,
-                                fontW: FW.light,
-                              ),
-                            ],
-                          ),
+                            2.6.ESW(),
+                            CustomText(
+                              text: store.rate.toString(),
+                              color: kCMainBlack2,
+                              fontSize: 9,
+                              fontW: FW.semicond,
+                            ),
+                            13.0.ESW(),
+                            CustomText(
+                              text: '${store.reviewers} ${'ratting_'.tr}',
+                              color: kCActiveButton,
+                              fontSize: 10,
+                              fontW: FW.light,
+                            ),
+                          ],
+                        ),
                         8.0.ESH(),
                         Divider(),
                         5.0.ESH(),
                         Row(
                           children: [
                             CustomText(
-                              text: store.open==1?'opened_now':'closed_now',
+                              text:
+                                  store.open == 1 ? 'opened_now' : 'closed_now',
                               fontW: FW.semicond,
                               fontSize: 12,
                               color: kCActiveButton,
@@ -126,20 +125,22 @@ class CompanyScreen extends StatelessWidget {
                           ],
                         ),
                         4.0.ESH(),
-                        store.lat!=null || store.lon!=null ?
-                        Container(
-                          height: 200.h,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(13.r),
-                          ),
-                          child: Center(
-                            child: MapWidget(
-                              coordinates: LatLng(double.tryParse(store.lat??'0.0')!,double.tryParse(store.lon??'0.0')!),
-                            ),
-                          ),
-                        )
-                        :0.0.ESH(),
+                        store.lat != null || store.lon != null
+                            ? Container(
+                                height: 200.h,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(13.r),
+                                ),
+                                child: Center(
+                                  child: MapWidget(
+                                    coordinates: LatLng(
+                                        double.tryParse(store.lat ?? '0.0')!,
+                                        double.tryParse(store.lon ?? '0.0')!),
+                                  ),
+                                ),
+                              )
+                            : 0.0.ESH(),
                         9.0.ESH(),
                         CustomText(
                           text: 'Company_History',
@@ -194,15 +195,15 @@ class CompanyScreen extends StatelessWidget {
             ],
           ),
           Padding(
-            padding:  EdgeInsets.only(
-                bottom: 16.0.h
-            ),
+            padding: EdgeInsets.only(bottom: 16.0.h),
             child: Align(
               alignment: Alignment.bottomCenter,
               child: ButtonDefault(
                 title: 'View_the_company_is_products',
-                onTap: (){
-                  Get.to(()=>CompanyProductsScreen(store: store,));
+                onTap: () {
+                  Get.to(() => CompanyProductsScreen(
+                        store: store,
+                      ));
                 },
               ),
             ),

@@ -27,7 +27,7 @@ class ButtonTapBarWidgetOfCompany extends StatelessWidget {
       builder: (_) => (Column(
         children: [
           Padding(
-            padding:  EdgeInsets.symmetric(vertical: 16.h),
+            padding: EdgeInsets.symmetric(vertical: 16.h),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -35,7 +35,7 @@ class ButtonTapBarWidgetOfCompany extends StatelessWidget {
                   onTap: (index) {
                     _.tabIndex = index;
                   },
-                  titles:  [
+                  titles: [
                     'my_data'.tr,
                     'my_products'.tr,
                     'my_posts'.tr,
@@ -51,8 +51,8 @@ class ButtonTapBarWidgetOfCompany extends StatelessWidget {
           SizedBox(
             child: [
               GlobalInformationDetailsWidgetOfCompany(),
-              GlobalMyProductWidget(userId: userId ,isMine:true),
-              MySocialScreen(userId:  userId),
+              GlobalMyProductWidget(userId: userId, isMine: true),
+              MySocialScreen(userId: userId),
             ][_.tabIndex],
           ),
           24.0.ESH(),

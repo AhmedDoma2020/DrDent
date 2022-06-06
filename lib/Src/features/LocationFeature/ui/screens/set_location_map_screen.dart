@@ -24,9 +24,8 @@ class MapScreen extends StatefulWidget {
   @override
   _MapScreenState createState() => _MapScreenState();
 }
-
 class _MapScreenState extends State<MapScreen> {
-  static LatLng? targetPosition = LatLng(31.037933, 31.381523);
+  static LatLng? targetPosition = LatLng(27.3540, 18.9096);
   Completer<GoogleMapController> _controller = Completer();
   Set<Marker> _markers = {};
   BitmapDescriptor? mapMarker;
@@ -185,7 +184,6 @@ class _MapScreenState extends State<MapScreen> {
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       debugPrint("enter in getMyLocation 2");
-
       permission = await Geolocator.requestPermission();
       debugPrint("enter in getMyLocation 3");
       if (permission == LocationPermission.denied) {

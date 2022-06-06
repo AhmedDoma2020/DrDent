@@ -4,13 +4,11 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapWidget extends StatefulWidget {
   final LatLng coordinates;
-
   MapWidget({required this.coordinates});
-
-
   @override
   State<MapWidget> createState() => _MapWidgetState();
 }
+
 
 class _MapWidgetState extends State<MapWidget> {
   GoogleMapController? _controller ;
@@ -26,6 +24,7 @@ class _MapWidgetState extends State<MapWidget> {
   }
   @override
   Widget build(BuildContext context) {
+    print("enter to map");
     return
       GoogleMap(
         mapType: MapType.normal,

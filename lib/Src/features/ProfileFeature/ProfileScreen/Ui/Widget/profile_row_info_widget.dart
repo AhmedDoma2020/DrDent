@@ -18,15 +18,20 @@ class ProfileRowInfoAndRate extends StatelessWidget {
     GetStorage box = GetStorage();
     return GetBuilder<FetchProfileController>(
       builder: (_) =>
-          SizedBox(
+          Container(
             // color: Colors.red,
             height: 128.h,
             width: double.infinity,
             child: Column(
+
               children: [
                 Padding(
                   padding: EdgeInsets.only(right: 130.w),
                   child: Row(
+                    mainAxisAlignment:
+                    (box.read('lan') == "en")
+                        ? MainAxisAlignment.end :
+                    MainAxisAlignment.start,
                     children: [
                       for (int i = 0; i < 5; i++)
                         Icon(
