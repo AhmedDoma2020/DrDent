@@ -18,7 +18,8 @@ class AddDayTimeDetailsRepository with ApiKey{
     required int workspaceId,
     required int doctorId,
   })async{
-    debugPrint("workspaceId in repo $workspaceId");
+    debugPrint("dayBookingType in repo $dayBookingType");
+    debugPrint("detectionTime in repo $detectionTime");
     Response? response;
     try{
       response = await _networkService.post(

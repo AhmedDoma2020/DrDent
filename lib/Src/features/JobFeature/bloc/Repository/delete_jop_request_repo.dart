@@ -12,6 +12,7 @@ class DeleteJopRequestRepository with ApiKey {
   Future<Response> deleteJopRequest({
     required int id,
   }) async {
+    debugPrint("id in repo is $id");
     Response response;
     try {
       response = await _networkService.post(

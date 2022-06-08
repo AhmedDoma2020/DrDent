@@ -1,9 +1,12 @@
 import 'package:dr_dent/Src/bloc/model/comment_model.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
+import 'package:dr_dent/Src/features/SocialProfileFeature/SocialProfileScreen/View/Screen/social_profile_screen.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/image_network.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import '/src/core/utils/extensions.dart';
 
 class CommentWidget extends StatelessWidget {
@@ -11,9 +14,9 @@ class CommentWidget extends StatelessWidget {
   final bool subComment;
   final VoidCallback? onLike;
   const CommentWidget({Key? key,this.subComment=false,required this.comment, this.onLike}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    GetStorage box = GetStorage();
     return Container(
       child: Padding(
         padding:  EdgeInsets.symmetric(horizontal: subComment?0:16.0.w),
@@ -27,10 +30,17 @@ class CommentWidget extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(40.r),
               ),
-              child: ImageNetwork(
-                width: 40.w,
-                height: 40.w,
-                url: comment.userImage
+              child: GestureDetector(
+                onTap: (){
+                  if(box.read('id') != comment.userId!){
+                    Get.to(()=>SocialProfileScreen(userId: comment.userId!,));
+                  }
+                },
+                child: ImageNetwork(
+                  width: 40.w,
+                  height: 40.w,
+                  url: comment.userImage
+                ),
               ),
             ),
             16.0.ESW(),
@@ -42,11 +52,18 @@ class CommentWidget extends StatelessWidget {
                       0.0.ESW():
                   Row(
                     children: [
-                      CustomText(
-                        text: comment.userName,
-                        fontW: FW.demi,
-                        fontSize: 16,
-                        color: kCMainBlack2,
+                      GestureDetector(
+                        onTap: (){
+                          if(box.read('id') != comment.userId!){
+                            Get.to(()=>SocialProfileScreen(userId: comment.userId!,));
+                          }
+                        },
+                        child: CustomText(
+                          text: comment.userName,
+                          fontW: FW.demi,
+                          fontSize: 16,
+                          color: kCMainBlack2,
+                        ),
                       ),
                       2.0.ESH(),
                     ],
@@ -80,7 +97,7 @@ class CommentWidget extends StatelessWidget {
                       GestureDetector(
                         onTap:onLike??(){},
                         child: CustomText(
-                          text: 'اعحبني',
+                          text: 'liked_me',
                           color: kCMainBlack2,
                           fontSize: 12,
                           fontW: FW.demi,

@@ -22,13 +22,16 @@ class SliderJobOffers extends StatelessWidget {
     return ListView.separated(
       itemBuilder: (context, index) => CardJobOffer(
           offer: offers[index],
+          index: index,
           onDeleteTap: () {
             onDelete(offers[index].id);
           },
           onEditTap: () {
             Get.to(() =>
                 AddAJopOfferScreen(isEdit: true, jobOffer: offers[index]));
+            
           },
+        
           isMine: true),
       separatorBuilder: (context, index) => 16.0.ESW(),
       itemCount: offers.length,

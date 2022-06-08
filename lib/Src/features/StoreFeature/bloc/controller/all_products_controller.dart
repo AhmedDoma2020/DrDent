@@ -78,6 +78,21 @@ class AllProductsController extends GetxController{
 
 
 
+  void handleLikeProduct({required int id , required int status}){
+    print('a8aaaaaaaaaaaaaaaaaaaaaaa999999');
+    int _productIndex = _products.indexWhere((element) => element.id==id);
+    int _searchProductIndex = _searchProducts.indexWhere((element) => element.id==id);
+    if(_productIndex>-1){
+      _products[_productIndex].like=status;
+    }
+    if(_searchProductIndex>-1){
+      _searchProducts[_searchProductIndex].like=status;
+    }
+    update();
+  }
+
+
+
 
   // ================  END FETCH DATA  ====================
   @override

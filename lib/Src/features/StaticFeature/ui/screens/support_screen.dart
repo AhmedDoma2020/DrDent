@@ -4,6 +4,7 @@ import 'package:dr_dent/Src/ui/widgets/appbars/app_bars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import '../../../DrawerFeature/View/Ui/contact_with_mail_screen.dart';
 import '/src/core/utils/extensions.dart';
 
 
@@ -13,7 +14,7 @@ class SupportScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBars.appBarDefault(title: 'الدعم'),
+      appBar: AppBars.appBarDefault(title: 'the_support'),
       body: Column(
         children: [
           32.5.ESH(),
@@ -23,8 +24,8 @@ class SupportScreen extends StatelessWidget {
           ),
           32.5.ESH(),
         SupportItem(
-            title: 'الأسألة الشائعة',
-            subtitle: 'احصل على إجابات لكل استفساراتك فورا',
+            title: 'common_questions',
+            subtitle: 'Get_answers_to_all_your_questions_instantly',
             icon: 'questionrowitem.png',
             color: Color(0xffBCEBFF),
             onTap: (){
@@ -34,20 +35,22 @@ class SupportScreen extends StatelessWidget {
             },
           ),
           24.0.ESH(),
-         SupportItem(
-            title: 'خدمة العملاء',
-            subtitle: 'ابدأ المحادثة الآن',
-            color: Color(0xffF67956),
-            icon: 'chatrowitem.png',
-           onTap: (){},
-          ),
-          24.0.ESH(),
+         // SupportItem(
+         //    title: 'خدمة العملاء',
+         //    subtitle: 'ابدأ المحادثة الآن',
+         //    color: Color(0xffF67956),
+         //    icon: 'chatrowitem.png',
+         //   onTap: (){},
+         //  ),
+         //  24.0.ESH(),
           SupportItem(
-          title: 'البريد الإلكتروني',
-            subtitle: 'ارسل رسالتك ونقوم بالرد عليك على بريدك الإلكتروني',
+          title: 'Email_',
+            subtitle: 'Send_your_message_and_we_will_reply_to_you_on_your_email',
             icon: 'emailrow.png',
             color: Color(0xff1151D9),
-            onTap: (){},
+            onTap: (){
+            Get.to(()=>ContactWithMail());
+            },
           )
         ]
       ),

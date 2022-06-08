@@ -77,6 +77,7 @@ class EnterPersonalDataOfGraduatedScreen extends StatelessWidget {
                     ),
                     16.0.ESH(),
                     RowGenderWidget(
+                      userInPutType: _.gender,
                       onTap: (gender) {
                         _.estGender = gender;
                       },
@@ -199,6 +200,7 @@ class EnterPersonalDataOfGraduatedScreen extends StatelessWidget {
                     ),
                     16.0.ESH(),
                     AttachYourCVIWidget(
+                      futureImage: _.futureCv,
                       onTap: (image64){
                         _.setCVImage=image64;
                       },

@@ -23,10 +23,9 @@ class MyDoctorScreen extends StatelessWidget {
     Future<void> onRefresh() async {
       await _fetchCenterDoctorController.fetchCenterDoctor();
     }
-
     return SafeArea(
       child: Scaffold(
-        floatingActionButton: FloatingActionButton(
+        floatingActionButton: FloatingActionButton (
           child: Icon(
             Icons.add,
             color: Colors.white,
@@ -63,32 +62,35 @@ class MyDoctorScreen extends StatelessWidget {
                         imageH: 124,
                         imageW: 200,
                       )
-                    : ListView.builder(
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, index) => Column(
-                          children: [
-                            16.0.ESH(),
-                            CenterDoctorWidget(
-                              // indexOfCenterOfDoctor: index ,
-                              doctor: _.centerDoctorList[index],
-                              onEditTap: () {
-                                Get.to(() => AddCenterDoctorScreen(
-                                  isEdit:true,
-                                  centerDoctorModel: _.centerDoctorList[index],
-                                ));
-                              },
-                              onDeleteTap: _.snackBarStatus == SnackbarStatus.CLOSED? () {
-                                _.deleteCenterDoctor(
-                                    doctorId:
-                                        _.centerDoctorList[index].id);
-                              }:(){},
-                            ),
-                            16.0.ESH(),
-                          ],
+                    : RefreshIndicator(
+              onRefresh: onRefresh,
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          // physics: NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index) => Column(
+                            children: [
+                              16.0.ESH(),
+                              CenterDoctorWidget(
+                                // indexOfCenterOfDoctor: index ,
+                                doctor: _.centerDoctorList[index],
+                                onEditTap: () {
+                                  Get.to(() => AddCenterDoctorScreen(
+                                    isEdit:true,
+                                    centerDoctorModel: _.centerDoctorList[index],
+                                  ));
+                                },
+                                onDeleteTap: _.snackBarStatus == SnackbarStatus.CLOSED? () {
+                                  _.deleteCenterDoctor(
+                                      doctorId:
+                                          _.centerDoctorList[index].id);
+                                }:(){},
+                              ),
+                              16.0.ESH(),
+                            ],
+                          ),
+                          itemCount: _.centerDoctorList.length,
                         ),
-                        itemCount: _.centerDoctorList.length,
-                      ),
+                    ),
           ),
         ),
       ),

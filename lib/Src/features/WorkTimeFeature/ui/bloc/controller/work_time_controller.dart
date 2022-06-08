@@ -23,6 +23,7 @@ enum UserTypeEnum {
   graduated,
   company,
   lab,
+  centerDoctor,
 }
 
 class WorkTimeController extends GetxController {
@@ -32,12 +33,18 @@ class WorkTimeController extends GetxController {
   int? _dayBookingType;
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
 
+
+
+
+
+
   final int? workSpaceId;
   final int? doctorId;
   final UserTypeEnum userType;
   final bool isEdit;
   final String fetchDetectionTime;
   final String fetchDayBooking;
+  final int? dayBookingTypeEdit;
 
   WorkTimeController({
     this.isEdit = false,
@@ -46,6 +53,7 @@ class WorkTimeController extends GetxController {
     this.userType = UserTypeEnum.doctor,
     this.fetchDayBooking = '',
     this.fetchDetectionTime = '',
+    this.dayBookingTypeEdit
   });
 
   List<String> dayBookingTitles = [
@@ -70,7 +78,7 @@ class WorkTimeController extends GetxController {
 
   void setDetectionTimeAndDayBooking() {
     detectionTime.text = fetchDetectionTime;
-    dayBookingController.text = fetchDayBooking;
+    // dayBookingController.text = fetchDayBooking;
     update();
   }
 
@@ -85,7 +93,7 @@ class WorkTimeController extends GetxController {
     debugPrint("userType in workTime controller is in fetchDays$userType");
     update();
     late var response;
-    if (userType == UserTypeEnum.doctor) {
+    if (userType == UserTypeEnum.doctor || userType == UserTypeEnum.centerDoctor) {
       response = await _fetchDaysRepository.fetchDays(
           workspaceId: workSpaceId!, doctorId: doctorId!);
     } else if (userType == UserTypeEnum.center) {
@@ -94,7 +102,6 @@ class WorkTimeController extends GetxController {
     } else if (userType == UserTypeEnum.company) {
       response = await _fetchDaysForCompanyRepository.fetchDaysForCompany();
     }
-
     if (response.statusCode == 200 && response.data["status"] == true) {
       debugPrint("request operation success");
       days.clear();
@@ -121,12 +128,16 @@ class WorkTimeController extends GetxController {
     debugPrint("userType in workTime controller is in addDayTime$userType");
     late var response;
     setLoading();
-    if (userType == UserTypeEnum.doctor) {
+    if (userType == UserTypeEnum.doctor || userType == UserTypeEnum.centerDoctor ) {
+      debugPrint("addDayTime in workTime controller is in addDayTime her1");
+
       response = await _addDayTimeRepository.addDayTime(
           dayId: dayId,
           dayTime: dayTime,
           workSpaceId: workSpaceId!,
           doctorId: doctorId!);
+      debugPrint("addDayTime in workTime controller is in addDayTime her2");
+
     } else if (userType == UserTypeEnum.center) {
       response = await _addDayTimeForCenterRepository.addDayTimeForCenter(
         dayId: dayId,
@@ -139,6 +150,7 @@ class WorkTimeController extends GetxController {
         dayTime: dayTime,
       );
     }
+
     Get.back();
     if (response.statusCode == 200 && response.data["status"] == true) {
       customSnackBar(title: response.data["message"] ?? "Error");
@@ -203,7 +215,7 @@ class WorkTimeController extends GetxController {
           dayBookingType: _dayBookingType ?? 0,
           workspaceId: workSpaceId!,
           doctorId: doctorId!);
-      Get.back();
+          Get.back();
       if (response.statusCode == 200 && response.data["status"] == true) {
         debugPrint("request operation success");
         onSuccess();
@@ -221,6 +233,12 @@ class WorkTimeController extends GetxController {
   void onInit() {
     detectionTime = TextEditingController();
     dayBookingController = TextEditingController();
+    if(dayBookingTypeEdit!=null){
+      print('ahmed fathy $dayBookingTypeEdit');
+      _dayBookingType = dayBookingTypeEdit;
+      dayBookingController.text = dayBookingTitles[dayBookingTypeEdit!];
+      update();
+    }
     if (isEdit) setDetectionTimeAndDayBooking();
     fetchDays();
     super.onInit();

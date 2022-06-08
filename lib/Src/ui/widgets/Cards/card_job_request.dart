@@ -5,7 +5,10 @@ import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/image_network.dart';
 import 'package:dr_dent/Src/ui/widgets/buttons/button_default.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../GeneralWidgets/edit_widget.dart';
+import 'package:get/get.dart';
+import '../../../core/services/photo_view.dart';
+import '../GeneralWidgets/icon_widget.dart';
+import '../custom_snack_bar.dart';
 import '/src/core/utils/extensions.dart';
 import 'card_tag.dart';
 
@@ -62,17 +65,21 @@ class CardJobRequest extends StatelessWidget {
                       ),
                       5.0.ESH(),
                       CustomText(
-                        text: request.specializations!.join(' , '),
+                        text: request.specializationsTitle,
+                        maxLines: 1,
                         color: kCMainBlack2,
                         fontSize: 12,
                         fontW: FW.light,
+                        overflow: true,
                       ),
                       5.0.ESH(),
                       CustomText(
                         text: request.ownerAddress,
                         color: kCMainGrey,
+                        maxLines: 1,
                         fontSize: 10,
                         fontW: FW.semicond,
+                        overflow: true,
                       ),
                       5.0.ESH(),
                       CustomText(
@@ -84,18 +91,20 @@ class CardJobRequest extends StatelessWidget {
                     ],
                   ),
                 ),
-                !isMine?
+                isMine?
                 8.0.ESW():0.0.ESH(),
-                !isMine?
+                isMine?
                 Row(
                   children: [
                     IconWidget(
                       icon: 'assets/icons/edit.png',
                       onEditTap: (){
                         debugPrint("clicked her 11");
+                        if(onEdit!=null){
                           onEdit!();
-                        debugPrint("clicked her 12");
-
+                          debugPrint("clicked her 12");
+                        }
+                        debugPrint("clicked her 13");
                       },
                     ),
                     IconWidget(
@@ -116,8 +125,14 @@ class CardJobRequest extends StatelessWidget {
             ),
             16.0.ESH(),
             ButtonDefault(
-              title: 'عرض السيرة الزاتية',
+              title: 'View_biography',
               height: 46.h,
+              onTap: request.cv! ==''?(){
+                customSnackBar(title: "no_found_cv".tr);
+              }:(){
+                Get.to(() => PhotoViewWidget(imageProvider: NetworkImage(request.cv!),));
+                debugPrint("request.cv! ${request.cv!}");
+              },
             )
           ],
         ),

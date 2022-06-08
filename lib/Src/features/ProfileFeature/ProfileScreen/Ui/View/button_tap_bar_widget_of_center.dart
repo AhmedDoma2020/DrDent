@@ -11,14 +11,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class ButtonTapBarWidgetOfCenter extends StatelessWidget {
+  final int userId;
+
   const ButtonTapBarWidgetOfCenter({
+    required this.userId,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Get.put(ProfileTapIndexController());
-
     return  GetBuilder<ProfileTapIndexController>(
       builder: (_) => Column(
         children: [
@@ -48,7 +50,7 @@ class ButtonTapBarWidgetOfCenter extends StatelessWidget {
             child: [
               GlobalInformationDetailsWidgetOfCenter(),
               GlobalServicesWidgetOfCenter(),
-              MySocialScreen(),
+              MySocialScreen(userId: userId),
             ][_.tabIndex],
           ),
           24.0.ESH(),

@@ -5,43 +5,56 @@ import 'package:dr_dent/Src/core/constants/api_key.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get_storage/get_storage.dart';
 
-class NetworkService with ApiKey{
+class NetworkService with ApiKey {
   Dio dio = Dio();
   GetStorage box = GetStorage();
-  Future<Response> get({@required String? url, Map<String , String>? headers,bool auth = false}) async {
+
+  Future<Response> get(
+      {@required String? url,
+      Map<String, String>? headers,
+      bool auth = false}) async {
     Response? response;
-    String apiToken =box.read("api_token")??"Not Found Token";
-    // $2y$10$NBYTyWoXPQm1Fe911Nsfo.t93YFyUodZFH9yzv8FpMVbyHP6uSgA.   5
-    String staticApiToken ="\$2y\$10\$NBYTyWoXPQm1Fe911Nsfo.t93YFyUodZFH9yzv8FpMVbyHP6uSgA.";
+    String apiToken = box.read("api_token") ?? "Not Found Token";
+    // $2y$10$D4jqX8SI834Od0ODWTH8WeR9za2VPivcPXz7B5Kz/psqAVpoXEeGe  3
+    String staticApiToken =
+        "\$2y\$10\$NBYTyWoXPQm1Fe911Nsfo.t93YFyUodZFH9yzv8FpMVbyHP6uSgA.";
     log("apiToken storage in netWork >>>>>>>>>:-> $apiToken");
     log("apiToken static in netWork >>>>>>>>>:-> $staticApiToken");
     try {
       dio.options.baseUrl = ApiKey.apiBaseUrl;
-      response = await dio.get(url!, options: Options(
-          headers: headers??{
-            'Accept-Language' : 'ar',
-            if(auth)
-            'Authorization': 'Bearer ' + apiToken
-              // 'Authorization': 'Bearer ' + staticApiToken
-          }
-      ));
+      response = await dio.get(
+        url!,
+        options: Options(
+          headers: headers ??
+              {
+                'Accept-Language': '${box.read("lan") ?? 'ar'}',
+                if (auth) 'Authorization': 'Bearer ' + apiToken
+                // 'Authorization': 'Bearer ' + staticApiToken
+              },
+        ),
+      );
     } on DioError catch (e) {
       if (e.response != null) {
         response = e.response;
       }
-    } on SocketException{
+    } on SocketException {
       throw SocketException;
-    } catch(e){
+    } catch (e) {
       throw SocketException;
     }
     return handleResponse(response!);
   }
-  Future<Response> post({@required String? url,
-    Map<String , String>? headers, Map<String , dynamic>? body,bool auth = false}) async {
+
+  Future<Response> post(
+      {@required String? url,
+      Map<String, String>? headers,
+      Map<String, dynamic>? body,
+      bool auth = false}) async {
     Response? response;
-    String apiToken =box.read("api_token")??"Not Found Token";
-    // $2y$10$NBYTyWoXPQm1Fe911Nsfo.t93YFyUodZFH9yzv8FpMVbyHP6uSgA.   5
-    String staticApiToken ="\$2y\$10\$NBYTyWoXPQm1Fe911Nsfo.t93YFyUodZFH9yzv8FpMVbyHP6uSgA.";
+    String apiToken = box.read("api_token") ?? "Not Found Token";
+    // $2y$10$D4jqX8SI834Od0ODWTH8WeR9za2VPivcPXz7B5Kz/psqAVpoXEeGe   3
+    String staticApiToken =
+        "\$2y\$10\$NBYTyWoXPQm1Fe911Nsfo.t93YFyUodZFH9yzv8FpMVbyHP6uSgA.";
     log("apiToken storage in netWork >>>>>>>>>:-> $apiToken");
     log("apiToken static in netWork >>>>>>>>>:-> $staticApiToken");
     dio.options.baseUrl = ApiKey.apiBaseUrl;
@@ -50,12 +63,12 @@ class NetworkService with ApiKey{
         url!,
         data: body,
         options: Options(
-          headers: headers??{
-            'Accept-Language' : 'ar',
-            if(auth)
-            'Authorization': 'Bearer ' + apiToken
-              // 'Authorization': 'Bearer ' + staticApiToken
-          },
+          headers: headers ??
+              {
+                'Accept-Language': '${box.read("lan")??'ar'}',
+                if (auth) 'Authorization': 'Bearer ' + apiToken
+                // 'Authorization': 'Bearer ' + staticApiToken
+              },
           // requestEncoder: encoding,
         ),
       );
@@ -66,8 +79,9 @@ class NetworkService with ApiKey{
     }
     return handleResponse(response!);
   }
+
   Response handleResponse(Response response) {
-    final int statusCode = response.statusCode??500;
+    final int statusCode = response.statusCode ?? 500;
     if (statusCode >= 200 && statusCode < 300) {
       log("correct request: " + response.toString());
       return response;

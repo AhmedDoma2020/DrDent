@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@ionic-native/firebase-messaging": "^5.36.0"
+  }
+}

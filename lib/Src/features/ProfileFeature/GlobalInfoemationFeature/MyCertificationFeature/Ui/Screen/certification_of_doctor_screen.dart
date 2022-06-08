@@ -10,20 +10,33 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
+
 import '../Widget/certification_image_form.dart';
 
 class CertificationOfDoctorScreen extends StatelessWidget {
+  CertificationOfDoctorScreen({Key? key}) : super(key: key);
+
+  final List<String> testList = [
+    'https://images.pexels.com/photos/6558304/pexels-photo-6558304.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+    'https://images.pexels.com/photos/3104176/pexels-photo-3104176.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+    'https://images.pexels.com/photos/7539543/pexels-photo-7539543.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+    'https://images.pexels.com/photos/3130928/pexels-photo-3130928.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+  ];
+
   @override
   Widget build(BuildContext context) {
-    FetchDoctorCertificationController _fetchDoctorCertificationController = Get.put(FetchDoctorCertificationController());
-    AddDoctorCertificationController _addDoctorCertificationController = Get.put(AddDoctorCertificationController());
+    FetchDoctorCertificationController _fetchDoctorCertificationController =
+        Get.put(FetchDoctorCertificationController());
+    AddDoctorCertificationController _addDoctorCertificationController =
+        Get.put(AddDoctorCertificationController());
     Get.put(DeleteDoctorCertificationController());
-    Future<void> onRefresh()async {
+    Future<void> onRefresh() async {
       await _fetchDoctorCertificationController.fetchCertification();
     }
+
     return SafeArea(
       child: RefreshIndicator(
-        onRefresh:onRefresh ,
+        onRefresh: onRefresh,
         child: GetBuilder<FetchDoctorCertificationController>(
           builder: (_) => Scaffold(
             appBar: AppBars.appBarDefault(
@@ -56,45 +69,49 @@ class CertificationOfDoctorScreen extends StatelessWidget {
                         availableButton: false,
                       )
                     : Container(
-                        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 24.h),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 16.w, vertical: 24.h),
                         height: double.infinity,
-                        child:
-                        // MasonryGridView.count(
-                        //   crossAxisCount: 2,
-                        //   mainAxisSpacing: 4,
-                        //   crossAxisSpacing: 1,
-                        //
+                        child: SingleChildScrollView(
+                          child: StaggeredGrid.count(
+                            crossAxisCount: 3,
+                            mainAxisSpacing: 8.h,
+                            crossAxisSpacing: 8.w,
+                            children: _.certificationList
+                                .map(
+                                  (e) => CertificationImageForm(
+                                    onDelete:
+                                        _.snackBarStatus == SnackbarStatus.CLOSED
+                                            ? () {
+                                                _.deleteCertification(
+                                                    certificationId: e.id!);
+                                              }
+                                            : () {},
+                                    image: e.image!,
+                                  ),
+                                )
+                                .toList(),
+                          ),
+                        ),
+
+                        // GridView.builder(
+                        //   shrinkWrap: true,
+                        //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        //     crossAxisCount: 3,
+                        //     // childAspectRatio: 1.06,
+                        //     crossAxisSpacing: 16.w,
+                        //     mainAxisSpacing: 18.h,
+                        //   ),
                         //   itemBuilder: (context, index) => CertificationImageForm(
-                        //     onDelete: _.snackBarStatus == SnackbarStatus.CLOSED
-                        //         ? () {
-                        //             _.deleteCertification(
-                        //                 certificationId:
-                        //                     _.certificationList[index].id!);
-                        //           }
-                        //         : () {},
+                        //     onDelete:  _.snackBarStatus == SnackbarStatus.CLOSED? () {
+                        //       _.deleteCertification(
+                        //           certificationId:
+                        //               _.certificationList[index].id!);
+                        //     }:(){},
                         //     image: _.certificationList[index].image!,
                         //   ),
                         //   itemCount: _.certificationList.length,
                         // ),
-
-                        GridView.builder(
-                          shrinkWrap: true,
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3,
-                            // childAspectRatio: 1.06,
-                            crossAxisSpacing: 16.w,
-                            mainAxisSpacing: 18.h,
-                          ),
-                          itemBuilder: (context, index) => CertificationImageForm(
-                            onDelete:  _.snackBarStatus == SnackbarStatus.CLOSED? () {
-                              _.deleteCertification(
-                                  certificationId:
-                                      _.certificationList[index].id!);
-                            }:(){},
-                            image: _.certificationList[index].image!,
-                          ),
-                          itemCount: _.certificationList.length,
-                        ),
                       ),
           ),
         ),

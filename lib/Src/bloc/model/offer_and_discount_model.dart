@@ -25,6 +25,7 @@ class OfferAndDiscountModel {
   late final String endDate;
   late final List<Services> services;
   late final String image;
+  late final String servicesTitle;
 
   OfferAndDiscountModel.fromJson(Map<String, dynamic> json){
     id = json['id']??0;
@@ -36,7 +37,18 @@ class OfferAndDiscountModel {
     bookingInfo = json['booking_info']??"";
     startDate = json['start_date']??"";
     endDate = json['end_date']??"";
-    services = List.from(json['services']).map((e)=>Services.fromJson(e)).toList();
+    if(json['services']!=null){
+      services = List.from(json['services']).map((e)=>Services.fromJson(e)).toList();
+      if(services.isNotEmpty){
+        List<String> servicesList=[];
+        for(var item in services){
+          servicesList.add(item.title);
+        }
+        servicesTitle = servicesList.join(",");
+      }
+    }
+
+
     image = json['image']??"";
   }
 //   OfferAndDiscountModel.fromJson(Map<String, dynamic> json){

@@ -5,6 +5,7 @@ import 'package:dr_dent/Src/bloc/controller/year_of_graduation_controller.dart';
 import 'package:dr_dent/Src/bloc/model/univeristy_model.dart';
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/core/utils/extensions.dart';
+import 'package:dr_dent/Src/features/AuthFeature/bloc/controller/fetch_specialization_controller.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/widgets/row_sex_type_widget.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/widgets/specialization_button_sheet.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/widgets/upload_photo_of_work_licenses.dart';
@@ -24,14 +25,18 @@ import 'package:get/get.dart';
 import 'university_degree_button_sheet.dart';
 import 'year_of_graduation_button_sheet.dart';
 
-class EnterYourInformationButtonSheet extends StatelessWidget {
-  String baseImage64="";
+class EnterYourInfoToApplyJopButtonSheet extends StatelessWidget {
+  final int offerId;
+
+  EnterYourInfoToApplyJopButtonSheet({required this.offerId});
+
   @override
   Widget build(BuildContext context) {
-    Get.put(EnterYourInformationToApplyJobController());
+    Get.put(EnterYourInformationToApplyJobController(offerId:offerId));
     Get.put(FetchUniversityController());
     Get.put(FetchUniversityDegreeController());
     Get.put(FetchYearsOfGraduationController());
+    Get.put(FetchSpecializationController());
     return Container(
       height: 700.h,
       width: double.infinity,
@@ -45,16 +50,17 @@ class EnterYourInformationButtonSheet extends StatelessWidget {
       child: GetBuilder<EnterYourInformationToApplyJobController>(
         builder: (_) => Form(
           key: _.globalKey,
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TopTitleInButtonSheet(title: "Job_request".tr),
-                16.0.ESH(),
-                Padding(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TopTitleInButtonSheet(title: "Job_request".tr),
+              16.0.ESH(),
+              SizedBox(
+                height:600.h,
+                child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  child: ListView(
+                    // crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TextFieldDefault(
                         hint: 'full_name'.tr,
@@ -102,7 +108,7 @@ class EnterYourInformationButtonSheet extends StatelessWidget {
                         onTap: () {
                           Get.bottomSheet(
                               UniversitiesButtonSheet(
-                                idSelected: _.universityId!,
+                                idSelected: _.universityId,
                                 onTap: (id,title){
                                   _.universityController!.text =title;
                                   _.setUniversityId = id;
@@ -230,8 +236,8 @@ class EnterYourInformationButtonSheet extends StatelessWidget {
                     ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

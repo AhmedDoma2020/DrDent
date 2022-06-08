@@ -19,9 +19,9 @@ class AddAJopOfferController extends GetxController {
   TextEditingController? nameController;
   TextEditingController? phoneController;
   TextEditingController? addressController;
+  TextEditingController? cityController;
   TextEditingController? scientificLevelTitleController;
   TextEditingController? specializationController;
-  TextEditingController? jobTypeController;
   TextEditingController? jobDescriptionController;
   List<int> _specializationIdSelected = [];
   List<int> get specializationIdSelected => _specializationIdSelected;
@@ -45,7 +45,23 @@ class AddAJopOfferController extends GetxController {
   set setEndSalary(int value) {
     _endSalary = value;
   }
-void setData(){
+
+  int _cityId = 0;
+  int get cityId => _cityId;
+  set setCityId(int value) {
+    _cityId = value;
+    update();
+  }
+
+  int _jobTypeId = 0;
+  int get jobTypeId => _jobTypeId;
+  set setJobTypeId(int value) {
+    _jobTypeId = value;
+    update();
+  }
+
+
+  void setData(){
     nameController!.text = jobOffer!.name;
     phoneController!.text = jobOffer!.phone;
     addressController!.text = jobOffer!.address;
@@ -63,9 +79,11 @@ void setData(){
     }
     _startSalary =int.parse(jobOffer!.startSalary.toString());
     _endSalary =int.parse(jobOffer!.endSalary.toString());
-    jobTypeController!.text = "دوام";
     jobDescriptionController!.text = jobOffer!.description;
     controllers = jobOffer!.requirements.cast<TextEditingController>();
+    setCityId = jobOffer!.cityId;
+    cityController!.text = jobOffer!.cityTitle;
+    setJobTypeId = jobOffer!.jobTypeId;
     update();
 }
   List<String> _requirementsList=[];
@@ -94,11 +112,12 @@ void setData(){
           ownerName: nameController!.text,
           phone: phoneController!.text,
           address: addressController!.text,
-          scientificLevel: 1,
+          scientificLevel: _scientificLevelId!,
+          cityId: _cityId,
           specializationId: _specializationIdSelected,
           startSalary: _startSalary,
           endSalary: _endSalary,
-          jobType: jobTypeController!.text,
+          jobType: _jobTypeId,
           description: jobDescriptionController!.text,
           requirements:_requirementsList,
         );
@@ -108,7 +127,9 @@ void setData(){
         _requirementsList.clear();
         controllers.forEach((element) {
           debugPrint('my data is ${element.text}');
-          _requirementsList.add(element.text);
+          if(element.text.isNotEmpty){
+            _requirementsList.add(element.text);
+          }
         }
         );
         debugPrint('requirements List is $_requirementsList');
@@ -119,9 +140,10 @@ void setData(){
           address: addressController!.text,
           scientificLevel: _scientificLevelId!,
           specializationId: _specializationIdSelected,
+          cityId: _cityId,
           startSalary: _startSalary,
           endSalary: _endSalary,
-          jobType: jobTypeController!.text,
+          jobType:_jobTypeId,
           description: jobDescriptionController!.text,
           requirements:_requirementsList,
         );
@@ -236,9 +258,9 @@ void setData(){
     nameController = TextEditingController();
     phoneController = TextEditingController();
     addressController = TextEditingController();
+    cityController = TextEditingController();
     scientificLevelTitleController = TextEditingController();
     specializationController = TextEditingController();
-    jobTypeController = TextEditingController();
     jobDescriptionController = TextEditingController();
     _specializationIdSelected = [];
 
@@ -283,9 +305,9 @@ void setData(){
     nameController?.dispose();
     phoneController?.dispose();
     addressController?.dispose();
+    cityController?.dispose();
     scientificLevelTitleController?.dispose();
     specializationController?.dispose();
-    jobTypeController?.dispose();
     jobDescriptionController?.dispose();
     super.dispose();
   }

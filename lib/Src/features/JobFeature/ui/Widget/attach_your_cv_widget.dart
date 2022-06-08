@@ -12,11 +12,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../../ui/widgets/GeneralWidgets/image_network.dart';
+
 
 class AttachYourCVIWidget extends StatefulWidget {
   final Function(String) onTap;
-  const AttachYourCVIWidget({
-    required this.onTap ,
+   String futureImage;
+
+   AttachYourCVIWidget({
+    required this.onTap,
+    this.futureImage = "",
     Key? key,
   }) : super(key: key);
   @override
@@ -44,93 +49,114 @@ class _AttachYourCVIWidgetState extends State<AttachYourCVIWidget> {
   }
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 82.h,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(24.r),
-        color: kCSubMain.withOpacity(0.05),
-        border: Border.all(
-          color: kCSubMain,
-          width: 1.w,
-        ),
-      ),
-      child: image != null
-          ? Stack(
-        children: [
-          GestureDetector(
-            onTap: () {
-              // Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //       builder: (context) =>
-              //           PhotoViewWidget(
-              //             imageProvider: AssetImage(),
-              //           ),
-              //     ));
-            },
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(24.r),
-              child: Image.file(
-                image!,
-                fit: BoxFit.cover,
-                width: double.infinity,
-                height: 82.h,
-              ),
-            ),
+    debugPrint('futureImage in build is ${widget.futureImage}');
+    return GestureDetector(
+      onTap: (){
+        debugPrint("aaaaaaaaaaaaaaaaaa");
+        getImage();
+      },
+      child: Container(
+        width: double.infinity,
+        height: 82.h,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(24.r),
+          color: kCSubMain.withOpacity(0.05),
+          border: Border.all(
+            color: kCSubMain,
+            width: 1.w,
           ),
-          Padding(
-            padding: EdgeInsets.only(top: 8.h, left: 8.w),
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: InkWell(
-                onTap: () {
-                  setState(() {
-                    image = null;
-                    img64 = null;
-                    widget.onTap("");
-                  });
-                },
-                child: Container(
-                  height: 24.w,
-                  width: 24.w,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(777.r),
-                    color: Colors.grey.withOpacity(0.5),
-                  ),
-                  child: Icon(
-                    Icons.clear,
-                    color: Colors.white,
-                    size: 16.w,
+        ),
+        child:
+        image != null || widget.futureImage != ''
+            ? Stack(
+          children: [
+            GestureDetector(
+              onTap: () {
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //       builder: (context) =>
+                //           PhotoViewWidget(
+                //             imageProvider: AssetImage(),
+                //           ),
+                //     ));
+
+
+              },
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(24.r),
+                child:  image != null?
+                Image.file(
+                  image!,
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                  height: 82.h,
+                ):GestureDetector(
+                  onTap: () {
+                    Get.to(() => PhotoViewWidget(imageProvider: NetworkImage(widget.futureImage),));
+                  },
+                  child: ImageNetwork(
+                    url: widget.futureImage,
+                    height: double.infinity,
+                    width: double.infinity,
+                    boxFit: BoxFit.fill,
                   ),
                 ),
               ),
             ),
-          ),
-        ],
-      )
-          : GestureDetector(
-        onTap: (){
-          getImage();
-          debugPrint("aaaaaaaaaaaaaaaaaaaaaa");
-        },
-            child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-            SizedBox(
-              height: 18.w,
-              width: 18.w,
-              child: Image.asset(
-                "assets/icons/uplode.png",
-                height: 18.w,
-                width: 18.w,
+            Padding(
+              padding: EdgeInsets.only(top: 8.h, left: 8.w),
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: InkWell(
+                  onTap: () {
+                    setState(() {
+                      image = null;
+                      img64 = null;
+                      widget.onTap("");
+                      widget.futureImage ='';
+                    });
+                  },
+                  child: Container(
+                    height: 24.w,
+                    width: 24.w,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(777.r),
+                      color: Colors.grey.withOpacity(0.5),
+                    ),
+                    child: Icon(
+                      Icons.clear,
+                      color: Colors.white,
+                      size: 16.w,
+                    ),
+                  ),
+                ),
               ),
             ),
-            8.0.ESH(),
-         CustomText(text: "attach_your_CV".tr,fontSize: 12,fontW: FW.light,),
-        ],
+          ],
+        )
+            : GestureDetector(
+          onTap: (){
+            debugPrint("aaaaaaaaaaaaaaaaaaaaaa");
+          },
+              child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+              SizedBox(
+                height: 18.w,
+                width: 18.w,
+                child: Image.asset(
+                  "assets/icons/uplode.png",
+                  height: 18.w,
+                  width: 18.w,
+                ),
+              ),
+              8.0.ESH(),
+           CustomText(text: "attach_your_CV".tr,fontSize: 12,fontW: FW.light,),
+          ],
+        ),
+            ),
       ),
-          ),
     );
   }
 }

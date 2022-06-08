@@ -32,7 +32,6 @@ class DetectionLocationDetailsScreen extends StatelessWidget {
     Future<void> onRefresh() async {
       await _fetchWorkSpaceDetailsController.fetchMyWorkSpaceDetails();
     }
-
     return SafeArea(
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
@@ -95,9 +94,11 @@ class DetectionLocationDetailsScreen extends StatelessWidget {
                                   isEdit:true,
                                   userType: userType,
                                   isBack: true,
+                                 dayBookingTypeEdit: _.myWorkSpaceDetails[index].reservationType,
                                   doctorId: box.read('id'),
                                   onSuccess: () {
                                     Get.back();
+                                    _.fetchMyWorkSpaceDetails();
                                   },
                                   workspaceId: _.myWorkSpaceDetails[index].id,
                                   fetchDayBooking: _.myWorkSpaceDetails[index].dayBooking,

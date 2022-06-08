@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -11,6 +12,7 @@ class EditJopRequestRepository with ApiKey {
   NetworkService _networkService = NetworkService();
 
   Future<Response> editJopRequest({
+    required int jobRequestId,
     required String ownerName,
     required String phone,
     required String address,
@@ -20,18 +22,19 @@ class EditJopRequestRepository with ApiKey {
     Response response;
     debugPrint("ownerName $ownerName");
     debugPrint("phone $phone");
-    debugPrint("address $address");
+    log("cV in EditJopRequestRepository  $cV");
 
     try {
       response = await _networkService.post(
           url: uRLEditJopRequest,
           auth: true,
           body: {
-            'owner_name':ownerName,
+            'job_request_id':jobRequestId,
+            'name':ownerName,
             'phone':phone,
             'address':address,
-            'specialization_ids':specializationId,
-            'c_v':cV,
+            'specializations':specializationId,
+            'cv':cV,
           }
       );
     } on SocketException {

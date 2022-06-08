@@ -16,7 +16,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '/src/core/utils/extensions.dart';
 
-
 class AllStoresScreen extends StatelessWidget {
   const AllStoresScreen({Key? key}) : super(key: key);
 
@@ -24,27 +23,32 @@ class AllStoresScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(AllStoresController());
     return Scaffold(
-      appBar: AppBars.appBarDefault(title: 'كل الشركات'),
+      appBar: AppBars.appBarDefault(title: 'all_company'),
       body: Padding(
-        padding:  EdgeInsets.only(
-          right: 16.w,
-          left: 16.w,
-          top: 10.h
-        ),
-        child:GetBuilder<AllStoresController>(
-          builder: (_) =>  Column(
+        padding: EdgeInsets.only(right: 16.w, left: 16.w, top: 10.h),
+        child: GetBuilder<AllStoresController>(
+          builder: (_) => Column(
             children: [
-              SearchRow(onGridTap: (){_.changeIsGrid();},onWordChange: (value){_.searchWord(word: value);}),
+              SearchRow(onGridTap: () {
+                _.changeIsGrid();
+              }, onWordChange: (value) {
+                _.searchWord(word: value);
+              }),
               16.0.ESH(),
               // const TabsCategory(),
               // 16.0.ESH(),
-               Expanded(
-              child:
-              _.status != RequestStatus.done?
-              Center(child: Loader(),):
-              !_.isGrid?
-              ListCardStoreRect(stores: _.isSearch?_.searchStores:_.stores,):
-              GridCardStore(stores: _.isSearch?_.searchStores:_.stores,),
+              Expanded(
+                child: _.status != RequestStatus.done
+                    ? Center(
+                        child: Loader(),
+                      )
+                    : !_.isGrid
+                        ? ListCardStoreRect(
+                            stores: _.isSearch ? _.searchStores : _.stores,
+                          )
+                        : GridCardStore(
+                            stores: _.isSearch ? _.searchStores : _.stores,
+                          ),
               )
             ],
           ),

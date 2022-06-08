@@ -12,7 +12,7 @@ class RowGenderWidget extends StatefulWidget {
   final Function(String) onTap;
   String userInPutType ;
 
-  RowGenderWidget({required this.onTap, this.userInPutType="male"});
+  RowGenderWidget({Key? key, required this.onTap, this.userInPutType="male"}) : super(key: key);
   @override
   State<RowGenderWidget> createState() => _RowGenderWidgetState();
 }
@@ -33,7 +33,7 @@ class _RowGenderWidgetState extends State<RowGenderWidget> {
                   activeColor: kCMain,
                   hoverColor: kCMain,
                   groupValue: widget.userInPutType,
-                  value: types[0].val,
+                  value: genderTypes[0].val,
                   onChanged: (dynamic value){
                     setState(() {
                       debugPrint(value);
@@ -43,7 +43,7 @@ class _RowGenderWidgetState extends State<RowGenderWidget> {
                     });
                   },
                 ),
-                CustomText(text: types[0].title,),
+                CustomText(text: genderTypes[0].title,),
               ],
             ),
             Row(
@@ -53,7 +53,7 @@ class _RowGenderWidgetState extends State<RowGenderWidget> {
                   activeColor: kCMain,
                   hoverColor: kCMain,
                   groupValue: widget.userInPutType,
-                  value: types[1].val,
+                  value: genderTypes[1].val,
                   onChanged: (dynamic value){
                     setState(() {
                       debugPrint(value);
@@ -63,7 +63,7 @@ class _RowGenderWidgetState extends State<RowGenderWidget> {
                     });
                   },
                 ),
-                CustomText(text: types[1].title,),
+                CustomText(text: genderTypes[1].title,),
               ],
             ),
           ],

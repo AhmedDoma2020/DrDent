@@ -35,6 +35,7 @@ class DayWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint("userType iss $userType");
     var node = FocusScope.of(context);
     return GestureDetector(
       onTap: () {
@@ -87,7 +88,7 @@ class DayWidget extends StatelessWidget {
                             shrinkWrap: true,
                           ),
                         ),
-                        userType == UserTypeEnum.doctor?
+                        userType == UserTypeEnum.doctor ?
                         Padding(
                           padding: EdgeInsets.only(top: 16.0.h),
                           child: Row(
@@ -95,7 +96,7 @@ class DayWidget extends StatelessWidget {
                             children: [
                               GestureDetector(
                                 onTap: () {
-                                  debugPrint("open sheet");
+                                  debugPrint("open sheet edit work space");
                                   Get.bottomSheet(SheetAddDayDetails(
                                     userType: userType,
                                     onSave: (start, end, visitsCount) {
@@ -126,7 +127,7 @@ class DayWidget extends StatelessWidget {
                                         vertical: 9.h, horizontal: 21.w),
                                     child: Center(
                                       child: CustomText(
-                                        text: 'إضافة  فترة',
+                                        text: 'add_duration',
                                         color: kCMain,
                                         fontW: FW.medium,
                                         fontSize: 12,
@@ -138,7 +139,9 @@ class DayWidget extends StatelessWidget {
                             ],
                           ),
                         ):
-                        day.times!.isNotEmpty?
+                        day.times!.isNotEmpty
+                            && userType != UserTypeEnum.centerDoctor
+                            ?
                             0.0.ESH():
                              Padding(
                           padding: EdgeInsets.only(top: 16.0.h),
@@ -148,7 +151,8 @@ class DayWidget extends StatelessWidget {
                               GestureDetector(
                                 onTap: () {
                                   debugPrint("open sheet");
-                                  Get.bottomSheet(SheetAddDayDetails(
+                                  Get.bottomSheet(
+                                      SheetAddDayDetails(
                                     userType: userType,
                                     onSave: (start, end, visitsCount) {
                                       debugPrint(start);
@@ -178,7 +182,7 @@ class DayWidget extends StatelessWidget {
                                         vertical: 9.h, horizontal: 21.w),
                                     child: Center(
                                       child: CustomText(
-                                        text: 'إضافة  فترة',
+                                        text: 'add_duration',
                                         color: kCMain,
                                         fontW: FW.medium,
                                         fontSize: 12,
@@ -189,7 +193,7 @@ class DayWidget extends StatelessWidget {
                               ),
                             ],
                           ),
-                        )
+                        ),
                       ],
                     )
                   : 0.0.ESH()

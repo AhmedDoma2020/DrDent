@@ -1,10 +1,11 @@
 mixin ApiKey{
 
 
-   static const String apiBaseUrl = 'http://dr-dent.crazyideaco.com/api/';
+   static const String apiBaseUrl = 'https://dr-dent.crazyideaco.com/api/';
 
 
    final String uRLLogin = apiBaseUrl + "login";
+   final String uRLLogout = apiBaseUrl + "logout";
    final String uRLRegister = apiBaseUrl + "register";
    final String uRLLoginWithEmail = apiBaseUrl + "login_with_gmail";
    final String uRLVerifyPhone = apiBaseUrl + "verify_phone";
@@ -27,7 +28,7 @@ mixin ApiKey{
    final String uRLEditDayTime = apiBaseUrl + "delete_work_space_time";
    final String uRLFetchJobRequests = apiBaseUrl + "fetch_job_requests";
    final String uRLFetchPosts = apiBaseUrl + "fetch_social";
-   final String uRLFetchMyPosts = apiBaseUrl + "my_posts";
+   final String uRLFetchMyPosts = apiBaseUrl + "user_posts";
    final String uRLStore = apiBaseUrl + "fetch_social";
    final String uRLFetchStore = apiBaseUrl + "fetch_store";
    final String uRLFetchPostComments = apiBaseUrl + "fetch_post_comments";
@@ -39,17 +40,29 @@ mixin ApiKey{
    final String uRLAllFetchAllProducts = apiBaseUrl + "fetch_all_products";
    final String uRLCompanyFetchAllProducts = apiBaseUrl + "store_products";
    final String uRLCompanyAddProduct = apiBaseUrl + "company_add_product";
+   final String uRLCompanyEditProduct = apiBaseUrl + "company_edit_product";
+   final String uRLCompanyDeleteProduct = apiBaseUrl + "company_delete_product";
    final String uRLFetchCategories = apiBaseUrl + "fetch_categories";
    final String uRLAllFetchAllStores = apiBaseUrl + "fetch_all_Stores";
    final String uRLLikePost = apiBaseUrl + "like_post";
+   final String uRLSharePost = apiBaseUrl + "share_post";
    final String uRLLikeComment = apiBaseUrl + "like_comment";
    final String uRLAddComment = apiBaseUrl + "add_comment";
    final String uRLAddJobOffer = apiBaseUrl + "add_job_offer";
    final String uRLEditJobOffer = apiBaseUrl + "edit_job_offer";
    final String uRLDeleteJobOffer = apiBaseUrl + "delete_job_offer";
    final String uRLDeleteJobRequest = apiBaseUrl + "delete_job_request";
+   final String uRLLikeProduct = apiBaseUrl + "favorite_Product";
+   final String uRLSavedProducts = apiBaseUrl + "your_favorite_products";
+   final String uRLNotifications = apiBaseUrl + "your_notifications";
+   final String uRLQuestions = apiBaseUrl + "questions";
+   final String uRLPrivacy = apiBaseUrl + "privacy";
+   final String uRLConditions = apiBaseUrl + "conditions";
+   final String uRLCompanyProductInformations = apiBaseUrl + "company_product_informations";
 
-
+   final String uRLRequestProductPrice = apiBaseUrl + "send_product_information";
+   final String uRLSearchDoctors = apiBaseUrl + "search_doctors";
+   final String uRLDeleteRequest = apiBaseUrl + "delete_product_information";
 
 
    // String URLFetchMajorCategorySellers(int page)=>apiBaseUrl + "major_shops"+'?page=$page'; // soon
@@ -57,6 +70,7 @@ mixin ApiKey{
 
 // New ApiKey For Pickup
    final String uRLResetPassword = apiBaseUrl + "reset_password";
+   final String uRLChangePassword = apiBaseUrl + "change_password";
    final String uRLSetExperienceYears = apiBaseUrl + "set_experience_years";
    final String uRLSetCommercialRegistrationAndTaxCard = apiBaseUrl + "company_set_store_info";
    final String uRLSetWorkSpace = apiBaseUrl + "set_work_space";
@@ -86,6 +100,7 @@ mixin ApiKey{
    final String uRLFetchScientific = apiBaseUrl + "fetch_seintific_levels";
    final String uRLFetchSpecialization = apiBaseUrl + "specializations";
    final String uRLEnterAndEditPersonalDataOfDoctor = apiBaseUrl + "edit_doctor_personal_info";
+   final String uRLEnterInfoToApplyJob = apiBaseUrl + "apply_for_job_offer";
    final String uRLEnterAndEditPersonalDataOfCompanyAndCenter = apiBaseUrl + "company_edit_general_info";
    final String uRLEnterAndEditPersonalDataOfGraduated = apiBaseUrl + "edit_graduate_personal_info";
    final String uRLAddJopRequest = apiBaseUrl + "add_job_request";
@@ -99,8 +114,21 @@ mixin ApiKey{
    final String uRLDeleteDoctorCertification = apiBaseUrl + "delete_doctor_certificate";
    final String uRLFetchDoctorCertification = apiBaseUrl + "fetch_doctor_certificate";
    final String uRLCenterAddDoctor = apiBaseUrl + "center_add_doctor";
+   final String uRLCenterEditDoctor = apiBaseUrl + "center_edit_doctor";
    final String uRLSetAvatar = apiBaseUrl + "set_user_image";
    final String uRLSetCover = apiBaseUrl + "set_cover_image";
    final String uRLAddPost = apiBaseUrl + "add_post";
+   final String uRLEditPost = apiBaseUrl + "edit_post";
+   final String uRLDeletePost = apiBaseUrl + "delete_post";
    final String uRLJobTitles = apiBaseUrl + "job_titles";
+   final String uRLFollowAnfUnFollow = apiBaseUrl + "follow_user";
+   final String uRLMyFollowing = apiBaseUrl + "user_followings";
+   final String uRLMyFollowers = apiBaseUrl + "user_followers";
+   final String uRLUserPatient = apiBaseUrl + "user_patients";
+   final String uRLFetchSocialProfile = apiBaseUrl + "fetch_user_profile";
+   final String uRLFetchUserServices = apiBaseUrl + "user_services";
+   final String uRLFetchUserWorkSpace = apiBaseUrl + "user_work_spaces";
+   final String uRLFollowAndUnFollow = apiBaseUrl + "follow_user";
+   final String uRLReportUser = apiBaseUrl + "report_user";
+   final String uRLBlockUser = apiBaseUrl + "block_user";
 }

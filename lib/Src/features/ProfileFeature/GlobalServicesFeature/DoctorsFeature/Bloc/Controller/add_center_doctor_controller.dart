@@ -1,19 +1,27 @@
+import 'package:dr_dent/Src/bloc/model/doctor.dart';
 import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/BaseFeature/ui/screens/base_screen.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/DoctorsFeature/Bloc/Repository/add_center_doctor_repo.dart';
+import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/DoctorsFeature/Bloc/Repository/edit_center_doctor_repo.dart';
 import 'package:dr_dent/Src/ui/widgets/custom_snack_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../../../../../../bloc/model/center_doctor_model.dart';
+import '../Repository/search_doctors_repo.dart';
 import 'fetch_center_doctor_controller.dart';
 
 class AddCenterDoctorController extends GetxController {
   final bool isAuth;
   final bool isEdit;
   final CenterDoctorModel? centerDoctorModel;
+
+
+
+  List<Doctor> doctors=[];
+
 
   AddCenterDoctorController({this.isAuth =false,this.isEdit =false,this.centerDoctorModel});
 
@@ -23,6 +31,7 @@ class AddCenterDoctorController extends GetxController {
   TextEditingController? jobTitleController;
   TextEditingController? jobTitleAndSpecializationController;
   TextEditingController? noteController;
+  TextEditingController? priceExaminationController;
   List<int> _specializationIdSelected=[];
   List<int> get specializationIdSelected => _specializationIdSelected;
   set setSpecializationIdSelected(List<int> value) {
@@ -72,6 +81,7 @@ class AddCenterDoctorController extends GetxController {
       }
       jobTitleAndSpecializationController!.text = _specializationTitleSelected.join(",");
       setSpecializationIdSelected = _specializationIdSelected;
+      priceExaminationController!.text = centerDoctorModel!.price.toString();
     }
     noteController!.text = centerDoctorModel!.doctorInfo;
     update();
@@ -79,22 +89,41 @@ class AddCenterDoctorController extends GetxController {
   RequestStatus status = RequestStatus.initial;
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
   final AddCenterDoctorRepository _addCenterDoctorRepository = AddCenterDoctorRepository();
+  final EditCenterDoctorRepository _editCenterDoctorRepository = EditCenterDoctorRepository();
   void submit() async {
     if (globalKey.currentState!.validate()) {
       globalKey.currentState!.save();
-      if (_avatar != "") {
-        // customSnackBar(title: "Done",);
-        setLoading();
-        var response = await _addCenterDoctorRepository.addCenterDoctor(
-          name: nameController!.text,
-          phone: phoneController!.text,
-          specializationIds: _specializationIdSelected,
-          gender: _gender,
-          notes: noteController!.text,
-          avatar: _avatar,
-          jobTitleId: _jopTitleId,
-        );
-        Get.back();
+      if (_avatar != "" || _futureAvatar!= '') {
+        dynamic response;
+        if(isEdit){
+          setLoading();
+          response = await _editCenterDoctorRepository.editCenterDoctor(
+            price: priceExaminationController!.text,
+            doctorId: centerDoctorModel!.id,
+            name: nameController!.text,
+            phone: phoneController!.text,
+            specializationIds: _specializationIdSelected,
+            gender: _gender,
+            notes: noteController!.text,
+            avatar: _avatar,
+            jobTitleId: _jopTitleId,
+          );
+          Get.back();
+        }else{
+          setLoading();
+           response = await _addCenterDoctorRepository.addCenterDoctor(
+             price: priceExaminationController!.text,
+             name: nameController!.text,
+            phone: phoneController!.text,
+            specializationIds: _specializationIdSelected,
+            gender: _gender,
+            notes: noteController!.text,
+            avatar: _avatar,
+            jobTitleId: _jopTitleId,
+          );
+          Get.back();
+        }
+
         if (response.statusCode == 200 && response.data["status"] == true) {
           debugPrint("request operation success");
           if(isAuth){
@@ -123,6 +152,44 @@ class AddCenterDoctorController extends GetxController {
     }
   }
 
+
+
+
+
+  // ========== START FETCH DATA  ====================
+  final SearchDoctorsRepository _productsRepository = SearchDoctorsRepository();
+  Future<void> searchDoctors({String doctorName=''})async{
+    status = RequestStatus.loading;
+    update();
+    var response = await _productsRepository.searchDoctors(doctorName: doctorName);
+    if (response.statusCode == 200 && response.data["status"] == true) {
+      if(response.data['data']!=null){
+        doctors.clear();
+        for (var item in response.data['data']) {
+          doctors.add(Doctor.fromJson(item));
+        }
+      }
+      debugPrint("convert operation success");
+      status = RequestStatus.done;
+      update();
+    }else{
+      status = RequestStatus.error;
+      update();
+    }
+  }
+  // ================  END FETCH DATA  ====================
+
+
+
+
+
+
+
+
+
+
+
+
   @override
   void onInit() {
     super.onInit();
@@ -131,6 +198,7 @@ class AddCenterDoctorController extends GetxController {
     jobTitleController = TextEditingController();
     jobTitleAndSpecializationController = TextEditingController();
     noteController = TextEditingController();
+    priceExaminationController = TextEditingController();
     if(isEdit)setData();
   }
 
@@ -141,6 +209,7 @@ class AddCenterDoctorController extends GetxController {
     jobTitleController?.dispose();
     jobTitleAndSpecializationController?.dispose();
     noteController?.dispose();
+    priceExaminationController?.dispose();
     super.dispose();
   }
 }

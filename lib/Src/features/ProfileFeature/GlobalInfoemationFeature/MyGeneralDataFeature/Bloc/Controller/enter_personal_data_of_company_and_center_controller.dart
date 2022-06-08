@@ -9,9 +9,7 @@ import 'package:get_storage/get_storage.dart';
 
 class EnterPersonalDataOfCompanyAndCenterController extends GetxController {
   final bool isEdit;
-
   EnterPersonalDataOfCompanyAndCenterController({this.isEdit = false});
-
   GetStorage box = GetStorage();
   TextEditingController? nameController;
   TextEditingController? phoneController;
@@ -21,6 +19,13 @@ class EnterPersonalDataOfCompanyAndCenterController extends GetxController {
   TextEditingController? logRecordController;
   TextEditingController? addressController;
   TextEditingController? aboutController;
+  final GlobalKey<FormState> globalKey2 = GlobalKey<FormState>();
+  TextEditingController? cityController = TextEditingController();
+  TextEditingController? stateController = TextEditingController();
+  TextEditingController? buildNumController = TextEditingController();
+  TextEditingController? flatNumController = TextEditingController();
+  TextEditingController? spMarkController = TextEditingController();
+
 
   String _avatar = "";
   String get avatar => _avatar;
@@ -110,11 +115,23 @@ class EnterPersonalDataOfCompanyAndCenterController extends GetxController {
       setFutureLogImage = _fetchProfileDoctorController.logRecordImage;
       taxNumberController!.text = _fetchProfileDoctorController.taxNum;
       logRecordController!.text = _fetchProfileDoctorController.logRecordNum;
-
+      //
+      addressController!.text = _fetchProfileDoctorController.address;
+      setLat = _fetchProfileDoctorController.lat;
+      setLon = _fetchProfileDoctorController.lon;
+      setStateId = _fetchProfileDoctorController.stateId;
+      stateController!.text = _fetchProfileDoctorController.stateTitle;
+      cityController!.text = _fetchProfileDoctorController.cityTitle;
+      setCityId = _fetchProfileDoctorController.cityId;
+      buildNumController!.text = _fetchProfileDoctorController.buildNum.toString();
+      flatNumController!.text = _fetchProfileDoctorController.flatNum.toString();
+      spMarkController!.text = _fetchProfileDoctorController.mark;
+      aboutController!.text = _fetchProfileDoctorController.about;
       // administratorPhoneController!.text = _fetchProfileDoctorController.!;
 
-      debugPrint("nameController!.text ${nameController!.text}");
-      debugPrint("degreeController!.text ${phoneController!.text}");
+      debugPrint("_fetchProfileDoctorController.buildNum.toString() ${_fetchProfileDoctorController.buildNum.toString()}");
+      debugPrint("_fetchProfileDoctorController.flatNum.toString() ${_fetchProfileDoctorController.flatNum.toString()}");
+      debugPrint("_fetchProfileDoctorController.mark ${_fetchProfileDoctorController.mark}");
       update();
     }
   }
@@ -139,16 +156,19 @@ class EnterPersonalDataOfCompanyAndCenterController extends GetxController {
               name: nameController!.text,
               administratorPhone: administratorPhoneController!.text,
               administratorName: administratorNameController!.text,
-              // stateId: stateId!,
-              // cityId: cityId!,
-              // lat: lat!,
-              // lon: lon!,
-              // address: addressController!.text,
+              stateId: stateId!,
+              cityId: cityId!,
+              lat: lat!,
+              lon: lon!,
+              address: addressController!.text,
               taxNumber: taxNumberController!.text,
               logRecord: logRecordController!.text,
               taxNumberImage: taxImage,
               logRecordImage: logRecordImage,
               moreInfo: aboutController!.text,
+                  buildNumber: buildNumController!.text,
+                  flatNumber: flatNumController!.text,
+                  mark: spMarkController!.text,
             );
             Get.back();
             if (response.statusCode == 200 && response.data["status"] == true) {
@@ -157,7 +177,6 @@ class EnterPersonalDataOfCompanyAndCenterController extends GetxController {
                 _fetchProfileDoctorController.fetchProfileDoctor();
                 Get.back();
               }
-
               customSnackBar(title: response.data["message"]);
               debugPrint("convert operation success");
               status = RequestStatus.done;

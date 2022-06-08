@@ -9,7 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 class ButtonTapBarWidgetOfGraduated extends StatelessWidget {
+  final int userId;
   const ButtonTapBarWidgetOfGraduated({
+    required this.userId,
     Key? key,
   }) : super(key: key);
   @override
@@ -43,7 +45,7 @@ class ButtonTapBarWidgetOfGraduated extends StatelessWidget {
             child:
             [
               GlobalInformationDetailsWidgetOfGraduated(),
-              MySocialScreen(),
+              MySocialScreen(userId: userId),
             ][_.tabIndex],
           ),
           24.0.ESH(),

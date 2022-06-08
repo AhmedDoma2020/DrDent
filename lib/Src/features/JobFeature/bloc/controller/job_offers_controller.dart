@@ -19,12 +19,12 @@ class JobOffersController extends GetxController{
   // ========== START FETCH DATA  ====================
   final JobOffersRepository _jobOffersRepository = JobOffersRepository();
 
-  Future<void> fetchJobOffers({VoidCallback? onSuccess , bool forceLoading=true})async{
+  Future<void> fetchJobOffers({VoidCallback? onSuccess , bool forceLoading=true,int? cityId})async{
     if(forceLoading){
       status = RequestStatus.loading;
       update();
     }
-    var response = await _jobOffersRepository.fetchJobOffers();
+    var response = await _jobOffersRepository.fetchJobOffers(cityId:cityId??null);
     status = RequestStatus.done;
     update();
     if (response.statusCode == 200 && response.data["status"] == true) {
@@ -56,6 +56,7 @@ class JobOffersController extends GetxController{
 
 
 
+
   // ========== START DELETE DATA  ====================
   final DeleteJopOfferRepository _deleteJopOfferRepository = DeleteJopOfferRepository();
   Future<void> deleteJobOffers({required int id})async{
@@ -70,10 +71,17 @@ class JobOffersController extends GetxController{
   // ================  END DELETE DATA  ====================
 
 
+void changeIsApplied({required int offerId}){
+  final int indexOffer =  _jobOffers.indexWhere((element) => element.id == offerId);
+  _jobOffers[indexOffer].isApplied = 1;
+  update();
+}
+
   @override
   void onInit() {
     super.onInit();
     fetchJobOffers();
   }
+
 
 }

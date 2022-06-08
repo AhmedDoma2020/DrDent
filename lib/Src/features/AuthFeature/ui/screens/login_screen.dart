@@ -15,6 +15,7 @@ import 'package:get/get.dart';
 import '/src/core/utils/extensions.dart';
 
 class LoginScreen extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     LoginController loginController = Get.put(LoginController());
@@ -179,8 +180,8 @@ class LoginScreen extends StatelessWidget {
                       padding: EdgeInsets.only(bottom: 20.h),
                       child: Container(
                           child: TitleTwoInLine(
-                            tile: 'ليس لديك حساب بعد ؟ ',
-                            secondTile: 'إنشاء حساب',
+                            tile: 'do_not_have_account_yet'.tr,
+                            secondTile: 'Create_an_account'.tr,
                             tileSize: 16.0,
                             onTap: () {
                               _.moveToRegister();

@@ -13,6 +13,6 @@ class Question {
     id = map['id']??0;
     question = map['question']??' ';
     answer = map['answer']??' ';
-    expanded = false;
+    expanded = true;
   }
 }

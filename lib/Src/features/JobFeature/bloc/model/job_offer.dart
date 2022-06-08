@@ -4,19 +4,25 @@
 class JobOffer {
   JobOffer({
     required this.id,
+    required this.userId,
     required this.name,
     required this.phone,
     required this.address,
     required this.startSalary,
     required this.endSalary,
     required this.description,
+    required this.cityTitle,
+    required this.cityId,
+    required this.jobTypeId,
     required this.scientificlevelTitle,
     required this.scientificlevelId,
     required this.specializations,
     required this.requirements,
     required this.image,
+    required this.isApplied,
   });
   late final int id;
+  late final int userId;
   late final String name;
   late final String phone;
   late final String address;
@@ -24,13 +30,18 @@ class JobOffer {
   late final String endSalary;
   late final String description;
   late final String scientificlevelTitle;
+  late final String cityTitle;
   late final int scientificlevelId;
+  late final int cityId;
+  late final int jobTypeId;
   late final List<Specializations> specializations;
   late final List<String> requirements;
   late final String image;
+  late  int isApplied;
 
   JobOffer.fromJson(Map<String, dynamic> json){
     id = json['id']??0;
+    userId = json['user_id']??0;
     name = json['name']??"";
     phone = json['phone']??"";
     address = json['address']??"";
@@ -38,17 +49,27 @@ class JobOffer {
     endSalary = json['end_salary']??"";
     description = json['description']??"";
     scientificlevelTitle = json['scientificlevel']??"";
-    scientificlevelId = json['scientificlevel_id']??0;
+    scientificlevelId = json['scientific_level_id']??0;
+    cityTitle = json['city_title']??"";
+    cityId = json['city_id']??0;
+    jobTypeId = json['job_type']??0;
     if(json['specializations']!=null){
       specializations = List.from(json['specializations']).map((e)=>Specializations.fromJson(e)).toList();
     }else{
       specializations = [];
     }
-    requirements = json['requirements']!=null ? json['requirements'].cast<String>() : [];
+    if(json['requirements']!=null){
+      List<String> requirementsLocal =[];
+      for(var item in json['requirements']){
+        requirementsLocal.add(item??'');
+      }
+      requirements  = requirementsLocal;
+    }
     image = json['image'];
+    isApplied = json['is_applied'];
   }
-
 }
+
 
 class Specializations {
   Specializations({

@@ -16,7 +16,7 @@ class PackagesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(PackageController());
     return Scaffold(
-      appBar: AppBars.appBarDefault(title: 'باقات الدفع'),
+      appBar: AppBars.appBarDefault(title: 'Payment_Packages'.tr),
       backgroundColor: Colors.white,
       body: GetBuilder<PackageController>(
         builder: (_) =>  Column(
@@ -45,10 +45,10 @@ class PackagesScreen extends StatelessWidget {
                               child: Center(
                                 child: CustomText(
                                   text: [
-                                    'شهر',
-                                    '3 شهور',
-                                    '6 شهور',
-                                    'سنة'
+                                    'Month_'.tr,
+                                    '3_Month'.tr,
+                                    '6_Month'.tr,
+                                    'year_'.tr
                                   ][i],
                                 ),
                               ),

@@ -26,6 +26,7 @@ class HomeVisitsController extends GetxController {
       debugPrint("request operation success");
       _newVisits.clear();
       _nextVisits.clear();
+      print('myyyyyyyyyyyyyyyyyyyyyyyyyyyyyy ${response.data}');
       if (response.data['data']['next_visits'] != null) {
         for (var item in response.data['data']['next_visits']) {
           newVisits.add(Visit.fromJson(item));

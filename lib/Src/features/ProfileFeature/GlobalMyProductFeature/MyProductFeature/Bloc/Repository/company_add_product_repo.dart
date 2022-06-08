@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:dr_dent/Src/core/constants/api_key.dart';
 import 'package:dr_dent/Src/core/services/network_services.dart';
 import 'package:dr_dent/Src/core/utils/network_exceptions.dart';
+import 'package:flutter/cupertino.dart';
 
 class AddCompanyProductRepository with ApiKey {
   final NetworkService _networkService = NetworkService();
@@ -18,6 +19,8 @@ class AddCompanyProductRepository with ApiKey {
     required List<String> images,
   }) async {
     Response response;
+    debugPrint("images in AddCompanyProductRepository is ${images.length}");
+    debugPrint("images in AddCompanyProductRepository is $images");
     try {
       response = await _networkService.post(
           url: uRLCompanyAddProduct,
@@ -30,6 +33,7 @@ class AddCompanyProductRepository with ApiKey {
             'usability':usability,
             // 'general_use':generalUse,
             // 'side_effects':sideEffects,
+            if(images.isNotEmpty)
             'images':images,
           }
       );

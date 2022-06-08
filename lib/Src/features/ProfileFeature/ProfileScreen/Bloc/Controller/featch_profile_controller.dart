@@ -6,6 +6,7 @@ import 'package:get_storage/get_storage.dart';
 
 class FetchProfileController extends GetxController {
   String? _phone;
+  int? _id;
   String? _name;
   String? _avatar;
   String? _cover;
@@ -38,7 +39,25 @@ class FetchProfileController extends GetxController {
   String _universityTitle = '';
   String _graduationDegree = '';
   int _universityId = 0;
+  int _cityId = 0;
+  int _stateId = 0;
+  String _buildNum='';
+  String _flatNum='';
+  String _mark ='';
+  double _lat=0.0;
+  double _lon= 0.0;
+  String _cv='';
 
+  String get cv => _cv;
+
+  double get lat => _lat;
+  double get lon => _lon;
+  int get cityId => _cityId;
+  int get stateId => _stateId;
+  String get buildNum => _buildNum;
+  String get flatNum => _flatNum;
+  String get mark => _mark;
+  int? get id => _id;
   String get universityTitle => _universityTitle;
   String get graduationDegree => _graduationDegree;
   int get universityId => _universityId;
@@ -87,6 +106,7 @@ class FetchProfileController extends GetxController {
     if (response.statusCode == 200 && response.data["status"] == true) {
       debugPrint("request operation success");
       box.write('id', response.data['data']['id']);
+      _id = response.data['data']['id'] ?? 0;
       _phone = response.data['data']['phone'] ?? "";
       _name = response.data['data']['name'] ?? "";
       _avatar = response.data['data']['image'] ?? "";
@@ -141,6 +161,17 @@ class FetchProfileController extends GetxController {
       _universityTitle = response.data['data']['university_title'] ?? '';
       _universityId = response.data['data']['university_id'] ?? 0;
       _graduationDegree = response.data['data']['graduation_degree'] ?? 0;
+      _cityId = response.data['data']['city_id'] ?? 0;
+      _stateId = response.data['data']['state_id'] ?? 0;
+      _flatNum = response.data['data']['flat_number'] ?? 0;
+      _buildNum = response.data['data']['buliding_number'] ?? 0;
+      _mark = response.data['data']['mark'] ??"";
+      debugPrint("response.data['data']['flat_number'] is ${_flatNum}");
+      debugPrint("response.data['data']['buliding_number'] is ${_buildNum}");
+      debugPrint("response.data['data']['mark'] is ${_mark}");
+      _lat = response.data['data']['lat'] ??0.0;
+      _lon= response.data['data']['lon'] ??0.0;
+      _cv= response.data['data']['cv'] ??'';
       debugPrint("convert operation success");
       status = RequestStatus.done;
       update();

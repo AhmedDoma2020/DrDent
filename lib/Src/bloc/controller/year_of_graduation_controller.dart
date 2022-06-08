@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 
 class FetchYearsOfGraduationController extends GetxController {
 
-  List<int> _yearsOfGraduationList = [];
+  final List<int> _yearsOfGraduationList = [];
   List<int> get yearsOfGraduation => _yearsOfGraduationList;
   DateTime dateTime =DateTime.now();
   int _yearOfGraduationSIndex = -1;

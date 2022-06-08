@@ -14,7 +14,7 @@ class ImageNetwork extends StatelessWidget {
   Widget build(BuildContext context) {
     return CachedNetworkImage(
       height: height!.h,
-      width: width!.w,
+      width: width!.h,
       imageUrl: url??defaultAvatar,
       fit: boxFit,
       errorWidget: (context, url, error) =>

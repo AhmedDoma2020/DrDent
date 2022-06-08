@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 
 
 class FetchDoctorCertificationController extends GetxController {
-  List<CertificationModel> _certificationList=[];
+  final List<CertificationModel> _certificationList=[];
   List<CertificationModel> get certificationList => _certificationList;
   RequestStatus status = RequestStatus.initial;
   final FetchDoctorCertificationRepo _fetchDoctorCertificationRepo =

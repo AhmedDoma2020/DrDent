@@ -42,23 +42,25 @@ class SupportItem extends StatelessWidget {
                 ),
               ),
               16.0.ESW(),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CustomText(
-                    text: 'الأسألة الشائعة',
-                    color: kCMainBlack2,
-                    fontSize: 14,
-                    fontW: FW.medium,
-                  ),
-                  7.0.ESH(),
-                  CustomText(
-                    text: 'احصل على إجابات لكل استفساراتك فورا',
-                    color: kCMainBlack2,
-                    fontSize: 14,
-                    fontW: FW.medium,
-                  ),
-                ],
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CustomText(
+                      text: title,
+                      color: kCMainBlack2,
+                      fontSize: 14,
+                      fontW: FW.medium,
+                    ),
+                    7.0.ESH(),
+                    CustomText(
+                      text: subtitle,
+                      color: kCMainBlack2,
+                      fontSize: 14,
+                      fontW: FW.medium,
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

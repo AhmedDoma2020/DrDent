@@ -5,21 +5,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class GlobalMyProductWidget extends StatelessWidget {
-  const GlobalMyProductWidget({Key? key}) : super(key: key);
+  final bool isMine;
+  final int userId ;
+  const GlobalMyProductWidget({this.isMine= false,required this.userId,Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       // color: Colors.green,
-      child: GetBuilder<FetchProfileController>(
-        builder: (_) => ProfileColumnInfoItem(
+      child:  ProfileColumnInfoItem(
           icon: "assets/icons/personalInfoIcon.png",
           title: "company_products",
           onTap: () {
-            Get.to(() => const CompanyProductsScreen() );
+            Get.to(() =>  CompanyProductsScreen(userId: userId,isMine: isMine,));
             },
         ),
-      ),
+
     );
   }
 }

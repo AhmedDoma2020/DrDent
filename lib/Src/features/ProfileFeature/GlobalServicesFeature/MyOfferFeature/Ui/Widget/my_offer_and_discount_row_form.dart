@@ -4,7 +4,7 @@ import 'package:dr_dent/Src/core/utils/extensions.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalServicesFeature/MyOfferFeature/Ui/View/offer_profile_screen.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/delete_widget.dart';
-import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/edit_widget.dart';
+import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/icon_widget.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/image_network.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -26,19 +26,19 @@ class MyOfferAndDiscountRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String getServicesTitle(){
-      String servicesTitle='';
-      for(var item in offerAndDiscount.services){
-        servicesList.add(item.title);
-      }
-      servicesTitle = servicesList.join(",");
-      return servicesTitle;
-    }
+    // String getServicesTitle(){
+    //   String servicesTitle='';
+    //   for(var item in offerAndDiscount.services){
+    //     servicesList.add(item.title);
+    //   }
+    //   servicesTitle = servicesList.join(",");
+    //   return servicesTitle;
+    // }
     return ClipRRect(
       borderRadius: BorderRadius.circular(8.r),
       child: GestureDetector(
         onTap: (){
-          Get.to(()=>OfferProfileScreen(offerAndDiscount: offerAndDiscount,getServicesTitle:getServicesTitle() ,));
+          Get.to(()=>OfferProfileScreen(offerAndDiscount: offerAndDiscount, ));
         },
         child: Container(
           height: 300.h,
@@ -106,7 +106,7 @@ class MyOfferAndDiscountRow extends StatelessWidget {
                               constraints: BoxConstraints(maxWidth: 222.w),
                               // color: Colors.greenAccent,
                               child: CustomText(
-                                text: getServicesTitle(),
+                                text:offerAndDiscount.servicesTitle,
                                 fontW: FW.light,
                                 fontSize: 10,
                                 overflow: true,
@@ -201,7 +201,7 @@ class MyOfferAndDiscountRow extends StatelessWidget {
                       child: Align(
                         alignment: Alignment.topLeft,
                         child: SizedBox(
-                          width: 34.w,
+                          width: 38.w,
                           child: Row(
                             children: [
                               // EditWidget(onEditTap: onEditTap),

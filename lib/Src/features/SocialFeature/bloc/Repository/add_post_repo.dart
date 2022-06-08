@@ -15,10 +15,10 @@ class AddPostRepository with ApiKey {
   Future<Response> addPost({
     required String content,
     required List<String> images,
-    required List<int> tags,
+    required List<int> sharesId,
   }) async {
     log("imagesList in repo is $images");
-    log("tags in repo is $tags");
+    log("tags in repo is $sharesId");
     Response response;
     try {
       response = await _networkService.post(
@@ -27,7 +27,7 @@ class AddPostRepository with ApiKey {
           body: {
             'content':content,
             'images':images,
-            'tag_ids':tags,
+            'user_type_ids':sharesId,
           }
       );
     } on SocketException {

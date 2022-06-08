@@ -5,8 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class GridCardProduct extends StatelessWidget {
   final List<Product> products;
-
-  const GridCardProduct({Key? key, required this.products}) : super(key: key);
+  final Function(int,int)? onLike;                // product id         // status
+  const GridCardProduct({Key? key, required this.products,this.onLike}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +16,11 @@ class GridCardProduct extends StatelessWidget {
           width: constraints.maxWidth,
           height: constraints.maxHeight,
           product: products[index],
+          onLike: (status){
+            if(onLike!=null){
+              onLike!(products[index].id!,status);
+            }
+          },
         ),
       ),
       shrinkWrap: true,

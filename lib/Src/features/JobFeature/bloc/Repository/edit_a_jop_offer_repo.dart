@@ -16,10 +16,11 @@ class EditAJopOfferRepository with ApiKey {
     required String phone,
     required String address,
     required int scientificLevel,
+    required int cityId,
     required List<int> specializationId,
     required int startSalary,
     required int endSalary,
-    required String jobType,
+    required int   jobType,
     required String description,
     required List<String> requirements,
   }) async {
@@ -39,7 +40,7 @@ class EditAJopOfferRepository with ApiKey {
             'start_salary':startSalary,
             'end_salary':endSalary,
             'job_type':jobType,
-            'city_id':5,
+            'city_id': cityId,
             'description':description,
             'requirements':requirements,
           }

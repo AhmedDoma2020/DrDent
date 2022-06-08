@@ -12,15 +12,17 @@ class InquiryOfProductRepository with ApiKey {
   Future<Response> inquiryOfProduct({
     required String phone,
     required String name,
+    required int productId
   }) async {
     Response response;
     try {
       response = await _networkService.post(
-          url: '',
+          url: uRLRequestProductPrice,
           auth: true,
           body: {
             'phone':phone,
             'name':name,
+            'product_id':productId
             // 'device_token':"",
             // 'device_id':deviceId,
             // 'device_type':deviceType,

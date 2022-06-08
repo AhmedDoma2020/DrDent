@@ -32,7 +32,7 @@ class DayTimeWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CustomText(
-                  text: 'الفترة',
+                  text: 'duration_',
                   color: kCMainBlack2,
                   fontSize: 12,
                   fontW: FW.light,

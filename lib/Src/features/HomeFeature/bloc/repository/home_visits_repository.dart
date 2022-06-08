@@ -16,7 +16,6 @@ class HomeVisitsRepository with ApiKey{
           url:  uRLFetchHomeVisits,
           auth: true
       );
-
     }on SocketException{
       throw const SocketException('No Internet Connection');
     }on Exception{

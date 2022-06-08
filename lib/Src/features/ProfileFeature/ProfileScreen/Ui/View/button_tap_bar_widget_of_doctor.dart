@@ -12,7 +12,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class ButtonTapBarWidgetOfDoctor extends StatelessWidget {
+  final int userId;
   const ButtonTapBarWidgetOfDoctor({
+    required this.userId,
     Key? key,
   }) : super(key: key);
 
@@ -48,7 +50,7 @@ class ButtonTapBarWidgetOfDoctor extends StatelessWidget {
             child:[
               GlobalInformationDetailsWidgetOfDoctor(),
               GlobalServicesWidgetOfDoctor(),
-              MySocialScreen(),
+              MySocialScreen(userId: userId),
             ][_.tabIndex],
           ),
           24.0.ESH(),

@@ -24,7 +24,7 @@ class JobsScreen extends StatelessWidget {
     GetStorage box = GetStorage();
     Get.put(JobsController());
     JobOffersController _jobOffersController = Get.put(JobOffersController());
-    Get.put(JobRequestController());
+    Get.put(FetchJobRequestController());
     Future<void> onRefresh() async {
       await _jobOffersController.fetchJobOffers();
     }
@@ -62,7 +62,7 @@ class JobsScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(vertical: 16.h),
                 child: Center(
                     child: TabsIos(
-                  titles: const ['طلبات توظيف', 'فرص العمل'],
+                  titles: const ['Job_requests', 'Jobs_chances'],
                   onTap: (value) {
                     _.tabIndex = value;
                   },

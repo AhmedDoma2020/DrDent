@@ -2,7 +2,7 @@ import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/features/JobFeature/bloc/model/job_offer.dart';
 import 'package:dr_dent/Src/features/JobFeature/ui/screens/job_screen.dart';
 import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/custom_text.dart';
-import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/edit_widget.dart';
+import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/icon_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -15,13 +15,18 @@ class CardJobOffer extends StatelessWidget {
   final VoidCallback? onDeleteTap;
   final VoidCallback? onEditTap;
   final bool isMine;
-  const CardJobOffer({Key? key,required this.offer,this.onDeleteTap,this.isMine=false,this.onEditTap}) : super(key: key);
+  final int index;
+  const CardJobOffer({Key? key,required this.offer,this.onDeleteTap,this.isMine=false,this.onEditTap,required this.index}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        Get.to(()=>JobScreen(offer: offer,));
+      onTap: () {
+        Get.to(() => JobScreen(
+          index:index ,
+              offer: offer,
+            ));
       },
       child: Container(
         width: 343.w,
@@ -30,10 +35,7 @@ class CardJobOffer extends StatelessWidget {
           borderRadius: BorderRadius.circular(10.r),
         ),
         child: Padding(
-          padding:  EdgeInsets.symmetric(
-            horizontal: 16.w,
-            vertical: 16.h
-          ),
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
           child: Column(
             children: [
               Row(
@@ -44,9 +46,8 @@ class CardJobOffer extends StatelessWidget {
                     height: 61.w,
                     clipBehavior: Clip.hardEdge,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.r),
-                      color: kCLightGrey.withOpacity(0.5)
-                    ),
+                        borderRadius: BorderRadius.circular(8.r),
+                        color: kCLightGrey.withOpacity(0.5)),
                     child: ImageNetwork(
                       url: offer.image,
                       width: 61.w,
@@ -119,12 +120,12 @@ class CardJobOffer extends StatelessWidget {
               15.0.ESH(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children:[
-                   const CardTag(
-                    title: 'دوام كامل',
+                children: [
+                   CardTag(
+                    title: offer.jobTypeId == 0? 'Full_time':'part_time' ,
                   ),
                   CustomText(
-                    text: 'من ${offer.startSalary} - ${offer.endSalary} جنيه',
+                    text: '${'from_'.tr} ${offer.startSalary} - ${offer.endSalary} ${'E_G_P'.tr}',
                     fontW: FW.demi,
                     fontSize: 14,
                     color: kCMainBlack2,

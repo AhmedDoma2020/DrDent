@@ -1,11 +1,15 @@
 
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:dr_dent/Src/features/AuthFeature/bloc/controller/set_work_license_controller.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/screens/login_screen.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/screens/start_now_screen.dart';
+import 'package:dr_dent/Src/features/DrawerFeature/View/Ui/lan_screen.dart';
 import 'package:dr_dent/Src/features/OnBoardingFeature/ui/views/on_boarding_screen.dart';
 import 'package:dr_dent/Src/features/ProfileFeature/GlobalInfoemationFeature/InsuranceCompaniesFeature/Ui/Screen/insurance_companies_screen.dart';
+import 'Src/features/ProfileFeature/GlobalInfoemationFeature/MyCertificationFeature/Ui/Screen/certification_of_doctor_screen.dart';
+import 'Src/features/SocialProfileFeature/SocialProfileScreen/View/Screen/social_profile_screen.dart';
 import 'package:dr_dent/Src/features/WorkTimeFeature/ui/screens/work_time_screen.dart';
 import 'package:dr_dent/Src/features/SplachFeature/ui/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -24,6 +28,7 @@ import 'Src/features/BaseFeature/ui/screens/base_screen.dart';
 import 'Src/features/ProfileFeature/GlobalInfoemationFeature/MyGeneralDataFeature/Ui/Screen/enter_personal_data_of_company_and_center.dart';
 import 'Src/features/ProfileFeature/GlobalInfoemationFeature/MyGeneralDataFeature/Ui/Screen/enter_personal_data_of_graduated.dart';
 import 'Src/features/ProfileFeature/GlobalMyProductFeature/MyProductFeature/View/Screens/company_add_product_screen.dart';
+import 'Src/features/ProfileFeature/GlobalMyProductFeature/MyProductFeature/View/Screens/company_products_screen.dart';
 import 'Src/features/ProfileFeature/GlobalServicesFeature/DetectionLocationDetails/View/Screens/set_detection_location_details_screen.dart';
 import 'Src/features/JobFeature/ui/screens/job_screen.dart';
 import 'Src/features/JobFeature/ui/screens/jobs_screen.dart';
@@ -51,16 +56,20 @@ import 'Src/features/VisitsFeature/ui/screens/my_visits_screen.dart';
 import 'Src/features/ProfileFeature/GlobalInfoemationFeature/MyGeneralDataFeature/Ui/Screen/enter_personal_data_of_doctor_screen.dart';
 import 'Src/features/ProfileFeature/ProfileScreen/Ui/View/profile_screen.dart';
 import 'Src/ui/widgets/grids/grid_card_product.dart';
+// import 'firebase_options.dart';
 
+// Import the generated file
 // start background
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    // options: DefaultFirebaseOptions.currentPlatform,
+  );
   print('Handling a background message ${message.messageId}');
   print(message.data);
   flutterLocalNotificationsPlugin.show(
       0,
       message.data['title'],
-      message.data['msg'],
+      message.data['body'],
       NotificationDetails(
         android: AndroidNotificationDetails(
           channel.id,
@@ -77,16 +86,26 @@ const AndroidNotificationChannel channel = AndroidNotificationChannel(
   'High Importance Notifications', // title
   description: 'This channel is used for important notifications.', // description
   importance: Importance.high,
-
 );
+
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 FlutterLocalNotificationsPlugin();
 // end background
 
 void main()async{
   WidgetsFlutterBinding.ensureInitialized();
+  if (Platform.isIOS) {
+    await Firebase.initializeApp(
+        options: const FirebaseOptions(
+            apiKey: "your api key Found in GoogleService-info.plist",
+            appId: "Your app id found in Firebase",
+            messagingSenderId: "Your Sender id found in Firebase",
+            projectId: "Your Project id found in Firebase"));
+  } else {
+    await Firebase.initializeApp();
+  }
   await GetStorage.init();
-  await Firebase.initializeApp();
+
   // start background
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   await flutterLocalNotificationsPlugin
@@ -133,7 +152,7 @@ class _MyAppState extends State<MyApp> {
         flutterLocalNotificationsPlugin.show(
             0,
             message.data['title'],
-            message.data['msg'],
+            message.data['body'],
             NotificationDetails(
               android: AndroidNotificationDetails(
                 channel.id,
@@ -155,6 +174,7 @@ class _MyAppState extends State<MyApp> {
     registerNotification();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -169,10 +189,8 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home:BaseScreen(),
+        home: SplashScreen(),
       ),
     );
   }
 }
-
-

@@ -12,7 +12,7 @@ class AppBars {
   static AppBar appBarDefault({ bool isBack=true, TabBar? tabBar,String title='',Widget secondIconImage=const SizedBox(width: 0,) , VoidCallback? onTap}){
     return AppBar(
       title: CustomText(
-        text: title,
+        text: title.tr,
         fontW: FW.semibold,
         fontSize: 16,
         color: kCBlackTitle,
@@ -90,17 +90,23 @@ class AppBars {
           size: 24.h,
         ),
       ),
+
       actions: [
         isSkip ==true?
-        IconButton(
-          onPressed:onTapSkip,
-          icon: CustomText(
-            text: "skip_".tr,
-            fontW: FW.semibold,
-            fontSize: 12,
+        SizedBox(
+          width: 60.w,
+          child: IconButton(
+            padding: EdgeInsets.zero,
+            onPressed:onTapSkip,
+            icon: CustomText(
+              text: "skip_".tr,
+              fontW: FW.semibold,
+              fontSize: 12,
+            ),
           ),
         ):0.0.ESH()
       ],
+
       bottom: tabBar,
     );
   }
@@ -109,7 +115,7 @@ class AppBars {
 
 
 
-  static AppBar appBarLogo({String logo='logo.png',required VoidCallback onDrawerTap}){
+  static AppBar appBarLogo({bool citiesHandle=false,String logo='logo.png',required VoidCallback onDrawerTap,VoidCallback? onCitiesTap}){
     return AppBar(
       title: Image.asset(
         'assets/icons/$logo',
@@ -126,6 +132,22 @@ class AppBars {
       backgroundColor: Colors.white,
       centerTitle: true,
       elevation: 0.0,
+      actions: [
+        citiesHandle?
+        Padding(
+          padding:  EdgeInsets.symmetric(horizontal: 16.w),
+          child: GestureDetector(
+            onTap:onCitiesTap??(){},
+            child: Center(
+              child: Image.asset(
+                'assets/icons/filterIcon.png',
+                color: kCMainBlack,
+                height: 25.h,
+              ),
+            ),
+          ),
+        ):0.0.ESW()
+      ],
     );
   }
 

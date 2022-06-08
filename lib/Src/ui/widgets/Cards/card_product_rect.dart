@@ -6,30 +6,51 @@ import 'package:dr_dent/Src/ui/widgets/GeneralWidgets/image_network.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import '../GeneralWidgets/delete_widget.dart';
+import '../GeneralWidgets/icon_widget.dart';
 import '/src/core/utils/extensions.dart';
-class CardProductRect extends StatelessWidget {
-  final Product product;
 
-  const CardProductRect({Key? key,required this.product}) : super(key: key);
+class CardProductRect extends StatelessWidget {
+  final bool isEdit;
+  final Product product;
+  final Function(int)? onLike;
+  final VoidCallback onDeleteTap;
+  final VoidCallback onEditTap; // status
+  final bool isDelete;
+
+  const CardProductRect(
+      {this.isEdit = true,
+      this.isDelete = false,
+      Key? key,
+      required this.product,
+      this.onLike,
+      required this.onEditTap,
+      required this.onDeleteTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    GetStorage _box = GetStorage();
     return GestureDetector(
-      onTap: (){
-        Get.to(()=>ProductScreen(product: product,));
+      onTap: () {
+        Get.to(() => ProductScreen(
+              product: product,
+              onLike: (status) {
+                if (onLike != null) {
+                  onLike!(status);
+                }
+              },
+            ));
       },
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10.r)
-        ),
+            color: Colors.white, borderRadius: BorderRadius.circular(10.r)),
         child: Padding(
-          padding:  EdgeInsets.symmetric(
-            horizontal: 16.w,
-            vertical: 16.h
-          ),
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 width: 80.w,
@@ -39,7 +60,7 @@ class CardProductRect extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8.r),
                 ),
                 child: ImageNetwork(
-                  url: product.images!.isNotEmpty? product.images!.first:'',
+                  url: product.images!.isNotEmpty ? product.images!.first : '',
                   width: 100.w,
                   height: 80.h,
                 ),
@@ -65,6 +86,13 @@ class CardProductRect extends StatelessWidget {
                   ],
                 ),
               ),
+              (_box.read("id") ?? 0) == product.companyId
+                  ? IconWidget(
+                      onEditTap: onEditTap,
+                      icon: "assets/icons/edit.png",
+                    )
+                  : 0.0.ESW(),
+              isDelete ? DeleteWidget(onDeleteTap: onDeleteTap) : 0.0.ESW(),
             ],
           ),
         ),

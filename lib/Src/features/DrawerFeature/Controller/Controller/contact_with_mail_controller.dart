@@ -1,4 +1,5 @@
 
+import 'package:dr_dent/Src/core/services/dialogs.dart';
 import 'package:dr_dent/Src/core/utils/request_status.dart';
 import '../../../ProfileFeature/GlobalInfoemationFeature/MyGeneralDataFeature/Bloc/Repo/enter_and_edit_personal_data_of_doctor_repo.dart';
 import 'package:dr_dent/Src/features/DrawerFeature/Controller/Repository/contact_with_mail_repo.dart';
@@ -20,14 +21,15 @@ class ContactWithUSController extends GetxController {
   void submit() async {
     if (globalKey.currentState!.validate()) {
       globalKey.currentState!.save();
-// setLoadingDialog();
+       setLoading();
       var response = await _contactWithUsRepository.contactWithUs(
         message:messageController!.text ,
         email: emailController!.text,
       );
+      Get.back();
       if (response.statusCode == 200 && response.data["status"] == true) {
         debugPrint("request operation success");
-
+         Get.back();
         debugPrint("convert operation success");
         status = RequestStatus.done;
         update();

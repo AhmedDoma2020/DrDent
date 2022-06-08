@@ -25,6 +25,7 @@ class LoginController extends GetxController{
       Get.back();
      if(response.statusCode == 200 && response.data["status"] == true){
        box.write("id", response.data["data"]["id"]);
+       debugPrint("box.read('id') in logIn is ${box.read('id')}");
        box.write("name", response.data["data"]["name"]);
        box.write("phone", response.data["data"]["phone"]);
        box.write("email", response.data["data"]["email"]);
@@ -38,6 +39,7 @@ class LoginController extends GetxController{
        box.write("phone_verified", response.data["data"]["phone_verified"]);
        box.write("image", response.data["data"]["image"]);
        box.write("api_token", response.data["data"]["api_token"]);
+       box.write("active", response.data["data"]["active"]);
        debugPrint("api_token in register is ${box.read('api_token')}");
        debugPrint("user_type_id in register is ${box.read('user_type_id')}");
        box.write('log_in',1);

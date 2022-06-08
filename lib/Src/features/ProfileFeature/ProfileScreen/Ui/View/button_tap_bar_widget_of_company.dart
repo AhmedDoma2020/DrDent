@@ -13,19 +13,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class ButtonTapBarWidgetOfCompany extends StatelessWidget {
+  final int userId;
+
   const ButtonTapBarWidgetOfCompany({
+    required this.userId,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Get.put(ProfileTapIndexController());
-
     return GetBuilder<ProfileTapIndexController>(
       builder: (_) => (Column(
         children: [
           Padding(
-            padding:  EdgeInsets.symmetric(vertical: 16.h),
+            padding: EdgeInsets.symmetric(vertical: 16.h),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -33,7 +35,7 @@ class ButtonTapBarWidgetOfCompany extends StatelessWidget {
                   onTap: (index) {
                     _.tabIndex = index;
                   },
-                  titles:  [
+                  titles: [
                     'my_data'.tr,
                     'my_products'.tr,
                     'my_posts'.tr,
@@ -49,8 +51,8 @@ class ButtonTapBarWidgetOfCompany extends StatelessWidget {
           SizedBox(
             child: [
               GlobalInformationDetailsWidgetOfCompany(),
-              GlobalMyProductWidget(),
-              MySocialScreen(),
+              GlobalMyProductWidget(userId: userId, isMine: true),
+              MySocialScreen(userId: userId),
             ][_.tabIndex],
           ),
           24.0.ESH(),

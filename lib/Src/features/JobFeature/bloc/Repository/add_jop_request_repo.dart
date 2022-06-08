@@ -11,27 +11,28 @@ class AddJopRequestRepository with ApiKey {
   NetworkService _networkService = NetworkService();
 
   Future<Response> addJopRequest({
-    required String ownerName,
+    required String name,
     required String phone,
     required String address,
     required List<int> specializationId,
     required String cV,
   }) async {
     Response response;
-    debugPrint("ownerName $ownerName");
+    debugPrint("ownerName $name");
     debugPrint("phone $phone");
-    debugPrint("address $address");
+    debugPrint("specializationId in repo  $specializationId");
+    debugPrint("cV in repo  $cV");
 
     try {
       response = await _networkService.post(
           url: uRLAddJopRequest,
           auth: true,
           body: {
-            'owner_name':ownerName,
+            'name':name,
             'phone':phone,
             'address':address,
-            'specialization_ids':specializationId,
-            'c_v':cV,
+            'specializations':specializationId,
+            'cv':cV,
           }
       );
     } on SocketException {
