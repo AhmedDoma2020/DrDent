@@ -1,5 +1,6 @@
 import 'package:dr_dent/Src/core/constants/color_constants.dart';
 import 'package:dr_dent/Src/features/AuthFeature/bloc/controller/log_out_controller.dart';
+import 'package:dr_dent/Src/features/AuthFeature/ui/screens/change_password_screen.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/screens/login_screen.dart';
 import 'package:dr_dent/Src/features/DrawerFeature/View/Widget/row_of_item_drawer.dart';
 import 'package:dr_dent/Src/features/DrawerFeature/View/Widget/top_info_drawer.dart';
@@ -18,9 +19,9 @@ import '../../../StaticFeature/ui/screens/privacy_screen.dart';
 import '../../../StoreFeature/ui/screens/saved_products.dart';
 import 'lan_screen.dart';
 
-
 class CustomDrawer extends StatelessWidget {
   GetStorage box = GetStorage();
+
   @override
   Widget build(BuildContext context) {
     LogOutController _logOutController = Get.put(LogOutController());
@@ -33,7 +34,7 @@ class CustomDrawer extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 24.w),
-                child:  TopInfoDrawer(),
+                child: TopInfoDrawer(),
               ),
               Divider(
                 height: 2.h,
@@ -58,13 +59,19 @@ class CustomDrawer extends StatelessWidget {
                     //     icon: "assets/icons/personalInfoIcon.png"),
                     RowOfItemDrawer(
                         onTap: () {
-                          Get.to(()=>NotificationsScreen());
+                          Get.to(() => const ChangePasswordScreen());
+                        },
+                        title: "change_password",
+                        icon: "assets/icons/lockIcon.png"),
+                    RowOfItemDrawer(
+                        onTap: () {
+                          Get.to(() => NotificationsScreen());
                         },
                         title: "Notification_",
                         icon: "assets/icons/notification-bing.png"),
                     RowOfItemDrawer(
                         onTap: () {
-                          Get.to(()=>SavedProducts());
+                          Get.to(() => SavedProducts());
                         },
                         title: "fav_list",
                         icon: "assets/icons/heart.png"),
@@ -76,25 +83,25 @@ class CustomDrawer extends StatelessWidget {
                     //     icon: "assets/icons/savedIcon.png"),
                     RowOfItemDrawer(
                         onTap: () {
-                              Get.to(()=>LanScreen());
+                          Get.to(() => LanScreen());
                         },
                         title: "lan_",
                         icon: "assets/icons/lanIconng.png"),
                     RowOfItemDrawer(
                         onTap: () {
-                          Get.to(()=>PrivacyScreen());
+                          Get.to(() => PrivacyScreen());
                         },
                         title: "Privacy_policy",
                         icon: "assets/icons/security-safe.png"),
                     RowOfItemDrawer(
                         onTap: () {
-                          Get.to(()=>ConditionsScreen());
+                          Get.to(() => ConditionsScreen());
                         },
                         title: "terms_and_Conditions",
                         icon: "assets/icons/privacyIcon.png"),
                     RowOfItemDrawer(
                         onTap: () {
-                          Get.to(()=>SupportScreen());
+                          Get.to(() => SupportScreen());
                         },
                         title: "support_",
                         icon: "assets/icons/headphone.png"),

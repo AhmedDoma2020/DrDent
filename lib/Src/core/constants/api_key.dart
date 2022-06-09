@@ -70,6 +70,7 @@ mixin ApiKey{
 
 // New ApiKey For Pickup
    final String uRLResetPassword = apiBaseUrl + "reset_password";
+   final String uRLChangePassword = apiBaseUrl + "change_password";
    final String uRLSetExperienceYears = apiBaseUrl + "set_experience_years";
    final String uRLSetCommercialRegistrationAndTaxCard = apiBaseUrl + "company_set_store_info";
    final String uRLSetWorkSpace = apiBaseUrl + "set_work_space";

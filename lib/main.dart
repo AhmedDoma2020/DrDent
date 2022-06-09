@@ -1,5 +1,6 @@
 
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:dr_dent/Src/features/AuthFeature/bloc/controller/set_work_license_controller.dart';
 import 'package:dr_dent/Src/features/AuthFeature/ui/screens/login_screen.dart';
@@ -55,10 +56,14 @@ import 'Src/features/VisitsFeature/ui/screens/my_visits_screen.dart';
 import 'Src/features/ProfileFeature/GlobalInfoemationFeature/MyGeneralDataFeature/Ui/Screen/enter_personal_data_of_doctor_screen.dart';
 import 'Src/features/ProfileFeature/ProfileScreen/Ui/View/profile_screen.dart';
 import 'Src/ui/widgets/grids/grid_card_product.dart';
+// import 'firebase_options.dart';
 
+// Import the generated file
 // start background
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    // options: DefaultFirebaseOptions.currentPlatform,
+  );
   print('Handling a background message ${message.messageId}');
   print(message.data);
   flutterLocalNotificationsPlugin.show(
@@ -89,8 +94,18 @@ FlutterLocalNotificationsPlugin();
 
 void main()async{
   WidgetsFlutterBinding.ensureInitialized();
+  if (Platform.isIOS) {
+    await Firebase.initializeApp(
+        options: const FirebaseOptions(
+            apiKey: "your api key Found in GoogleService-info.plist",
+            appId: "Your app id found in Firebase",
+            messagingSenderId: "Your Sender id found in Firebase",
+            projectId: "Your Project id found in Firebase"));
+  } else {
+    await Firebase.initializeApp();
+  }
   await GetStorage.init();
-  await Firebase.initializeApp();
+
   // start background
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   await flutterLocalNotificationsPlugin

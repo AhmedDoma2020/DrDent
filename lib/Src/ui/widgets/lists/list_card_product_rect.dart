@@ -8,9 +8,10 @@ import '../../../features/ProfileFeature/GlobalMyProductFeature/MyProductFeature
 import '/src/core/utils/extensions.dart';
 
 class ListCardProductRect extends StatelessWidget {
+  final bool isEdit;
   final List<Product> products;
   final Function(int, int)? onLike; // product id         // status
-  ListCardProductRect({Key? key, required this.products, this.onLike})
+  ListCardProductRect({this.isEdit=true , Key? key, required this.products, this.onLike})
       : super(key: key);
 
   @override
@@ -23,9 +24,11 @@ class ListCardProductRect extends StatelessWidget {
           // left: 16.0
         ),
         child: CardProductRect(
+          isEdit: isEdit,
           onEditTap: () {
             Get.to(()=>  CompanyAddProduct(isEdit: true,productModel: products[index],));
           },
+
           onDeleteTap: () {
           },
           isDelete: false,
