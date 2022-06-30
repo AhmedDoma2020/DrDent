@@ -26,7 +26,8 @@ class LoginScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       body: GetBuilder<LoginController>(
         builder: (_) => KeyboardVisibilityBuilder(
-          builder: (context, isKeyboardVisible) => Padding(
+          builder: (context, isKeyboardVisible) {
+            return Padding(
             padding: EdgeInsets.symmetric(horizontal: 24.w),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -193,7 +194,8 @@ class LoginScreen extends StatelessWidget {
                 // 32.0.ESH(),
               ],
             ),
-          ),
+          );
+          },
         ),
       ),
     );

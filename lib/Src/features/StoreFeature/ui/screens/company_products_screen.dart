@@ -12,7 +12,7 @@ import 'package:dr_dent/Src/ui/widgets/grids/grid_card_product.dart';
 import 'package:dr_dent/Src/ui/widgets/lists/list_card_product_rect.dart';
 import 'package:dr_dent/Src/ui/widgets/tabs/tabs_category.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+// import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '/src/core/utils/extensions.dart';

@@ -17,90 +17,88 @@ class MedicalCompanyTypeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
      Get.put(AccountTypeController());
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBars.appBarDefault(
-          title: "account_type".tr,
-          onTap: () {
-            Get.back();
-          },
-        ),
-        body: Container(
-          padding: EdgeInsets.symmetric(horizontal: 24.w),
-          width: double.infinity,
-          // color: Colors.greenAccent,
-          child: GetBuilder<AccountTypeController>(
-            builder: (_) => Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                24.0.ESH(),
-                CustomText(
-                  text: "please_select_your_account".tr,
-                  fontSize: 18,
-                  fontW: FW.semibold,
-                  textAlign: TextAlign.start,
-                ),
-                Expanded(
-                  // color: Colors.red,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 24.h),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        GridView.builder(
-                          shrinkWrap: true,
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            // childAspectRatio: 1.06,
-                            crossAxisSpacing: 16.w,
-                            mainAxisSpacing: 18.h,
-                             // mainAxisExtent: 2
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBars.appBarDefault(
+        title: "account_type".tr,
+        onTap: () {
+          Get.back();
+        },
+      ),
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 24.w),
+        width: double.infinity,
+        // color: Colors.greenAccent,
+        child: GetBuilder<AccountTypeController>(
+          builder: (_) => Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              24.0.ESH(),
+              CustomText(
+                text: "please_select_your_account".tr,
+                fontSize: 18,
+                fontW: FW.semibold,
+                textAlign: TextAlign.start,
+              ),
+              Expanded(
+                // color: Colors.red,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 24.h),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GridView.builder(
+                        shrinkWrap: true,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          // childAspectRatio: 1.06,
+                          crossAxisSpacing: 16.w,
+                          mainAxisSpacing: 18.h,
+                           // mainAxisExtent: 2
 
-                            // mainAxisExtent: 103
-                          ),
-
-                          itemBuilder: (context, index) => InkWell(
-                            hoverColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            splashColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () {
-                              indexOfCardSelected = index;
-                              _.selectCompanyMedicalIndex(index);
-                              titleAccountType = _.medicalCompanyType[index].title;
-                            },
-                            child: CardOfAccountType(
-                              icon: _.isCompanyMedicalSelected == index
-                                  ? _.medicalCompanyType[index].activeIcon
-                                  : _.medicalCompanyType[index].disActiveIcon,
-                              title: _.medicalCompanyType[index].title,
-                              isSelected: _.isCompanyMedicalSelected == index ? true : false,
-                            ),
-                          ),
-                          itemCount: _.medicalCompanyType.length,
+                          // mainAxisExtent: 103
                         ),
-                        160.0.ESH(),
-                        _.isCompanyMedicalSelected == -1
-                            ? 0.0.ESH()
-                            : ButtonDefault(
-                                title:
-                                    '${"continue_register_as".tr}$titleAccountType',
-                                onTap: () {
-                                  Get.to(
-                                    () => NewAccountScreen(
-                                      userTypeSelectedId: _.medicalCompanyType[indexOfCardSelected!].id,
-                                    ),
-                                  );
-                                },
-                              ),
-                      ],
-                    ),
+
+                        itemBuilder: (context, index) => InkWell(
+                          hoverColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () {
+                            indexOfCardSelected = index;
+                            _.selectCompanyMedicalIndex(index);
+                            titleAccountType = _.medicalCompanyType[index].title;
+                          },
+                          child: CardOfAccountType(
+                            icon: _.isCompanyMedicalSelected == index
+                                ? _.medicalCompanyType[index].activeIcon
+                                : _.medicalCompanyType[index].disActiveIcon,
+                            title: _.medicalCompanyType[index].title,
+                            isSelected: _.isCompanyMedicalSelected == index ? true : false,
+                          ),
+                        ),
+                        itemCount: _.medicalCompanyType.length,
+                      ),
+                      160.0.ESH(),
+                      _.isCompanyMedicalSelected == -1
+                          ? 0.0.ESH()
+                          : ButtonDefault(
+                              title:
+                                  '${"continue_register_as".tr}$titleAccountType',
+                              onTap: () {
+                                Get.to(
+                                  () => NewAccountScreen(
+                                    userTypeSelectedId: _.medicalCompanyType[indexOfCardSelected!].id,
+                                  ),
+                                );
+                              },
+                            ),
+                    ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

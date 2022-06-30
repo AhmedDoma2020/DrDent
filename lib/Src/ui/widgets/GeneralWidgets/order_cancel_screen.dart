@@ -5,7 +5,7 @@ import '/src/ui/widgets/GeneralWidgets/empty_widget_full_screen.dart';
 class OrderCancelScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold(
+    return Scaffold(
       body: EmptyWidgetFullScreen(
         topPadding: 190,
         image: "assets/image/cancel.png",
@@ -17,7 +17,7 @@ class OrderCancelScreen extends StatelessWidget {
         onTapButton: (){},
 
       ),
-    ));
+    );
   }
 }
 

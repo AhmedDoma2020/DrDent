@@ -20,59 +20,57 @@ class InsuranceCompaniesScreen extends StatelessWidget {
     Future<void> onRefresh() async {
       await _fetchMyInsurancesController.fetchMyInsurances();
     }
-    return SafeArea(
-      child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          child: Icon(
-            Icons.add,
-            color: Colors.white,
-            size: 24.w,
-          ),
-          onPressed: () {
-            Get.closeAllSnackbars();
-            Get.bottomSheet(AvailableInsuranceSheet());
-          },
-          backgroundColor: kCMain,
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+          size: 24.w,
         ),
-        appBar: AppBars.appBarDefault(
-            title: "insurance_companies".tr,
-            onTap: () {
-              Get.back();
-            }),
-        body: Container(
-            padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
-            height: double.infinity,
-            width: double.infinity,
-            child: RefreshIndicator(
-              onRefresh: onRefresh,
-              child: GetBuilder<FetchMyInsurancesController>(
-                builder: (_) => _.status == RequestStatus.loading
-                    ? Center(child: Loader())
-                    : _.myInsuranceList.isEmpty
-                        ? EmptyWidget(
-                            image: "assets/image/emptyInsuranceCompany.png",
-                            onTapButton: () {},
-                            availableButton: false,
-                            title: "empty_insurance_company_title".tr,
-                            imageH: 160,
-                            imageW: 140,
-                          )
-                        : ListView.separated(
-                            shrinkWrap: true,
-                            itemBuilder: (context, index) => RowMyInsuranceForm(
-                              insurance: _.myInsuranceList[index],
-                              onDeleteTap:  _.snackBarStatus == SnackbarStatus.CLOSED?() {
-                                _.deleteInsurances(
-                                    insuranceId: _.myInsuranceList[index].id,
-                                    index: index);
-                              }:(){},
-                            ),
-                            separatorBuilder: (context, index) => 16.0.ESH(),
-                            itemCount: _.myInsuranceList.length,
-                          ),
-              ),
-            )),
+        onPressed: () {
+          Get.closeAllSnackbars();
+          Get.bottomSheet(AvailableInsuranceSheet());
+        },
+        backgroundColor: kCMain,
       ),
+      appBar: AppBars.appBarDefault(
+          title: "insurance_companies".tr,
+          onTap: () {
+            Get.back();
+          }),
+      body: Container(
+          padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
+          height: double.infinity,
+          width: double.infinity,
+          child: RefreshIndicator(
+            onRefresh: onRefresh,
+            child: GetBuilder<FetchMyInsurancesController>(
+              builder: (_) => _.status == RequestStatus.loading
+                  ? Center(child: Loader())
+                  : _.myInsuranceList.isEmpty
+                      ? EmptyWidget(
+                          image: "assets/image/emptyInsuranceCompany.png",
+                          onTapButton: () {},
+                          availableButton: false,
+                          title: "empty_insurance_company_title".tr,
+                          imageH: 160,
+                          imageW: 140,
+                        )
+                      : ListView.separated(
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) => RowMyInsuranceForm(
+                            insurance: _.myInsuranceList[index],
+                            onDeleteTap:  _.snackBarStatus == SnackbarStatus.CLOSED?() {
+                              _.deleteInsurances(
+                                  insuranceId: _.myInsuranceList[index].id,
+                                  index: index);
+                            }:(){},
+                          ),
+                          separatorBuilder: (context, index) => 16.0.ESH(),
+                          itemCount: _.myInsuranceList.length,
+                        ),
+            ),
+          )),
     );
   }
 }

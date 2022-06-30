@@ -23,60 +23,58 @@ class MyServicesScreen extends StatelessWidget {
     Future<void> onRefresh() async {
       await _fetchMyServicesController.fetchMyServices();
     }
-    return SafeArea(
-      child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          child: Icon(
-            Icons.add,
-            color: Colors.white,
-            size: 24.w,
-          ),
-          onPressed: () {
-            Get.bottomSheet(AddServicesSheet(), isScrollControlled: true);
-          },
-          backgroundColor: kCMain,
-        ),
-        appBar: AppBars.appBarDefault(
-            title: "my_services".tr,
-            onTap: () {
-              Get.back();
-            }),
-        body: Container(
-          padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
-          height: double.infinity,
-          width: double.infinity,
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          Icons.add,
           color: Colors.white,
-          child: RefreshIndicator(
-            onRefresh: onRefresh,
-            child: GetBuilder<FetchMyServicesController>(
-              builder: (_) => _.status == RequestStatus.loading
-                  ? Center(child: Loader())
-                  : _.myServicesList.isEmpty
-                      ? EmptyWidget(
-                          image: "assets/image/emptyServices.png",
-                          onTapButton: () {},
-                          availableButton: false,
-                          title: "empty_services_title".tr,
-                          imageH: 160,
-                          imageW: 140,
-                        )
-                      : ListView.separated(
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) => RowMyServiceForm(
-                            onDeleteTap:  _.snackBarStatus == SnackbarStatus.CLOSED? () {
-                              _.deleteServices(
-                                  servicesId: _.myServicesList[index].id,
-                                  index: index);
-                            }:(){},
-                            onEditTap: () {
-                              Get.bottomSheet(AddServicesSheet(isEdit:true,serviceModel: _.myServicesList[index],), isScrollControlled: true);
-                            },
-                            service: _.myServicesList[index],
-                          ),
-                          separatorBuilder: (context, index) => 16.0.ESH(),
-                          itemCount: _.myServicesList.length,
+          size: 24.w,
+        ),
+        onPressed: () {
+          Get.bottomSheet(AddServicesSheet(), isScrollControlled: true);
+        },
+        backgroundColor: kCMain,
+      ),
+      appBar: AppBars.appBarDefault(
+          title: "my_services".tr,
+          onTap: () {
+            Get.back();
+          }),
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
+        height: double.infinity,
+        width: double.infinity,
+        color: Colors.white,
+        child: RefreshIndicator(
+          onRefresh: onRefresh,
+          child: GetBuilder<FetchMyServicesController>(
+            builder: (_) => _.status == RequestStatus.loading
+                ? Center(child: Loader())
+                : _.myServicesList.isEmpty
+                    ? EmptyWidget(
+                        image: "assets/image/emptyServices.png",
+                        onTapButton: () {},
+                        availableButton: false,
+                        title: "empty_services_title".tr,
+                        imageH: 160,
+                        imageW: 140,
+                      )
+                    : ListView.separated(
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) => RowMyServiceForm(
+                          onDeleteTap:  _.snackBarStatus == SnackbarStatus.CLOSED? () {
+                            _.deleteServices(
+                                servicesId: _.myServicesList[index].id,
+                                index: index);
+                          }:(){},
+                          onEditTap: () {
+                            Get.bottomSheet(AddServicesSheet(isEdit:true,serviceModel: _.myServicesList[index],), isScrollControlled: true);
+                          },
+                          service: _.myServicesList[index],
                         ),
-            ),
+                        separatorBuilder: (context, index) => 16.0.ESH(),
+                        itemCount: _.myServicesList.length,
+                      ),
           ),
         ),
       ),

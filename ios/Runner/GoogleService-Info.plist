@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>158893308015-i9lut69l0om1nn1ivbuiitcogu0mvv3h.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.158893308015-i9lut69l0om1nn1ivbuiitcogu0mvv3h</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>158893308015-80klrnf443lsglvd6qbf65m73mmepum3.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBPJvFRvejNMc5bXeQBFRSGSEOHGN_IKr8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>158893308015</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.crazyidea.drDent</string>
+	<key>PROJECT_ID</key>
+	<string>drdent-a670a</string>
+	<key>STORAGE_BUCKET</key>
+	<string>drdent-a670a.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:158893308015:ios:691b788bf3124b38a1759a</string>
+</dict>
+</plist>

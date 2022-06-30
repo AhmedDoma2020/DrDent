@@ -22,66 +22,64 @@ class MyAssistantScreen extends StatelessWidget {
     Future<void> onRefresh() async {
       await _fetchMyAssistantController.fetchMyAssistant();
     }
-    return SafeArea(
-      child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          child: Icon(
-            Icons.add,
-            color: Colors.white,
-            size: 24.w,
-          ),
-          onPressed: () {
-            Get.bottomSheet(AddAssistantSheet(),isScrollControlled: true);
-          },
-          backgroundColor: kCMain,
-        ),
-        appBar: AppBars.appBarDefault(
-            title: "assistant_data".tr,
-            onTap: () {
-              Get.back();
-            }),
-        body: Container(
-          padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
-          height: double.infinity,
-          width: double.infinity,
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          Icons.add,
           color: Colors.white,
-          child:  RefreshIndicator(
-            onRefresh: onRefresh,
-            child: GetBuilder<FetchMyAssistantController>(
-              builder: (_) =>_.status== RequestStatus.loading? Center(child: Loader(),): _.myAssistantList.isEmpty
-                  ? EmptyWidget(
-                      image: "assets/image/emptyAssistant.png",
-                      onTapButton: () {},
-                      availableButton: false,
-                      title: "empty_assistant_title".tr,
-                      imageH: 124,
-                      imageW: 200,
-                    )
-                  : ListView.separated(
-                      shrinkWrap: true,
-                      // physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) => MyAssistantRow(
-                        assistant: _.myAssistantList[index],
-                        onEditTap: () {
-                          Get.bottomSheet(AddAssistantSheet(
-                            isEdit: true,
-                            id:  _.myAssistantList[index].id,
-                            name:  _.myAssistantList[index].name,
-                            phone:  _.myAssistantList[index].phone,
-                          ),isScrollControlled: true);
-                        },
-                        onDeleteTap: _.snackBarStatus == SnackbarStatus.CLOSED? () {
-                          Get.closeAllSnackbars();
-                          Timer(const Duration(seconds: 1), () {
-                            _.deleteAssistant(assistantId: _.myAssistantList[index].id,);
-                          });
-                        }:(){
-                        },
-                      ),
-                      separatorBuilder: (context, index) => 16.0.ESH(),
-                      itemCount: _.myAssistantList.length,
+          size: 24.w,
+        ),
+        onPressed: () {
+          Get.bottomSheet(AddAssistantSheet(),isScrollControlled: true);
+        },
+        backgroundColor: kCMain,
+      ),
+      appBar: AppBars.appBarDefault(
+          title: "assistant_data".tr,
+          onTap: () {
+            Get.back();
+          }),
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
+        height: double.infinity,
+        width: double.infinity,
+        color: Colors.white,
+        child:  RefreshIndicator(
+          onRefresh: onRefresh,
+          child: GetBuilder<FetchMyAssistantController>(
+            builder: (_) =>_.status== RequestStatus.loading? Center(child: Loader(),): _.myAssistantList.isEmpty
+                ? EmptyWidget(
+                    image: "assets/image/emptyAssistant.png",
+                    onTapButton: () {},
+                    availableButton: false,
+                    title: "empty_assistant_title".tr,
+                    imageH: 124,
+                    imageW: 200,
+                  )
+                : ListView.separated(
+                    shrinkWrap: true,
+                    // physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) => MyAssistantRow(
+                      assistant: _.myAssistantList[index],
+                      onEditTap: () {
+                        Get.bottomSheet(AddAssistantSheet(
+                          isEdit: true,
+                          id:  _.myAssistantList[index].id,
+                          name:  _.myAssistantList[index].name,
+                          phone:  _.myAssistantList[index].phone,
+                        ),isScrollControlled: true);
+                      },
+                      onDeleteTap: _.snackBarStatus == SnackbarStatus.CLOSED? () {
+                        Get.closeAllSnackbars();
+                        Timer(const Duration(seconds: 1), () {
+                          _.deleteAssistant(assistantId: _.myAssistantList[index].id,);
+                        });
+                      }:(){
+                      },
                     ),
-            ),
+                    separatorBuilder: (context, index) => 16.0.ESH(),
+                    itemCount: _.myAssistantList.length,
+                  ),
           ),
         ),
       ),

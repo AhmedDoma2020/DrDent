@@ -37,187 +37,186 @@ class EnterPersonalDataOfGraduatedScreen extends StatelessWidget {
     Get.put(FetchSpecializationController());
     // Get.put(FetchScientificController());
     var node = FocusScope.of(context);
-    return SafeArea(
-        child: Scaffold(
-          appBar: AppBars.appBarSkipDefault(
-              title: "personal_info".tr,
-              onTapBack: () {
-                Get.back();
-              },
-              onTapSkip: () {
-                Get.offAll(() => BaseScreen());
-              }),
-          body: GetBuilder<EnterPersonalDataOfGraduatedController>(
-            builder: (_) => Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.w),
-              child: Form(
-                key: _.globalKey,
-                child: ListView(
-                  // crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    24.0.ESH(),
-                    AvatarForm(
-                      futureImage: _.futureAvatar,
-                      onTap:(val){
-                      _.setAvatar = val;
-                    },isUpload: true,),
-                    24.0.ESH(),
-                    TextFieldDefault(
-                      hint: 'full_name'.tr,
-                      errorText: "error_name_field".tr,
-                      controller: _.nameController,
-                      keyboardType: TextInputType.name,
-                      filledColor: kCBGTextFormFiled,
-                      fieldType: FieldType.WithBorder,
-                      enableBorder: Colors.transparent,
-                      horizentalPadding: 16,
-                      onComplete: () {
-                        node.nextFocus();
-                      },
-                    ),
-                    16.0.ESH(),
-                    RowGenderWidget(
-                      userInPutType: _.gender,
-                      onTap: (gender) {
-                        _.estGender = gender;
-                      },
-                    ),
-                    16.0.ESH(),
-                    GestureDetector(
-                      onTap: () {
-                        Get.bottomSheet(
-                            UniversitiesButtonSheet(
-                              idSelected: _.universityId,
-                              onTap: (id,title){
-                                _.universityController!.text =title;
-                                _.setUniversityId = id;
-                              },
-                            ),
-                            isScrollControlled: true);
-                      },
-                      child: TextFieldDefault(
-                        hint: 'enter_university'.tr,
-                        errorText: "error_enter_university_field".tr,
-                        suffixIconData: Icons.keyboard_arrow_down_outlined,
-                        controller: _.universityController,
-                        keyboardType: TextInputType.text,
-                        filledColor: kCBGTextFormFiled,
-                        fieldType: FieldType.WithBorder,
-                        enable: false,
-                        disableBorder: Colors.transparent,
-                        enableBorder: Colors.transparent,
-                        horizentalPadding: 16,
-                      ),
-                    ),
-                    16.0.ESH(),
-                    GestureDetector(
-                      onTap: () {
-                        Get.bottomSheet(
-                            YearOfGraduationButtonSheet(
-                              onTap: (title){
-                                _.graduationYearController!.text =title;
-                              },
-                            ),
-                            isScrollControlled: true);
-                      },
-                      child: TextFieldDefault(
-                        hint: 'enter_year_of_graduation'.tr,
-                        errorText: "error_enter_year_of_graduation_field".tr,
-                        suffixIconData: Icons.keyboard_arrow_down_outlined,
-                        controller: _.graduationYearController,
-                        keyboardType: TextInputType.text,
-                        filledColor: kCBGTextFormFiled,
-                        fieldType: FieldType.WithBorder,
-                        enable: false,
-                        disableBorder: Colors.transparent,
-                        enableBorder: Colors.transparent,
-                        horizentalPadding: 16,
-                      ),
-                    ),
-                    16.0.ESH(),
-                    GestureDetector(
-                      onTap: () {
-                        Get.bottomSheet(
-                            UniversityDegreeButtonSheet(
-                              onTap: (id,title){
-                                _.universityDegreeController!.text =title;
-                              },
-                            ),
-                            isScrollControlled: true);
-                      },
-                      child: TextFieldDefault(
-                        hint: 'enter_university_degree'.tr,
-                        errorText: "error_enter_university_degree_field".tr,
-                        suffixIconData: Icons.keyboard_arrow_down_outlined,
-                        controller: _.universityDegreeController,
-                        keyboardType: TextInputType.text,
-                        filledColor: kCBGTextFormFiled,
-                        fieldType: FieldType.WithBorder,
-                        enable: false,
-                        disableBorder: Colors.transparent,
-                        enableBorder: Colors.transparent,
-                        horizentalPadding: 16,
-                      ),
-                    ),
-                    16.0.ESH(),
-                    GestureDetector(
-                      onTap: () {
-                        Get.bottomSheet(
-                            SpecializationButtonSheet(
-                              specializationIdsSelected: _.specializationIdSelected,
-                              onTapNotEmpty: (specializationIdList,specializationTitleList){
-                                _.setSpecializationIdSelected = specializationIdList;
-                                _.specializationController!.text=specializationTitleList;
-                              },
-                              onTapEmpty: (){
-                                _.specializationController!.clear();
-                                _.setSpecializationIdSelected=[];
-                              },
-                            ),
-                            isScrollControlled: true);
-                      },
-                      child: TextFieldDefault(
-                        hint: 'Specialization_'.tr,
-                        errorText: "must_setSpecialization".tr,
-                        suffixIconData: Icons.keyboard_arrow_down_outlined,
-                        controller: _.specializationController,
-                        keyboardType: TextInputType.text,
-                        filledColor: kCBGTextFormFiled,
-                        fieldType: FieldType.WithBorder,
-                        enable: false,
-                        disableBorder: Colors.transparent,
-                        enableBorder: Colors.transparent,
-                        horizentalPadding: 16,
-                      ),
-                    ),
-                    16.0.ESH(),
-                    UploadPhotoContainer(
-                      futureImage: _.futureCertification,
-                      title: "graduation_certificate_image",
-                      onTap: (image64){
-                        _.setGraduationCertificateImage = image64;
-                      },
-                    ),
-                    16.0.ESH(),
-                    AttachYourCVIWidget(
-                      futureImage: _.futureCv,
-                      onTap: (image64){
-                        _.setCVImage=image64;
-                      },
-                    ),
-                    16.0.ESH(),
-                    ButtonDefault(
-                      title: 'save_contain'.tr,
-                      onTap: () {
-                        _.submit();
-                      },
-                    ),
-                    24.0.ESH(),
-                  ],
+    return Scaffold(
+      appBar: AppBars.appBarSkipDefault(
+          title: "personal_info".tr,
+          onTapBack: () {
+            Get.back();
+          },
+          onTapSkip: () {
+            Get.offAll(() => BaseScreen());
+          }),
+      body: GetBuilder<EnterPersonalDataOfGraduatedController>(
+        builder: (_) => Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24.w),
+          child: Form(
+            key: _.globalKey,
+            child: ListView(
+              // crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                24.0.ESH(),
+                AvatarForm(
+                  futureImage: _.futureAvatar,
+                  onTap:(val){
+                  _.setAvatar = val;
+                },isUpload: true,),
+                24.0.ESH(),
+                TextFieldDefault(
+                  hint: 'full_name'.tr,
+                  errorText: "error_name_field".tr,
+                  controller: _.nameController,
+                  keyboardType: TextInputType.name,
+                  filledColor: kCBGTextFormFiled,
+                  fieldType: FieldType.WithBorder,
+                  enableBorder: Colors.transparent,
+                  horizentalPadding: 16,
+                  onComplete: () {
+                    node.nextFocus();
+                  },
                 ),
-              ),
+                16.0.ESH(),
+                RowGenderWidget(
+                  userInPutType: _.gender,
+                  onTap: (gender) {
+                    _.estGender = gender;
+                  },
+                ),
+                16.0.ESH(),
+                GestureDetector(
+                  onTap: () {
+                    Get.bottomSheet(
+                        UniversitiesButtonSheet(
+                          idSelected: _.universityId,
+                          onTap: (id,title){
+                            _.universityController!.text =title;
+                            _.setUniversityId = id;
+                          },
+                        ),
+                        isScrollControlled: true);
+                  },
+                  child: TextFieldDefault(
+                    hint: 'enter_university'.tr,
+                    errorText: "error_enter_university_field".tr,
+                    suffixIconData: Icons.keyboard_arrow_down_outlined,
+                    controller: _.universityController,
+                    keyboardType: TextInputType.text,
+                    filledColor: kCBGTextFormFiled,
+                    fieldType: FieldType.WithBorder,
+                    enable: false,
+                    disableBorder: Colors.transparent,
+                    enableBorder: Colors.transparent,
+                    horizentalPadding: 16,
+                  ),
+                ),
+                16.0.ESH(),
+                GestureDetector(
+                  onTap: () {
+                    Get.bottomSheet(
+                        YearOfGraduationButtonSheet(
+                          onTap: (title){
+                            _.graduationYearController!.text =title;
+                          },
+                        ),
+                        isScrollControlled: true);
+                  },
+                  child: TextFieldDefault(
+                    hint: 'enter_year_of_graduation'.tr,
+                    errorText: "error_enter_year_of_graduation_field".tr,
+                    suffixIconData: Icons.keyboard_arrow_down_outlined,
+                    controller: _.graduationYearController,
+                    keyboardType: TextInputType.text,
+                    filledColor: kCBGTextFormFiled,
+                    fieldType: FieldType.WithBorder,
+                    enable: false,
+                    disableBorder: Colors.transparent,
+                    enableBorder: Colors.transparent,
+                    horizentalPadding: 16,
+                  ),
+                ),
+                16.0.ESH(),
+                GestureDetector(
+                  onTap: () {
+                    Get.bottomSheet(
+                        UniversityDegreeButtonSheet(
+                          onTap: (id,title){
+                            _.universityDegreeController!.text =title;
+                          },
+                        ),
+                        isScrollControlled: true);
+                  },
+                  child: TextFieldDefault(
+                    hint: 'enter_university_degree'.tr,
+                    errorText: "error_enter_university_degree_field".tr,
+                    suffixIconData: Icons.keyboard_arrow_down_outlined,
+                    controller: _.universityDegreeController,
+                    keyboardType: TextInputType.text,
+                    filledColor: kCBGTextFormFiled,
+                    fieldType: FieldType.WithBorder,
+                    enable: false,
+                    disableBorder: Colors.transparent,
+                    enableBorder: Colors.transparent,
+                    horizentalPadding: 16,
+                  ),
+                ),
+                16.0.ESH(),
+                GestureDetector(
+                  onTap: () {
+                    Get.bottomSheet(
+                        SpecializationButtonSheet(
+                          specializationIdsSelected: _.specializationIdSelected,
+                          onTapNotEmpty: (specializationIdList,specializationTitleList){
+                            _.setSpecializationIdSelected = specializationIdList;
+                            _.specializationController!.text=specializationTitleList;
+                          },
+                          onTapEmpty: (){
+                            _.specializationController!.clear();
+                            _.setSpecializationIdSelected=[];
+                          },
+                        ),
+                        isScrollControlled: true);
+                  },
+                  child: TextFieldDefault(
+                    hint: 'Specialization_'.tr,
+                    errorText: "must_setSpecialization".tr,
+                    suffixIconData: Icons.keyboard_arrow_down_outlined,
+                    controller: _.specializationController,
+                    keyboardType: TextInputType.text,
+                    filledColor: kCBGTextFormFiled,
+                    fieldType: FieldType.WithBorder,
+                    enable: false,
+                    disableBorder: Colors.transparent,
+                    enableBorder: Colors.transparent,
+                    horizentalPadding: 16,
+                  ),
+                ),
+                16.0.ESH(),
+                UploadPhotoContainer(
+                  futureImage: _.futureCertification,
+                  title: "graduation_certificate_image",
+                  onTap: (image64){
+                    _.setGraduationCertificateImage = image64;
+                  },
+                ),
+                16.0.ESH(),
+                AttachYourCVIWidget(
+                  futureImage: _.futureCv,
+                  onTap: (image64){
+                    _.setCVImage=image64;
+                  },
+                ),
+                16.0.ESH(),
+                ButtonDefault(
+                  title: 'save_contain'.tr,
+                  onTap: () {
+                    _.submit();
+                  },
+                ),
+                24.0.ESH(),
+              ],
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

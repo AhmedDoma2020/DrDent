@@ -4,7 +4,7 @@ import 'package:dr_dent/Src/core/utils/request_status.dart';
 import 'package:dr_dent/Src/features/VisitsFeature/ui/bloc/repository/visits_new_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:scroll_to_index/scroll_to_index.dart';
+// import 'package:scroll_to_index/scroll_to_index.dart';
 
 class VisitsNewController extends GetxController{
   RequestStatus status = RequestStatus.initial;

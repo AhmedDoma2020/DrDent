@@ -16,30 +16,28 @@ class FollowersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(FetchFollowersController(userId: userId));
-    return SafeArea(
-      child:  Scaffold(
-        appBar: AppBars.appBarDefault(title: "followers_", isBack: true),
-        body: ListView(
-          children: [
-            SizedBox(
-              height: 600.h,
-              width: double.infinity,
-              child: GetBuilder<FetchFollowersController>(
-                builder: (_) =>  _.status != RequestStatus.done
-                    ? Center(child: Loader())
-                    : _.followersList.isEmpty?EmptyWidget(image: "assets/image/emptyFollowers.png", onTapButton: (){},availableButton: false,title: "no_following_yet",) : ListView.separated(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) => FollowInfoRowWidget(
-                      followModel: _.followersList[index],
-                      ),
-                  separatorBuilder: (context, index) => 8.0.ESH(),
-                  itemCount: _.followersList.length,
-                ),
+    return Scaffold(
+      appBar: AppBars.appBarDefault(title: "followers_", isBack: true),
+      body: ListView(
+        children: [
+          SizedBox(
+            height: 600.h,
+            width: double.infinity,
+            child: GetBuilder<FetchFollowersController>(
+              builder: (_) =>  _.status != RequestStatus.done
+                  ? Center(child: Loader())
+                  : _.followersList.isEmpty?EmptyWidget(image: "assets/image/emptyFollowers.png", onTapButton: (){},availableButton: false,title: "no_following_yet",) : ListView.separated(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemBuilder: (context, index) => FollowInfoRowWidget(
+                    followModel: _.followersList[index],
+                    ),
+                separatorBuilder: (context, index) => 8.0.ESH(),
+                itemCount: _.followersList.length,
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

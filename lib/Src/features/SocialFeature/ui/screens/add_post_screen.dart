@@ -29,74 +29,72 @@ class AddPostScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     AddPostController _addPostController =Get.put(AddPostController(postModel:postModel,isEdit:isEdit));
     var node = FocusScope.of(context);
-    return SafeArea(
-      child: GetBuilder<AddPostController>(
-        builder:(_) =>  Scaffold(
-          appBar: AppBars.appBarDefault(
-            title: "add_post".tr,
-            secondIconImage: Padding(
-              padding: EdgeInsets.only(left: 16.w),
-              child: Center(
-                child: ButtonDefault(
-                  width: 63,
-                  height: 48,
-                  radius: 6,
-                  title: 'publishing_'.tr,
-                  buttonColor: _.img64 != null|| _.futurePostImage!='' || !_.isContentCEmpty || _.contentController!.text.isNotEmpty ?kCActiveButton:kCActiveButton.withOpacity(0.3),
-                  titleSize: 13,
-                  onTap: _.img64 != null || _.futurePostImage!=''||  !_.isContentCEmpty || _.contentController!.text.isNotEmpty ? () {
-                    _.submit();
-                  }:(){},
-                ),
+    return GetBuilder<AddPostController>(
+      builder:(_) =>  Scaffold(
+        appBar: AppBars.appBarDefault(
+          title: "add_post".tr,
+          secondIconImage: Padding(
+            padding: EdgeInsets.only(left: 16.w),
+            child: Center(
+              child: ButtonDefault(
+                width: 63,
+                height: 48,
+                radius: 6,
+                title: 'publishing_'.tr,
+                buttonColor: _.img64 != null|| _.futurePostImage!='' || !_.isContentCEmpty || _.contentController!.text.isNotEmpty ?kCActiveButton:kCActiveButton.withOpacity(0.3),
+                titleSize: 13,
+                onTap: _.img64 != null || _.futurePostImage!=''||  !_.isContentCEmpty || _.contentController!.text.isNotEmpty ? () {
+                  _.submit();
+                }:(){},
               ),
             ),
           ),
-          body: SizedBox(
-            height: double.infinity,
-            child: Stack(
-              children: [
-                SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      24.0.ESH(),
-                      InfoPostWidget(),
-                      4.0.ESH(),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 24.w),
-                        child: TextFieldDefault(
-                          hint: 'Write_your_description_here'.tr,
-                          controller: _.contentController,
-                          fieldType: FieldType.WithOutBorder,
-                          disableBorder: Colors.transparent,
-                          focusBorder: Colors.transparent,
-                          keyboardType: TextInputType.multiline,
-                          enableBorder:  Colors.transparent,
-                          maxLines: 3,
-                          horizentalPadding: 16,
-                          // onChanged: (val){
-                          //   // _.setContentController(val);
-                          //   _.setContentController(val);
-                          // },
-                          onComplete: () {
-                            node.unfocus();
-                          },
-                        ),
-                      ),
-                      16.0.ESH(),
-                      _.image != null || _.futurePostImage != ''?
-                      AddImagePostForm(
-                        futureImage: _.futurePostImage,
-                      ):0.0.ESW(),
-                      60.0.ESH(),
-                    ],
-                  ),
-                ),
-                AddMediaButtonBarForm(),
-              ],
-            ),
-          ),
-
         ),
+        body: SizedBox(
+          height: double.infinity,
+          child: Stack(
+            children: [
+              SingleChildScrollView(
+                child: Column(
+                  children: [
+                    24.0.ESH(),
+                    InfoPostWidget(),
+                    4.0.ESH(),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 24.w),
+                      child: TextFieldDefault(
+                        hint: 'Write_your_description_here'.tr,
+                        controller: _.contentController,
+                        fieldType: FieldType.WithOutBorder,
+                        disableBorder: Colors.transparent,
+                        focusBorder: Colors.transparent,
+                        keyboardType: TextInputType.multiline,
+                        enableBorder:  Colors.transparent,
+                        maxLines: 3,
+                        horizentalPadding: 16,
+                        // onChanged: (val){
+                        //   // _.setContentController(val);
+                        //   _.setContentController(val);
+                        // },
+                        onComplete: () {
+                          node.unfocus();
+                        },
+                      ),
+                    ),
+                    16.0.ESH(),
+                    _.image != null || _.futurePostImage != ''?
+                    AddImagePostForm(
+                      futureImage: _.futurePostImage,
+                    ):0.0.ESW(),
+                    60.0.ESH(),
+                  ],
+                ),
+              ),
+              AddMediaButtonBarForm(),
+            ],
+          ),
+        ),
+
       ),
     );
   }
