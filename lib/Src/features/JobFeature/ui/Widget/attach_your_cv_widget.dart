@@ -50,7 +50,7 @@ class _AttachYourCVIWidgetState extends State<AttachYourCVIWidget> {
   @override
   Widget build(BuildContext context) {
     debugPrint('futureImage in build is ${widget.futureImage}');
-    return GestureDetector(
+    return InkWell(
       onTap: (){
         debugPrint("aaaaaaaaaaaaaaaaaa");
         getImage();
@@ -135,27 +135,22 @@ class _AttachYourCVIWidgetState extends State<AttachYourCVIWidget> {
             ),
           ],
         )
-            : GestureDetector(
-          onTap: (){
-            debugPrint("aaaaaaaaaaaaaaaaaaaaaa");
-          },
-              child: Column(
+            : Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-              SizedBox(
+            SizedBox(
+              height: 18.w,
+              width: 18.w,
+              child: Image.asset(
+                "assets/icons/uplode.png",
                 height: 18.w,
                 width: 18.w,
-                child: Image.asset(
-                  "assets/icons/uplode.png",
-                  height: 18.w,
-                  width: 18.w,
-                ),
               ),
-              8.0.ESH(),
+            ),
+            8.0.ESH(),
            CustomText(text: "attach_your_CV".tr,fontSize: 12,fontW: FW.light,),
           ],
         ),
-            ),
       ),
     );
   }

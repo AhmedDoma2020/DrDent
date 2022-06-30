@@ -94,16 +94,16 @@ FlutterLocalNotificationsPlugin();
 
 void main()async{
   WidgetsFlutterBinding.ensureInitialized();
-  if (Platform.isIOS) {
-    await Firebase.initializeApp(
-        options: const FirebaseOptions(
-            apiKey: "your api key Found in GoogleService-info.plist",
-            appId: "Your app id found in Firebase",
-            messagingSenderId: "Your Sender id found in Firebase",
-            projectId: "Your Project id found in Firebase"));
-  } else {
+  // if (Platform.isIOS) {
+  //   await Firebase.initializeApp(
+  //       options: const FirebaseOptions(
+  //           apiKey: "your api key Found in GoogleService-info.plist",
+  //           appId: "Your app id found in Firebase",
+  //           messagingSenderId: "Your Sender id found in Firebase",
+  //           projectId: "Your Project id found in Firebase"));
+  // }
     await Firebase.initializeApp();
-  }
+
   await GetStorage.init();
 
   // start background
@@ -121,6 +121,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
   late final FirebaseMessaging _messaging;
   void onSelectNotification(String? payload) async {
   }
@@ -179,7 +180,8 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize:const Size(375, 812),
-      builder: () => GetMaterialApp(
+      builder: (context , child) {
+      return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         defaultTransition: Transition.cupertino,
         transitionDuration:const Duration(milliseconds: 200),
@@ -190,7 +192,7 @@ class _MyAppState extends State<MyApp> {
           primarySwatch: Colors.blue,
         ),
         home: SplashScreen(),
-      ),
+      );}
     );
   }
 }

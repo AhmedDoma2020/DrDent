@@ -13,18 +13,16 @@ class StartNowScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     GetStorage box = GetStorage();
     debugPrint("box.read('user_type_id') ${box.read('user_type_id')}");
-    return SafeArea(
-      child: Scaffold(
-        body: EmptyWidget(
-          image: "assets/image/emptyStartNow.png",
-          title: "start_now_title",
-          subTitle: "start_now_sub_title",
-          titleButton: "start_now",
-          onTapButton: () {
-            navigationAfterStartNowScreen(grade: box.read('user_type_id')??3);
-            // Get.to(()=>SetDetectionLocationDetailsScreen(isAuth: true,));
-          },
-        ),
+    return Scaffold(
+      body: EmptyWidget(
+        image: "assets/image/emptyStartNow.png",
+        title: "start_now_title",
+        subTitle: "start_now_sub_title",
+        titleButton: "start_now",
+        onTapButton: () {
+          navigationAfterStartNowScreen(grade: box.read('user_type_id')??3);
+          // Get.to(()=>SetDetectionLocationDetailsScreen(isAuth: true,));
+        },
       ),
     );
   }

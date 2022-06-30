@@ -22,176 +22,175 @@ class AddOfferAndDiscountScreen extends StatelessWidget {
     Get.put(SetOfferAndDiscountController());
     Get.put(FetchMyServicesController());
     var node = FocusScope.of(context);
-    return SafeArea(
-        child: Scaffold(
+    return Scaffold(
       appBar: AppBars.appBarDefault(
-          title: "add_offer".tr,
-          onTap: () {
-            Get.back();
-          }),
+      title: "add_offer".tr,
+      onTap: () {
+        Get.back();
+      }),
       body: GetBuilder<SetOfferAndDiscountController>(
-        builder: (_) => Container(
-          color: Colors.white,
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24.w),
-            child: SingleChildScrollView(
-              child: Form(
-                key: _.globalKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    16.0.ESH(),
-                    TextFieldDefault(
-                      hint: 'offer_name'.tr,
-                      errorText: "error_offer_name".tr,
-                      controller: _.nameController,
-                      keyboardType: TextInputType.text,
-                      filledColor: kCBGTextFormFiled,
-                      fieldType: FieldType.WithBorder,
-                      enableBorder: Colors.transparent,
-                      horizentalPadding: 16,
-                      onComplete: () {
-                        node.nextFocus();
-                      },
-                    ),
-                    16.0.ESH(),
-                    GetBuilder<FetchMyServicesController>(
-                      builder: (myServicesController) => InkWell(
-                        onTap: myServicesController.status ==
-                                RequestStatus.loading
+    builder: (_) => Container(
+      color: Colors.white,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 24.w),
+        child: SingleChildScrollView(
+          child: Form(
+            key: _.globalKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                16.0.ESH(),
+                TextFieldDefault(
+                  hint: 'offer_name'.tr,
+                  errorText: "error_offer_name".tr,
+                  controller: _.nameController,
+                  keyboardType: TextInputType.text,
+                  filledColor: kCBGTextFormFiled,
+                  fieldType: FieldType.WithBorder,
+                  enableBorder: Colors.transparent,
+                  horizentalPadding: 16,
+                  onComplete: () {
+                    node.nextFocus();
+                  },
+                ),
+                16.0.ESH(),
+                GetBuilder<FetchMyServicesController>(
+                  builder: (myServicesController) => InkWell(
+                    onTap: myServicesController.status ==
+                            RequestStatus.loading
+                        ? () {
+                            customSnackBar(
+                              title: "loading_Data".tr,
+                            );
+                          }
+                        : myServicesController.myServicesList.isEmpty
                             ? () {
                                 customSnackBar(
-                                  title: "loading_Data".tr,
-                                );
+                                    title: "no_service_selected_title".tr,
+                                    subtitle:
+                                        "no_service_selected_sup_title".tr);
                               }
-                            : myServicesController.myServicesList.isEmpty
-                                ? () {
-                                    customSnackBar(
-                                        title: "no_service_selected_title".tr,
-                                        subtitle:
-                                            "no_service_selected_sup_title".tr);
-                                  }
-                                : () {
-                                    Get.bottomSheet(AddServicesButtonSheet(
-                                      onTap: () {
-                                        _.servicesIdSelectedList.clear();
-                                        _.servicesTitleSelectedList.clear();
-                                        for (var item in myServicesController
-                                            .myServicesList) {
-                                          if (item.selected) {
-                                            _.servicesIdSelectedList
-                                                .add(item.id);
-                                            _.servicesTitleSelectedList
-                                                .add(item.title);
-                                          }
-                                        }
-                                        debugPrint(
-                                            "servicesIdSelectedList ${_.servicesIdSelectedList}");
-                                        _.servicesSelectedController!.text = _
-                                            .servicesTitleSelectedList
-                                            .join(",");
-                                        Get.back();
-                                      },
-                                    ), isScrollControlled: true);
+                            : () {
+                                Get.bottomSheet(AddServicesButtonSheet(
+                                  onTap: () {
+                                    _.servicesIdSelectedList.clear();
+                                    _.servicesTitleSelectedList.clear();
+                                    for (var item in myServicesController
+                                        .myServicesList) {
+                                      if (item.selected) {
+                                        _.servicesIdSelectedList
+                                            .add(item.id);
+                                        _.servicesTitleSelectedList
+                                            .add(item.title);
+                                      }
+                                    }
+                                    debugPrint(
+                                        "servicesIdSelectedList ${_.servicesIdSelectedList}");
+                                    _.servicesSelectedController!.text = _
+                                        .servicesTitleSelectedList
+                                        .join(",");
+                                    Get.back();
                                   },
-                        child: TextFieldDefault(
-                          hint: 'select_services'.tr,
-                          errorText: "error_select_services".tr,
-                          suffixIconData: Icons.keyboard_arrow_down_outlined,
-                          controller: _.servicesSelectedController,
-                          keyboardType: TextInputType.phone,
-                          filledColor: kCBGTextFormFiled,
-                          fieldType: FieldType.WithBorder,
-                          enable: false,
-                          disableBorder: Colors.transparent,
-                          enableBorder: Colors.transparent,
-                          horizentalPadding: 16,
-                          onComplete: () {
-                            node.nextFocus();
-                          },
-                        ),
-                      ),
-                    ),
-                    16.0.ESH(),
-                    SelectOfferDurationRow(
-                      node: node,
-                      offerDurationController: _.offerDurationController!,
-                    ),
-                    16.0.ESH(),
-                    TextFieldDefault(
-                      hint: 'price_before_discount'.tr,
-                      errorText: "error_price_before_discount".tr,
-                      controller: _.priceController,
+                                ), isScrollControlled: true);
+                              },
+                    child: TextFieldDefault(
+                      hint: 'select_services'.tr,
+                      errorText: "error_select_services".tr,
+                      suffixIconData: Icons.keyboard_arrow_down_outlined,
+                      controller: _.servicesSelectedController,
                       keyboardType: TextInputType.phone,
                       filledColor: kCBGTextFormFiled,
                       fieldType: FieldType.WithBorder,
+                      enable: false,
+                      disableBorder: Colors.transparent,
                       enableBorder: Colors.transparent,
                       horizentalPadding: 16,
                       onComplete: () {
                         node.nextFocus();
                       },
                     ),
-                    16.0.ESH(),
-                    TextFieldDefault(
-                      hint: 'price_after_discount'.tr,
-                      errorText: "error_price_after_discount".tr,
-                      controller: _.priceAfterDiscountController,
-                      keyboardType: TextInputType.phone,
-                      filledColor: kCBGTextFormFiled,
-                      fieldType: FieldType.WithBorder,
-                      enableBorder: Colors.transparent,
-                      horizentalPadding: 16,
-                      onComplete: () {
-                        node.nextFocus();
-                      },
-                    ),
-                    16.0.ESH(),
-                    TextFieldDefault(
-                      hint: 'offer_details'.tr,
-                      errorText: "error_offer_details".tr,
-                      controller: _.offerInfoController,
-                      keyboardType: TextInputType.text,
-                      filledColor: kCBGTextFormFiled,
-                      fieldType: FieldType.WithBorder,
-                      enableBorder: Colors.transparent,
-                      horizentalPadding: 16,
-                      maxLines: 3,
-                      onComplete: () {
-                        node.nextFocus();
-                      },
-                    ),
-                    16.0.ESH(),
-                    TextFieldDefault(
-                      hint: 'booking_details'.tr,
-                      errorText: "error_booking_details".tr,
-                      controller: _.bookingInfoController,
-                      keyboardType: TextInputType.text,
-                      filledColor: kCBGTextFormFiled,
-                      fieldType: FieldType.WithBorder,
-                      enableBorder: Colors.transparent,
-                      maxLines: 3,
-                      horizentalPadding: 16,
-                      onComplete: () {
-                        node.nextFocus();
-                      },
-                    ),
-                    16.0.ESH(),
-                    UploadOfferPhoto(),
-                    16.0.ESH(),
-                    ButtonDefault(
-                        title: 'save_contain'.tr,
-                        onTap: () {
-                          // _.submit();
-                          _.setOfferAndDiscount();
-                        }),
-                    16.0.ESH(),
-                  ],
+                  ),
                 ),
-              ),
+                16.0.ESH(),
+                SelectOfferDurationRow(
+                  node: node,
+                  offerDurationController: _.offerDurationController!,
+                ),
+                16.0.ESH(),
+                TextFieldDefault(
+                  hint: 'price_before_discount'.tr,
+                  errorText: "error_price_before_discount".tr,
+                  controller: _.priceController,
+                  keyboardType: TextInputType.phone,
+                  filledColor: kCBGTextFormFiled,
+                  fieldType: FieldType.WithBorder,
+                  enableBorder: Colors.transparent,
+                  horizentalPadding: 16,
+                  onComplete: () {
+                    node.nextFocus();
+                  },
+                ),
+                16.0.ESH(),
+                TextFieldDefault(
+                  hint: 'price_after_discount'.tr,
+                  errorText: "error_price_after_discount".tr,
+                  controller: _.priceAfterDiscountController,
+                  keyboardType: TextInputType.phone,
+                  filledColor: kCBGTextFormFiled,
+                  fieldType: FieldType.WithBorder,
+                  enableBorder: Colors.transparent,
+                  horizentalPadding: 16,
+                  onComplete: () {
+                    node.nextFocus();
+                  },
+                ),
+                16.0.ESH(),
+                TextFieldDefault(
+                  hint: 'offer_details'.tr,
+                  errorText: "error_offer_details".tr,
+                  controller: _.offerInfoController,
+                  keyboardType: TextInputType.text,
+                  filledColor: kCBGTextFormFiled,
+                  fieldType: FieldType.WithBorder,
+                  enableBorder: Colors.transparent,
+                  horizentalPadding: 16,
+                  maxLines: 3,
+                  onComplete: () {
+                    node.nextFocus();
+                  },
+                ),
+                16.0.ESH(),
+                TextFieldDefault(
+                  hint: 'booking_details'.tr,
+                  errorText: "error_booking_details".tr,
+                  controller: _.bookingInfoController,
+                  keyboardType: TextInputType.text,
+                  filledColor: kCBGTextFormFiled,
+                  fieldType: FieldType.WithBorder,
+                  enableBorder: Colors.transparent,
+                  maxLines: 3,
+                  horizentalPadding: 16,
+                  onComplete: () {
+                    node.nextFocus();
+                  },
+                ),
+                16.0.ESH(),
+                UploadOfferPhoto(),
+                16.0.ESH(),
+                ButtonDefault(
+                    title: 'save_contain'.tr,
+                    onTap: () {
+                      // _.submit();
+                      _.setOfferAndDiscount();
+                    }),
+                16.0.ESH(),
+              ],
             ),
           ),
         ),
       ),
-    ));
+    ),
+      ),
+    );
   }
 }

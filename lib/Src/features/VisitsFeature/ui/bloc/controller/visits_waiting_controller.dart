@@ -5,7 +5,7 @@ import 'package:dr_dent/Src/features/VisitsFeature/ui/bloc/repository/visits_new
 import 'package:dr_dent/Src/features/VisitsFeature/ui/bloc/repository/visits_waiting_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:scroll_to_index/scroll_to_index.dart';
+// import 'package:scroll_to_index/scroll_to_index.dart';
 
 class VisitsWaitingController extends GetxController{
   RequestStatus status = RequestStatus.initial;

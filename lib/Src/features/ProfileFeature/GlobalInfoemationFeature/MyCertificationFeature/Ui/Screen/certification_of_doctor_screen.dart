@@ -34,86 +34,84 @@ class CertificationOfDoctorScreen extends StatelessWidget {
       await _fetchDoctorCertificationController.fetchCertification();
     }
 
-    return SafeArea(
-      child: RefreshIndicator(
-        onRefresh: onRefresh,
-        child: GetBuilder<FetchDoctorCertificationController>(
-          builder: (_) => Scaffold(
-            appBar: AppBars.appBarDefault(
-              title: "my_certification".tr,
-              onTap: () {
-                Get.back();
-              },
-            ),
-            floatingActionButton: FloatingActionButton(
-              child: Icon(
-                Icons.add,
-                color: Colors.white,
-                size: 24.w,
-              ),
-              onPressed: () {
-                _addDoctorCertificationController.getImages();
-              },
-              backgroundColor: kCMain,
-            ),
-            body: _.status == RequestStatus.loading
-                ? Center(
-                    child: Loader(),
-                  )
-                : _.certificationList.isEmpty
-                    ? EmptyWidget(
-                        image: "assets/image/EmptyDetectionLocationDetails.png",
-                        title: "no_certification_yet_title".tr,
-                        subTitle: "no_certification_yet_sup_title".tr,
-                        onTapButton: () {},
-                        availableButton: false,
-                      )
-                    : Container(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 16.w, vertical: 24.h),
-                        height: double.infinity,
-                        child: SingleChildScrollView(
-                          child: StaggeredGrid.count(
-                            crossAxisCount: 3,
-                            mainAxisSpacing: 8.h,
-                            crossAxisSpacing: 8.w,
-                            children: _.certificationList
-                                .map(
-                                  (e) => CertificationImageForm(
-                                    onDelete:
-                                        _.snackBarStatus == SnackbarStatus.CLOSED
-                                            ? () {
-                                                _.deleteCertification(
-                                                    certificationId: e.id!);
-                                              }
-                                            : () {},
-                                    image: e.image!,
-                                  ),
-                                )
-                                .toList(),
-                          ),
-                        ),
-
-                        // GridView.builder(
-                        //   shrinkWrap: true,
-                        //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        //     crossAxisCount: 3,
-                        //     // childAspectRatio: 1.06,
-                        //     crossAxisSpacing: 16.w,
-                        //     mainAxisSpacing: 18.h,
-                        //   ),
-                        //   itemBuilder: (context, index) => CertificationImageForm(
-                        //     onDelete:  _.snackBarStatus == SnackbarStatus.CLOSED? () {
-                        //       _.deleteCertification(
-                        //           certificationId:
-                        //               _.certificationList[index].id!);
-                        //     }:(){},
-                        //     image: _.certificationList[index].image!,
-                        //   ),
-                        //   itemCount: _.certificationList.length,
-                        // ),
-                      ),
+    return RefreshIndicator(
+      onRefresh: onRefresh,
+      child: GetBuilder<FetchDoctorCertificationController>(
+        builder: (_) => Scaffold(
+          appBar: AppBars.appBarDefault(
+            title: "my_certification".tr,
+            onTap: () {
+              Get.back();
+            },
           ),
+          floatingActionButton: FloatingActionButton(
+            child: Icon(
+              Icons.add,
+              color: Colors.white,
+              size: 24.w,
+            ),
+            onPressed: () {
+              _addDoctorCertificationController.getImages();
+            },
+            backgroundColor: kCMain,
+          ),
+          body: _.status == RequestStatus.loading
+              ? Center(
+                  child: Loader(),
+                )
+              : _.certificationList.isEmpty
+                  ? EmptyWidget(
+                      image: "assets/image/EmptyDetectionLocationDetails.png",
+                      title: "no_certification_yet_title".tr,
+                      subTitle: "no_certification_yet_sup_title".tr,
+                      onTapButton: () {},
+                      availableButton: false,
+                    )
+                  : Container(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 16.w, vertical: 24.h),
+                      height: double.infinity,
+                      child: SingleChildScrollView(
+                        child: StaggeredGrid.count(
+                          crossAxisCount: 3,
+                          mainAxisSpacing: 8.h,
+                          crossAxisSpacing: 8.w,
+                          children: _.certificationList
+                              .map(
+                                (e) => CertificationImageForm(
+                                  onDelete:
+                                      _.snackBarStatus == SnackbarStatus.CLOSED
+                                          ? () {
+                                              _.deleteCertification(
+                                                  certificationId: e.id!);
+                                            }
+                                          : () {},
+                                  image: e.image!,
+                                ),
+                              )
+                              .toList(),
+                        ),
+                      ),
+
+                      // GridView.builder(
+                      //   shrinkWrap: true,
+                      //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      //     crossAxisCount: 3,
+                      //     // childAspectRatio: 1.06,
+                      //     crossAxisSpacing: 16.w,
+                      //     mainAxisSpacing: 18.h,
+                      //   ),
+                      //   itemBuilder: (context, index) => CertificationImageForm(
+                      //     onDelete:  _.snackBarStatus == SnackbarStatus.CLOSED? () {
+                      //       _.deleteCertification(
+                      //           certificationId:
+                      //               _.certificationList[index].id!);
+                      //     }:(){},
+                      //     image: _.certificationList[index].image!,
+                      //   ),
+                      //   itemCount: _.certificationList.length,
+                      // ),
+                    ),
         ),
       ),
     );

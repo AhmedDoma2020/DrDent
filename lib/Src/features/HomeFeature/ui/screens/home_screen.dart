@@ -18,84 +18,88 @@ import '/src/core/utils/extensions.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeScreen extends StatelessWidget {
-  const   HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     GetStorage box = GetStorage();
-    BaseController  baseController = Get.put(BaseController());
-    InformationRequestsController _informationRequestsController = Get.put(InformationRequestsController());
+    BaseController baseController = Get.put(BaseController());
+    InformationRequestsController _informationRequestsController = Get.put(
+        InformationRequestsController());
     Get.put(HomeVisitsController());
-Future<void>  refreshIndicator()async{
-  await _informationRequestsController.fetchInformationRequests();
-}
+    Future<void> refreshIndicator() async {
+      await _informationRequestsController.fetchInformationRequests();
+    }
     return GetBuilder<HomeVisitsController>(
-      builder: (_) =>  RefreshIndicator(
-        onRefresh: ()async{
-          _.fetchHomeVisits();
-          refreshIndicator();
-        },
-        child: ListView(
-          children: [
-           _.status != RequestStatus.done?
-               16.0.ESH():
-               // box.read('user_type_id') == 3 && box.read('user_type_id')== 4?
-               Column(
-                 children: [
-                   _.nextVisits.isNotEmpty?
-                   Padding(
-                     padding:  EdgeInsets.symmetric(
-                         vertical: 16.h
-                     ),
-                     child: Column(
-                       children: [
-                         TitleRowViewAll(titleSlider: 'next_visit'.tr, onTap: (){},titleOnTap: '',),
-                         16.0.ESH(),
-                         CardVisit(width: 343,),
-                       ],
-                     ),
-                   ):0.0.ESH(),
-                   _.newVisits.isNotEmpty?
-                   Padding(
-                     padding:  EdgeInsets.symmetric(
-                         vertical: 16.h
-                     ),
-                     child: SliderVisits(),
-                   ):
-                   Padding(
-                     padding:  EdgeInsets.symmetric(
-                         vertical: 16.h,
-                         horizontal: 16.w
-                     ),
-                     child: EmptyVisitsSection(),
-                   ),
-                 ],
-               )
-            ,
-               // :
-               // 0.0.ESW(),
-            // box.read('user_type_id')== 5 && box.read('user_type_id')== 6?
-               SliderCardPerson()
-            ,
-               //     :
-               // 0.0.ESH(),
-            16.0.ESH(),
-            ListView.separated(
-              separatorBuilder: (context, index) => 16.0.ESH(),
-              itemBuilder: (context, index) => HomeItem(
-                homeModel: homeModelExamples[index],
-                onTap: (){
-                  print(homeModelExamples[index].id);
-                  baseController.tabIndex=homeModelExamples[index].id;
-                },
-              ),
-              itemCount  : homeModelExamples.length,
-              shrinkWrap : true,
-              physics: NeverScrollableScrollPhysics(),
+      builder: (_) =>
+          RefreshIndicator(
+            onRefresh: () async {
+              _.fetchHomeVisits();
+              refreshIndicator();
+            },
+            child: ListView(
+              children: [
+                _.status != RequestStatus.done ?
+                16.0.ESH() :
+                // box.read('user_type_id') == 3 && box.read('user_type_id')== 4?
+                Column(
+                  children: [
+                    _.nextVisits.isNotEmpty ?
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 16.h
+                      ),
+                      child: Column(
+                        children: [
+                          TitleRowViewAll(titleSlider: 'next_visit'.tr,
+                            onTap: () {},
+                            titleOnTap: '',),
+                          16.0.ESH(),
+                          CardVisit(width: 343,),
+                        ],
+                      ),
+                    ) : 0.0.ESH(),
+                    _.newVisits.isNotEmpty ?
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 16.h
+                      ),
+                      child: SliderVisits(),
+                    ) :
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 16.h,
+                          horizontal: 16.w
+                      ),
+                      child: EmptyVisitsSection(),
+                    ),
+                  ],
+                )
+                ,
+                // :
+                // 0.0.ESW(),
+                // box.read('user_type_id')== 5 && box.read('user_type_id')== 6?
+                SliderCardPerson()
+                ,
+                //     :
+                // 0.0.ESH(),
+                16.0.ESH(),
+                ListView.separated(
+                  separatorBuilder: (context, index) => 16.0.ESH(),
+                  itemBuilder: (context, index) =>
+                      HomeItem(
+                        homeModel: homeModelExamples[index],
+                        onTap: () {
+                          baseController.tabIndex = homeModelExamples[index].id;
+                        },
+                      ),
+                  itemCount: homeModelExamples.length,
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
     );
   }
 }

@@ -32,95 +32,93 @@ class DetectionLocationDetailsScreen extends StatelessWidget {
     Future<void> onRefresh() async {
       await _fetchWorkSpaceDetailsController.fetchMyWorkSpaceDetails();
     }
-    return SafeArea(
-      child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          child: Icon(
-            Icons.add,
-            color: Colors.white,
-            size: 24.w,
-          ),
-          onPressed: () {
-            Get.to(() => SetDetectionLocationDetailsScreen(
-                  isAuth: false,
-                ));
-          },
-          backgroundColor: kCMain,
-        ),
-        appBar: AppBars.appBarDefault(
-            title: appBarTitle.tr,
-            onTap: () {
-              Get.back();
-            }),
-        body: Container(
-          padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
-          height: double.infinity,
-          width: double.infinity,
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          Icons.add,
           color: Colors.white,
-          child: RefreshIndicator(
-            onRefresh: onRefresh,
-            child: GetBuilder<FetchWorkSpaceDetailsController>(
-              builder: (_) => _.status == RequestStatus.loading
-                  ? Center(
-                      child: Loader(),
-                    )
-                  : _.myWorkSpaceDetails.isEmpty
-                      ? EmptyWidget(
-                          image:
-                              "assets/image/EmptyDetectionLocationDetails.png",
-                          onTapButton: () {},
-                          availableButton: false,
-                          title: "Empty_Detection_location_details".tr,
-                          imageH: 160,
-                          imageW: 140,
-                        )
-                      : ListView.separated(
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) =>
-                              DetectionLocationDetailsWidget(
-                            model: _.myWorkSpaceDetails[index],
-                            onEditTap: () {
-                              Get.to(
-                                () => SetDetectionLocationDetailsScreen(
-                                  isEdit: true,
-                                  isAuth: false,
-                                  workSpace: _.myWorkSpaceDetails[index],
-                                ),
-                              );
-                            },
-                            onTimeTap: () {
-                              Get.to(
-                                () => WorkTimeScreen(
-                                  isEdit:true,
-                                  userType: userType,
-                                  isBack: true,
-                                 dayBookingTypeEdit: _.myWorkSpaceDetails[index].reservationType,
-                                  doctorId: box.read('id'),
-                                  onSuccess: () {
-                                    Get.back();
-                                    _.fetchMyWorkSpaceDetails();
-                                  },
-                                  workspaceId: _.myWorkSpaceDetails[index].id,
-                                  fetchDayBooking: _.myWorkSpaceDetails[index].dayBooking,
-                                  fetchDetectionTime: _.myWorkSpaceDetails[index].detectionTime,
-                                ),
-                              );
-                            },
-                            onDeleteTap:
-                                _.snackBarStatus == SnackbarStatus.CLOSED
-                                    ? () {
-                                        debugPrint(
-                                            "on tap delete ${_.myWorkSpaceDetails[index].id}");
-                                        _.deleteMyDetectionLocationDetails(
-                                            detectionId:
-                                                _.myWorkSpaceDetails[index].id);
-                                      }
-                                    : () {},
-                          ),
-                          separatorBuilder: (context, index) => 16.0.ESH(),
-                          itemCount: _.myWorkSpaceDetails.length,
+          size: 24.w,
+        ),
+        onPressed: () {
+          Get.to(() => SetDetectionLocationDetailsScreen(
+                isAuth: false,
+              ));
+        },
+        backgroundColor: kCMain,
+      ),
+      appBar: AppBars.appBarDefault(
+          title: appBarTitle.tr,
+          onTap: () {
+            Get.back();
+          }),
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
+        height: double.infinity,
+        width: double.infinity,
+        color: Colors.white,
+        child: RefreshIndicator(
+          onRefresh: onRefresh,
+          child: GetBuilder<FetchWorkSpaceDetailsController>(
+            builder: (_) => _.status == RequestStatus.loading
+                ? Center(
+                    child: Loader(),
+                  )
+                : _.myWorkSpaceDetails.isEmpty
+                    ? EmptyWidget(
+                        image:
+                            "assets/image/EmptyDetectionLocationDetails.png",
+                        onTapButton: () {},
+                        availableButton: false,
+                        title: "Empty_Detection_location_details".tr,
+                        imageH: 160,
+                        imageW: 140,
+                      )
+                    : ListView.separated(
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) =>
+                            DetectionLocationDetailsWidget(
+                          model: _.myWorkSpaceDetails[index],
+                          onEditTap: () {
+                            Get.to(
+                              () => SetDetectionLocationDetailsScreen(
+                                isEdit: true,
+                                isAuth: false,
+                                workSpace: _.myWorkSpaceDetails[index],
+                              ),
+                            );
+                          },
+                          onTimeTap: () {
+                            Get.to(
+                              () => WorkTimeScreen(
+                                isEdit:true,
+                                userType: userType,
+                                isBack: true,
+                               dayBookingTypeEdit: _.myWorkSpaceDetails[index].reservationType,
+                                doctorId: box.read('id'),
+                                onSuccess: () {
+                                  Get.back();
+                                  _.fetchMyWorkSpaceDetails();
+                                },
+                                workspaceId: _.myWorkSpaceDetails[index].id,
+                                fetchDayBooking: _.myWorkSpaceDetails[index].dayBooking,
+                                fetchDetectionTime: _.myWorkSpaceDetails[index].detectionTime,
+                              ),
+                            );
+                          },
+                          onDeleteTap:
+                              _.snackBarStatus == SnackbarStatus.CLOSED
+                                  ? () {
+                                      debugPrint(
+                                          "on tap delete ${_.myWorkSpaceDetails[index].id}");
+                                      _.deleteMyDetectionLocationDetails(
+                                          detectionId:
+                                              _.myWorkSpaceDetails[index].id);
+                                    }
+                                  : () {},
                         ),
-            ),
+                        separatorBuilder: (context, index) => 16.0.ESH(),
+                        itemCount: _.myWorkSpaceDetails.length,
+                      ),
           ),
         ),
       ),

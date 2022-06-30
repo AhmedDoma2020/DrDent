@@ -180,7 +180,6 @@ class _MapScreenState extends State<MapScreen> {
       debugPrint("enter in getMyLocation 1");
       return Future.error('Location services are disabled.');
     }
-
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       debugPrint("enter in getMyLocation 2");
@@ -201,7 +200,6 @@ class _MapScreenState extends State<MapScreen> {
     if (permission == LocationPermission.deniedForever) {
       // Permissions are denied forever, handle appropriately.
       debugPrint("enter in getMyLocation 6");
-
       return Future.error(
           'Location permissions are permanently denied, we cannot request permissions.');
     }

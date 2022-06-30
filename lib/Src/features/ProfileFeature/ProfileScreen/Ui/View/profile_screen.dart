@@ -18,26 +18,24 @@ class ProfileScreen extends StatelessWidget {
     debugPrint(
         "box.read('user_type_id') in profile is ${box.read('user_type_id')}");
     Get.put(FetchProfileController());
-    return SafeArea(
-      child: Scaffold(
-        body: GetBuilder<FetchProfileController>(
-          builder: (proController) =>
-              proController.status == RequestStatus.loading
-                  ? Center(
-                      child: Loader(),
-                    )
-                  : ListView(
-                      children: [
-                        profileInfoWidget(),
-                        8.0.ESH(),
-                        ProfileRowInfoAndRate(),
-                        profileIOSTapBarType(
-                          userTypeId: box.read('user_type_id') ?? 3,
-                          userId: proController.id!,
-                        ),
-                      ],
-                    ),
-        ),
+    return Scaffold(
+      body: GetBuilder<FetchProfileController>(
+        builder: (proController) =>
+            proController.status == RequestStatus.loading
+                ? Center(
+                    child: Loader(),
+                  )
+                : ListView(
+                    children: [
+                      profileInfoWidget(),
+                      8.0.ESH(),
+                      ProfileRowInfoAndRate(),
+                      profileIOSTapBarType(
+                        userTypeId: box.read('user_type_id') ?? 3,
+                        userId: proController.id!,
+                      ),
+                    ],
+                  ),
       ),
     );
   }

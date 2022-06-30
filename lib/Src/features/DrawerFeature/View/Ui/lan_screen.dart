@@ -15,42 +15,40 @@ class LanScreen extends StatelessWidget {
     LangController _langController = Get.put(LangController());
     return Scaffold(
       appBar: AppBars.appBarDefault(title: "change_lan".tr),
-      body: SafeArea(
-        child: SizedBox(
-          width: double.infinity,
-          child: GetBuilder<LangController>(
-            builder: (_) => Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                24.0.ESH(),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24.w),
-                  child: SizedBox(
-                      width: 262.w,
-                      child: CustomText(
-                        text:
-                            "Select_the_language_in_which_you_want_to_proceed_in_the_application",
-                        fontW: FW.semicond,
-                      )),
-                ),
-                32.0.ESH(),
-                ListView.separated(
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) => InkWell(
-                    onTap: (){
-                      _.changeLangIndex(_.langList[index].id);
-                      _.changeLang(_.langList[index].id);
-                    },
-                    child: LangRowForm(
-                      active: _.active==_.langList[index].id,
-                      lanTitle: _.langList[index].langTitle!,
-                    ),
+      body: SizedBox(
+        width: double.infinity,
+        child: GetBuilder<LangController>(
+          builder: (_) => Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              24.0.ESH(),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24.w),
+                child: SizedBox(
+                    width: 262.w,
+                    child: CustomText(
+                      text:
+                          "Select_the_language_in_which_you_want_to_proceed_in_the_application",
+                      fontW: FW.semicond,
+                    )),
+              ),
+              32.0.ESH(),
+              ListView.separated(
+                shrinkWrap: true,
+                itemBuilder: (context, index) => InkWell(
+                  onTap: (){
+                    _.changeLangIndex(_.langList[index].id);
+                    _.changeLang(_.langList[index].id);
+                  },
+                  child: LangRowForm(
+                    active: _.active==_.langList[index].id,
+                    lanTitle: _.langList[index].langTitle!,
                   ),
-                  separatorBuilder: (context, index) => 16.0.ESH(),
-                  itemCount: _.langList.length,
                 ),
-              ],
-            ),
+                separatorBuilder: (context, index) => 16.0.ESH(),
+                itemCount: _.langList.length,
+              ),
+            ],
           ),
         ),
       ),

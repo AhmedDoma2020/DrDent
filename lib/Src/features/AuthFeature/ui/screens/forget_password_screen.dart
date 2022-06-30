@@ -13,46 +13,44 @@ class ForgetPasswordScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     CheckPhoneController _checkPhoneController = Get.put(CheckPhoneController());
     var node = FocusScope.of(context);
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBars.appBarDefault(title: 'reset_password'.tr),
-        body:Padding(
-          padding:  EdgeInsets.symmetric(horizontal: 24.w,),
-          child: GetBuilder<CheckPhoneController>(
-            builder:(_) =>  ListView(
-              children: [
-                40.0.ESH(),
-                CustomText(text: 'forget_password'.tr,fontW: FW.semibold,fontSize: 20,),
-                16.0.ESH(),
-                CustomText(text: 'sub_title_forget_password'.tr,fontW: FW.semibold,fontSize: 16,color: kCGreyTitle,),
-                32.0.ESH(),
-                CustomText(text: 'phone_number'.tr,fontW: FW.semibold,fontSize: 14,),
-                14.0.ESH(),
-                Form(
-                  key: _.globalKey,
-                  child: TextFieldDefault(
-                    hint: 'enter_phone'.tr,
-                    errorText: "error_phone_field".tr,
-                    controller: _.phoneController,
-                    keyboardType: TextInputType.phone,
-                    fieldType: FieldType.WithBorder,
-                    prefixIconUrl: "TFPhone",
-                    horizentalPadding: 16,
-                    onComplete: () {
-                      node.nextFocus();
-                    },
-                  ),
-                ),
-                24.0.ESH(),
-                ButtonDefault(
-                  title: 'send_code'.tr,
-                  onTap: (){
-                    debugPrint(">>>>>>>>>>>>");
-                    _.submit();
+    return Scaffold(
+      appBar: AppBars.appBarDefault(title: 'reset_password'.tr),
+      body:Padding(
+        padding:  EdgeInsets.symmetric(horizontal: 24.w,),
+        child: GetBuilder<CheckPhoneController>(
+          builder:(_) =>  ListView(
+            children: [
+              40.0.ESH(),
+              CustomText(text: 'forget_password'.tr,fontW: FW.semibold,fontSize: 20,),
+              16.0.ESH(),
+              CustomText(text: 'sub_title_forget_password'.tr,fontW: FW.semibold,fontSize: 16,color: kCGreyTitle,),
+              32.0.ESH(),
+              CustomText(text: 'phone_number'.tr,fontW: FW.semibold,fontSize: 14,),
+              14.0.ESH(),
+              Form(
+                key: _.globalKey,
+                child: TextFieldDefault(
+                  hint: 'enter_phone'.tr,
+                  errorText: "error_phone_field".tr,
+                  controller: _.phoneController,
+                  keyboardType: TextInputType.phone,
+                  fieldType: FieldType.WithBorder,
+                  prefixIconUrl: "TFPhone",
+                  horizentalPadding: 16,
+                  onComplete: () {
+                    node.nextFocus();
                   },
                 ),
-              ],
-            ),
+              ),
+              24.0.ESH(),
+              ButtonDefault(
+                title: 'send_code'.tr,
+                onTap: (){
+                  debugPrint(">>>>>>>>>>>>");
+                  _.submit();
+                },
+              ),
+            ],
           ),
         ),
       ),
