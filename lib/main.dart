@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'dart:io';
 
@@ -62,8 +61,8 @@ import 'Src/ui/widgets/grids/grid_card_product.dart';
 // start background
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp(
-    // options: DefaultFirebaseOptions.currentPlatform,
-  );
+      // options: DefaultFirebaseOptions.currentPlatform,
+      );
   print('Handling a background message ${message.messageId}');
   print(message.data);
   flutterLocalNotificationsPlugin.show(
@@ -78,21 +77,22 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
           enableVibration: true,
         ),
       ),
-      payload: json.encode(message.data.toString())
-  );
+      payload: json.encode(message.data.toString()));
 }
+
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
   'high_importance_channel', // id
   'High Importance Notifications', // title
-  description: 'This channel is used for important notifications.', // description
+  description: 'This channel is used for important notifications.',
+  // description
   importance: Importance.high,
 );
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-FlutterLocalNotificationsPlugin();
+    FlutterLocalNotificationsPlugin();
 // end background
 
-void main()async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // if (Platform.isIOS) {
   //   await Firebase.initializeApp(
@@ -102,7 +102,7 @@ void main()async{
   //           messagingSenderId: "Your Sender id found in Firebase",
   //           projectId: "Your Project id found in Firebase"));
   // }
-    await Firebase.initializeApp();
+  await Firebase.initializeApp();
 
   await GetStorage.init();
 
@@ -110,10 +110,11 @@ void main()async{
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
-      AndroidFlutterLocalNotificationsPlugin>()
+          AndroidFlutterLocalNotificationsPlugin>()
       ?.createNotificationChannel(channel);
   // end background
-  runApp(MyApp());}
+  runApp(MyApp());
+}
 
 class MyApp extends StatefulWidget {
   @override
@@ -121,32 +122,41 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   late final FirebaseMessaging _messaging;
-  void onSelectNotification(String? payload) async {
-  }
-  void registerNotification()async{
+
+  void onSelectNotification(String? payload) async {}
+
+  void registerNotification() async {
     await Firebase.initializeApp();
     // instance for firebase messaging
     _messaging = FirebaseMessaging.instance;
     _messaging.subscribeToTopic("all");
     _messaging.subscribeToTopic("shop");
     //three type of state in notification
+    void onDidReceiveLocalNotification(
+        int id, String? title, String? body, String? payload) async {
+      // display a dialog with the notification details, tap ok to go to another page
+    }
+    final IOSInitializationSettings initializationSettingsIOS =
+        IOSInitializationSettings(
+            onDidReceiveLocalNotification: onDidReceiveLocalNotification);
     var initialzationSettingsAndroid =
-    AndroidInitializationSettings('@mipmap/ic_launcher');
-    var initializationSettings =
-    InitializationSettings(android: initialzationSettingsAndroid);
+        AndroidInitializationSettings('@mipmap/ic_launcher');
+    var initializationSettings = InitializationSettings(
+        android: initialzationSettingsAndroid, iOS: initializationSettingsIOS);
     flutterLocalNotificationsPlugin.initialize(initializationSettings);
-    flutterLocalNotificationsPlugin.initialize(initializationSettings,onSelectNotification: onSelectNotification,);
+    flutterLocalNotificationsPlugin.initialize(
+      initializationSettings,
+      onSelectNotification: onSelectNotification,
+    );
     NotificationSettings seetings = await _messaging.requestPermission(
       alert: true,
       badge: true,
       provisional: false,
-      sound:true,
+      sound: true,
     );
     // initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
-    if(seetings.authorizationStatus==AuthorizationStatus.authorized )
-    {
+    if (seetings.authorizationStatus == AuthorizationStatus.authorized) {
       print("User granted the permission");
       FirebaseMessaging.onMessage.listen((RemoteMessage message) {
         print("notification message.notification1 is >>> ${message.data}");
@@ -162,10 +172,9 @@ class _MyAppState extends State<MyApp> {
                 enableVibration: true,
               ),
             ),
-            payload: json.encode(message.data.toString())
-        );
+            payload: json.encode(message.data.toString()));
       });
-    }else{
+    } else {
       print("permition declined by user");
     }
   }
@@ -179,20 +188,21 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize:const Size(375, 812),
-      builder: (context , child) {
-      return GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        defaultTransition: Transition.cupertino,
-        transitionDuration:const Duration(milliseconds: 200),
-        translations: LocalizationServices(),
-        locale: LocalizationServices().getCurrentLocale(),
-        title: 'DrDent',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: SplashScreen(),
-      );}
-    );
+        designSize: const Size(375, 812),
+        builder: (context, child) {
+          return GetMaterialApp(
+            debugShowCheckedModeBanner: false,
+            defaultTransition: Transition.cupertino,
+            transitionDuration: const Duration(milliseconds: 200),
+            translations: LocalizationServices(),
+            locale: LocalizationServices().getCurrentLocale(),
+            title: 'DrDent',
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+            ),
+            // home: SplashScreen(),
+            home: SetDetectionLocationDetailsScreen(isAuth: true),
+          );
+        });
   }
 }
